@@ -1,0 +1,1077 @@
+<html>
+<script type="text/javascript">
+	      "1740477391");
+</script>
+
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.0 [en] (WinNT; I) [Netscape]">
+   <title>The COPY verb</title>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000FF" vlink="#FF0000" alink="#009B00">
+<table border="1" width="715" cellspacing="0" height="100%">
+  <tr>
+    <td> 
+      <table width="710" cellpadding="4" cellspacing="0" border="0">
+        <tr> 
+          <td valign="top" align="left" bgcolor="#FFFFFF" colspan="2" height="396"> 
+            <center>
+              <h2><img src="course/Resources/pics/t-CobolTut.gif" width="173" height="59"></h2>
+            </center>
+            <center>
+              <h2> The COPY verb</h2>
+              <hr>
+            </center>
+            <table border="0" width="700" vspace="15">
+              <tr> 
+                <td width="3%" valign="TOP" height="44">&nbsp;</td>
+                <td width="4%" valign="TOP" height="44"><img src="course/Resources/pics/BallGreenG.gif" hspace="4" height="13" width="13" align="TOP" vspace="4"></td>
+                <td width="93%" height="44"> <b><a href="#intro" target="">Introduction</a><br>
+                  </b><font size="-1">Unit aims, objectives, prerequisites.</font><br>
+                </td>
+              </tr>
+              <tr> 
+                <td width="3%" valign="TOP" height="58">&nbsp;</td>
+                <td width="4%" valign="TOP" height="58"><img src="course/Resources/pics/BallGreenG.gif" hspace="4" height="13" width="13" align="TOP" vspace="4"></td>
+                <td width="93%" valign="top" height="58"> 
+                  <p><b><a href="#part1" target="">Using COPY statements</a><br>
+                    </b><font size="-1">Introduction to the COPY verb. Using the 
+                    COPY verb when creating large software systems</font></p>
+                </td>
+              </tr>
+              <tr> 
+                <td width="3%" valign="TOP" height="58">&nbsp;</td>
+                <td width="4%" valign="TOP" height="58"><img src="course/Resources/pics/BallGreenG.gif" hspace="4" height="13" width="13" align="TOP" vspace="4"></td>
+                <td width="93%" valign="top" height="58"><b><a href="#part2" target="">The 
+                  COPY verb - Syntax and Semantics</a><br>
+                  </b><font size="-1">The COPY syntax. How the COPY works. How 
+                  the REPLACING phrase works. COPY rules.</font></td>
+              </tr>
+              <tr> 
+                <td width="3%" valign="TOP" height="58">&nbsp;</td>
+                <td width="4%" valign="TOP" height="58"><img src="course/Resources/pics/BallGreenG.gif" hspace="4" height="13" width="13" align="TOP" vspace="4"></td>
+                <td width="93%" valign="top" height="58"><b><a href="#part3" target="">COPY 
+                  examples </a><br>
+                  </b><font size="-1">Four example programs showing the program 
+                  source text before processing the COPY statements, the copy 
+                  library text, and the program source text after processing the 
+                  COPY statements in the program.</font></td>
+              </tr>
+            </table>
+            <hr>
+          </td>
+        </tr>
+        <tr> 
+          <td valign="top" align="LEFT" bgcolor="#993300" colspan="2" height="27"> 
+            <h2 align="CENTER"><font color="#FFFF00"><a name="intro"></a><font face="Arial, Helvetica, sans-serif">Introduction</font></font></h2>
+          </td>
+        </tr>
+        <tr> 
+          <td valign="top" width="175" bgcolor="#FFFFCC" height="337"> 
+            <h4><font color="#993300" face="Arial, Helvetica, sans-serif">Aims</font></h4>
+            <h4><img src="course/Resources/pics/PanelLine.gif" width="175" height="1"></h4>
+          </td>
+          <td width="525" valign="top" height="337"> 
+            <div align="center"> 
+              <p align="left">In a large software system it is often very useful 
+                to be able keep record, file and table descriptions in a central 
+                source text library and then to import those descriptions into 
+                the programs that require them. In COBOL the <font size="-1">COPY</font> 
+                verb allows us to do this.</p>
+              <p align="left">This unit introduces the <font size="-1">COPY</font> 
+                verb. </p>
+              <p align="left">It describes some problems of large software systems 
+                which use of the <font size="-1">COPY</font> helps to alleviate.</p>
+              <p align="left">It introduces the syntax of the <font size="-1">COPY</font> 
+                verb and discusses how the <font size="-1">COPY</font> verb, and 
+                in particular they <font size="-1">COPY..REPLACING</font>, works. 
+              </p>
+              <p align="left">It introduces the notion of a text word and describes 
+                the role that these play in matching the text in the <font size="-1">REPLACING</font> 
+                phrase with the text in the library file. </p>
+              <p align="left">The unit ends with a number of example programs.</p>
+              </div>
+<hr width="100%" align="center" size="1">
+          </td>
+        </tr>
+        <tr> 
+          <td valign="top" align="LEFT" width="175" bgcolor="#FFFFCC" height="167"> 
+            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Objectives</font></h4>
+          </td>
+          <td width="525" valign="top" height="167"> 
+            <p>By the end of this unit you should - </p>
+            <ol>
+              <li>Be aware of some of the advantages of using the COPY verb.<br>
+                <br>
+              </li>
+              <li>Understand what a text word and be able to identify text words 
+                in library text.<br>
+                <br>
+              </li>
+              <li>Be able to use the COPY.. REPLACING to copy source text from 
+                a library file and replace sections of it as required.</li>
+            </ol>
+            <hr width="100%" align="center" size="1">
+          </td>
+        </tr>
+        <tr> 
+          <td valign="top" align="LEFT" width="175" bgcolor="#FFFFCC" height="355"> 
+            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Prerequisites</font></h4>
+          </td>
+          <td width="525" height="355" valign="top"> 
+            <p>Introduction to COBOL<br>
+              Declaring data in COBOL<br>
+              Basic Procedure Division commands <br>
+              Selection in COBOL<br>
+              Iteration in COBOL <br>
+              Introduction to Sequential files<br>
+              Processing Sequential files<br>
+              Edited Pictures <br>
+              The USAGE clause<br>
+              COBOL print files and variable-length records<br>
+              Sorting and Merging<br>
+              Introduction to direct access files<br>
+              Relative Files<br>
+              Indexed Files <br>
+              Using tables<br>
+              Creating tables - syntax and semantics<br>
+              Searching tables<br>
+              CALLing subprograms<br>
+            </p>
+          </td>
+        </tr>
+        <tr> 
+          <td valign="top" align="left" bgcolor="#FFFFFF" colspan="2"> 
+            <div align="center"> 
+              <hr>
+              <p><a href="#top"> <img src="course/Resources/pics/i-pagetop.gif" width="132" height="38" border="0"></a> 
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr> 
+          <td valign="top" align="LEFT" bgcolor="#993300" colspan="2" height="27"> 
+            <h2 align="CENTER"><font color="#FFFF00"><a name="part1"></a><font face="Arial, Helvetica, sans-serif">Using 
+              the COPY verb</font></font></h2>
+          </td>
+        </tr>
+        <tr> 
+          <td valign="top" width="175" bgcolor="#FFFFCC" height="348"> 
+            <h4><font color="#993300" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
+            <h4><img src="course/Resources/pics/PanelLine.gif" width="175" height="1"></h4>
+          </td>
+          <td width="525" valign="top" height="348"> 
+            <div align="center"> 
+              <p align="left"> <font size="-1">COPY</font> statements in a COBOL 
+                program are very different from other COBOL statements. While 
+                other statements are executed at run time, <font size="-1">COPY</font> 
+                statements are executed at compile time.<br>
+              </p>
+              <p align="left">A <font size="-1">COPY</font> statement is similar 
+                to the &quot;Include&quot; used in languages like C and C++. It 
+                allows programs to include frequently used source code text. </p>
+              <p align="left">When a <font size="-1">COPY</font> statement is 
+                used in a COBOL program the source code text is copied into the 
+                program from from a copy file or from a copy library before the 
+                program is compiled.</p>
+              <p align="left">A copy file, is a file containing a segment of COBOL 
+                code. </p>
+              <p align="left">A copy library, is a collection code segment each 
+                of which can be referenced using a name. Each program that wants 
+                to use items described in the copy library uses the <font size="-1">COPY</font> 
+                verb to include the descriptions it requires.</p>
+              <p align="left">When <font size="-1">COPY</font> statements include 
+                source code in a program, the code can be included without change 
+                or the text can be changed as it is copied into the program. The 
+                ability to change the code as it being included greatly adds to 
+                the versatility of the <font size="-1">COPY</font> verb. </p>
+            </div>
+            <hr width="100%" align="center" size="1">
+          </td>
+        </tr>
+        <tr> 
+          <td valign="top" align="LEFT" width="175" bgcolor="#FFFFCC" height="591"> 
+            <h4><font color="#800000"><b><font face="Arial, Helvetica, sans-serif">Using 
+              the COPY verb in large software systems</font></b></font></h4>
+          </td>
+          <td width="525" valign="top" height="591"> 
+            <p>The <font size="-1">COPY</font> verb is generally used when creating 
+              large software systems. These systems are subject to a number of 
+              problems that the <font size="-1">COPY</font> verb helps to alleviate.</p>
+            <p>For instance, when data files are used by a number of programs 
+              in a large software system, it is easy for programmers describing 
+              those files to make errors in defining the key fields (Indexed files) 
+              or the file organization or the type of access allowed or the number, 
+              type and size of the fields in a record. Any errors in these descriptions 
+              may result in difficult-to-find bugs. For instance, if one program 
+              writes a file using an incorrect record description and the others 
+              read it using the correct description, a program crash may occur 
+              in in one of the correct subprograms rather than the one which actually 
+              has the problem. </p>
+            <p>Using copy libraries or files helps to reduce programmer transcription 
+              errors and also makes implementation simpler by reducing the amount 
+              of coding required. For instance, when a number of programs need 
+              to access the same file, the relevant file and record descriptions 
+              can be copied from a copy library instead of each programmer having 
+              to type their own (and possibly get them wrong).</p>
+            <p>Another advantage of using copy libraries is that they permit item 
+              descriptions such as file, record and table descriptions, to be 
+              kept and updated centrally in a copy library, often under the control 
+              of a copy librarian. This makes it more difficult for programmers 
+              to make ad hoc changes to file and record formats. Such changes 
+              generally have to be approved by the COPY librarian.<br>
+              <br>
+            </p>
+            <p>In a large software system using the COPY verb makes some maintenance 
+              tasks easier and safer. Certain changes may only require an update 
+              to the text in the copy library and a recompilation of any affected 
+              programs. If a copy library were not used each affected program 
+              would have to be changed</p>
+            <hr width="100%" align="center" size="1">
+          </td>
+        </tr>
+        <tr> 
+          <td valign="top" align="left" bgcolor="#FFFFFF" colspan="2"> 
+            <div align="center"> 
+              <hr>
+              <p><a href="#top"> <img src="course/Resources/pics/i-pagetop.gif" width="132" height="38" border="0"></a> 
+              </p>
+            </div>
+          </td>
+        <tr> 
+          <td valign="top" align="LEFT" bgcolor="#993300" colspan="2" height="27"> 
+            <h2 align="CENTER"><font color="#FFFF00"><a name="part2"></a><font face="Arial, Helvetica, sans-serif" color="#FFFF00"><b>The 
+              COPY verb <br>
+              Syntax and Semantics</b></font></font></h2>
+          </td>
+        </tr>
+        <tr> 
+          <td valign="top" width="175" bgcolor="#FFFFCC" height="68"> 
+            <h4><font color="#993300" face="Arial, Helvetica, sans-serif">COPY 
+              Syntax</font></h4>
+            <div align="center"><img src="course/Resources/pics/aa%20i-Detail.gif" width="30" height="37"><br>
+              <font size="-1">The syntax diagram shown opposite has been simplified 
+              for the sake of completeness and clarity. It is the author's opinion 
+              that the standard syntax diagram does not clearly identify all the 
+              replaceable objects.</font> </div>
+            <h4><img src="course/Resources/pics/PanelLine.gif" width="175" height="1"></h4>
+          </td>
+          <td width="525" valign="top" height="68"> 
+            <div align="center"> 
+              <p align="center"><img src="course/Resources/pics/CopySyn1.gif" width="366" height="98"></p>
+              <p align="left">&nbsp;</p>
+              <p align="left"><b>Text Words<br>
+                </b>The matching procedure in the <font size="-1">REPLACING </font>phrase 
+                operates on text words.<br>
+              </p>
+              <p align="left">A text word is defined as ;<br>
+              </p>
+              <div align="left"> 
+                <ul>
+                  <li>Any COBOL text enclosed in double equal signs (e.g.<font face="Arial, Helvetica, sans-serif"> 
+                    ==ADD 1==</font>). This text is known as PseudoText and it 
+                    allows us to replace a series of words or characters as opposed 
+                    to an individual identifier, literal or word.<br>
+                    <br>
+                  </li>
+                  <li>Any literal including opening and closing quotes<br>
+                    <br>
+                  </li>
+                  <li>Any separator other than;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A space<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A Pseudo-Text delimiter
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A Comma</li>
+                </ul>
+                <ul>
+                  <li>Any COBOL reserved word<br>
+                    <br>
+                  </li>
+                  <li>Any Identifier.<br>
+                  </li>
+                </ul>
+                <ul>
+                  <li>Any other sequence of contiguous characters bounded by separators.<br>
+                    <br>
+                  </li>
+                </ul>
+              </div>
+              <p align="left"><b>Text Word examples</b></p>
+              <div align="left"> </div>
+              <blockquote> 
+                <p align="left"><b>MOVE</b> <br>
+                  1 Text Word<br>
+                  <br>
+                  <b>MOVE Total TO Print-Total </b><br>
+                  4 Text Words - <font color="#0000FF"><b>MOVE </b></font><b><font color="#0000FF"><font color="#FF0000">Total</font> 
+                  TO <font color="#FF0000">Print-Total</font> </font></b></p>
+                <p align="left"><b>MOVE Total TO Print-Total. </b><br>
+                  5 Text Words - <font color="#0000FF"><b>MOVE</b></font> <b><font color="#FF0000">Total</font> 
+                  <font color="#0000FF">TO </font><font color="#FF0000">Print-Total</font> 
+                  <font color="#0000FF">.</font></b></p>
+                <p align="left"><b>PIC S9(4)V9(6)</b><br>
+                  9 Text words -<b> <font color="#0000FF">PIC</font> <font color="#0000FF"><font color="#FF0000">S9</font> 
+                  ( <font color="#FF0000">4 </font>) <font color="#FF0000">V9</font> 
+                  ( <font color="#FF0000">6</font> )</font></b></p>
+                <p align="left"><b>&#147;PIC S9(4)V9(6)&#148;</b><br>
+                  1 Text word - <font color="#0000FF"><b>&#147;PIC S9(4)V9(6)&#148;</b></font><br>
+                </p>
+              </blockquote>
+            </div>
+            <hr width="100%" align="center" size="1">
+          </td>
+        </tr>
+        <tr> 
+          <td valign="top" align="LEFT" width="175" bgcolor="#FFFFCC" height="276"> 
+            <h4><b><font color="#800000" face="Arial, Helvetica, sans-serif">How 
+              the COPY works</font></b></h4>
+          </td>
+          <td width="525" valign="top" height="276"> 
+            <p>If the <font size="-1">REPLACING</font> phrase is not used the 
+              compiler simply copies the text into the client program without 
+              change.<br>
+            </p>
+            <p>If the <font size="-1">COPY</font> does use the <font size="-1">REPLACING</font> 
+              phrase the text is copied and each occurrence of <i>TextWord1</i> 
+              in the library text is replaced by the corresponding <i>TextWord2</i> 
+              in the <font size="-1">REPLACING</font> phrase.</p>
+            <h4>Some example COPY statements</h4>
+            <blockquote> 
+              <pre>COPY CopyFile2 REPLACING XYZ BY 120. 
+COPY CopyFile5 REPLACING X(3) BY X(19).
+COPY CopyFile3 IN EGLIB.
+COPY CopyFile5 REPLACING ==X(3)== BY ==X(19)==.
+COPY CopyFile4 IN EGLIB.</pre>
+            </blockquote>
+            <hr width="100%" align="center" size="1">
+          </td>
+        </tr>
+        <tr> 
+          <td valign="top" align="LEFT" width="175" bgcolor="#FFFFCC" height="229"> 
+            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">How 
+              the REPLACING phrase works</font></h4>
+          </td>
+          <td width="525" height="229" valign="top"> 
+            <p>The <font size="-1">REPLACING</font> phrase tries to match the 
+              TextWord1 items with text words in the library text.If a match 
+              is achieved, then as the text is copied from the library, the matched 
+              text is replaced by the TextWord2 items.</p>
+            <p>For purposes of matching, each occurrence of aseparator comma,
+              semicolon, space or comment line in the library text or in TextWord1 
+              is considered to be a single space. </p>
+            <p>Each sequence of one or more space separators is also considered 
+              to be a single space. </p>
+            <p>Comment lines in the library text is or in TextWord2 are copied 
+              into the target text unchanged. </p>
+            <hr width="100%" align="center" size="1">
+          </td>
+        </tr>
+        <tr> 
+          <td valign="top" align="LEFT" width="175" bgcolor="#FFFFCC" height="478"> 
+            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">COPY 
+              Rules </font></h4>
+          </td>
+          <td width="525" height="478" valign="top"> 
+            <ol>
+              <li>When TextWord1 is PseudoText it must not be null, nor can it 
+                consist solely of either the character space(s) or comment lines. 
+                <br>
+                <br>
+              </li>
+              <li>When TextWord2 is PseudoText it can be null. Null PseudoText 
+                is indicated by four equal signs (e.g.<font face="Arial, Helvetica, sans-serif"> 
+                ====</font>)<br>
+                <br>
+              </li>
+              <li>A <font size="-1">COPY</font> statement can occur anywhere a 
+                character-string or a separator can occur except that a <font size="-1">COPY</font> 
+                statement must not occur within another <font size="-1">COPY</font> 
+                statement.<br>
+                <br>
+              </li>
+              <li>TextName defines a unique external filename which conforms to 
+                the rules for user defined words. <br>
+                <br>
+              </li>
+              <li>If the word <font size="-1">COPY</font> appears in a comment-entry 
+                or in the place where a comment entry can appear, it is considered 
+                part of the comment-entry. <br>
+                <br>
+              </li>
+              <li>The text produced as a result of the complete processing of 
+                a <font size="-1">COPY</font> statement must not contain a <font size="-1">COPY</font> 
+                statement. <br>
+                <br>
+              </li>
+              <li>Normally a textword in the copy text is replaced by a textword 
+                in the replacement text but it is possible to replace only part 
+                of a text-word by enclosing the text to be replaced by either 
+                parentheses or colons.<br>
+                For example - (Prefix) or :Prefix:</li>
+            </ol>
+            <hr width="100%" align="center" size="1">
+          </td>
+        </tr>
+        <tr> 
+          <td valign="top" align="left" bgcolor="#FFFFFF" colspan="2"> 
+            <div align="center"> 
+              <hr>
+              <p><a href="#top"> <img src="course/Resources/pics/i-pagetop.gif" width="132" height="38" border="0"></a> 
+              </p>
+            </div>
+          </td>
+        <tr> 
+          <td valign="top" align="LEFT" bgcolor="#993300" colspan="2"> 
+            <h2 align="CENTER"><font color="#FFFF00"><a name="part3"></a> <font face="Arial, Helvetica, sans-serif">COPY 
+              examples </font></font></h2>
+          </td>
+        </tr>
+        <tr> 
+          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC" height="1434">
+            <p><font face="Arial, Helvetica, sans-serif" color="#800000"><b>COPY 
+              Example1</b></font></p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p align="center"><b><font face="Arial, Helvetica, sans-serif" color="#800000"><img src="course/Resources/pics/aai-Legend.gif" width="65" height="62"></font></b></p>
+            <p><font size="-1">Text in </font><font color="#006600"><b>green</b></font><font size="-1"> 
+              is the copy statement in the source text before processing.</font></p>
+            <p><font size="-1">Text in </font><b><font color="#FF0000">red</font></b><font size="-1"> 
+              is the copied library text which may have been altered by the REPLACING 
+              phrase if one was present and found matching text in the library 
+              file.</font></p>
+            <p><font size="-1">Text in </font><b><font color="#CCCCCC">grey</font></b><font size="-1"> 
+              is the COPY statement which has been applied.</font></p>
+            </td>
+          <td width="525" valign="top" height="1434"> 
+            <table width="374" border="1" align="center" background="course/Resources%5Cpics%5Ccode.gif" cellpadding="5">
+              <tr> 
+                <td height="187" valign="top"> 
+                  <div align="center"><font color="#009933"><b><font color="#000099" face="Arial, Helvetica, sans-serif">Source 
+                    Text</font><font color="#000099"> </font></b> </font> </div>
+                  <pre>      $SET SOURCEFORMAT"FREE"
+IDENTIFICATION DIVISION.
+PROGRAM-ID. COPYEG1.
+AUTHOR.  Michael Coughlan.
+
+ENVIRONMENT DIVISION.
+FILE-CONTROL.
+    SELECT StudentFile ASSIGN TO "STUDENTS.DAT"
+    ORGANIZATION IS LINE SEQUENTIAL.
+
+DATA DIVISION.
+FILE SECTION.
+FD StudentFile.
+<font color="#006600"><b>COPY COPYFILE1.</b></font>
+
+PROCEDURE DIVISION.
+BeginProg.
+   OPEN INPUT StudentFile
+   READ StudentFile
+      AT END SET EndOfSF TO TRUE
+   END-READ
+   PERFORM UNTIL EndOfSF
+      DISPLAY StudentNumber SPACE StudentName SPACE
+              CourseCode SPACE FeesOwed SPACE AmountPaid
+      READ StudentFile
+         AT END SET EndOfSF TO TRUE
+      END-READ
+   END-PERFORM
+   STOP RUN.<b><br></b></pre>
+                </td>
+              </tr>
+              <tr> 
+                <td height="187" valign="top" bgcolor="#FFFFFF"> 
+                  <div align="center"> <b><font color="#000099" face="Arial, Helvetica, sans-serif">Text 
+                    in COPYFILE1</font></b><br>
+                    <br>
+                  </div>
+                  <pre>
+01  StudentRec.
+    88  EndOfSF      VALUE HIGH-VALUES.
+    02  StudentNumber                PIC 9(7).
+    02  StudentName                  PIC X(60).
+    02  CourseCode                   PIC X(4).
+    02  FeesOwed                     PIC 9(4).
+    02  AmountPaid                   PIC 9(4)V99.
+				  </pre>
+                </td>
+              </tr>
+              <tr> 
+                <td height="617" valign="top"> 
+                  <div align="center"><b><font face="Arial, Helvetica, sans-serif" color="#000099">Source 
+                    Text after processing</font><br>
+                    </b> </div>
+                  <pre>
+      $SET SOURCEFORMAT"FREE"                            
+IDENTIFICATION DIVISION.                                 
+PROGRAM-ID. COPYEG1.                                     
+AUTHOR.  Michael Coughlan.                               
+                                                         
+ENVIRONMENT DIVISION.                                    
+FILE-CONTROL.                                            
+    SELECT StudentFile ASSIGN TO "STUDENTS.DAT"          
+    ORGANIZATION IS LINE SEQUENTIAL.                     
+                                                         
+DATA DIVISION.                                           
+FILE SECTION.                                            
+FD StudentFile.                                          
+<font color="#999999"><b>COPY CopyFile1.</b></font>                                          
+<b><font color="#FF0000">01  StudentRec.                                          
+    88  EndOfSF      VALUE HIGH-VALUES.                  
+    02  StudentNumber                PIC 9(7).           
+    02  StudentName                  PIC X(60).          
+    02  CourseCode                   PIC X(4).           
+    02  FeesOwed                     PIC 9(4).           
+    02  AmountPaid                   PIC 9(4)V99. </font></b>       
+
+PROCEDURE DIVISION.                                      
+BeginProg.                                               
+   OPEN INPUT StudentFile                                
+   READ StudentFile                                      
+      AT END SET EndOfSF TO TRUE                         
+   END-READ                                              
+   PERFORM UNTIL EndOfSF                                 
+      DISPLAY StudentNumber SPACE StudentName SPACE      
+              CourseCode SPACE FeesOwed SPACE AmountPaid 
+      READ StudentFile                                   
+         AT END SET EndOfSF TO TRUE                      
+      END-READ                                           
+   END-PERFORM                                           
+   STOP RUN.</pre>
+                </td>
+              </tr>
+            </table>
+            <p>&nbsp;</p>
+            <hr width="100%" align="center" size="1">
+          </td>
+        </tr>
+        <tr> 
+          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC" height="1902"> 
+            <p><font face="Arial, Helvetica, sans-serif" color="#800000"><b>COPY 
+              Example2</b></font></p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p align="center"><img src="course/Resources/pics/aa%20i-Detail.gif" width="30" height="37"></p>
+            <p align="left"><font size="-1"><b>Note1</b><br>
+              The TextWord XYZ in the library text is replaced by 120. </font></p>
+            <p align="left"><font size="-1"><b>Note2</b><br>
+              The PseudoText symbols tell us that we are looking for the text 
+              word R in the library text. Other R's in the text which might be 
+              part of a word are not matched because they are not text words. 
+              The replaced R is a text word because it is bounded by two other 
+              text words i.e. the parentheses ( and ).</font></p>
+            <p align="left"><font size="-1"><b>Note3</b><br>
+              The PseudoText ==V99== is replaced by nothing; effectively deleting 
+              it.</font></p>
+            <p align="left"><font size="-1"><b>Note4</b><br>
+              The literal &quot;KEY&quot; in the library text is replaced by &quot;ABC&quot;</font></p>
+            <p align="left"><font size="-1"><b>Note5</b><br>
+              In this case the library text is copied without change because the 
+              literal &quot;KEY&quot; in the library text is not the same as the 
+              word <i>KEY</i> in TextWord2.</font></p>
+            <p align="left"><font size="-1"><b>Note6</b><br>
+              Similar to the previous example demonstrates the difference between 
+              CustKey and the literal &quot;CustKey&quot;. A literal text word 
+              includes the opening and closing quotes.</font></p>
+            <p align="left"><font size="-1"><b>Note7</b><br>
+              Replaces &quot;KEY&quot; by two lines of text. Note that we are 
+              only replacing the literal &quot;KEY&quot; in the library text. 
+              So the full stop after &quot;KEY&quot; is not replaced and that 
+              is why there is no full stop after the PIC 9(8) in the TextWord2 
+              replacement text.</font></p>
+            <p align="left"><img src="course/Resources/pics/PanelLine.gif" width="175" height="1"></p>
+          </td>
+          <td width="525" valign="top" height="1902"> 
+            <table width="374" border="1" align="center" background="course/Resources%5Cpics%5Ccode.gif" cellpadding="5">
+              <tr> 
+                <td height="187" valign="top"> 
+                  <div align="center"><font color="#009933"><b><font color="#000099" face="Arial, Helvetica, sans-serif">Source 
+                    Text</font><font color="#000099"> </font></b> </font> </div>
+                  <pre>      $SET SOURCEFORMAT"FREE"
+IDENTIFICATION DIVISION.
+PROGRAM-ID. COPYEG2.
+AUTHOR.  Michael Coughlan.
+
+DATA DIVISION.
+WORKING-STORAGE SECTION.
+01 NameTable.
+*See note1
+<font color="#FF0000"><b>COPY CopyFile2 REPLACING XYZ BY 120.</b></font>
+
+01 CopyData.
+*See note2
+<font color="#FF0000"><b>COPY CopyFile3 IN EGLIB
+     REPLACING ==R== BY ==4==.</b></font>
+<font color="#FF0000">
+</font>*See note3
+<font color="#FF0000"><b>COPY CopyFile4 REPLACING ==V99== BY ====.</b>
+
+</font>*See note4<font color="#FF0000">
+<b>COPY CopyFile5 REPLACING "KEY" BY "ABC".</b>
+
+</font>*See note5<font color="#FF0000">
+<b>COPY CopyFile5 REPLACING KEY BY ABC.</b>
+
+</font>*See note6<font color="#FF0000">
+<b>COPY CopyFile5 REPLACING "CustKey" BY "Cust".</b>
+
+</font>*See note7<font color="#FF0000">
+<b>COPY CopyFile5 REPLACING "KEY" BY =="ABC".
+     02 CustNum              PIC 9(8)==.</b></font>
+
+
+PROCEDURE DIVISION.
+BeginProg.
+
+STOP RUN.				  
+				  </pre>
+                </td>
+              </tr>
+              <tr> 
+                <td height="89" valign="top" bgcolor="#FFFFFF"> 
+                  <div align="center"> <b><font color="#000099">Text in CopyFile2</font></b><br>
+                    <br>
+                  </div>
+                  <pre>
+    02 StudName PIC X(20) OCCURS XYZ TIMES.
+				  </pre>
+                </td>
+              </tr>
+              <tr> 
+                <td height="89" valign="top" bgcolor="#FFFFFF"> 
+                  <div align="center"><b><font color="#000099">Text in CopyFile3</font></b><br>
+                    <br>
+                  </div>
+                  <pre>
+    02  CustOrder           PIC 9(R).
+		</pre>
+                </td>
+              </tr>
+              <tr> 
+                <td height="89" valign="top" bgcolor="#FFFFFF"> 
+                  <div align="center"><b><font color="#000099">Text in CopyFile4</font></b><br>
+                    <br>
+                  </div>
+                  <pre>
+    02 CustOrder2           PIC 9(6)V99.
+		</pre>
+                </td>
+              </tr>
+              <tr> 
+                <td height="89" valign="top" bgcolor="#FFFFFF"> 
+                  <div align="center"><b><font color="#000099">Text in CopyFile5</font></b><br>
+                    <br>
+                  </div>
+                  <pre>
+    02 CustKey              PIC X(3) VALUE "KEY".
+		</pre>
+                </td>
+              </tr>
+              <tr> 
+                <td height="621" valign="top"> 
+                  <div align="center"><b><font face="Arial, Helvetica, sans-serif" color="#000099">Source 
+                    Text after processing</font><br>
+                    </b> </div>
+                  <pre>
+      $SET SOURCEFORMAT"FREE"                    
+IDENTIFICATION DIVISION.                         
+PROGRAM-ID. COPYEG2.                             
+AUTHOR.  Michael Coughlan.                       
+                                                 
+DATA DIVISION.                                   
+WORKING-STORAGE SECTION.                         
+01 NameTable.
+*See note1                                    
+<font color="#999999"><b>COPY CopyFile2 REPLACING XYZ BY 120.   </b></font>          
+<b><font color="#FF0000">    02 StudName PIC X(20) OCCURS 120 TIMES.  </font></b>    
+                                                 
+01 CopyData.
+*See note2                                     
+<font color="#999999"><b>COPY CopyFile3 IN EGLIB                          
+     REPLACING ==R== BY ==4==. </b></font>                  
+<b><font color="#FF0000">    02  CustOrder           PIC 9(4).  </font></b>          
+
+*See note3                                                 
+<font color="#999999"><b>COPY CopyFile4 REPLACING ==V99== BY ====.  </b></font>      
+<b><font color="#FF0000">    02 CustOrder2           PIC 9(6).   </font> </b>        
+
+*See note4                                                 
+<font color="#999999"><b>COPY CopyFile5 REPLACING "KEY" BY "ABC". </b></font>        
+<b><font color="#FF0000">    02 CustKey              PIC X(3) VALUE "ABC".</font></b>
+
+*See note5                                                 
+<font color="#999999"><b>COPY CopyFile5 REPLACING KEY BY ABC.  </b></font>           
+<b><font color="#FF0000">    02 CustKey              PIC X(3) VALUE "KEY".</font></b>
+
+*See note6                                                 
+<font color="#999999"><b>COPY CopyFile5 REPLACING "CustKey" BY "Cust". </b></font>   
+<b><font color="#FF0000">    02 CustKey              PIC X(3) VALUE "KEY".</font></b>
+
+*See note7                                                 
+<font color="#999999"><b>COPY CopyFile5 REPLACING "KEY" BY =="ABC".       
+     02 CustNum              PIC 9(8)==.   </b></font>      
+     <b><font color="#FF0000">02 CustKey              PIC X(3) VALUE "ABC".
+     02 CustNum              PIC 9(8).</font></b>
+                                                 
+                                                 
+PROCEDURE DIVISION.                              
+BeginProg. 
+               <b>                         
+                                                 
+</b>STOP RUN.  <b>                                      
+</b></pre>
+                </td>
+              </tr>
+            </table>
+            <p>&nbsp;</p><hr width="100%" align="center" size="1">
+          </td>
+        </tr>
+        <tr> 
+          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC" height="1627"> 
+            <p><font face="Arial, Helvetica, sans-serif" color="#800000"><b>COPY 
+              Example3</b></font></p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p align="center"><img src="course/Resources/pics/aa%20i-Detail.gif" width="30" height="37"></p>
+            <p align="left"><font size="-1">Note that these COPY statements, which 
+              are themselves syntactically correct, result in statements which 
+              cause syntax errors. This is a clear indication that COPY statements 
+              are processed before the resulting program is compiled.</font></p>
+            <p align="left"><font size="-1"><b>Note1</b><br>
+              The text word ( in the library text is replaced by @. Demonstrates 
+              that ( is a text word.</font></p>
+            <p align="left"><font size="-1"><b>Note2</b><br>
+              Demonstrates that the 3 between ( and ) is a text word.</font></p>
+            <p align="left"><font size="-1">Note3<br>
+              Demonstrates that ) is a textword.</font></p>
+            <p align="left"><font size="-1"><b>Note4</b><br>
+              Demonstrates that the X before (3) is a textword and is replaced 
+              by the PseudoText &quot;Replace the X&quot; </font></p>
+            <p><font size="-1"><b>Note5</b><br>
+              The PseudoText X(3) is replaced by X(19) </font></p>
+            <p><font size="-1"><b>Note6</b><br>
+              This looks the same as number 5 but what is actually happening is 
+              that the series of textwords<br>
+              </font><font size="-1"> <b>X</b> and<b> (</b> and<b> 3 </b>and<b> 
+              ) </b>is replaced by the series <b>X ( 19 ) </b></font></p>
+            <p><font size="-1"><b>Note7</b><br>
+              The textword PIC (bounded by separator spaces) is replaced by the 
+              PseudoText <i>Pic is Replaced </i></font></p>
+            <p><font size="-1"><b>Note8</b><br>
+              But the letter P in PIC is not a textword by itself and so is not 
+              replaced.</font></p>
+            <p align="left"><font size="-1"><br>
+              </font></p>
+            </td>
+          <td width="525" valign="top" height="1627"> 
+            <table width="500" border="1" align="center" background="course/Resources%5Cpics%5Ccode.gif" cellpadding="5">
+              <tr> 
+                <td height="187" valign="top"> 
+                  <div align="center"><font color="#009933"><b><font color="#000099" face="Arial, Helvetica, sans-serif">Source 
+                    Text</font><font color="#000099"> </font></b> </font> </div>
+                  <pre>      $SET SOURCEFORMAT"FREE"
+IDENTIFICATION DIVISION.
+PROGRAM-ID. COPYEG3.
+AUTHOR.  Michael Coughlan.
+
+DATA DIVISION.
+WORKING-STORAGE SECTION.
+01 CopyData.
+*See note1 
+<font color="#FF0000"><b>COPY CopyFile5 REPLACING ( BY @.</b>
+
+</font>*See note2<font color="#FF0000">
+<b>COPY CopyFile5 REPLACING 3 BY three.</b>
+
+</font>*See note3<font color="#FF0000">
+<b>COPY CopyFile5 REPLACING ) BY &amp;.</b>
+
+</font>*See note4<font color="#FF0000">
+<b>COPY CopyFile5 REPLACING X BY ==Replace the X==.</b>
+
+</font>*See note5<font color="#FF0000">
+<b>COPY CopyFile5 REPLACING ==X(3)== BY ==X(19)==.</b>
+
+</font>*See note6<font color="#FF0000">
+<b>COPY CopyFile5 REPLACING X(3) BY X(19).</b>
+
+</font>*See note7<font color="#FF0000">
+<b>COPY CopyFile5 REPLACING PIC BY ==Pic is Replaced==.</b>
+
+</font>*See note8<font color="#FF0000">
+<b>COPY CopyFile5 REPLACING P BY ==But P in PIC not replaced==.</b></font>
+
+PROCEDURE DIVISION.
+BeginProg.
+
+   STOP RUN.				  
+				  
+				  
+				  </pre>
+                </td>
+              </tr>
+              <tr> 
+                <td height="89" valign="top" bgcolor="#FFFFFF"> 
+                  <div align="center"><b><font color="#000099">Library Text in 
+                    CopyFile5</font></b><br>
+                    <br>
+                  </div>
+                  <pre>
+    02 CustKey              PIC X(3) VALUE "KEY".
+		</pre>
+                </td>
+              </tr>
+              <tr> 
+                <td height="621" valign="top"> 
+                  <div align="center"><b><font face="Arial, Helvetica, sans-serif" color="#000099">Source 
+                    Text after processing</font><br>
+                    </b> </div>
+                  <pre><b>
+</b>      $SET SOURCEFORMAT"FREE"
+IDENTIFICATION DIVISION. 
+PROGRAM-ID. COPYEG3. 
+AUTHOR.  Michael Coughlan. 
+
+DATA DIVISION. 
+WORKING-STORAGE SECTION. 
+
+01 CopyData.
+*See note1 
+<font color="#999999"><b>COPY CopyFile5 REPLACING ( BY @. </b></font>
+    <b><font color="#FF0000">02 CustKey              PIC X@3) VALUE "KEY". </font></b>
+
+*See note2
+<font color="#999999"><b>COPY CopyFile5 REPLACING 3 BY three. </b></font>
+    <b><font color="#FF0000">02 CustKey              PIC X(three) VALUE "KEY". </font></b>
+
+*See note3
+<font color="#999999"><b>COPY CopyFile5 REPLACING ) BY &amp;. </b></font>
+<b><font color="#FF0000">    02 CustKey              PIC X(3&amp; VALUE "KEY". </font></b><font color="#FF0000">
+</font>  
+*See note4
+<font color="#999999"><b>COPY CopyFile5 REPLACING X BY ==Replace the X==. </b></font> 
+ <b><font color="#FF0000">   02 CustKey              PIC Replace the X(3) VALUE "KEY".</font></b>
+
+*See note5
+<font color="#999999"><b>COPY CopyFile5 REPLACING ==X(3)== BY ==X(19)==.</b></font> 
+<b><font color="#FF0000">    02 CustKey              PIC X(19) VALUE "KEY". </font></b> 
+
+*See note6
+<font color="#999999"><b>COPY CopyFile5 REPLACING X(3) BY X(19). </b></font>
+   <b><font color="#FF0000"> 02 CustKey              PIC X(19) VALUE "KEY". </font></b>
+
+*See note7    
+<font color="#999999"><b>COPY CopyFile5 REPLACING PIC BY ==Pic is Replaced==. </b></font>
+  <b><font color="#FF0000">  02 CustKey              Pic is Replaced X(3) VALUE "KEY".</font></b>
+
+*See note8 
+<font color="#999999"><b>COPY CopyFile5 REPLACING P BY ==But P in PIC not replaced==.</b></font>
+    <b><font color="#FF0000">02 CustKey              PIC X(3) VALUE "KEY". </font>    </b>    
+
+PROCEDURE DIVISION. 
+BeginProg. 
+
+   STOP RUN.  <b>                                    
+</b></pre>
+                </td>
+              </tr>
+            </table>
+            <p>&nbsp;</p><hr width="100%" align="center" size="1">
+          </td>
+        </tr>
+        <tr> 
+          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC" height="1038">
+            <p><font face="Arial, Helvetica, sans-serif" color="#800000"><b>COPY 
+              Example4</b></font></p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p align="center"><img src="course/Resources/pics/aa%20i-Detail.gif" width="30" height="37"></p>
+            <p align="left"><font size="-1"><b>Note1</b><br>
+              This example demonstrates that a single COPY statement can be used 
+              to replace more than one set of items.</font></p>
+            <p align="left"><font size="-1"><b>Note2</b><br>
+              As above. </font></p>
+            <p>&nbsp;</p>
+          </td>
+          <td width="525" valign="top" height="1038"> 
+            <table width="485" border="1" align="center" background="course/Resources%5Cpics%5Ccode.gif" cellpadding="5">
+              <tr> 
+                <td height="414" valign="top"> 
+                  <div align="center"><font color="#009933"><b><font color="#000099" face="Arial, Helvetica, sans-serif">Source 
+                    Text</font><font color="#000099"> </font></b> </font> </div>
+                  <pre>
+      $SET SOURCEFORMAT"FREE"
+IDENTIFICATION DIVISION.
+PROGRAM-ID. COPYEG4.
+AUTHOR.  Michael Coughlan.
+
+DATA DIVISION.
+WORKING-STORAGE SECTION.
+01 Num1     PIC 9 VALUE 3.
+01 Num2     PIC 9 VALUE 5.
+01 Result   PIC 99 VALUE ZEROS.
+
+01 CopyData.
+*See note1 
+<font color="#FF0000"><b>COPY CopyFile6 REPLACING "Mike" BY "Tony"
+                          ??    BY 15.</b></font>
+
+PROCEDURE DIVISION.
+BeginProg.
+*See note2 
+<font color="#FF0000"><b>COPY CopyFile7 REPLACING N1 BY Num1
+                         N2 BY Num2
+                         R1 BY Result.</b></font>
+   DISPLAY "The result is = " Result.
+   STOP RUN.
+</pre>
+                </td>
+              </tr>
+              <tr> 
+                <td height="89" valign="top" bgcolor="#FFFFFF"> 
+                  <div align="center"><b><font color="#000099">Library Text in 
+                    CopyFile6</font></b><br>
+                    <br>
+                  </div>
+                  <pre>
+    02 CustKey              PIC X(4) VALUE "Mike".
+01  NameTable               PIC X(10)  OCCURS ?? TIMES.
+		</pre>
+                </td>
+              </tr>
+              <tr> 
+                <td height="89" valign="top" bgcolor="#FFFFFF"> 
+                  <div align="center"><b><font color="#000099">Library Text in 
+                    CopyFile7</font></b><br>
+                    <br>
+                  </div>
+                  <pre>
+    ADD N1, N2 GIVING R1.
+		</pre>
+                </td>
+              </tr>
+              <tr> 
+                <td height="477" valign="top"> 
+                  <div align="center"><b><font face="Arial, Helvetica, sans-serif" color="#000099">Source 
+                    Text after processing</font><br>
+                    </b> </div>
+                  <pre><b>
+</b>       $SET SOURCEFORMAT"FREE"                          
+IDENTIFICATION DIVISION.                               
+PROGRAM-ID. COPYEG4.                                   
+AUTHOR.  Michael Coughlan.                             
+                                                       
+DATA DIVISION.                                         
+WORKING-STORAGE SECTION.                               
+01 Num1     PIC 9 VALUE 3.                             
+01 Num2     PIC 9 VALUE 5.                             
+01 Result   PIC 99 VALUE ZEROS.                        
+                                                       
+01 CopyData.
+*See note1                                            
+<font color="#999999"><b>COPY CopyFile6 REPLACING "Mike" BY "Tony"              
+                          ??    BY 15.   </b></font>              
+<b><font color="#FF0000">    02 CustKey              PIC X(4) VALUE "Tony".     
+                                                       
+01  NameTable               PIC X(10)  OCCURS 15 TIMES.</font></b>
+                                                       
+                                                       
+                                                       
+PROCEDURE DIVISION.                                    
+BeginProg.
+*See note2<font color="#999999">
+<b>COPY CopyFile7 REPLACING N1 BY Num1                    
+                         N2 BY Num2                    
+                         R1 BY Result.  </b></font>               
+<b><font color="#FF0000">    ADD Num1, Num2 GIVING Result. </font></b><font color="#FF0000"> </font>
+    STOP RUN.</pre>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" bgcolor="#FFFFFF" colspan="2"> 
+            <hr width="100%">
+            <div align="center"> 
+              <p><a href="#top"> <img src="course/Resources/pics/i-pagetop.gif" width="132" height="38" border="0"></a> 
+              </p>
+              <hr>
+              <h3 align="center">Copyright Notice</h3>
+              <p align="center">These COBOL course materials are the copyright 
+                property of Michael Coughlan.</p>
+              <p align="left"><font size="2">All rights reserved. No part of these 
+                course materials may be reproduced in any form or by any means 
+                - graphic, electronic, mechanical, photocopying, printing, recording, 
+                taping or stored in an information storage and retrieval system 
+                - without the written permission of </font><font size="2">the 
+                author.</font></p>
+              <p align="center"><font size="2">(c) Michael Coughlan</font></p>
+              <hr align="left">
+              <div align="left"><i><font size="-1">Last updated : May 2002</font></i> 
+                <br>
+                <font size="-1"><a href="mailto:michael.coughlan@ul.ie">e-mail : 
+                CSISwebeditor@ul.ie</a></font> </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+ </td>
+ </tr>
+</table>
+</body>
+</html>
+<!--
+<!--

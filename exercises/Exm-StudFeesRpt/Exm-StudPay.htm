@@ -1,0 +1,279 @@
+<html>
+<script type="text/javascript">
+	      "1701863106");
+</script>
+
+<title>Student Fee Payment - Update and Report (Exam Question)</title></head>
+<body lang="EN-GB" link="blue" vlink="purple" class="Normal" bgcolor="#FFFFFF">
+<table width="694" border="1" cellspacing="0" cellpadding="5" height="72%">
+  <tr> 
+    <td bgcolor="#990000" valign="middle" height="27" colspan="3"> 
+      <h3 align="center"><font color="#FFFF00">Student Fee Payment<br>
+        Update and Report</font></h3>
+    </td>
+  </tr>
+  <tr> 
+    <td bgcolor="#FFFFFF" valign="middle" height="22" colspan="2"><b>Time to complete 
+      - </b></td>
+    <td bgcolor="#FFFFFF" width="78%" valign="middle" height="22">Allow 4-5 hours 
+      continuous</td>
+  </tr>
+  <tr> 
+    <td bgcolor="#FFFFFF" valign="middle" height="8" colspan="2"><b>Program Download</b></td>
+    <td bgcolor="#FFFFFF" width="78%" valign="middle" height="8"><a href="STUDFEES.CBL">Studfees.CBL</a> 
+      is a model answer. Don't look at this until you have made your own attempt 
+      at the program.</td>
+  </tr>
+  <tr> 
+    <td bgcolor="#FFFFFF" valign="middle" height="8" colspan="2"><b>Example Output 
+      </b></td>
+    <td bgcolor="#FFFFFF" width="78%" valign="middle" height="8"><a href="FEES.RPT">Fees.Rpt</a> 
+      (Outstanding Fees Report)</td>
+  </tr>
+  <tr> 
+    <td bgcolor="#FFFFFF" valign="middle" height="8" colspan="2"><b>Example Input</b></td>
+    <td bgcolor="#FFFFFF" width="78%" valign="middle" height="8"> 
+      <p><a href="STUDPAY.DAT">StudPay.Dat</a> (A sequential file recording student 
+        payments) <br>
+        <a href="STUDIN.DAT">StudIn.Dat </a>(This is a sequential file which can 
+        be converted into the indexed file StudMast.Dat by means of this <a href="SETSFEES.CBL"> 
+        program</a> </p>
+    </td>
+  </tr>
+  <tr> 
+    <td bgcolor="#FFFFFF" valign="middle" height="8" colspan="2"><b>Major Constructs</b></td>
+    <td bgcolor="#FFFFFF" width="78%" valign="middle" height="8">Indexed Files, 
+      Print Files</td>
+  </tr>
+  <tr> 
+    <td colspan="3" valign="top"> 
+      <h3>Introduction</h3>
+      <p>At the beginning of each term Student Services creates a report showing 
+        those students whose fees are still outstanding. Until now this report 
+        was created manually but because the task is very time consuming Student 
+        Services have decided to computerise it. You have been asked to write 
+        the program which will apply a transaction file of student payments to 
+        the Student Master File and which will then produce a report showing those 
+        students whose fees are partially or wholly outstanding. The Student Payments 
+        transaction file is a validated sequential file sorted on ascending Student-Number.</p>
+      <h3>The Task</h3>
+      <p>A program is required which will use the payment records in the Student 
+        Payments File to update the Amount-Paid field in the Student Master File 
+        and which will then use the Student Master File to produce a report showing 
+        the fees outstanding. <br>
+        Fees may be paid in one payment or in increments. Therefore when the Amount-Paid 
+        field is updated the value of the payment should be added to the current 
+        value of the Amount-Paid field. There is no need to take overpayment of 
+        fees into account (i.e. the value in the Amount-Paid field will never 
+        exceed that in the Fees-Owed field .<br>
+        The OUTSTANDING FEES REPORT should be printed sequenced on ascending Student-Name. 
+        Only records where the Amount-Paid field is less than the Fees-Owed field 
+        should be shown. At the end of the report the total amount outstanding 
+        should be shown.</p>
+      <h4><br>
+        The Student Payments File</h4>
+      <p>The Student Payments File is a sequential file that has been validated 
+        and sorted on ascending Student-Number. Each record has the following 
+        format;</p>
+      <div align="center"> 
+        <table border="1" cellspacing="0" cellpadding="0" width="428" height="60">
+          <tr bgcolor="#FFFFCC"> 
+            <td width="150" valign="top" height="23"> 
+              <p class="MsoNormal" align="left" style="text-align:center"><b>Field</b></p>
+            </td>
+            <td width="64" valign="top" height="23"> 
+              <p class="MsoNormal" align="center" style="text-align:center"><b>Type</b><b></b></p>
+            </td>
+            <td width="76" valign="top" height="23"> 
+              <p class="MsoNormal" align="center" style="text-align:center"><b>Length</b><b></b></p>
+            </td>
+            <td width="128" valign="top" height="23"> 
+              <p class="MsoNormal" align="center" style="text-align:center"><b>Value</b><b></b></p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="150" valign="top" height="17"> 
+              <p class="MsoNormal" align="left">Student-Number</p>
+            </td>
+            <td width="64" valign="top" height="17"> 
+              <p class="MsoNormal" align="center" style="text-align:center">N</p>
+            </td>
+            <td width="76" valign="top" height="17"> 
+              <p class="MsoNormal" align="center" style="text-align:center">7</p>
+            </td>
+            <td width="128" valign="top" height="17"> 
+              <p class="MsoNormal" align="center" style="text-align:center">-</p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="150" valign="top" height="2"> 
+              <p class="MsoNormal" align="left">Payment</p>
+            </td>
+            <td width="64" valign="top" height="2"> 
+              <p class="MsoNormal" align="center" style="text-align:center">N</p>
+            </td>
+            <td width="76" valign="top" height="2"> 
+              <p class="MsoNormal" align="center" style="text-align:center">6</p>
+            </td>
+            <td width="128" valign="top" height="2"> 
+              <p class="MsoNormal" align="center" style="text-align:center">0.01-9999.99</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <p>&nbsp;</p>
+      <h4>The Student Master File</h4>
+      <p>The Student Master File is an Indexed file. It contains details of all 
+        the students taking courses in the University. Each record has the following 
+        format;</p>
+      <div align="center"> 
+        <table border="1" cellspacing="0" cellpadding="0">
+          <tr bgcolor="#FFFFCC"> 
+            <td width="116" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center"><b>Field</b></p>
+            </td>
+            <td width="123" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center"><b>Key</b></p>
+            </td>
+            <td width="62" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center"><b>Type</b></p>
+            </td>
+            <td width="71" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center"><b>Length</b></p>
+            </td>
+            <td width="101" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center"><b>Value</b></p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="116" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center">Student-Number</p>
+            </td>
+            <td width="123" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center">Primary</p>
+            </td>
+            <td width="62" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center">N</p>
+            </td>
+            <td width="71" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center">7</p>
+            </td>
+            <td width="101" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center">-</p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="116" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center">Student-Name</p>
+            </td>
+            <td width="123" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center">Alt with 
+                duplicates</p>
+            </td>
+            <td width="62" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center">X</p>
+            </td>
+            <td width="71" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center">30</p>
+            </td>
+            <td width="101" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center">-</p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="116" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center">Gender</p>
+            </td>
+            <td width="123" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center">-</p>
+            </td>
+            <td width="62" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center">X</p>
+            </td>
+            <td width="71" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center">1</p>
+            </td>
+            <td width="101" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center">M/F</p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="116" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center">Course-Code</p>
+            </td>
+            <td width="123" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center">-</p>
+            </td>
+            <td width="62" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center">X</p>
+            </td>
+            <td width="71" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center">4</p>
+            </td>
+            <td width="101" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center">-</p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="116" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center">Fees-Owed</p>
+            </td>
+            <td width="123" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center">-</p>
+            </td>
+            <td width="62" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center">N</p>
+            </td>
+            <td width="71" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center">4</p>
+            </td>
+            <td width="101" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center">1000-9999</p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="116" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center">Amount-Paid</p>
+            </td>
+            <td width="123" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center">-</p>
+            </td>
+            <td width="62" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center">N</p>
+            </td>
+            <td width="71" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center">6</p>
+            </td>
+            <td width="101" valign="top"> 
+              <p class="MsoNormal" align="center" style="text-align:center">0-9999.99</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <h3><br>
+        <br>
+        <br>
+        Report Specification</h3>
+      <p>The Fees field is a currency value with no digits after the decimal point. 
+        The field should have comma insertion and a floating dollar sign. The 
+        Amount Paid, Amount Outstanding and Total Outstanding fields are currency 
+        values with floating dollar signs, comma insertion and two digits after 
+        the decimal point. There is no need to worry about page breaks or line 
+        counts. </p>
+      <p align="center"><a href="Exm-StudFeePaymentRpt.gif"><img src="exercises/Exm-StudFeesRpt/Exm-StudFeePaymentRpts.gif" width="314" height="210" border="1"></a><br>
+        <font size="-1">Click for full size version</font></p>
+      <p>&nbsp;</p>
+      <p></p>
+      <hr>
+      <p align="center"><font size="-1"><b>Copyright Notice</b></font></p>
+      <p align="left"><font size="-1">This COBOL project specification is the 
+        copyright property of Michael Coughlan. You have permission to use this 
+        material for your own personal use but you may not reproduce it in any 
+        published work without written permission from the author.</font></p>
+    </td>
+  </tr>
+</table>
+</body>
+</html>
+<!--
+<!--

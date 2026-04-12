@@ -1,0 +1,420 @@
+<html>
+<script type="text/javascript">
+	      "1701863872");
+</script>
+
+<title>Aromamora Oil Stock Maintenance and Report (Exam Paper)</title></head>
+<body lang="EN-GB" link="blue" vlink="purple" class="Normal" bgcolor="#FFFFFF">
+<table width="694" border="1" cellspacing="0" cellpadding="5" height="72%">
+  <tr> 
+    <td bgcolor="#990000" valign="middle" height="27" colspan="3"> 
+      <h3 align="center"><font color="#FFFF00">Aromamora <br>
+        Oil Stock File Maintenance and Report</font></h3>
+    </td>
+  </tr>
+  <tr valign="top"> 
+    <td bgcolor="#FFFFFF" height="22" colspan="2"><b>Time to complete</b></td>
+    <td bgcolor="#FFFFFF" width="78%" height="22">This is a tough one. Allow 6 
+      hours continuous.</td>
+  </tr>
+  <tr valign="top"> 
+    <td bgcolor="#FFFFFF" height="8" colspan="2"><b>Program Download</b></td>
+    <td bgcolor="#FFFFFF" width="78%" height="8"><a href="AROMA96.CBL">Aroma96.Cbl</a> 
+      is a model answer. Don't look at this until you have made your own attempt 
+      at the program.</td>
+  </tr>
+  <tr valign="top"> 
+    <td bgcolor="#FFFFFF" height="8" colspan="2"><b>Example Output </b></td>
+    <td bgcolor="#FFFFFF" width="78%" height="8"> 
+      <p><a href="ERROR.DAT">Error.Dat</a> (The sorted sales file containing only 
+        oil records)<br>
+        <a href="OILSTOCK.RPT">OilStock.Rpt</a> (The Summary Oil sales Report)</p>
+      </td>
+  </tr>
+  <tr valign="top"> 
+    <td bgcolor="#FFFFFF" height="22" colspan="2"><b>Example Input</b></td>
+    <td bgcolor="#FFFFFF" width="78%" height="22"> 
+      <p><a href="TRANS.DAT">Trans.Dat </a>(The sorted, validated, sequential 
+        file containg the stock movement records)</p>
+      <p><a href="ODF-IN.DAT">ODFin.Dat</a> and <a href="OSF-IN.DAT">OSFin.Dat</a> 
+        are sequential files that be converted into the indexed Stock-Details-File 
+        (ODF.Dat) and the relative Oil-Stock-File (OSF.Dat) using <a href="InFiles2ODF&amp;OSF.cbl"> 
+        this program</a>.</p>
+      <p>The conversion program is required because Indexed and Relative files 
+        are not standard ASCII files and cannot be viewed or edited in a standard 
+        text application like Notepad. </p>
+      </td>
+  </tr>
+  <tr valign="top"> 
+    <td bgcolor="#FFFFFF" height="2" colspan="2"><b>Major Constructs</b></td>
+    <td bgcolor="#FFFFFF" width="78%" height="2"><font size="-1">Indexed files, 
+      Relative Files, Sequential Files, Report Writer, EVALUATE, COMPUTE, READ, 
+      WRITE, REWRITE, START</font></td>
+  </tr>
+  <tr> 
+    <td colspan="3" valign="top" height="1512"> 
+      <hr>
+      <h3>Introduction</h3>
+      <p>Aromamora PLC sells essential oils to Aromatherapists, Health Shops, 
+        Chemists and other retailers. Details of the oils sold are kept in two 
+        files:- the Oil-Details-File and the Oil-Stock-File. A program is required 
+        which will apply a file of sorted, validated transactions to the Oil-Stock-File 
+        and then produce a report based on the contents of both the Oil-Details-File 
+        and the Oil-Stock-File. </p>
+      <p>The report must be printed sequenced on ascending Oil-Name. The report 
+        writer must be used to produce the report.<br>
+        <br>
+      </p>
+      <h3>The Transaction File</h3>
+      <p>The Transaction file is a sorted, validated file containing two types 
+        of stock movement record. The record types are distinguished from one 
+        another by a unique code in the first column of the record. The file has 
+        been sorted on ascending Type-Code.</p>
+      <p>The record descriptions for the Transaction file are as follows;<br>
+      </p>
+      <div align="center"> 
+        <table border="1" cellspacing="0" cellpadding="0" width="459" height="60">
+          <tr> 
+            <td width="150" valign="top" height="23" bgcolor="#FFFFCC"> 
+              <div align="center"><b>Record Type</b></div>
+            </td>
+            <td width="150" valign="top" height="23" bgcolor="#FFFFCC"> 
+              <p class="MsoNormal" align="center" style="text-align:center"><b>Field</b></p>
+            </td>
+            <td width="64" valign="top" height="23" bgcolor="#FFFFCC"> 
+              <p class="MsoNormal" align="center" style="text-align:center"><b>Type</b><b></b></p>
+            </td>
+            <td width="76" valign="top" height="23" bgcolor="#FFFFCC"> 
+              <p class="MsoNormal" align="center" style="text-align:center"><b>Length</b><b></b></p>
+            </td>
+            <td width="159" valign="top" height="23" bgcolor="#FFFFCC"> 
+              <p class="MsoNormal" align="center" style="text-align:center"><b>Value</b><b></b></p>
+            </td>
+          </tr>
+          <tr> 
+            <td rowspan="3" valign="top" height="6"> 
+              <div align="left"> &nbsp;AddToStock</div>
+              <div align="center"></div>
+              <div align="center"></div>
+            </td>
+            <td width="150" valign="top" height="2"> 
+              <p class="MsoNormal" align="center">Type Code</p>
+            </td>
+            <td width="64" valign="top" height="2"> 
+              <p class="MsoNormal" align="center" style="text-align:center">9</p>
+            </td>
+            <td width="76" valign="top" height="2"> 
+              <p class="MsoNormal" align="center" style="text-align:center">1</p>
+            </td>
+            <td width="159" valign="top" height="2"> 
+              <p class="MsoNormal" align="center" style="text-align:center">1</p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="150" valign="top" height="2"> 
+              <div align="center">Oil-Number</div>
+            </td>
+            <td width="64" valign="top" height="2"> 
+              <div align="center">9</div>
+            </td>
+            <td width="76" valign="top" height="2"> 
+              <div align="center">4</div>
+            </td>
+            <td width="159" valign="top" height="2"> 
+              <div align="center">-</div>
+            </td>
+          </tr>
+          <tr> 
+            <td width="150" valign="top" height="2"> 
+              <div align="center">Qty (in units)</div>
+            </td>
+            <td width="64" valign="top" height="2"> 
+              <div align="center">9</div>
+            </td>
+            <td width="76" valign="top" height="2"> 
+              <div align="center">5</div>
+            </td>
+            <td width="159" valign="top" height="2"> 
+              <div align="center">1-99999</div>
+            </td>
+          </tr>
+          <tr> 
+            <td rowspan="3" valign="top" height="6"> 
+              <div align="left">&nbsp;RemoveFromStock</div>
+              <div align="center"></div>
+              <div align="center"></div>
+            </td>
+            <td width="150" valign="top" height="2"> 
+              <div align="center">Type Code</div>
+            </td>
+            <td width="64" valign="top" height="2"> 
+              <div align="center">9</div>
+            </td>
+            <td width="76" valign="top" height="2"> 
+              <div align="center">1</div>
+            </td>
+            <td width="159" valign="top" height="2"> 
+              <div align="center">2</div>
+            </td>
+          </tr>
+          <tr> 
+            <td width="150" valign="top" height="2"> 
+              <div align="center">Oil-Number</div>
+            </td>
+            <td width="64" valign="top" height="2"> 
+              <div align="center">9</div>
+            </td>
+            <td width="76" valign="top" height="2"> 
+              <div align="center">4</div>
+            </td>
+            <td width="159" valign="top" height="2"> 
+              <div align="center">-</div>
+            </td>
+          </tr>
+          <tr> 
+            <td width="150" valign="top" height="2"> 
+              <div align="center">Qty (in units)</div>
+            </td>
+            <td width="64" valign="top" height="2"> 
+              <div align="center">9</div>
+            </td>
+            <td width="76" valign="top" height="2"> 
+              <div align="center">5</div>
+            </td>
+            <td width="159" valign="top" height="2"> 
+              <div align="center">1-99999</div>
+            </td>
+          </tr>
+        </table>
+        <p>&nbsp;</p>
+        <h3 align="left">The Oil-Stock-File</h3>
+        <p align="left">The Oil-Stock-File is used to hold details of the current 
+          stock levels. It is a relative file containing records with the following 
+          description;</p>
+        <table border="1" cellspacing="0" cellpadding="0" width="459" height="60">
+          <tr> 
+            <td width="126" valign="top" height="23" bgcolor="#FFFFCC"> 
+              <p class="MsoNormal" align="center" style="text-align:center"><b>Field</b></p>
+            </td>
+            <td width="68" valign="top" height="23" bgcolor="#FFFFCC"> 
+              <div align="center"><b>KeyType</b></div>
+            </td>
+            <td width="51" valign="top" height="23" bgcolor="#FFFFCC"> 
+              <p class="MsoNormal" align="center" style="text-align:center"><b>Type</b><b></b></p>
+            </td>
+            <td width="69" valign="top" height="23" bgcolor="#FFFFCC"> 
+              <p class="MsoNormal" align="center" style="text-align:center"><b>Length</b><b></b></p>
+            </td>
+            <td width="133" valign="top" height="23" bgcolor="#FFFFCC"> 
+              <p class="MsoNormal" align="center" style="text-align:center"><b>Value</b><b></b></p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="126" valign="top" height="2"> 
+              <div align="left">&nbsp;Oil-Number</div>
+            </td>
+            <td width="68" valign="top" height="2"> 
+              <div align="center">Primary</div>
+            </td>
+            <td width="51" valign="top" height="2"> 
+              <div align="center">9</div>
+            </td>
+            <td width="69" valign="top" height="2"> 
+              <div align="center">4</div>
+            </td>
+            <td width="133" valign="top" height="2"> 
+              <div align="center">-</div>
+            </td>
+          </tr>
+          <tr> 
+            <td width="126" valign="top" height="2"> 
+              <div align="left">&nbsp;Qty-In-Stock</div>
+            </td>
+            <td width="68" valign="top" height="2"> 
+              <div align="center">--</div>
+            </td>
+            <td width="51" valign="top" height="2"> 
+              <div align="center">9</div>
+            </td>
+            <td width="69" valign="top" height="2"> 
+              <div align="center">5</div>
+            </td>
+            <td width="133" valign="top" height="2"> 
+              <div align="center">1-99999</div>
+            </td>
+          </tr>
+        </table>
+        <p align="left"><br>
+        </p>
+        <h4 align="left">Notes</h4>
+        <p align="left">Only the first three digits of the Oil-Number are the 
+          Relative Record Key. The fourth digit is a check digit used to validate 
+          the Oil-Number. Before the Oil-Number can be used to access records 
+          in the Oil-Stock-File this fourth digit must be stripped off. For instance, 
+          to access the record for Oil-Number 0248 only the 024 part of the number 
+          can be used as the key.</p>
+        <h3 align="left"><br>
+          The Oil-Details-File</h3>
+        <p align="left">The Oil-Details-File is an indexed file containing records 
+          with the following description;</p>
+        <table border="1" cellspacing="0" cellpadding="0" width="450" height="60">
+          <tr> 
+            <td width="100" valign="top" height="23" bgcolor="#FFFFCC"> 
+              <p class="MsoNormal" align="center" style="text-align:center"><b>Field</b></p>
+            </td>
+            <td width="128" valign="top" height="23" bgcolor="#FFFFCC"> 
+              <div align="center"><b>KeyType</b></div>
+            </td>
+            <td width="49" valign="top" height="23" bgcolor="#FFFFCC"> 
+              <p class="MsoNormal" align="center" style="text-align:center"><b>Type</b><b></b></p>
+            </td>
+            <td width="72" valign="top" height="23" bgcolor="#FFFFCC"> 
+              <p class="MsoNormal" align="center" style="text-align:center"><b>Length</b><b></b></p>
+            </td>
+            <td width="143" valign="top" height="23" bgcolor="#FFFFCC"> 
+              <p class="MsoNormal" align="center" style="text-align:center"><b>Value</b><b></b></p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="100" valign="top" height="2"> 
+              <div align="left">&nbsp;Oil-Number</div>
+            </td>
+            <td width="128" valign="top" height="2"> 
+              <div align="center">Primary</div>
+            </td>
+            <td width="49" valign="top" height="2"> 
+              <div align="center">9</div>
+            </td>
+            <td width="72" valign="top" height="2"> 
+              <div align="center">4</div>
+            </td>
+            <td width="143" valign="top" height="2"> 
+              <div align="center">-</div>
+            </td>
+          </tr>
+          <tr> 
+            <td width="100" valign="top" height="2"> 
+              <div align="left">&nbsp;Oil-Name</div>
+            </td>
+            <td width="128" valign="top" height="2"> 
+              <div align="center">Alt with duplicates</div>
+            </td>
+            <td width="49" valign="top" height="2"> 
+              <div align="center">X</div>
+            </td>
+            <td width="72" valign="top" height="2"> 
+              <div align="center">20</div>
+            </td>
+            <td width="143" valign="top" height="2"> 
+              <div align="center">-</div>
+            </td>
+          </tr>
+          <tr> 
+            <td width="100" valign="top" height="2"> 
+              <div align="left">&nbsp;Unit-Size</div>
+            </td>
+            <td width="128" valign="top" height="2"> 
+              <div align="center">--</div>
+            </td>
+            <td width="49" valign="top" height="2"> 
+              <div align="center">9</div>
+            </td>
+            <td width="72" valign="top" height="2"> 
+              <div align="center">2</div>
+            </td>
+            <td width="143" valign="top" height="2"> 
+              <div align="center">03-90</div>
+            </td>
+          </tr>
+          <tr> 
+            <td width="100" valign="top" height="2"> 
+              <div align="left">&nbsp;Unit-Cost</div>
+            </td>
+            <td width="128" valign="top" height="2"> 
+              <div align="center">--</div>
+            </td>
+            <td width="49" valign="top" height="2"> 
+              <div align="center">9</div>
+            </td>
+            <td width="72" valign="top" height="2"> 
+              <div align="center">4</div>
+            </td>
+            <td width="143" valign="top" height="2"> 
+              <div align="center">1.50-99.99</div>
+            </td>
+          </tr>
+        </table>
+        <p align="left"><br>
+        </p>
+        </div>
+      <h3>Validation</h3>
+      <p>Although the Transaction file has been validated, certain errors cannot 
+        be detected until an attempt is made to update the Oil-Stock-File. For 
+        both types of transaction record, check that the record you are about 
+        to update already exists in the Oil-Stock-File. If it does not then the 
+        transaction record must be written to an Error-File.</p>
+      <h3><br>
+        The Oil Stock Report</h3>
+      <p>The Oil Stock Report must be printed after the Oil-Stock-File has been 
+        updated. The report must be printed sequenced on ascending Oil-Name.</p>
+      <p>Numeric values must be printed using comma insertion and either zero 
+        suppression or the floating currency symbol. </p>
+      <p>See the print specification below for more report format details.<br>
+        <br>
+      </p>
+      <div align="center">
+        <table width="650" border="0" cellspacing="0" cellpadding="0">
+          <tr valign="top"> 
+            <td width="11%">Line 1-2 </td>
+            <td width="89%">Report Heading. To be printed on the first page of 
+              the report only.<br>
+            </td>
+          </tr>
+          <tr valign="top"> 
+            <td width="11%">Line 6 </td>
+            <td width="89%">Page-Heading. To be printed at the top of each page.<br>
+            </td>
+          </tr>
+          <tr valign="top"> 
+            <td width="11%">Line 8</td>
+            <td width="89%">Detail line. The Oil-Name is suppressed after its 
+              first occurrence.<br>
+              Size is the Unit-Size. <br>
+              Qty is the Quantity-In-Stock. <br>
+              Stock-Value is a computed value (Quantity-In-Stock * Unit-Cost).<br>
+            </td>
+          </tr>
+          <tr valign="top"> 
+            <td width="11%">Line 14</td>
+            <td width="89%">Control Footing. Total-Oil-Value is the sum of the 
+              Stock-Values for this oil.<br>
+            </td>
+          </tr>
+          <tr valign="top"> 
+            <td width="11%">Line 24</td>
+            <td width="89%">Final Control Footing. This is the sum of the Total-Oil-Values.<br>
+            </td>
+          </tr>
+        </table>
+        
+      </div>
+      <p><br>
+        <br>
+      </p>
+      <p align="center"><br>
+        <a href="Exm-AromaOilFileMainRpt.gif"><img src="exercises/Exm-AromaOilFileMainRpt/SExm-AromaOilFileMainRpt.gif" width="281" height="182" border="1"></a> 
+        <br>
+        Click to view full version</p>
+      <hr>
+      <p align="center"><font size="-1"><b>Copyright Notice</b></font></p>
+      <p align="left"><font size="-1">This COBOL project specification is the 
+        copyright property of Michael Coughlan. You have permission to use this 
+        material for your own personal use but you may not reproduce it in any 
+        published work without written permission from the author.</font></p>
+    </td>
+  </tr>
+</table>
+</body>
+</html>
+<!--
+<!--
