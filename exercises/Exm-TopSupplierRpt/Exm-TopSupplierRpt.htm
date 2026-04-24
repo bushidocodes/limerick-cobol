@@ -1,0 +1,362 @@
+<html>
+<head><script type="text/javascript" src="https://web-static.archive.org/_static/js/bundle-playback.js?v=2N_sDSC0" charset="utf-8"></script>
+<script type="text/javascript" src="https://web-static.archive.org/_static/js/wombat.js?v=txqj7nKC" charset="utf-8"></script>
+<script>window.RufflePlayer=window.RufflePlayer||{};window.RufflePlayer.config={"autoplay":"on","unmuteOverlay":"hidden","showSwfDownload":true};</script>
+<script type="text/javascript" src="https://web-static.archive.org/_static/js/ruffle/ruffle.js"></script>
+<script type="text/javascript">
+    __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://www.csis.ul.ie:80/COBOL/Exercises/Exm-TopSupplierRpt/Exm-TopSupplierRpt.htm","20071230030847","https://web.archive.org/","web","https://web-static.archive.org/_static/",
+	      "1198984127");
+</script>
+<link rel="stylesheet" type="text/css" href="https://web-static.archive.org/_static/css/banner-styles.css?v=1utQkbB3" />
+<link rel="stylesheet" type="text/css" href="https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv" />
+<!-- End Wayback Rewrite JS Include -->
+
+<title>Top Vide Supplier Report (Exam Question)</title></head>
+<body lang="EN-GB" link="blue" vlink="purple" class="Normal" bgcolor="#FFFFFF">
+<table width="694" border="1" cellspacing="0" cellpadding="5" height="72%">
+  <tr> 
+    <td bgcolor="#990000" valign="middle" height="27" colspan="3"> 
+      <h3 align="center"><font color="#FFFF00">Top Video Suppliers <br>
+        Report</font></h3>
+    </td>
+  </tr>
+  <tr> 
+    <td bgcolor="#FFFFFF" valign="middle" height="22" colspan="2"><b>Time to complete</b></td>
+    <td bgcolor="#FFFFFF" width="78%" valign="middle" height="22">Allow 5-6 hours 
+      continuous</td>
+  </tr>
+  <tr> 
+    <td bgcolor="#FFFFFF" valign="middle" height="8" colspan="2"><b>Program Download</b></td>
+    <td bgcolor="#FFFFFF" width="78%" valign="middle" height="8"><a href="TopSupplierRpt.Cbl">TopSupplierRpt.Cbl</a> 
+      is a model answer. Don't look at this until you have made your own attempt 
+      at the program.</td>
+  </tr>
+  <tr> 
+    <td bgcolor="#FFFFFF" valign="middle" height="8" colspan="2"><b>Example Output 
+      </b></td>
+    <td bgcolor="#FFFFFF" width="78%" valign="middle" height="8"> 
+      <p><a href="TopSuppliers.Rpt">TopSuppliers.Rpt</a> (The top suppliers report)</p>
+      </td>
+  </tr>
+  <tr valign="top"> 
+    <td bgcolor="#FFFFFF" height="22" colspan="2"><b>Example Input</b></td>
+    <td bgcolor="#FFFFFF" width="78%" height="22"> 
+      <p><a href="All-Seq-In.Dat">All-Seq-In.Dat</a> is a sequential file that 
+        contains the data required to set up the three master files. A transaction 
+        code at the beginning of each record signals which of the master files 
+        the record belongs to. The program <a href="Seq2Direct.Cbl">Seq2Direct.Cbl</a> 
+        reads this file and from it creates the indexed Video Details File (VDF.DAT), 
+        the indexed Video File (Video.Dat), and the Relative Supplier File (Supplier.Dat).</p>
+      <p>The conversion program is required because direct access files are not 
+        standard ASCII files and cannot be viewed or edited in a standard text 
+        application like Notepad. </p>
+      </td>
+  </tr>
+  <tr> 
+    <td bgcolor="#FFFFFF" valign="middle" height="14" colspan="2"><b>Major Constructs</b></td>
+    <td bgcolor="#FFFFFF" width="78%" valign="middle" height="14">Indexed Files, 
+      Relative Files, Print Files, <font size="-1">READ</font>, <font size="-1">START</font>, 
+      Tables</td>
+  </tr>
+  <tr> 
+    <td colspan="3" valign="top"> 
+      <hr>
+      <h3>Introduction</h3>
+      <p>The manager of Metropolis Videos was so pleased with your Video Stock 
+        File Maintenance and Report  system that he has asked you to write the 
+        Top Suppliers Report program detailed below.  The report must show the 
+        top three Suppliers (by  total video earnings) and for each of the top 
+        three the most popular video title (by average earnings) in their inventory 
+        must be shown.</p>
+      <p>&nbsp;</p>
+      <h3>Files</h3>
+      <p>The system data resides on three master files.</p>
+      <p><b>Video Details File (VDF.DAT)<br>
+        </b>The Video Details file contains details relating to each individual 
+        video copy.  It is an indexed file with the following record description.</p>
+      <div align="center">
+        <table border="1" cellspacing="0" cellpadding="1">
+          <tr bgcolor="#FFFFCC"> 
+            <td width="134" valign="top" class="Normal"> 
+              <p class="TableHead" align="center"><b>Field</b></p>
+            </td>
+            <td width="114" valign="top" class="Normal"> 
+              <p class="TableHead" align="center"><b>Key 
+                type</b></p>
+            </td>
+            <td width="60" valign="top" class="Normal"> 
+              <p class="TableHead" align="center"><b>Type</b></p>
+            </td>
+            <td width="76" valign="top" class="Normal"> 
+              <p class="TableHead" align="center"><b>Length</b></p>
+            </td>
+            <td width="110" valign="top" class="Normal"> 
+              <p class="TableHead" align="center"><b>Value</b></p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="134" valign="top" class="Normal"> 
+              <p>Video-Number</p>
+            </td>
+            <td width="114" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">Primary</p>
+            </td>
+            <td width="60" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">X</p>
+            </td>
+            <td width="76" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">5</p>
+            </td>
+            <td width="110" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">A0000-Z9999</p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="134" valign="top" class="Normal"> 
+              <p>Video-Code</p>
+            </td>
+            <td width="114" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">Alt with Duplicates</p>
+            </td>
+            <td width="60" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">9</p>
+            </td>
+            <td width="76" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">5</p>
+            </td>
+            <td width="110" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">00001-99999</p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="134" valign="top" class="Normal"> 
+              <p>Rental-Earnings</p>
+            </td>
+            <td width="114" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">--</p>
+            </td>
+            <td width="60" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">9</p>
+            </td>
+            <td width="76" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">6 </p>
+            </td>
+            <td width="110" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">0-9999.99</p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="134" valign="top" class="Normal"> 
+              <p>Purchase-Price</p>
+            </td>
+            <td width="114" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">-- </p>
+            </td>
+            <td width="60" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">9</p>
+            </td>
+            <td width="76" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">5</p>
+            </td>
+            <td width="110" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">0-999.99</p>
+            </td>
+          </tr>
+        </table>
+        
+        <br>
+      </div>
+      <p>&nbsp;</p>
+      <p><b>Video File (VIDEO.DAT)<br>
+        </b>The Video-File contains information pertinent to each  video title  
+        in  the library.  It is an indexed file with the following record description.</p>
+      <div align="center">
+        <table border="1" cellspacing="0" cellpadding="1">
+          <tr bgcolor="#FFFFCC"> 
+            <td width="102" valign="top" class="Normal"> 
+              <p class="TableHead" align="center"><b>Field</b></p>
+            </td>
+            <td width="123" valign="top" class="Normal"> 
+              <p class="TableHead" align="center"><b>Key 
+                type</b></p>
+            </td>
+            <td width="64" valign="top" class="Normal"> 
+              <p class="TableHead" align="center"><b>Type</b></p>
+            </td>
+            <td width="72" valign="top" class="Normal"> 
+              <p class="TableHead" align="center"><b>Length</b></p>
+            </td>
+            <td width="103" valign="top" class="Normal"> 
+              <p class="TableHead" align="center"><b>Value</b></p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="102" valign="top" class="Normal"> 
+              <p>Video-Code</p>
+            </td>
+            <td width="123" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">Primary</p>
+            </td>
+            <td width="64" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">9</p>
+            </td>
+            <td width="72" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">5</p>
+            </td>
+            <td width="103" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">00001-99999</p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="102" valign="top" class="Normal"> 
+              <p>Video-Title</p>
+            </td>
+            <td width="123" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">---</p>
+            </td>
+            <td width="64" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">X </p>
+            </td>
+            <td width="72" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">30</p>
+            </td>
+            <td width="103" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">-</p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="102" valign="top" class="Normal"> 
+              <p>Supplier-Code</p>
+            </td>
+            <td width="123" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">Alt with Duplicates</p>
+            </td>
+            <td width="64" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">9</p>
+            </td>
+            <td width="72" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">2</p>
+            </td>
+            <td width="103" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">01-99</p>
+            </td>
+          </tr>
+        </table>
+        
+        <br>
+      </div>
+      <p>&nbsp;</p>
+      <p><b>Supplier File (SUPPLIER.DAT)<br>
+        </b>The Video-File contains details of video suppliers.  It is a Relative 
+        File.  The Supplier Code represents the relative record number.</p>
+      <div align="center">
+        <table border="1" cellspacing="0" cellpadding="1">
+          <tr bgcolor="#FFFFCC"> 
+            <td width="134" valign="top" class="Normal"> 
+              <p class="TableHead" align="center"><b>Field</b></p>
+            </td>
+            <td width="63" valign="top" class="Normal"> 
+              <p class="TableHead" align="center"><b>Type</b></p>
+            </td>
+            <td width="66" valign="top" class="Normal"> 
+              <p class="TableHead" align="center"><b>Length</b></p>
+            </td>
+            <td width="89" valign="top" class="Normal"> 
+              <p class="TableHead" align="center"><b>Value 
+                </b></p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="134" valign="top" class="Normal"> 
+              <p>Supplier-Code</p>
+            </td>
+            <td width="63" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">9</p>
+            </td>
+            <td width="66" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">2 </p>
+            </td>
+            <td width="89" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">01-99    </p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="134" valign="top" class="Normal"> 
+              <p>Supplier-Name</p>
+            </td>
+            <td width="63" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">X</p>
+            </td>
+            <td width="66" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">20</p>
+            </td>
+            <td width="89" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center"> -</p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="134" valign="top" class="Normal"> 
+              <p>Supplier-Address</p>
+            </td>
+            <td width="63" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">X</p>
+            </td>
+            <td width="66" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">60 </p>
+            </td>
+            <td width="89" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center"> -</p>
+            </td>
+          </tr>
+        </table>
+        
+      </div>
+      <p align="left"><br>
+      </p>
+      <h3>Report Description</h3>
+      <p>The report must show the top three Suppliers and the total video earnings 
+        for each supplier.  For each of the top suppliers, their most popular 
+        video title and its average earnings (Total earnings / Number of copies) 
+        must be shown .   The total earnings for a video title may be obtained 
+        by summing the  Rental-Earnings for each copy of the video.</p>
+      <h4>Print Specification</h4>
+      <p>All money values should be printed using floating dollar signs and should 
+        have commas and decimal points inserted as appropriate.   The report should 
+        be printed as shown in the print layout chart below.</p>
+      <p align="center"><a href="TopSupplierRpt.gif"><img src="sTopSupplierRpt.gif" width="387" height="146" border="1"></a> 
+        <br>
+        Click to see the full size version</p>
+      <p>&nbsp;</p>
+      <p></p>
+      <hr>
+      <p align="center"><font size="-1"><b>Copyright Notice</b></font></p>
+      <p align="left"><font size="-1">This COBOL project specification is the 
+        copyright property of Michael Coughlan. You have permission to use this 
+        material for your own personal use but you may not reproduce it in any 
+        published work without written permission from the author.</font></p>
+    </td>
+  </tr>
+</table>
+</body>
+</html>
+<!--
+     FILE ARCHIVED ON 03:08:47 Dec 30, 2007 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 01:33:56 Apr 13, 2026.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 0.802
+  exclusion.robots: 0.1
+  exclusion.robots.policy: 0.087
+  esindex: 0.01
+  cdx.remote: 20.469
+  LoadShardBlock: 251.927 (3)
+  PetaboxLoader3.datanode: 72.605 (4)
+  PetaboxLoader3.resolve: 236.223 (3)
+  load_resource: 252.837
+-->

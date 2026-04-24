@@ -1,1526 +1,1485 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+<html>
 <script type="text/javascript">
-	      "1721767318");
+	      "1643240727");
 </script>
 
-    <meta charset="utf-8"/>
-<script type="text/javascript" id="Cookiebot" src="https://web.archive.org/web/20240723204158js_/https://consent.cookiebot.com/uc.js" data-cbid="e49a791a-9ef3-4688-93b6-c3f8a9ae2191" data-blockingmode="auto" async="async"></script>
-<script>var _paq = _paq || [];(function(){var u=(("https:" == document.location.protocol) ? "https://stats.annertech.com/" : "http://stats.annertech.com/");_paq.push(["setSiteId", "80"]);_paq.push(["setTrackerUrl", u+"matomo.php"]);_paq.push(["setDoNotTrack", 1]);_paq.push(["disableCookies"]);if (!window.matomo_search_results_active) {_paq.push(["trackPageView"]);}_paq.push(["setIgnoreClasses", ["no-tracking","colorbox"]]);_paq.push(["enableLinkTracking"]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.type="text/javascript";g.defer=true;g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();</script>
-<meta property="og:site_name" content="University of Limerick"/>
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:site" content="@ul"/>
-<meta name="twitter:site:id" content="159108303"/>
-<meta name="twitter:creator" content="@ul"/>
-<meta name="twitter:creator:id" content="159108303"/>
-<meta name="google-site-verification" content="s7NRvHa1_04PRqNoCS14yIB6Utbky83l7oSrufjmj3g"/>
-<meta name="Generator" content="Drupal 10 (https://www.drupal.org)"/>
-<meta name="MobileOptimized" content="width"/>
-<meta name="HandheldFriendly" content="true"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<link rel="icon" href="/web/20240723204158im_/https://www.ul.ie/core/misc/favicon.ico" type="image/vnd.microsoft.icon"/>
-<link rel="alternate" hreflang="en" href="https://www.ul.ie/scieng/schools-and-departments/department-computer-science-and-information-systems"/>
-<link rel="canonical" href="https://www.ul.ie/scieng/schools-and-departments/department-computer-science-and-information-systems"/>
-<link rel="shortlink" href="https://www.ul.ie/group/47"/>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.0 [en] (WinNT; I) [Netscape]">
+   <title>Creating tables - syntax and semantics</title>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000FF" vlink="#FF0000" alink="#009B00">
+<table border="1" width="715" cellspacing="0">
+  <tr>
+    <td> 
+      <table width="710" cellpadding="4" cellspacing="0" border="0">
+        <tr> 
+          <td valign="top" align="left" bgcolor="#FFFFFF" colspan="2" height="517"> 
+            <center>
+              <h2><img src="Resources/pics/t-CobolTut.gif" width="173" height="59"></h2>
+            </center>
+            <center>
+              <h2> Creating Tables - syntax and semantics</h2>
+              <hr>
+            </center>
+            <table border="0" width="700" vspace="15">
+              <tr> 
+                <td width="3%" valign="TOP" height="49">&nbsp;</td>
+                <td width="4%" valign="TOP" height="49"><img src="Resources/pics/BallGreenG.gif" hspace="4" height="13" width="13" align="TOP" vspace="4"></td>
+                <td width="93%" height="49"> <b><a href="#intro" target="">Introduction</a><br>
+                  </b><font size="-1">Unit aims, objectives, prerequisites.</font><br>
+                  <br>
+                </td>
+              </tr>
+              <tr> 
+                <td width="3%" valign="TOP" height="57">&nbsp;</td>
+                <td width="4%" valign="TOP" height="57"><img src="Resources/pics/BallGreenG.gif" hspace="4" height="13" width="13" align="TOP" vspace="4"></td>
+                <td width="93%" valign="top" height="57"> 
+                  <p><b><a href="#part1" target="">Declaring a single dimension 
+                    table </a><br>
+                    </b><font size="-1">In this section we demonstrate how the 
+                    OCCURS clause is used to declare a single dimension table. 
+                    We also show how it may be used to declare a variable length 
+                    table.</font> <br>
+                    <br>
+                  </p>
+                </td>
+              </tr>
+              <tr> 
+                <td width="3%" valign="TOP" height="55">&nbsp;</td>
+                <td width="4%" valign="TOP" height="55"><img src="Resources/pics/BallGreenG.gif" hspace="4" height="13" width="13" align="TOP" vspace="4"></td>
+                <td width="93%" valign="top" height="55"> 
+                  <div align="left"> 
+                    <p><b><a href="#part2" target="">Group items as elements</a><br>
+                      </b><font size="-1">The elements of a table do not have 
+                      to be elementary items - they can be group items. This section 
+                      demonstrates how to create a table, the elements of which, 
+                      are group items.</font> <br>
+                      <br>
+                    </p>
+                  </div>
+                </td>
+              </tr>
+              <tr> 
+                <td width="3%" valign="TOP" height="28">&nbsp;</td>
+                <td width="4%" valign="TOP" height="28"><img src="Resources/pics/BallGreenG.gif" hspace="4" height="13" width="13" align="TOP" vspace="4"></td>
+                <td width="93%" height="28"> 
+                  <div align="left"> 
+                    <p><b><a href="#part3" target="">Declaring multi-dimension 
+                      tables </a><br>
+                      </b><font size="-1">This section demonstrates how nested 
+                      OCCURS clauses are used to create multi-dimension tables</font><font size="-1">.</font><font size="-1"><br>
+                      <br>
+                      </font> </p>
+                    </div>
+                </td>
+              </tr>
+              <tr> 
+                <td width="3%" valign="TOP" height="48">&nbsp;</td>
+                <td width="4%" valign="TOP" height="48"><img src="Resources/pics/BallGreenG.gif" hspace="4" height="13" width="13" align="TOP" vspace="4"></td>
+                <td width="93%" height="48"> 
+                  <div align="left"> 
+                    <p><b><a href="#part4" target="">Creating pre-filled tables 
+                      with the REDEFINES clause.</a><br>
+                      </b><font size="-1">This section first demonstrates non-table 
+                      related uses for the REDEFINES clause and then shows how 
+                      it may be used to create pre-filled tables. The new COBOL'85 
+                      approaches to creating pre-filled tables and to initialising 
+                      tables are also demonstrated.<br>
+                      <br>
+                      </font><font size="-1"> </font> </p>
+                  </div>
+                </td>
+              </tr>
+            </table>
+            <hr>
+          </td>
+        </tr>
+        <tr> 
+          <td valign="top" align="LEFT" bgcolor="#993300" colspan="2" height="27"> 
+            <h2 align="CENTER"><font color="#FFFF00"><a name="intro"></a><font face="Arial, Helvetica, sans-serif">Introduction</font></font></h2>
+          </td>
+        </tr>
+        <tr> 
+          <td valign="top" width="175" bgcolor="#FFFFCC" height="154"> 
+            <h4><font color="#993300" face="Arial, Helvetica, sans-serif">Aims</font></h4>
+          </td>
+          <td width="525" valign="top" height="154"> 
+            <div align="center"> 
+              <p align="left">In the &quot;Using Tables&quot; tutorial we examined 
+                why we might want to use tables as part of the solution to a programming 
+                problem. </p>
+              <p align="left">In this tutorial we examine the syntax and semantics 
+                of table declaration. We demonstrate how to create single and 
+                multi-dimension tables, how to create variable length tables and 
+                how to set up a table pre-filled with data..</p>
+              </div>
+            <hr width="100%" align="center" size="1">
+          </td>
+        </tr>
+        <tr> 
+          <td valign="top" align="LEFT" width="175" bgcolor="#FFFFCC" height="221"> 
+            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Objectives</font></h4>
+          </td>
+          <td width="525" valign="top" height="221"> 
+            <p>By the end of this unit you should - </p>
+            <ol>
+              <li>Understand how the <font size="-1">OCCURS </font>clause is used 
+                in a table declaration.</li>
+              <li>Know how to use a subscript to access the elements of a table.</li>
+              <li>Be able to create a table in which the elements are group items.</li>
+              <li>Know how to set up a multi-dimension table using nested <font size="-1">OCCURS</font> 
+                clauses.</li>
+              <li>Understand how the <font size="-1">REDEFINES </font>clause may 
+                be used to give different names and descriptions to the same area 
+                of storage.</li>
+              <li>Be able to use the<font size="-1"> REDEFINES </font>clause to 
+                set up a table pre-filled with data.</li>
+            </ol>
+            <hr width="100%" align="center" size="1">
+          </td>
+        </tr>
+        <tr> 
+          <td valign="top" align="LEFT" width="175" bgcolor="#FFFFCC" height="77"> 
+            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Prerequisites</font></h4>
+          </td>
+          <td width="525" height="77" valign="top"> 
+            <p>Introduction to COBOL </p>
+            <p>Declaring data in COBOL </p>
+            <p>Basic Procedure Division Commands</p>
+            <p>Selection Constructs</p>
+            <p>Iteration Constructs</p>
+            <p>Introduction to Sequential files</p>
+            <p>Processing Sequential files</p>
+            <p>Print files and variable length records</p>
+            <p>Sorting and Merging files</p>
+            <p>Using Tables</p>
+            <p>&nbsp;</p>
+          </td>
+        </tr>
+        <tr> 
+          <td valign="top" align="left" bgcolor="#FFFFFF" colspan="2"> 
+            <div align="center"> 
+              <hr width="100%">
+              <p><a href="#top"> <img src="Resources/pics/i-pagetop.gif" width="132" height="38" border="0"></a> 
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr> 
+          <td valign="top" align="LEFT" bgcolor="#993300" colspan="2"> 
+            <h2 align="CENTER"><font color="#FFFF00"><a name="part1"></a><font face="Arial, Helvetica, sans-serif">Declaring 
+              a single dimension table</font></font></h2>
+          </td>
+        </tr>
+        <tr> 
+          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC" height="131"> 
+            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
+          </td>
+          <td width="525" valign="top" height="131"> 
+            <p align="left">In the &quot;Using Tables&quot; tutorial we saw how 
+              would could use a table to hold county tax totals. We even had a 
+              brief look at how that table might be created. </p>
+            <p align="left">In this section we will examine, in more detail, how 
+              a single dimension table, like the CountyTaxTable, may be created.</p>
+            <hr size="1" width="100%">
+          </td>
+        </tr>
+        <tr> 
+          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC" height="430"> 
+            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Tables 
+              - general notes</font></h4>
+            <h4>&nbsp;</h4>
+            <h4 align="center"><font size="-1"> </font></h4>
+          </td>
+          <td width="525" valign="top" height="430"> 
+            <p align="left">Most programming languages use the term "array" to 
+              describe repeated, or multiple- occurrence, data-items. COBOL uses 
+              the term "table". </p>
+            <p>The repeated components of a table are referred to as its <i>elements</i>. 
+              In the program text, a table is declared by specifying - </p>
+            <ul>
+              <li> the type, or structure, of a single data-item (element) </li>
+              <li> the number of times the data-item (element) is repeated.</li>
+            </ul>
+            <p>Tables have the following attributes</p>
+            <ul>
+              <li> a single name is used to identify all the elements </li>
+              <li>individual elements can be identified using an “index” or “subscript” 
+              </li>
+              <li>all elements have the same type or structure </li>
+              <li>COBOL arrays/tables, always start at element 1 (not 0) and go 
+                on to the maximum size of the table. </li>
+              <li>We indicate which element we want by using the element name 
+                followed by the index/subscript in brackets (see examples below). 
+              </li>
+            </ul>
+            <p align="left">A table is stored in memory as a contiguous block 
+              of bytes. </p>
+            <hr width="100%" size="1">
+          </td>
+        </tr>
+        <tr> 
+          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC" height="649"> 
+            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Using 
+              the OCCURS clause to declare a table</font></h4>
+          </td>
+          <td width="525" valign="top" height="649"> 
+            <p>Tables are declared using an extension to the <font size="-1">PICTURE</font> 
+              clause, called the <font size="-1">OCCURS </font>clause. To declare 
+              a table, we define the type and size of the table element, and then 
+              use the <font size="-1">OCCURS</font> clause to specify how many 
+              times the element <font size="-1">OCCURS</font> (see the examples 
+              below). </p>
+            <p>The <font size="-1">OCCURS</font> clause may appear before, or 
+              after, the <font size="-1">PICTURE</font> clause that defines the 
+              element. For instance, we might declare the <i>CountyTaxTable</i> 
+              as - </p>
+            <blockquote> 
+              <pre>01 CountyTax   PIC 9(8)V99  OCCURS 26 TIMES.</pre>
+              <blockquote> 
+                <p>or as</p>
+              </blockquote>
+              <pre>01 CountyTax   OCCURS 26 TIMES PIC 9(8)V99.
+</pre>
+            </blockquote>
+            <div align="left"> 
+              <p>We can represent the county tax table diagrammatically as follows;</p>
+              <p align="center"><a href="Resources/ppz/TC-Tables1.htm"><img src="Resources/pics/Tables1.gif" width="456" height="71" border="0"></a> 
+              </p>
+              <p align="left">In the example above, we can only refer to the individual 
+                elements of the table (see rule 2 for subscripts below). We can 
+                refer to CountyTax(1) or CountyTax(12) but we have no name for 
+                the whole table. It is often very useful to be able to refer to 
+                the whole table and so it is usual to define a table as subordinate 
+                to a group item which is named to indicate the whole table. For 
+                example the CountyTax table would probably be described as -</p>
+              <pre align="left">01 CountyTaxTable.
 
-    <title>Department of Computer Science and Information Systems | University of Limerick</title>
-    <link rel="stylesheet" media="all" href="/web/20240723204158cs_/https://www.ul.ie/sites/default/files/css/css_x_Y3noAazexHxsqTGG4CQnjebvZKSOBbjou6gLDzqnM.css?delta=0&amp;language=en&amp;theme=ul&amp;include=eJxtj90OwyAIhV9I5yMZVNaZojSK7fr2a2nS7WI38HEOP6GAcGFXNJm-d8HiAnQ0g9xEHIBMZJ4zBhZ30-l2jhnIFkwZLOU6d7Nm3LrT-CicBl1rGo_lBDVOiNDS7djIVbCKIdh5iE-5R16x7Y4rRiYdOFog6tl8sN2AVL9GrOD7CJlQtz8RZDRMqpxCgFqxGahN_JSW5m76p_nvl_LCgl42hLm73-ID14x4RA"/>
-<link rel="stylesheet" media="all" href="/web/20240723204158cs_/https://www.ul.ie/sites/default/files/css/css_0qvrDgJKbdo-QP5UfDDJ_F2s-P0geEZLfyJ4EqRyNxU.css?delta=1&amp;language=en&amp;theme=ul&amp;include=eJxtj90OwyAIhV9I5yMZVNaZojSK7fr2a2nS7WI38HEOP6GAcGFXNJm-d8HiAnQ0g9xEHIBMZJ4zBhZ30-l2jhnIFkwZLOU6d7Nm3LrT-CicBl1rGo_lBDVOiNDS7djIVbCKIdh5iE-5R16x7Y4rRiYdOFog6tl8sN2AVL9GrOD7CJlQtz8RZDRMqpxCgFqxGahN_JSW5m76p_nvl_LCgl42hLm73-ID14x4RA"/>
-
-    <script src="https://web.archive.org/web/20240723204158js_/https://analytics.silktide.com/660e38693f0fadaa6e04240e8e241ee8.js" async="async"></script>
-<script src="/web/20240723204158js_/https://www.ul.ie/sites/default/files/js/js_gyyq8ZMUvF8cxhVckp-8-7tn0gGLBKaZLwz2Vbc2cDo.js?scope=header&amp;delta=1&amp;language=en&amp;theme=ul&amp;include=eJxtj90OwyAIhV9I5yMZVNaZojSK7fr2a2nS7WI38HEOP6GAcGFXNJm-d8HiAnQ0g9xEHIBMZJ4zBhZ30-l2jhnIFkwZLOU6d7Nm3LrT-CicBl1rGo_lBDVOiNDS7djIVbCKIdh5iE-5R16x7Y4rRiYdOFog6tl8sN2AVL9GrOD7CJlQtz8RZDRMqpxCgFqxGahN_JSW5m76p_nvl_LCgl42hLm73-ID14x4RA"></script>
-
-    <link rel="apple-touch-icon" sizes="180x180" href="/web/20240723204158im_/https://www.ul.ie/themes/custom/ul/assets/images/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/web/20240723204158im_/https://www.ul.ie/themes/custom/ul/assets/images/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/web/20240723204158im_/https://www.ul.ie/themes/custom/ul/assets/images/favicons/favicon-16x16.png">
-    <link rel="manifest" href="/web/20240723204158/https://www.ul.ie/themes/custom/ul/assets/images/favicons/site.webmanifest">
-    <link rel="mask-icon" href="/web/20240723204158im_/https://www.ul.ie/themes/custom/ul/assets/images/favicons/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="shortcut icon" href="/web/20240723204158im_/https://www.ul.ie/themes/custom/ul/assets/images/favicons/favicon.ico">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="msapplication-config" content="/themes/custom/ul/assets/images/favicons/browserconfig.xml">
-    <meta name="theme-color" content="#ffffff">
-  </head>
-  <body class="no-js path-group">
-        <script>
-      document.querySelector('body').classList.remove('no-js');
-    </script>
-
-                <a href="#main-content" class="visually-hidden focusable skip-link">
-      Skip to main content
-    </a>
-    
-      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
-    
-
-<header class="header">
-  
-      
-
-
-<div class="region region--header">
-  <div class="layout-contained padding-horizontal">
-    <div class="region__inner region__inner--header">
-      <div class="views-element-container block block-views block-views-blockgroup-logo-block__group-logo" id="block-views-block-group-logo-block-group-logo">
-      <div>  <a href="/web/20240723204158/https://www.ul.ie/" rel="Home"><article class="media media--type-image media--view-mode-default">
-  
-      
-  <div class="field field--name-field-media-image field--type-image field--label-visually_hidden">
-    <div class="field__label visually-hidden">Image</div>
-              <div class="field__item">  <img loading="lazy" src="/web/20240723204158im_/https://www.ul.ie/sites/default/files/styles/large/public/2022-08/Science%20and%20Engineering_master_Digital_RGB.jpg?itok=gyhBs1yl" width="568" height="155" alt="Faculty of Science and Engineering UL logo" class="image-style-large"/>
-
-
-</div>
-          </div>
-
-  </article>
-</a>
-</div>
-
-  </div>
-<div id="block-googlecsesearchform" class="block block-ul-google-cse block-ul-google-cse-search-form">
-  
-    
-      
-
-
-
-
-
-<div class="block block-search container-inline" id="block-search" aria-hidden="true" hidden>
-  
-    
-  <div class="block-search__close">
-    <button class="block-search__close-button">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </button>
-  </div>
-  <div class="block-search__content">
-
-    <form action="https://www.ul.ie/search" method="get" id="google-cse-search-form" accept-charset="UTF-8">
-      <div class="js-form-item form-item js-form-type-search form-type-search js-form-item-keys form-item-keys form-no-label">
-        <label for="google-cse-search-terms" class="visually-hidden">Site search</label>
-        <input title="Enter the terms you wish to search for." type="search" id="google-cse-search-terms" name="q" value="" size="15" maxlength="128" class="form-search">
-      </div>
-      <div class="form-actions form-wrapper" id="edit-actions--2">
-        <button type="submit" id="google-cse-search-terms-button" class="button form-submit">
-          <span class="submit__icon" aria-hidden="true">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512"><!-- Font Awesome Pro 5.15.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M508.5 468.9L387.1 347.5c-2.3-2.3-5.3-3.5-8.5-3.5h-13.2c31.5-36.5 50.6-84 50.6-136C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c52 0 99.5-19.1 136-50.6v13.2c0 3.2 1.3 6.2 3.5 8.5l121.4 121.4c4.7 4.7 12.3 4.7 17 0l22.6-22.6c4.7-4.7 4.7-12.3 0-17zM208 368c-88.4 0-160-71.6-160-160S119.6 48 208 48s160 71.6 160 160-71.6 160-160 160z"/></svg>
-                </span>
-          <span class="submit__text visually-hidden">Search</span>
-        </button>
-      </div>
-    </form>
-
-  </div>
-</div>
-
-  </div>
+   02 CountyTax  PIC 9(8)V99  OCCURS 26 TIMES.</pre>
+              <p>When declared like this we can refer to <i>CountyTax(sub)</i> 
+                when we want to access an element of the table and <i>CountyTaxTable</i> 
+                when we want to refer to the whole table.</p>
+              <hr size="1" width="100%">
+            </div>
+          </td>
+        </tr>
+        <tr> 
+          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC" height="637"> 
+            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">OCCURS 
+              clause syntax and rules</font></h4>
+          </td>
+          <td width="525" valign="top" height="637"> 
+            <p>This section of the tutorial introduces simple version of the <font size="-1">OCCURS</font> 
+              clause but keep in mind that the <font size="-1">OCCURS</font> clause 
+              contains a number of other entries; including entries for declaring 
+              variable length tables and for satisfying the special requirements 
+              of the <font size="-1">SEARCH</font> verb.</p>
+            <p>The syntax for the simple version of the <font size="-1">OCCURS</font> 
+              clause is -</p>
+            <blockquote> 
+              <p><u>OCCURS</u> <i>TableSize#l</i> TIMES</p>
+            </blockquote>
+            <p><b>Rules for the <font size="-1">OCCURS</font> clause</b></p>
+            <ol>
+              <li> The <font size="-1">OCCURS</font> clause cannot appear in the 
+                description of a level 77 data name. </li>
+              <li>Any data-item whose description includes an occurs clause must 
+                be subscripted when referred to. </li>
+              <li>Any data-item which is subordinate to a group item whose description 
+                contains an occurs clause must be subscripted when referred to.
+              </li>
+            </ol>
+            <p><b>Rules for subscripts</b></p>
+            <ol>
+              <li><b> </b>Each subscript must be either a positive integer, a 
+                data name which represents one, or a simple expression which evaluates 
+                to one. </li>
+              <li>The subscript must contain a value between 1 and the number 
+                of elements in the table/array inclusive. </li>
+              <li>When more than one subscript is used they must be separated 
+                from one another by commas. </li>
+              <li>One subscript must be specified for each dimension of the table. 
+                There must be 1 for a one dimension table, 2 subscripts for a 
+                two dimension table and 3 for a three dimension table.</li>
+              <li>The first subscript applies to the first <font size="-1">OCCURS</font> 
+                clause, the second applies to the second <font size="-1">OCCURS</font> 
+                clause, and so on.</li>
+              <li> Subscripts must be enclosed in parentheses/brackets.</li>
+            </ol>
+            <hr size="1" width="100%">
+          </td>
+        </tr>
+        <tr> 
+          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC" height="626"> 
+            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Table 
+              examples and some SAQ's</font></h4>
+            <h4>&nbsp;</h4>
+            <h4>&nbsp;</h4>
+            <h4>&nbsp;</h4>
+            <h4>&nbsp;</h4>
+            <h4>&nbsp;</h4>
+            <h4>&nbsp;</h4>
+            <h4>&nbsp;</h4>
+            <h4>&nbsp;</h4>
+            <h4>&nbsp;</h4>
+            <h4 align="center"><img src="Resources/pics/i-SAQ2.gif" width="32" height="46"></h4>
+          </td>
+          <td width="525" valign="top" height="626"> 
+            <p>Examine the example table declarations below and then attempt to 
+              answer the self assessment questions.</p>
+            <table width="475" border="1" align="center" background="course/Resources%5Cpics%5Ccode.gif" cellpadding="5" height="171">
+              <tr> 
+                <td height="166"> 
+                  <pre>WORKING-STORAGE SECTION.
+01 DeptTotalsTable.
+   02 DeptTotal PIC 9(6) OCCURS 7.
 
 
-      <ul class="header__utilities">
-                <li class="header__utility header__utility--social-links">
-          
+01 VATRateTable.
+   02 VATRate   PIC 99V99 OCCURS 3.
 
 
 
-
-
-<div class="social-media-links">
-	<div class="social-media-links__title">Follow Us</div>
-      <ul class="social-media-links__list">
-                        <li class="social-media-links__item social-media-links__item--Facebook">
-            <a href="https://www.facebook.com/universityoflimerick" class="social-media-links__link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 320 512"><!-- Font Awesome Pro 5.15.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>                            <span class="visually-hidden">
-                Follow University of Limerick on Facebook
-              </span>
-                          </a>
-          </li>
-                                <li class="social-media-links__item social-media-links__item--X/Twitter">
-            <a href="https://twitter.com/ul" class="social-media-links__link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
-                            <span class="visually-hidden">
-                Follow University of Limerick on X/Twitter
-              </span>
-                          </a>
-          </li>
-                                <li class="social-media-links__item social-media-links__item--Instagram">
-            <a href="https://www.instagram.com/universityoflimerick/" class="social-media-links__link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 448 512"><!-- Font Awesome Pro 5.15.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>                            <span class="visually-hidden">
-                Follow University of Limerick on Instagram
-              </span>
-                          </a>
-          </li>
-                                <li class="social-media-links__item social-media-links__item--LinkedIn">
-            <a href="https://www.linkedin.com/company/university-of-limerick" class="social-media-links__link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 448 512"><!-- Font Awesome Pro 5.15.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>                            <span class="visually-hidden">
-                Follow University of Limerick on LinkedIn
-              </span>
-                          </a>
-          </li>
-                                <li class="social-media-links__item social-media-links__item--YouTube">
-            <a href="https://www.youtube.com/user/UniversityofLimerick" class="social-media-links__link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 576 512"><!-- Font Awesome Pro 5.15.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>                            <span class="visually-hidden">
-                Follow University of Limerick on YouTube
-              </span>
-                          </a>
-          </li>
-                                <li class="social-media-links__item social-media-links__item--TikTok">
-            <a href="https://www.tiktok.com/@universityoflimerick" class="social-media-links__link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 448 512"><!-- Font Awesome Pro 5.15.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></svg>                            <span class="visually-hidden">
-                Follow University of Limerick on TikTok
-              </span>
-                          </a>
-          </li>
-                  </ul>
-  </div>        </li>
-        <li class="header__utility header__utility--search-trigger">
-          <button aria-controls="block-search" aria-expanded="false" aria-label="Show search form" class="search-trigger__button" data-search-expanded-label="Hide search form" data-search-collapsed-label="Show search form" hidden>
-            <span class="search-trigger__icon" aria-hidden="true">
-                          <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512"><!-- Font Awesome Pro 5.15.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M508.5 468.9L387.1 347.5c-2.3-2.3-5.3-3.5-8.5-3.5h-13.2c31.5-36.5 50.6-84 50.6-136C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c52 0 99.5-19.1 136-50.6v13.2c0 3.2 1.3 6.2 3.5 8.5l121.4 121.4c4.7 4.7 12.3 4.7 17 0l22.6-22.6c4.7-4.7 4.7-12.3 0-17zM208 368c-88.4 0-160-71.6-160-160S119.6 48 208 48s160 71.6 160 160-71.6 160-160 160z"/></svg>
-                  </span>
-            <span class="search-trigger__text visually-hidden">Search University of Limerick website</span>
-          </button>
-        </li>
-        <li class="header__utility header__utility--nav-toggle">
-          <button aria-expanded="false" aria-label="Open menu" class="mobile-navigation-toggle" data-menu-expanded-label="Close menu" data-menu-collapsed-label="Open menu" hidden>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </button>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-  
-      
+01 RatesTable VALUE ZEROES.
+   88 TableNotPrimed  VALUE ZEROS.     
+   02 ExchangeRate OCCURS 50 TIMES PIC 9(5)V99.
 
 
 
+01 MonthName   PIC X(3)OCCURS 12 TIMES. </pre>
+                </td>
+              </tr>
+            </table>
+            <p>&nbsp;</p>
+            <form method="post" action="Tables2.htm">
+              <div align="center"> 
+                <table width="96%" border="1" bgcolor="#E1FFE1">
+                  <tr> 
+                    <td width="8%" bgcolor="#FFFFCC">Q1</td>
+                    <td width="62%">What happens to the elements of the DeptTotalsTable 
+                      when the statement <font size="-1"><i>MOVE ZEROS TO</i></font><i> 
+                      DeptTotalsTable</i> is executed?</td>
+                    <td width="30%" valign="top"> 
+                      <select name="select5" size="1">
+                        <option selected>Click the arrow for the answer</option>
+                        <option>-----------------------------------------------------------------</option>
+                        <option>Every element of the table is filled with </option>
+                        <option>zeros.</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr> 
+                    <td width="8%" bgcolor="#FFFFCC">Q2</td>
+                    <td width="62%">What happens when the statement <font size="-1"><i>MOVE 
+                      </i></font><i>456</i><font size="-1"><i> TO</i></font><i> 
+                      DeptTotal(5)</i> is executed?</td>
+                    <td width="30%" valign="top"> 
+                      <select name="select6" size="1">
+                        <option selected>Click the arrow for the answer</option>
+                        <option>-----------------------------------------------------------------</option>
+                        <option>The value 456 is moved into the fifth </option>
+                        <option>element of the DeptTotalsTable</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr> 
+                    <td width="8%" bgcolor="#FFFFCC">Q3</td>
+                    <td width="62%">What statement would we have to write to display 
+                      the second VAT rate in the VATRateTable?</td>
+                    <td width="30%" valign="top"> 
+                      <select name="select7" size="1">
+                        <option selected>Click the arrow for the answer</option>
+                        <option>-----------------------------------------------------------------</option>
+                        <option>DISPLAY VATRate(2)</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr> 
+                    <td width="8%" bgcolor="#FFFFCC">Q4</td>
+                    <td width="62%">What is the purpose of the level 88 attached 
+                      to the RatesTable?</td>
+                    <td width="30%" valign="top"> 
+                      <select name="select8" size="1">
+                        <option selected>Click the arrow for the answer</option>
+                        <option>-----------------------------------------------------------------</option>
+                        <option>The TableNotPrimed condition name is</option>
+                        <option>true is the whole table contains zeros i.e. </option>
+                        <option>has not yet been filled with the exchange</option>
+                        <option>rates.</option>
+                      </select>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <p>&nbsp;</p>
+            </form>
+            <hr size="1" width="100%">
+          </td>
+        </tr>
+        <tr> 
+          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC" height="69"> 
+            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Declaring 
+              a variable length table.</font></h4>
+            <h4>&nbsp;</h4>
+            <h4>&nbsp;</h4>
+          </td>
+          <td width="525" valign="top" height="69"> 
+            <p>A variable-length table may be declared using the <font size="-1">OCCURS</font> 
+              clause syntax below.</p>
+            <blockquote> 
+              <p><u>OCCURS</u> <i>SmallestSize#l </i>TO<i> LargestSize#l</i> TIMES<br>
+                DEPENDING ON ActualSize#i</p>
+            </blockquote>
+            <p> The amount of storage allocated to a variable-length table is 
+              defined by the value of<i> LargestSize</i> and is assigned at compile 
+              time. Standard COBOL has no mechanism for dynamic memory allocation, 
+              although the coming OO-COBOL standard addresses this problem.</p>
+            <p><b>Rules</b></p>
+            <ol>
+              <li>ActualSize#i cannot itself be a data-item in a table.</li>
+              <li>This format may only be use to vary the number of elements in 
+                the first dimension of a table.</li>
+            </ol>
+            <p><b>Example</b></p>
+            <pre>01 BooksReservedTable. 
+   02 BookId PIC 9(7) OCCURS 1 TO 10 
+                      DEPENDING ON NumOfReservations. </pre>
+          </td>
+        </tr>
+        <tr> 
+          <td valign="top" align="left" bgcolor="#FFFFFF" colspan="2"> 
+            <div align="center"> 
+              <hr width="100%">
+              <p><a href="#top"> <img src="Resources/pics/i-pagetop.gif" width="132" height="38" border="0"></a> 
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr> 
+          <td valign="top" align="LEFT" bgcolor="#993300" colspan="2"> 
+            <h2 align="CENTER"><font color="#FFFF00"><a name="part2"></a><font face="Arial, Helvetica, sans-serif">Group 
+              items as elements</font></font></h2>
+          </td>
+        </tr>
+        <tr> 
+          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC" height="69"> 
+            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
+            <h4>&nbsp;</h4>
+          </td>
+          <td width="525" valign="top" height="69"> 
+            <p>The elements of a table do not have to be elementary items. An 
+              element can be a group item. In other words each element can be 
+              subdivided into two, or more, subordinate items.</p>
+          </td>
+        </tr>
+        <tr> 
+          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC" height="790"> 
+            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Setting 
+              up a combined table</font></h4>
+          </td>
+          <td width="525" valign="top" height="790"> 
+            <p>Let's illustrate this with an example. Suppose the specification 
+              of the County Tax Report program were changed to say that, as well 
+              as the amount of tax paid in each county, the report should also 
+              display the number of tax payers. </p>
+            <p>One way we could satisfy this change to the specification would 
+              involve setting up separate tables to hold the county tax totals 
+              and county tax payer counts. For example- </p>
+            <pre>01 CountyTaxTable.
+   02 CountyTax   PIC 9(8)V99  OCCURS 26 TIMES.
 
-  <div class="region region--header-bottom">
 
-    
-    <div class="region__inner region__inner--header-bottom">
-      <nav role="navigation" aria-labelledby="block-globalnavigation-menu" id="block-globalnavigation" class="block block-menu navigation menu--global-navigation">
+01 CountyPayerTable.
+   02 PayerCount  PIC 9(7) OCCURS 26 TIMES.</pre>
+            <p>But we could also solve the problem by setting up just a single 
+              table and defining each element as a group item. The group item 
+              would consist of the <i>CountyTax</i> and the <i>PayerCount</i>. 
+            </p>
+            <p>For example -</p>
+            <pre>01 CountyTaxTable.
+   02 CountyTaxDetails OCCURS 26 TIMES.
+      03 CountyTax   PIC 9(8)V99.  
+      03 PayerCount  PIC 9(7). </pre>
+            <p>In this example, <i>CountyTaxTable</i> is the name for the whole 
+              table and each element is called <i>CountyTaxDetails</i>. The element 
+              is further subdivided into the elementary items <i>CountyTax </i>and 
+              <i>PayerCount</i>. </p>
+            <p>We can represent this table diagrammatically as follows;</p>
+            <p align="center"><img src="Resources/pics/Tables3.gif" width="466" height="149"></p>
+            <p>To refer to an item that is subordinate to table element, the same 
+              number of subscripts must be used as when referring to the element 
+              itself. So, to refer to <i>CountyTaxDetails</i>, <i>CountyTax </i>and 
+              <i>PayerCount </i>in the table above, the form CountyTaxDetails(sub), 
+              CountyTax(sub) and PayerCount(sub) must be used. </p>
+            <hr size="1" width="100%">
+          </td>
+        </tr>
+        <tr> 
+          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC" height="709"> 
+            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Self 
+              Assessment Questions and animated example</font></h4>
+            <h4 align="center"><img src="Resources/pics/i-SAQ2.gif" width="32" height="46"></h4>
+            <h4>&nbsp;</h4>
+            <h4>&nbsp;</h4>
+            <h4>&nbsp;</h4>
+            <h4>&nbsp;</h4>
+            <h4>&nbsp;</h4>
+            <h4 align="center">&nbsp;</h4>
+          </td>
+          <td width="525" valign="top" height="709"> 
+            <p>Q1. Examine the CountyTaxTable described above. Suppose that in 
+              our program we have the following statements;</p>
+            <blockquote> 
+              <pre>MOVE ZEROS TO CountyTax(3)
+MOVE 67 TO PayerCount(6)
+MOVE 1234.45 TO CountyTax(4)
+MOVE ZEROS TO CountyTaxDetails(4)
+MOVE ZEROS TO CountyTaxTable</pre>
+            </blockquote>
+            What effect on the table will each of these statements have? Copy 
+            the table diagram above, fill in your answer and then click on the 
+            animation icon below to see the animated solution. 
+            <p align="center"><a href="Resources/ppz/TC-Tables3.htm"><img src="Resources/pics/i-Animation.gif" width="62" height="62" border="0"></a></p>
+            <p>&nbsp;</p>
+            <p>Q2. What is the difference between the following data descriptions;</p>
+            <blockquote> 
+              <pre>01 CountyTaxTable1.
+   02 CountyTaxDetails OCCURS 26 TIMES.
+      03 CountyTax   PIC 9(8)V99.  
+      03 PayerCount  PIC 9(7). 
+
+
+
+01 CountyTaxTable2.
+   02 CountyTaxDetails 
+      03 CountyTax   PIC 9(8)V99 OCCURS 26 TIMES.  
+      03 PayerCount  PIC 9(7)OCCURS 26 TIMES. 
+</pre>
+            </blockquote>
+            <form method="post" action="Tables2.htm">
+              <div align="center"> 
+                <select name="select" size="1">
+                  <option selected>Click the arrow for the answer</option>
+                  <option>------------------------------------------------------------------------------------------------------------------------</option>
+                  <option>CountyTaxTable1 is a table where each element is a group 
+                  item that is </option>
+                  <option>divided into the items CountyTax and PayerCount.</option>
+                  <option>In CountyTaxTable2, CountyTax and PayerCount are two 
+                  separate tables.</option>
+                  <option>CountyTaxDetails and CountTaxTable2 are group items 
+                  that contain </option>
+                  <option>these two tables.</option>
+                </select>
+              </div>
+            </form>
+            <p>&nbsp;</p>
+            <hr width="100%" size="1">
+          </td>
+        </tr>
+        <tr> 
+          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC" height="1351"> 
+            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Example 
+              program </font></h4>
+            <h4>&nbsp;</h4>
+            <h4>&nbsp;</h4>
+            <h4>&nbsp;</h4>
+            <h4>&nbsp;</h4>
+            <h4>&nbsp;</h4>
+            <h4>&nbsp;</h4>
+            <h4>&nbsp;</h4>
+            <h4>&nbsp;</h4>
+            <h4>&nbsp;</h4>
+            <h4>&nbsp;</h4>
+            <h4>&nbsp;</h4>
+            <h4 align="center"><img src="Resources/pics/program.gif" width="42" height="44"></h4>
+            <h4 align="center">&nbsp;</h4>
+            <h4 align="center">&nbsp;</h4>
+            <h4 align="center">&nbsp;</h4>
+            <h4 align="center">&nbsp;</h4>
+            <h4 align="center">&nbsp;</h4>
+          </td>
+          <td width="525" valign="top" height="1351"> 
+            <p>This example program implements the County Tax Report program. 
+              It has some interesting features;</p>
+            <ul>
+              <li>Each element of the table is a group item subdivided into CountyTax 
+                and PayerCount.</li>
+              <li>The CountyTax table is subordinate to the data-item CountyTaxTable 
+                and this allows the table to be initialised to <font size="-1">ZEROS</font> 
+                with the statement <font size="-1"><i>MOVE ZEROS TO</i></font><i> 
+                CountyTaxTable</i></li>
+              <li>One of the data-items subordinate to the table element is monitored 
+                by the condition name - <i>NoOnePaidTax</i>. This means that a 
+                separate <i>NoOnePaidTax</i> condition name is attached to each 
+                element of the table. When we refer to <i>NoOnePaidTax</i> in 
+                the program, we must use a subscript because we need to tell the 
+                computer which condition name, attached to which element, we are 
+                referring to. In other words we need to specify that the <i>NoOnePaidTax</i> 
+                we are referring to is the one attached to the first element or 
+                to the second element or to the third element and so on.</li>
+            </ul>
+            <table width="475" border="1" align="center" background="course/Resources%5Cpics%5Ccode.gif" cellpadding="5">
+              <tr> 
+                <td> 
+                  <pre>      $ SET SOURCEFORMAT"FREE"
+IDENTIFICATION DIVISION.
+PROGRAM-ID. CountyTaxTable.
+AUTHOR. Michael Coughlan.
+ENVIRONMENT DIVISION.
+INPUT-OUTPUT SECTION.
+FILE-CONTROL.
+    SELECT TaxFile ASSIGN TO "TAXES.DAT"
+           ORGANIZATION IS LINE SEQUENTIAL.
+
+DATA DIVISION.
+FILE SECTION.
+FD TaxFile.
+01 TaxRec.
+   88 EndOfTaxFile   VALUE HIGH-VALUES.
+   02 PAYENum        PIC 9(8).
+   02 CountyCode     PIC 99.
+   02 TaxPaid        PIC 9(7)V99.
+
+WORKING-STORAGE SECTION.
+01 CountyTaxTable.
+   02 CountyTaxDetails OCCURS 26 TIMES.
+      03 CountyTax   PIC 9(8)V99.  
+      03 PayerCount  PIC 9(7).
+         88 NoOnePaidTax VALUE ZEROS.
+
+01 Idx               PIC 99.
+
+01 CountyTaxLine.
+   02 FILLER         PIC X(7) VALUE "County".
+   02 PrnCounty      PIC Z9.
+   02 FILLER         PIC X(7) VALUE " Tax = ".
+   02 PrnTax         PIC $$$,$$$,$$9.99.
+   02 FILLER         PIC X(12) VALUE "   Payers = ".
+   02 PrnPayers      PIC Z,ZZZ,ZZ9.
+
+PROCEDURE DIVISION.
+Begin.
+   OPEN INPUT TaxFile
+   MOVE ZEROS TO CountyTaxTable
+   READ TaxFile
+      AT END SET EndOfTaxFile TO TRUE
+   END-READ
+   PERFORM UNTIL EndOfTaxFile
+      ADD TaxPaid TO CountyTax(CountyCode)
+      ADD 1 TO PayerCount(CountyCode)
+      READ TaxFile
+         AT END SET EndOfTaxFile TO TRUE
+      END-READ
+   END-PERFORM
+   PERFORM DisplayCountyTaxes VARYING Idx FROM 1 BY 1
+           UNTIL Idx GREATER THAN 26
+   CLOSE TaxFile
+   STOP RUN.
+
+DisplayCountyTaxes.
+   IF NOT NoOnePaidTax(Idx)
+      MOVE Idx TO PrnCounty
+      MOVE CountyTax(Idx) TO PrnTax
+      MOVE PayerCount(Idx) TO PrnPayers
+      DISPLAY CountyTaxLine
+   END-IF.</pre>
+                </td>
+              </tr>
+            </table>
+            <p>&nbsp; </p>
+          </td>
+        </tr>
+        <tr> 
+          <td valign="top" align="left" bgcolor="#FFFFFF" colspan="2"> 
+            <div align="center"> 
+              <hr>
+              <p><a href="#top"> <img src="Resources/pics/i-pagetop.gif" width="132" height="38" border="0"></a> 
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr> 
+          <td valign="top" align="LEFT" bgcolor="#993300" colspan="2"> 
+            <h2 align="CENTER"><font color="#FFFF00"><a name="part3"></a><font face="Arial, Helvetica, sans-serif">Declaring 
+              multi-dimension tables</font></font></h2>
+          </td>
+        </tr>
+        <tr> 
+          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC" height="432"> 
+            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
+          </td>
+          <td width="525" valign="top" height="432"> 
+            <p align="left">The Census Office has provided us with a file containing 
+              the AgeCategory, Gender, CountyCode and car ownership information 
+              of every person in the country. The CensusFile is an unordered sequential 
+              file and its records have the following description- </p>
+            <div align="center"> 
+              <table width="56%" border="1" bgcolor="#E1FFE1" cellpadding="5">
+                <tr bgcolor="#FFFFCC"> 
+                  <td height="15" width="32%"> 
+                    <div align="center"><b>Name</b></div>
+                  </td>
+                  <td height="15" width="26%"> 
+                    <div align="center"><b>Description</b></div>
+                  </td>
+                  <td height="15" width="42%"> 
+                    <div align="center"><b>Value</b></div>
+                  </td>
+                </tr>
+                <tr> 
+                  <td height="7" width="32%">CountyCode</td>
+                  <td height="7" width="26%"> 
+                    <div align="center">PIC 99</div>
+                  </td>
+                  <td height="7" width="42%"> 
+                    <div align="center">1-26</div>
+                  </td>
+                </tr>
+                <tr> 
+                  <td height="43" width="32%">AgeCategory</td>
+                  <td height="43" width="26%"> 
+                    <div align="center">PIC 9</div>
+                  </td>
+                  <td height="43" width="42%"> 
+                    <p align="left">1 = Child<br>
+                      2 = Teen<br>
+                      3 = Adult</p>
+                  </td>
+                </tr>
+                <tr> 
+                  <td height="35" width="32%">Gender</td>
+                  <td height="35" width="26%"> 
+                    <div align="center">PIC 9</div>
+                  </td>
+                  <td height="35" width="42%"> 
+                    <p> 1 = Female<br>
+                      2 = Male </p>
+                  </td>
+                </tr>
+                <tr> 
+                  <td height="39" width="32%">CarOwner</td>
+                  <td height="39" width="26%"> 
+                    <div align="center">PIC X</div>
+                  </td>
+                  <td height="39" width="42%"> 
+                    <p align="center">Y/N</p>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <p align="left">&nbsp;</p>
+            <p align="left">Suppose we were asked to write a program to produce 
+              a report displaying the number of males, and the number of females, 
+              in each AgeCategory - Child, Teen and Adult. How would we go about 
+              it? </p>
+            <p align="left">&nbsp;</p>
+          </td>
+        </tr>
+        <tr> 
+          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC" height="837"> 
+            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Problem 
+              discussion</font></h4>
+          </td>
+          <td width="525" valign="top" height="837"> 
+            <p align="left">One way to solve this problem, would be to sort the 
+              file on AgeCategory and Gender, and then treat it as a control break 
+              problem. </p>
+            <p align="left">Another way to solve the problem, would be to set 
+              up a number of total variables and then, when a record is read, 
+              use the AgeCategory and Gender information to tell us which total 
+              to increment. </p>
+            <p align="left">In this particular problem there are only six totals 
+              required - CFTotal, CMTotal, TFTotal, TMTotal, AFTotal, AMTotal 
+              - so a solution which involves creating these totals and using an 
+              <font size="-1">EVALUATE </font>to decide which total to increment, 
+              would not be entirely out of the question.</p>
+            <p align="left">But instead of an <font size="-1">EVALUATE-</font>based 
+              solution let's consider using a table to hold the totals. What kind 
+              of a table might we require? We can see that six totals are needed, 
+              so we might think that the six element, single-dimension, table 
+              shown below might do the trick.</p>
+            <blockquote> 
+              <pre>01 PopulationTable.
+   02 PopTotal PIC 9(6) OCCURS 6 TIMES.</pre>
+            </blockquote>
+            <p align="left">The problem with this is - what can we use as an index 
+              into the table? No single item in the record will do. The index 
+              must be a combination of the <i>AgeCategory</i> and the <i>Gender</i>. 
+              Of course, we could use an <font size="-1">EVALUATE</font>, as shown 
+              below, to map the <i>AgeCategory</i> and <i>Gender</i> to a combined 
+              index value.</p>
+            <blockquote> 
+              <pre align="left">EVALUATE AgeCategory ALSO Gender
+  WHEN        1      ALSO    1      MOVE 1 TO Idx
+  WHEN        1      ALSO    2      MOVE 2 TO Idx
+  WHEN        2      ALSO    1      MOVE 3 TO Idx
+          etc...
+END-EVALUATE.
+</pre>
+            </blockquote>
+            <p align="left">Or we could manipulate the values arithmetically to 
+              map them to the index value. For instance <i>COMPUTE Idx = ((AgeCategory 
+              -1) * 2) + Gender</i></p>
+            <p align="left">But both these methods lack something in elegance 
+              and will be difficult to extend when, as I'm sure you have anticipated, 
+              we ask for the population information to be provided for each county.</p>
+            <p align="left">The best, and most extensible, solution to the problem 
+              is to set up a two dimension table to hold the totals. Since the 
+              elements of a two dimension table require two subscripts, we can 
+              use the AgeCategory and the Gender to identify the particular element 
+              we need to access.</p>
             
-  <h2 class="visually-hidden" id="block-globalnavigation-menu">Global Navigation</h2>
-  
-
-        
-      
-        
-    
-            <ul class="menu menu--global-navigation">
-                    <li class="menu-item">
-        <a href="https://www.ul.ie/library">Library</a>
-              </li>
-                <li class="menu-item">
-        <a href="/web/20240723204158/https://www.ul.ie/students" data-drupal-link-system-path="group/8/content/124">Student Gateway</a>
-              </li>
-                <li class="menu-item">
-        <a href="/web/20240723204158/https://www.ul.ie/staff" data-drupal-link-system-path="group/8/content/121">Staff Gateway</a>
-              </li>
-                <li class="menu-item">
-        <a href="/web/20240723204158/https://www.ul.ie/about-ul/directory-of-services" data-drupal-link-system-path="group/8/content/80">A-Z Directory</a>
-              </li>
-                <li class="menu-item">
-        <a href="https://ul.workvivo.com/directory/people">Campus Phone Directory</a>
-              </li>
-                <li class="menu-item">
-        <a href="/web/20240723204158/https://www.ul.ie/contact-information" data-drupal-link-system-path="group/8/content/74">Contact UL</a>
-              </li>
-        </ul>
-  
-
-
-  </nav>
-<nav role="navigation" aria-labelledby="block-groupmainmenu-2-menu" id="block-groupmainmenu-2" class="block block-menu navigation">
-            
-  <h2 class="visually-hidden" id="block-groupmainmenu-2-menu">Group Main Menu</h2>
-  
-
-        
-
-
-  
-  
-  
-            <ul class="menu menu--group-main-menu menu--group_menu_link_content-45 padding-horizontal layout-contained" id="">
-                                                  
-      <li class="menu-item menu-item--no-sub-menu">
-                  <a href="/web/20240723204158/https://www.ul.ie/scieng/schools-and-departments/department-computer-science-and-information-systems" data-drupal-link-system-path="group/47" class="is-active">Home</a>
-              </li>
-                                              
-      <li class="menu-item menu-item--has-sub-menu">
-                  <a href="/web/20240723204158/https://www.ul.ie/scieng/schools-and-departments/department-computer-science-and-information-systems/about-csis" title="" id="link-9f17d8-1767540643" data-drupal-link-system-path="group/47/content/10811">About</a>
-          <button class="sub-menu-item-toggle" data-menulevel="0" aria-controls="submenu-9f17d8-1767540643" aria-expanded="false" aria-labelledby="button-9f17d8-1767540643 link-9f17d8-1767540643" hidden id="button-9f17d8-1767540643">
-                        <span class="sub-menu-item-toggle__icon" aria-hidden="true">
-                          <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 256 512"><!-- Font Awesome Pro 5.15.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M24.707 38.101L4.908 57.899c-4.686 4.686-4.686 12.284 0 16.971L185.607 256 4.908 437.13c-4.686 4.686-4.686 12.284 0 16.971L24.707 473.9c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L41.678 38.101c-4.687-4.687-12.285-4.687-16.971 0z"/></svg>
-                  </span>
-          </button>
-            
-  
-  
-            <ul class="padding-horizontal layout-contained menu menu-group_menu_link_content-45--sub-menu menu--sub-menu" id="submenu-9f17d8-1767540643">
-                                                  
-      <li class="menu-item menu-item--no-sub-menu">
-                  <a href="/web/20240723204158/https://www.ul.ie/academic-registry/prospective-students/applying-UL/mature-students" data-drupal-link-system-path="group/9/content/3163">Mature Students</a>
-              </li>
-                                              
-      <li class="menu-item menu-item--no-sub-menu">
-                  <a href="https://www.ul.ie/international/" title="">International Students</a>
-              </li>
-        </ul>
-  
-              </li>
-                                              
-      <li class="menu-item menu-item--has-sub-menu">
-                  <a href="/web/20240723204158/https://www.ul.ie/scieng/courses-list/department-computer-science-and-information-systems-courses" id="link-93fb85-1394972130" data-drupal-link-system-path="group/47/content/10759">Courses</a>
-          <button class="sub-menu-item-toggle" data-menulevel="0" aria-controls="submenu-93fb85-1394972130" aria-expanded="false" aria-labelledby="button-93fb85-1394972130 link-93fb85-1394972130" hidden id="button-93fb85-1394972130">
-                        <span class="sub-menu-item-toggle__icon" aria-hidden="true">
-                          <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 256 512"><!-- Font Awesome Pro 5.15.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M24.707 38.101L4.908 57.899c-4.686 4.686-4.686 12.284 0 16.971L185.607 256 4.908 437.13c-4.686 4.686-4.686 12.284 0 16.971L24.707 473.9c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L41.678 38.101c-4.687-4.687-12.285-4.687-16.971 0z"/></svg>
-                  </span>
-          </button>
-            
-  
-  
-            <ul class="padding-horizontal layout-contained menu-group_menu_link_content-45--sub-menu menu--sub-menu menu" id="submenu-93fb85-1394972130">
-                                                  
-      <li class="menu-item menu-item--no-sub-menu">
-                  <a href="https://www.ul.ie/scieng/schools-and-departments/department-computer-science-and-information-systems/undergraduate-courses">Undergraduate</a>
-              </li>
-                                              
-      <li class="menu-item menu-item--no-sub-menu">
-                  <a href="https://www.ul.ie/scieng/schools-and-departments/department-computer-science-and-information-systems/postgraduate-courses">Postgraduate</a>
-              </li>
-        </ul>
-  
-              </li>
-                                              
-      <li class="menu-item menu-item--no-sub-menu">
-                  <a href="https://www.ul.ie/scieng/schools-and-departments/department-computer-science-and-information-systems/news" title="Latest News">News</a>
-              </li>
-                                              
-      <li class="menu-item menu-item--no-sub-menu">
-                  <a href="/web/20240723204158/https://www.ul.ie/scieng/department-computer-science-and-information-systems-staff" data-drupal-link-system-path="group/47/content/10768">Staff</a>
-              </li>
-                                              
-      <li class="menu-item menu-item--no-sub-menu">
-                  <a href="/web/20240723204158/https://www.ul.ie/scieng/schools-and-departments/department-computer-science-and-information-systems#contact" data-drupal-link-system-path="group/47" class="is-active">Contact us</a>
-              </li>
-                                              
-      <li class="menu-item menu-item--no-sub-menu">
-                  <a href="/web/20240723204158/https://www.ul.ie/scieng" title="" data-drupal-link-system-path="group/38">Faculty Home</a>
-              </li>
-        </ul>
-  
-
-
-  </nav>
-
-    </div>
-
-    
-  </div>
-
-  </header>
-
-
-
-
-<main id="main-content" tabindex="-1"> 
-                
-
-
-
-
-  <div class="region region--content">
-
-    
-    <div class="region__inner region__inner--content">
-      
-<div data-drupal-messages-fallback class="hidden"></div>
-<div id="block-ul-content--2" class="block block-system block-system-main-block">
-  
-    
-      
-
-
-
-
-
-
-<div class="group group--full group--faculty-department">
-
-  
-  
-
-  
-  
-      
-              
-              
-              
-    
-              
-              
-                  
-    
-
-
-
-
-  
-  
-<header class="banner banner--tiny banner--has-image banner--no-bg banner--has-gradient">
-      <div class="banner__image">
-          
-            <div class="field field--name-field-media-image field--type-image field--label-hidden field__item">    <picture>
-                  <source srcset="/web/20240723204158im_/https://www.ul.ie/sites/default/files/styles/banner_wide/public/scieng/banner.jpg?h=4cab24ee&amp;itok=QUXvRO23 1x" media="all and (min-width: 62rem)" type="image/jpeg" width="1440" height="630"/>
-              <source srcset="/web/20240723204158im_/https://www.ul.ie/sites/default/files/styles/banner_medium/public/scieng/banner.jpg?h=4cab24ee&amp;itok=6xjngsxK 1x" media="all and (min-width: 48rem)" type="image/jpeg" width="768" height="420"/>
-              <source srcset="/web/20240723204158im_/https://www.ul.ie/sites/default/files/styles/banner_mobile/public/scieng/banner.jpg?h=4cab24ee&amp;itok=Hr7MXBn2 1x" media="all and (min-width: 20rem)" type="image/jpeg" width="450" height="450"/>
-              <source srcset="/web/20240723204158im_/https://www.ul.ie/sites/default/files/styles/banner_mobile/public/scieng/banner.jpg?h=4cab24ee&amp;itok=Hr7MXBn2 1x" media="all and (max-width: 20rem)" type="image/jpeg" width="450" height="450"/>
-                  <img loading="eager" src="/web/20240723204158im_/https://www.ul.ie/sites/default/files/styles/banner_wide/public/scieng/banner.jpg?h=4cab24ee&amp;itok=QUXvRO23" width="1440" height="630" alt=""/>
-
-  </picture>
-
-</div>
-      
-
-
-    </div>
-    <div class="banner__content layout-contained">
-          <a class="banner__wrapper-link" href="/web/20240723204158/https://www.ul.ie/scieng">
-    
-          <div class="banner__title">
-        <h1>Department of Computer Science and Information Systems</h1>
-      </div>
-              <div class="banner__subtitle">
-        Computing for Life
-      </div>
-            
-          </a>
-      </div>
-</header>
-  
-
-  <div>
-    
-
-
-  <div class="text-and-tiles--bg-default text-and-tiles--3col text-and-tiles--width-centered text-and-tiles--spacing-tiny text-and-tiles">
-
-              <div class="layout-contained padding-horizontal">
-    
-    <div class="text-and-tiles__inner">
-      <div>
-        
-      </div>
-      <div class="layout__region--tiles">
-          
-
-
-  
-    
-
-
-<div class="featured-tile featured-tile--has-image featured-tile--has-link bg--secondary-light block block-layout-builder block-inline-blockfeatured-tile">
-  <div class="featured-tile__overlay bg--secondary-light"></div>
-  
-  
-
-  <div class="featured-tile__inner">
-          <div class="featured-tile__image">
-      
-            <div class="field field--name-field-bb-ft-image field--type-entity-reference field--label-hidden field__item"><article class="media media--type-image media--view-mode-featured-tile-default">
-  
-      
-            <div class="field field--name-field-media-image field--type-image field--label-hidden field__item">  <img loading="lazy" src="/web/20240723204158im_/https://www.ul.ie/sites/default/files/styles/featured_tile_default/public/scieng/n14.jpg?h=a6682860&amp;itok=rxtUswB9" width="390" height="205" alt="" class="image-style-featured-tile-default"/>
-
-
-</div>
-      
-  </article>
-</div>
-      
-      </div>
-    
-    
-          <a href="/web/20240723204158/https://www.ul.ie/scieng/schools-and-departments/department-computer-science-and-information-systems/undergraduate-courses" class="featured-tile__link">
-        <span class="featured-tile__link-text">
-          Undergraduate courses
-        </span>
-      </a>
-    
-  </div>
-
-</div>
-
-      
-
-
-  
-    
-
-
-<div class="featured-tile featured-tile--has-image featured-tile--has-link bg--secondary-light block block-layout-builder block-inline-blockfeatured-tile">
-  <div class="featured-tile__overlay bg--secondary-light"></div>
-  
-  
-
-  <div class="featured-tile__inner">
-          <div class="featured-tile__image">
-      
-            <div class="field field--name-field-bb-ft-image field--type-entity-reference field--label-hidden field__item"><article class="media media--type-image media--view-mode-featured-tile-default">
-  
-      
-            <div class="field field--name-field-media-image field--type-image field--label-hidden field__item">  <img loading="lazy" src="/web/20240723204158im_/https://www.ul.ie/sites/default/files/styles/featured_tile_default/public/scieng/n12.jpg?h=a6682860&amp;itok=HhA3Ag6h" width="390" height="205" alt="" class="image-style-featured-tile-default"/>
-
-
-</div>
-      
-  </article>
-</div>
-      
-      </div>
-    
-    
-          <a href="/web/20240723204158/https://www.ul.ie/scieng/schools-and-departments/department-computer-science-and-information-systems/postgraduate-courses" class="featured-tile__link">
-        <span class="featured-tile__link-text">
-          Postgraduate courses
-        </span>
-      </a>
-    
-  </div>
-
-</div>
-
-      
-
-
-  
-    
-
-
-<div class="featured-tile featured-tile--has-image featured-tile--has-link bg--secondary-light block block-layout-builder block-inline-blockfeatured-tile">
-  <div class="featured-tile__overlay bg--secondary-light"></div>
-  
-  
-
-  <div class="featured-tile__inner">
-          <div class="featured-tile__image">
-      
-            <div class="field field--name-field-bb-ft-image field--type-entity-reference field--label-hidden field__item"><article class="media media--type-image media--view-mode-featured-tile-default">
-  
-      
-            <div class="field field--name-field-media-image field--type-image field--label-hidden field__item">  <img loading="lazy" src="/web/20240723204158im_/https://www.ul.ie/sites/default/files/styles/featured_tile_default/public/scieng/ISE-image.png?h=b8416fea&amp;itok=RjsAjU51" width="390" height="205" alt="" class="image-style-featured-tile-default"/>
-
-
-</div>
-      
-  </article>
-</div>
-      
-      </div>
-    
-    
-          <a href="https://software-engineering.ie/" class="featured-tile__link">
-        <span class="featured-tile__link-text">
-          BSc/MSc in Immersive Software Engineering
-        </span>
-      </a>
-    
-  </div>
-
-</div>
-
-      
-
-
-  
-    
-
-
-<div class="featured-tile featured-tile--has-image featured-tile--has-link bg--secondary-light block block-layout-builder block-inline-blockfeatured-tile">
-  <div class="featured-tile__overlay bg--secondary-light"></div>
-  
-  
-
-  <div class="featured-tile__inner">
-          <div class="featured-tile__image">
-      
-            <div class="field field--name-field-bb-ft-image field--type-entity-reference field--label-hidden field__item"><article class="media media--type-image media--view-mode-featured-tile-default">
-  
-      
-            <div class="field field--name-field-media-image field--type-image field--label-hidden field__item">  <img loading="lazy" src="/web/20240723204158im_/https://www.ul.ie/sites/default/files/styles/featured_tile_default/public/scieng/Computer%20Coding.jpg?h=06f6671c&amp;itok=R8XS-yV9" width="390" height="205" alt="" class="image-style-featured-tile-default"/>
-
-
-</div>
-      
-  </article>
-</div>
-      
-      </div>
-    
-    
-          <a href="/web/20240723204158/https://www.ul.ie/scieng/schools-and-departments/department-computer-science-and-information-systems/research-csis" class="featured-tile__link">
-        <span class="featured-tile__link-text">
-          Research
-        </span>
-      </a>
-    
-  </div>
-
-</div>
-
-      
-
-
-  
-    
-
-
-<div class="featured-tile featured-tile--has-image featured-tile--has-link bg--secondary-light block block-layout-builder block-inline-blockfeatured-tile">
-  <div class="featured-tile__overlay bg--secondary-light"></div>
-  
-  
-
-  <div class="featured-tile__inner">
-          <div class="featured-tile__image">
-      
-            <div class="field field--name-field-bb-ft-image field--type-entity-reference field--label-hidden field__item"><article class="media media--type-image media--view-mode-featured-tile-default">
-  
-      
-            <div class="field field--name-field-media-image field--type-image field--label-hidden field__item">  <img loading="lazy" src="/web/20240723204158im_/https://www.ul.ie/sites/default/files/styles/featured_tile_default/public/scieng/IMG_9140%20%28Small%29.jpg?h=52d3fcb6&amp;itok=bZUfKObn" width="390" height="205" alt="" class="image-style-featured-tile-default"/>
-
-
-</div>
-      
-  </article>
-</div>
-      
-      </div>
-    
-    
-          <a href="/web/20240723204158/https://www.ul.ie/scieng/schools-and-departments/department-computer-science-and-information-systems/csis-design-art-and" class="featured-tile__link">
-        <span class="featured-tile__link-text">
-          Art and Technology Seminar Series
-        </span>
-      </a>
-    
-  </div>
-
-</div>
-
-      
-
-
-  
-    
-
-
-<div class="featured-tile featured-tile--has-image featured-tile--has-link bg--secondary-light block block-layout-builder block-inline-blockfeatured-tile">
-  <div class="featured-tile__overlay bg--secondary-light"></div>
-  
-  
-
-  <div class="featured-tile__inner">
-          <div class="featured-tile__image">
-      
-            <div class="field field--name-field-bb-ft-image field--type-entity-reference field--label-hidden field__item"><article class="media media--type-image media--view-mode-featured-tile-default">
-  
-      
-            <div class="field field--name-field-media-image field--type-image field--label-hidden field__item">  <img loading="lazy" src="/web/20240723204158im_/https://www.ul.ie/sites/default/files/styles/featured_tile_default/public/scieng/facilities.JPG?h=20ead7d5&amp;itok=gbALBXp5" width="390" height="205" alt="" class="image-style-featured-tile-default"/>
-
-
-</div>
-      
-  </article>
-</div>
-      
-      </div>
-    
-    
-          <a href="/web/20240723204158/https://www.ul.ie/scieng/schools-and-departments/department-computer-science-and-information-systems/csis-facilities" class="featured-tile__link">
-        <span class="featured-tile__link-text">
-          Facilities
-        </span>
-      </a>
-    
-  </div>
-
-</div>
-
-      
-
-
-  
-    
-
-
-<div class="featured-tile featured-tile--has-image featured-tile--has-link bg--secondary-light block block-layout-builder block-inline-blockfeatured-tile">
-  <div class="featured-tile__overlay bg--secondary-light"></div>
-  
-  
-
-  <div class="featured-tile__inner">
-          <div class="featured-tile__image">
-      
-            <div class="field field--name-field-bb-ft-image field--type-entity-reference field--label-hidden field__item"><article class="media media--type-image media--view-mode-featured-tile-default">
-  
-      
-            <div class="field field--name-field-media-image field--type-image field--label-hidden field__item">  <img loading="lazy" src="/web/20240723204158im_/https://www.ul.ie/sites/default/files/styles/featured_tile_default/public/scieng/athena-banner.jpg?h=c0140f46&amp;itok=U0d76Hz9" width="390" height="205" alt="" class="image-style-featured-tile-default"/>
-
-
-</div>
-      
-  </article>
-</div>
-      
-      </div>
-    
-    
-          <a href="/web/20240723204158/https://www.ul.ie/scieng/schools-and-departments/department-computer-science-and-information-systems/athena-swan-csis" class="featured-tile__link">
-        <span class="featured-tile__link-text">
-          Athena SWAN in CSIS
-        </span>
-      </a>
-    
-  </div>
-
-</div>
-
-      
-
-
-  
-    
-
-
-<div class="featured-tile featured-tile--has-image featured-tile--has-link bg--secondary-light block block-layout-builder block-inline-blockfeatured-tile">
-  <div class="featured-tile__overlay bg--secondary-light"></div>
-  
-  
-
-  <div class="featured-tile__inner">
-          <div class="featured-tile__image">
-      
-            <div class="field field--name-field-bb-ft-image field--type-entity-reference field--label-hidden field__item"><article class="media media--type-image media--view-mode-featured-tile-default">
-  
-      
-            <div class="field field--name-field-media-image field--type-image field--label-hidden field__item">  <img loading="lazy" src="/web/20240723204158im_/https://www.ul.ie/sites/default/files/styles/featured_tile_default/public/scieng/dmd.png?h=199d8c1f&amp;itok=I0C52mkA" width="390" height="205" alt="" class="image-style-featured-tile-default"/>
-
-
-</div>
-      
-  </article>
-</div>
-      
-      </div>
-    
-    
-          <a href="/web/20240723204158/https://www.ul.ie/scieng/schools-and-departments/department-computer-science-and-information-systems/digital-media" class="featured-tile__link">
-        <span class="featured-tile__link-text">
-          Digital Media Design Portfolios
-        </span>
-      </a>
-    
-  </div>
-
-</div>
-
-      
-
-
-  
-    
-
-
-<div class="featured-tile featured-tile--has-image featured-tile--has-link bg--secondary-light block block-layout-builder block-inline-blockfeatured-tile">
-  <div class="featured-tile__overlay bg--secondary-light"></div>
-  
-  
-
-  <div class="featured-tile__inner">
-          <div class="featured-tile__image">
-      
-            <div class="field field--name-field-bb-ft-image field--type-entity-reference field--label-hidden field__item"><article class="media media--type-image media--view-mode-featured-tile-default">
-  
-      
-            <div class="field field--name-field-media-image field--type-image field--label-hidden field__item">  <img loading="lazy" src="/web/20240723204158im_/https://www.ul.ie/sites/default/files/styles/featured_tile_default/public/scieng/mmpt.png?h=199d8c1f&amp;itok=xS3-J5of" width="390" height="205" alt="" class="image-style-featured-tile-default"/>
-
-
-</div>
-      
-  </article>
-</div>
-      
-      </div>
-    
-    
-          <a href="/web/20240723204158/https://www.ul.ie/scieng/schools-and-departments/department-computer-science-and-information-systems/music-media-and" class="featured-tile__link">
-        <span class="featured-tile__link-text">
-          Music Media and Performance Technology Portfolios
-        </span>
-      </a>
-    
-  </div>
-
-</div>
-
-    
-      </div>
-    </div>
-
-          </div>
-    
-  </div>
-
-
-
-  <div class="text-and-tiles--bg-primary-dark text-and-tiles--6col text-and-tiles--width-centered text-and-tiles--spacing-tiny text-and-tiles">
-
-              <div class="layout-contained padding-horizontal">
-    
-    <div class="text-and-tiles__inner">
-      <div class="layout__region layout__region--text">
-        <div class="block block-layout-builder block-inline-blocktext">
-  
-    
-      
-            <div class="clearfix text-formatted field field--name-field-text-text field--type-text-long field--label-hidden field__item"><p>&nbsp;</p>
-
-<h2>People-centric Computing</h2></div>
-      
-  </div>
-<div class="block block-layout-builder block-inline-blocktext">
-  
-    
-      
-            <div class="clearfix text-formatted field field--name-field-text-text field--type-text-long field--label-hidden field__item">The Computer Science and Information Systems department is a department Faculty of Science and Engineering. Our teaching and research activities focus on a wide variety of digital disciplines including human-centred computing, music technology, digital arts, games, software engineering, software localisation, and bio-inspired intelligent systems.</div>
-      
-  </div>
-
-      </div>
-      <div class="layout__region--tiles">
-        
-    
-
-
-
-<div class="icon-wall block block-layout-builder block-inline-blockicon-wall">
-  
-  
-
-      <div class="icon-wall__icon">
-      <img src="/web/20240723204158im_/https://www.ul.ie/sites/default/files/scieng/fellows-icon.png" alt="">
-    </div>
-  
-      <div class="icon-wall__link">
-      <a href="/web/20240723204158/https://www.ul.ie/scieng/courses-list/department-computer-science-and-information-systems-courses" class="icon-wall__link-url">
-        <h3 class="icon-wall__link-title h4">
-          Courses
-        </h3>
-      </a>
-    </div>
-  
-</div>
-
-    
-    
-
-
-
-<div class="icon-wall block block-layout-builder block-inline-blockicon-wall">
-  
-  
-
-      <div class="icon-wall__icon">
-      <img src="/web/20240723204158im_/https://www.ul.ie/sites/default/files/scieng/scholarship-icon.png" alt="Scholarships and funding opportunities">
-    </div>
-  
-      <div class="icon-wall__link">
-      <a href="/web/20240723204158/https://www.ul.ie/scieng/schools-and-departments/department-computer-science-and-information-systems/research-csis" class="icon-wall__link-url">
-        <h3 class="icon-wall__link-title h4">
-          Research
-        </h3>
-      </a>
-    </div>
-  
-</div>
-
-    
-    
-
-
-
-<div class="icon-wall block block-layout-builder block-inline-blockicon-wall">
-  
-  
-
-      <div class="icon-wall__icon">
-      <img src="/web/20240723204158im_/https://www.ul.ie/sites/default/files/scieng/campus-icon.png" alt="Faculty">
-    </div>
-  
-      <div class="icon-wall__link">
-      <a href="/web/20240723204158/https://www.ul.ie/scieng/department-computer-science-and-information-systems-staff" class="icon-wall__link-url">
-        <h3 class="icon-wall__link-title h4">
-          Staff
-        </h3>
-      </a>
-    </div>
-  
-</div>
-
-    
-    
-
-
-
-<div class="icon-wall block block-layout-builder block-inline-blockicon-wall">
-  
-  
-
-      <div class="icon-wall__icon">
-      <img src="/web/20240723204158im_/https://www.ul.ie/sites/default/files/scieng/newspaper-icon.png" alt="News">
-    </div>
-  
-      <div class="icon-wall__link">
-      <a href="/web/20240723204158/https://www.ul.ie/scieng/news-centre" class="icon-wall__link-url">
-        <h3 class="icon-wall__link-title h4">
-          News
-        </h3>
-      </a>
-    </div>
-  
-</div>
-
-    
-    
-
-
-
-<div class="icon-wall block block-layout-builder block-inline-blockicon-wall">
-  
-  
-
-      <div class="icon-wall__icon">
-      <img src="/web/20240723204158im_/https://www.ul.ie/sites/default/files/scieng/globe-icon.png" alt="International students">
-    </div>
-  
-      <div class="icon-wall__link">
-      <a href="https://www.ul.ie/international" class="icon-wall__link-url">
-        <h3 class="icon-wall__link-title h4">
-          International Students
-        </h3>
-      </a>
-    </div>
-  
-</div>
-
-    
-    
-
-
-
-<div class="icon-wall block block-layout-builder block-inline-blockicon-wall">
-  
-  
-
-      <div class="icon-wall__icon">
-      <img src="/web/20240723204158im_/https://www.ul.ie/sites/default/files/scieng/plane-icon.png" alt="">
-    </div>
-  
-      <div class="icon-wall__link">
-      <a href="/web/20240723204158/https://www.ul.ie/scieng/schools-and-departments/department-computer-science-and-information-systems#school-contact" class="icon-wall__link-url">
-        <h3 class="icon-wall__link-title h4">
-          Contact
-        </h3>
-      </a>
-    </div>
-  
-</div>
-
-    
-      </div>
-    </div>
-
-          </div>
-    
-  </div>
-	<div class="layout layout--onecol layout-contained">
-		<div class="layout__region layout__region--content">
-			
-
-<div class="contact layout-contained">
-  
-  
-  <div class="contact__inner anrt-row">
-          <div class="contact__map anrt-row__one-half">
-        <iframe allowfullscreen="" frameborder="0" height="450" src="https://web.archive.org/web/20240723204158if_/https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2419.2306474897055!2d-8.577776347856437!3d52.673872632466654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x485b5e98d8f06993%3A0x1979f0c2576a0515!2sComputer%20Science%20Building!5e0!3m2!1sen!2sie!" style="border:0" width="100%"></iframe>
-      </div>
-        <div class="contact__content anrt-row__one-half">
-              <div class="contact__description">
-          
-            <div class="clearfix text-formatted field field--name-field-bb-contact-description field--type-text-long field--label-hidden field__item"><h3>Computer Science Building</h3>
-
-<p><strong>Department of Computer Science and Information Systems, University of Limerick, Limerick, Ireland.</strong></p>
-
-<p><a id="contact" name="contact" rel="nofollow"> </a></p></div>
-      
-        </div>
-                    <div class="contact__phone">
-          <span class="contact__label">Phone:</span>
-            
-            <div class="field field--name-field-bb-contact-phone field--type-string field--label-hidden field__item">+353-(0)61-202783</div>
-      
-        </div>
-                    <div class="contact__email">
-          <span class="contact__label">Email:</span>
-            <a href="mailto:gemma.swift@ul.ie">gemma.swift@ul.ie</a>
-        </div>
-          </div>
-  </div>
-</div>
-
-    
-		</div>
-	</div>
-
-  </div>
-
-        <div class="group-news-events group-news-events--news layout-contained padding-horizontal">
-      <div class="group-news-events__header margin-vertical--mega">
-        <h2 class="group-news-events__title h1">Latest News</h2>
-        <a class="group-news-events__view-all" href="/web/20240723204158/https://www.ul.ie/group/47/news">Latest News</a>
-      </div>
-      <div class="group-news-events__content">
-        <div class="views-element-container block block-views block-views-blocklatest-news-latest-news-block" id="block-views-block-latest-news-latest-news-block">
-  
-    
-      <div>
-
-
-
-
-  
-<div class="view--3-in-row layout-contained view view--latest-news view-latest-news view-id-latest_news view-display-id-latest_news_block js-view-dom-id-de217578b34a5166ed4e1a21d30c0f847b77a25def2b4d439e9cab455975b6db">
-  
-    
-  
-        
-  
-  
-      <div class="view-content">
-          <div class="views-row">
-
-
-	
-
-
-		  
-
-
-
-
-        
-        
-    
-    
-  
-  
-  
-<article class="card card--news node node--type-news node--view-mode-card">
-  
-  
-
-      <div class="card__image">
-        <article class="media media--type-image media--view-mode-card">
-  
-      
-            <div class="field field--name-field-media-image field--type-image field--label-hidden field__item">  <img loading="lazy" src="/web/20240723204158im_/https://www.ul.ie/sites/default/files/styles/card/public/2024-01/csis_41.jpeg?h=e4aa2591&amp;itok=AKtktHQk" width="400" height="312" alt="CSIS Script Viewing Days January 30-31 2024" class="image-style-card"/>
-
-
-</div>
-      
-  </article>
-
-
-    </div>
-  
-  <div class="card__content">
-          <div class="card__date">
-        21 Jun 2024
-      </div>
-    
-          <h2 class="card__title">
-        CSIS Viewing Days
-      </h2>
-    
-    
-              <div class="card__teaser">
-        
-            <div class="field field--name-field-teaser-text field--type-string-long field--label-hidden field__item">CSIS Viewing Days<br/>
-Tuesday 25 and Wednesday 26 June 2024<br/>
-09h30 - 12h30<br/>
-<br/>
-</div>
-      
-      </div>
-    
-          <a class="card__read-more" href="/web/20240723204158/https://www.ul.ie/scieng/schools-and-departments/department-computer-science-and-information-systems/news/csis">
-        <div class="card__read-more-inner">
-          <span class="card__read-more-label">Read More</span>
-          <span class="card__read-more-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 320 512"><!-- Font Awesome Pro 5.15.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg>
-                </span>
-        </div>
-      </a>
-      </div>
-</article>
-
-
-
-</div>
-    <div class="views-row">
-
-
-	
-
-
-		  
-
-
-
-
-        
-        
-    
-    
-  
-  
-  
-<article class="card card--news node node--type-news node--view-mode-card">
-  
-  
-
-      <div class="card__image">
-        <article class="media media--type-image media--view-mode-card">
-  
-      
-            <div class="field field--name-field-media-image field--type-image field--label-hidden field__item">  <img loading="lazy" src="/web/20240723204158im_/https://www.ul.ie/sites/default/files/styles/card/public/2024-05/andrew_ju_news.jpg?h=4521fff0&amp;itok=eo8-i586" width="400" height="312" alt="Top Three Groups" class="image-style-card"/>
-
-
-</div>
-      
-  </article>
-
-
-    </div>
-  
-  <div class="card__content">
-          <div class="card__date">
-        02 May 2024
-      </div>
-    
-          <h2 class="card__title">
-        Interfaculty project helps students to confront real-world issues using big data analysis techniques.
-      </h2>
-    
-    
-              <div class="card__teaser">
-        
-            <div class="field field--name-field-teaser-text field--type-string-long field--label-hidden field__item">Masters students from three different disciplines in the Faculty of Science and Engineering and the Kemmy Business School at UL have come together to work on projects to confront real-world issues using big data techniques </div>
-      
-      </div>
-    
-          <a class="card__read-more" href="/web/20240723204158/https://www.ul.ie/scieng/schools-and-departments/department-computer-science-and-information-systems/news-0">
-        <div class="card__read-more-inner">
-          <span class="card__read-more-label">Read More</span>
-          <span class="card__read-more-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 320 512"><!-- Font Awesome Pro 5.15.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg>
-                </span>
-        </div>
-      </a>
-      </div>
-</article>
-
-
-
-</div>
-    <div class="views-row">
-
-
-	
-
-
-		  
-
-
-
-
-        
-        
-    
-    
-  
-  
-  
-<article class="card card--news node node--type-news node--view-mode-card">
-  
-  
-
-      <div class="card__image">
-        <article class="media media--type-image media--view-mode-card">
-  
-      
-            <div class="field field--name-field-media-image field--type-image field--label-hidden field__item">  <img loading="lazy" src="/web/20240723204158im_/https://www.ul.ie/sites/default/files/styles/card/public/2024-03/Robocode24.png?h=3bf28301&amp;itok=5FkB_rwy" width="400" height="312" alt="UL winners of the 2024 National Robocode Programming Competition" class="image-style-card"/>
-
-
-</div>
-      
-  </article>
-
-
-    </div>
-  
-  <div class="card__content">
-          <div class="card__date">
-        07 Mar 2024
-      </div>
-    
-          <h2 class="card__title">
-        Congratulations to the UL winners of the 2024 National Robocode Programming competition 
-      </h2>
-    
-    
-        
-          <a class="card__read-more" href="/web/20240723204158/https://www.ul.ie/scieng/schools-and-departments/department-computer-science-and-information-systems/news">
-        <div class="card__read-more-inner">
-          <span class="card__read-more-label">Read More</span>
-          <span class="card__read-more-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 320 512"><!-- Font Awesome Pro 5.15.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg>
-                </span>
-        </div>
-      </a>
-      </div>
-</article>
-
-
-
-</div>
-
-    </div>
-  
-          </div>
-</div>
-
-  </div>
-
-      </div>
-    </div>
-  
-    
-    
-  
-
-</div>
-
-
-  </div>
-<div class="views-element-container block block-views block-views-blockgroup-contact-details-block-1" id="block-views-block-group-contact-details-block-1">
-  
-    
-      <div>
-
-
-
-
-  
-<div class="view view--group-contact-details view-group-contact-details view-id-group_contact_details view-display-id-block_1 js-view-dom-id-0901d7e675516dc980c570d14f7ddce9c8ade965d29f6c6afd9a298cb13ce066">
-  
-    
-  
-        
-  
-  
-      <div class="view-content">
-          <div class="views-row">
-
-
-
-<div class="group group--contact-details group--faculty-department">
-
-  
-  
-
-  
-  
-</div>
-</div>
-
-    </div>
-  
-          </div>
-</div>
-
-  </div>
-
-    </div>
-
-    
-  </div>
-
-    
-</main>
-
-  
-
-
-<footer class="footer region-footer">
-  <div class="footer__top">
-    <div class="footer__connect">
-      <span class="footer__connect-item">Have a <span class="footer__enlarged-font">Question?</span>
-        <a href="/web/20240723204158/https://www.ul.ie/contact-information">Contact us!</a>
-      </span>
-      <span class="footer__connect-item">
-        <a href="/web/20240723204158/https://www.ul.ie/ul-prospectuses">Request a copy of our <span class="footer__enlarged-font">Prospectus</span>
-        </a>
-      </span>
-    </div>
-  </div>
-  <div class="footer__content">
-    <div class="layout-contained padding-horizontal">
-      <div class="anrt-row">
-        <div class="anrt-row__one-quarter">
-          <div class="footer__location">
-            <div id="block-footer-address" class="block block-block-content block-block-content16a2252f-b3b7-4c49-a24a-5a909f805ed8">
-  
-    
-      
-            <div class="clearfix text-formatted field field--name-field-text-text field--type-text-long field--label-hidden field__item"><p>University of Limerick<br>
-Limerick<br>
-V94 T9PX<br>
-Ireland</p>
-
-<p><a href="tel:+353-(0)61-202700" rel="nofollow">Tel: +353 61 202700</a></p>
-
-<p>Registered Charity Number CHY20009274</p></div>
-      
-  </div>
-
-          </div>
-        </div>
-        <div class="anrt-row__one-quarter">
-          <div class="footer__menu footer__block">
-            <nav role="navigation" aria-labelledby="block-footer-about-ul-menu" id="block-footer-about-ul" class="block block-menu navigation menu--footer--about-ul">
-      
-  <h2 id="block-footer-about-ul-menu">About UL</h2>
-  
-
-        
-      
-        
-    
-            <ul class="menu menu--footer--about-ul">
-                    <li class="menu-item">
-        <a href="/web/20240723204158/https://www.ul.ie/study-ul">Study at UL</a>
-              </li>
-                <li class="menu-item">
-        <a href="/web/20240723204158/https://www.ul.ie/faculties-and-departments" data-drupal-link-system-path="group/8/content/70">Faculties and Departments</a>
-              </li>
-                <li class="menu-item">
-        <a href="/web/20240723204158/https://www.ul.ie/ul-campus">UL Campus</a>
-              </li>
-                <li class="menu-item">
-        <a href="/web/20240723204158/https://www.ul.ie/about-ul/directory-of-services" data-drupal-link-system-path="group/8/content/80">A-Z Directory</a>
-              </li>
-                <li class="menu-item">
-        <a href="/web/20240723204158/https://www.ul.ie/vacancies" data-drupal-link-system-path="group/8/content/87538">Join the team at UL</a>
-              </li>
-                <li class="menu-item">
-        <a href="/web/20240723204158/https://www.ul.ie/contact-information" data-drupal-link-system-path="group/8/content/74">Contact Us</a>
-              </li>
-        </ul>
-  
-
-
-  </nav>
-
-          </div>
-        </div>
-        <div class="anrt-row__one-quarter footer__menu">
-          <div class="footer__menu footer__block">
-            <nav role="navigation" aria-labelledby="block-footer-useful-links-menu" id="block-footer-useful-links" class="block block-menu navigation menu--footer--useful-links">
-      
-  <h2 id="block-footer-useful-links-menu">Useful Links</h2>
-  
-
-        
-      
-        
-    
-            <ul class="menu menu--footer--useful-links">
-                    <li class="menu-item">
-        <a href="/web/20240723204158/https://www.ul.ie/academic-registry/academic-calendar">Academic calendar</a>
-              </li>
-                <li class="menu-item">
-        <a href="https://www.outlook.com/studentmail.ul.ie">Student email</a>
-              </li>
-                <li class="menu-item">
-        <a href="/web/20240723204158/https://www.ul.ie/students" data-drupal-link-system-path="group/8/content/124">Student gateway</a>
-              </li>
-                <li class="menu-item">
-        <a href="https://portal.office.com/">Staff email</a>
-              </li>
-                <li class="menu-item">
-        <a href="/web/20240723204158/https://www.ul.ie/staff" data-drupal-link-system-path="group/8/content/121">Staff gateway</a>
-              </li>
-        </ul>
-  
-
-
-  </nav>
-
-          </div>
-        </div>
-        <div class="anrt-row__one-quarter footer__menu">
-          <div class="footer__menu footer__block">
-            <nav role="navigation" aria-labelledby="block-footer-website-menu" id="block-footer-website" class="block block-menu navigation menu--footer--website">
-      
-  <h2 id="block-footer-website-menu">Website</h2>
-  
-
-        
-      
-        
-    
-            <ul class="menu menu--footer--website">
-                    <li class="menu-item">
-        <a href="/web/20240723204158/https://www.ul.ie/disclaimer" data-drupal-link-system-path="group/8/content/88">Disclaimer</a>
-              </li>
-                <li class="menu-item">
-        <a href="/web/20240723204158/https://www.ul.ie/cookie-statement" data-drupal-link-system-path="group/8/content/133">Cookie Statement</a>
-              </li>
-                <li class="menu-item">
-        <a href="https://www.ul.ie/corporatesecretary/data-protection">Privacy Notices</a>
-              </li>
-                <li class="menu-item">
-        <a href="/web/20240723204158/https://www.ul.ie/accessibility/accessibility-statement" title="Accessibility statement" data-drupal-link-system-path="group/55/content/11948">Accessibility statement</a>
-              </li>
-        </ul>
-  
-
-
-  </nav>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="footer__bottom padding-horizontal">
-    <div class="layout-contained">
-      <div class="anrt-row anrt-row--centered">
-        <div class="anrt-row__one-quarter">
-          <div class="footer__bottom-block">
-            <a class="logo-link" href="/web/20240723204158/https://www.ul.ie/">
-              <img class="footer__logo" src="/web/20240723204158im_/https://www.ul.ie/themes/custom/ul/logo.svg" alt="University of Limerick home">
-            </a>
-          </div>
-        </div>
-        <div class="anrt-row__one-half">
-          <div class="footer__bottom-block footer__bottom-block--stacked footer__bottom-center">
-            <a href="https://eufunds.ie/european-structural-and-investment-funds/" target="_blank">
-              <img src="/web/20240723204158im_/https://www.ul.ie/themes/custom/ul/assets/images/erdp-eusf-logo-v2.svg" alt="Co-funded by the Irish Government and the E.U.">
-            </a>
-            <a href="/web/20240723204158/https://www.ul.ie/presidents-office/university-profile/our-achievements">
-              <img src="/web/20240723204158im_/https://www.ul.ie/themes/custom/ul/assets/images/top-500-logo.svg" alt="Top 500 in the World">
-            </a>
-            <a href="/web/20240723204158/https://www.ul.ie/hr/athena-swan">
-              <img src="/web/20240723204158im_/https://www.ul.ie/themes/custom/ul/assets/images/athena-swan-silver-logo.svg" alt="University affiliations Athena Swan Info">
-            </a>
-          </div>
-        </div>
-        <div class="anrt-row__one-quarter">
-          <div class="footer__bottom-block footer__social-media-links">
-            
-
-
-
-
-
-<div class="social-media-links">
-	<div class="social-media-links__title">Follow Us</div>
-      <ul class="social-media-links__list">
-                        <li class="social-media-links__item social-media-links__item--Facebook">
-            <a href="https://www.facebook.com/universityoflimerick" class="social-media-links__link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 320 512"><!-- Font Awesome Pro 5.15.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>                            <span class="visually-hidden">
-                Follow University of Limerick on Facebook
-              </span>
-                          </a>
-          </li>
-                                <li class="social-media-links__item social-media-links__item--X/Twitter">
-            <a href="https://twitter.com/ul" class="social-media-links__link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
-                            <span class="visually-hidden">
-                Follow University of Limerick on X/Twitter
-              </span>
-                          </a>
-          </li>
-                                <li class="social-media-links__item social-media-links__item--Instagram">
-            <a href="https://www.instagram.com/universityoflimerick/" class="social-media-links__link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 448 512"><!-- Font Awesome Pro 5.15.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>                            <span class="visually-hidden">
-                Follow University of Limerick on Instagram
-              </span>
-                          </a>
-          </li>
-                                <li class="social-media-links__item social-media-links__item--LinkedIn">
-            <a href="https://www.linkedin.com/company/university-of-limerick" class="social-media-links__link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 448 512"><!-- Font Awesome Pro 5.15.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>                            <span class="visually-hidden">
-                Follow University of Limerick on LinkedIn
-              </span>
-                          </a>
-          </li>
-                                <li class="social-media-links__item social-media-links__item--YouTube">
-            <a href="https://www.youtube.com/user/UniversityofLimerick" class="social-media-links__link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 576 512"><!-- Font Awesome Pro 5.15.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>                            <span class="visually-hidden">
-                Follow University of Limerick on YouTube
-              </span>
-                          </a>
-          </li>
-                                <li class="social-media-links__item social-media-links__item--TikTok">
-            <a href="https://www.tiktok.com/@universityoflimerick" class="social-media-links__link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 448 512"><!-- Font Awesome Pro 5.15.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></svg>                            <span class="visually-hidden">
-                Follow University of Limerick on TikTok
-              </span>
-                          </a>
-          </li>
-                  </ul>
-  </div>          </div>
-        </div>
-      </div>
-    </div>
-    <p class="footer__copyright">&#169; University of Limerick</p>
-  </div>
-</footer>
-
-
-
-  </div>
-
-    
-    <script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"group\/47","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"matomo":{"disableCookies":true,"trackMailto":true},"cookiebot":{"message_placeholder_cookieconsent_optout_marketing_show":false,"message_placeholder_cookieconsent_optout_marketing":"\u003Cdiv class=\u0022cookiebot cookieconsent-optout-marketing\u0022\u003E\n\t\u003Cdiv class=\u0022cookieconsent-optout-marketing__inner\u0022\u003E\n\t\t\u003Cp\u003EPlease \u003Ca class=\u0022cookieconsent-optout-marketing__cookiebot-renew\u0022 href=\u0022!cookiebot_renew\u0022\u003Eaccept marketing-cookies\u003C\/a\u003E to view this embedded content from \u003Ca class=\u0022cookieconsent-optout-marketing__from-src-url\u0022 href=\u0022!cookiebot_from_src_url\u0022 target=\u0022_blank\u0022\u003E!cookiebot_from_src_url\u003C\/a\u003E\u003C\/p\u003E\n\n\t\u003C\/div\u003E\n\u003C\/div\u003E\n"},"user":{"uid":0,"permissionsHash":"e629d2550ada1172c13d023e783fae3d5b54609309778e68cebbed300419d2f6"}}</script>
-<script src="/web/20240723204158js_/https://www.ul.ie/sites/default/files/js/js_R8hAL0n79jJ1vy-GwxABC3nISrxBIG3yuV76eBInto0.js?scope=footer&amp;delta=0&amp;language=en&amp;theme=ul&amp;include=eJxtj90OwyAIhV9I5yMZVNaZojSK7fr2a2nS7WI38HEOP6GAcGFXNJm-d8HiAnQ0g9xEHIBMZJ4zBhZ30-l2jhnIFkwZLOU6d7Nm3LrT-CicBl1rGo_lBDVOiNDS7djIVbCKIdh5iE-5R16x7Y4rRiYdOFog6tl8sN2AVL9GrOD7CJlQtz8RZDRMqpxCgFqxGahN_JSW5m76p_nvl_LCgl42hLm73-ID14x4RA"></script>
-<script src="/web/20240723204158js_/https://www.ul.ie/core/misc/drupalSettingsLoader.js?v=10.2.6" data-cookieconsent="ignore"></script>
-<script src="/web/20240723204158js_/https://www.ul.ie/core/misc/drupal.js?v=10.2.6" data-cookieconsent="ignore"></script>
-<script src="/web/20240723204158js_/https://www.ul.ie/core/misc/drupal.init.js?v=10.2.6" data-cookieconsent="ignore"></script>
-<script src="/web/20240723204158js_/https://www.ul.ie/sites/default/files/js/js_i-oPmVZIenk5HyfNQsBdgewiDg3i_hv8GbLrgV-3-gE.js?scope=footer&amp;delta=4&amp;language=en&amp;theme=ul&amp;include=eJxtj90OwyAIhV9I5yMZVNaZojSK7fr2a2nS7WI38HEOP6GAcGFXNJm-d8HiAnQ0g9xEHIBMZJ4zBhZ30-l2jhnIFkwZLOU6d7Nm3LrT-CicBl1rGo_lBDVOiNDS7djIVbCKIdh5iE-5R16x7Y4rRiYdOFog6tl8sN2AVL9GrOD7CJlQtz8RZDRMqpxCgFqxGahN_JSW5m76p_nvl_LCgl42hLm73-ID14x4RA"></script>
-
-  </body>
+          </td>
+        </tr>
+        <tr> 
+          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC" height="665"> 
+            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">A two 
+              dimension table</font></h4>
+            <h4 align="center">&nbsp;</h4>
+          </td>
+          <td width="525" valign="top" height="665"> 
+            <p align="left">A multi-dimension table is declared by nesting <font size="-1">OCCURS</font> 
+              clauses. So we can define the two dimension <i>PopulationTable</i> 
+              as follows - </p>
+            <pre align="left">01 PopulationTable.
+   02 Age OCCURS 3 TIMES.
+      03 PopTotal   PIC 9(6)OCCURS 2 TIMES.
+
+      </pre>
+            <p align="left">While the table description shown above is correct; 
+              it is not, perhaps, as understandable as it might be. You might 
+              prefer to define the table as shown below.</p>
+            <pre align="left"><b>01 PopulationTable.
+<font color="#FF0000">   02 Age OCCURS 3 TIMES</font>.
+      <font color="#008000">03 Gender OCCURS 2 TIMES.
+</font>         <font color="#666666">04 PopTotal   PIC 9(6).</font><font color="#008040"> </font></b>
+</pre>
+            <p align="left">We can represent this table diagrammatically as -</p>
+            <p align="center"><img src="Resources/pics/Tables4.gif" width="470" height="170"></p>
+            <p align="left">Two dimension tables are sometimes represented as 
+              a row and column grid, but that representation has the flaw that 
+              it does not accurately reflect the data hierarchy.</p>
+            <p align="left">The diagram above uses the correct representation 
+              for a two dimension table because it expresses the data hierarchy 
+              inherent in the table description where one <font size="-1">OCCURS</font> 
+              clause is subordinate to the another. </p>
+            <hr width="100%" size="1">
+          </td>
+        </tr>
+        <tr> 
+          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC" height="296"> 
+            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Self 
+              Assessment Questions and examples</font></h4>
+            <h4 align="center"><img src="Resources/pics/i-SAQ2.gif" width="32" height="46"></h4>
+            <h4>&nbsp;</h4>
+          </td>
+          <td width="525" valign="top" height="296"> 
+            <p>Sketch the diagram above on a piece of paper and then show how 
+              the contents of the table are effected when the following statements 
+              are executed.</p>
+            <blockquote> 
+              <pre>MOVE ZEROS TO PopulationTable
+MOVE 123 TO PopTotal(3,1)
+MOVE 456 TO Gender(3,2)
+ADD 1255 TO PopTotal(2,2)
+MOVE ZEROS TO Age(3)</pre>
+            </blockquote>
+            <p>Click on the animation icon below to see an animated answer.</p>
+            <p align="center"><a href="Resources/ppz/TC-Tables4.htm"><img src="Resources/pics/i-Animation.gif" width="62" height="62" border="0"></a></p>
+            <hr size="1" width="100%">
+          </td>
+        </tr>
+        <tr> 
+          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC" height="480"> 
+            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Displaying 
+              the population report for each county</font></h4>
+            <h4>&nbsp;</h4>
+          </td>
+          <td width="525" valign="top" height="480"> 
+            <p>Let's suppose that the specification for the Population Report 
+              problem changes so that instead of just producing the Age/Gender 
+              totals for the country we are asked to display these totals for 
+              each county. How can we solve the problem?</p>
+            <p>If we are asked to display the six Age/Gender totals for each county 
+              then we will obviously need to store 26 instances of the Age/Gender 
+              totals. We could of course do this as</p>
+            <pre>01 CountyTotal01.
+   02 Age OCCURS 3 TIMES.
+      03 Gender OCCURS 2 TIMES.
+         04 PopTotal   PIC 9(6).
+
+
+
+01 CountyTotal02.
+   02 Age OCCURS 3 TIMES.
+      03 Gender OCCURS 2 TIMES.
+         04 PopTotal   PIC 9(6).
+
+         etc....</pre>
+            <p>But by now you are aware of the arguments against this approach 
+              so let's go directly to the table based solution.</p>
+            <p>What we want to do is to create a 26 element table, each element 
+              of which contains the two dimension table defined above. Two dimensions 
+              plus one dimension equals three dimensions. What we need is a three 
+              dimension table.</p>
+            <p>&nbsp;</p>
+          </td>
+        </tr>
+        <tr> 
+          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC" height="434"> 
+            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Creating 
+              a three dimension table</font></h4>
+            <h4>&nbsp;</h4>
+          </td>
+          <td width="525" valign="top" height="434"> 
+            <p>Creating a three dimension table from the existing two dimension 
+              table is as simple as inserting another occurs clause. The three 
+              dimension <i>PopulationTable</i> may be defined as shown below. 
+              To access the <i>PopTotal</i> element three subscripts are now required, 
+              one for each <font size="-1">OCCURS </font>clause.</p>
+            <pre><b>01 PopulationTable.
+<font color="#FF0000">   02 County OCCURS 26 TIMES.
+</font><font color="#008000">      03 Age OCCURS 3 TIMES.
+</font><font color="#000080">         04 Gender OCCURS 2 TIMES.
+</font>          <font color="#666666">  05 PopTotal   PIC 9(6). </font> 
+</b></pre>
+            <p>This table may be represented diagrammatically as follows - </p>
+            <p align="center"><img src="Resources/pics/Tables5.gif" width="480" height="145"></p>
+            <hr size="1" width="100%">
+          </td>
+        </tr>
+        <tr> 
+          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC" height="69"> 
+            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Self 
+              Assessment Questions and examples</font></h4>
+            <h4>&nbsp;</h4>
+          </td>
+          <td width="525" valign="top" height="69"> 
+            <p>Sketch the diagram above on a piece of paper and then show how 
+              the contents of the table are effected when the following statements 
+              are executed.</p>
+            <blockquote> 
+              <pre>MOVE ZEROS TO County(1)
+MOVE ZEROS TO Age(2,3)
+MOVE ZEROS TO PopTotal(2,1,2)
+MOVE 56 TO PopTotal(1,3,2)
+MOVE 12 TO PopTotal(2,1,1) 
+MOVE ZEROS TO PopulationTable</pre>
+            </blockquote>
+            <p>Click on the animation icon below to see an animated answer.</p>
+            <p align="center"><a href="Resources/ppz/TC-Tables5.htm"><img src="Resources/pics/i-Animation.gif" width="62" height="62" border="0"></a></p>
+            <hr width="100%" size="1">
+          </td>
+        </tr>
+        <tr> 
+          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC" height="1182"> 
+            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">One 
+              last tweak to the problem specification.</font></h4>
+            <h4>&nbsp;</h4>
+          </td>
+          <td width="525" valign="top" height="1182"> 
+            <p>As well as the AgeCategory, Gender and CountyCode fields, the Census 
+              File provides information on the car ownership of every person in 
+              the country. </p>
+            <p>Suppose that the specification for the Population Report is changed 
+              so that as well as displaying the Age/Gender combination totals 
+              for each county, we are asked to display a total showing the number 
+              of people who own cars in each county.</p>
+            <p>One perfectly acceptable way of solving the problem would be to 
+              set up a separate, 26 element, CarOwers table to hold the totals.</p>
+            <p>But suppose we wanted to store the car owners totals in the existing 
+              PopulationTable. How could we reorganise the PopulationTable to 
+              allow this to be done? At what point in the existing PopulationTable 
+              would we insert the CarOwnersTotal. </p>
+            <p>Let's examine the existing table and see if we can figure out where 
+              the CarOwnersTotal should go.</p>
+            <pre><font color="#000000">01 PopulationTable.
+   02 County OCCURS 26 TIMES.
+      03 Age OCCURS 3 TIMES.
+         04 Gender OCCURS 2 TIMES.
+</font>          <font color="#000000">  05 PopTotal   PIC 9(6). </font><b> </b></pre>
+            <p>We can't add <i>CarOwnersTotal </i>to the same level as the <i>PopTotal</i> 
+              because that would create six CarOwnersTotals for each county - 
+              one for each Age/Gender combination. We only want one CarOwnersTotal 
+              for each county, so we must make the CarOwnersTotal subordinate 
+              to the<font size="-1"> OCCURS</font> clause that deals with counties. 
+            </p>
+            <p>When we do this, as shown in the table description below, what 
+              we are saying is that <i>County </i>is a 26 element table and each 
+              element consists of the <i>CarOwnersTotal</i> and a two dimension 
+              table containing the rest of the population information for the 
+              county.</p>
+            <pre><font color="#000000"><b>01 PopulationTable.
+<font color="#FF0000">   02 County OCCURS 26 TIMES.
+</font><font color="#616161">      03 CarOwnersTotal   PIC 9(6).</font><font color="#808080">
+</font><font color="#004000">      03 Age OCCURS 3 TIMES.
+</font><font color="#000080">         04 Gender OCCURS 2 TIMES.
+</font></b></font>          <font color="#616161"><b>  05 PopTotal   PIC 9(6).  </b></font></pre>
+            <p>We can represent the declaration above diagrammatically as follows 
+              - </p>
+            <p align="center"><img src="Resources/pics/Tables6.gif" width="481" height="156"></p>
+            <p>One question we might have with this arrangement is - how many 
+              subscripts are required when we refer to <i>CarOwnersTotal</i>? 
+              To answer this we can frame a general rule - </p>
+            <blockquote>
+              <p>We need one subscript for each superordinate <font size="-1">OCCURS</font> 
+                clause and an additional one if the item itself contains an <font size="-1">OCCURS</font> 
+                clause. </p>
+            </blockquote>
+            <p>Applying this rule, <i>CarOwnersTotal</i> only needs one subscript 
+              (only one superordinate <font size="-1">OCCURS</font> clause), <i>County</i> 
+              only requires one subscript (no superordinate <font size="-1">OCCURS</font> 
+              clause but contains an <font size="-1">OCCURS </font>clause itself), 
+              <i>Age</i> requires two subscripts (one superordinate <font size="-1">OCCURS</font> 
+              clause and contains an <font size="-1">OCCURS </font>clause itself) 
+              and <i>PopTotal</i> requires three subscripts (three superordinate 
+              <font size="-1">OCCURS</font> clauses).</p>
+            <p><b>Examples of use</b></p>
+            <blockquote> 
+              <pre>MOVE ZEROS TO County(23)
+ADD 1643 TO CarOwnersTotal(15)
+MOVE ZEROS TO Age(17,3)
+MOVE ZEROS TO Gender(18,3,2)
+ADD 56 TO PopTotal(12,3,2)</pre>
+            </blockquote>
+            <p>&nbsp;</p>
+          </td>
+        </tr>
+        <tr> 
+          <td valign="top" align="left" bgcolor="#FFFFFF" colspan="2"> 
+            <div align="center"> 
+              <hr>
+              <p><a href="#top"> <img src="Resources/pics/i-pagetop.gif" width="132" height="38" border="0"></a> 
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr> 
+          <td valign="top" align="LEFT" bgcolor="#993300" colspan="2"> 
+            <h2 align="CENTER"><font color="#FFFF00"><a name="part4"></a> <font face="Arial, Helvetica, sans-serif">Creating 
+              pre-filled tables with the REDEFINES clause</font></font></h2>
+          </td>
+        </tr>
+        <tr> 
+          <td valign="top" align="LEFT" width="175" bgcolor="#FFFFCC" height="287"> 
+            <h4 align="left"><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
+            <p align="left">&nbsp;</p>
+          </td>
+          <td width="525" valign="top" height="287"> 
+            <p>When a file that contains different types of record is declared 
+              in the <font size="-1">FILE SECTION,</font> a record description 
+              is created for each record type. But all these record descriptions 
+              map on to the same area of storage. They are in effect, redefinitions 
+              of the area of storage. The <font size="-1">REDEFINES </font>clause 
+              allows us to achieve the same effect for units smaller than a record 
+              and in the other parts of the <font size="-1">DATA DIVISION,</font> 
+              not just the <font size="-1">FILE SECTION</font>.</p>
+            <p>The <font size="-1">REDEFINES</font> clause allows a programmer 
+              to give different data descriptions to the same area of storage.</p>
+            <p> Although recent versions of COBOL allow pre-filled tables to be 
+              created without using the <font size="-1">REDEFINES</font> clause, 
+              these new approaches are only successful when a small amount of 
+              data is involved. The standard way to create pre-filled tables in 
+              COBOL is to use the <font size="-1">REDEFINES</font> clause. </p>
+            <hr size="1">
+          </td>
+        </tr>
+        <tr> 
+          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC" height="1695"> 
+            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Non-tables 
+              uses for the REDEFINES clause - some examples</font></h4>
+            <h4 align="center">&nbsp;</h4>
+          </td>
+          <td width="525" valign="top" height="1695"> 
+            <p align="left"><b>Example 1<br>
+              </b>Some COBOL statements, like the <font size="-1">UNSTRING, </font>require 
+              their receiving fields to be alphanumeric (PIC X) data-items. This 
+              is inconvenient if the value of the data-item is actually numeric 
+              because then a <font size="-1">MOVE</font> is required to place 
+              the value into a numeric item. If the value contains a decimal point 
+              then this creates even more difficulties.</p>
+            <p align="left"> For example, suppose an <font size="-1">UNSTRING</font> 
+              statement has just extracted the text value &quot;1234567&quot; 
+              from a string and we want to move this value to a numeric item described 
+              as PIC 9(5)V99. An ordinary <font size="-1">MOVE</font> is not going 
+              to work because the computer will not know that we actually want 
+              the item treated as if it were the value 12345.67. </p>
+            <p align="left">The <font size="-1">REDEFINES</font> clause allows 
+              us to solve this problem neatly because we can <font size="-1">UNSTRING</font> 
+              the number into <i>TextValue</i> and then treat <i>TextValue </i>as 
+              if it were described as PIC 9(5)V99. For instance - </p>
+            <blockquote> 
+              <pre align="left">01  TextValue    PIC X(7).
+01  NumericValue REDEFINES TextValue PIC 9(5)V99.</pre>
+            </blockquote>
+            <p align="left"><b>Example 2<br>
+              </b>The<font size="-1"> REDEFINES</font> clause is not just used 
+              to create pre-filled tables. It is used whenever a programmer needs 
+              to give different data descriptions to the same area of storage. 
+            </p>
+            <p align="left">For instance, suppose we accept a date from the user 
+              and that sometimes the date has the format yyyymmdd, sometimes it 
+              is a European date with the format ddmmyyyy, and somtimes it is 
+              a US date with the format mmddyyyy. A code accepted with the date 
+              allows us to detect the type of date entered.</p>
+            <p align="left">How can we arrange matters so that no matter which 
+              type of date is entered we can retrieve the year, month and day 
+              part of the date correctly? </p>
+            <p align="left">If you think about this for a moment you should see 
+              that the programming is going to be messy. We'll have to set up 
+              three separate date variables and, when we accept the date, we will 
+              have to extract the day, month and year parts and put them into 
+              the appropriate elementary items of the target date. </p>
+            <p align="left">On the other hand, we could use the <font size="-1">REDEFINES 
+              </font>clause to give different names and descriptions to the area 
+              of storage holding the date so that we can access the correct day, 
+              month and year fields without recourse to special programming. For 
+              instance, if define the <i>InputDate</i> as - </p>
+            <blockquote> 
+              <pre align="left">01 InputDate.
+   02 DateType         PIC 9.
+      88 DateIsSort    VALUE 1.
+      88 DateIsEuro    VALUE 2.
+      88 DateIsUS      VALUE 3.
+   02 SortDate.
+      03 SortYear      PIC 9(4).
+      03 SortMonth     PIC 99.
+      03 SortDay       PIC 99.
+   02 EuroDate REDEFINES SortDate.
+      03 EuroDay       PIC 99.
+      03 EuroMonth     PIC 99.
+      03 EuroYear      PIC 9(4).
+   02 USDate   REDEFINES SortDate.
+      03 USMonth       PIC 99.
+      03 USDay         PIC 99.
+      03 USYear        PIC 9(4).
+</pre>
+            </blockquote>
+            <p>we can use statements like -</p>
+            <blockquote> 
+              <pre align="left">EVALUATE TRUE
+    WHEN DateIsSort
+           DISPLAY “SortDate format is yyyy-mm-dd ”
+           DISPLAY  SortYear “-” SortMonth “-” SortYear
+    WHEN DateIsEuro
+           DISPLAY “EuroDate format is dd-mm-yyyy ”
+           DISPLAY  EuroDay “-” EuroMonth “-” EuroYear
+    WHEN DateIsUS 
+           DISPLAY “USDate format is mm-dd-yyyy ”
+           DISPLAY  USMonth “-” USDay “-” USYear
+END-EVALUATE </pre>
+            </blockquote>
+            <p>- and still get the correct values displayed.</p>
+            <p align="left"><b>Example 3<br>
+              </b>The <font size="-1">REDEFINES</font> clause is also useful when 
+              we need to treat a numeric item as if it had its decimal point in 
+              different places. For instance the value 12345 is treated as if 
+              it were 12.345 if we refer to <i>10Rate</i>, 123.45 if we refer 
+              to <i>100Rate</i>, and 1234.5 if we refer to <i>1000Rate</i>.</p>
+            <blockquote> 
+              <pre align="left">01 Rates.
+   02 10Rate                    PIC 99V999.
+   02 100Rate  REDEFINES 10Rate PIC 999V99.
+   02 1000Rate REDEFINES 10Rate PIC 9999V9.</pre>
+            </blockquote>
+            <p align="left">&nbsp;</p>
+            <p align="left"><b>Animated versions of the examples above</b></p>
+            <p align="center"><a href="Resources/ppz/TC-Tables7.htm"><img src="Resources/pics/i-Animation.gif" width="62" height="62" border="0"></a></p>
+            <hr width="100%" size="1">
+          </td>
+        </tr>
+        <tr> 
+          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC" height="482"> 
+            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">REDEFINES 
+              syntax and rules</font></h4>
+          </td>
+          <td width="525" valign="top" height="482"> 
+            <p><img src="Resources/pics/Redefines.gif" width="358" height="48"></p>
+            <p><font size="-1"><b>REDEFINES</b></font><b> rules</b></p>
+            <ol>
+              <li>The<font size="-1"> REDEFINES</font> clause must immediately 
+                follow Identifier1 (i.e. the <font size="-1">REDEFINES </font>must 
+                come before the <font size="-1">PIC</font>.) </li>
+              <li>The level numbers of Identifier1 and Identifier2 must be the 
+                same and cannot be 66 or 88. </li>
+              <li>The data description of Identifier2 cannot contain an <font size="-1">OCCURS 
+                </font>clause (i.e a table element cannot be redefined.) </li>
+              <li>If there are multiple redefinitions of the same area of storage 
+                then they must all redefine the data-item that originally defined 
+                the area. (See the InputDate and Rates examples above) </li>
+              <li>The redefining entries cannot contain <font size="-1">VALUE</font> 
+                clauses except in condition name entries.</li>
+              <li>No entry with a level number lower (i.e. higher in the hierarchy) 
+                than the level number of Identifier2 and Identifier1 can occur 
+                between Identifier2 and Identifier1.</li>
+              <li>The entries redefining the area must immediately follow those 
+                that originally defined it.</li>
+              <li>There can be no intervening entries that define additional character 
+                positions. </li>
+            </ol>
+            <hr size="1" width="100%">
+          </td>
+        </tr>
+        <tr> 
+          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC" height="69"> 
+            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Using 
+              the REDEFINES clause to create a pre-filled table.</font></h4>
+            <h4>&nbsp;</h4>
+          </td>
+          <td width="525" valign="top" height="69"> 
+            <p>The REDEFINES clause can be used to create a pre-filled table by 
+              applying the following procedure -</p>
+            <ol>
+              <li>Reserve an area of storage and use the <font size="-1">VALUE</font> 
+                clause to fill it with the values required in the table.</li>
+              <li>Then, use the <font size="-1">REDEFINES</font> clause to redefine 
+                the area of memory as a table.</li>
+            </ol>
+            <p>For example, if we want to declare a table pre-filled with the 
+              names of the months, the first step is to reserve an area of storage 
+              and fill it with the names of the months -</p>
+            <pre>01 MonthTable.
+   02 MonthValues.
+      03 FILLER       PIC X(18) VALUE "January  February".
+      03 FILLER       PIC X(18) VALUE "March    April".
+      03 FILLER       PIC X(18) VALUE "May      June".
+      03 FILLER       PIC X(18) VALUE "July     August".
+      03 FILLER       PIC X(18) VALUE "SeptemberOctober".
+      03 FILLER       PIC X(18) VALUE "November December".
+</pre>
+            <p>then we redefine is as a table as follows - </p>
+            <pre>   02 FILLER REDEFINES MonthValues.
+      03 Month OCCURS 12 TIMES PIC X(9).</pre>
+            <p> Examine the animation below to view this and other examples. </p>
+            <p align="center"><a href="Resources/ppz/TC-Tables8.htm"><img src="Resources/pics/i-Animation.gif" width="62" height="62" border="0"></a> 
+            </p>
+            <hr size="1" width="100%">
+          </td>
+        </tr>
+        <tr> 
+          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC" height="1773"> 
+            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Example 
+              program </font></h4>
+            <h4>&nbsp;</h4>
+            <h4>&nbsp;</h4>
+            <h4>&nbsp;</h4>
+            <h4>&nbsp;</h4>
+            <h4>&nbsp;</h4>
+            <h4>&nbsp;</h4>
+            <h4 align="center"><img src="Resources/pics/program.gif" width="42" height="44"></h4>
+          </td>
+          <td width="525" valign="top" height="1773"> 
+            <p>In this example, we revisit the County Tax Report program. In the 
+              previous version we had to indicate the county by displaying the 
+              <i>CountyCode</i>. This was not very satisfactory because it meant 
+              the users had to know which code corresponded to which county. In 
+              this version we use a pre-filled table of county names to allow 
+              us to display the name of the county.</p>
+            <p>The new parts of the program are coloured red.</p>
+            <table width="475" border="1" align="center" background="course/Resources%5Cpics%5Ccode.gif" cellpadding="5">
+              <tr> 
+                <td> 
+                  <pre>      $ SET SOURCEFORMAT"FREE"
+IDENTIFICATION DIVISION.
+PROGRAM-ID. CountyTaxTable.
+AUTHOR. Michael Coughlan.
+ENVIRONMENT DIVISION.
+INPUT-OUTPUT SECTION.
+FILE-CONTROL.
+    SELECT TaxFile ASSIGN TO "TAXES.DAT"
+           ORGANIZATION IS LINE SEQUENTIAL.
+
+DATA DIVISION.
+FILE SECTION.
+FD TaxFile.
+01 TaxRec.
+   88 EndOfTaxFile   VALUE HIGH-VALUES.
+   02 PAYENum        PIC 9(8).
+   02 CountyCode     PIC 99.
+   02 TaxPaid        PIC 9(7)V99.
+
+WORKING-STORAGE SECTION.
+01 CountyTaxTable.
+   02 CountyTaxDetails OCCURS 26 TIMES.
+      03 CountyTax   PIC 9(8)V99.  
+      03 PayerCount  PIC 9(7).
+         88 NoOnePaidTax VALUE ZEROS.
+
+01 Idx               PIC 99.
+
+01 CountyTaxLine.
+<b><font color="#FF0000">   02 PrnCounty      PIC X(9).
+</font></b>   02 FILLER         PIC X(7) VALUE " Tax = ".
+   02 PrnTax         PIC $$$,$$$,$$9.99.
+   02 FILLER         PIC X(12) VALUE "   Payers = ".
+   02 PrnPayers      PIC Z,ZZZ,ZZ9.
+
+
+<font color="#FF0000"><b>01 CountyTable.
+   02 TableValues.
+      03 FILLER  PIC X(9)  VALUE "Antrim".
+      03 FILLER  PIC X(9)  VALUE "Armagh".
+      03 FILLER  PIC X(9)  VALUE "Carlow".
+      03 FILLER  PIC X(9)  VALUE "Cavan".
+      03 FILLER  PIC X(9)  VALUE "Clare".
+      03 FILLER  PIC X(9)  VALUE "Cork".
+      03 FILLER  PIC X(9)  VALUE "Derry".
+      03 FILLER  PIC X(9)  VALUE "Donegal".
+      03 FILLER  PIC X(9)  VALUE "Down".
+      03 FILLER  PIC X(9)  VALUE "Dublin".
+      03 FILLER  PIC X(9)  VALUE "Fermanagh".
+      03 FILLER  PIC X(9)  VALUE "Galway".
+      03 FILLER  PIC X(9)  VALUE "Kerry".
+      03 FILLER  PIC X(9)  VALUE "Kildare".
+      03 FILLER  PIC X(9)  VALUE "Kilkenny".
+      03 FILLER  PIC X(9)  VALUE "Laois".
+      03 FILLER  PIC X(9)  VALUE "Leitrim".
+      03 FILLER  PIC X(9)  VALUE "Limerick".
+      03 FILLER  PIC X(9)  VALUE "Longford".
+      03 FILLER  PIC X(9)  VALUE "Louth".
+      03 FILLER  PIC X(9)  VALUE "Mayo".
+      03 FILLER  PIC X(9)  VALUE "Meath".
+      03 FILLER  PIC X(9)  VALUE "Monaghan".
+      03 FILLER  PIC X(9)  VALUE "Offaly".
+      03 FILLER  PIC X(9)  VALUE "Roscommon".
+      03 FILLER  PIC X(9)  VALUE "Sligo".
+      03 FILLER  PIC X(9)  VALUE "Tipperary".
+      03 FILLER  PIC X(9)  VALUE "Tyrone".
+      03 FILLER  PIC X(9)  VALUE "Westmeath".
+      03 FILLER  PIC X(9)  VALUE "Waterford".
+      03 FILLER  PIC X(9)  VALUE "Wexford".
+      03 FILLER  PIC X(9)  VALUE "Wicklow".
+   02 FILLER REDEFINES TableValues.
+      03   CountyName  OCCURS 32 TIMES PIC X(9).
+</b></font>
+PROCEDURE DIVISION.
+Begin.
+   OPEN INPUT TaxFile
+   MOVE ZEROS TO CountyTaxTable
+   READ TaxFile
+      AT END SET EndOfTaxFile TO TRUE
+   END-READ
+   PERFORM UNTIL EndOfTaxFile
+      ADD TaxPaid TO CountyTax(CountyCode)
+      ADD 1 TO PayerCount(CountyCode)
+      READ TaxFile
+         AT END SET EndOfTaxFile TO TRUE
+      END-READ
+   END-PERFORM
+   PERFORM DisplayCountyTaxes VARYING Idx FROM 1 BY 1
+           UNTIL Idx GREATER THAN 26
+   CLOSE TaxFile
+   STOP RUN.
+
+DisplayCountyTaxes.
+   IF NOT NoOnePaidTax(Idx)
+    <font color="#FF0000"><b>  MOVE CountyName(Idx) TO PrnCounty
+</b></font>      MOVE CountyTax(Idx) TO PrnTax
+      MOVE PayerCount(Idx) TO PrnPayers
+      DISPLAY CountyTaxLine
+   END-IF.</pre>
+                </td>
+              </tr>
+            </table>
+            <p>&nbsp;</p><hr width="100%" size="1">
+          </td>
+        </tr>
+        <tr> 
+          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC" height="69"> 
+            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Creating 
+              pre-filled tables without using the REDEFINES clause.</font></h4>
+            <h4>&nbsp;</h4>
+          </td>
+          <td width="525" valign="top" height="69"> 
+            <p>The 1985 COBOL standard introduced a number of changes to tables. 
+              Among these changes was a method that allowed pre-filled tables 
+              to be created without using the <font size="-1">REDEFINES</font> 
+              clause. But this new method only works as as long as the number 
+              of values is small. For large amounts of data the <font size="-1">REDEFINES</font> 
+              clause is still required.</p>
+            <p>The new method works by assigning the values to a groupname defined 
+              over a table. For instance, in the example below, the data-item 
+              <i>Day </i>actually declares the table but we have given the table 
+              the overall group name <i>- DayTable</i>. Assigning the values to 
+              this groupname fills the area of the table with the values.</p>
+            <pre>01 DayTable VALUE "<font color="#FF0000"><b>MonTueWedThrFriSatSun</b></font>". 
+   02 Day OCCURS 7 TIMES PIC X(3). 
+
+</pre>
+            <div align="center"> 
+              <pre>
+<img src="Resources/pics/Tables7.gif" width="369" height="84"></pre>
+            </div>
+          </td>
+        </tr>
+        <tr> 
+          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC" height="69"> 
+            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">COBOL'85 
+              table initialisation changes</font></h4>
+            <h4>&nbsp;</h4>
+          </td>
+          <td width="525" valign="top" height="69"> 
+            <p align="left">The 1985 COBOL standard also introduced some changes 
+              to the way tables are initialised. </p>
+            <p align="left">In the previous versions of COBOL initialising a table 
+              was never a problem if the elements of the table were elementary 
+              items. All that was required was to move the initialising value 
+              to the table's group name. For instance, the statement <i>- MOVE 
+              ZEROS TO TaxTable</i> - initialises the table below to zeros.</p>
+            <pre>01 TaxTable. 
+   02 CountyTax  PIC 9(5) OCCURS 26 TIMES. 
+</pre>
+            <p>But initialising a table was much more difficult if each element 
+              was a group item that contained different types of data. For example, 
+              in the table below, the <i>CountyTax</i> part of the element has 
+              to be initialised to zeros and the CountyName part has to be initialised 
+              to spaces. The only way do this is to initialise the items, element 
+              by element, using an iteration.</p>
+            <pre>01 TaxTable. 
+   02 County OCCURS 26 TIMES. 
+      03 CountyTax  PIC 9(5). 
+      03 CountyName PIC X(12).</pre>
+            <p>At least that was the way it had to be done before the 1985 COBOL 
+              standard. Now the table can be initialised by assigning an initial 
+              value to each part of an element using the <font size="-1">VALUE 
+              </font>clause. The description below initialises the CountyTax part 
+              of the element to zeros and the CountyName part to spaces.</p>
+            <pre>01 TaxTable. 
+   02 County OCCURS 26 TIMES. 
+      03 CountyTax  PIC 9(5) VALUE ZEROS. 
+      03 CountyName PIC X(12) VALUE SPACES.</pre>
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" bgcolor="#FFFFFF" colspan="2"> 
+            <hr width="100%">
+            <div align="center"> 
+              <p><a href="#top"> <img src="Resources/pics/i-pagetop.gif" width="132" height="38" border="0"></a> 
+              </p>
+              <hr>
+              <h3 align="center">Copyright Notice</h3>
+              <p align="center">These COBOL course materials are the copyright 
+                property of Michael Coughlan.</p>
+              <p align="left"><font size="2">All rights reserved. No part of these 
+                course materials may be reproduced in any form or by any means 
+                - graphic, electronic, mechanical, photocopying, printing, recording, 
+                taping or stored in an information storage and retrieval system 
+                - without the written permission of </font><font size="2">the 
+                author.</font></p>
+              <p align="center"><font size="2">(c) Michael Coughlan</font></p>
+              <hr align="left">
+              <div align="left"><i><font size="-1">Last updated : April 1999</font></i> 
+                <br>
+                <font size="-1"><a href="mailto:michael.coughlan@ul.ie">e-mail : 
+                CSISwebeditor@ul.ie</a></font> </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+ </td>
+ </tr>
+</table>
+</body>
 </html>
 <!--
 <!--

@@ -1,0 +1,461 @@
+<html>
+<head><script type="text/javascript" src="https://web-static.archive.org/_static/js/bundle-playback.js?v=2N_sDSC0" charset="utf-8"></script>
+<script type="text/javascript" src="https://web-static.archive.org/_static/js/wombat.js?v=txqj7nKC" charset="utf-8"></script>
+<script>window.RufflePlayer=window.RufflePlayer||{};window.RufflePlayer.config={"autoplay":"on","unmuteOverlay":"hidden","showSwfDownload":true};</script>
+<script type="text/javascript" src="https://web-static.archive.org/_static/js/ruffle/ruffle.js"></script>
+<script type="text/javascript">
+    __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://www.csis.ul.ie:80/cobol/exercises/Exm-CSISEmailDomain/Exm-CSISEmailDomain.htm","20071207165630","https://web.archive.org/","web","https://web-static.archive.org/_static/",
+	      "1197046590");
+</script>
+<link rel="stylesheet" type="text/css" href="https://web-static.archive.org/_static/css/banner-styles.css?v=1utQkbB3" />
+<link rel="stylesheet" type="text/css" href="https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv" />
+<!-- End Wayback Rewrite JS Include -->
+
+<title>CSIS Web Site - Email Domain File (Exam Paper)</title></head>
+<body lang="EN-GB" link="blue" vlink="purple" class="Normal" bgcolor="#FFFFFF">
+<table width="694" border="1" cellspacing="0" cellpadding="5" height="72%">
+  <tr> 
+    <td bgcolor="#990000" valign="middle" height="27" colspan="3"> 
+      <h3 align="center"><font color="#FFFF00">CSIS Web Site<br>
+        Email Domain File</font></h3>
+    </td>
+  </tr>
+  <tr valign="top"> 
+    <td bgcolor="#FFFFFF" height="22" colspan="2"><b>Time to complete</b></td>
+    <td bgcolor="#FFFFFF" width="78%" height="22">Allow 4 hours continuous.</td>
+  </tr>
+  <tr valign="top"> 
+    <td bgcolor="#FFFFFF" height="8" colspan="2"><b>Program Download</b></td>
+    <td bgcolor="#FFFFFF" width="78%" height="8"><a href="CSISEmailDomain.cbl">CSISEmailDomain.cbl</a> 
+      is a model answer. Don't look at this until you have made your own attempt 
+      at the program.</td>
+  </tr>
+  <tr valign="top"> 
+    <td bgcolor="#FFFFFF" height="8" colspan="2"><b>Example Output </b></td>
+    <td bgcolor="#FFFFFF" width="78%" height="8"> 
+      <p><a href="SORTEDDOMAIN.DAT">SortedDomain.Dat</a> is the file, sorted on 
+        ascending email domain, that is produced from the GraduateInfo file.</p>
+    </td>
+  </tr>
+  <tr valign="top"> 
+    <td bgcolor="#FFFFFF" height="112" colspan="2"><b>Example Input</b></td>
+    <td bgcolor="#FFFFFF" width="78%" height="112"> 
+      <p><a href="GradInfo.dat">Gradinfo.Dat</a> is the file that contains information 
+        about CSIS graduates that has been collected from the form on the CSIS 
+        web site.</p>
+      <p><a href="CountryCodes.dat">CountryCodes.Dat</a> is the file that contains 
+        the Country Codes and their corresponding Country Names.</p>
+    </td>
+  </tr>
+  <tr valign="top">
+    <td bgcolor="#FFFFFF" height="112" colspan="2"><b>Exam Practice</b></td>
+    <td bgcolor="#FFFFFF" width="78%" height="112">
+      <p>If you want to try out the exam under the same conditions as our students 
+        you can write the program in a printed version of <a href="EmailDomainExm.doc">EmailDomainExm.Doc</a> 
+        which is an MS-Word file containing the program outline. The example data 
+        files containing input data files and the output file that is produced 
+        from them is in theMS-Word file <a href="DataFiles.doc">DataFiles.Doc</a>. 
+      </p>
+      <p>Remember to make sure that you have a copy of the COBOL metalanguage 
+        elements available for reference.</p>
+      <p>Under these conditions you have 2.5 hours to write the program.</p>
+    </td>
+  </tr>
+  <tr valign="top"> 
+    <td bgcolor="#FFFFFF" height="2" colspan="2"><b>Major Constructs</b></td>
+    <td bgcolor="#FFFFFF" width="78%" height="2"><font size="-1">SORT with Input 
+      Procedure and Output Procedure, Sequential Files, Pre-Defined Tables, Run 
+      time filled tables, SEARCH</font></td>
+  </tr>
+  <tr> 
+    <td colspan="3" valign="top" height="1512"> 
+      <hr>
+      <h3>Introduction</h3>
+      <p>One purpose of the CSIS web site is to collect, and display, the current 
+        email addresses of all CSIS graduates.  Graduates who visit the site are 
+        asked to provide their name, year of graduation, course of study, current 
+        email address and current location.   This information is processed to 
+        extract the email domain, which is then stored, along with the other information, 
+        in the GraduateInfo file.  The email domain is the part of the email address 
+        that follows the @ sign.  For instance, <i>ul.ie</i> is the email domain 
+        in the email address -  <i>michael.coughlan@ul.ie</i>.</p>
+      <p>A program is required which will produce a file, sorted on ascending 
+        email domain, from the GraduateInfo file.  The new file should contain 
+        only information about graduates who have taken full CSIS courses (Course 
+        codes 1-5).  The records of the file should contain only the email domain 
+        name, the student name, the year of graduation, the course name and the 
+        name of the country where the graduate is currently located.   Report 
+        programs, written by others, will make use of this sorted file.</p>
+      <p>&nbsp;</p>
+      <h3>Files</h3>
+      <h4>GraduateInfo 
+        File</h4>
+      <p>The GraduateInfo File is an unordered sequential file.  Records of the 
+        file have the following description;</p>
+      <div align="center"> 
+        <table border="1" cellspacing="0" cellpadding="1">
+          <tr bgcolor="#FFFFCC"> 
+            <td width="134" valign="top" class="Normal"> 
+              <p align="center"><b>Field</b></p>
+            </td>
+            <td width="67" valign="top" class="Normal"> 
+              <p align="center"><b>Type</b></p>
+            </td>
+            <td width="90" valign="top" class="Normal"> 
+              <p align="center"><b>Length</b></p>
+            </td>
+            <td width="74" valign="top" class="Normal"> 
+              <p align="center"><b>Value</b></p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="134" valign="top" class="Normal"> 
+              <p>StudentName</p>
+            </td>
+            <td width="67" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">X</p>
+            </td>
+            <td width="90" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">25</p>
+            </td>
+            <td width="74" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">-</p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="134" valign="top" class="Normal"> 
+              <p>GradYear</p>
+            </td>
+            <td width="67" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">9</p>
+            </td>
+            <td width="90" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">4</p>
+            </td>
+            <td width="74" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">-</p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="134" valign="top" class="Normal"> 
+              <p>CourseCode</p>
+            </td>
+            <td width="67" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">9</p>
+            </td>
+            <td width="90" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">1</p>
+            </td>
+            <td width="74" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">1-7</p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="134" valign="top" class="Normal"> 
+              <p>EmailAddr</p>
+            </td>
+            <td width="67" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">X</p>
+            </td>
+            <td width="90" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">28</p>
+            </td>
+            <td width="74" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">-</p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="134" valign="top" class="Normal"> 
+              <p>EmailDomainName</p>
+            </td>
+            <td width="67" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">X</p>
+            </td>
+            <td width="90" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">20</p>
+            </td>
+            <td width="74" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">-</p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="134" valign="top" class="Normal"> 
+              <p>CountryCode</p>
+            </td>
+            <td width="67" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">X</p>
+            </td>
+            <td width="90" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">2</p>
+            </td>
+            <td width="74" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">-</p>
+            </td>
+          </tr>
+        </table>
+        <p>&nbsp;</p>
+        <h4 align="left">SortedEmailDomain 
+          File</h4>
+        <p align="left">The SortedEmailDomain File is a sequential file, ordered 
+          on ascending EmailDomainName. Records of the file have the following 
+          description -</p>
+        <p>&nbsp;</p>
+        <table border="1" cellspacing="0" cellpadding="1">
+          <tr bgcolor="#FFFFCC"> 
+            <td width="141" valign="top" class="Normal"> 
+              <p align="center"><b>Field</b></p>
+            </td>
+            <td width="74" valign="top" class="Normal"> 
+              <p align="center"><b>Type</b></p>
+            </td>
+            <td width="76" valign="top" class="Normal"> 
+              <p align="center"><b>Length</b></p>
+            </td>
+            <td width="79" valign="top" class="Normal"> 
+              <p align="center"><b>Value</b></p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="141" valign="top" class="Normal"> 
+              <p>EmailDomainName</p>
+            </td>
+            <td width="74" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">X</p>
+            </td>
+            <td width="76" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">20</p>
+            </td>
+            <td width="79" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">-</p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="141" valign="top" class="Normal"> 
+              <p>StudentName</p>
+            </td>
+            <td width="74" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">X</p>
+            </td>
+            <td width="76" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">25</p>
+            </td>
+            <td width="79" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">-</p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="141" valign="top" class="Normal"> 
+              <p>GradYear</p>
+            </td>
+            <td width="74" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">9</p>
+            </td>
+            <td width="76" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">4</p>
+            </td>
+            <td width="79" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">-</p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="141" valign="top" class="Normal"> 
+              <p>CourseName</p>
+            </td>
+            <td width="74" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">X</p>
+            </td>
+            <td width="76" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">25</p>
+            </td>
+            <td width="79" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">-</p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="141" valign="top" class="Normal"> 
+              <p>CountyName</p>
+            </td>
+            <td width="74" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">X</p>
+            </td>
+            <td width="76" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">26</p>
+            </td>
+            <td width="79" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">-</p>
+            </td>
+          </tr>
+        </table>
+        <h2>&nbsp;</h2>
+        <h3 align="left">Processing</h3>
+        <p align="left">In an Input Procedure, eliminate records of students who 
+          graduated in the Language and Computing or Language with Computing degrees 
+          (Course codes 6 and 7).  The email address field is not required in 
+          the sorted file so make sure records sent to the Sort’s work file do 
+          not contain this field.</p>
+        <p align="left">In an Output Procedure, convert the CountryCode into a 
+          CountryName and the CourseCode into a CourseName. </p>
+        <p align="left">The country codes and their corresponding names are contained 
+          in a sequential file (CountryCodes.Dat). To allow an efficient conversion 
+          of the country code to the country name this file must be loaded into 
+          a table in memory.   There are currently 243 countries in the file.</p>
+        <p align="left">&nbsp;</p>
+        <h4 align="left">CountryCode File</h4>
+        <p align="left">The CountryCodes file is a sequential file ordered on 
+          ascending CountryCode.   Each record contains a CountryCode and its 
+          corresponding CountryName. </p>
+        <p>&nbsp; </p>
+        <table border="1" cellspacing="0" cellpadding="1">
+          <tr bgcolor="#FFFFCC"> 
+            <td width="139" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center"><b>Field</b></p>
+            </td>
+            <td width="57" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center"><b>Type</b></p>
+            </td>
+            <td width="76" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center"><b>Length</b></p>
+            </td>
+            <td width="85" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center"><b>Value</b></p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="139" valign="top" class="Normal"> 
+              <p>CountryCode</p>
+            </td>
+            <td width="57" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">X</p>
+            </td>
+            <td width="76" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">2</p>
+            </td>
+            <td width="85" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">-</p>
+            </td>
+          </tr>
+          <tr> 
+            <td width="139" valign="top" class="Normal"> 
+              <p>CountryName</p>
+            </td>
+            <td width="57" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">X</p>
+            </td>
+            <td width="76" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">26</p>
+            </td>
+            <td width="85" valign="top" class="Normal"> 
+              <p align="center" style="text-align:center">-</p>
+            </td>
+          </tr>
+        </table>
+        <p>&nbsp;</p>
+        <h4 align="left">CourseCode Table</h4>
+        <p align="left">The CourseCode can be converted into a CourseName using 
+          the pre-filled table provided in the program outline.  The CourseName 
+          corresponds to the CourseCode as follows - </p>
+        <div align="center"> 
+          <table border="1" cellspacing="0" cellpadding="1">
+            <tr bgcolor="#FFFFCC"> 
+              <td width="100" valign="top" class="Normal" height="10"> 
+                <p align="center" style="text-align:center"><b>CourseCode</b></p>
+              </td>
+              <td width="175" valign="top" class="Normal" height="10"> 
+                <p align="center"><b>CourseName</b></p>
+              </td>
+            </tr>
+            <tr> 
+              <td width="100" valign="top" class="Normal"> 
+                <p align="center" style="text-align:center">1</p>
+              </td>
+              <td width="175" valign="top" class="Normal"> 
+                <p>Computer Systems</p>
+              </td>
+            </tr>
+            <tr> 
+              <td width="100" valign="top" class="Normal"> 
+                <p align="center" style="text-align:center">2</p>
+              </td>
+              <td width="175" valign="top" class="Normal"> 
+                <p>Grad. Dip. Computing</p>
+              </td>
+            </tr>
+            <tr> 
+              <td width="100" valign="top" class="Normal"> 
+                <p align="center" style="text-align:center">3</p>
+              </td>
+              <td width="175" valign="top" class="Normal"> 
+                <p>Grad. Dip. Localisation</p>
+              </td>
+            </tr>
+            <tr> 
+              <td width="100" valign="top" class="Normal"> 
+                <p align="center" style="text-align:center">4</p>
+              </td>
+              <td width="175" valign="top" class="Normal"> 
+                <p>Grad. Dip. Music</p>
+              </td>
+            </tr>
+            <tr> 
+              <td width="100" valign="top" class="Normal"> 
+                <p align="center" style="text-align:center">5</p>
+              </td>
+              <td width="175" valign="top" class="Normal"> 
+                <p>Computing with  French</p>
+              </td>
+            </tr>
+            <tr> 
+              <td width="100" valign="top" class="Normal"> 
+                <p align="center" style="text-align:center">6</p>
+              </td>
+              <td width="175" valign="top" class="Normal"> 
+                <p>Language and Computing</p>
+              </td>
+            </tr>
+            <tr> 
+              <td width="100" valign="top" class="Normal"> 
+                <p align="center" style="text-align:center">7</p>
+              </td>
+              <td width="175" valign="top" class="Normal"> 
+                <p>Language with Computing</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <p><br>
+      </p>
+      <h3><br>
+      </h3>
+      <hr>
+      <p align="center"><font size="-1"><b>Copyright Notice</b></font></p>
+      <p align="left"><font size="-1">This COBOL project specification is the 
+        copyright property of Michael Coughlan. You have permission to use this 
+        material for your own personal use but you may not reproduce it in any 
+        published work without written permission from the author.</font></p>
+    </td>
+  </tr>
+</table>
+</body>
+</html>
+<!--
+     FILE ARCHIVED ON 16:56:30 Dec 07, 2007 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 01:33:48 Apr 13, 2026.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 2.564
+  exclusion.robots: 0.171
+  exclusion.robots.policy: 0.139
+  esindex: 0.027
+  cdx.remote: 115.929
+  LoadShardBlock: 620.669 (3)
+  PetaboxLoader3.datanode: 739.749 (4)
+  PetaboxLoader3.resolve: 125.283 (2)
+  load_resource: 523.805
+-->
