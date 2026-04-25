@@ -10,10 +10,8 @@ A few years back, Michael Coughlan's well-known University of Limerick COBOL tut
 
 If anyone happens to have Michael Coughlan's contact info, please reach out — I'd like to get in touch about licensing this under Creative Commons.
 
-## Internet Archive snapshots
+## Internet Archive snapshot
 
-The original course lived at `http://www.csis.ul.ie/cobol/`. Snapshots used as the source for this restoration:
+The original course lived at `http://www.csis.ul.ie/cobol/`. Source snapshot used for this restoration:
 
-- All Wayback captures: https://web.archive.org/web/*/http://www.csis.ul.ie/cobol/*
-- Course index calendar: https://web.archive.org/web/*/http://www.csis.ul.ie/cobol/
-- Late capture (2014): https://web.archive.org/web/2014*/http://www.csis.ul.ie/cobol/
+- https://web.archive.org/web/20140226022647/http://www.csis.ul.ie/cobol/
