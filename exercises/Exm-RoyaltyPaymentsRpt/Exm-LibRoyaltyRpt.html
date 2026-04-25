@@ -1,0 +1,391 @@
+<html>
+<head>
+<meta charset="UTF-8"><script type="text/javascript" src="https://web-static.archive.org/_static/js/bundle-playback.js?v=2N_sDSC0" charset="utf-8"></script>
+<script type="text/javascript" src="https://web-static.archive.org/_static/js/wombat.js?v=txqj7nKC" charset="utf-8"></script>
+<script>window.RufflePlayer=window.RufflePlayer||{};window.RufflePlayer.config={"autoplay":"on","unmuteOverlay":"hidden","showSwfDownload":true};</script>
+<script type="text/javascript" src="https://web-static.archive.org/_static/js/ruffle/ruffle.js"></script>
+<script type="text/javascript">
+    __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://www.csis.ul.ie:80/COBOL/Exercises/Exm-RoyaltyPaymentsRpt/Exm-LibRoyaltyRpt.html","20071230030802","https://web.archive.org/","web","https://web-static.archive.org/_static/",
+	      "1198984082");
+</script>
+<link rel="stylesheet" type="text/css" href="https://web-static.archive.org/_static/css/banner-styles.css?v=1utQkbB3" />
+<link rel="stylesheet" type="text/css" href="https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv" />
+<!-- End Wayback Rewrite JS Include -->
+
+<title>Pascal Memorial Library - Royalty Payments Report Program (Exam Paper)</title></head>
+<body lang="EN-GB" link="blue" vlink="purple" class="Normal" bgcolor="#FFFFFF">
+<table width="694" border="1" cellspacing="0" cellpadding="5" height="72%">
+  <tr> 
+    <td bgcolor="#990000" valign="middle" height="27" colspan="3"> 
+      <h3 align="center"><font color="#FFFF00">Pascal Memorial Library<br>
+        Royalty Payments Report Program</font></h3>
+    </td>
+  </tr>
+  <tr valign="top"> 
+    <td bgcolor="#FFFFFF" height="22" colspan="2"><b>Time to complete</b></td>
+    <td bgcolor="#FFFFFF" width="78%" height="22">Allow 4-6 hours continuous.</td>
+  </tr>
+  <tr valign="top"> 
+    <td bgcolor="#FFFFFF" height="8" colspan="2"><b>Program Download</b></td>
+    <td bgcolor="#FFFFFF" width="78%" height="8"><a href="LibRoyaltyRpt.Cbl">LibRoyaltyRpt.Cbl</a> 
+      is a model answer. Don't look at this until you have made your own attempt 
+      at the program.</td>
+  </tr>
+  <tr valign="top"> 
+    <td bgcolor="#FFFFFF" height="8" colspan="2"><b>Example Output </b></td>
+    <td bgcolor="#FFFFFF" width="78%" height="8"> 
+      <p><a href="SORTEDDOMAIN.DAT">Royalties.Rpt</a> is the report produced by 
+        processing the two indexed files.</p>
+    </td>
+  </tr>
+  <tr valign="top"> 
+    <td bgcolor="#FFFFFF" height="108" colspan="2"><b>Example Input</b></td>
+    <td bgcolor="#FFFFFF" width="78%" height="108"> 
+      <p><a href="GradInfo.dat">AuthorIn.Dat</a> is a sequential version of the 
+        indexed Authors file. This file can be converted into the indexed Authors.Dat 
+        file by using the program <a href="Seq2Authors.Cbl">Seq2Authors.Cbl</a></p>
+      <p><a href="CountryCodes.dat">BooksIn.Dat</a> is a sequential version of 
+        the indexed Books file. This file can be converted into the indexed file 
+        Books.Dat by using the program <a href="Seq2Books.Cbl">Seq2Books.Cbl</a>.</p>
+    </td>
+  </tr>
+  <tr valign="top"> 
+    <td bgcolor="#FFFFFF" height="41" colspan="2"><b>Major Constructs</b></td>
+    <td bgcolor="#FFFFFF" width="78%" height="41"><font size="-1">Indexed Files, 
+      Print Files, READ..NEXT RECORD, READ..KEY IS, START, REWRITE, WRITE, MULTIPLY, 
+      SET </font></td>
+  </tr>
+  <tr> 
+    <td colspan="3" valign="top" height="1512"> 
+      <hr>
+      <h3>Introduction</h3>
+      <p>Each time a book is borrowed, the Pascal Memorial Library pays the author 
+        a small sum of money as royalty.  Because the sum owed for each &quot;borrowing&quot; 
+        is very small, royalties are only paid once every quarter.  Royalties 
+        are paid to authors through their agents.  Only one cheque per quarter 
+        is sent to each agent but to allow him to pay his authors the correct 
+        amount, a breakdown of the royalties owed to each author is included with 
+        the cheque.</p>
+      <p>A report is required which;</p>
+      <ul>
+        <ul>
+          <li>Shows the amount to be sent to each agent.</li>
+          <li>Shows the breakdown of the agent payment into author payments.</li>
+          <li>Shows the breakdown of each author payment into royalty payments 
+            per book.</li>
+        </ul>
+      </ul>
+      <p>The report must be printed in agent name sequence.  The sequence of authors 
+        within each agent and of books within each author does not matter.  The 
+        print specification for the report is on the last page.<br>
+        <br>
+      </p>
+      <h3>Files</h3>
+      <p>All the data required to produce the Royalty Payment Report is contained 
+        in two indexed files.</p>
+      <p>The indexed file Books.Dat has the following record description;- </p>
+      <table border="1" cellspacing="0" cellpadding="1">
+        <tr bgcolor="#FFFFCC"> 
+          <td width="192" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center"><b>Field</b></p>
+          </td>
+          <td width="144" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center"><b>KeyType</b></p>
+          </td>
+          <td width="72" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center"><b>Type </b></p>
+          </td>
+          <td width="96" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center"><b>Length</b></p>
+          </td>
+          <td width="96" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center"><b>Value</b></p>
+          </td>
+        </tr>
+        <tr> 
+          <td width="192" valign="top" class="Normal"> 
+            <p>Book-Number</p>
+          </td>
+          <td width="144" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center">Primary</p>
+          </td>
+          <td width="72" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center">9</p>
+          </td>
+          <td width="96" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center">7</p>
+          </td>
+          <td width="96" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center">1-9999999</p>
+          </td>
+        </tr>
+        <tr> 
+          <td width="192" valign="top" class="Normal"> 
+            <p>Book-Name</p>
+          </td>
+          <td width="144" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center">-</p>
+          </td>
+          <td width="72" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center">X</p>
+          </td>
+          <td width="96" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center">25</p>
+          </td>
+          <td width="96" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center">-</p>
+          </td>
+        </tr>
+        <tr> 
+          <td width="192" valign="top" class="Normal"> 
+            <p>Author-Number</p>
+          </td>
+          <td width="144" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center">Alt with Duplicates</p>
+          </td>
+          <td width="72" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center">9</p>
+          </td>
+          <td width="96" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center">7</p>
+          </td>
+          <td width="96" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center">1-9999999</p>
+          </td>
+        </tr>
+        <tr> 
+          <td width="192" valign="top" class="Normal"> 
+            <p>Royalty-Rate</p>
+          </td>
+          <td width="144" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center">-</p>
+          </td>
+          <td width="72" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center">9</p>
+          </td>
+          <td width="96" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center">3</p>
+          </td>
+          <td width="96" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center">0.001-0.999</p>
+          </td>
+        </tr>
+        <tr> 
+          <td width="192" valign="top" class="Normal" height="2"> 
+            <p>Quarter-Borrowings</p>
+          </td>
+          <td width="144" valign="top" class="Normal" height="2"> 
+            <p align="center" style="text-align:center">-</p>
+          </td>
+          <td width="72" valign="top" class="Normal" height="2"> 
+            <p align="center" style="text-align:center">9</p>
+          </td>
+          <td width="96" valign="top" class="Normal" height="2"> 
+            <p align="center" style="text-align:center">3</p>
+          </td>
+          <td width="96" valign="top" class="Normal" height="2"> 
+            <p align="center" style="text-align:center">0-999</p>
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>The indexed file Author.Dat has the following record description;-</p>
+      <table border="1" cellspacing="0" cellpadding="1">
+        <tr bgcolor="#FFFFCC"> 
+          <td width="192" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center"><b>Field</b></p>
+          </td>
+          <td width="144" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center"><b>KeyType</b></p>
+          </td>
+          <td width="72" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center"><b>Type </b></p>
+          </td>
+          <td width="96" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center"><b>Length</b></p>
+          </td>
+          <td width="96" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center"><b>Value</b></p>
+          </td>
+        </tr>
+        <tr> 
+          <td width="192" valign="top" class="Normal"> 
+            <p>Author-Number</p>
+          </td>
+          <td width="144" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center">Primary</p>
+          </td>
+          <td width="72" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center">9</p>
+          </td>
+          <td width="96" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center">7</p>
+          </td>
+          <td width="96" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center">1-9999999</p>
+          </td>
+        </tr>
+        <tr> 
+          <td width="192" valign="top" class="Normal"> 
+            <p>Author-Name</p>
+          </td>
+          <td width="144" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center">-</p>
+          </td>
+          <td width="72" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center">X</p>
+          </td>
+          <td width="96" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center">25</p>
+          </td>
+          <td width="96" valign="top" class="Normal"> 
+            <p align="center" style="text-align:center">-</p>
+          </td>
+        </tr>
+        <tr> 
+          <td width="192" valign="top" class="Normal" height="21"> 
+            <p>Agent-Name</p>
+          </td>
+          <td width="144" valign="top" class="Normal" height="21"> 
+            <p align="center" style="text-align:center">Alt with Duplicates</p>
+          </td>
+          <td width="72" valign="top" class="Normal" height="21"> 
+            <p align="center" style="text-align:center">X</p>
+          </td>
+          <td width="96" valign="top" class="Normal" height="21"> 
+            <p align="center" style="text-align:center">25</p>
+          </td>
+          <td width="96" valign="top" class="Normal" height="21"> 
+            <p align="center" style="text-align:center">-</p>
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <h3 align="left">Processing</h3>
+      <p align="left">Some fields required in the report do not appear in either 
+        of the indexed files and must be calculated.  The following describes 
+        these fields and how to calculate them;</p>
+      <p align="left">Book-Royalty contains the royalty to be paid for a book 
+        for the quarter.  It is obtained by multiplying Quarter-Borrowings by 
+        Royalty-Rate.  It is a numeric field with up to three places before the 
+        decimal point and two places after.</p>
+      <p align="left">Quarter-Author-Borrows contains the sum of Quarter-Borrowings 
+        for all of an authors books on loan in the library.  It is a numeric field 
+        up to four digits long.</p>
+      <p align="left">Author-Royalties is the sum of an author's Book-Royaltys. 
+        It is a numeric field with up to four places before the decimal point 
+        and two after.</p>
+      <p align="left">Agent-Payment is the sum of an agent's Author-Royalties.  
+        It is a numeric field with up to six places before the decimal point and 
+        two after it.</p>
+      <p align="left">In addition to producing the report the program must perform 
+        a small update on the Quarter-Borrowings field of the Books file.  When 
+        all the calculations involving the Quarter-Borrowings field have been 
+        done, it must be set to zero so that the borrowings for the new quarter 
+        may be accumulated.</p>
+      <p align="left">&nbsp;</p>
+      <h3>Print Specification</h3>
+      <div align="center"> 
+        <table width="584" border="0" cellspacing="0" cellpadding="4">
+          <tr valign="top"> 
+            <td width="88"><b>Line 2-5</b></td>
+            <td width="488"> Headings; to be printed at the top of the report 
+              only.</td>
+          </tr>
+          <tr valign="top"> 
+            <td height="149" width="88"><b>Line 7</b></td>
+            <td width="488" height="149"> 
+              <table width="100%" border="0" cellspacing="0" cellpadding="2">
+                <tr valign="top"> 
+                  <td width="82"><i>Cols 1-25</i></td>
+                  <td width="381">Agent-Name is printed once for each new agent.</td>
+                </tr>
+                <tr valign="top"> 
+                  <td width="82"><i>Cols 28-52</i></td>
+                  <td width="381">Author-Name is printed once for each new author. 
+                  </td>
+                </tr>
+                <tr valign="top"> 
+                  <td width="82"><i>Cols 55-79</i></td>
+                  <td width="381">Book-Name.</td>
+                </tr>
+                <tr valign="top"> 
+                  <td width="82"><i>Cols 84-86 </i></td>
+                  <td width="381">Quarter-Borrowings for the book.  It is a numeric 
+                    field zero suppressed except for the last digit.</td>
+                </tr>
+                <tr valign="top"> 
+                  <td width="82"><i>Cols 91-97</i></td>
+                  <td width="381">Book-Royalty field.  It is numeric with a floating 
+                    dollar sign and a decimal point.</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr valign="top"> 
+            <td width="88"><b>Lines 8-13</b></td>
+            <td width="488">Same as line 7 but the agent and author names have 
+              been suppressed.</td>
+          </tr>
+          <tr valign="top"> 
+            <td width="88"><b>Lines 15-16</b></td>
+            <td width="488"> 
+              <p class="In1">Printed when all the book details for an author have 
+                been printed. Quarter Borrowings contains the accumulated quarter 
+                borrowings for an author.  It is a numeric field with zero suppression 
+                and comma insertion.</p>
+              <p class="In1">Royalties is the accumulated Book-Royaltys for an author.  
+                It is a numeric field with a floating dollar sign, decimal point 
+                and comma insertion.</p>
+            </td>
+          </tr>
+          <tr valign="top"> 
+            <td width="88"><b>Line27</b></td>
+            <td width="488">Printed when all the author details for an agent have 
+              been printed. Agent-Payment contains the accumulated royalties to 
+              be paid to an agent's authors.  This field is numeric with a floating 
+              dollar sign, decimal point and comma insertion.</td>
+          </tr>
+        </table>
+        <p align="left">&nbsp;</p>
+      </div>
+      <p><b>Notes</b>:  There is no need to allow for page breaks.  </p>
+      <h4 align="left">&nbsp;</h4>
+      <div align="center"><a href="LibRoyaltyRpt.gif"><img src="SLibRoyaltyRpt.gif" width="359" height="225" border="1"></a><br>
+        Click for full size version </div>
+      <p><br>
+      </p>
+      <h3><br>
+      </h3>
+      <hr>
+      <p align="center"><font size="-1"><b>Copyright Notice</b></font></p>
+      <p align="left"><font size="-1">This COBOL project specification is the 
+        copyright property of Michael Coughlan. You have permission to use this 
+        material for your own personal use but you may not reproduce it in any 
+        published work without written permission from the author.</font></p>
+    </td>
+  </tr>
+</table>
+</body>
+</html>
+<!--
+     FILE ARCHIVED ON 03:08:02 Dec 30, 2007 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 01:33:53 Apr 13, 2026.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 0.403
+  exclusion.robots: 0.044
+  exclusion.robots.policy: 0.036
+  esindex: 0.006
+  cdx.remote: 10.412
+  LoadShardBlock: 71.12 (3)
+  PetaboxLoader3.datanode: 80.183 (4)
+  load_resource: 84.549
+  PetaboxLoader3.resolve: 52.323
+-->
