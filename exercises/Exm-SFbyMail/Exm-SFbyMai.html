@@ -5,7 +5,7 @@
 <script type="text/javascript" src="https://web-static.archive.org/_static/js/ruffle/ruffle.js"></script>
 <script type="text/javascript">
     __wm.init("https://web.archive.org/web");
-  __wm.wombat("http://www.csis.ul.ie:80/COBOL/Exercises/Exm-SFbyMail/Exm-SFbyMai.htm","20071230030816","https://web.archive.org/","web","https://web-static.archive.org/_static/",
+  __wm.wombat("http://www.csis.ul.ie:80/COBOL/Exercises/Exm-SFbyMail/Exm-SFbyMai.html","20071230030816","https://web.archive.org/","web","https://web-static.archive.org/_static/",
 	      "1198984096");
 </script>
 <link rel="stylesheet" type="text/css" href="https://web-static.archive.org/_static/css/banner-styles.css?v=1utQkbB3" />
@@ -106,16 +106,16 @@
       <h3>Introduction</h3>
       <p><i>Science Fiction by Mail</i> is a company which sells Science Fiction 
         and Fantasy books through the Internet. Customers view the book catalogues 
-        and place orders by connecting to the company’s web site. When an order 
+        and place orders by connecting to the companyÂ’s web site. When an order 
         is placed, an Order-Number is assigned, and the details of the order are 
         written to an Orders file (<font size="-1">ORDERS.DAT</font>). Only already 
         registered customers can place an order.</p>
       <p>At the end of the day, the Orders file is processed, applying it to the 
-        Book Stock file and producing a Processed Orders file.  The Processed 
+        Book Stock file and producing a Processed Orders file.Â  The Processed 
         Orders file is used by other programs (not required for this exam) to 
         bill the customers and to produce invoices and address labels.</p>
       <p>For each book title required in an order, the Book Stock File must be 
-        updated by subtracting the Qty-Required from the Qty-In-Stock.  When a 
+        updated by subtracting the Qty-Required from the Qty-In-Stock.Â  When a 
         book request cannot be filled because there is insufficient stock, this 
         must be indicated by writing zeros to the Quantity-Required field of the 
         Processed-Orders record. The Book Stock file must not be updated.</p>
@@ -125,16 +125,16 @@
       </p>
       <h3>File Descriptions</h3>
       <h4>The Orders File (Sequential)</h4>
-      <p>The Orders file is an  unsorted, validated, sequential file.  Each record 
-        may contain an order for up to 10 different book titles.  Where all ten 
+      <p>The Orders file is anÂ  unsorted, validated, sequential file.Â  Each record 
+        may contain an order for up to 10 different book titles.Â  Where all ten 
         titles are not requested the rest of the record is space filled.</p>
-      <p>The Book-Details are held in a ten element table.  Each element consists 
+      <p>The Book-Details are held in a ten element table.Â  Each element consists 
         of the Book-Id and the Qty-Required. The record description is as follows;</p>
       <div align="center"> 
         <table border="1" cellspacing="0" cellpadding="0" width="497" height="60">
           <tr bgcolor="#FFFFCC"> 
             <td width="134" valign="top" class="Normal"> 
-              <p align="center" style="text-align:center"><b>   Field</b></p>
+              <p align="center" style="text-align:center"><b>Â Â  Field</b></p>
             </td>
             <td width="77" valign="top" class="Normal"> 
               <p align="center" style="text-align:center"><b>Type</b></p>
@@ -190,7 +190,7 @@
           </tr>
           <tr> 
             <td width="134" valign="top" class="Normal"> 
-              <p>      Book-Id</p>
+              <p>Â Â Â Â Â  Book-Id</p>
             </td>
             <td width="77" valign="top" class="Normal"> 
               <p align="center" style="text-align:center">X</p>
@@ -204,7 +204,7 @@
           </tr>
           <tr> 
             <td width="134" valign="top" class="Normal"> 
-              <p>      Qty-Required</p>
+              <p>Â Â Â Â Â  Qty-Required</p>
             </td>
             <td width="77" valign="top" class="Normal"> 
               <p align="center" style="text-align:center">9</p>
@@ -221,16 +221,16 @@
           for convenience.</p>
       </div>
       <blockquote> 
-        <div align="center">1234567 C1234  B1234 01  B2345 03  B3456 02</div>
+        <div align="center">1234567 C1234Â  B1234 01Â  B2345 03Â  B3456 02</div>
       </blockquote>
       <div align="center"> 
         <p align="left">The order number in this record is 1234567, the Customer-Id 
-          is C1234 and 3 different titles have been requested.  One copy of B1234, 
+          is C1234 and 3 different titles have been requested.Â  One copy of B1234, 
           three copies of B2345 and two copies of B3456 have been ordered.</p>
         <p align="left">&nbsp;</p>
       </div>
       <h4>Book Stock File (Indexed)</h4>
-      <p>The Book Stock file holds details of the company’s stock of books.  It 
+      <p>The Book Stock file holds details of the companyÂ’s stock of books.Â  It 
         is an indexed file containing records with the following description;</p>
       <div align="center"> 
         <table border="1" cellspacing="0" cellpadding="0">
@@ -341,9 +341,9 @@
       </div>
       <p>&nbsp;</p>
       <h4>Processed Orders File (Sequential)</h4>
-      <p>The Processed Orders file is a sequential file.   For each <b>book title</b> 
+      <p>The Processed Orders file is a sequential file.Â Â  For each <b>book title</b> 
         requested in the Orders File, a record must be created in the Processed 
-        Orders File.  The record description is as follows;</p>
+        Orders File.Â  The record description is as follows;</p>
       <div align="center"> 
         <table border="1" cellspacing="0" cellpadding="0">
           <tr bgcolor="#FFFFCC"> 
@@ -448,17 +448,17 @@
       </div>
       <h4>&nbsp;</h4>
       <h3>Sub Programs</h3>
-      <p>The Copy-Postage may be obtained  by calling two external subprograms.  
+      <p>The Copy-Postage may be obtainedÂ  by calling two external subprograms.Â  
         These subprograms have already been written and you may assume that they 
         will be present in the same directory where your program is run.</p>
       <blockquote> 
         <p><b>GetCustomerAddress</b> is a subprogram that takes two parameters<br>
-                      IN        Customer-Id                 PIC X(5)<br>
-                      OUT    Cust-Address               PIC X(40)</p>
+          Â Â Â Â Â Â Â Â Â Â Â  INÂ Â Â Â Â Â Â  Customer-IdÂ Â Â Â  Â Â Â Â Â Â Â Â Â Â Â  PIC X(5)<br>
+          Â Â Â Â Â Â Â Â Â Â Â  OUTÂ Â Â  Cust-Address Â  Â Â Â Â Â Â Â Â Â Â Â  PIC X(40)</p>
       </blockquote>
       <p class="in5">Cust-Address contains the customer address. The parts of the 
-        customer address are separated from one another by commas.   The last 
-        item in the customer address is a two character Country-Code.  This code 
+        customer address are separated from one another by commas.Â Â  The last 
+        item in the customer address is a two character Country-Code.Â  This code 
         must be extracted from the customer address and then used to obtain the 
         Copy-Postage (cost of posting one book to the customer).</p>
       <p class="in5">Example address = 13 Winchester Drive, Castletroy, Limerick, 
@@ -466,8 +466,8 @@
       <p class="in5">&nbsp;</p>
       <blockquote> 
         <p><b>GetPostage</b> is a subprogram that takes two parameters<br>
-                      IN        Country-Code              PIC XX<br>
-                      OUT    Copy-Postage              PIC 99V99</p>
+          Â Â Â Â Â Â Â Â Â Â Â  INÂ Â Â Â Â Â Â  Country-CodeÂ Â Â Â Â Â Â Â Â Â Â Â Â  PIC XX<br>
+          Â Â Â Â Â Â Â Â Â Â Â  OUTÂ Â Â  Copy-PostageÂ Â Â Â Â Â Â Â Â Â Â Â Â  PIC 99V99</p>
       </blockquote>
       <p>&nbsp;</p>
       <hr>
