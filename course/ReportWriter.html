@@ -1,235 +1,298 @@
 <html>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <meta name="GENERATOR" content="Mozilla/4.0 [en] (WinNT; I) [Netscape]">
-   <title>COBOL Report Writer</title>
-</head>
-<body text="#000000" bgcolor="#FFFFFF" link="#0000FF" vlink="#FF0000" alink="#009B00">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="Mozilla/4.0 [en] (WinNT; I) [Netscape]" name="GENERATOR"/>
+<title>COBOL Report Writer</title>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+  img { max-width: 100%; height: auto; }
+  table { max-width: 100%; }
+  pre { overflow-x: auto; max-width: 100%; }
+  body { -webkit-text-size-adjust: 100%; }
+  @media (max-width: 600px) {
+    body { margin: 4px; overflow-wrap: break-word; word-wrap: break-word; }
+    table[width] { width: 100% !important; height: auto !important; }
+    td[width], th[width], td[height], th[height] { width: auto !important; height: auto !important; }
+    td[bgcolor="#993300"] > h2, td[bgcolor="#993300"] > h3 { margin: 0.3em 0; }
+    blockquote { margin-left: 12px; margin-right: 12px; }
+    hr[width] { width: 100% !important; }
+    img, iframe, video, embed, object { max-width: min(100%, calc(100vw - 16px)) !important; height: auto; }
+    pre { max-width: min(100%, calc(100vw - 16px)) !important; white-space: pre-wrap; word-wrap: break-word; overflow-wrap: break-word; }
+    table[width="715"], table[width="725"],
+    table[width="715"] > tbody, table[width="725"] > tbody,
+    table[width="715"] > tbody > tr, table[width="725"] > tbody > tr,
+    table[width="715"] > tbody > tr > td, table[width="725"] > tbody > tr > td,
+    table[width="710"]:not(:has(> tbody > tr > td[width="93%"])),
+    table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody,
+    table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr,
+    table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr > td {
+      display: block;
+      width: auto !important;
+    }
+    table[width="710"]:has(> tbody > tr > td[width="93%"]),
+    table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody {
+      display: block;
+      width: 100% !important;
+    }
+    table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr {
+      display: flex;
+      align-items: baseline;
+      gap: 0.4em;
+      margin: 0.4em 0;
+    }
+    table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="3%"] {
+      display: none;
+    }
+    table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="4%"] {
+      display: block;
+      flex: 0 0 auto;
+      width: auto !important;
+      padding: 0;
+    }
+    table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="93%"] {
+      display: block;
+      flex: 1 1 auto;
+      width: auto !important;
+      padding: 0;
+    }
+    td[width="175"] > h4:not(:first-child):not(:has(img)),
+    td[width="160"] > h4:not(:first-child):not(:has(img)),
+    h4:has(> img[src*="PanelLine"]) {
+      display: none;
+    }
+    td[width="175"] > h3, td[width="175"] > h4, td[width="175"] > p,
+    td[width="160"] > h3, td[width="160"] > h4, td[width="160"] > p {
+      margin: 0.2em 0;
+    }
+  }
+</style>
+
+<body alink="#009B00" bgcolor="#FFFFFF" link="#0000FF" text="#000000" vlink="#FF0000">
 <table border="1" width="715">
 <tr>
-    <td> 
-      <table width="710" cellpadding="4" cellspacing="0" border="0">
-        <tr> 
-          <td valign="top" align="left" width="700" bgcolor="#FFFFFF" colspan="2"> 
-            <center>
-              <h2><img src="Resources/pics/t-CobolCourse.gif" height="56" width="161" align="MIDDLE" alt="Cobol Course" border="0"></h2>
-            </center>
-            <center>
-              <h2> <b>The COBOL Report Writer</b></h2>
-              <hr>
-            </center>
-            <table border="0" width="700" vspace="15">
-              <tr> 
-                <td width="3%" valign="TOP">&nbsp;</td>
-                <td width="4%" valign="TOP"><img src="Resources/pics/BallGreenG.gif" hspace="4" height="13" width="13" align="TOP" vspace="4"></td>
-                <td width="93%"> <b><a href="#intro" target="">Introduction</a><br>
-                  </b><font size="-1">Unit aims, objectives and prerequisites.</font> 
-                  <br>
-                </td>
-              </tr>
-              <tr> 
-                <td width="3%" valign="TOP">&nbsp;</td>
-                <td width="4%" valign="TOP"><img src="Resources/pics/BallGreenG.gif" hspace="4" height="13" width="13" align="TOP" vspace="4"></td>
-                <td width="93%"><b><a href="#part1" target="">The Report Writer 
-                  in action</a><br>
-                  </b><font size="-1">This section examines a report produced 
+<td>
+<table border="0" cellpadding="4" cellspacing="0" width="710">
+<tr>
+<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
+<center>
+<h2><img align="MIDDLE" alt="Cobol Course" border="0" height="56" src="Resources/pics/t-CobolCourse.gif" width="161"/></h2>
+</center>
+<center>
+<h2> <b>The COBOL Report Writer</b></h2>
+<hr/>
+</center>
+<table border="0" vspace="15" width="700">
+<tr>
+<td valign="TOP" width="3%"> </td>
+<td valign="TOP" width="4%"><img align="TOP" height="13" hspace="4" src="Resources/pics/BallGreenG.gif" vspace="4" width="13"/></td>
+<td width="93%"> <b><a href="#intro" target="">Introduction</a><br/>
+</b><font size="-1">Unit aims, objectives and prerequisites.</font>
+<br/>
+</td>
+</tr>
+<tr>
+<td valign="TOP" width="3%"> </td>
+<td valign="TOP" width="4%"><img align="TOP" height="13" hspace="4" src="Resources/pics/BallGreenG.gif" vspace="4" width="13"/></td>
+<td width="93%"><b><a href="#part1" target="">The Report Writer 
+                  in action</a><br/>
+</b><font size="-1">This section examines a report produced 
                   by a Report Writer program and then examines the Procedure Division 
-                  of the program that produced the report. <br>
-                  </font> </td>
-              </tr>
-              <tr> 
-                <td width="3%" valign="TOP">&nbsp;</td>
-                <td width="4%" valign="TOP"><img src="Resources/pics/BallGreenG.gif" hspace="4" height="13" width="13" align="TOP" vspace="4"></td>
-                <td width="93%"><b><a href="#part1b" target="">How the Report 
-                  Writer works</a><br>
-                  </b><font size="-1">This section explains how the Report Writer 
+                  of the program that produced the report. <br/>
+</font> </td>
+</tr>
+<tr>
+<td valign="TOP" width="3%"> </td>
+<td valign="TOP" width="4%"><img align="TOP" height="13" hspace="4" src="Resources/pics/BallGreenG.gif" vspace="4" width="13"/></td>
+<td width="93%"><b><a href="#part1b" target="">How the Report 
+                  Writer works</a><br/>
+</b><font size="-1">This section explains how the Report Writer 
                   works. It examines the seven report groups a report produced 
                   by a Report Writer program and then examines the Procedure Division 
-                  of the program that produced the report. <br>
-                  </font> </td>
-              </tr>
-              <tr> 
-                <td width="3%" valign="TOP">&nbsp;</td>
-                <td width="4%" valign="TOP"><img src="Resources/pics/BallGreenG.gif" hspace="4" height="13" width="13" align="TOP" vspace="4"></td>
-                <td width="93%"> 
-                  <div align="left"> 
-                    <p><b><a href="#part2" target="">Let's write a Report Writer 
-                      p</a></b><b><a href="#part2" target="">rogram</a><br>
-                      </b><font size="-1">This section uses learning by doing 
+                  of the program that produced the report. <br/>
+</font> </td>
+</tr>
+<tr>
+<td valign="TOP" width="3%"> </td>
+<td valign="TOP" width="4%"><img align="TOP" height="13" hspace="4" src="Resources/pics/BallGreenG.gif" vspace="4" width="13"/></td>
+<td width="93%">
+<div align="left">
+<p><b><a href="#part2" target="">Let's write a Report Writer 
+                      p</a></b><b><a href="#part2" target="">rogram</a><br/>
+</b><font size="-1">This section uses learning by doing 
                       as its mode of instruction. We learn how to write a simple 
-                      version of the report program shown in the previous section.</font><br>
-                    </p>
-                  </div>
-                </td>
-              </tr>
-              <tr> 
-                <td width="3%" valign="TOP">&nbsp;</td>
-                <td width="4%" valign="TOP"><img src="Resources/pics/BallGreenG.gif" hspace="4" height="13" width="13" align="TOP" vspace="4"></td>
-                <td width="93%"> 
-                  <p><a href="#part3" target=""><b>Let's add some features to 
-                    our Report Program</b></a><br>
-                    <font size="-1">In this section we amend the report program 
-                    to include more functionality</font><font size="-1">.<br>
-                    </font></p>
-                </td>
-              </tr>
-              <tr> 
-                <td width="3%" valign="TOP">&nbsp;</td>
-                <td width="4%" valign="TOP"><img src="Resources/pics/BallGreenG.gif" hspace="4" height="13" width="13" align="TOP" vspace="4"></td>
-                <td width="93%"> 
-                  <p><a href="#part4" target=""><b>Report Writer Declaratives</b></a><br>
-                    <font size="-1">When the requirements of the report do not 
+                      version of the report program shown in the previous section.</font><br/>
+</p>
+</div>
+</td>
+</tr>
+<tr>
+<td valign="TOP" width="3%"> </td>
+<td valign="TOP" width="4%"><img align="TOP" height="13" hspace="4" src="Resources/pics/BallGreenG.gif" vspace="4" width="13"/></td>
+<td width="93%">
+<p><a href="#part3" target=""><b>Let's add some features to 
+                    our Report Program</b></a><br/>
+<font size="-1">In this section we amend the report program 
+                    to include more functionality</font><font size="-1">.<br/>
+</font></p>
+</td>
+</tr>
+<tr>
+<td valign="TOP" width="3%"> </td>
+<td valign="TOP" width="4%"><img align="TOP" height="13" hspace="4" src="Resources/pics/BallGreenG.gif" vspace="4" width="13"/></td>
+<td width="93%">
+<p><a href="#part4" target=""><b>Report Writer Declaratives</b></a><br/>
+<font size="-1">When the requirements of the report do not 
                     coincide with the way the Report Writer works Declaratives 
-                    can be used to extend the functionality of the Report Writer.</font><font size="-1"><br>
-                    </font></p>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="top" align="LEFT" width="700" bgcolor="#993300" colspan="2"> 
-            <h2 align="CENTER"><font color="#FFFF00"><a name="intro"></a><font face="Arial, Helvetica, sans-serif">Introduction</font></font></h2>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="top" width="160" bgcolor="#FFFFCC"> 
-            <h4><font color="#993300" face="Arial, Helvetica, sans-serif">Aims</font></h4>
-          </td>
-          <td width="540"> 
-            <p>The aim of this unit is to provide you with a solid understanding 
+                    can be used to extend the functionality of the Report Writer.</font><font size="-1"><br/>
+</font></p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#993300" colspan="2" valign="top" width="700">
+<h2 align="CENTER"><font color="#FFFF00"><a name="intro"></a><font face="Arial, Helvetica, sans-serif">Introduction</font></font></h2>
+</td>
+</tr>
+<tr>
+<td bgcolor="#FFFFCC" valign="top" width="160">
+<h4><font color="#993300" face="Arial, Helvetica, sans-serif">Aims</font></h4>
+</td>
+<td width="540">
+<p>The aim of this unit is to provide you with a solid understanding 
               of COBOL Report Writer. This unit introduces the report writer by 
               -</p>
-            <ol>
-              <li>Looking at a fairly complex report created using the report 
+<ol>
+<li>Looking at a fairly complex report created using the report 
                 writer and examining what the Report Writer had to do to produce 
                 the report.</li>
-              <li>Looking at the Procedure Division of the program that produced 
+<li>Looking at the Procedure Division of the program that produced 
                 the report.</li>
-              <li>Writing a simple version of the the program that produced the 
+<li>Writing a simple version of the the program that produced the 
                 report.</li>
-              <li>Adding more features to the report program.</li>
-              <li>Examining the use of Declaratives in extending the functionality 
+<li>Adding more features to the report program.</li>
+<li>Examining the use of Declaratives in extending the functionality 
                 of the Report Writer.</li>
-              <li>Examining a full report program that uses Declaratives.</li>
-            </ol>
-            <p>In the next unit we examine the syntax and semantics of the Report 
+<li>Examining a full report program that uses Declaratives.</li>
+</ol>
+<p>In the next unit we examine the syntax and semantics of the Report 
               Writer clauses and verbs in detail.</p>
-            <hr>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="top" align="LEFT" width="160" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Objectives</font></h4>
-          </td>
-          <td width="540"> 
-            <p>By the end of this unit you should - </p>
-            <ol>
-              <li>Understand how the Report Writer works</li>
-              <li>Understand how and when to use the seven different types of 
+<hr/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="160">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Objectives</font></h4>
+</td>
+<td width="540">
+<p>By the end of this unit you should - </p>
+<ol>
+<li>Understand how the Report Writer works</li>
+<li>Understand how and when to use the seven different types of 
                 report group.</li>
-              <li>Be able to control the placement of print items on the page 
+<li>Be able to control the placement of print items on the page 
                 and to control when the Report Writer goes to a new page.</li>
-              <li>Understand how to use the SUM clause to automatically accumulate 
+<li>Understand how to use the SUM clause to automatically accumulate 
                 totals.</li>
-              <li>Be able to set up control break items and understand how the 
+<li>Be able to set up control break items and understand how the 
                 relationship between them is controlled.</li>
-              <li>Understand how and when to use Declaratives.</li>
-            </ol>
-            <hr>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="top" align="LEFT" width="160" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Prerequisites</font></h4>
-          </td>
-          <td width="525"> 
-            <p>You should be familiar with the material covered in the unit; </p>
-            <ul>
-              <li>Data Declaration </li>
-              <li>Iteration</li>
-              <li>Selection</li>
-              <li>Tables</li>
-              <li>Edited Pictures</li>
-              <li>The<font size="2"> INSPECT</font> verb</li>
-              <li>The <font size="2">STRING</font> verb</li>
-              <li>The<font size="-1"> UNSTRING</font> verb</li>
-              <li>Sequential files</li>
-            </ul>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="top" align="left" width="700" bgcolor="#FFFFFF" colspan="2"> 
-            <div align="center"> 
-              <hr>
-              <p><a href="#top"> <img src="Resources/pics/i-pagetop.gif" width="132" height="38" border="0"></a> 
-              </p>
-              <p>&nbsp; </p>
-            </div>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="top" align="LEFT" width="700" bgcolor="#993300" colspan="2"> 
-            <h2 align="CENTER"><font color="#FFFF00"><a name="part1"></a><font face="Arial, Helvetica, sans-serif">The 
+<li>Understand how and when to use Declaratives.</li>
+</ol>
+<hr/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="160">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Prerequisites</font></h4>
+</td>
+<td width="525">
+<p>You should be familiar with the material covered in the unit; </p>
+<ul>
+<li>Data Declaration </li>
+<li>Iteration</li>
+<li>Selection</li>
+<li>Tables</li>
+<li>Edited Pictures</li>
+<li>The<font size="2"> INSPECT</font> verb</li>
+<li>The <font size="2">STRING</font> verb</li>
+<li>The<font size="-1"> UNSTRING</font> verb</li>
+<li>Sequential files</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
+<div align="center">
+<hr/>
+<p><a href="#top"> <img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"/></a>
+</p>
+
+</div>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#993300" colspan="2" valign="top" width="700">
+<h2 align="CENTER"><font color="#FFFF00"><a name="part1"></a><font face="Arial, Helvetica, sans-serif">The 
               Report Writer in Action</font></font></h2>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="top" align="LEFT" width="160" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
-          </td>
-          <td width="540" valign="top"> 
-            <p>Producing printed reports is an important aspect of business programming. 
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="160">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
+</td>
+<td valign="top" width="540">
+<p>Producing printed reports is an important aspect of business programming. 
               Unfortunately, report programs are often tedious to code. Report 
               programs are long, and frequently consist of mere repetitions of 
               the tasks and techniques used in other report programs. To simplify 
               the task of writing report programs COBOL contains the Report Writer.</p>
-            <p>The COBOL Report Writer is very large. It includes many new <font size="2">DATA 
+<p>The COBOL Report Writer is very large. It includes many new <font size="2">DATA 
               DIVISION</font> entries, including a <font size="2">REPORT SECTION</font>, 
               and a number of new <font size="2">PROCEDURE DIVISION</font> verbs. 
             </p>
-            <hr>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4 align="center"><font color="#800000" face="Arial, Helvetica, sans-serif">An 
+<hr/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4 align="center"><font color="#800000" face="Arial, Helvetica, sans-serif">An 
               example report - with animated commentary.</font></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>The first page from an example report, produced by the Report Writer, 
+</td>
+<td valign="top" width="525">
+<p>The first page from an example report, produced by the Report Writer, 
               is shown below. The report shows the sales made by Bible salespersons 
               in all of the cities of Ireland. </p>
-            <p>In the attached animated commentary we will examine what the program 
+<p>In the attached animated commentary we will examine what the program 
               has to do to produce the report.</p>
-            <table border="1" width="100%">
-              <tr> 
-                <td> 
-                  <center>
-                    <iframe src="Resources/ppz/TC-RepWrite1.pdf" width="425" height="575" style="border:1px solid #ccc;"></iframe> 
-                  </center>
-                </td>
-              </tr>
-            </table>
-            <hr>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4 align="center"><font color="#800000" face="Arial, Helvetica, sans-serif">The 
+<table border="1" width="100%">
+<tr>
+<td>
+<center>
+<iframe height="575" src="Resources/ppz/TC-RepWrite1.pdf" style="border:1px solid #ccc;" width="425"></iframe>
+</center>
+</td>
+</tr>
+</table>
+<hr/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4 align="center"><font color="#800000" face="Arial, Helvetica, sans-serif">The 
               Procedure Division that produces the sales report </font></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>In a program that did not use the Report Writer, the<font size="-1"> 
+</td>
+<td valign="top" width="525">
+<p>In a program that did not use the Report Writer, the<font size="-1"> 
               PROCEDURE DIVISION</font> required to produce the sales report shown 
               above would occupy a hundred lines or so of code. When the <font size="-1">REPORT 
               WRITER</font> is used, only the <font size="-1">PROCEDURE DIVISION</font> 
               shown below is required. </p>
-            <p>All the work of printing the report is being done in just 10 statements.</p>
-            <hr>
-            <table border="0" width="100%" background="Resources/pics/code.gif">
-              <tr> 
-                <td height="333"> 
-                  <pre>PROCEDURE DIVISION.
+<p>All the work of printing the report is being done in just 10 statements.</p>
+<hr/>
+<table background="Resources/pics/code.gif" border="0" width="100%">
+<tr>
+<td height="333">
+<pre>PROCEDURE DIVISION.
 Begin.
     OPEN INPUT SalesFile.
     OPEN OUTPUT PrintFile.
@@ -249,97 +312,97 @@ PrintSalaryReport.
     READ SalesFile
           AT END SET EndOfFile TO TRUE
     END-READ.                                                       </pre>
-                </td>
-              </tr>
-            </table>
-            <hr>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4 align="center"><font color="#800000" face="Arial, Helvetica, sans-serif">So 
+</td>
+</tr>
+</table>
+<hr/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4 align="center"><font color="#800000" face="Arial, Helvetica, sans-serif">So 
               much work, so little Procedure Division code</font></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>How can so much work be done in so little <font size="-1">PROCEDURE 
+</td>
+<td valign="top" width="525">
+<p>How can so much work be done in so little <font size="-1">PROCEDURE 
               DIVISION</font> code? How does the report writer know that page 
               headings are required or that it is time to print the salesperson 
               or city totals. </p>
-            <p>To achieve so much in so little <font size="-1">PROCEDURE DIVISION</font> 
+<p>To achieve so much in so little <font size="-1">PROCEDURE DIVISION</font> 
               code, the Report Writer uses a declarative approach to programming 
               rather than the procedural one familiar to most programmers. </p>
-            <p>When the Report Writer is used, the programmer declares <b>what</b> 
+<p>When the Report Writer is used, the programmer declares <b>what</b> 
               to print when a page heading, page footing, salesman total, city 
               total or final total is required and the Report Writer works out 
               <b>when</b> to print these items.</p>
-            <p>In keeping with the adage that &quot;there is no such thing as 
-              free lunch&quot;, the <font size="-1">PROCEDURE DIVISION</font> 
+<p>In keeping with the adage that "there is no such thing as 
+              free lunch", the <font size="-1">PROCEDURE DIVISION</font> 
               of a Report Writer program is short because most of the work is 
               actually done in the (greatly expanded) <font size="-1">DATA DIVISION</font>. 
             </p>
-            <hr>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" bgcolor="#993300" colspan="2"> 
-            <h2 align="CENTER"><font color="#FFFF00" face="Arial, Helvetica, sans-serif"><a name="part1b"></a>How 
+<hr/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#993300" colspan="2" valign="TOP">
+<h2 align="CENTER"><font color="#FFFF00" face="Arial, Helvetica, sans-serif"><a name="part1b"></a>How 
               the Report Writer works</font></h2>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Report 
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Report 
               Groups </font></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>The Report Writer works by recognizing that many reports take (more 
+</td>
+<td valign="top" width="525">
+<p>The Report Writer works by recognizing that many reports take (more 
               or less) the same shape. </p>
-            <ul>
-              <li>There may be headings at the beginning of the report and footings 
+<ul>
+<li>There may be headings at the beginning of the report and footings 
                 at the end. </li>
-              <li>There may be headings at the top of each page and footings at 
+<li>There may be headings at the top of each page and footings at 
                 the bottom. </li>
-              <li>Headings and Footings may need to be printed whenever there 
+<li>Headings and Footings may need to be printed whenever there 
                 is a control break (i.e., when the value in a specified field 
                 changes, such as when the SalesPerson number changes in the example 
                 above).</li>
-              <li>Detail lines must be printed. </li>
-            </ul>
-            <p>The Report Writer calls these different report items - Report Groups. 
+<li>Detail lines must be printed. </li>
+</ul>
+<p>The Report Writer calls these different report items - Report Groups. 
               Reports are organized around report groups and the Report Writer 
               recognizes seven types of report group (shown below). The indentation 
               shows the importance/order of execution of the report groups. </p>
-            <blockquote> 
-              <p>REPORT HEADING or RH group<br>
-                <font size="-1">- printed once at the beginning of the report 
+<blockquote>
+<p>REPORT HEADING or RH group<br/>
+<font size="-1">- printed once at the beginning of the report 
                 </font></p>
-            </blockquote>
-            <ol>
-              <blockquote> 
-                <p> PAGE HEADING of PH group <br>
-                  <font size="-1">- printed at the top of each page </font></p>
-                <blockquote> 
-                  <p>CONTROL HEADING or CH group<br>
-                    <font size="-1">- printed at the beginning of each control 
+</blockquote>
+<ol>
+<blockquote>
+<p> PAGE HEADING of PH group <br/>
+<font size="-1">- printed at the top of each page </font></p>
+<blockquote>
+<p>CONTROL HEADING or CH group<br/>
+<font size="-1">- printed at the beginning of each control 
                     break </font></p>
-                  <blockquote> 
-                    <p>DETAIL or DE group <br>
-                      <font size="-1">- printed each time the GENERATE statement 
+<blockquote>
+<p>DETAIL or DE group <br/>
+<font size="-1">- printed each time the GENERATE statement 
                       is executed</font></p>
-                  </blockquote>
-                  <p>CONTROL FOOTING or CF group<br>
-                    <font size="-1">- printed at the end of each control break 
+</blockquote>
+<p>CONTROL FOOTING or CF group<br/>
+<font size="-1">- printed at the end of each control break 
                     </font></p>
-                </blockquote>
-                <p>PAGE FOOTING or PF group <br>
-                  <font size="-1">- printed at the bottom of each page </font></p>
-              </blockquote>
-            </ol>
-            <blockquote> 
-              <p>REPORT FOOTING or RF group <br>
-                <font size="-1">- printed once at the end of the report. </font></p>
-            </blockquote>
-            <p>Report Groups are defined as records in the <font size="-1">REPORT 
+</blockquote>
+<p>PAGE FOOTING or PF group <br/>
+<font size="-1">- printed at the bottom of each page </font></p>
+</blockquote>
+</ol>
+<blockquote>
+<p>REPORT FOOTING or RF group <br/>
+<font size="-1">- printed once at the end of the report. </font></p>
+</blockquote>
+<p>Report Groups are defined as records in the <font size="-1">REPORT 
               SECTION</font> of the <font size="-1">DATA DIVISION</font>. Most 
               groups are defined once for each report, but control groups are 
               defined for each control break item. For instance, in the example 
@@ -348,105 +411,105 @@ PrintSalaryReport.
               is a special control group that is invoked before the normal control 
               groups (<font size="-1">CONTROL HEADING FINAL</font>) and after 
               the normal control groups (<font size="-1">CONTROL FOOTING FINAL</font>).</p>
-            <p>An ordinary control group is defined on some control break data-item. 
+<p>An ordinary control group is defined on some control break data-item. 
               The Report Writer monitors the contents of the data-item and when 
               the value in the item changes a control break is automatically initiated 
               and the <font size="-1">CONTROL FOOTING</font> group (if there is 
               one) is printed.</p>
-            <p>&nbsp; </p>
-            <hr>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4 align="center"><font color="#800000" face="Arial, Helvetica, sans-serif">Report 
+
+<hr/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4 align="center"><font color="#800000" face="Arial, Helvetica, sans-serif">Report 
               writing made easy</font></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>Writing report programs is time consuming. It may be difficult 
+</td>
+<td valign="top" width="525">
+<p>Writing report programs is time consuming. It may be difficult 
               to get the vertical and horizontal placement of printed items correct. 
               Many lines of code may have to be written merely to move values 
               to their corresponding items in the print line. A line count has 
               to be kept to control when the report prints on a new page and a 
               page count is often required.</p>
-            <p>The Report Writer makes all of this easy by;</p>
-            <ul>
-              <li>Allowing simple vertical and horizontal placement of printed 
+<p>The Report Writer makes all of this easy by;</p>
+<ul>
+<li>Allowing simple vertical and horizontal placement of printed 
                 items using the <font size="-1">LINE IS</font> and <font size="-1">COLUMN 
                 IS </font>phrases in the data declaration</li>
-              <li>Automatically moving data values to output items</li>
-              <li>Keeping a line count and automatically generating report and 
+<li>Automatically moving data values to output items</li>
+<li>Keeping a line count and automatically generating report and 
                 page headers and footers at the appropriate times</li>
-              <li>Keeping a page count which can be referenced in the report declaration</li>
-              <li>Recognizing control breaks and automatically generating the 
+<li>Keeping a page count which can be referenced in the report declaration</li>
+<li>Recognizing control breaks and automatically generating the 
                 appropriate control headings and footings</li>
-              <li>Automatically accumulating totals, sub-totals and final totals 
+<li>Automatically accumulating totals, sub-totals and final totals 
               </li>
-            </ul>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="top" align="LEFT" width="700" bgcolor="#993300" colspan="2"> 
-            <h2 align="CENTER"><font color="#FFFF00"><a name="part2"></a><font face="Arial, Helvetica, sans-serif">Let's 
+</ul>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#993300" colspan="2" valign="top" width="700">
+<h2 align="CENTER"><font color="#FFFF00"><a name="part2"></a><font face="Arial, Helvetica, sans-serif">Let's 
               write a Report Writer program!</font></font></h2>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <div align="center"> 
-              <p align="left">Let's write a Report Writer program!</p>
-              <p align="left"> We'll start by writing a simpler version of the 
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
+</td>
+<td valign="top" width="525">
+<div align="center">
+<p align="left">Let's write a Report Writer program!</p>
+<p align="left"> We'll start by writing a simpler version of the 
                 program that produces example report shown above and then we'll 
                 add to it to create a report program with even more features than 
                 the one shown.</p>
-              <p align="left">Let's start by looking the data we have been giving 
+<p align="left">Let's start by looking the data we have been giving 
                 to work with and at what is required in our simple report.</p>
-            </div>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif"> Report 
+</div>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif"> Report 
               Specification </font></h4>
-            <h3>&nbsp;</h3>
-            <div align="right"></div>
-          </td>
-          <td width="525" valign="top"> 
-            <p align="left">Bible salespersons work in each of the cities of Ireland. 
+
+<div align="right"></div>
+</td>
+<td valign="top" width="525">
+<p align="left">Bible salespersons work in each of the cities of Ireland. 
               Each time a salesperson sells some bibles the value of that sale 
               is recorded in a sales file along with the salesperson number and 
               the city code.</p>
-            <p align="left">The sales file has been validated and sorted on ascending 
+<p align="left">The sales file has been validated and sorted on ascending 
               SalesPersonNum within ascending CityCode.</p>
-            <p align="left">We want to write a program that will produce a report 
+<p align="left">We want to write a program that will produce a report 
               that prints - </p>
-            <ul>
-              <li> a heading and a footing on each page</li>
-              <li>for each sale record we want to print the the city name (obtained 
+<ul>
+<li> a heading and a footing on each page</li>
+<li>for each sale record we want to print the the city name (obtained 
                 from a table), salesperson number and the value of the sale</li>
-              <li>the total value of sales for each salesperson</li>
-            </ul>
-            <hr>
-          </td>
-        </tr>
-        <tr> </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">A simple 
+<li>the total value of sales for each salesperson</li>
+</ul>
+<hr/>
+</td>
+</tr>
+<tr> </tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">A simple 
               report </font></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <div align="center"> 
-              <p align="left">The first page produced by the simple report program 
+</td>
+<td valign="top" width="525">
+<div align="center">
+<p align="left">The first page produced by the simple report program 
                 we are going to write is shown below. In the section that follows 
                 we will examine the program that created the report.</p>
-              <table border="1" width="100%" background="Resources/pics/code.gif">
-                <tr> 
-                  <td height="333"> 
-                    <pre>           An example COBOL Report Program              
+<table background="Resources/pics/code.gif" border="1" width="100%">
+<tr>
+<td height="333">
+<pre>           An example COBOL Report Program              
      Bible Salesperson - Sales and Salary Report        
                                                         
  City      Salesperson     Sale                         
@@ -500,111 +563,111 @@ Cork          1           $333.50
                                                         
 Programmer - Michael Coughlan               Page :  1
                                                     </pre>
-                  </td>
-                </tr>
-              </table>
-              <p>&nbsp;</p>
-            </div>
-            <hr>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Code 
+</td>
+</tr>
+</table>
+
+</div>
+<hr/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Code 
               &amp; Commentary</font></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <table border="1" width="100%">
-              <tr> 
-                <td> 
-                  <center>
-                    <iframe src="Resources/ppz/TC-RepWrite2.pdf" width="425" height="575" style="border:1px solid #ccc;"></iframe> 
-                  </center>
-                </td>
-              </tr>
-            </table>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <div align="center"> </div>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="top" align="LEFT" width="700" bgcolor="#993300" colspan="2"> 
-            <h2 align="CENTER"><font color="#FFFF00"><a name="part3"></a>Let's 
+</td>
+<td valign="top" width="525">
+<table border="1" width="100%">
+<tr>
+<td>
+<center>
+<iframe height="575" src="Resources/ppz/TC-RepWrite2.pdf" style="border:1px solid #ccc;" width="425"></iframe>
+</center>
+</td>
+</tr>
+</table>
+
+
+<div align="center"> </div>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#993300" colspan="2" valign="top" width="700">
+<h2 align="CENTER"><font color="#FFFF00"><a name="part3"></a>Let's 
               add some features to our Report Program</font></h2>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Adding 
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Adding 
               a city and a final total</font></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <div align="center"> </div>
-            <p>Let's add city totals and a final total to the Report. The city 
+</td>
+<td valign="top" width="525">
+<div align="center"> </div>
+<p>Let's add city totals and a final total to the Report. The city 
               total will be the sum of all the salesperson totals for the city 
               and the final total will be the sum of all the city totals. A city 
               total will be printed when the CityCode changes (i.e. when there 
               is a control break on the CityCode) and the final total will be 
               printed at the end of the report.</p>
-            <p>What changes do we have to make to our program to get it to print 
+<p>What changes do we have to make to our program to get it to print 
               the city and final totals?</p>
-            <hr>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Printing 
+<hr/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Printing 
               the city total</font></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>If we want to print the city total we must set up a report group 
+</td>
+<td valign="top" width="525">
+<p>If we want to print the city total we must set up a report group 
               for it describing <b>what </b>we want printed. To describe <b>when</b> 
               we want the group printed, we must specify that the group is a CONTROL 
               FOOTING group and we must identify the CityCode as the control break 
               data-item. Since the city control break is senior to the salesperson 
               control break we must indicate this by placing CityCode before SalespersonNumber 
               in the CONTROLS are phrase.</p>
-            <p>The total for the city is automatically accumulated by means of 
+<p>The total for the city is automatically accumulated by means of 
               the SUM clause. Every time a salesperson total is printed the phrase 
               - SUM SMS - adds the total to the city total. This is why the item 
               for printing the salesperson total was given a name - so that we 
               could refer to it in the SUM phrase of the city total.</p>
-            <p>The item that prints the city total has also been given a name. 
+<p>The item that prints the city total has also been given a name. 
               This is so that we can refer to it in the final total SUM phrase. 
             </p>
-            <hr>
-            <div align="center"></div>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Printing 
+<hr/>
+<div align="center"></div>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Printing 
               a Final Total</font></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>To print the final total we must set up a CONTROL FOOTING FINAL 
+</td>
+<td valign="top" width="525">
+<p>To print the final total we must set up a CONTROL FOOTING FINAL 
               group. Final is a special keyword that indicates the control break 
               that occurs when the end of the report is reached. This is the most 
               senior control break and we indicate this by placing the word FINAL 
               ahead of all the other control break items in the CONTROLS ARE phrase.</p>
-            <p>The final total is automatically accumulated by means of the SUM 
+<p>The final total is automatically accumulated by means of the SUM 
               CS clause. Every time a city total is printed the phrase SUM CS 
               adds the city total to the final total. Note that the final total 
               print item is not named because we never need to refer to it.</p>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">REPORT 
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">REPORT 
               SECTION changes</font></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <hr>
-            <table border="0" width="100%" background="Resources/pics/code.gif">
-              <tr> 
-                <td valign="top"> 
-                  <pre>REPORT SECTION.
+</td>
+<td valign="top" width="525">
+<hr/>
+<table background="Resources/pics/code.gif" border="0" width="100%">
+<tr>
+<td valign="top">
+<pre>REPORT SECTION.
 RD  SalesReport
     CONTROLS ARE <b><font color="#FF0000">FINAL
                  CityCode</font></b>
@@ -679,123 +742,123 @@ RD  SalesReport
        03 COLUMN 52     PIC Z9 SOURCE PAGE-COUNTER.
 
 </pre>
-                </td>
-              </tr>
-            </table>
-            <hr>
-            <p>&nbsp;</p>
-            <div align="center"> </div>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Changes 
+</td>
+</tr>
+</table>
+<hr/>
+
+<div align="center"> </div>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Changes 
               to the Procedure Division</font></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>What changes do we need to make to the Procedure Division code 
+</td>
+<td valign="top" width="525">
+<p>What changes do we need to make to the Procedure Division code 
               to print the city and final totals. </p>
-            <p>Why none at all!!!</p>
-            <p> The Procedure Division code remains exactly the same.</p>
-            <hr>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" bgcolor="#993300" colspan="2"> 
-            <h2 align="CENTER"><font color="#FFFF00" face="Arial, Helvetica, sans-serif"><a name="part4"></a>Report 
+<p>Why none at all!!!</p>
+<p> The Procedure Division code remains exactly the same.</p>
+<hr/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#993300" colspan="2" valign="TOP">
+<h2 align="CENTER"><font color="#FFFF00" face="Arial, Helvetica, sans-serif"><a name="part4"></a>Report 
               Writer Declaratives</font></h2>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>The Report Writer is a wonderful tool if the structure of the required 
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
+</td>
+<td valign="top" width="525">
+<p>The Report Writer is a wonderful tool if the structure of the required 
               report fits in to the way the Report Writer does things. But sometimes, 
               the structure or requirements of the report are such that the standard 
               Report Writer alone is an insufficient tool. In these cases, <font size="-1">DECLARATIVES</font> 
               may be used to extend the functionality of the Report Writer.</p>
-            <p>The <font size="-1">USE BEFORE REPORTING</font> phrase allows code 
+<p>The <font size="-1">USE BEFORE REPORTING</font> phrase allows code 
               specified in the <font size="-1">DECLARATIVES</font> to be executed 
               just before a report group is printed. The code in the <font size="-1">DECLARATIVES</font> 
               extends the functionality of the Report Writer by performing tasks 
               or calculations that the Report Writer can not do automatically 
               or by selectively stopping the report group from being printed (using 
               the <font size="-1">SUPPRESS PRINTING</font> command). </p>
-            <hr>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Calculating 
+<hr/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Calculating 
               the salesperson's commission and salary</font></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>Suppose we want to extend our report so that as well as printing 
+</td>
+<td valign="top" width="525">
+<p>Suppose we want to extend our report so that as well as printing 
               the salesperson total it also prints the salesperson's commission 
               and salary. The commission will be a percentage of the saleperson's 
               sales and the salary will be calculated as the commission plus a 
               fixed amount obtained from a two dimension table.</p>
-            <p>Additionally to enhance our understanding of how the control break 
+<p>Additionally to enhance our understanding of how the control break 
               items are referenced we will show the number of the salesperson 
               for which we have just calculated the totals, commission and salary 
               and the salesperson number currently in the file buffer.</p>
-            <p>Calculating the commission requires more than just simple addition 
+<p>Calculating the commission requires more than just simple addition 
               so the Report Writer cannot handle it automatically. To calculate 
               the commission are <font size="-1">DECLARATIVES</font> are required. 
               The <font size="-1">USE BEFORE REPORTING</font> Salespsn-Line phrase 
               in the <font size="-1">DECLARATIVES </font> allows these items to 
               be calculated when the Salespsn-Number control footer group is about 
               to be printed.</p>
-            <p>In the example program, <font size="-1">DECLARATIVES</font> are 
+<p>In the example program, <font size="-1">DECLARATIVES</font> are 
               used because the Report Writer cannot automatically calculate a 
               salesperson's commission and salary. The <font size="-1">USE BEFORE 
               REPORTING</font> SalesPersonGrp phrase in the <font size="-1">DECLARATIVES 
               </font> allows these items to be calculated when the SalesPersonGrp 
               control footer group is about to be printed.</p>
-            <hr>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Values 
+<hr/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Values 
               of control break items</font></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>Have another look at the Report Section above. In particular look 
+</td>
+<td valign="top" width="525">
+<p>Have another look at the Report Section above. In particular look 
               at the salesperson control footing group. Notice anything strange?</p>
-            <p>The salesperson number is being printed and the SOURCE clause is 
+<p>The salesperson number is being printed and the SOURCE clause is 
               used to get its value from the SalesPersonNum in the sales record. 
               But this is a control footing and that means that it is printed 
               when there is a change of salesperson number. So the value in SalesPersonNum 
               should be the number of the next salesperson and not the number 
               of the salesperson whose totals have just been produced.</p>
-            <p>Yet the report produced has the correct salesperson number printed. 
+<p>Yet the report produced has the correct salesperson number printed. 
               How can this be?</p>
-            <p>In the control footing any reference to the control break item 
+<p>In the control footing any reference to the control break item 
               will be supplied with the previous value not the current value.</p>
-            <p>To help make the relationship between control break items and the 
+<p>To help make the relationship between control break items and the 
               Report Section, the Declaratives and the Procedure Division we will 
               show the number of the salesperson for which we have just calculated 
               the totals, commission and salary and the salesperson number currently 
               in the file buffer. In the city footing we will show the city code 
               for the city whose total sales have just been printed and the city 
               code currently in the file buffer.</p>
-            <hr>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">The 
+<hr/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">The 
               full program and the report it produces</font></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>Changes from the simple version are shown in red.</p>
-            <table border="0" width="100%" background="Resources/pics/code.gif">
-              <tr> 
-                <td valign="top"> 
-                  <pre>      $ SET SOURCEFORMAT"FREE"
+</td>
+<td valign="top" width="525">
+<p>Changes from the simple version are shown in red.</p>
+<table background="Resources/pics/code.gif" border="0" width="100%">
+<tr>
+<td valign="top">
+<pre>      $ SET SOURCEFORMAT"FREE"
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  ReportExampleFull.
 AUTHOR.  Michael Coughlan.
@@ -1004,15 +1067,15 @@ PrintSalaryReport.
     READ SalesFile
           AT END SET EndOfFile TO TRUE
     END-READ.</pre>
-                </td>
-              </tr>
-            </table>
-            <p>&nbsp; </p>
-            <hr>
-            <table border="0" width="100%" background="Resources/pics/code.gif">
-              <tr> 
-                <td valign="top"> 
-                  <pre>           An example COBOL Report Program              
+</td>
+</tr>
+</table>
+
+<hr/>
+<table background="Resources/pics/code.gif" border="0" width="100%">
+<tr>
+<td valign="top">
+<pre>           An example COBOL Report Program              
      Bible Salesperson - Sales and Salary Report        
                                                         
  City      Salesperson     Sale                         
@@ -1065,52 +1128,52 @@ Belfast       1           $111.50
                                                         
                                                         
 Programmer - Michael Coughlan               Page :  1 </pre>
-                </td>
-              </tr>
-            </table>
-            <hr>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Summary 
+</td>
+</tr>
+</table>
+<hr/>
+
+
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Summary 
               of control break item reference</font></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>When a control break item is used in a control footing or in the 
+</td>
+<td valign="top" width="525">
+<p>When a control break item is used in a control footing or in the 
               DECLARATIVES before printing a control footing the value supplied 
               by the Report Writer is the previous value. Referring to the same 
               item in the Procedure Division yields the current value.</p>
-            <hr>
-          </td>
-        </tr>
-        <tr> 
-          <td align="left" width="700" bgcolor="#FFFFFF" colspan="2"> 
-            <hr>
-            <div align="center"> 
-              <p><a href="#top"> <img src="Resources/pics/i-pagetop.gif" width="132" height="38" border="0"></a> 
-              </p>
-              <hr>
-              <h3 align="center">Copyright Notice</h3>
-              <p align="left">These COBOL course materials are the copyright property 
+<hr/>
+</td>
+</tr>
+<tr>
+<td align="left" bgcolor="#FFFFFF" colspan="2" width="700">
+<hr/>
+<div align="center">
+<p><a href="#top"> <img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"/></a>
+</p>
+<hr/>
+<h3 align="center">Copyright Notice</h3>
+<p align="left">These COBOL course materials are the copyright property 
                 of Michael Coughlan.</p>
-              <p align="left"><font size="2">All rights reserved. No part of these 
+<p align="left"><font size="2">All rights reserved. No part of these 
                 course materials may be reproduced in any form or by any means 
                 - graphic, electronic, mechanical, photocopying, printing, recording, 
                 taping or stored in an information storage and retrieval system 
                 - without the written permission of </font><font size="2">the 
                 author.</font></p>
-              <p align="center"><font size="2">(c) Michael Coughlan</font></p>
+<p align="center"><font size="2">(c) Michael Coughlan</font></p>
 </div>
-          </td>
-        </tr>
-      </table>
- </td>
- </tr>
+</td>
+</tr>
+</table>
+</td>
+</tr>
 </table>
 </body>
 </html>
-<!--
-<!--
+&lt;!--
+&lt;!--

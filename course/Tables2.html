@@ -1,332 +1,395 @@
 <html>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <meta name="GENERATOR" content="Mozilla/4.0 [en] (WinNT; I) [Netscape]">
-   <title>Creating tables - syntax and semantics</title>
-</head>
-<body text="#000000" bgcolor="#FFFFFF" link="#0000FF" vlink="#FF0000" alink="#009B00">
-<table border="1" width="715" cellspacing="0">
-  <tr>
-    <td> 
-      <table width="710" cellpadding="4" cellspacing="0" border="0">
-        <tr> 
-          <td valign="top" align="left" bgcolor="#FFFFFF" colspan="2"> 
-            <center>
-              <h2><img src="Resources/pics/t-CobolTut.gif" width="173" height="59"></h2>
-            </center>
-            <center>
-              <h2> Creating Tables - syntax and semantics</h2>
-              <hr>
-            </center>
-            <table border="0" width="700" vspace="15">
-              <tr> 
-                <td width="3%" valign="TOP">&nbsp;</td>
-                <td width="4%" valign="TOP"><img src="Resources/pics/BallGreenG.gif" hspace="4" height="13" width="13" align="TOP" vspace="4"></td>
-                <td width="93%"> <b><a href="#intro" target="">Introduction</a><br>
-                  </b><font size="-1">Unit aims, objectives, prerequisites.</font><br>
-                  <br>
-                </td>
-              </tr>
-              <tr> 
-                <td width="3%" valign="TOP">&nbsp;</td>
-                <td width="4%" valign="TOP"><img src="Resources/pics/BallGreenG.gif" hspace="4" height="13" width="13" align="TOP" vspace="4"></td>
-                <td width="93%" valign="top"> 
-                  <p><b><a href="#part1" target="">Declaring a single dimension 
-                    table </a><br>
-                    </b><font size="-1">In this section we demonstrate how the 
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="Mozilla/4.0 [en] (WinNT; I) [Netscape]" name="GENERATOR"/>
+<title>Creating tables - syntax and semantics</title>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+  img { max-width: 100%; height: auto; }
+  table { max-width: 100%; }
+  pre { overflow-x: auto; max-width: 100%; }
+  body { -webkit-text-size-adjust: 100%; }
+  @media (max-width: 600px) {
+    body { margin: 4px; overflow-wrap: break-word; word-wrap: break-word; }
+    table[width] { width: 100% !important; height: auto !important; }
+    td[width], th[width], td[height], th[height] { width: auto !important; height: auto !important; }
+    td[bgcolor="#993300"] > h2, td[bgcolor="#993300"] > h3 { margin: 0.3em 0; }
+    blockquote { margin-left: 12px; margin-right: 12px; }
+    hr[width] { width: 100% !important; }
+    img, iframe, video, embed, object { max-width: min(100%, calc(100vw - 16px)) !important; height: auto; }
+    pre { max-width: min(100%, calc(100vw - 16px)) !important; white-space: pre-wrap; word-wrap: break-word; overflow-wrap: break-word; }
+    table[width="715"], table[width="725"],
+    table[width="715"] > tbody, table[width="725"] > tbody,
+    table[width="715"] > tbody > tr, table[width="725"] > tbody > tr,
+    table[width="715"] > tbody > tr > td, table[width="725"] > tbody > tr > td,
+    table[width="710"]:not(:has(> tbody > tr > td[width="93%"])),
+    table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody,
+    table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr,
+    table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr > td {
+      display: block;
+      width: auto !important;
+    }
+    table[width="710"]:has(> tbody > tr > td[width="93%"]),
+    table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody {
+      display: block;
+      width: 100% !important;
+    }
+    table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr {
+      display: flex;
+      align-items: baseline;
+      gap: 0.4em;
+      margin: 0.4em 0;
+    }
+    table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="3%"] {
+      display: none;
+    }
+    table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="4%"] {
+      display: block;
+      flex: 0 0 auto;
+      width: auto !important;
+      padding: 0;
+    }
+    table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="93%"] {
+      display: block;
+      flex: 1 1 auto;
+      width: auto !important;
+      padding: 0;
+    }
+    td[width="175"] > h4:not(:first-child):not(:has(img)),
+    td[width="160"] > h4:not(:first-child):not(:has(img)),
+    h4:has(> img[src*="PanelLine"]) {
+      display: none;
+    }
+    td[width="175"] > h3, td[width="175"] > h4, td[width="175"] > p,
+    td[width="160"] > h3, td[width="160"] > h4, td[width="160"] > p {
+      margin: 0.2em 0;
+    }
+  }
+</style>
+
+<body alink="#009B00" bgcolor="#FFFFFF" link="#0000FF" text="#000000" vlink="#FF0000">
+<table border="1" cellspacing="0" width="715">
+<tr>
+<td>
+<table border="0" cellpadding="4" cellspacing="0" width="710">
+<tr>
+<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top">
+<center>
+<h2><img height="59" src="Resources/pics/t-CobolTut.gif" width="173"/></h2>
+</center>
+<center>
+<h2> Creating Tables - syntax and semantics</h2>
+<hr/>
+</center>
+<table border="0" vspace="15" width="700">
+<tr>
+<td valign="TOP" width="3%"> </td>
+<td valign="TOP" width="4%"><img align="TOP" height="13" hspace="4" src="Resources/pics/BallGreenG.gif" vspace="4" width="13"/></td>
+<td width="93%"> <b><a href="#intro" target="">Introduction</a><br/>
+</b><font size="-1">Unit aims, objectives, prerequisites.</font><br/>
+<br/>
+</td>
+</tr>
+<tr>
+<td valign="TOP" width="3%"> </td>
+<td valign="TOP" width="4%"><img align="TOP" height="13" hspace="4" src="Resources/pics/BallGreenG.gif" vspace="4" width="13"/></td>
+<td valign="top" width="93%">
+<p><b><a href="#part1" target="">Declaring a single dimension 
+                    table </a><br/>
+</b><font size="-1">In this section we demonstrate how the 
                     OCCURS clause is used to declare a single dimension table. 
                     We also show how it may be used to declare a variable length 
-                    table.</font> <br>
-                    <br>
-                  </p>
-                </td>
-              </tr>
-              <tr> 
-                <td width="3%" valign="TOP">&nbsp;</td>
-                <td width="4%" valign="TOP"><img src="Resources/pics/BallGreenG.gif" hspace="4" height="13" width="13" align="TOP" vspace="4"></td>
-                <td width="93%" valign="top"> 
-                  <div align="left"> 
-                    <p><b><a href="#part2" target="">Group items as elements</a><br>
-                      </b><font size="-1">The elements of a table do not have 
+                    table.</font> <br/>
+<br/>
+</p>
+</td>
+</tr>
+<tr>
+<td valign="TOP" width="3%"> </td>
+<td valign="TOP" width="4%"><img align="TOP" height="13" hspace="4" src="Resources/pics/BallGreenG.gif" vspace="4" width="13"/></td>
+<td valign="top" width="93%">
+<div align="left">
+<p><b><a href="#part2" target="">Group items as elements</a><br/>
+</b><font size="-1">The elements of a table do not have 
                       to be elementary items - they can be group items. This section 
                       demonstrates how to create a table, the elements of which, 
-                      are group items.</font> <br>
-                      <br>
-                    </p>
-                  </div>
-                </td>
-              </tr>
-              <tr> 
-                <td width="3%" valign="TOP">&nbsp;</td>
-                <td width="4%" valign="TOP"><img src="Resources/pics/BallGreenG.gif" hspace="4" height="13" width="13" align="TOP" vspace="4"></td>
-                <td width="93%"> 
-                  <div align="left"> 
-                    <p><b><a href="#part3" target="">Declaring multi-dimension 
-                      tables </a><br>
-                      </b><font size="-1">This section demonstrates how nested 
-                      OCCURS clauses are used to create multi-dimension tables</font><font size="-1">.</font><font size="-1"><br>
-                      <br>
-                      </font> </p>
-                    </div>
-                </td>
-              </tr>
-              <tr> 
-                <td width="3%" valign="TOP">&nbsp;</td>
-                <td width="4%" valign="TOP"><img src="Resources/pics/BallGreenG.gif" hspace="4" height="13" width="13" align="TOP" vspace="4"></td>
-                <td width="93%"> 
-                  <div align="left"> 
-                    <p><b><a href="#part4" target="">Creating pre-filled tables 
-                      with the REDEFINES clause.</a><br>
-                      </b><font size="-1">This section first demonstrates non-table 
+                      are group items.</font> <br/>
+<br/>
+</p>
+</div>
+</td>
+</tr>
+<tr>
+<td valign="TOP" width="3%"> </td>
+<td valign="TOP" width="4%"><img align="TOP" height="13" hspace="4" src="Resources/pics/BallGreenG.gif" vspace="4" width="13"/></td>
+<td width="93%">
+<div align="left">
+<p><b><a href="#part3" target="">Declaring multi-dimension 
+                      tables </a><br/>
+</b><font size="-1">This section demonstrates how nested 
+                      OCCURS clauses are used to create multi-dimension tables</font><font size="-1">.</font><font size="-1"><br/>
+<br/>
+</font> </p>
+</div>
+</td>
+</tr>
+<tr>
+<td valign="TOP" width="3%"> </td>
+<td valign="TOP" width="4%"><img align="TOP" height="13" hspace="4" src="Resources/pics/BallGreenG.gif" vspace="4" width="13"/></td>
+<td width="93%">
+<div align="left">
+<p><b><a href="#part4" target="">Creating pre-filled tables 
+                      with the REDEFINES clause.</a><br/>
+</b><font size="-1">This section first demonstrates non-table 
                       related uses for the REDEFINES clause and then shows how 
                       it may be used to create pre-filled tables. The new COBOL'85 
                       approaches to creating pre-filled tables and to initialising 
-                      tables are also demonstrated.<br>
-                      <br>
-                      </font><font size="-1"> </font> </p>
-                  </div>
-                </td>
-              </tr>
-            </table>
-            <hr>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="top" align="LEFT" bgcolor="#993300" colspan="2"> 
-            <h2 align="CENTER"><font color="#FFFF00"><a name="intro"></a><font face="Arial, Helvetica, sans-serif">Introduction</font></font></h2>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="top" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#993300" face="Arial, Helvetica, sans-serif">Aims</font></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <div align="center"> 
-              <p align="left">In the &quot;Using Tables&quot; tutorial we examined 
+                      tables are also demonstrated.<br/>
+<br/>
+</font><font size="-1"> </font> </p>
+</div>
+</td>
+</tr>
+</table>
+<hr/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#993300" colspan="2" valign="top">
+<h2 align="CENTER"><font color="#FFFF00"><a name="intro"></a><font face="Arial, Helvetica, sans-serif">Introduction</font></font></h2>
+</td>
+</tr>
+<tr>
+<td bgcolor="#FFFFCC" valign="top" width="175">
+<h4><font color="#993300" face="Arial, Helvetica, sans-serif">Aims</font></h4>
+</td>
+<td valign="top" width="525">
+<div align="center">
+<p align="left">In the "Using Tables" tutorial we examined 
                 why we might want to use tables as part of the solution to a programming 
                 problem. </p>
-              <p align="left">In this tutorial we examine the syntax and semantics 
+<p align="left">In this tutorial we examine the syntax and semantics 
                 of table declaration. We demonstrate how to create single and 
                 multi-dimension tables, how to create variable length tables and 
                 how to set up a table pre-filled with data..</p>
-              </div>
-            <hr width="100%" align="center" size="1">
-          </td>
-        </tr>
-        <tr> 
-          <td valign="top" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Objectives</font></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>By the end of this unit you should - </p>
-            <ol>
-              <li>Understand how the <font size="-1">OCCURS </font>clause is used 
+</div>
+<hr align="center" size="1" width="100%"/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Objectives</font></h4>
+</td>
+<td valign="top" width="525">
+<p>By the end of this unit you should - </p>
+<ol>
+<li>Understand how the <font size="-1">OCCURS </font>clause is used 
                 in a table declaration.</li>
-              <li>Know how to use a subscript to access the elements of a table.</li>
-              <li>Be able to create a table in which the elements are group items.</li>
-              <li>Know how to set up a multi-dimension table using nested <font size="-1">OCCURS</font> 
+<li>Know how to use a subscript to access the elements of a table.</li>
+<li>Be able to create a table in which the elements are group items.</li>
+<li>Know how to set up a multi-dimension table using nested <font size="-1">OCCURS</font> 
                 clauses.</li>
-              <li>Understand how the <font size="-1">REDEFINES </font>clause may 
+<li>Understand how the <font size="-1">REDEFINES </font>clause may 
                 be used to give different names and descriptions to the same area 
                 of storage.</li>
-              <li>Be able to use the<font size="-1"> REDEFINES </font>clause to 
+<li>Be able to use the<font size="-1"> REDEFINES </font>clause to 
                 set up a table pre-filled with data.</li>
-            </ol>
-            <hr width="100%" align="center" size="1">
-          </td>
-        </tr>
-        <tr> 
-          <td valign="top" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Prerequisites</font></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>Introduction to COBOL </p>
-            <p>Declaring data in COBOL </p>
-            <p>Basic Procedure Division Commands</p>
-            <p>Selection Constructs</p>
-            <p>Iteration Constructs</p>
-            <p>Introduction to Sequential files</p>
-            <p>Processing Sequential files</p>
-            <p>Print files and variable length records</p>
-            <p>Sorting and Merging files</p>
-            <p>Using Tables</p>
-            <p>&nbsp;</p>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="top" align="left" bgcolor="#FFFFFF" colspan="2"> 
-            <div align="center"> 
-              <hr width="100%">
-              <p><a href="#top"> <img src="Resources/pics/i-pagetop.gif" width="132" height="38" border="0"></a> 
-              </p>
-            </div>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="top" align="LEFT" bgcolor="#993300" colspan="2"> 
-            <h2 align="CENTER"><font color="#FFFF00"><a name="part1"></a><font face="Arial, Helvetica, sans-serif">Declaring 
+</ol>
+<hr align="center" size="1" width="100%"/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Prerequisites</font></h4>
+</td>
+<td valign="top" width="525">
+<p>Introduction to COBOL </p>
+<p>Declaring data in COBOL </p>
+<p>Basic Procedure Division Commands</p>
+<p>Selection Constructs</p>
+<p>Iteration Constructs</p>
+<p>Introduction to Sequential files</p>
+<p>Processing Sequential files</p>
+<p>Print files and variable length records</p>
+<p>Sorting and Merging files</p>
+<p>Using Tables</p>
+
+</td>
+</tr>
+<tr>
+<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top">
+<div align="center">
+<hr width="100%"/>
+<p><a href="#top"> <img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"/></a>
+</p>
+</div>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#993300" colspan="2" valign="top">
+<h2 align="CENTER"><font color="#FFFF00"><a name="part1"></a><font face="Arial, Helvetica, sans-serif">Declaring 
               a single dimension table</font></font></h2>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p align="left">In the &quot;Using Tables&quot; tutorial we saw how 
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
+</td>
+<td valign="top" width="525">
+<p align="left">In the "Using Tables" tutorial we saw how 
               would could use a table to hold county tax totals. We even had a 
               brief look at how that table might be created. </p>
-            <p align="left">In this section we will examine, in more detail, how 
+<p align="left">In this section we will examine, in more detail, how 
               a single dimension table, like the CountyTaxTable, may be created.</p>
-            <hr size="1" width="100%">
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Tables 
+<hr size="1" width="100%"/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Tables 
               - general notes</font></h4>
-            <h4>&nbsp;</h4>
-            <h4 align="center"><font size="-1"> </font></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p align="left">Most programming languages use the term "array" to 
+
+<h4 align="center"><font size="-1"> </font></h4>
+</td>
+<td valign="top" width="525">
+<p align="left">Most programming languages use the term "array" to 
               describe repeated, or multiple- occurrence, data-items. COBOL uses 
               the term "table". </p>
-            <p>The repeated components of a table are referred to as its <i>elements</i>. 
+<p>The repeated components of a table are referred to as its <i>elements</i>. 
               In the program text, a table is declared by specifying - </p>
-            <ul>
-              <li> the type, or structure, of a single data-item (element) </li>
-              <li> the number of times the data-item (element) is repeated.</li>
-            </ul>
-            <p>Tables have the following attributes</p>
-            <ul>
-              <li> a single name is used to identify all the elements </li>
-              <li>individual elements can be identified using an index or subscript 
+<ul>
+<li> the type, or structure, of a single data-item (element) </li>
+<li> the number of times the data-item (element) is repeated.</li>
+</ul>
+<p>Tables have the following attributes</p>
+<ul>
+<li> a single name is used to identify all the elements </li>
+<li>individual elements can be identified using an ÂindexÂ or ÂsubscriptÂ 
               </li>
-              <li>all elements have the same type or structure </li>
-              <li>COBOL arrays/tables, always start at element 1 (not 0) and go 
+<li>all elements have the same type or structure </li>
+<li>COBOL arrays/tables, always start at element 1 (not 0) and go 
                 on to the maximum size of the table. </li>
-              <li>We indicate which element we want by using the element name 
+<li>We indicate which element we want by using the element name 
                 followed by the index/subscript in brackets (see examples below). 
               </li>
-            </ul>
-            <p align="left">A table is stored in memory as a contiguous block 
+</ul>
+<p align="left">A table is stored in memory as a contiguous block 
               of bytes. </p>
-            <hr width="100%" size="1">
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Using 
+<hr size="1" width="100%"/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Using 
               the OCCURS clause to declare a table</font></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>Tables are declared using an extension to the <font size="-1">PICTURE</font> 
+</td>
+<td valign="top" width="525">
+<p>Tables are declared using an extension to the <font size="-1">PICTURE</font> 
               clause, called the <font size="-1">OCCURS </font>clause. To declare 
               a table, we define the type and size of the table element, and then 
               use the <font size="-1">OCCURS</font> clause to specify how many 
               times the element <font size="-1">OCCURS</font> (see the examples 
               below). </p>
-            <p>The <font size="-1">OCCURS</font> clause may appear before, or 
+<p>The <font size="-1">OCCURS</font> clause may appear before, or 
               after, the <font size="-1">PICTURE</font> clause that defines the 
               element. For instance, we might declare the <i>CountyTaxTable</i> 
               as - </p>
-            <blockquote> 
-              <pre>01 CountyTax   PIC 9(8)V99  OCCURS 26 TIMES.</pre>
-              <blockquote> 
-                <p>or as</p>
-              </blockquote>
-              <pre>01 CountyTax   OCCURS 26 TIMES PIC 9(8)V99.
+<blockquote>
+<pre>01 CountyTax   PIC 9(8)V99  OCCURS 26 TIMES.</pre>
+<blockquote>
+<p>or as</p>
+</blockquote>
+<pre>01 CountyTax   OCCURS 26 TIMES PIC 9(8)V99.
 </pre>
-            </blockquote>
-            <div align="left"> 
-              <p>We can represent the county tax table diagrammatically as follows;</p>
-              <p align="center"><a href="Resources/ppz/TC-Tables1.html"><img src="Resources/pics/Tables1.gif" width="456" height="71" border="0"></a> 
-              </p>
-              <p align="left">In the example above, we can only refer to the individual 
+</blockquote>
+<div align="left">
+<p>We can represent the county tax table diagrammatically as follows;</p>
+<p align="center"><a href="Resources/ppz/TC-Tables1.html"><img border="0" height="71" src="Resources/pics/Tables1.gif" width="456"/></a>
+</p>
+<p align="left">In the example above, we can only refer to the individual 
                 elements of the table (see rule 2 for subscripts below). We can 
                 refer to CountyTax(1) or CountyTax(12) but we have no name for 
                 the whole table. It is often very useful to be able to refer to 
                 the whole table and so it is usual to define a table as subordinate 
                 to a group item which is named to indicate the whole table. For 
                 example the CountyTax table would probably be described as -</p>
-              <pre align="left">01 CountyTaxTable.
+<pre align="left">01 CountyTaxTable.
 
    02 CountyTax  PIC 9(8)V99  OCCURS 26 TIMES.</pre>
-              <p>When declared like this we can refer to <i>CountyTax(sub)</i> 
+<p>When declared like this we can refer to <i>CountyTax(sub)</i> 
                 when we want to access an element of the table and <i>CountyTaxTable</i> 
                 when we want to refer to the whole table.</p>
-              <hr size="1" width="100%">
-            </div>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">OCCURS 
+<hr size="1" width="100%"/>
+</div>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">OCCURS 
               clause syntax and rules</font></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>This section of the tutorial introduces simple version of the <font size="-1">OCCURS</font> 
+</td>
+<td valign="top" width="525">
+<p>This section of the tutorial introduces simple version of the <font size="-1">OCCURS</font> 
               clause but keep in mind that the <font size="-1">OCCURS</font> clause 
               contains a number of other entries; including entries for declaring 
               variable length tables and for satisfying the special requirements 
               of the <font size="-1">SEARCH</font> verb.</p>
-            <p>The syntax for the simple version of the <font size="-1">OCCURS</font> 
+<p>The syntax for the simple version of the <font size="-1">OCCURS</font> 
               clause is -</p>
-            <blockquote> 
-              <p><u>OCCURS</u> <i>TableSize#l</i> TIMES</p>
-            </blockquote>
-            <p><b>Rules for the <font size="-1">OCCURS</font> clause</b></p>
-            <ol>
-              <li> The <font size="-1">OCCURS</font> clause cannot appear in the 
+<blockquote>
+<p><u>OCCURS</u> <i>TableSize#l</i> TIMES</p>
+</blockquote>
+<p><b>Rules for the <font size="-1">OCCURS</font> clause</b></p>
+<ol>
+<li> The <font size="-1">OCCURS</font> clause cannot appear in the 
                 description of a level 77 data name. </li>
-              <li>Any data-item whose description includes an occurs clause must 
+<li>Any data-item whose description includes an occurs clause must 
                 be subscripted when referred to. </li>
-              <li>Any data-item which is subordinate to a group item whose description 
+<li>Any data-item which is subordinate to a group item whose description 
                 contains an occurs clause must be subscripted when referred to.
               </li>
-            </ol>
-            <p><b>Rules for subscripts</b></p>
-            <ol>
-              <li><b> </b>Each subscript must be either a positive integer, a 
+</ol>
+<p><b>Rules for subscripts</b></p>
+<ol>
+<li><b> </b>Each subscript must be either a positive integer, a 
                 data name which represents one, or a simple expression which evaluates 
                 to one. </li>
-              <li>The subscript must contain a value between 1 and the number 
+<li>The subscript must contain a value between 1 and the number 
                 of elements in the table/array inclusive. </li>
-              <li>When more than one subscript is used they must be separated 
+<li>When more than one subscript is used they must be separated 
                 from one another by commas. </li>
-              <li>One subscript must be specified for each dimension of the table. 
+<li>One subscript must be specified for each dimension of the table. 
                 There must be 1 for a one dimension table, 2 subscripts for a 
                 two dimension table and 3 for a three dimension table.</li>
-              <li>The first subscript applies to the first <font size="-1">OCCURS</font> 
+<li>The first subscript applies to the first <font size="-1">OCCURS</font> 
                 clause, the second applies to the second <font size="-1">OCCURS</font> 
                 clause, and so on.</li>
-              <li> Subscripts must be enclosed in parentheses/brackets.</li>
-            </ol>
-            <hr size="1" width="100%">
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Table 
+<li> Subscripts must be enclosed in parentheses/brackets.</li>
+</ol>
+<hr size="1" width="100%"/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Table 
               examples and some SAQ's</font></h4>
-            <h4>&nbsp;</h4>
-            <h4>&nbsp;</h4>
-            <h4>&nbsp;</h4>
-            <h4>&nbsp;</h4>
-            <h4>&nbsp;</h4>
-            <h4>&nbsp;</h4>
-            <h4>&nbsp;</h4>
-            <h4>&nbsp;</h4>
-            <h4>&nbsp;</h4>
-            <h4 align="center"><img src="Resources/pics/i-SAQ2.gif" width="32" height="46"></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>Examine the example table declarations below and then attempt to 
+
+
+
+
+
+
+
+
+
+<h4 align="center"><img height="46" src="Resources/pics/i-SAQ2.gif" width="32"/></h4>
+</td>
+<td valign="top" width="525">
+<p>Examine the example table declarations below and then attempt to 
               answer the self assessment questions.</p>
-            <table width="475" border="1" align="center" background="Resources/pics/code.gif" cellpadding="5" height="171">
-              <tr> 
-                <td> 
-                  <pre>WORKING-STORAGE SECTION.
+<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" height="171" width="475">
+<tr>
+<td>
+<pre>WORKING-STORAGE SECTION.
 01 DeptTotalsTable.
    02 DeptTotal PIC 9(6) OCCURS 7.
 
@@ -343,203 +406,203 @@
 
 
 01 MonthName   PIC X(3)OCCURS 12 TIMES. </pre>
-                </td>
-              </tr>
-            </table>
-            <p>&nbsp;</p>
-            <form method="post" action="Tables2.html">
-              <div align="center"> 
-                <table width="96%" border="1" bgcolor="#E1FFE1">
-                  <tr> 
-                    <td width="8%" bgcolor="#FFFFCC">Q1</td>
-                    <td width="62%">What happens to the elements of the DeptTotalsTable 
+</td>
+</tr>
+</table>
+
+<form action="Tables2.html" method="post">
+<div align="center">
+<table bgcolor="#E1FFE1" border="1" width="96%">
+<tr>
+<td bgcolor="#FFFFCC" width="8%">Q1</td>
+<td width="62%">What happens to the elements of the DeptTotalsTable 
                       when the statement <font size="-1"><i>MOVE ZEROS TO</i></font><i> 
                       DeptTotalsTable</i> is executed?</td>
-                    <td width="30%" valign="top"> 
-                      <select name="select5" size="1">
-                        <option selected>Click the arrow for the answer</option>
-                        <option>-----------------------------------------------------------------</option>
-                        <option>Every element of the table is filled with </option>
-                        <option>zeros.</option>
-                      </select>
-                    </td>
-                  </tr>
-                  <tr> 
-                    <td width="8%" bgcolor="#FFFFCC">Q2</td>
-                    <td width="62%">What happens when the statement <font size="-1"><i>MOVE 
+<td valign="top" width="30%">
+<select name="select5" size="1">
+<option selected="">Click the arrow for the answer</option>
+<option>-----------------------------------------------------------------</option>
+<option>Every element of the table is filled with </option>
+<option>zeros.</option>
+</select>
+</td>
+</tr>
+<tr>
+<td bgcolor="#FFFFCC" width="8%">Q2</td>
+<td width="62%">What happens when the statement <font size="-1"><i>MOVE 
                       </i></font><i>456</i><font size="-1"><i> TO</i></font><i> 
                       DeptTotal(5)</i> is executed?</td>
-                    <td width="30%" valign="top"> 
-                      <select name="select6" size="1">
-                        <option selected>Click the arrow for the answer</option>
-                        <option>-----------------------------------------------------------------</option>
-                        <option>The value 456 is moved into the fifth </option>
-                        <option>element of the DeptTotalsTable</option>
-                      </select>
-                    </td>
-                  </tr>
-                  <tr> 
-                    <td width="8%" bgcolor="#FFFFCC">Q3</td>
-                    <td width="62%">What statement would we have to write to display 
+<td valign="top" width="30%">
+<select name="select6" size="1">
+<option selected="">Click the arrow for the answer</option>
+<option>-----------------------------------------------------------------</option>
+<option>The value 456 is moved into the fifth </option>
+<option>element of the DeptTotalsTable</option>
+</select>
+</td>
+</tr>
+<tr>
+<td bgcolor="#FFFFCC" width="8%">Q3</td>
+<td width="62%">What statement would we have to write to display 
                       the second VAT rate in the VATRateTable?</td>
-                    <td width="30%" valign="top"> 
-                      <select name="select7" size="1">
-                        <option selected>Click the arrow for the answer</option>
-                        <option>-----------------------------------------------------------------</option>
-                        <option>DISPLAY VATRate(2)</option>
-                      </select>
-                    </td>
-                  </tr>
-                  <tr> 
-                    <td width="8%" bgcolor="#FFFFCC">Q4</td>
-                    <td width="62%">What is the purpose of the level 88 attached 
+<td valign="top" width="30%">
+<select name="select7" size="1">
+<option selected="">Click the arrow for the answer</option>
+<option>-----------------------------------------------------------------</option>
+<option>DISPLAY VATRate(2)</option>
+</select>
+</td>
+</tr>
+<tr>
+<td bgcolor="#FFFFCC" width="8%">Q4</td>
+<td width="62%">What is the purpose of the level 88 attached 
                       to the RatesTable?</td>
-                    <td width="30%" valign="top"> 
-                      <select name="select8" size="1">
-                        <option selected>Click the arrow for the answer</option>
-                        <option>-----------------------------------------------------------------</option>
-                        <option>The TableNotPrimed condition name is</option>
-                        <option>true is the whole table contains zeros i.e. </option>
-                        <option>has not yet been filled with the exchange</option>
-                        <option>rates.</option>
-                      </select>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-              <p>&nbsp;</p>
-            </form>
-            <hr size="1" width="100%">
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Declaring 
+<td valign="top" width="30%">
+<select name="select8" size="1">
+<option selected="">Click the arrow for the answer</option>
+<option>-----------------------------------------------------------------</option>
+<option>The TableNotPrimed condition name is</option>
+<option>true is the whole table contains zeros i.e. </option>
+<option>has not yet been filled with the exchange</option>
+<option>rates.</option>
+</select>
+</td>
+</tr>
+</table>
+</div>
+
+</form>
+<hr size="1" width="100%"/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Declaring 
               a variable length table.</font></h4>
-            <h4>&nbsp;</h4>
-            <h4>&nbsp;</h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>A variable-length table may be declared using the <font size="-1">OCCURS</font> 
+
+
+</td>
+<td valign="top" width="525">
+<p>A variable-length table may be declared using the <font size="-1">OCCURS</font> 
               clause syntax below.</p>
-            <blockquote> 
-              <p><u>OCCURS</u> <i>SmallestSize#l </i>TO<i> LargestSize#l</i> TIMES<br>
+<blockquote>
+<p><u>OCCURS</u> <i>SmallestSize#l </i>TO<i> LargestSize#l</i> TIMES<br/>
                 DEPENDING ON ActualSize#i</p>
-            </blockquote>
-            <p> The amount of storage allocated to a variable-length table is 
+</blockquote>
+<p> The amount of storage allocated to a variable-length table is 
               defined by the value of<i> LargestSize</i> and is assigned at compile 
               time. Standard COBOL has no mechanism for dynamic memory allocation, 
               although the coming OO-COBOL standard addresses this problem.</p>
-            <p><b>Rules</b></p>
-            <ol>
-              <li>ActualSize#i cannot itself be a data-item in a table.</li>
-              <li>This format may only be use to vary the number of elements in 
+<p><b>Rules</b></p>
+<ol>
+<li>ActualSize#i cannot itself be a data-item in a table.</li>
+<li>This format may only be use to vary the number of elements in 
                 the first dimension of a table.</li>
-            </ol>
-            <p><b>Example</b></p>
-            <pre>01 BooksReservedTable. 
+</ol>
+<p><b>Example</b></p>
+<pre>01 BooksReservedTable. 
    02 BookId PIC 9(7) OCCURS 1 TO 10 
                       DEPENDING ON NumOfReservations. </pre>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="top" align="left" bgcolor="#FFFFFF" colspan="2"> 
-            <div align="center"> 
-              <hr width="100%">
-              <p><a href="#top"> <img src="Resources/pics/i-pagetop.gif" width="132" height="38" border="0"></a> 
-              </p>
-            </div>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="top" align="LEFT" bgcolor="#993300" colspan="2"> 
-            <h2 align="CENTER"><font color="#FFFF00"><a name="part2"></a><font face="Arial, Helvetica, sans-serif">Group 
+</td>
+</tr>
+<tr>
+<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top">
+<div align="center">
+<hr width="100%"/>
+<p><a href="#top"> <img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"/></a>
+</p>
+</div>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#993300" colspan="2" valign="top">
+<h2 align="CENTER"><font color="#FFFF00"><a name="part2"></a><font face="Arial, Helvetica, sans-serif">Group 
               items as elements</font></font></h2>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
-            <h4>&nbsp;</h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>The elements of a table do not have to be elementary items. An 
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
+
+</td>
+<td valign="top" width="525">
+<p>The elements of a table do not have to be elementary items. An 
               element can be a group item. In other words each element can be 
               subdivided into two, or more, subordinate items.</p>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Setting 
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Setting 
               up a combined table</font></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>Let's illustrate this with an example. Suppose the specification 
+</td>
+<td valign="top" width="525">
+<p>Let's illustrate this with an example. Suppose the specification 
               of the County Tax Report program were changed to say that, as well 
               as the amount of tax paid in each county, the report should also 
               display the number of tax payers. </p>
-            <p>One way we could satisfy this change to the specification would 
+<p>One way we could satisfy this change to the specification would 
               involve setting up separate tables to hold the county tax totals 
               and county tax payer counts. For example- </p>
-            <pre>01 CountyTaxTable.
+<pre>01 CountyTaxTable.
    02 CountyTax   PIC 9(8)V99  OCCURS 26 TIMES.
 
 
 01 CountyPayerTable.
    02 PayerCount  PIC 9(7) OCCURS 26 TIMES.</pre>
-            <p>But we could also solve the problem by setting up just a single 
+<p>But we could also solve the problem by setting up just a single 
               table and defining each element as a group item. The group item 
               would consist of the <i>CountyTax</i> and the <i>PayerCount</i>. 
             </p>
-            <p>For example -</p>
-            <pre>01 CountyTaxTable.
+<p>For example -</p>
+<pre>01 CountyTaxTable.
    02 CountyTaxDetails OCCURS 26 TIMES.
       03 CountyTax   PIC 9(8)V99.  
       03 PayerCount  PIC 9(7). </pre>
-            <p>In this example, <i>CountyTaxTable</i> is the name for the whole 
+<p>In this example, <i>CountyTaxTable</i> is the name for the whole 
               table and each element is called <i>CountyTaxDetails</i>. The element 
               is further subdivided into the elementary items <i>CountyTax </i>and 
               <i>PayerCount</i>. </p>
-            <p>We can represent this table diagrammatically as follows;</p>
-            <p align="center"><img src="Resources/pics/Tables3.gif" width="466" height="149"></p>
-            <p>To refer to an item that is subordinate to table element, the same 
+<p>We can represent this table diagrammatically as follows;</p>
+<p align="center"><img height="149" src="Resources/pics/Tables3.gif" width="466"/></p>
+<p>To refer to an item that is subordinate to table element, the same 
               number of subscripts must be used as when referring to the element 
               itself. So, to refer to <i>CountyTaxDetails</i>, <i>CountyTax </i>and 
               <i>PayerCount </i>in the table above, the form CountyTaxDetails(sub), 
               CountyTax(sub) and PayerCount(sub) must be used. </p>
-            <hr size="1" width="100%">
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Self 
+<hr size="1" width="100%"/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Self 
               Assessment Questions and animated example</font></h4>
-            <h4 align="center"><img src="Resources/pics/i-SAQ2.gif" width="32" height="46"></h4>
-            <h4>&nbsp;</h4>
-            <h4>&nbsp;</h4>
-            <h4>&nbsp;</h4>
-            <h4>&nbsp;</h4>
-            <h4>&nbsp;</h4>
-            <h4 align="center">&nbsp;</h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>Q1. Examine the CountyTaxTable described above. Suppose that in 
+<h4 align="center"><img height="46" src="Resources/pics/i-SAQ2.gif" width="32"/></h4>
+
+
+
+
+
+
+</td>
+<td valign="top" width="525">
+<p>Q1. Examine the CountyTaxTable described above. Suppose that in 
               our program we have the following statements;</p>
-            <blockquote> 
-              <pre>MOVE ZEROS TO CountyTax(3)
+<blockquote>
+<pre>MOVE ZEROS TO CountyTax(3)
 MOVE 67 TO PayerCount(6)
 MOVE 1234.45 TO CountyTax(4)
 MOVE ZEROS TO CountyTaxDetails(4)
 MOVE ZEROS TO CountyTaxTable</pre>
-            </blockquote>
+</blockquote>
             What effect on the table will each of these statements have? Copy 
             the table diagram above, fill in your answer and then click on the 
             animation icon below to see the animated solution. 
-            <p align="center"><a href="Resources/ppz/TC-Tables3.html"><img src="Resources/pics/i-Animation.gif" width="62" height="62" border="0"></a></p>
-            <p>&nbsp;</p>
-            <p>Q2. What is the difference between the following data descriptions;</p>
-            <blockquote> 
-              <pre>01 CountyTaxTable1.
+            <p align="center"><a href="Resources/ppz/TC-Tables3.html"><img border="0" height="62" src="Resources/pics/i-Animation.gif" width="62"/></a></p>
+
+<p>Q2. What is the difference between the following data descriptions;</p>
+<blockquote>
+<pre>01 CountyTaxTable1.
    02 CountyTaxDetails OCCURS 26 TIMES.
       03 CountyTax   PIC 9(8)V99.  
       03 PayerCount  PIC 9(7). 
@@ -551,60 +614,60 @@ MOVE ZEROS TO CountyTaxTable</pre>
       03 CountyTax   PIC 9(8)V99 OCCURS 26 TIMES.  
       03 PayerCount  PIC 9(7)OCCURS 26 TIMES. 
 </pre>
-            </blockquote>
-            <form method="post" action="Tables2.html">
-              <div align="center"> 
-                <select name="select" size="1">
-                  <option selected>Click the arrow for the answer</option>
-                  <option>------------------------------------------------------------------------------------------------------------------------</option>
-                  <option>CountyTaxTable1 is a table where each element is a group 
+</blockquote>
+<form action="Tables2.html" method="post">
+<div align="center">
+<select name="select" size="1">
+<option selected="">Click the arrow for the answer</option>
+<option>------------------------------------------------------------------------------------------------------------------------</option>
+<option>CountyTaxTable1 is a table where each element is a group 
                   item that is </option>
-                  <option>divided into the items CountyTax and PayerCount.</option>
-                  <option>In CountyTaxTable2, CountyTax and PayerCount are two 
+<option>divided into the items CountyTax and PayerCount.</option>
+<option>In CountyTaxTable2, CountyTax and PayerCount are two 
                   separate tables.</option>
-                  <option>CountyTaxDetails and CountTaxTable2 are group items 
+<option>CountyTaxDetails and CountTaxTable2 are group items 
                   that contain </option>
-                  <option>these two tables.</option>
-                </select>
-              </div>
-            </form>
-            <p>&nbsp;</p>
-            <hr width="100%" size="1">
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Example 
+<option>these two tables.</option>
+</select>
+</div>
+</form>
+
+<hr size="1" width="100%"/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Example 
               program </font></h4>
-            <h4>&nbsp;</h4>
-            <h4>&nbsp;</h4>
-            <h4>&nbsp;</h4>
-            <h4>&nbsp;</h4>
-            <h4>&nbsp;</h4>
-            <h4>&nbsp;</h4>
-            <h4>&nbsp;</h4>
-            <h4>&nbsp;</h4>
-            <h4>&nbsp;</h4>
-            <h4>&nbsp;</h4>
-            <h4>&nbsp;</h4>
-            <h4 align="center"><img src="Resources/pics/program.gif" width="42" height="44"></h4>
-            <h4 align="center">&nbsp;</h4>
-            <h4 align="center">&nbsp;</h4>
-            <h4 align="center">&nbsp;</h4>
-            <h4 align="center">&nbsp;</h4>
-            <h4 align="center">&nbsp;</h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>This example program implements the County Tax Report program. 
+
+
+
+
+
+
+
+
+
+
+
+<h4 align="center"><img height="44" src="Resources/pics/program.gif" width="42"/></h4>
+
+
+
+
+
+</td>
+<td valign="top" width="525">
+<p>This example program implements the County Tax Report program. 
               It has some interesting features;</p>
-            <ul>
-              <li>Each element of the table is a group item subdivided into CountyTax 
+<ul>
+<li>Each element of the table is a group item subdivided into CountyTax 
                 and PayerCount.</li>
-              <li>The CountyTax table is subordinate to the data-item CountyTaxTable 
+<li>The CountyTax table is subordinate to the data-item CountyTaxTable 
                 and this allows the table to be initialised to <font size="-1">ZEROS</font> 
                 with the statement <font size="-1"><i>MOVE ZEROS TO</i></font><i> 
                 CountyTaxTable</i></li>
-              <li>One of the data-items subordinate to the table element is monitored 
+<li>One of the data-items subordinate to the table element is monitored 
                 by the condition name - <i>NoOnePaidTax</i>. This means that a 
                 separate <i>NoOnePaidTax</i> condition name is attached to each 
                 element of the table. When we refer to <i>NoOnePaidTax</i> in 
@@ -613,11 +676,11 @@ MOVE ZEROS TO CountyTaxTable</pre>
                 referring to. In other words we need to specify that the <i>NoOnePaidTax</i> 
                 we are referring to is the one attached to the first element or 
                 to the second element or to the third element and so on.</li>
-            </ul>
-            <table width="475" border="1" align="center" background="Resources/pics/code.gif" cellpadding="5">
-              <tr> 
-                <td> 
-                  <pre>      $ SET SOURCEFORMAT"FREE"
+</ul>
+<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="475">
+<tr>
+<td>
+<pre>      $ SET SOURCEFORMAT"FREE"
 IDENTIFICATION DIVISION.
 PROGRAM-ID. CountyTaxTable.
 AUTHOR. Michael Coughlan.
@@ -679,227 +742,226 @@ DisplayCountyTaxes.
       MOVE PayerCount(Idx) TO PrnPayers
       DISPLAY CountyTaxLine
    END-IF.</pre>
-                </td>
-              </tr>
-            </table>
-            <p>&nbsp; </p>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="top" align="left" bgcolor="#FFFFFF" colspan="2"> 
-            <div align="center"> 
-              <hr>
-              <p><a href="#top"> <img src="Resources/pics/i-pagetop.gif" width="132" height="38" border="0"></a> 
-              </p>
-            </div>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="top" align="LEFT" bgcolor="#993300" colspan="2"> 
-            <h2 align="CENTER"><font color="#FFFF00"><a name="part3"></a><font face="Arial, Helvetica, sans-serif">Declaring 
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+<tr>
+<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top">
+<div align="center">
+<hr/>
+<p><a href="#top"> <img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"/></a>
+</p>
+</div>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#993300" colspan="2" valign="top">
+<h2 align="CENTER"><font color="#FFFF00"><a name="part3"></a><font face="Arial, Helvetica, sans-serif">Declaring 
               multi-dimension tables</font></font></h2>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p align="left">The Census Office has provided us with a file containing 
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
+</td>
+<td valign="top" width="525">
+<p align="left">The Census Office has provided us with a file containing 
               the AgeCategory, Gender, CountyCode and car ownership information 
               of every person in the country. The CensusFile is an unordered sequential 
               file and its records have the following description- </p>
-            <div align="center"> 
-              <table width="56%" border="1" bgcolor="#E1FFE1" cellpadding="5">
-                <tr bgcolor="#FFFFCC"> 
-                  <td width="32%"> 
-                    <div align="center"><b>Name</b></div>
-                  </td>
-                  <td width="26%"> 
-                    <div align="center"><b>Description</b></div>
-                  </td>
-                  <td width="42%"> 
-                    <div align="center"><b>Value</b></div>
-                  </td>
-                </tr>
-                <tr> 
-                  <td width="32%">CountyCode</td>
-                  <td width="26%"> 
-                    <div align="center">PIC 99</div>
-                  </td>
-                  <td width="42%"> 
-                    <div align="center">1-26</div>
-                  </td>
-                </tr>
-                <tr> 
-                  <td width="32%">AgeCategory</td>
-                  <td width="26%"> 
-                    <div align="center">PIC 9</div>
-                  </td>
-                  <td width="42%"> 
-                    <p align="left">1 = Child<br>
-                      2 = Teen<br>
+<div align="center">
+<table bgcolor="#E1FFE1" border="1" cellpadding="5" width="56%">
+<tr bgcolor="#FFFFCC">
+<td width="32%">
+<div align="center"><b>Name</b></div>
+</td>
+<td width="26%">
+<div align="center"><b>Description</b></div>
+</td>
+<td width="42%">
+<div align="center"><b>Value</b></div>
+</td>
+</tr>
+<tr>
+<td width="32%">CountyCode</td>
+<td width="26%">
+<div align="center">PIC 99</div>
+</td>
+<td width="42%">
+<div align="center">1-26</div>
+</td>
+</tr>
+<tr>
+<td width="32%">AgeCategory</td>
+<td width="26%">
+<div align="center">PIC 9</div>
+</td>
+<td width="42%">
+<p align="left">1 = Child<br/>
+                      2 = Teen<br/>
                       3 = Adult</p>
-                  </td>
-                </tr>
-                <tr> 
-                  <td width="32%">Gender</td>
-                  <td width="26%"> 
-                    <div align="center">PIC 9</div>
-                  </td>
-                  <td width="42%"> 
-                    <p> 1 = Female<br>
+</td>
+</tr>
+<tr>
+<td width="32%">Gender</td>
+<td width="26%">
+<div align="center">PIC 9</div>
+</td>
+<td width="42%">
+<p> 1 = Female<br/>
                       2 = Male </p>
-                  </td>
-                </tr>
-                <tr> 
-                  <td width="32%">CarOwner</td>
-                  <td width="26%"> 
-                    <div align="center">PIC X</div>
-                  </td>
-                  <td width="42%"> 
-                    <p align="center">Y/N</p>
-                  </td>
-                </tr>
-              </table>
-            </div>
-            <p align="left">&nbsp;</p>
-            <p align="left">Suppose we were asked to write a program to produce 
+</td>
+</tr>
+<tr>
+<td width="32%">CarOwner</td>
+<td width="26%">
+<div align="center">PIC X</div>
+</td>
+<td width="42%">
+<p align="center">Y/N</p>
+</td>
+</tr>
+</table>
+</div>
+
+<p align="left">Suppose we were asked to write a program to produce 
               a report displaying the number of males, and the number of females, 
               in each AgeCategory - Child, Teen and Adult. How would we go about 
               it? </p>
-            <p align="left">&nbsp;</p>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Problem 
+
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Problem 
               discussion</font></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p align="left">One way to solve this problem, would be to sort the 
+</td>
+<td valign="top" width="525">
+<p align="left">One way to solve this problem, would be to sort the 
               file on AgeCategory and Gender, and then treat it as a control break 
               problem. </p>
-            <p align="left">Another way to solve the problem, would be to set 
+<p align="left">Another way to solve the problem, would be to set 
               up a number of total variables and then, when a record is read, 
               use the AgeCategory and Gender information to tell us which total 
               to increment. </p>
-            <p align="left">In this particular problem there are only six totals 
+<p align="left">In this particular problem there are only six totals 
               required - CFTotal, CMTotal, TFTotal, TMTotal, AFTotal, AMTotal 
               - so a solution which involves creating these totals and using an 
               <font size="-1">EVALUATE </font>to decide which total to increment, 
               would not be entirely out of the question.</p>
-            <p align="left">But instead of an <font size="-1">EVALUATE-</font>based 
+<p align="left">But instead of an <font size="-1">EVALUATE-</font>based 
               solution let's consider using a table to hold the totals. What kind 
               of a table might we require? We can see that six totals are needed, 
               so we might think that the six element, single-dimension, table 
               shown below might do the trick.</p>
-            <blockquote> 
-              <pre>01 PopulationTable.
+<blockquote>
+<pre>01 PopulationTable.
    02 PopTotal PIC 9(6) OCCURS 6 TIMES.</pre>
-            </blockquote>
-            <p align="left">The problem with this is - what can we use as an index 
+</blockquote>
+<p align="left">The problem with this is - what can we use as an index 
               into the table? No single item in the record will do. The index 
               must be a combination of the <i>AgeCategory</i> and the <i>Gender</i>. 
               Of course, we could use an <font size="-1">EVALUATE</font>, as shown 
               below, to map the <i>AgeCategory</i> and <i>Gender</i> to a combined 
               index value.</p>
-            <blockquote> 
-              <pre align="left">EVALUATE AgeCategory ALSO Gender
+<blockquote>
+<pre align="left">EVALUATE AgeCategory ALSO Gender
   WHEN        1      ALSO    1      MOVE 1 TO Idx
   WHEN        1      ALSO    2      MOVE 2 TO Idx
   WHEN        2      ALSO    1      MOVE 3 TO Idx
           etc...
 END-EVALUATE.
 </pre>
-            </blockquote>
-            <p align="left">Or we could manipulate the values arithmetically to 
+</blockquote>
+<p align="left">Or we could manipulate the values arithmetically to 
               map them to the index value. For instance <i>COMPUTE Idx = ((AgeCategory 
               -1) * 2) + Gender</i></p>
-            <p align="left">But both these methods lack something in elegance 
+<p align="left">But both these methods lack something in elegance 
               and will be difficult to extend when, as I'm sure you have anticipated, 
               we ask for the population information to be provided for each county.</p>
-            <p align="left">The best, and most extensible, solution to the problem 
+<p align="left">The best, and most extensible, solution to the problem 
               is to set up a two dimension table to hold the totals. Since the 
               elements of a two dimension table require two subscripts, we can 
               use the AgeCategory and the Gender to identify the particular element 
               we need to access.</p>
-            
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">A two 
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">A two 
               dimension table</font></h4>
-            <h4 align="center">&nbsp;</h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p align="left">A multi-dimension table is declared by nesting <font size="-1">OCCURS</font> 
+
+</td>
+<td valign="top" width="525">
+<p align="left">A multi-dimension table is declared by nesting <font size="-1">OCCURS</font> 
               clauses. So we can define the two dimension <i>PopulationTable</i> 
               as follows - </p>
-            <pre align="left">01 PopulationTable.
+<pre align="left">01 PopulationTable.
    02 Age OCCURS 3 TIMES.
       03 PopTotal   PIC 9(6)OCCURS 2 TIMES.
 
       </pre>
-            <p align="left">While the table description shown above is correct; 
+<p align="left">While the table description shown above is correct; 
               it is not, perhaps, as understandable as it might be. You might 
               prefer to define the table as shown below.</p>
-            <pre align="left"><b>01 PopulationTable.
+<pre align="left"><b>01 PopulationTable.
 <font color="#FF0000">   02 Age OCCURS 3 TIMES</font>.
       <font color="#008000">03 Gender OCCURS 2 TIMES.
 </font>         <font color="#666666">04 PopTotal   PIC 9(6).</font><font color="#008040"> </font></b>
 </pre>
-            <p align="left">We can represent this table diagrammatically as -</p>
-            <p align="center"><img src="Resources/pics/Tables4.gif" width="470" height="170"></p>
-            <p align="left">Two dimension tables are sometimes represented as 
+<p align="left">We can represent this table diagrammatically as -</p>
+<p align="center"><img height="170" src="Resources/pics/Tables4.gif" width="470"/></p>
+<p align="left">Two dimension tables are sometimes represented as 
               a row and column grid, but that representation has the flaw that 
               it does not accurately reflect the data hierarchy.</p>
-            <p align="left">The diagram above uses the correct representation 
+<p align="left">The diagram above uses the correct representation 
               for a two dimension table because it expresses the data hierarchy 
               inherent in the table description where one <font size="-1">OCCURS</font> 
               clause is subordinate to the another. </p>
-            <hr width="100%" size="1">
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Self 
+<hr size="1" width="100%"/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Self 
               Assessment Questions and examples</font></h4>
-            <h4 align="center"><img src="Resources/pics/i-SAQ2.gif" width="32" height="46"></h4>
-            <h4>&nbsp;</h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>Sketch the diagram above on a piece of paper and then show how 
+<h4 align="center"><img height="46" src="Resources/pics/i-SAQ2.gif" width="32"/></h4>
+
+</td>
+<td valign="top" width="525">
+<p>Sketch the diagram above on a piece of paper and then show how 
               the contents of the table are effected when the following statements 
               are executed.</p>
-            <blockquote> 
-              <pre>MOVE ZEROS TO PopulationTable
+<blockquote>
+<pre>MOVE ZEROS TO PopulationTable
 MOVE 123 TO PopTotal(3,1)
 MOVE 456 TO Gender(3,2)
 ADD 1255 TO PopTotal(2,2)
 MOVE ZEROS TO Age(3)</pre>
-            </blockquote>
-            <p>Click on the animation icon below to see an animated answer.</p>
-            <p align="center"><a href="Resources/ppz/TC-Tables4.html"><img src="Resources/pics/i-Animation.gif" width="62" height="62" border="0"></a></p>
-            <hr size="1" width="100%">
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Displaying 
+</blockquote>
+<p>Click on the animation icon below to see an animated answer.</p>
+<p align="center"><a href="Resources/ppz/TC-Tables4.html"><img border="0" height="62" src="Resources/pics/i-Animation.gif" width="62"/></a></p>
+<hr size="1" width="100%"/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Displaying 
               the population report for each county</font></h4>
-            <h4>&nbsp;</h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>Let's suppose that the specification for the Population Report 
+
+</td>
+<td valign="top" width="525">
+<p>Let's suppose that the specification for the Population Report 
               problem changes so that instead of just producing the Age/Gender 
               totals for the country we are asked to display these totals for 
               each county. How can we solve the problem?</p>
-            <p>If we are asked to display the six Age/Gender totals for each county 
+<p>If we are asked to display the six Age/Gender totals for each county 
               then we will obviously need to store 26 instances of the Age/Gender 
               totals. We could of course do this as</p>
-            <pre>01 CountyTotal01.
+<pre>01 CountyTotal01.
    02 Age OCCURS 3 TIMES.
       03 Gender OCCURS 2 TIMES.
          04 PopTotal   PIC 9(6).
@@ -912,117 +974,117 @@ MOVE ZEROS TO Age(3)</pre>
          04 PopTotal   PIC 9(6).
 
          etc....</pre>
-            <p>But by now you are aware of the arguments against this approach 
+<p>But by now you are aware of the arguments against this approach 
               so let's go directly to the table based solution.</p>
-            <p>What we want to do is to create a 26 element table, each element 
+<p>What we want to do is to create a 26 element table, each element 
               of which contains the two dimension table defined above. Two dimensions 
               plus one dimension equals three dimensions. What we need is a three 
               dimension table.</p>
-            <p>&nbsp;</p>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Creating 
+
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Creating 
               a three dimension table</font></h4>
-            <h4>&nbsp;</h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>Creating a three dimension table from the existing two dimension 
+
+</td>
+<td valign="top" width="525">
+<p>Creating a three dimension table from the existing two dimension 
               table is as simple as inserting another occurs clause. The three 
               dimension <i>PopulationTable</i> may be defined as shown below. 
               To access the <i>PopTotal</i> element three subscripts are now required, 
               one for each <font size="-1">OCCURS </font>clause.</p>
-            <pre><b>01 PopulationTable.
+<pre><b>01 PopulationTable.
 <font color="#FF0000">   02 County OCCURS 26 TIMES.
 </font><font color="#008000">      03 Age OCCURS 3 TIMES.
 </font><font color="#000080">         04 Gender OCCURS 2 TIMES.
 </font>          <font color="#666666">  05 PopTotal   PIC 9(6). </font> 
 </b></pre>
-            <p>This table may be represented diagrammatically as follows - </p>
-            <p align="center"><img src="Resources/pics/Tables5.gif" width="480" height="145"></p>
-            <hr size="1" width="100%">
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Self 
+<p>This table may be represented diagrammatically as follows - </p>
+<p align="center"><img height="145" src="Resources/pics/Tables5.gif" width="480"/></p>
+<hr size="1" width="100%"/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Self 
               Assessment Questions and examples</font></h4>
-            <h4>&nbsp;</h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>Sketch the diagram above on a piece of paper and then show how 
+
+</td>
+<td valign="top" width="525">
+<p>Sketch the diagram above on a piece of paper and then show how 
               the contents of the table are effected when the following statements 
               are executed.</p>
-            <blockquote> 
-              <pre>MOVE ZEROS TO County(1)
+<blockquote>
+<pre>MOVE ZEROS TO County(1)
 MOVE ZEROS TO Age(2,3)
 MOVE ZEROS TO PopTotal(2,1,2)
 MOVE 56 TO PopTotal(1,3,2)
 MOVE 12 TO PopTotal(2,1,1) 
 MOVE ZEROS TO PopulationTable</pre>
-            </blockquote>
-            <p>Click on the animation icon below to see an animated answer.</p>
-            <p align="center"><a href="Resources/ppz/TC-Tables5.html"><img src="Resources/pics/i-Animation.gif" width="62" height="62" border="0"></a></p>
-            <hr width="100%" size="1">
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">One 
+</blockquote>
+<p>Click on the animation icon below to see an animated answer.</p>
+<p align="center"><a href="Resources/ppz/TC-Tables5.html"><img border="0" height="62" src="Resources/pics/i-Animation.gif" width="62"/></a></p>
+<hr size="1" width="100%"/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">One 
               last tweak to the problem specification.</font></h4>
-            <h4>&nbsp;</h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>As well as the AgeCategory, Gender and CountyCode fields, the Census 
+
+</td>
+<td valign="top" width="525">
+<p>As well as the AgeCategory, Gender and CountyCode fields, the Census 
               File provides information on the car ownership of every person in 
               the country. </p>
-            <p>Suppose that the specification for the Population Report is changed 
+<p>Suppose that the specification for the Population Report is changed 
               so that as well as displaying the Age/Gender combination totals 
               for each county, we are asked to display a total showing the number 
               of people who own cars in each county.</p>
-            <p>One perfectly acceptable way of solving the problem would be to 
+<p>One perfectly acceptable way of solving the problem would be to 
               set up a separate, 26 element, CarOwers table to hold the totals.</p>
-            <p>But suppose we wanted to store the car owners totals in the existing 
+<p>But suppose we wanted to store the car owners totals in the existing 
               PopulationTable. How could we reorganise the PopulationTable to 
               allow this to be done? At what point in the existing PopulationTable 
               would we insert the CarOwnersTotal. </p>
-            <p>Let's examine the existing table and see if we can figure out where 
+<p>Let's examine the existing table and see if we can figure out where 
               the CarOwnersTotal should go.</p>
-            <pre><font color="#000000">01 PopulationTable.
+<pre><font color="#000000">01 PopulationTable.
    02 County OCCURS 26 TIMES.
       03 Age OCCURS 3 TIMES.
          04 Gender OCCURS 2 TIMES.
 </font>          <font color="#000000">  05 PopTotal   PIC 9(6). </font><b> </b></pre>
-            <p>We can't add <i>CarOwnersTotal </i>to the same level as the <i>PopTotal</i> 
+<p>We can't add <i>CarOwnersTotal </i>to the same level as the <i>PopTotal</i> 
               because that would create six CarOwnersTotals for each county - 
               one for each Age/Gender combination. We only want one CarOwnersTotal 
               for each county, so we must make the CarOwnersTotal subordinate 
               to the<font size="-1"> OCCURS</font> clause that deals with counties. 
             </p>
-            <p>When we do this, as shown in the table description below, what 
+<p>When we do this, as shown in the table description below, what 
               we are saying is that <i>County </i>is a 26 element table and each 
               element consists of the <i>CarOwnersTotal</i> and a two dimension 
               table containing the rest of the population information for the 
               county.</p>
-            <pre><font color="#000000"><b>01 PopulationTable.
+<pre><font color="#000000"><b>01 PopulationTable.
 <font color="#FF0000">   02 County OCCURS 26 TIMES.
 </font><font color="#616161">      03 CarOwnersTotal   PIC 9(6).</font><font color="#808080">
 </font><font color="#004000">      03 Age OCCURS 3 TIMES.
 </font><font color="#000080">         04 Gender OCCURS 2 TIMES.
 </font></b></font>          <font color="#616161"><b>  05 PopTotal   PIC 9(6).  </b></font></pre>
-            <p>We can represent the declaration above diagrammatically as follows 
+<p>We can represent the declaration above diagrammatically as follows 
               - </p>
-            <p align="center"><img src="Resources/pics/Tables6.gif" width="481" height="156"></p>
-            <p>One question we might have with this arrangement is - how many 
+<p align="center"><img height="156" src="Resources/pics/Tables6.gif" width="481"/></p>
+<p>One question we might have with this arrangement is - how many 
               subscripts are required when we refer to <i>CarOwnersTotal</i>? 
               To answer this we can frame a general rule - </p>
-            <blockquote>
-              <p>We need one subscript for each superordinate <font size="-1">OCCURS</font> 
+<blockquote>
+<p>We need one subscript for each superordinate <font size="-1">OCCURS</font> 
                 clause and an additional one if the item itself contains an <font size="-1">OCCURS</font> 
                 clause. </p>
-            </blockquote>
-            <p>Applying this rule, <i>CarOwnersTotal</i> only needs one subscript 
+</blockquote>
+<p>Applying this rule, <i>CarOwnersTotal</i> only needs one subscript 
               (only one superordinate <font size="-1">OCCURS</font> clause), <i>County</i> 
               only requires one subscript (no superordinate <font size="-1">OCCURS</font> 
               clause but contains an <font size="-1">OCCURS </font>clause itself), 
@@ -1030,39 +1092,39 @@ MOVE ZEROS TO PopulationTable</pre>
               clause and contains an <font size="-1">OCCURS </font>clause itself) 
               and <i>PopTotal</i> requires three subscripts (three superordinate 
               <font size="-1">OCCURS</font> clauses).</p>
-            <p><b>Examples of use</b></p>
-            <blockquote> 
-              <pre>MOVE ZEROS TO County(23)
+<p><b>Examples of use</b></p>
+<blockquote>
+<pre>MOVE ZEROS TO County(23)
 ADD 1643 TO CarOwnersTotal(15)
 MOVE ZEROS TO Age(17,3)
 MOVE ZEROS TO Gender(18,3,2)
 ADD 56 TO PopTotal(12,3,2)</pre>
-            </blockquote>
-            <p>&nbsp;</p>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="top" align="left" bgcolor="#FFFFFF" colspan="2"> 
-            <div align="center"> 
-              <hr>
-              <p><a href="#top"> <img src="Resources/pics/i-pagetop.gif" width="132" height="38" border="0"></a> 
-              </p>
-            </div>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="top" align="LEFT" bgcolor="#993300" colspan="2"> 
-            <h2 align="CENTER"><font color="#FFFF00"><a name="part4"></a> <font face="Arial, Helvetica, sans-serif">Creating 
+</blockquote>
+
+</td>
+</tr>
+<tr>
+<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top">
+<div align="center">
+<hr/>
+<p><a href="#top"> <img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"/></a>
+</p>
+</div>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#993300" colspan="2" valign="top">
+<h2 align="CENTER"><font color="#FFFF00"><a name="part4"></a> <font face="Arial, Helvetica, sans-serif">Creating 
               pre-filled tables with the REDEFINES clause</font></font></h2>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="top" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4 align="left"><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
-            <p align="left">&nbsp;</p>
-          </td>
-          <td width="525" valign="top"> 
-            <p>When a file that contains different types of record is declared 
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="175">
+<h4 align="left"><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
+
+</td>
+<td valign="top" width="525">
+<p>When a file that contains different types of record is declared 
               in the <font size="-1">FILE SECTION,</font> a record description 
               is created for each record type. But all these record descriptions 
               map on to the same area of storage. They are in effect, redefinitions 
@@ -1070,69 +1132,69 @@ ADD 56 TO PopTotal(12,3,2)</pre>
               allows us to achieve the same effect for units smaller than a record 
               and in the other parts of the <font size="-1">DATA DIVISION,</font> 
               not just the <font size="-1">FILE SECTION</font>.</p>
-            <p>The <font size="-1">REDEFINES</font> clause allows a programmer 
+<p>The <font size="-1">REDEFINES</font> clause allows a programmer 
               to give different data descriptions to the same area of storage.</p>
-            <p> Although recent versions of COBOL allow pre-filled tables to be 
+<p> Although recent versions of COBOL allow pre-filled tables to be 
               created without using the <font size="-1">REDEFINES</font> clause, 
               these new approaches are only successful when a small amount of 
               data is involved. The standard way to create pre-filled tables in 
               COBOL is to use the <font size="-1">REDEFINES</font> clause. </p>
-            <hr size="1">
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Non-tables 
+<hr size="1"/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Non-tables 
               uses for the REDEFINES clause - some examples</font></h4>
-            <h4 align="center">&nbsp;</h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p align="left"><b>Example 1<br>
-              </b>Some COBOL statements, like the <font size="-1">UNSTRING, </font>require 
+
+</td>
+<td valign="top" width="525">
+<p align="left"><b>Example 1<br/>
+</b>Some COBOL statements, like the <font size="-1">UNSTRING, </font>require 
               their receiving fields to be alphanumeric (PIC X) data-items. This 
               is inconvenient if the value of the data-item is actually numeric 
               because then a <font size="-1">MOVE</font> is required to place 
               the value into a numeric item. If the value contains a decimal point 
               then this creates even more difficulties.</p>
-            <p align="left"> For example, suppose an <font size="-1">UNSTRING</font> 
-              statement has just extracted the text value &quot;1234567&quot; 
+<p align="left"> For example, suppose an <font size="-1">UNSTRING</font> 
+              statement has just extracted the text value "1234567" 
               from a string and we want to move this value to a numeric item described 
               as PIC 9(5)V99. An ordinary <font size="-1">MOVE</font> is not going 
               to work because the computer will not know that we actually want 
               the item treated as if it were the value 12345.67. </p>
-            <p align="left">The <font size="-1">REDEFINES</font> clause allows 
+<p align="left">The <font size="-1">REDEFINES</font> clause allows 
               us to solve this problem neatly because we can <font size="-1">UNSTRING</font> 
               the number into <i>TextValue</i> and then treat <i>TextValue </i>as 
               if it were described as PIC 9(5)V99. For instance - </p>
-            <blockquote> 
-              <pre align="left">01  TextValue    PIC X(7).
+<blockquote>
+<pre align="left">01  TextValue    PIC X(7).
 01  NumericValue REDEFINES TextValue PIC 9(5)V99.</pre>
-            </blockquote>
-            <p align="left"><b>Example 2<br>
-              </b>The<font size="-1"> REDEFINES</font> clause is not just used 
+</blockquote>
+<p align="left"><b>Example 2<br/>
+</b>The<font size="-1"> REDEFINES</font> clause is not just used 
               to create pre-filled tables. It is used whenever a programmer needs 
               to give different data descriptions to the same area of storage. 
             </p>
-            <p align="left">For instance, suppose we accept a date from the user 
+<p align="left">For instance, suppose we accept a date from the user 
               and that sometimes the date has the format yyyymmdd, sometimes it 
               is a European date with the format ddmmyyyy, and somtimes it is 
               a US date with the format mmddyyyy. A code accepted with the date 
               allows us to detect the type of date entered.</p>
-            <p align="left">How can we arrange matters so that no matter which 
+<p align="left">How can we arrange matters so that no matter which 
               type of date is entered we can retrieve the year, month and day 
               part of the date correctly? </p>
-            <p align="left">If you think about this for a moment you should see 
+<p align="left">If you think about this for a moment you should see 
               that the programming is going to be messy. We'll have to set up 
               three separate date variables and, when we accept the date, we will 
               have to extract the day, month and year parts and put them into 
               the appropriate elementary items of the target date. </p>
-            <p align="left">On the other hand, we could use the <font size="-1">REDEFINES 
+<p align="left">On the other hand, we could use the <font size="-1">REDEFINES 
               </font>clause to give different names and descriptions to the area 
               of storage holding the date so that we can access the correct day, 
               month and year fields without recourse to special programming. For 
               instance, if define the <i>InputDate</i> as - </p>
-            <blockquote> 
-              <pre align="left">01 InputDate.
+<blockquote>
+<pre align="left">01 InputDate.
    02 DateType         PIC 9.
       88 DateIsSort    VALUE 1.
       88 DateIsEuro    VALUE 2.
@@ -1150,91 +1212,91 @@ ADD 56 TO PopTotal(12,3,2)</pre>
       03 USDay         PIC 99.
       03 USYear        PIC 9(4).
 </pre>
-            </blockquote>
-            <p>we can use statements like -</p>
-            <blockquote> 
-              <pre align="left">EVALUATE TRUE
+</blockquote>
+<p>we can use statements like -</p>
+<blockquote>
+<pre align="left">EVALUATE TRUE
     WHEN DateIsSort
-           DISPLAY SortDate format is yyyy-mm-dd 
-           DISPLAY  SortYear - SortMonth - SortYear
+           DISPLAY ÂSortDate format is yyyy-mm-dd Â
+           DISPLAY  SortYear Â-Â SortMonth Â-Â SortYear
     WHEN DateIsEuro
-           DISPLAY EuroDate format is dd-mm-yyyy 
-           DISPLAY  EuroDay - EuroMonth - EuroYear
+           DISPLAY ÂEuroDate format is dd-mm-yyyy Â
+           DISPLAY  EuroDay Â-Â EuroMonth Â-Â EuroYear
     WHEN DateIsUS 
-           DISPLAY USDate format is mm-dd-yyyy 
-           DISPLAY  USMonth - USDay - USYear
+           DISPLAY ÂUSDate format is mm-dd-yyyy Â
+           DISPLAY  USMonth Â-Â USDay Â-Â USYear
 END-EVALUATE </pre>
-            </blockquote>
-            <p>- and still get the correct values displayed.</p>
-            <p align="left"><b>Example 3<br>
-              </b>The <font size="-1">REDEFINES</font> clause is also useful when 
+</blockquote>
+<p>- and still get the correct values displayed.</p>
+<p align="left"><b>Example 3<br/>
+</b>The <font size="-1">REDEFINES</font> clause is also useful when 
               we need to treat a numeric item as if it had its decimal point in 
               different places. For instance the value 12345 is treated as if 
               it were 12.345 if we refer to <i>10Rate</i>, 123.45 if we refer 
               to <i>100Rate</i>, and 1234.5 if we refer to <i>1000Rate</i>.</p>
-            <blockquote> 
-              <pre align="left">01 Rates.
+<blockquote>
+<pre align="left">01 Rates.
    02 10Rate                    PIC 99V999.
    02 100Rate  REDEFINES 10Rate PIC 999V99.
    02 1000Rate REDEFINES 10Rate PIC 9999V9.</pre>
-            </blockquote>
-            <p align="left">&nbsp;</p>
-            <p align="left"><b>Animated versions of the examples above</b></p>
-            <p align="center"><a href="Resources/ppz/TC-Tables7.html"><img src="Resources/pics/i-Animation.gif" width="62" height="62" border="0"></a></p>
-            <hr width="100%" size="1">
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">REDEFINES 
+</blockquote>
+
+<p align="left"><b>Animated versions of the examples above</b></p>
+<p align="center"><a href="Resources/ppz/TC-Tables7.html"><img border="0" height="62" src="Resources/pics/i-Animation.gif" width="62"/></a></p>
+<hr size="1" width="100%"/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">REDEFINES 
               syntax and rules</font></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p><img src="Resources/pics/Redefines.gif" width="358" height="48"></p>
-            <p><font size="-1"><b>REDEFINES</b></font><b> rules</b></p>
-            <ol>
-              <li>The<font size="-1"> REDEFINES</font> clause must immediately 
+</td>
+<td valign="top" width="525">
+<p><img height="48" src="Resources/pics/Redefines.gif" width="358"/></p>
+<p><font size="-1"><b>REDEFINES</b></font><b> rules</b></p>
+<ol>
+<li>The<font size="-1"> REDEFINES</font> clause must immediately 
                 follow Identifier1 (i.e. the <font size="-1">REDEFINES </font>must 
                 come before the <font size="-1">PIC</font>.) </li>
-              <li>The level numbers of Identifier1 and Identifier2 must be the 
+<li>The level numbers of Identifier1 and Identifier2 must be the 
                 same and cannot be 66 or 88. </li>
-              <li>The data description of Identifier2 cannot contain an <font size="-1">OCCURS 
+<li>The data description of Identifier2 cannot contain an <font size="-1">OCCURS 
                 </font>clause (i.e a table element cannot be redefined.) </li>
-              <li>If there are multiple redefinitions of the same area of storage 
+<li>If there are multiple redefinitions of the same area of storage 
                 then they must all redefine the data-item that originally defined 
                 the area. (See the InputDate and Rates examples above) </li>
-              <li>The redefining entries cannot contain <font size="-1">VALUE</font> 
+<li>The redefining entries cannot contain <font size="-1">VALUE</font> 
                 clauses except in condition name entries.</li>
-              <li>No entry with a level number lower (i.e. higher in the hierarchy) 
+<li>No entry with a level number lower (i.e. higher in the hierarchy) 
                 than the level number of Identifier2 and Identifier1 can occur 
                 between Identifier2 and Identifier1.</li>
-              <li>The entries redefining the area must immediately follow those 
+<li>The entries redefining the area must immediately follow those 
                 that originally defined it.</li>
-              <li>There can be no intervening entries that define additional character 
+<li>There can be no intervening entries that define additional character 
                 positions. </li>
-            </ol>
-            <hr size="1" width="100%">
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Using 
+</ol>
+<hr size="1" width="100%"/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Using 
               the REDEFINES clause to create a pre-filled table.</font></h4>
-            <h4>&nbsp;</h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>The REDEFINES clause can be used to create a pre-filled table by 
+
+</td>
+<td valign="top" width="525">
+<p>The REDEFINES clause can be used to create a pre-filled table by 
               applying the following procedure -</p>
-            <ol>
-              <li>Reserve an area of storage and use the <font size="-1">VALUE</font> 
+<ol>
+<li>Reserve an area of storage and use the <font size="-1">VALUE</font> 
                 clause to fill it with the values required in the table.</li>
-              <li>Then, use the <font size="-1">REDEFINES</font> clause to redefine 
+<li>Then, use the <font size="-1">REDEFINES</font> clause to redefine 
                 the area of memory as a table.</li>
-            </ol>
-            <p>For example, if we want to declare a table pre-filled with the 
+</ol>
+<p>For example, if we want to declare a table pre-filled with the 
               names of the months, the first step is to reserve an area of storage 
               and fill it with the names of the months -</p>
-            <pre>01 MonthTable.
+<pre>01 MonthTable.
    02 MonthValues.
       03 FILLER       PIC X(18) VALUE "January  February".
       03 FILLER       PIC X(18) VALUE "March    April".
@@ -1243,39 +1305,39 @@ END-EVALUATE </pre>
       03 FILLER       PIC X(18) VALUE "SeptemberOctober".
       03 FILLER       PIC X(18) VALUE "November December".
 </pre>
-            <p>then we redefine is as a table as follows - </p>
-            <pre>   02 FILLER REDEFINES MonthValues.
+<p>then we redefine is as a table as follows - </p>
+<pre>   02 FILLER REDEFINES MonthValues.
       03 Month OCCURS 12 TIMES PIC X(9).</pre>
-            <p> Examine the animation below to view this and other examples. </p>
-            <p align="center"><a href="Resources/ppz/TC-Tables8.html"><img src="Resources/pics/i-Animation.gif" width="62" height="62" border="0"></a> 
-            </p>
-            <hr size="1" width="100%">
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Example 
+<p> Examine the animation below to view this and other examples. </p>
+<p align="center"><a href="Resources/ppz/TC-Tables8.html"><img border="0" height="62" src="Resources/pics/i-Animation.gif" width="62"/></a>
+</p>
+<hr size="1" width="100%"/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Example 
               program </font></h4>
-            <h4>&nbsp;</h4>
-            <h4>&nbsp;</h4>
-            <h4>&nbsp;</h4>
-            <h4>&nbsp;</h4>
-            <h4>&nbsp;</h4>
-            <h4>&nbsp;</h4>
-            <h4 align="center"><img src="Resources/pics/program.gif" width="42" height="44"></h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>In this example, we revisit the County Tax Report program. In the 
+
+
+
+
+
+
+<h4 align="center"><img height="44" src="Resources/pics/program.gif" width="42"/></h4>
+</td>
+<td valign="top" width="525">
+<p>In this example, we revisit the County Tax Report program. In the 
               previous version we had to indicate the county by displaying the 
               <i>CountyCode</i>. This was not very satisfactory because it meant 
               the users had to know which code corresponded to which county. In 
               this version we use a pre-filled table of county names to allow 
               us to display the name of the county.</p>
-            <p>The new parts of the program are coloured red.</p>
-            <table width="475" border="1" align="center" background="Resources/pics/code.gif" cellpadding="5">
-              <tr> 
-                <td> 
-                  <pre>      $ SET SOURCEFORMAT"FREE"
+<p>The new parts of the program are coloured red.</p>
+<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="475">
+<tr>
+<td>
+<pre>      $ SET SOURCEFORMAT"FREE"
 IDENTIFICATION DIVISION.
 PROGRAM-ID. CountyTaxTable.
 AUTHOR. Michael Coughlan.
@@ -1374,103 +1436,103 @@ DisplayCountyTaxes.
       MOVE PayerCount(Idx) TO PrnPayers
       DISPLAY CountyTaxLine
    END-IF.</pre>
-                </td>
-              </tr>
-            </table>
-            <p>&nbsp;</p><hr width="100%" size="1">
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Creating 
+</td>
+</tr>
+</table>
+<hr size="1" width="100%"/>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Creating 
               pre-filled tables without using the REDEFINES clause.</font></h4>
-            <h4>&nbsp;</h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p>The 1985 COBOL standard introduced a number of changes to tables. 
+
+</td>
+<td valign="top" width="525">
+<p>The 1985 COBOL standard introduced a number of changes to tables. 
               Among these changes was a method that allowed pre-filled tables 
               to be created without using the <font size="-1">REDEFINES</font> 
               clause. But this new method only works as as long as the number 
               of values is small. For large amounts of data the <font size="-1">REDEFINES</font> 
               clause is still required.</p>
-            <p>The new method works by assigning the values to a groupname defined 
+<p>The new method works by assigning the values to a groupname defined 
               over a table. For instance, in the example below, the data-item 
               <i>Day </i>actually declares the table but we have given the table 
               the overall group name <i>- DayTable</i>. Assigning the values to 
               this groupname fills the area of the table with the values.</p>
-            <pre>01 DayTable VALUE "<font color="#FF0000"><b>MonTueWedThrFriSatSun</b></font>". 
+<pre>01 DayTable VALUE "<font color="#FF0000"><b>MonTueWedThrFriSatSun</b></font>". 
    02 Day OCCURS 7 TIMES PIC X(3). 
 
 </pre>
-            <div align="center"> 
-              <pre>
-<img src="Resources/pics/Tables7.gif" width="369" height="84"></pre>
-            </div>
-          </td>
-        </tr>
-        <tr> 
-          <td valign="TOP" align="LEFT" width="175" bgcolor="#FFFFCC"> 
-            <h4><font color="#800000" face="Arial, Helvetica, sans-serif">COBOL'85 
+<div align="center">
+<pre>
+<img height="84" src="Resources/pics/Tables7.gif" width="369"/></pre>
+</div>
+</td>
+</tr>
+<tr>
+<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+<h4><font color="#800000" face="Arial, Helvetica, sans-serif">COBOL'85 
               table initialisation changes</font></h4>
-            <h4>&nbsp;</h4>
-          </td>
-          <td width="525" valign="top"> 
-            <p align="left">The 1985 COBOL standard also introduced some changes 
+
+</td>
+<td valign="top" width="525">
+<p align="left">The 1985 COBOL standard also introduced some changes 
               to the way tables are initialised. </p>
-            <p align="left">In the previous versions of COBOL initialising a table 
+<p align="left">In the previous versions of COBOL initialising a table 
               was never a problem if the elements of the table were elementary 
               items. All that was required was to move the initialising value 
               to the table's group name. For instance, the statement <i>- MOVE 
               ZEROS TO TaxTable</i> - initialises the table below to zeros.</p>
-            <pre>01 TaxTable. 
+<pre>01 TaxTable. 
    02 CountyTax  PIC 9(5) OCCURS 26 TIMES. 
 </pre>
-            <p>But initialising a table was much more difficult if each element 
+<p>But initialising a table was much more difficult if each element 
               was a group item that contained different types of data. For example, 
               in the table below, the <i>CountyTax</i> part of the element has 
               to be initialised to zeros and the CountyName part has to be initialised 
               to spaces. The only way do this is to initialise the items, element 
               by element, using an iteration.</p>
-            <pre>01 TaxTable. 
+<pre>01 TaxTable. 
    02 County OCCURS 26 TIMES. 
       03 CountyTax  PIC 9(5). 
       03 CountyName PIC X(12).</pre>
-            <p>At least that was the way it had to be done before the 1985 COBOL 
+<p>At least that was the way it had to be done before the 1985 COBOL 
               standard. Now the table can be initialised by assigning an initial 
               value to each part of an element using the <font size="-1">VALUE 
               </font>clause. The description below initialises the CountyTax part 
               of the element to zeros and the CountyName part to spaces.</p>
-            <pre>01 TaxTable. 
+<pre>01 TaxTable. 
    02 County OCCURS 26 TIMES. 
       03 CountyTax  PIC 9(5) VALUE ZEROS. 
       03 CountyName PIC X(12) VALUE SPACES.</pre>
-          </td>
-        </tr>
-        <tr> 
-          <td align="left" bgcolor="#FFFFFF" colspan="2"> 
-            <hr width="100%">
-            <div align="center"> 
-              <p><a href="#top"> <img src="Resources/pics/i-pagetop.gif" width="132" height="38" border="0"></a> 
-              </p>
-              <hr>
-              <h3 align="center">Copyright Notice</h3>
-              <p align="center">These COBOL course materials are the copyright 
+</td>
+</tr>
+<tr>
+<td align="left" bgcolor="#FFFFFF" colspan="2">
+<hr width="100%"/>
+<div align="center">
+<p><a href="#top"> <img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"/></a>
+</p>
+<hr/>
+<h3 align="center">Copyright Notice</h3>
+<p align="center">These COBOL course materials are the copyright 
                 property of Michael Coughlan.</p>
-              <p align="left"><font size="2">All rights reserved. No part of these 
+<p align="left"><font size="2">All rights reserved. No part of these 
                 course materials may be reproduced in any form or by any means 
                 - graphic, electronic, mechanical, photocopying, printing, recording, 
                 taping or stored in an information storage and retrieval system 
                 - without the written permission of </font><font size="2">the 
                 author.</font></p>
-              <p align="center"><font size="2">(c) Michael Coughlan</font></p>
+<p align="center"><font size="2">(c) Michael Coughlan</font></p>
 </div>
-          </td>
-        </tr>
-      </table>
- </td>
- </tr>
+</td>
+</tr>
+</table>
+</td>
+</tr>
 </table>
 </body>
 </html>
-<!--
-<!--
+&lt;!--
+&lt;!--
