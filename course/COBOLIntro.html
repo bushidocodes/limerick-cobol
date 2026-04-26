@@ -1,4 +1,5 @@
 <html>
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta name="GENERATOR" content="Mozilla/4.0 [en] (WinNT; I) [Netscape]">
@@ -39,6 +40,7 @@
     td[width="175"] h4 { margin: 0; }
     blockquote { margin-left: 12px; margin-right: 12px; }
     pre { overflow-x: auto; }
+    blockquote font[face*="Courier"] { font-size: 0.8em; }
     table[background] { table-layout: fixed; }
     h2 { font-size: 1.4em; }
   }
@@ -568,26 +570,22 @@
               job specified above and what data items will we need to access?<br>
             </p>
             <blockquote> 
-              <p>We will need a statement to take in the first number and store 
+              <p>We will need a statement to take in the first number and store
                 it in the named memory location (a variable) - Num1<b><font face="Courier New, Courier, mono" size="+1"><br>
-                </font><font size="+1"><b><font face="Courier New, Courier, mono" size="+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Courier New, Courier, mono"></font></b></font><font face="Courier New, Courier, mono" size="+1">ACCEPT 
-                Num1.</font></b></p>
+                ACCEPT Num1.</font></b></p>
             </blockquote>
             <blockquote> 
-              <p>We will need a statement to take in the second number and store 
+              <p>We will need a statement to take in the second number and store
                 it in the named memory location - Num2<b><font size="+1" face="Courier New, Courier, mono"><br>
-                </font><font size="+1"><b><font face="Courier New, Courier, mono" size="+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Courier New, Courier, mono"></font></b></font><font size="+1" face="Courier New, Courier, mono">ACCEPT 
-                Num2.</font></b></p>
+                ACCEPT Num2.</font></b></p>
             </blockquote>
             <blockquote> 
-              <p>We will need a statement to multiply the two numbers together 
+              <p>We will need a statement to multiply the two numbers together
                 and to store the result in the named location - Result<font size="+1"><b><br>
-                <font face="Courier New, Courier, mono" size="+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Courier New, Courier, mono">MULTIPLY 
-                Num1 BY Num2 GIVING Result.</font></b></font></p>
-              <p>We will need a statement to display the value in the named memory 
+                <font face="Courier New, Courier, mono">MULTIPLY Num1 BY Num2 GIVING Result.</font></b></font></p>
+              <p>We will need a statement to display the value in the named memory
                 location &quot;<b>Result</b>&quot; on the computer screen -<br>
-                <b><font size="+1"><b><font face="Courier New, Courier, mono" size="+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></b><font face="Courier New, Courier, mono">DISPLAY 
-                &quot;Result is = &quot;, Result.</font></font></b> </p>
+                <b><font size="+1"><font face="Courier New, Courier, mono">DISPLAY &quot;Result is = &quot;, Result.</font></font></b></p>
             </blockquote>
             <hr size="1" width="100%">
           </td>
@@ -598,13 +596,13 @@
               the Algorithm right</font></h4>
           </td>
           <td width="525" valign="top"> 
-            <p>Now all we need to do to have a working program is to declare the 
-              items needed to store the data and to place the statements shown 
-              above in the correct order. 
-            <p>Click on these animations to see our attempts to write a program 
-              that produces the correct answer. These attempts illustrate importance 
-              of arranging the statements in a program so that they are executed 
-              in the correct order.
+            <p>Now all we need to do to have a working program is to declare the
+              items needed to store the data and to place the statements shown
+              above in the correct order.</p>
+            <p>Click on these animations to see our attempts to write a program
+              that produces the correct answer. These attempts illustrate the importance
+              of arranging the statements in a program so that they are executed
+              in the correct order.</p>
             <table width="80%" border="1" cellspacing="1" cellpadding="1" align="center">
               <tr> 
                 <td> 
@@ -1054,7 +1052,9 @@
             <table width="374" border="1" align="center" background="Resources/pics/code.gif" cellpadding="5">
               <tr> 
                 <td> 
-                  <pre><b><font face="Courier New, Courier, mono">IDENTIFICATION DIVISION.<br>PROGRAM-ID. SequenceProgram.<br>AUTHOR. Michael Coughlan.</font></b></pre>
+                  <pre><font face="Courier New, Courier, mono">IDENTIFICATION DIVISION.
+PROGRAM-ID. SequenceProgram.
+AUTHOR. Michael Coughlan.</font></pre>
                 </td>
               </tr>
             </table>
@@ -1112,8 +1112,15 @@
             <table width="406" border="1" align="center" background="Resources/pics/code.gif" cellpadding="5">
               <tr> 
                 <td> 
-                  <pre><font face="Courier New, Courier, mono">IDENTIFICATION DIVISION.<br>PROGRAM-ID. SequenceProgram.<br>AUTHOR. Michael Coughlan.</font><b><font face="Courier New, Courier, mono">
-<br>DATA DIVISION.<br>WORKING-STORAGE SECTION.<br>01  Num1           PIC 9  VALUE ZEROS.<br>01  Num2           PIC 9  VALUE ZEROS.<br>01  Result         PIC 99 VALUE ZEROS.<br></font></b></pre>
+                  <pre><font face="Courier New, Courier, mono">IDENTIFICATION DIVISION.
+PROGRAM-ID. SequenceProgram.
+AUTHOR. Michael Coughlan.
+
+DATA DIVISION.
+WORKING-STORAGE SECTION.
+01 Num1   PIC 9  VALUE ZEROS.
+01 Num2   PIC 9  VALUE ZEROS.
+01 Result PIC 99 VALUE ZEROS.</font></pre>
                 </td>
               </tr>
             </table>
@@ -1144,21 +1151,22 @@
                 <td> 
                   <pre><font face="Courier New, Courier, mono">IDENTIFICATION DIVISION.
 PROGRAM-ID. SequenceProgram.
-AUTHOR. Michael Coughlan. </font>                    </pre>
-                  <pre><font face="Courier New, Courier, mono">DATA DIVISION.
+AUTHOR. Michael Coughlan.
+
+DATA DIVISION.
 WORKING-STORAGE SECTION.
-01 Num1 PIC 9 VALUE ZEROS.
-01 Num2 PIC 9 VALUE ZEROS.
-01 Result PIC 99 VALUE ZEROS.</font></pre>
-                  <pre><b><font face="Courier New, Courier, mono">
+01 Num1   PIC 9  VALUE ZEROS.
+01 Num2   PIC 9  VALUE ZEROS.
+01 Result PIC 99 VALUE ZEROS.
+
 PROCEDURE DIVISION.
 CalculateResult.
    ACCEPT Num1.
    ACCEPT Num2.
-   MULTIPLY Num1 BY Num2 GIVING Result.
+   MULTIPLY Num1 BY Num2
+       GIVING Result.
    DISPLAY &quot;Result is = &quot;, Result.
-   STOP RUN.</font></b>
-                   </pre>
+   STOP RUN.</font></pre>
                 </td>
               </tr>
             </table>
@@ -1171,12 +1179,13 @@ CalculateResult.
             <table width="390" border="1" align="center" background="Resources/pics/code.gif" cellpadding="5">
               <tr> 
                 <td> 
-                  <pre><b>IDENTIFICATION DIVISION.<br>PROGRAM-ID.  SmallestProgram.</b></pre>
-                  <pre><b>PROCEDURE DIVISION.
+                  <pre><font face="Courier New, Courier, mono">IDENTIFICATION DIVISION.
+PROGRAM-ID. SmallestProgram.
+
+PROCEDURE DIVISION.
 DisplayGreeting.
    DISPLAY &quot;Hello world&quot;.
-   STOP RUN.</b>
-                   </pre>
+   STOP RUN.</font></pre>
                 </td>
               </tr>
             </table>
