@@ -225,7 +225,7 @@
               must be selected<br/>
 </font><font size="-1">[ ] brackets mean that the item is optional<br/>
 </font><font size="-1">ellipses (...) mean that the item may be 
-              repeated at the programmers discretion.</font></p>
+              repeated at the programmer's discretion.</font></p>
 <p align="left"><font size="-1">The symbols used in the syntax diagram 
               identifiers have the following significance:-</font><br/>
 <font size="-1"><b>$</b> signifies a string item,<br/>
@@ -321,19 +321,19 @@ DISPLAY PrinterSetupCodes UPON PrinterPort1.
 <div align="left">
 <pre>
 01 CurrentDate         PIC 9(6).
-* CurrentDate is the date in YYMMDD format
+*&gt; CurrentDate is the date in YYMMDD format
 
 
 01 DayOfYear           PIC 9(5).
-* DayOfYear is current day in YYDDD format
+*&gt; DayOfYear is current day in YYDDD format
 
 
-01 Day0fWeek           PIC 9.
-* DAY-OF-WEEK is a single digit where 1=Monday
+01 DayOfWeek           PIC 9.
+*&gt; DAY-OF-WEEK is a single digit where 1=Monday
 
 
 01 CurrentTime         PIC 9(8).
-* CurrentTime is the time in HHMMSSss format where s = S/100
+*&gt; CurrentTime is the time in HHMMSSss format where s = S/100
 </pre>
 </div>
 </div>
@@ -366,9 +366,9 @@ DISPLAY PrinterSetupCodes UPON PrinterPort1.
               must be defined as; </p>
 <blockquote>
 <pre>01 Y2KDate PIC 9(8).
-* Y2KDate is the date in YYYYMMDD format </pre>
+*&gt; Y2KDate is the date in YYYYMMDD format </pre>
 <pre>01 Y2KDayOfYear PIC 9(7).
-* Y2KDayOfYear is current day in YYYYDDD format </pre>
+*&gt; Y2KDayOfYear is current day in YYYYDDD format </pre>
 </blockquote>
 <hr width="50%"/>
 </td>
@@ -393,65 +393,65 @@ DISPLAY PrinterSetupCodes UPON PrinterPort1.
 <tr>
 <td height="333">
 <div align="left">
-<pre>      $ SET SOURCEFORMAT"FREE"
+<pre>       >>SOURCE FORMAT FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  AcceptAndDisplay.
 AUTHOR.  Michael Coughlan.
-* Uses the ACCEPT and DISPLAY verbs to accept a student record 
-* from the user and display some of the fields.  Also shows how
-* the ACCEPT may be used to get the system date and time.
+*&gt; Uses the ACCEPT and DISPLAY verbs to accept a student record
+*&gt; from the user and display some of the fields.  Also shows how
+*&gt; the ACCEPT may be used to get the system date and time.
 
-* The YYYYMMDD in "ACCEPT  CurrentDate FROM DATE YYYYMMDD." 
-* is a format command that ensures that the date contains a 
-* 4 digit year.  If not used, the year supplied by the system
-* will only contain two digits which may cause a problem 
-* in the year 2000.
+*&gt; The YYYYMMDD in "ACCEPT  CurrentDate FROM DATE YYYYMMDD."
+*&gt; is a format command that ensures that the date contains a
+*&gt; 4 digit year.  If not used, the year supplied by the system
+*&gt; will only contain two digits which may cause a problem
+*&gt; in the year 2000.
 
 DATA DIVISION.
 WORKING-STORAGE SECTION.
 01 StudentDetails.
-   02  StudentId       PIC 9(7).
-   02  StudentName.
-       03 Surname      PIC X(8).
-       03 Initials     PIC XX.
-   02  CourseCode      PIC X(4).
-   02  Gender          PIC X.
+    02  StudentId       PIC 9(7).
+    02  StudentName.
+        03 Surname      PIC X(8).
+        03 Initials     PIC XX.
+    02  CourseCode      PIC X(4).
+    02  Gender          PIC X.
 
-* YYMMDD
+*&gt; YYMMDD
 01 CurrentDate.
-   02  CurrentYear     PIC 9(4).
-   02  CurrentMonth    PIC 99.
-   02  CurrentDay      PIC 99.
+    02  CurrentYear     PIC 9(4).
+    02  CurrentMonth    PIC 99.
+    02  CurrentDay      PIC 99.
 
-* YYDDD
+*&gt; YYDDD
 01 DayOfYear.
-   02  FILLER          PIC 9(4).
-   02  YearDay         PIC 9(3).
+    02  FILLER          PIC 9(4).
+    02  YearDay         PIC 9(3).
 
 
-* HHMMSSss   s = S/100
+*&gt; HHMMSSss   s = S/100
 01 CurrentTime.
-   02  CurrentHour     PIC 99.
-   02  CurrentMinute   PIC 99.
-   02  FILLER          PIC 9(4).
+    02  CurrentHour     PIC 99.
+    02  CurrentMinute   PIC 99.
+    02  FILLER          PIC 9(4).
 
 
 PROCEDURE DIVISION.
 Begin.
-   DISPLAY "Enter student details using template below".
-   DISPLAY "Enter - ID,Surname,Initials,CourseCode,Gender"
-   DISPLAY "SSSSSSSNNNNNNNNIICCCCG".
-   ACCEPT  StudentDetails.
-   ACCEPT  CurrentDate FROM DATE YYYYMMDD.
-   ACCEPT  DayOfYear FROM DAY YYYYDDD.
-   ACCEPT  CurrentTime FROM TIME.
-   DISPLAY "Name is ", Initials SPACE Surname.
-   DISPLAY "Date is " CurrentDay SPACE CurrentMonth 
-           SPACE CurrentYear.
-   DISPLAY "Today is day " YearDay " of the year".
-   DISPLAY "The time is " CurrentHour ":" CurrentMinute.
-   STOP RUN.
-                                                   </pre>
+    DISPLAY "Enter student details using template below".
+    DISPLAY "Enter - ID,Surname,Initials,CourseCode,Gender"
+    DISPLAY "SSSSSSSNNNNNNNNIICCCCG".
+    ACCEPT  StudentDetails.
+    ACCEPT  CurrentDate FROM DATE YYYYMMDD.
+    ACCEPT  DayOfYear FROM DAY YYYYDDD.
+    ACCEPT  CurrentTime FROM TIME.
+    DISPLAY "Name is ", Initials SPACE Surname.
+    DISPLAY "Date is " CurrentDay SPACE CurrentMonth
+            SPACE CurrentYear.
+    DISPLAY "Today is day " YearDay " of the year".
+    DISPLAY "The time is " CurrentHour ":" CurrentMinute.
+    STOP RUN.
+</pre>
 </div>
 </td>
 </tr>
@@ -496,10 +496,10 @@ The time is 14:41
 <h4 align="left"><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
 </td>
 <td height="355" valign="top" width="540">
-<p>In Âstrongly typedÂ languages like Modula-2, Pascal or ADA the 
+<p>In "strongly typed" languages like Modula-2, Pascal or ADA the 
               assignment operation is simple because assignment is only allowed 
               between data items with compatible types. The simplicity of assignment 
-              in these languages, is achieved at the ÂcostÂ of having a large 
+              in these languages, is achieved at the "cost" of having a large 
               number of data types. </p>
 <p>In COBOL there are basically only three data types;</p>
 <ul>
@@ -584,11 +584,6 @@ The time is 14:41
 </tr>
 <tr>
 <td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
-<div align="center"> </div>
-</td>
-</tr>
-<tr>
-<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
 <div align="center">
 <hr/>
 <p><a href="#top"> <img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"/></a>
@@ -659,7 +654,7 @@ The time is 14:41
 <p align="left">If the <font size="-1">GIVING</font> phrase is not 
                 used, the data-item(s) after the word <font size="-1">TO</font>, 
                 <font size="-1">FROM</font>, <font size="-1">BY</font> or <font size="-1">INTO 
-                </font>both contribute to the result and are receiving field for 
+                </font>both contribute to the result and are receiving fields for
                 it. </p>
 <p align="left">The maximum size of each operand is 18 digits. </p>
 
@@ -924,11 +919,11 @@ The time is 14:41
               other does not.</p>
 <p><b>Format1</b></p>
 <p><img height="101" src="Resources/pics/Div1.gif" width="525"/></p>
-<p>In the <font size="-1">GIVING</font> phrase is used, the Value#il 
-              to the left of <font size="-1">BY</font> or <font size="-1">INTO</font> 
-              is divided by or into the Value#il to the right of <font size="-1">BY</font> 
-              or <font size="-1">INTO</font> and the result of the calculation 
-              in moved into <b>each</b> of the Result#i items in turn.</p>
+<p>If the <font size="-1">GIVING</font> phrase is used, the Value#il
+              to the left of <font size="-1">BY</font> or <font size="-1">INTO</font>
+              is divided by or into the Value#il to the right of <font size="-1">BY</font>
+              or <font size="-1">INTO</font> and the result of the calculation
+              is moved into <b>each</b> of the Result#i items in turn.</p>
 <p>If the <font size="-1">GIVING</font> phrase is not used, the item 
               to the left of the word <font size="-1">INTO</font> is divided into 
               each of the ValueResult#i items in turn. The result of each calculation 
