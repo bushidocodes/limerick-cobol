@@ -1,4 +1,4 @@
-      $ SET SOURCEFORMAT"FREE"
+       >>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  ReportExampleFull.
 AUTHOR.  Michael Coughlan.

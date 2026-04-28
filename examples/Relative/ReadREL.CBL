@@ -1,8 +1,8 @@
-      $ SET SOURCEFORMAT"FREE"
+       >>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  ReadRelative.
 AUTHOR.  MICHAEL COUGHLAN.
-* Reads a Relative file directly or in sequence
+*> Reads a Relative file directly or in sequence
 
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.

@@ -1,9 +1,9 @@
-      $ SET SOURCEFORMAT"FREE"
+       >>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  SETUPAUTHORS.
 AUTHOR.  MICHAEL COUGHLAN.
-*Originally written for VAX COBOL 1991
-*Converted to Microfocus NetExpress 2002
+*>Originally written for VAX COBOL 1991
+*>Converted to Microfocus NetExpress 2002
 
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.

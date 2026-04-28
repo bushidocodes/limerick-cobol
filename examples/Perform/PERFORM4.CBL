@@ -1,12 +1,12 @@
-      $ SET SOURCEFORMAT"FREE"
+       >>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  PerformFormat4.
 AUTHOR.  Michael Coughlan.
-* An example program using the PERFORM..VARYING format.
-* Pay particular attention to the values produced by the
-* WITH TEST BEFORE and WITH TEST AFTER loops.
-* Note that the PERFORM within a PERFORM produces the same
-* results as the PERFORM..VARYING..AFTER
+*> An example program using the PERFORM..VARYING format.
+*> Pay particular attention to the values produced by the
+*> WITH TEST BEFORE and WITH TEST AFTER loops.
+*> Note that the PERFORM within a PERFORM produces the same
+*> results as the PERFORM..VARYING..AFTER
 
 
 DATA DIVISION.

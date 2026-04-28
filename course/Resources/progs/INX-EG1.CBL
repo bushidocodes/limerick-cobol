@@ -1,8 +1,8 @@
-      $ SET SOURCEFORMAT "FREE"
+       >>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  CreateIndexedFromSeq.
 AUTHOR.  Michael Coughlan.
-* Creates an indexed file  from a sequential file.
+*> Creates an indexed file  from a sequential file.
 
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.

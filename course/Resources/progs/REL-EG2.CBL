@@ -1,8 +1,8 @@
-      $ SET SOURCEFORMAT"FREE"
+       >>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  ReadRelative.
 AUTHOR.  MICHAEL COUGHLAN.
-* Reads a Relative file directly or in sequence
+*> Reads a Relative file directly or in sequence
 
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
@@ -33,7 +33,7 @@ WORKING-STORAGE SECTION.
     02    PrnSupplierCode     PIC BB99.
     02    PrnSupplierName     PIC BBX(20).
     02    PrnSupplierAddress  PIC BBX(50).
-*                        made 50 chars to fit on screen.
+*>                        made 50 chars to fit on screen.
 
 01  ReadType                  PIC 9.
     88 DirectRead             VALUE 1.
@@ -81,19 +81,19 @@ DisplayRecord.
     END-IF.
 
 
-RUN OF REL-EG2.EXE USING SEQUENTIAL READING
-Read type : Direct read = 1, Sequential read = 2 --> 2
-  01  VESTRON VIDEOS        OVER THE SEA SOMEWHERE IN LONDON                  
-  02  EMI STUDIOS           HOLLYWOOD, CALIFORNIA, USA                        
-  03  BBC WILDLIFE          BUSH HOUSE, LONDON, ENGLAND                       
-  04  CBS STUDIOS           HOLLYWOOD, CALIFORNIA, USA                        
-  05  YACHTING MONTHLY      TREE HOUSE, LONDON, ENGLAND                       
-  06  VIRGIN VIDEOS         IS THIS ONE ALSO LOCATED IN ENGLAND               
-  07  CIC VIDEOS            NEW YORK PLAZZA, NEW YORK, USA                    
+*> RUN OF REL-EG2.EXE USING SEQUENTIAL READING
+*> Read type : Direct read = 1, Sequential read = 2 --> 2
+*>   01  VESTRON VIDEOS        OVER THE SEA SOMEWHERE IN LONDON                  
+*>   02  EMI STUDIOS           HOLLYWOOD, CALIFORNIA, USA                        
+*>   03  BBC WILDLIFE          BUSH HOUSE, LONDON, ENGLAND                       
+*>   04  CBS STUDIOS           HOLLYWOOD, CALIFORNIA, USA                        
+*>   05  YACHTING MONTHLY      TREE HOUSE, LONDON, ENGLAND                       
+*>   06  VIRGIN VIDEOS         IS THIS ONE ALSO LOCATED IN ENGLAND               
+*>   07  CIC VIDEOS            NEW YORK PLAZZA, NEW YORK, USA                    
 
 
 
-RUN OF REL-EG2.EXE USING DIRECT READ
-Read type : Direct read = 1, Sequential read = 2 --> 1
-Enter supplier code key (2 digits) --> 05
-  05  YACHTING MONTHLY      TREE HOUSE, LONDON, ENGLAND                       
+*> RUN OF REL-EG2.EXE USING DIRECT READ
+*> Read type : Direct read = 1, Sequential read = 2 --> 1
+*> Enter supplier code key (2 digits) --> 05
+*>   05  YACHTING MONTHLY      TREE HOUSE, LONDON, ENGLAND                       

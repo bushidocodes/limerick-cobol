@@ -1,12 +1,12 @@
-      $ SET SOURCEFORMAT"FREE"
+       >>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  SetUpInxFiles.
 AUTHOR.  MICHAEL COUGHLAN.
-*Originally written for VAX COBOL 1991
-*Converted to Microfocus COBOL 2002
-*Sets up the indexed files for the DP291-91-EXAM
-*The Campus Bookshop Purchase Requirements Report
-*DP291-91-EXAM
+*>Originally written for VAX COBOL 1991
+*>Converted to Microfocus COBOL 2002
+*>Sets up the indexed files for the DP291-91-EXAM
+*>The Campus Bookshop Purchase Requirements Report
+*>DP291-91-EXAM
 
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.

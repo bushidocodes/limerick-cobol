@@ -1,10 +1,10 @@
-      $ SET SOURCEFORMAT"FREE"
+       >>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  Conditions.
 AUTHOR.  Michael Coughlan.
-* An example program demonstrating the use of 
-* condition names (level 88's).
-* The EVALUATE and PERFORM verbs are also used.
+*> An example program demonstrating the use of 
+*> condition names (level 88's).
+*> The EVALUATE and PERFORM verbs are also used.
 
 DATA DIVISION.
 WORKING-STORAGE SECTION.

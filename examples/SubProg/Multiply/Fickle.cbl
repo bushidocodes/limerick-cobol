@@ -1,11 +1,11 @@
-      $ SET SOURCEFORMAT"FREE"
+       >>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. Fickle.
 AUTHOR. Michael Coughlan.
-* This sub-program is demonstrates State Memory.
-* Each time the program is called it remembers its
-* state from the previous call. We can get rid of
-* State Memory by using the IS INITIAL phrase.
+*> This sub-program is demonstrates State Memory.
+*> Each time the program is called it remembers its
+*> state from the previous call. We can get rid of
+*> State Memory by using the IS INITIAL phrase.
 
 
 ENVIRONMENT DIVISION.

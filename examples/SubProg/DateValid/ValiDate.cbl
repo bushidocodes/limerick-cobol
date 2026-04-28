@@ -1,4 +1,4 @@
-      $ SET SOURCEFORMAT"FREE"
+       >>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. Validate IS INITIAL.
 AUTHOR.  Michael Coughlan.
@@ -54,9 +54,9 @@ Begin.
 
 
 CheckForValidDay.
-*  Years evenly divisible by 4 are leap years, but
-*  years evenly divisible by 100 are not leap years, but
-*  years evenly divisible by 400 are leap years.
+*>  Years evenly divisible by 4 are leap years, but
+*>  years evenly divisible by 100 are not leap years, but
+*>  years evenly divisible by 400 are leap years.
 
    DIVIDE YearLA BY 400 GIVING LeapQuot REMAINDER LeapRemain.
    IF LeapRemain = 0

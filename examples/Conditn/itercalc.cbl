@@ -1,11 +1,11 @@
-      $ SET SOURCEFORMAT"FREE"
+       >>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  Iteration-Calculator.
 AUTHOR.  Michael Coughlan.
-* This program accepts two numbers and an operator from the user and
-* depending on the type of the operator either adds the numbers or
-* multiplys them together and displays the result.  It does this three times.
-* No error checking is done.
+*> This program accepts two numbers and an operator from the user and
+*> depending on the type of the operator either adds the numbers or
+*> multiplys them together and displays the result.  It does this three times.
+*> No error checking is done.
 
 
 DATA DIVISION.

@@ -1,7 +1,8 @@
+       >>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  ReadingIndexedFile.
 AUTHOR.  Michael Coughlan.
-* Illustrates direct read on an indexed file by any key
+*> Illustrates direct read on an indexed file by any key
 
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
@@ -75,27 +76,27 @@ Begin.
    STOP RUN.
 
 
-RUN OF INDEX-EG3.EXE USING VIDEOCODE
-Chose key VideoCode = 1,  VideoTitle = 2 ->  1
-Enter Video Code (5 digits) -> 02121
-02121    DIRTY DANCING                               04
+*> RUN OF INDEX-EG3.EXE USING VIDEOCODE
+*> Chose key VideoCode = 1,  VideoTitle = 2 ->  1
+*> Enter Video Code (5 digits) -> 02121
+*> 02121    DIRTY DANCING                               04
 
-RUN OF INDEX-EG3.EXE USING VIDEOCODE
-Chose key VideoCode = 1,  VideoTitle = 2 ->  1
-Enter Video Code (5 digits) -> 05051
-05051    OVERBOARD                                   01
+*> RUN OF INDEX-EG3.EXE USING VIDEOCODE
+*> Chose key VideoCode = 1,  VideoTitle = 2 ->  1
+*> Enter Video Code (5 digits) -> 05051
+*> 05051    OVERBOARD                                   01
 
-RUN OF INDEX-EG3.EXE USING VIDEOTITLE
-Chose key VideoCode = 1,  VideoTitle = 2 ->  2
-Enter Video Title (40 chars) -> OVERBOARD
-05051    OVERBOARD                                   01
+*> RUN OF INDEX-EG3.EXE USING VIDEOTITLE
+*> Chose key VideoCode = 1,  VideoTitle = 2 ->  2
+*> Enter Video Title (40 chars) -> OVERBOARD
+*> 05051    OVERBOARD                                   01
 
-RUN OF INDEX-EG3.EXE USING VIDEOTITLE
-Chose key VideoCode = 1,  VideoTitle = 2 ->  2
-Enter Video Title (40 chars) -> DIRTY DANCING
-02121    DIRTY DANCING                               04
+*> RUN OF INDEX-EG3.EXE USING VIDEOTITLE
+*> Chose key VideoCode = 1,  VideoTitle = 2 ->  2
+*> Enter Video Title (40 chars) -> DIRTY DANCING
+*> 02121    DIRTY DANCING                               04
 
-RUN OF INDEX-EG3.EXE USING NON EXISTANT VIDEOCODE
-Chose key VideoCode = 1,  VideoTitle = 2 ->  1
-Enter Video Code (5 digits) -> 44444
-VIDEO STATUS :- 23
+*> RUN OF INDEX-EG3.EXE USING NON EXISTANT VIDEOCODE
+*> Chose key VideoCode = 1,  VideoTitle = 2 ->  1
+*> Enter Video Code (5 digits) -> 44444
+*> VIDEO STATUS :- 23

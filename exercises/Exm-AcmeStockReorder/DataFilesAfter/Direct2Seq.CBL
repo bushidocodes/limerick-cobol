@@ -1,8 +1,8 @@
-      $ SET SOURCEFORMAT"FREE"
+       >>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  Direct2Seq.
 AUTHOR. Michael Coughlan.
-*The ACME Stock Reorder System (ACME99.CBL) file set up program
+*>The ACME Stock Reorder System (ACME99.CBL) file set up program
 
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.

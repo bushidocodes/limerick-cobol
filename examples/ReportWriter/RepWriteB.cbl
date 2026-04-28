@@ -1,9 +1,9 @@
-      $ SET SOURCEFORMAT"FREE"
+       >>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  ReportExampleB.
 AUTHOR.  Michael Coughlan.
-* A simplified version of full program
-* Contains all the control breaks but no declaratives
+*> A simplified version of full program
+*> Contains all the control breaks but no declaratives
 
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.

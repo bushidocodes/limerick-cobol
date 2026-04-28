@@ -1,19 +1,18 @@
-      $ set NESTCALL
-      $ SET SOURCEFORMAT "FREE"
+       >>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. DayDiffDriver.
 AUTHOR. Michael Coughlan.
-* This program gets the difference in days between two dates.
-* It calls three contained subprograms and one external subprogram
-* to do the actual work. 
-* The "GetDayDiff" program is included as a contained
-* subprogram and is used to get the difference in days between
-* two dates entered by the user.
-* The dates entered by the user are validated by calling my "Validate" 
-* subprogram.  The dates entered by the user and the date required by
-* the "GetDayDiff" program are in different formats.
-* The "EuroDateToSortDate" subprogram is used to convert from DDMMYYYY format
-* to YYYYMMDD format and the "SortDateToEuroDate" is used to convert it back.
+*> This program gets the difference in days between two dates.
+*> It calls three contained subprograms and one external subprogram
+*> to do the actual work. 
+*> The "GetDayDiff" program is included as a contained
+*> subprogram and is used to get the difference in days between
+*> two dates entered by the user.
+*> The dates entered by the user are validated by calling my "Validate" 
+*> subprogram.  The dates entered by the user and the date required by
+*> the "GetDayDiff" program are in different formats.
+*> The "EuroDateToSortDate" subprogram is used to convert from DDMMYYYY format
+*> to YYYYMMDD format and the "SortDateToEuroDate" is used to convert it back.
 
 
 ENVIRONMENT DIVISION.
@@ -106,7 +105,7 @@ DisplayErrorMessage.
 IDENTIFICATION DIVISION.
 PROGRAM-ID. EuroDateToSortDate.
 AUTHOR.    Michael Coughlan.
-* Converts a date in DDMMYYYY format to one in YYYYMMDD
+*> Converts a date in DDMMYYYY format to one in YYYYMMDD
 
 ENVIRONMENT DIVISION.
 DATA DIVISION.
@@ -139,7 +138,7 @@ END PROGRAM EuroDateToSortDate.
 IDENTIFICATION DIVISION.
 PROGRAM-ID. SortDateToEuroDate.
 AUTHOR.     Michael Coughlan.
-* Converts a date in YYYYMMDD format to one in DDMMYYYY
+*> Converts a date in YYYYMMDD format to one in DDMMYYYY
 
 ENVIRONMENT DIVISION.
 DATA DIVISION.
@@ -172,10 +171,10 @@ END PROGRAM SortDateToEuroDate.
 IDENTIFICATION DIVISION.
 PROGRAM-ID. GetDayDiff.
 AUTHOR. Michael Coughlan.
-* This module finds the difference in days between two
-* Dates. The dates must be in the form YYYYMMDD.
-* The first date passed is subtracted from the second
-* Date and the difference is returned.
+*> This module finds the difference in days between two
+*> Dates. The dates must be in the form YYYYMMDD.
+*> The first date passed is subtracted from the second
+*> Date and the difference is returned.
 
 ENVIRONMENT DIVISION.
 DATA DIVISION.
@@ -193,5 +192,5 @@ Begin.
 
 END PROGRAM GetDayDiff.
 
-END PROGRAM DayDriver.
+END PROGRAM DayDiffDriver.
 

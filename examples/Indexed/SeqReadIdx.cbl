@@ -1,9 +1,9 @@
-      $ SET SOURCEFORMAT "FREE"
+       >>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  SeqReadIdx.
 AUTHOR.  Michael Coughlan.
-* Demonstrates how to read an Indexed file sequentially
-* on any of its keys
+*> Demonstrates how to read an Indexed file sequentially
+*> on any of its keys
 
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
@@ -47,12 +47,12 @@ Begin.
       WITH NO ADVANCING.
    ACCEPT RequiredSequence.
 
-*  First we must establish the key-of-reference (KOR).
-*  Since the default KOR is the primary key we don't need
-*  to do anything special to establish the VideoCode as the KOR.
-*  But to read the file in VideoTitle order we must establish
-*  the VideoTile as the KOR.  We do this by using the VideoTitle
-*  in a direct READ or (as in this case) a START statement.
+*>  First we must establish the key-of-reference (KOR).
+*>  Since the default KOR is the primary key we don't need
+*>  to do anything special to establish the VideoCode as the KOR.
+*>  But to read the file in VideoTitle order we must establish
+*>  the VideoTile as the KOR.  We do this by using the VideoTitle
+*>  in a direct READ or (as in this case) a START statement.
    IF VideoTitleSequence
       MOVE SPACES TO VideoTitle
       START VideoFile KEY IS GREATER THAN VideoTitle
@@ -61,9 +61,9 @@ Begin.
    END-IF   
 
 
-*  The READ..NEXT RECORD will read the file sequentially
-*  as if it ordered on whichever key has been 
-*  established as the KOR.
+*>  The READ..NEXT RECORD will read the file sequentially
+*>  as if it ordered on whichever key has been 
+*>  established as the KOR.
    READ VideoFile NEXT RECORD 
       AT END SET EndOfFile TO TRUE
    END-READ.

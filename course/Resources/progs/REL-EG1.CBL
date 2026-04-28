@@ -1,8 +1,8 @@
-      $ SET SOURCEFORMAT"FREE"
+       >>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  CreateRelativeFromSeq.
 AUTHOR.  MICHAEL COUGHLAN.
-* Creates a Relative file from a sequential file.
+*> Creates a Relative file from a sequential file.
 
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.

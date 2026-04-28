@@ -1,12 +1,12 @@
-      $ SET SOURCEFORMAT"FREE"
+       >>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  SeqWrite.
 AUTHOR.  Michael Coughlan.
-* Example program showing how to create a sequential file
-* using the ACCEPT and the WRITE verbs.
-* Note: In this version of COBOL pressing the Carriage Return (CR)
-* without entering any data results in StudentDetails being filled
-* with spaces.
+*> Example program showing how to create a sequential file
+*> using the ACCEPT and the WRITE verbs.
+*> Note: In this version of COBOL pressing the Carriage Return (CR)
+*> without entering any data results in StudentDetails being filled
+*> with spaces.
 
 
 ENVIRONMENT DIVISION.

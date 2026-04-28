@@ -1,10 +1,10 @@
-      $ SET SOURCEFORMAT"FREE"
+       >>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  TopSupplierRpt.
 AUTHOR.  MICHAEL COUGHLAN.
-*DP291-90-EXAM.
-*Originally written for VAX COBOL 1991
-*Converted to Microfocus NetExpress 2002
+*>DP291-90-EXAM.
+*>Originally written for VAX COBOL 1991
+*>Converted to Microfocus NetExpress 2002
 
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
