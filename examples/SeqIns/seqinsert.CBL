@@ -1,10 +1,10 @@
-      $ SET SOURCEFORMAT "FREE"
+>>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. InsertRecords.
 AUTHOR. Michael Coughlan.
-* This program updates the Students.Dat file with insertions
-* taken from the Transins.Dat file to create a new file
-* - Students.New - which contains the inserted records.
+*> This program updates the Students.Dat file with insertions
+*> taken from the Transins.Dat file to create a new file
+*> - Students.New - which contains the inserted records.
 
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.

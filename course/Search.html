@@ -480,13 +480,13 @@ DISPLAY LetterIn, " is in position ", PrnPos
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="475">
 <tr>
 <td>
-<pre>      $ SET SOURCEFORMAT"FREE"
+<pre>>>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. LetterSearch.
 AUTHOR. Michael Coughlan.
-* This program accepts an upper case letter from the
-* user and then displays which letter of the alphabet
-* it is.
+*> This program accepts an upper case letter from the
+*> user and then displays which letter of the alphabet
+*> it is.
 
 DATA DIVISION.
 WORKING-STORAGE SECTION.
@@ -565,7 +565,7 @@ Begin.
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="475">
 <tr>
 <td>
-<pre>      $ SET SOURCEFORMAT"FREE"
+<pre>>>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. CountyTaxTable.
 AUTHOR. Michael Coughlan.
@@ -720,7 +720,7 @@ DisplayCountyTaxes.
 <img height="170" src="Resources/pics/Search5.gif" width="411"/>
 </pre>
 </div>
-<pre align="left"> 
+<pre align="left"> 
 </pre>
 <p align="left"> Suppose we want to search the table to discover which 
               room is occupied by customer 126789. We can't use the <font size="-1">SEARCH</font> 
@@ -741,7 +741,7 @@ DisplayCountyTaxes.
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="475">
 <tr>
 <td>
-<pre>      $ SET SOURCEFORMAT"FREE"
+<pre>>>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. HotelSearch.
 AUTHOR. Michael Coughlan.
@@ -756,7 +756,7 @@ FILE SECTION.
 FD OccupancyFile.
 01 FloorRec      PIC X(175).
    88  EndOfFile VALUE HIGH-VALUES.
-*Each record represents one row of the table
+*>Each record represents one row of the table
 
 WORKING-STORAGE SECTION.
 01 HotelOccupanyTable.
@@ -852,7 +852,7 @@ LoadTable.
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="475">
 <tr>
 <td>
-<pre>       $ SET SOURCEFORMAT"FREE"
+<pre>>>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. RaceSearch.
 AUTHOR. Michael Coughlan.
@@ -869,7 +869,7 @@ FD RaceResultsFile.
    88 EndOfFile VALUE HIGH-VALUES.
    02 RaceVenue         PIC X(20).
    02 Results           PIC X(200).
-*Each record represents one row of the table
+*>Each record represents one row of the table
 
 WORKING-STORAGE SECTION.
 01 RaceResultsTable. 
@@ -880,7 +880,7 @@ WORKING-STORAGE SECTION.
 
 01 VenueName            PIC X(20).
 01 DriverIdNum          PIC 9(4).
-01 Pos                  PIC 99.
+01 PosNum               PIC 99.
 
 
 PROCEDURE DIVISION.
@@ -903,10 +903,10 @@ SearchForDriver.
    SEARCH RacePos
        AT END DISPLAY "Driver not in top 50 finishers"
        WHEN DriverId(Ridx, Pidx) = DriverIdNum
-            SET Pos TO Pidx
+            SET PosNum TO Pidx
             DISPLAY "In the race at " VenueName
-            DISPLAY "Driver " DriverIdNum 
-                    "finished in position " Pos
+            DISPLAY "Driver " DriverIdNum
+                    "finished in position " PosNum
    END-SEARCH.     
 
 LoadTable.   
@@ -936,11 +936,11 @@ SEARCH Race
      SEARCH RacePos
         AT END DISPLAY "Driver not in top 50 finishers"
         WHEN DriverId(Ridx, Pidx) = DriverIdNum
-             SET Pos TO Pidx
+             SET PosNum TO Pidx
              DISPLAY "In the race at " VenueName
              DISPLAY "Driver " DriverIdNum
-                     " finished in position " Pos
-     END-SEARCH   
+                     " finished in position " PosNum
+     END-SEARCH
 END-SEARCH</pre>
 </td>
 </tr>
@@ -1085,13 +1085,13 @@ END-SEARCH.</pre>
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="475">
 <tr>
 <td>
-<pre>      $ SET SOURCEFORMAT"FREE"
+<pre>>>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. LetterSearchAll.
 AUTHOR. Michael Coughlan.
-* This program accepts an upper case letter from the
-* user and then displays which letter of the alphabet
-* it is.
+*> This program accepts an upper case letter from the
+*> user and then displays which letter of the alphabet
+*> it is.
 
 DATA DIVISION.
 WORKING-STORAGE SECTION.
@@ -1151,7 +1151,7 @@ Begin.
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="475">
 <tr>
 <td>
-<pre>      $ SET SOURCEFORMAT"FREE"
+<pre>>>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. CountyTaxTable4.
 AUTHOR. Michael Coughlan.

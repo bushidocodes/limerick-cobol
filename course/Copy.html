@@ -507,7 +507,7 @@ COPY CopyFile4 IN EGLIB.</pre>
 <td valign="top">
 <div align="center"><font color="#009933"><b><font color="#000099" face="Arial, Helvetica, sans-serif">Source 
                     Text</font><font color="#000099"> </font></b> </font> </div>
-<pre>      $SET SOURCEFORMAT"FREE"
+<pre>>>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. COPYEG1.
 AUTHOR.  Michael Coughlan.
@@ -561,7 +561,7 @@ BeginProg.
                     Text after processing</font><br/>
 </b> </div>
 <pre>
-      $SET SOURCEFORMAT"FREE"                            
+>>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.                                 
 PROGRAM-ID. COPYEG1.                                     
 AUTHOR.  Michael Coughlan.                               
@@ -668,7 +668,7 @@ BeginProg.
 <td valign="top">
 <div align="center"><font color="#009933"><b><font color="#000099" face="Arial, Helvetica, sans-serif">Source 
                     Text</font><font color="#000099"> </font></b> </font> </div>
-<pre>      $SET SOURCEFORMAT"FREE"
+<pre>>>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. COPYEG2.
 AUTHOR.  Michael Coughlan.
@@ -676,27 +676,27 @@ AUTHOR.  Michael Coughlan.
 DATA DIVISION.
 WORKING-STORAGE SECTION.
 01 NameTable.
-*See note1
+*>See note1
 <font color="#FF0000"><b>COPY CopyFile2 REPLACING XYZ BY 120.</b></font>
 
 01 CopyData.
-*See note2
+*>See note2
 <font color="#FF0000"><b>COPY CopyFile3 IN EGLIB
      REPLACING ==R== BY ==4==.</b></font>
 <font color="#FF0000">
-</font>*See note3
+</font>*>See note3
 <font color="#FF0000"><b>COPY CopyFile4 REPLACING ==V99== BY ====.</b>
 
-</font>*See note4<font color="#FF0000">
+</font>*>See note4<font color="#FF0000">
 <b>COPY CopyFile5 REPLACING "KEY" BY "ABC".</b>
 
-</font>*See note5<font color="#FF0000">
+</font>*>See note5<font color="#FF0000">
 <b>COPY CopyFile5 REPLACING KEY BY ABC.</b>
 
-</font>*See note6<font color="#FF0000">
+</font>*>See note6<font color="#FF0000">
 <b>COPY CopyFile5 REPLACING "CustKey" BY "Cust".</b>
 
-</font>*See note7<font color="#FF0000">
+</font>*>See note7<font color="#FF0000">
 <b>COPY CopyFile5 REPLACING "KEY" BY =="ABC".
      02 CustNum              PIC 9(8)==.</b></font>
 
@@ -754,7 +754,7 @@ STOP RUN.
                     Text after processing</font><br/>
 </b> </div>
 <pre>
-      $SET SOURCEFORMAT"FREE"                    
+>>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.                         
 PROGRAM-ID. COPYEG2.                             
 AUTHOR.  Michael Coughlan.                       
@@ -762,33 +762,33 @@ AUTHOR.  Michael Coughlan.
 DATA DIVISION.                                   
 WORKING-STORAGE SECTION.                         
 01 NameTable.
-*See note1                                    
+*>See note1                                    
 <font color="#999999"><b>COPY CopyFile2 REPLACING XYZ BY 120.   </b></font>          
 <b><font color="#FF0000">    02 StudName PIC X(20) OCCURS 120 TIMES.  </font></b>    
                                                  
 01 CopyData.
-*See note2                                     
+*>See note2                                     
 <font color="#999999"><b>COPY CopyFile3 IN EGLIB                          
      REPLACING ==R== BY ==4==. </b></font>                  
 <b><font color="#FF0000">    02  CustOrder           PIC 9(4).  </font></b>          
 
-*See note3                                                 
+*>See note3                                                 
 <font color="#999999"><b>COPY CopyFile4 REPLACING ==V99== BY ====.  </b></font>      
 <b><font color="#FF0000">    02 CustOrder2           PIC 9(6).   </font> </b>        
 
-*See note4                                                 
+*>See note4                                                 
 <font color="#999999"><b>COPY CopyFile5 REPLACING "KEY" BY "ABC". </b></font>        
 <b><font color="#FF0000">    02 CustKey              PIC X(3) VALUE "ABC".</font></b>
 
-*See note5                                                 
+*>See note5                                                 
 <font color="#999999"><b>COPY CopyFile5 REPLACING KEY BY ABC.  </b></font>           
 <b><font color="#FF0000">    02 CustKey              PIC X(3) VALUE "KEY".</font></b>
 
-*See note6                                                 
+*>See note6                                                 
 <font color="#999999"><b>COPY CopyFile5 REPLACING "CustKey" BY "Cust". </b></font>   
 <b><font color="#FF0000">    02 CustKey              PIC X(3) VALUE "KEY".</font></b>
 
-*See note7                                                 
+*>See note7                                                 
 <font color="#999999"><b>COPY CopyFile5 REPLACING "KEY" BY =="ABC".       
      02 CustNum              PIC 9(8)==.   </b></font>      
      <b><font color="#FF0000">02 CustKey              PIC X(3) VALUE "ABC".
@@ -866,7 +866,7 @@ BeginProg.
 <td valign="top">
 <div align="center"><font color="#009933"><b><font color="#000099" face="Arial, Helvetica, sans-serif">Source 
                     Text</font><font color="#000099"> </font></b> </font> </div>
-<pre>      $SET SOURCEFORMAT"FREE"
+<pre>>>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. COPYEG3.
 AUTHOR.  Michael Coughlan.
@@ -874,28 +874,28 @@ AUTHOR.  Michael Coughlan.
 DATA DIVISION.
 WORKING-STORAGE SECTION.
 01 CopyData.
-*See note1 
+*>See note1 
 <font color="#FF0000"><b>COPY CopyFile5 REPLACING ( BY @.</b>
 
-</font>*See note2<font color="#FF0000">
+</font>*>See note2<font color="#FF0000">
 <b>COPY CopyFile5 REPLACING 3 BY three.</b>
 
-</font>*See note3<font color="#FF0000">
+</font>*>See note3<font color="#FF0000">
 <b>COPY CopyFile5 REPLACING ) BY &amp;.</b>
 
-</font>*See note4<font color="#FF0000">
+</font>*>See note4<font color="#FF0000">
 <b>COPY CopyFile5 REPLACING X BY ==Replace the X==.</b>
 
-</font>*See note5<font color="#FF0000">
+</font>*>See note5<font color="#FF0000">
 <b>COPY CopyFile5 REPLACING ==X(3)== BY ==X(19)==.</b>
 
-</font>*See note6<font color="#FF0000">
+</font>*>See note6<font color="#FF0000">
 <b>COPY CopyFile5 REPLACING X(3) BY X(19).</b>
 
-</font>*See note7<font color="#FF0000">
+</font>*>See note7<font color="#FF0000">
 <b>COPY CopyFile5 REPLACING PIC BY ==Pic is Replaced==.</b>
 
-</font>*See note8<font color="#FF0000">
+</font>*>See note8<font color="#FF0000">
 <b>COPY CopyFile5 REPLACING P BY ==But P in PIC not replaced==.</b></font>
 
 PROCEDURE DIVISION.
@@ -924,7 +924,7 @@ BeginProg.
                     Text after processing</font><br/>
 </b> </div>
 <pre><b>
-</b>      $SET SOURCEFORMAT"FREE"
+</b>&gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION. 
 PROGRAM-ID. COPYEG3. 
 AUTHOR.  Michael Coughlan. 
@@ -933,35 +933,35 @@ DATA DIVISION.
 WORKING-STORAGE SECTION. 
 
 01 CopyData.
-*See note1 
+*>See note1 
 <font color="#999999"><b>COPY CopyFile5 REPLACING ( BY @. </b></font>
     <b><font color="#FF0000">02 CustKey              PIC X@3) VALUE "KEY". </font></b>
 
-*See note2
+*>See note2
 <font color="#999999"><b>COPY CopyFile5 REPLACING 3 BY three. </b></font>
     <b><font color="#FF0000">02 CustKey              PIC X(three) VALUE "KEY". </font></b>
 
-*See note3
+*>See note3
 <font color="#999999"><b>COPY CopyFile5 REPLACING ) BY &amp;. </b></font>
 <b><font color="#FF0000">    02 CustKey              PIC X(3&amp; VALUE "KEY". </font></b><font color="#FF0000">
 </font>  
-*See note4
+*>See note4
 <font color="#999999"><b>COPY CopyFile5 REPLACING X BY ==Replace the X==. </b></font> 
  <b><font color="#FF0000">   02 CustKey              PIC Replace the X(3) VALUE "KEY".</font></b>
 
-*See note5
+*>See note5
 <font color="#999999"><b>COPY CopyFile5 REPLACING ==X(3)== BY ==X(19)==.</b></font> 
 <b><font color="#FF0000">    02 CustKey              PIC X(19) VALUE "KEY". </font></b> 
 
-*See note6
+*>See note6
 <font color="#999999"><b>COPY CopyFile5 REPLACING X(3) BY X(19). </b></font>
    <b><font color="#FF0000"> 02 CustKey              PIC X(19) VALUE "KEY". </font></b>
 
-*See note7    
+*>See note7    
 <font color="#999999"><b>COPY CopyFile5 REPLACING PIC BY ==Pic is Replaced==. </b></font>
   <b><font color="#FF0000">  02 CustKey              Pic is Replaced X(3) VALUE "KEY".</font></b>
 
-*See note8 
+*>See note8 
 <font color="#999999"><b>COPY CopyFile5 REPLACING P BY ==But P in PIC not replaced==.</b></font>
     <b><font color="#FF0000">02 CustKey              PIC X(3) VALUE "KEY". </font>    </b>    
 
@@ -1011,7 +1011,7 @@ BeginProg.
 <div align="center"><font color="#009933"><b><font color="#000099" face="Arial, Helvetica, sans-serif">Source 
                     Text</font><font color="#000099"> </font></b> </font> </div>
 <pre>
-      $SET SOURCEFORMAT"FREE"
+>>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. COPYEG4.
 AUTHOR.  Michael Coughlan.
@@ -1023,13 +1023,13 @@ WORKING-STORAGE SECTION.
 01 Result   PIC 99 VALUE ZEROS.
 
 01 CopyData.
-*See note1 
+*>See note1 
 <font color="#FF0000"><b>COPY CopyFile6 REPLACING "Mike" BY "Tony"
                           ??    BY 15.</b></font>
 
 PROCEDURE DIVISION.
 BeginProg.
-*See note2 
+*>See note2 
 <font color="#FF0000"><b>COPY CopyFile7 REPLACING N1 BY Num1
                          N2 BY Num2
                          R1 BY Result.</b></font>
@@ -1067,7 +1067,7 @@ BeginProg.
                     Text after processing</font><br/>
 </b> </div>
 <pre><b>
-</b>       $SET SOURCEFORMAT"FREE"                          
+</b>&gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.                               
 PROGRAM-ID. COPYEG4.                                   
 AUTHOR.  Michael Coughlan.                             
@@ -1079,7 +1079,7 @@ WORKING-STORAGE SECTION.
 01 Result   PIC 99 VALUE ZEROS.                        
                                                        
 01 CopyData.
-*See note1                                            
+*>See note1                                            
 <font color="#999999"><b>COPY CopyFile6 REPLACING "Mike" BY "Tony"              
                           ??    BY 15.   </b></font>              
 <b><font color="#FF0000">    02 CustKey              PIC X(4) VALUE "Tony".     
@@ -1090,7 +1090,7 @@ WORKING-STORAGE SECTION.
                                                        
 PROCEDURE DIVISION.                                    
 BeginProg.
-*See note2<font color="#999999">
+*>See note2<font color="#999999">
 <b>COPY CopyFile7 REPLACING N1 BY Num1                    
                          N2 BY Num2                    
                          R1 BY Result.  </b></font>               

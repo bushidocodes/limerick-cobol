@@ -1,8 +1,8 @@
-      $ SET SOURCEFORMAT"FREE"
+>>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  ReportExampleA.
 AUTHOR.  Michael Coughlan.
-* Very simple version - only salesperson totals
+*> Very simple version - only salesperson totals
 
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.

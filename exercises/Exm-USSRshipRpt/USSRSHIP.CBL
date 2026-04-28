@@ -1,11 +1,11 @@
-      $ SET SOURCEFORMAT"FREE"
+>>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  DP173EXAM.
 AUTHOR.  Michael Coughlan.
-*Originally written for VAX COBOL 1983
-*Converted to Microfocus COBOL 2002#
-*One of a series of "Big Brother" or security based specs
-* as we approached 1984 
+*>Originally written for VAX COBOL 1983
+*>Converted to Microfocus COBOL 2002#
+*>One of a series of "Big Brother" or security based specs
+*> as we approached 1984 
 
 
 ENVIRONMENT DIVISION.

@@ -321,19 +321,19 @@ DISPLAY PrinterSetupCodes UPON PrinterPort1.
 <div align="left">
 <pre>
 01 CurrentDate         PIC 9(6).
-*&gt; CurrentDate is the date in YYMMDD format
+*>&gt; CurrentDate is the date in YYMMDD format
 
 
 01 DayOfYear           PIC 9(5).
-*&gt; DayOfYear is current day in YYDDD format
+*>&gt; DayOfYear is current day in YYDDD format
 
 
 01 DayOfWeek           PIC 9.
-*&gt; DAY-OF-WEEK is a single digit where 1=Monday
+*>&gt; DAY-OF-WEEK is a single digit where 1=Monday
 
 
 01 CurrentTime         PIC 9(8).
-*&gt; CurrentTime is the time in HHMMSSss format where s = S/100
+*>&gt; CurrentTime is the time in HHMMSSss format where s = S/100
 </pre>
 </div>
 </div>
@@ -366,9 +366,9 @@ DISPLAY PrinterSetupCodes UPON PrinterPort1.
               must be defined as; </p>
 <blockquote>
 <pre>01 Y2KDate PIC 9(8).
-*&gt; Y2KDate is the date in YYYYMMDD format </pre>
+*>&gt; Y2KDate is the date in YYYYMMDD format </pre>
 <pre>01 Y2KDayOfYear PIC 9(7).
-*&gt; Y2KDayOfYear is current day in YYYYDDD format </pre>
+*>&gt; Y2KDayOfYear is current day in YYYYDDD format </pre>
 </blockquote>
 <hr width="50%"/>
 </td>
@@ -397,15 +397,15 @@ DISPLAY PrinterSetupCodes UPON PrinterPort1.
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  AcceptAndDisplay.
 AUTHOR.  Michael Coughlan.
-*&gt; Uses the ACCEPT and DISPLAY verbs to accept a student record
-*&gt; from the user and display some of the fields.  Also shows how
-*&gt; the ACCEPT may be used to get the system date and time.
+*>&gt; Uses the ACCEPT and DISPLAY verbs to accept a student record
+*>&gt; from the user and display some of the fields.  Also shows how
+*>&gt; the ACCEPT may be used to get the system date and time.
 
-*&gt; The YYYYMMDD in "ACCEPT  CurrentDate FROM DATE YYYYMMDD."
-*&gt; is a format command that ensures that the date contains a
-*&gt; 4 digit year.  If not used, the year supplied by the system
-*&gt; will only contain two digits which may cause a problem
-*&gt; in the year 2000.
+*>&gt; The YYYYMMDD in "ACCEPT  CurrentDate FROM DATE YYYYMMDD."
+*>&gt; is a format command that ensures that the date contains a
+*>&gt; 4 digit year.  If not used, the year supplied by the system
+*>&gt; will only contain two digits which may cause a problem
+*>&gt; in the year 2000.
 
 DATA DIVISION.
 WORKING-STORAGE SECTION.
@@ -417,19 +417,19 @@ WORKING-STORAGE SECTION.
     02  CourseCode      PIC X(4).
     02  Gender          PIC X.
 
-*&gt; YYMMDD
+*>&gt; YYMMDD
 01 CurrentDate.
     02  CurrentYear     PIC 9(4).
     02  CurrentMonth    PIC 99.
     02  CurrentDay      PIC 99.
 
-*&gt; YYDDD
+*>&gt; YYDDD
 01 DayOfYear.
     02  FILLER          PIC 9(4).
     02  YearDay         PIC 9(3).
 
 
-*&gt; HHMMSSss   s = S/100
+*>&gt; HHMMSSss   s = S/100
 01 CurrentTime.
     02  CurrentHour     PIC 99.
     02  CurrentMinute   PIC 99.

@@ -752,11 +752,11 @@ WORKING-STORAGE SECTION.
    02 YearD       PIC 9999.
    02 MonthD      PIC 99.
    02 DayD        PIC 99.
- 
+ 
 PROCEDURE DIVISION.
 Begin.
-* This example gets the current date and displays
-* its constituent parts.
+*> This example gets the current date and displays
+*> its constituent parts.
   MOVE FUNCTION CURRENT-DATE TO DateAndTimeC
   DISPLAY "Current Date is " MonthC "/" DayC "/" YearC
   DISPLAY "Current Time is " HourC ":" MinC ":" SecC
@@ -768,8 +768,8 @@ Begin.
               GMTDiff GMTHours ":" GMTMins
   END-IF.
 
-* In this example bills fall due 30 days from
-* the billing date.
+*> In this example bills fall due 30 days from
+*> the billing date.
   DISPLAY "Enter the date of the bill (yyyymmdd) "
            WITH NO ADVANCING
   ACCEPT BillDate
@@ -782,8 +782,8 @@ Begin.
     WHEN DaysOverDue &lt; ZERO DISPLAY "This bill is not yet due"
   END-EVALUATE
 
-* This example displays the date NumOfDays days
-* from the current date
+*> This example displays the date NumOfDays days
+*> from the current date
   DISPLAY "Enter the number of days - "
   WITH NO ADVANCING
   ACCEPT NumOfDays
@@ -1162,7 +1162,7 @@ Begin.
 <pre>IDENTIFICATION DIVISION.
 PROGRAM-ID.  OtherFunctions.
 AUTHOR.  Michael Coughlan.
-* An example program using misc Intrinsic Functions
+*> An example program using misc Intrinsic Functions
 
 DATA DIVISION.
 WORKING-STORAGE SECTION.
@@ -1255,8 +1255,8 @@ Begin.
 <pre>IDENTIFICATION DIVISION.
 PROGRAM-ID.  Lotto.
 AUTHOR.  Michael Coughlan.
-* This program displays six unique random lotto numbers.
-* It was Adapted from a program written by Dermot Shinners-Kennedy
+*> This program displays six unique random lotto numbers.
+*> It was Adapted from a program written by Dermot Shinners-Kennedy
 
 DATA DIVISION.
 WORKING-STORAGE SECTION.

@@ -1,9 +1,9 @@
-      $ SET SOURCEFORMAT"FREE"
+>>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  Multiplier.
 AUTHOR.  Michael Coughlan.
-* Example program using ACCEPT, DISPLAY and MULTIPLY to 
-* get two single digit numbers from the user and multiply them together
+*> Example program using ACCEPT, DISPLAY and MULTIPLY to 
+*> get two single digit numbers from the user and multiply them together
 
 DATA DIVISION.
 

@@ -1,10 +1,10 @@
-      $ SET SOURCEFORMAT"FREE"
+>>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  GetCustomerAddress IS INITIAL.
 AUTHOR.  Michael Coughlan.
-*This is a stub program.  It is intended only to test the 
-*program that calls it.  For a restricted set of 
-*inputs it returns restricted outputs.
+*>This is a stub program.  It is intended only to test the 
+*>program that calls it.  For a restricted set of 
+*>inputs it returns restricted outputs.
 
 DATA DIVISION.
 LINKAGE SECTION.

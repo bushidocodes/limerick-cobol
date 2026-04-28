@@ -1,8 +1,8 @@
-      $ SET SOURCEFORMAT"FREE"
+>>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  MileageCounter.
 AUTHOR.  Michael Coughlan.
-* Simulates a mileage counter
+*> Simulates a mileage counter
 
 DATA DIVISION.
 WORKING-STORAGE SECTION.

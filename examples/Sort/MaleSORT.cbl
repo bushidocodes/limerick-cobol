@@ -1,11 +1,11 @@
-      $ SET SOURCEFORMAT"FREE"
+>>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  MaleSort.
 AUTHOR.  Michael Coughlan.
-* Uses the the SORT and an INPUT PROCEDURE to read
-* the student masterfile (sorted on ascending Student Id)
-* and from it to produce a file containing only the records of
-* male students sorted on ascending student name.
+*> Uses the the SORT and an INPUT PROCEDURE to read
+*> the student masterfile (sorted on ascending Student Id)
+*> and from it to produce a file containing only the records of
+*> male students sorted on ascending student name.
  
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.

@@ -1,11 +1,11 @@
-      $ SET SOURCEFORMAT"FREE"
+>>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. Steadfast IS INITIAL.
 AUTHOR. Michael Coughlan.
-* This sub-program is demonstrates the use of the
-* IS INITIAL phrase. Each time the program is called
-* it is as if it had been called for the very first time.
-* All data items are initialized to their VALUE clauses.
+*> This sub-program is demonstrates the use of the
+*> IS INITIAL phrase. Each time the program is called
+*> it is as if it had been called for the very first time.
+*> All data items are initialized to their VALUE clauses.
 
 
 ENVIRONMENT DIVISION.

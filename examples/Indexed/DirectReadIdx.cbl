@@ -1,9 +1,9 @@
-      $ SET SOURCEFORMAT "FREE"
+>>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  DirectReadIdx.
 AUTHOR.  Michael Coughlan.
-* Demonstrates how to read an Indexed file directly on 
-* any of its keys.
+*> Demonstrates how to read an Indexed file directly on 
+*> any of its keys.
 
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.

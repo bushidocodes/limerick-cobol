@@ -1,9 +1,9 @@
-      $ SET SOURCEFORMAT"FREE"
+>>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  SeqRead.
 AUTHOR.  Michael Coughlan.
-* An example program showing how to read a sequential file.
-* This is the definitive example 
+*> An example program showing how to read a sequential file.
+*> This is the definitive example 
 
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.

@@ -1,9 +1,9 @@
-      $ SET SOURCEFORMAT"FREE"
+>>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  MonthTable.
 AUTHOR.  Michael Coughlan.
-* This program counts the number of students born in each month and
-* displays the result.
+*> This program counts the number of students born in each month and
+*> displays the result.
 
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.

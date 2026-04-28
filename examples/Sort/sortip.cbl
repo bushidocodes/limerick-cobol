@@ -1,13 +1,13 @@
-      $ SET SOURCEFORMAT"FREE"
+>>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  SortIP.
 AUTHOR.  Michael Coughlan.
-* Reads the Students File (held in ascending StudentId order) and
-* uses the SORT verb with an INPUT PROCEDURE to produce a file
-* sequenced on ascending CourseCode containing only the CourseCode
-* and Gender of each student.  The sorted file is then read
-* sequentially and the number of males and females taking each
-* course is displayed in ascending CourseCode order.
+*> Reads the Students File (held in ascending StudentId order) and
+*> uses the SORT verb with an INPUT PROCEDURE to produce a file
+*> sequenced on ascending CourseCode containing only the CourseCode
+*> and Gender of each student.  The sorted file is then read
+*> sequentially and the number of males and females taking each
+*> course is displayed in ascending CourseCode order.
 
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.

@@ -1,11 +1,11 @@
-      $ SET SOURCEFORMAT"FREE"
+>>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  UnstringFileEg.
 AUTHOR.  Michael Coughlan.
-* Example showing the unpacking of comma separated records
-* and the size validation of the unpacked fields.
-* In this example we have only implemented unpacking
-* an InsertSupplier record.
+*> Example showing the unpacking of comma separated records
+*> and the size validation of the unpacked fields.
+*> In this example we have only implemented unpacking
+*> an InsertSupplier record.
 
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
@@ -37,9 +37,9 @@ WORKING-STORAGE SECTION.
    02 Supplier-Address     PIC X(50).
 
 
-* These counts allow us to detect if there are too many chars
-* in a particular field.  For instance the date field should be
-* 8 characters in size.
+*> These counts allow us to detect if there are too many chars
+*> in a particular field.  For instance the date field should be
+*> 8 characters in size.
 01 InsertSupplierCounts.
    02 DateCount            PIC 99.
       88 ValidDate         VALUE 8.
@@ -60,7 +60,7 @@ Begin.
    END-READ
    PERFORM UNTIL EndOfFile
       MOVE ZEROS TO InsertSupplierCounts
-*     First find the actual length of the record
+*>     First find the actual length of the record
       PERFORM VARYING StringEnd FROM 78 BY -1
               UNTIL RemainingRec(StringEnd:1) NOT = SPACE
       END-PERFORM
