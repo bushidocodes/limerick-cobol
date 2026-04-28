@@ -1,3 +1,4 @@
+       >>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  ReadingIndexedFile.
 AUTHOR.  Michael Coughlan.
