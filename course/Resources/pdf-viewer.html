@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>PDF slide viewer</title>
+<style>
+  html, body { margin: 0; padding: 0; height: 100%; background: #2a2a2a; color: #eee;
+    font-family: Arial, Helvetica, sans-serif; overflow: hidden; }
+  body { display: flex; flex-direction: column; }
+  #stage { flex: 1 1 auto; display: flex; align-items: center; justify-content: center;
+    overflow: hidden; min-height: 0; }
+  #canvas { display: block; max-width: 100%; max-height: 100%; background: #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.5); }
+  #controls { flex: 0 0 auto; display: flex; align-items: center; justify-content: center;
+    gap: 10px; padding: 6px 8px; background: #1d1d1d; border-top: 1px solid #444;
+    font-size: 12px; user-select: none; }
+  #controls button { background: #444; color: #eee; border: 1px solid #666;
+    border-radius: 3px; padding: 3px 10px; cursor: pointer; font: inherit; }
+  #controls button:hover:not(:disabled) { background: #555; }
+  #controls button:disabled { opacity: 0.4; cursor: default; }
+  #pageInfo { min-width: 60px; text-align: center; }
+  #status { position: absolute; inset: 0; display: flex; align-items: center;
+    justify-content: center; pointer-events: none; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <canvas id="canvas"></canvas>
+  <div id="status">Loading…</div>
+</div>
+<div id="controls">
+  <button id="prev" type="button" aria-label="Previous slide">&#9664; Prev</button>
+  <span id="pageInfo">– / –</span>
+  <button id="next" type="button" aria-label="Next slide">Next &#9654;</button>
+</div>
+<script src="vendor/pdfjs/pdf.min.js"></script>
+<script>
+(function () {
+  const params = new URLSearchParams(location.search);
+  const src = params.get("src");
+  const startPage = Math.max(1, parseInt(params.get("page") || "1", 10) || 1);
+  const stage = document.getElementById("stage");
+  const canvas = document.getElementById("canvas");
+  const ctx = canvas.getContext("2d");
+  const prevBtn = document.getElementById("prev");
+  const nextBtn = document.getElementById("next");
+  const pageInfo = document.getElementById("pageInfo");
+  const status = document.getElementById("status");
+
+  if (!src) {
+    status.textContent = "Missing ?src= parameter";
+    return;
+  }
+  if (!window.pdfjsLib) {
+    status.textContent = "PDF library failed to load";
+    return;
+  }
+  pdfjsLib.GlobalWorkerOptions.workerSrc = "vendor/pdfjs/pdf.worker.min.js";
+
+  let pdf = null;
+  let currentPage = startPage;
+  let renderTask = null;
+  let renderToken = 0;
+
+  async function render(pageNum) {
+    if (!pdf) return;
+    const token = ++renderToken;
+    const page = await pdf.getPage(pageNum);
+    if (token !== renderToken) return;
+    const stageRect = stage.getBoundingClientRect();
+    const baseViewport = page.getViewport({ scale: 1 });
+    const scale = Math.min(
+      stageRect.width / baseViewport.width,
+      stageRect.height / baseViewport.height
+    );
+    const dpr = window.devicePixelRatio || 1;
+    const viewport = page.getViewport({ scale: scale * dpr });
+    canvas.width = Math.floor(viewport.width);
+    canvas.height = Math.floor(viewport.height);
+    canvas.style.width = Math.floor(viewport.width / dpr) + "px";
+    canvas.style.height = Math.floor(viewport.height / dpr) + "px";
+    if (renderTask) {
+      try { renderTask.cancel(); } catch (e) { /* ignore */ }
+    }
+    renderTask = page.render({ canvasContext: ctx, viewport });
+    try {
+      await renderTask.promise;
+    } catch (e) {
+      if (e && e.name === "RenderingCancelledException") return;
+      throw e;
+    }
+    if (token !== renderToken) return;
+    pageInfo.textContent = pageNum + " / " + pdf.numPages;
+    prevBtn.disabled = pageNum <= 1;
+    nextBtn.disabled = pageNum >= pdf.numPages;
+  }
+
+  function go(delta) {
+    if (!pdf) return;
+    const next = Math.min(pdf.numPages, Math.max(1, currentPage + delta));
+    if (next === currentPage) return;
+    currentPage = next;
+    render(currentPage);
+  }
+
+  prevBtn.addEventListener("click", () => go(-1));
+  nextBtn.addEventListener("click", () => go(1));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft" || e.key === "PageUp") { go(-1); e.preventDefault(); }
+    else if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") { go(1); e.preventDefault(); }
+    else if (e.key === "Home") { currentPage = 1; render(1); e.preventDefault(); }
+    else if (e.key === "End" && pdf) { currentPage = pdf.numPages; render(pdf.numPages); e.preventDefault(); }
+  });
+
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => render(currentPage), 100);
+  });
+
+  pdfjsLib.getDocument(src).promise.then((doc) => {
+    pdf = doc;
+    currentPage = Math.min(currentPage, pdf.numPages);
+    status.style.display = "none";
+    render(currentPage);
+  }).catch((err) => {
+    status.textContent = "Failed to load PDF: " + (err && err.message ? err.message : err);
+  });
+})();
+</script>
+</body>
+</html>
