@@ -675,8 +675,8 @@ Programmer - Michael Coughlan               Page :  1
 <td valign="top">
 <pre class="language-cobol"><code class="language-cobol">REPORT SECTION.
 RD  SalesReport
-    CONTROLS ARE <b><font color="#FF0000">FINAL
-                 CityCode</font></b>
+    CONTROLS ARE FINAL
+                 CityCode
                  SalesPersonNum 
     PAGE LIMIT IS 66
     HEADING 1
@@ -721,9 +721,9 @@ RD  SalesReport
        03 COLUMN 15     PIC X(21) VALUE "Sales for salesperson".
        03 COLUMN 37     PIC 9 SOURCE SalesPersonNum.
        03 COLUMN 43     PIC X VALUE "=".
-       03 <b><font color="#FF0000">SMS</font></b> COLUMN 45 PIC $$$$$,$$$.99 SUM ValueOfSale.
+       03 SMS COLUMN 45 PIC $$$$$,$$$.99 SUM ValueOfSale.
 
-<b><font color="#FF0000">
+
 01  CityGrp TYPE IS CONTROL FOOTING CityCode NEXT GROUP PLUS 2.
     02 LINE IS PLUS 2.
        03 COLUMN 15     PIC X(9) VALUE "Sales for".
@@ -737,7 +737,7 @@ RD  SalesReport
        03 COLUMN 15     PIC X(11)
                         VALUE "Total sales".
        03 COLUMN 43     PIC X VALUE "=".
-       03 COLUMN 45     PIC $$$$$,$$$.99 SUM CS.</font></b>
+       03 COLUMN 45     PIC $$$$$,$$$.99 SUM CS.
 
 
 01  TYPE IS PAGE FOOTING.
@@ -982,7 +982,7 @@ RD  SalesReport
        03 COLUMN 43     PIC X VALUE "=".
        03 SMS COLUMN 45 PIC $$$$$,$$$.99 SUM ValueOfSale.
 
-<b><font color="#FF0000">    02 LINE IS PLUS 1.
+    02 LINE IS PLUS 1.
        03 COLUMN 15     PIC X(19) VALUE "Sales commission is".
        03 COLUMN 43     PIC X VALUE "=".
        03 COLUMN 45     PIC $$$$$,$$$.99 SOURCE Commission.
@@ -1000,7 +1000,7 @@ RD  SalesReport
     02 LINE IS PLUS 1.
        03 COLUMN 15     PIC X(30)
                         VALUE "Previous salesperson number = ".
-       03 COLUMN 45     PIC 9 SOURCE SalesPersonNum.</font></b>
+       03 COLUMN 45     PIC 9 SOURCE SalesPersonNum.
 
 
 
@@ -1011,7 +1011,7 @@ RD  SalesReport
        03 COLUMN 43     PIC X VALUE "=".
        03 CS COLUMN 45  PIC $$$$$,$$$.99 SUM SMS.
 
-<b><font color="#FF0000">    02 LINE IS PLUS 1.
+    02 LINE IS PLUS 1.
        03 COLUMN 15     PIC X(12)
                         VALUE "Current city".
        03 COLUMN 43     PIC X VALUE "=".
@@ -1021,7 +1021,7 @@ RD  SalesReport
        03 COLUMN 15     PIC X(13)
                         VALUE "Previous city".
        03 COLUMN 43     PIC X VALUE "=".
-       03 COLUMN 45     PIC 9   SOURCE CityCode.</font></b>
+       03 COLUMN 45     PIC 9   SOURCE CityCode.
 
 
 01  TotalSalesGrp TYPE IS CONTROL FOOTING FINAL.
@@ -1041,7 +1041,7 @@ RD  SalesReport
 
 
 PROCEDURE DIVISION.
-<b><font color="#FF0000">DECLARATIVES.
+DECLARATIVES.
 Calc SECTION.
     USE BEFORE REPORTING SalesPersonGrp.
 Calculate-Salary.
@@ -1049,7 +1049,7 @@ Calculate-Salary.
           GIVING Commission ROUNDED.
     ADD Commission, FixedRate(CityCode,SalesPersonNum)
           GIVING Salary.
-END DECLARATIVES.</font></b>
+END DECLARATIVES.
 
 Main SECTION.
 Begin.
@@ -1067,8 +1067,8 @@ Begin.
 
 
 PrintSalaryReport.
-<b><font color="#FF0000">    MOVE CityCode TO CityNow.
-    MOVE SalesPersonNum  TO SalesPersonNow.</font></b>
+    MOVE CityCode TO CityNow.
+    MOVE SalesPersonNum  TO SalesPersonNow.
     GENERATE DetailLine.
     READ SalesFile
           AT END SET EndOfFile TO TRUE

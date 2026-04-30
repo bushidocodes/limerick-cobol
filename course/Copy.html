@@ -526,7 +526,7 @@ FILE-CONTROL.
 DATA DIVISION.
 FILE SECTION.
 FD StudentFile.
-<font color="#006600"><b>COPY COPYFILE1.</b></font>
+COPY COPYFILE1.
 
 PROCEDURE DIVISION.
 BeginProg.
@@ -541,8 +541,8 @@ BeginProg.
          AT END SET EndOfSF TO TRUE
       END-READ
    END-PERFORM
-   STOP RUN.<b>
-</b></code></pre>
+   STOP RUN.
+</code></pre>
 </td>
 </tr>
 <tr>
@@ -581,14 +581,14 @@ FILE-CONTROL.
 DATA DIVISION.                                           
 FILE SECTION.                                            
 FD StudentFile.                                          
-<font color="#999999"><b>COPY CopyFile1.</b></font>                                          
-<b><font color="#FF0000">01  StudentRec.                                          
+COPY CopyFile1.                                          
+01  StudentRec.                                          
     88  EndOfSF      VALUE HIGH-VALUES.                  
     02  StudentNumber                PIC 9(7).           
     02  StudentName                  PIC X(60).          
     02  CourseCode                   PIC X(4).           
     02  FeesOwed                     PIC 9(4).           
-    02  AmountPaid                   PIC 9(4)V99. </font></b>       
+    02  AmountPaid                   PIC 9(4)V99.        
 
 PROCEDURE DIVISION.                                      
 BeginProg.                                               
@@ -684,28 +684,28 @@ DATA DIVISION.
 WORKING-STORAGE SECTION.
 01 NameTable.
 *&gt;See note1
-<font color="#FF0000"><b>COPY CopyFile2 REPLACING XYZ BY 120.</b></font>
+COPY CopyFile2 REPLACING XYZ BY 120.
 
 01 CopyData.
 *&gt;See note2
-<font color="#FF0000"><b>COPY CopyFile3 IN EGLIB
-     REPLACING ==R== BY ==4==.</b></font>
-<font color="#FF0000">
-</font>*&gt;See note3
-<font color="#FF0000"><b>COPY CopyFile4 REPLACING ==V99== BY ====.</b>
+COPY CopyFile3 IN EGLIB
+     REPLACING ==R== BY ==4==.
 
-</font>*&gt;See note4<font color="#FF0000">
-<b>COPY CopyFile5 REPLACING "KEY" BY "ABC".</b>
+*&gt;See note3
+COPY CopyFile4 REPLACING ==V99== BY ====.
 
-</font>*&gt;See note5<font color="#FF0000">
-<b>COPY CopyFile5 REPLACING KEY BY ABC.</b>
+*&gt;See note4
+COPY CopyFile5 REPLACING "KEY" BY "ABC".
 
-</font>*&gt;See note6<font color="#FF0000">
-<b>COPY CopyFile5 REPLACING "CustKey" BY "Cust".</b>
+*&gt;See note5
+COPY CopyFile5 REPLACING KEY BY ABC.
 
-</font>*&gt;See note7<font color="#FF0000">
-<b>COPY CopyFile5 REPLACING "KEY" BY =="ABC".
-     02 CustNum              PIC 9(8)==.</b></font>
+*&gt;See note6
+COPY CopyFile5 REPLACING "CustKey" BY "Cust".
+
+*&gt;See note7
+COPY CopyFile5 REPLACING "KEY" BY =="ABC".
+     02 CustNum              PIC 9(8)==.
 
 
 PROCEDURE DIVISION.
@@ -770,44 +770,44 @@ DATA DIVISION.
 WORKING-STORAGE SECTION.                         
 01 NameTable.
 *&gt;See note1                                    
-<font color="#999999"><b>COPY CopyFile2 REPLACING XYZ BY 120.   </b></font>          
-<b><font color="#FF0000">    02 StudName PIC X(20) OCCURS 120 TIMES.  </font></b>    
+COPY CopyFile2 REPLACING XYZ BY 120.             
+    02 StudName PIC X(20) OCCURS 120 TIMES.      
                                                  
 01 CopyData.
 *&gt;See note2                                     
-<font color="#999999"><b>COPY CopyFile3 IN EGLIB                          
-     REPLACING ==R== BY ==4==. </b></font>                  
-<b><font color="#FF0000">    02  CustOrder           PIC 9(4).  </font></b>          
+COPY CopyFile3 IN EGLIB                          
+     REPLACING ==R== BY ==4==.                   
+    02  CustOrder           PIC 9(4).            
 
 *&gt;See note3                                                 
-<font color="#999999"><b>COPY CopyFile4 REPLACING ==V99== BY ====.  </b></font>      
-<b><font color="#FF0000">    02 CustOrder2           PIC 9(6).   </font> </b>        
+COPY CopyFile4 REPLACING ==V99== BY ====.        
+    02 CustOrder2           PIC 9(6).            
 
 *&gt;See note4                                                 
-<font color="#999999"><b>COPY CopyFile5 REPLACING "KEY" BY "ABC". </b></font>        
-<b><font color="#FF0000">    02 CustKey              PIC X(3) VALUE "ABC".</font></b>
+COPY CopyFile5 REPLACING "KEY" BY "ABC".         
+    02 CustKey              PIC X(3) VALUE "ABC".
 
 *&gt;See note5                                                 
-<font color="#999999"><b>COPY CopyFile5 REPLACING KEY BY ABC.  </b></font>           
-<b><font color="#FF0000">    02 CustKey              PIC X(3) VALUE "KEY".</font></b>
+COPY CopyFile5 REPLACING KEY BY ABC.             
+    02 CustKey              PIC X(3) VALUE "KEY".
 
 *&gt;See note6                                                 
-<font color="#999999"><b>COPY CopyFile5 REPLACING "CustKey" BY "Cust". </b></font>   
-<b><font color="#FF0000">    02 CustKey              PIC X(3) VALUE "KEY".</font></b>
+COPY CopyFile5 REPLACING "CustKey" BY "Cust".    
+    02 CustKey              PIC X(3) VALUE "KEY".
 
 *&gt;See note7                                                 
-<font color="#999999"><b>COPY CopyFile5 REPLACING "KEY" BY =="ABC".       
-     02 CustNum              PIC 9(8)==.   </b></font>      
-     <b><font color="#FF0000">02 CustKey              PIC X(3) VALUE "ABC".
-     02 CustNum              PIC 9(8).</font></b>
+COPY CopyFile5 REPLACING "KEY" BY =="ABC".       
+     02 CustNum              PIC 9(8)==.         
+     02 CustKey              PIC X(3) VALUE "ABC".
+     02 CustNum              PIC 9(8).
                                                  
                                                  
 PROCEDURE DIVISION.                              
 BeginProg. 
-               <b>                         
+                                        
                                                  
-</b>STOP RUN.  <b>                                      
-</b></code></pre>
+STOP RUN.                                        
+</code></pre>
 </td>
 </tr>
 </table>
@@ -882,28 +882,28 @@ DATA DIVISION.
 WORKING-STORAGE SECTION.
 01 CopyData.
 *&gt;See note1 
-<font color="#FF0000"><b>COPY CopyFile5 REPLACING ( BY @.</b>
+COPY CopyFile5 REPLACING ( BY @.
 
-</font>*&gt;See note2<font color="#FF0000">
-<b>COPY CopyFile5 REPLACING 3 BY three.</b>
+*&gt;See note2
+COPY CopyFile5 REPLACING 3 BY three.
 
-</font>*&gt;See note3<font color="#FF0000">
-<b>COPY CopyFile5 REPLACING ) BY &amp;.</b>
+*&gt;See note3
+COPY CopyFile5 REPLACING ) BY &amp;.
 
-</font>*&gt;See note4<font color="#FF0000">
-<b>COPY CopyFile5 REPLACING X BY ==Replace the X==.</b>
+*&gt;See note4
+COPY CopyFile5 REPLACING X BY ==Replace the X==.
 
-</font>*&gt;See note5<font color="#FF0000">
-<b>COPY CopyFile5 REPLACING ==X(3)== BY ==X(19)==.</b>
+*&gt;See note5
+COPY CopyFile5 REPLACING ==X(3)== BY ==X(19)==.
 
-</font>*&gt;See note6<font color="#FF0000">
-<b>COPY CopyFile5 REPLACING X(3) BY X(19).</b>
+*&gt;See note6
+COPY CopyFile5 REPLACING X(3) BY X(19).
 
-</font>*&gt;See note7<font color="#FF0000">
-<b>COPY CopyFile5 REPLACING PIC BY ==Pic is Replaced==.</b>
+*&gt;See note7
+COPY CopyFile5 REPLACING PIC BY ==Pic is Replaced==.
 
-</font>*&gt;See note8<font color="#FF0000">
-<b>COPY CopyFile5 REPLACING P BY ==But P in PIC not replaced==.</b></font>
+*&gt;See note8
+COPY CopyFile5 REPLACING P BY ==But P in PIC not replaced==.
 
 PROCEDURE DIVISION.
 BeginProg.
@@ -930,8 +930,8 @@ BeginProg.
 <div align="center"><b><font color="#000099" face="Arial, Helvetica, sans-serif">Source 
                     Text after processing</font><br/>
 </b> </div>
-<pre class="language-cobol"><code class="language-cobol"><b>
-</b>       &gt;&gt;SOURCE FORMAT IS FREE
+<pre class="language-cobol"><code class="language-cobol">
+       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION. 
 PROGRAM-ID. COPYEG3. 
 AUTHOR.  Michael Coughlan. 
@@ -941,42 +941,42 @@ WORKING-STORAGE SECTION.
 
 01 CopyData.
 *&gt;See note1 
-<font color="#999999"><b>COPY CopyFile5 REPLACING ( BY @. </b></font>
-    <b><font color="#FF0000">02 CustKey              PIC X@3) VALUE "KEY". </font></b>
+COPY CopyFile5 REPLACING ( BY @. 
+    02 CustKey              PIC X@3) VALUE "KEY". 
 
 *&gt;See note2
-<font color="#999999"><b>COPY CopyFile5 REPLACING 3 BY three. </b></font>
-    <b><font color="#FF0000">02 CustKey              PIC X(three) VALUE "KEY". </font></b>
+COPY CopyFile5 REPLACING 3 BY three. 
+    02 CustKey              PIC X(three) VALUE "KEY". 
 
 *&gt;See note3
-<font color="#999999"><b>COPY CopyFile5 REPLACING ) BY &amp;. </b></font>
-<b><font color="#FF0000">    02 CustKey              PIC X(3&amp; VALUE "KEY". </font></b><font color="#FF0000">
-</font>  
+COPY CopyFile5 REPLACING ) BY &amp;. 
+    02 CustKey              PIC X(3&amp; VALUE "KEY". 
+  
 *&gt;See note4
-<font color="#999999"><b>COPY CopyFile5 REPLACING X BY ==Replace the X==. </b></font> 
- <b><font color="#FF0000">   02 CustKey              PIC Replace the X(3) VALUE "KEY".</font></b>
+COPY CopyFile5 REPLACING X BY ==Replace the X==.  
+    02 CustKey              PIC Replace the X(3) VALUE "KEY".
 
 *&gt;See note5
-<font color="#999999"><b>COPY CopyFile5 REPLACING ==X(3)== BY ==X(19)==.</b></font> 
-<b><font color="#FF0000">    02 CustKey              PIC X(19) VALUE "KEY". </font></b> 
+COPY CopyFile5 REPLACING ==X(3)== BY ==X(19)==. 
+    02 CustKey              PIC X(19) VALUE "KEY".  
 
 *&gt;See note6
-<font color="#999999"><b>COPY CopyFile5 REPLACING X(3) BY X(19). </b></font>
-   <b><font color="#FF0000"> 02 CustKey              PIC X(19) VALUE "KEY". </font></b>
+COPY CopyFile5 REPLACING X(3) BY X(19). 
+    02 CustKey              PIC X(19) VALUE "KEY". 
 
 *&gt;See note7    
-<font color="#999999"><b>COPY CopyFile5 REPLACING PIC BY ==Pic is Replaced==. </b></font>
-  <b><font color="#FF0000">  02 CustKey              Pic is Replaced X(3) VALUE "KEY".</font></b>
+COPY CopyFile5 REPLACING PIC BY ==Pic is Replaced==. 
+    02 CustKey              Pic is Replaced X(3) VALUE "KEY".
 
 *&gt;See note8 
-<font color="#999999"><b>COPY CopyFile5 REPLACING P BY ==But P in PIC not replaced==.</b></font>
-    <b><font color="#FF0000">02 CustKey              PIC X(3) VALUE "KEY". </font>    </b>    
+COPY CopyFile5 REPLACING P BY ==But P in PIC not replaced==.
+    02 CustKey              PIC X(3) VALUE "KEY".         
 
 PROCEDURE DIVISION. 
 BeginProg. 
 
-   STOP RUN.  <b>                                    
-</b></code></pre>
+   STOP RUN.                                      
+</code></pre>
 </td>
 </tr>
 </table>
@@ -1031,15 +1031,15 @@ WORKING-STORAGE SECTION.
 
 01 CopyData.
 *&gt;See note1 
-<font color="#FF0000"><b>COPY CopyFile6 REPLACING "Mike" BY "Tony"
-                          ??    BY 15.</b></font>
+COPY CopyFile6 REPLACING "Mike" BY "Tony"
+                          ??    BY 15.
 
 PROCEDURE DIVISION.
 BeginProg.
 *&gt;See note2 
-<font color="#FF0000"><b>COPY CopyFile7 REPLACING N1 BY Num1
+COPY CopyFile7 REPLACING N1 BY Num1
                          N2 BY Num2
-                         R1 BY Result.</b></font>
+                         R1 BY Result.
    DISPLAY "The result is = " Result.
    STOP RUN.
 </code></pre>
@@ -1073,8 +1073,8 @@ BeginProg.
 <div align="center"><b><font color="#000099" face="Arial, Helvetica, sans-serif">Source 
                     Text after processing</font><br/>
 </b> </div>
-<pre class="language-cobol"><code class="language-cobol"><b>
-</b>       &gt;&gt;SOURCE FORMAT IS FREE
+<pre class="language-cobol"><code class="language-cobol">
+       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.                               
 PROGRAM-ID. COPYEG4.                                   
 AUTHOR.  Michael Coughlan.                             
@@ -1087,21 +1087,21 @@ WORKING-STORAGE SECTION.
                                                        
 01 CopyData.
 *&gt;See note1                                            
-<font color="#999999"><b>COPY CopyFile6 REPLACING "Mike" BY "Tony"              
-                          ??    BY 15.   </b></font>              
-<b><font color="#FF0000">    02 CustKey              PIC X(4) VALUE "Tony".     
+COPY CopyFile6 REPLACING "Mike" BY "Tony"              
+                          ??    BY 15.                 
+    02 CustKey              PIC X(4) VALUE "Tony".     
                                                        
-01  NameTable               PIC X(10)  OCCURS 15 TIMES.</font></b>
+01  NameTable               PIC X(10)  OCCURS 15 TIMES.
                                                        
                                                        
                                                        
 PROCEDURE DIVISION.                                    
 BeginProg.
-*&gt;See note2<font color="#999999">
-<b>COPY CopyFile7 REPLACING N1 BY Num1                    
+*&gt;See note2
+COPY CopyFile7 REPLACING N1 BY Num1                    
                          N2 BY Num2                    
-                         R1 BY Result.  </b></font>               
-<b><font color="#FF0000">    ADD Num1, Num2 GIVING Result. </font></b><font color="#FF0000"> </font>
+                         R1 BY Result.                 
+    ADD Num1, Num2 GIVING Result.  
     STOP RUN.</code></pre>
 </td>
 </tr>

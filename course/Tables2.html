@@ -917,10 +917,10 @@ END-EVALUATE.
 <p align="left">While the table description shown above is correct; 
               it is not, perhaps, as understandable as it might be. You might 
               prefer to define the table as shown below.</p>
-<pre class="language-cobol" align="left"><code class="language-cobol"><b>01 PopulationTable.
-<font color="#FF0000">   02 Age OCCURS 3 TIMES</font>.
-      <font color="#008000">03 Gender OCCURS 2 TIMES.
-</font>         <font color="#666666">04 PopTotal   PIC 9(6).</font><font color="#008040"> </font></b>
+<pre class="language-cobol" align="left"><code class="language-cobol">01 PopulationTable.
+   02 Age OCCURS 3 TIMES.
+      03 Gender OCCURS 2 TIMES.
+         04 PopTotal   PIC 9(6). 
 </code></pre>
 <p align="left">We can represent this table diagrammatically as -</p>
 <p align="center"><img height="170" src="Resources/pics/Tables4.gif" width="470"/></p>
@@ -1005,12 +1005,12 @@ MOVE ZEROS TO Age(3)</code></pre>
               dimension <i>PopulationTable</i> may be defined as shown below. 
               To access the <i>PopTotal</i> element three subscripts are now required, 
               one for each <font size="-1">OCCURS </font>clause.</p>
-<pre class="language-cobol"><code class="language-cobol"><b>01 PopulationTable.
-<font color="#FF0000">   02 County OCCURS 26 TIMES.
-</font><font color="#008000">      03 Age OCCURS 3 TIMES.
-</font><font color="#000080">         04 Gender OCCURS 2 TIMES.
-</font>          <font color="#666666">  05 PopTotal   PIC 9(6). </font> 
-</b></code></pre>
+<pre class="language-cobol"><code class="language-cobol">01 PopulationTable.
+   02 County OCCURS 26 TIMES.
+      03 Age OCCURS 3 TIMES.
+         04 Gender OCCURS 2 TIMES.
+            05 PopTotal   PIC 9(6).  
+</code></pre>
 <p>This table may be represented diagrammatically as follows - </p>
 <p align="center"><img height="145" src="Resources/pics/Tables5.gif" width="480"/></p>
 <hr size="1" width="100%"/>
@@ -1061,11 +1061,11 @@ MOVE ZEROS TO PopulationTable</code></pre>
               would we insert the CarOwnersTotal. </p>
 <p>Let's examine the existing table and see if we can figure out where 
               the CarOwnersTotal should go.</p>
-<pre class="language-cobol"><code class="language-cobol"><font color="#000000">01 PopulationTable.
+<pre class="language-cobol"><code class="language-cobol">01 PopulationTable.
    02 County OCCURS 26 TIMES.
       03 Age OCCURS 3 TIMES.
          04 Gender OCCURS 2 TIMES.
-</font>          <font color="#000000">  05 PopTotal   PIC 9(6). </font><b> </b></code></pre>
+            05 PopTotal   PIC 9(6).  </code></pre>
 <p>We can't add <i>CarOwnersTotal </i>to the same level as the <i>PopTotal</i> 
               because that would create six CarOwnersTotals for each county - 
               one for each Age/Gender combination. We only want one CarOwnersTotal 
@@ -1077,12 +1077,12 @@ MOVE ZEROS TO PopulationTable</code></pre>
               element consists of the <i>CarOwnersTotal</i> and a two dimension 
               table containing the rest of the population information for the 
               county.</p>
-<pre class="language-cobol"><code class="language-cobol"><font color="#000000"><b>01 PopulationTable.
-<font color="#FF0000">   02 County OCCURS 26 TIMES.
-</font><font color="#616161">      03 CarOwnersTotal   PIC 9(6).</font><font color="#808080">
-</font><font color="#004000">      03 Age OCCURS 3 TIMES.
-</font><font color="#000080">         04 Gender OCCURS 2 TIMES.
-</font></b></font>          <font color="#616161"><b>  05 PopTotal   PIC 9(6).  </b></font></code></pre>
+<pre class="language-cobol"><code class="language-cobol">01 PopulationTable.
+   02 County OCCURS 26 TIMES.
+      03 CarOwnersTotal   PIC 9(6).
+      03 Age OCCURS 3 TIMES.
+         04 Gender OCCURS 2 TIMES.
+            05 PopTotal   PIC 9(6).  </code></pre>
 <p>We can represent the declaration above diagrammatically as follows 
               - </p>
 <p align="center"><img height="156" src="Resources/pics/Tables6.gif" width="481"/></p>
@@ -1376,14 +1376,14 @@ WORKING-STORAGE SECTION.
 01 Idx               PIC 99.
 
 01 CountyTaxLine.
-<b><font color="#FF0000">   02 PrnCounty      PIC X(9).
-</font></b>   02 FILLER         PIC X(7) VALUE " Tax = ".
+   02 PrnCounty      PIC X(9).
+   02 FILLER         PIC X(7) VALUE " Tax = ".
    02 PrnTax         PIC $$$,$$$,$$9.99.
    02 FILLER         PIC X(12) VALUE "   Payers = ".
    02 PrnPayers      PIC Z,ZZZ,ZZ9.
 
 
-<font color="#FF0000"><b>01 CountyTable.
+01 CountyTable.
    02 TableValues.
       03 FILLER  PIC X(9)  VALUE "Antrim".
       03 FILLER  PIC X(9)  VALUE "Armagh".
@@ -1419,7 +1419,7 @@ WORKING-STORAGE SECTION.
       03 FILLER  PIC X(9)  VALUE "Wicklow".
    02 FILLER REDEFINES TableValues.
       03   CountyName  OCCURS 32 TIMES PIC X(9).
-</b></font>
+
 PROCEDURE DIVISION.
 Begin.
    OPEN INPUT TaxFile
@@ -1441,8 +1441,8 @@ Begin.
 
 DisplayCountyTaxes.
    IF NOT NoOnePaidTax(Idx)
-    <font color="#FF0000"><b>  MOVE CountyName(Idx) TO PrnCounty
-</b></font>      MOVE CountyTax(Idx) TO PrnTax
+      MOVE CountyName(Idx) TO PrnCounty
+      MOVE CountyTax(Idx) TO PrnTax
       MOVE PayerCount(Idx) TO PrnPayers
       DISPLAY CountyTaxLine
    END-IF.</code></pre>
@@ -1470,7 +1470,7 @@ DisplayCountyTaxes.
               <i>Day </i>actually declares the table but we have given the table 
               the overall group name <i>- DayTable</i>. Assigning the values to 
               this groupname fills the area of the table with the values.</p>
-<pre class="language-cobol"><code class="language-cobol">01 DayTable VALUE "<font color="#FF0000"><b>MonTueWedThrFriSatSun</b></font>". 
+<pre class="language-cobol"><code class="language-cobol">01 DayTable VALUE "MonTueWedThrFriSatSun". 
    02 Day OCCURS 7 TIMES PIC X(3). 
 
 </code></pre>

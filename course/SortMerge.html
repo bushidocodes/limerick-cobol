@@ -296,8 +296,8 @@
 <p>The calls file in an unordered Sequential file. The record 
                       description is as follows; </p>
 <blockquote>
-<pre class="language-cobol"><code class="language-cobol"><b>FIELD          TYPE   LENGTH        VALUE
-</b>SubscriberNum    9      8    00000001 - 99999999
+<pre class="language-cobol"><code class="language-cobol">FIELD          TYPE   LENGTH        VALUE
+SubscriberNum    9      8    00000001 - 99999999
 UnitsUsed        9      5       00001 - 99999</code></pre>
 </blockquote>
 <p>The report must be printed on ascending subscriber number 
@@ -526,7 +526,7 @@ FILE-CONTROL.
           ASSIGN TO SORTEDCALLS.DAT
           ORGANIZATION IS LINE SEQUENTIAL.
 
-   SELECT <font color="#FF0000"><b>WorkFile</b></font> 
+   SELECT WorkFile 
           ASSIGN TO WORK.TMP.
 
 DATA DIVISION.
@@ -541,9 +541,9 @@ FD SortedCallsFile.
    02 SubscriberNumSF   PIC 9(8).
    02 UnitsUsedSF       PIC 9(5).
 
-SD <b><font color="#FF0000">WorkFile</font></b>.
+SD WorkFile.
 01 WorkRec.
-   02 <font color="#FF0000"><b>SubscriberNumWF</b></font>   PIC 9(8).
+   02 SubscriberNumWF   PIC 9(8).
    02 UnitsUsedWF       PIC 9(5).
 
         etc.
@@ -551,7 +551,7 @@ SD <b><font color="#FF0000">WorkFile</font></b>.
 
 PROCEDURE DIVISION.
 Begin.
-   SORT <font color="#FF0000"><b>WorkFile</b></font> ON ASCENDING <font color="#FF0000"><b>SubscriberNumWF</b></font>
+   SORT WorkFile ON ASCENDING SubscriberNumWF
         USING  CallsFile
         GIVING SortedCallsFile.
 
@@ -584,7 +584,7 @@ Begin.
 <p align="center"><img height="270" src="Resources/pics/Sort2.gif" width="470"/>
 </p>
 <blockquote>
-<pre class="language-cobol" align="center"><code class="language-cobol">SORT <font color="#000000">WorkFile</font> ON ASCENDING <font color="#000000">SubscriberNumWF</font>
+<pre class="language-cobol" align="center"><code class="language-cobol">SORT WorkFile ON ASCENDING SubscriberNumWF
      USING  CallsFile
      GIVING SortedCallsFile.
 </code></pre>

@@ -412,11 +412,11 @@
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="399">
 <tr>
 <td>
-<pre class="language-cobol"><code class="language-cobol"><b>
+<pre class="language-cobol"><code class="language-cobol">
 CALL "DateValidate"
      USING BY CONTENT TempDate
      USING BY REFERENCE DateCheckResult.
-</b></code></pre>
+</code></pre>
 </td>
 </tr>
 </table>
@@ -427,7 +427,7 @@ CALL "DateValidate"
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="374">
 <tr>
 <td>
-<pre class="language-cobol"><code class="language-cobol"><b>
+<pre class="language-cobol"><code class="language-cobol">
 IDENTIFICATION DIVISION.
 PROGRAM-ID DateValidate IS INITIAL.
 DATA DIVISION.
@@ -444,7 +444,7 @@ Begin.
 ??????.
        ? ? ? ? ? ? ? ? ? ? ? ?
 
-</b></code></pre>
+</code></pre>
 </td>
 </tr>
 </table>
@@ -520,7 +520,7 @@ Begin.
 <table background="Resources/pics/code.gif" border="1" cellpadding="5" width="412">
 <tr>
 <td valign="top" width="0">
-<pre class="language-cobol"><code class="language-cobol"><b>
+<pre class="language-cobol"><code class="language-cobol">
 ? ? ? ? ? ? ? ? ? ? 
 MOVE 12 TO IncrementVal.
 CALL "Steadfast" USING BY CONTENT IncrementVal.
@@ -540,7 +540,7 @@ CALL "Fickle" USING BY CONTENT IncrementVal.
 MOVE 12 TO IncrementVal.
 CALL "Fickle" USING BY CONTENT IncrementVal.
 ? ? ? ? ? ? ? ? ? ? 
-</b></code></pre>
+</code></pre>
 </td>
 </tr>
 </table>
@@ -551,20 +551,20 @@ CALL "Fickle" USING BY CONTENT IncrementVal.
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="439">
 <tr>
 <td valign="top">
-<pre class="language-cobol"><code class="language-cobol"><b>       &gt;&gt;SOURCE FORMAT IS FREE
+<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
-PROGRAM-ID. Steadfast IS INITIAL.</b></code></pre>
-<pre class="language-cobol"><code class="language-cobol"><b>DATA DIVISION.
+PROGRAM-ID. Steadfast IS INITIAL.</code></pre>
+<pre class="language-cobol"><code class="language-cobol">DATA DIVISION.
 WORKING-STORAGE SECTION.
-01 RunningTotal PIC 9(5) VALUE 50.</b></code></pre>
-<pre class="language-cobol"><code class="language-cobol"><b>LINKAGE SECTION.
-01 ParamValue PIC 99.</b></code></pre>
-<pre class="language-cobol"><code class="language-cobol"><b>PROCEDURE DIVISION USING ParamValue.
+01 RunningTotal PIC 9(5) VALUE 50.</code></pre>
+<pre class="language-cobol"><code class="language-cobol">LINKAGE SECTION.
+01 ParamValue PIC 99.</code></pre>
+<pre class="language-cobol"><code class="language-cobol">PROCEDURE DIVISION USING ParamValue.
 Begin.
    ADD ParamValue TO RunningTotal.
    DISPLAY "Total = ", RunningTotal.
-   EXIT PROGRAM.</b><b>
-</b></code></pre>
+   EXIT PROGRAM.
+</code></pre>
 </td>
 <td bgcolor="#FFFFFF" valign="top">
 <div align="left">
@@ -602,7 +602,7 @@ Begin.
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="439">
 <tr>
 <td valign="top">
-<pre class="language-cobol"><code class="language-cobol"><b>       &gt;&gt;SOURCE FORMAT IS FREE
+<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. Fickle.
 
@@ -617,8 +617,8 @@ PROCEDURE DIVISION USING ParamValue.
 Begin.
    ADD ParamValue TO RunningTotal.
    DISPLAY "Total = ", RunningTotal.
-   EXIT PROGRAM.</b><b>
-</b></code></pre>
+   EXIT PROGRAM.
+</code></pre>
 </td>
 <td bgcolor="#FFFFFF" valign="top">
 <div align="left">
@@ -679,9 +679,9 @@ Begin.
               clauses).</p>
 <p>By using the following statements in our main program</p>
 <blockquote>
-<pre class="language-cobol"><code class="language-cobol"><b>CALL "Fickle" USING BY CONTENT IncValue.
+<pre class="language-cobol"><code class="language-cobol">CALL "Fickle" USING BY CONTENT IncValue.
 CANCEL "Fickle"
-CALL "Fickle" USING BY CONTENT IncValue</b>.</code></pre>
+CALL "Fickle" USING BY CONTENT IncValue.</code></pre>
 </blockquote>
 <p>we can force "Fickle" to act like "Steadfast".<br/>
 </p>
@@ -826,13 +826,13 @@ CALL "Fickle" USING BY CONTENT IncValue</b>.</code></pre>
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="383">
 <tr>
 <td width="0">
-<pre class="language-cobol"><code class="language-cobol">      <b>&gt;&gt;SOURCE FORMAT IS FREE
+<pre class="language-cobol"><code class="language-cobol">      &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. ContainerProgram.
    ? ? ? ? ? ? ? ? ?
-<font color="#FF0000">01 NameTable IS GLOBAL.
-<font size="-1">   02 SName OCCURS 200 TIMES PIC X(20).</font></font><font size="-1">
-   </font>? ? ? ? ? ? ? ? ? 
+01 NameTable IS GLOBAL.
+   02 SName OCCURS 200 TIMES PIC X(20).
+   ? ? ? ? ? ? ? ? ? 
 PROCEDURE DIVISION.
    ? ? ? ? ? ? ? ? ?
    CALL "PutToTable" USING ???
@@ -841,22 +841,22 @@ PROCEDURE DIVISION.
    ? ? ? ? ? ? ? ? ? 
    EXIT PROGRAM.
 
-<font color="#0000CC">IDENTIFICATION DIVISION.
+IDENTIFICATION DIVISION.
 PROGRAM-ID. PutToTable.
-   ? ? ? ? ? ? ? ? ?</font><font color="#0000FF">
-  <font color="#FF0000"> MOVE StudName TO SName(SNum).</font>
-<font color="#0000CC">   ? ? ? ? ? ? ? ? ? 
+   ? ? ? ? ? ? ? ? ?
+   MOVE StudName TO SName(SNum).
+   ? ? ? ? ? ? ? ? ? 
    EXIT PROGRAM
-END-PROGRAM PutToTable.</font></font>
+END-PROGRAM PutToTable.
 
-<font color="#0000CC">IDENTIFICATION DIVISION.
+IDENTIFICATION DIVISION.
 PROGRAM-ID. ReportFromTable.
-   ? ? ? ? ? ? ? ? ?</font><font color="#0000FF">
-   <font color="#FF0000">DISPLAY "Student " SNum " = " SName(SNum).</font>
-<font color="#0000CC">   ? ? ? ? ? ? ? ? ? 
+   ? ? ? ? ? ? ? ? ?
+   DISPLAY "Student " SNum " = " SName(SNum).
+   ? ? ? ? ? ? ? ? ? 
    EXIT PROGRAM
-END-PROGRAM ReportFromTable.</font></font>
-END-PROGRAM ContainerProgram.</b></code></pre>
+END-PROGRAM ReportFromTable.
+END-PROGRAM ContainerProgram.</code></pre>
 </td>
 </tr>
 </table>
@@ -954,7 +954,7 @@ END-PROGRAM ContainerProgram.</b></code></pre>
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="374">
 <tr>
 <td valign="top" width="0">
-<pre class="language-cobol"><code class="language-cobol">      <b>&gt;&gt;SOURCE FORMAT IS FREE
+<pre class="language-cobol"><code class="language-cobol">      &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. MainProgram.
 DATA DIVISION.
@@ -966,7 +966,7 @@ Begin.
     MOVE "Main can also use the share" TO SharedItem
     CALL "DisplayData"
     STOP RUN.
-<font color="#000099">
+
 IDENTIFICATION DIVISION.
 PROGRAM-ID. InsertData.
 PROCEDURE DIVISION.
@@ -974,18 +974,18 @@ Begin.
     MOVE "Shared area works" TO SharedItem
     CALL "DisplayData"
     EXIT PROGRAM.
-END PROGRAM InsertData.</font>
+END PROGRAM InsertData.
 
-<font color="#000099">IDENTIFICATION DIVISION.
+IDENTIFICATION DIVISION.
 PROGRAM-ID. DisplayData IS COMMON PROGRAM.
 PROCEDURE DIVISION.
 Begin.
     DISPLAY SharedItem.
     EXIT PROGRAM
-END PROGRAM DisplayData.</font>
+END PROGRAM DisplayData.
 
 END PROGRAM MainProgram.
-</b></code></pre>
+</code></pre>
 </td>
 </tr>
 </table>
@@ -1015,7 +1015,7 @@ END PROGRAM MainProgram.
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="374">
 <tr>
 <td valign="top" width="0">
-<pre class="language-cobol"><code class="language-cobol"><b>       &gt;&gt;SOURCE FORMAT IS FREE
+<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. Counter.
 DATA DIVISION.
@@ -1052,7 +1052,7 @@ Begin.
   STOP RUN.
 
 
-<font color="#000099">IDENTIFICATION DIVISION.
+IDENTIFICATION DIVISION.
 PROGRAM-ID. Fickle.
 DATA DIVISION.
 WORKING-STORAGE SECTION.
@@ -1065,9 +1065,9 @@ Begin.
   DISPLAY "Fickle total    = " WITH NO ADVANCING
   CALL "DisplayTotal" USING BY CONTENT RunningTotal
   EXIT PROGRAM.
-END PROGRAM Fickle.</font>
+END PROGRAM Fickle.
 
-<font color="#0000CC">
+
 IDENTIFICATION DIVISION.
 PROGRAM-ID. Steadfast IS INITIAL.
 DATA DIVISION.
@@ -1082,8 +1082,8 @@ Begin.
   CALL "DisplayTotal" USING BY CONTENT RunningTotal
   EXIT PROGRAM.
 END PROGRAM Steadfast.
-</font>
-<font color="#000099">
+
+
 IDENTIFICATION DIVISION.
 PROGRAM-ID. DisplayTotal IS COMMON INITIAL PROGRAM.
 DATA DIVISION.
@@ -1096,8 +1096,8 @@ Begin.
   MOVE Total TO PrnTotal.
   DISPLAY PrnTotal.
   EXIT PROGRAM.
-END PROGRAM DisplayTotal.</font>
-END PROGRAM Counter.</b></code></pre>
+END PROGRAM DisplayTotal.
+END PROGRAM Counter.</code></pre>
 </td>
 </tr>
 <tr>
@@ -1109,33 +1109,33 @@ END PROGRAM Counter.</b></code></pre>
                       by the computer are shown in <font color="#FF0000">red</font>.</font></p>
 </div>
 <blockquote>
-<pre class="language-cobol" align="left"><code class="language-cobol"><b><font color="#000000">Enter value -</font> <font color="#0000FF">13</font>
-<font color="#000000">Fickle total    = </font><font color="#FF0000">13</font>
-<font color="#000000">Steadfast total =</font><font color="#FF0000"> 13</font>
-Enter value - <font color="#0000FF">3</font>
-<font color="#000000">Fickle total    = </font><font color="#FF0000">16
-<font color="#000000">Steadfast total = </font> 3</font>
-Enter value - <font color="#0000FF">13</font>
-<font color="#000000">Fickle total    = </font><font color="#FF0000">29
-<font color="#000000">Steadfast total =</font> 13</font>
-Enter value - <font color="#0000FF">0
+<pre class="language-cobol" align="left"><code class="language-cobol">Enter value - 13
+Fickle total    = 13
+Steadfast total = 13
+Enter value - 3
+Fickle total    = 16
+Steadfast total =  3
+Enter value - 13
+Fickle total    = 29
+Steadfast total = 13
+Enter value - 0
                        
-</font>Enter the value to be squared
-Value - <font color="#0000FF">8</font>
-<font color="#000000">Fickle total =  </font><font color="#FF0000">8
-<font color="#000000">Fickle total = </font>16
-<font color="#000000">Fickle total = </font>24
-<font color="#000000">Fickle total = </font>32
-<font color="#000000">Fickle total = </font>40
-<font color="#000000">Fickle total = </font>48
-<font color="#000000">Fickle total = </font>56
-<font color="#000000">Fickle total =</font> 64</font>
+Enter the value to be squared
+Value - 8
+Fickle total =  8
+Fickle total = 16
+Fickle total = 24
+Fickle total = 32
+Fickle total = 40
+Fickle total = 48
+Fickle total = 56
+Fickle total = 64
                        
-Value - <font color="#0000FF">3</font>
-<font color="#000000">Fickle total = </font><font color="#FF0000"> 3
-<font color="#000000">Fickle total =</font>  6
-<font color="#000000">Fickle total = </font> 9</font>
-Value - <font color="#0000FF">0</font></b></code></pre>
+Value - 3
+Fickle total =  3
+Fickle total =  6
+Fickle total =  9
+Value - 0</code></pre>
 </blockquote>
 </td>
 </tr>
