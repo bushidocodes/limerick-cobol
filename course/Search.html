@@ -1063,7 +1063,7 @@ END-PERFORM</code></pre>
           VALUE "NOPQRSTUVWXYZ".
     02 FILLER REDEFINES LetterValues.
        03 Letter PIC X OCCURS 26 TIMES 
-                       <b><font color="#FF0000">ASCENDING KEY IS Letter</font></b>
+                       ASCENDING KEY IS Letter
                        INDEXED BY LetterIdx.
 </code></pre>
 <p>When the table description contains a KEY IS phrase we can search 
@@ -1224,8 +1224,8 @@ WORKING-STORAGE SECTION.
    02 FILLER REDEFINES TableValues.
       03   CountyName  PIC X(9)
                        OCCURS 26 TIMES
-          <font color="#FF0000">            <b> ASCENDING KEY IS CountyName
-</b></font>                       INDEXED BY CountyIdx.
+                       ASCENDING KEY IS CountyName
+                       INDEXED BY CountyIdx.
 
 PROCEDURE DIVISION.
 Begin.
@@ -1235,11 +1235,11 @@ Begin.
       AT END SET EndOfTaxFile TO TRUE
    END-READ
    PERFORM UNTIL EndOfTaxFile
-     <b><font color="#FF0000"> SEARCH ALL CountyName
-</font></b>         AT END DISPLAY "County " County " was not found"
+      SEARCH ALL CountyName
+         AT END DISPLAY "County " County " was not found"
          WHEN CountyName(CountyIdx) = County
-             <font color="#FF0000"><b> SET Idx TO CountyIdx
-</b></font>              ADD TaxPaid TO CountyTax(Idx)
+              SET Idx TO CountyIdx
+              ADD TaxPaid TO CountyTax(Idx)
               ADD 1 TO PayerCount(Idx)
       END-SEARCH
       READ TaxFile

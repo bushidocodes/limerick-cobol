@@ -587,7 +587,7 @@ Begin.
    END-PERFORM
    PERFORM VARYING Idx FROM 1 BY 1 
            UNTIL Idx GREATER THAN 26
-  <b>    <font color="#FF0000">DISPLAY CountyName(Idx) " tax total is " CountyTax(Id</font></b><font color="#FF0000">x)</font>
+      DISPLAY CountyName(Idx) " tax total is " CountyTax(Idx)
    END-PERFORM
    CLOSE TaxFile
    STOP RUN.</code></pre>
@@ -741,19 +741,19 @@ Begin.
    END-READ
    PERFORM UNTIL EndOfTaxFile
 
-<b><font color="#FF0000">      PERFORM VARYING CountyNum FROM 1 BY 1
+      PERFORM VARYING CountyNum FROM 1 BY 1
          UNTIL CountyName(CountyNum) = County
       END-PERFORM
       ADD TaxPaid TO CountyTax(CountyNum)
-</font></b>      READ TaxFile
+      READ TaxFile
          AT END SET EndOfTaxFile TO TRUE
       END-READ
    END-PERFORM
    PERFORM VARYING Idx FROM 1 BY 1 
            UNTIL Idx GREATER THAN 26
-<font color="#000000">      DISPLAY CountyName(CountyNum)
+      DISPLAY CountyName(CountyNum)
               " tax total is " CountyTax(CountyNum)
-</font>   END-PERFORM
+   END-PERFORM
    CLOSE TaxFile
    STOP RUN.</code></pre>
 </td>

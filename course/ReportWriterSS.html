@@ -275,7 +275,7 @@ INPUT-OUTPUT SECTION.
 FILE-CONTROL.
     SELECT SalesFile ASSIGN TO "GBPAY.DAT"
            ORGANIZATION IS LINE SEQUENTIAL.
-   <font color="#FF0000"><b> SELECT PrintFile ASSIGN TO "SALESREPORT.LPT".</b></font>
+    SELECT PrintFile ASSIGN TO "SALESREPORT.LPT".
 
 
 DATA DIVISION.
@@ -287,23 +287,23 @@ FD  SalesFile.
     02 SalesPersonNum   PIC 9.
     02 ValueOfSale      PIC 9(4)V99.
 
-<b><font color="#FF0000">FD  PrintFile
+FD  PrintFile
     REPORT IS SalesReport.
 
-</font></b><font color="#FF0000"><font color="#000000">    : intervening entries :
-    : intervening entries :</font></font><b><font color="#FF0000">
+    : intervening entries :
+    : intervening entries :
 
-</font></b><font color="#FF0000"><font color="#000000">REPORT SECTION.</font></font><b><font color="#FF0000"><font color="#000000">
-<b><font color="#FF3300">RD  SalesReport</font></b>
-</font></font></b><font color="#FF0000"><font color="#000000">    CONTROLS ARE FINAL
+REPORT SECTION.
+RD  SalesReport
+    CONTROLS ARE FINAL
                  CityCode
                  SalesPersonNum 
     PAGE LIMIT IS 66
     HEADING 1
     FIRST DETAIL 6
     LAST DETAIL 42
-    FOOTING 52.</font></font><b><font color="#FF0000"><font color="#000000">
-</font></font></b></code></pre>
+    FOOTING 52.
+</code></pre>
 </td>
 </tr>
 </table>
@@ -671,9 +671,9 @@ FD  SalesFile.
 <pre class="language-cobol"><code class="language-cobol">01  DetailLine TYPE IS DETAIL.
     02 LINE IS PLUS 1.
        03 COLUMN 1      PIC X(9)
-                        SOURCE CityName(CityCode) <font color="#FF0000"><b>GROUP INDICATE</b></font>.
+                        SOURCE CityName(CityCode) GROUP INDICATE.
        03 COLUMN 15     PIC 9
-                        SOURCE SalesPersonNum  <b><font color="#FF0000">GROUP INDICATE</font></b>.
+                        SOURCE SalesPersonNum  GROUP INDICATE.
        03 COLUMN 25     PIC $$,$$$.99 SOURCE ValueOfSale.</code></pre>
 </td>
 </tr>
@@ -742,21 +742,21 @@ FD  SalesFile.
     TYPE IS CONTROL FOOTING SalesPersonNum  NEXT GROUP PLUS 2.
                       :<i> other entries</i> :
                       :<i> other entries</i> :
-       03 <font color="#FF0000"><b>SMS</b></font> COLUMN 45 PIC $$$$$,$$$.99 <font color="#FF0000"><b>SUM ValueOfSale</b></font>.
+       03 SMS COLUMN 45 PIC $$$$$,$$$.99 SUM ValueOfSale.
 
 
 
 01  CityGrp TYPE IS CONTROL FOOTING CityCode NEXT GROUP PLUS 2.
                       :<i> other entries</i> :
                       :<i> other entries</i> :
-       03 <b><font color="#FF0000">CS</font></b> COLUMN 45  PIC $$$$$,$$$.99 <font color="#FF0000"><b>SUM SMS</b></font>.
+       03 CS COLUMN 45  PIC $$$$$,$$$.99 SUM SMS.
 
 
 
 01  TotalSalesGrp TYPE IS CONTROL FOOTING FINAL.
                       :<i> other entries</i> :
                       :<i> other entries</i> :
-       03 COLUMN 45     PIC $$$$$,$$$.99 <b><font color="#FF0000">SUM CS</font></b>.</code></pre>
+       03 COLUMN 45     PIC $$$$$,$$$.99 SUM CS.</code></pre>
 </td>
 </tr>
 </table>
@@ -776,9 +776,9 @@ FD  SalesFile.
     TYPE IS CONTROL FOOTING ShopNum  NEXT GROUP PLUS 2.
                       :<i> other entries</i> :
                       :<i> other entries</i> :
-       03 <font color="#FF0000"><b>SPS</b></font> COLUMN 20 PIC $$$,$$$.99  <font color="#FF0000"><b>SUM SalesPersonSale</b></font>.
-       03 <font color="#FF0000"><b>SCS</b></font> COLUMN 40 PIC $$$,$$$.99  <font color="#FF0000"><b>SUM CounterSale</b></font>.
-       03     COLUMN 60 PIC $$$$,$$$.99 <font color="#FF0000"><b>SUM SPS, SCS</b></font>.
+       03 SPS COLUMN 20 PIC $$$,$$$.99  SUM SalesPersonSale.
+       03 SCS COLUMN 40 PIC $$$,$$$.99  SUM CounterSale.
+       03     COLUMN 60 PIC $$$$,$$$.99 SUM SPS, SCS.
 </code></pre>
 </td>
 </tr>
@@ -895,7 +895,7 @@ FD  SalesFile.
        03 COLUMN 1      PIC X(29) 
                         VALUE "Programmer - Michael Coughlan".
        03 COLUMN 45     PIC X(6) VALUE "Page :".
-       03 COLUMN 52     PIC Z9 SOURCE<b><font color="#FF0000"> PAGE-COUNTER.</font></b></code></pre>
+       03 COLUMN 52     PIC Z9 SOURCE PAGE-COUNTER.</code></pre>
 </td>
 </tr>
 </table>
@@ -1169,7 +1169,7 @@ Programmer - Michael Coughlan               Page :  1
 <tr>
 <td>
 <pre class="language-cobol"><code class="language-cobol">PROCEDURE DIVISION.
-<b><font color="#FF0000">DECLARATIVES.
+DECLARATIVES.
 Calc SECTION.
     USE BEFORE REPORTING SalesPersonGrp.
 Calculate-Salary.
@@ -1177,7 +1177,7 @@ Calculate-Salary.
           GIVING Commission ROUNDED.
     ADD Commission, FixedRate(CityCode,SalesPersonNum)
           GIVING Salary.
-END DECLARATIVES.</font></b>
+END DECLARATIVES.
 
 Main SECTION.
 Begin.
@@ -1214,15 +1214,15 @@ Begin.
 <tr>
 <td>
 <blockquote>
-<pre class="language-cobol"><code class="language-cobol"><font color="#000000">PROCEDURE DIVISION.
+<pre class="language-cobol"><code class="language-cobol">PROCEDURE DIVISION.
 DECLARATIVES.
 CheckShopSales SECTION.
     USE BEFORE REPORTING ShopTotalGrp.
 PrintMajorShopsOnly.
-    IF SalesTotal &lt; 10000<b>
-       <font color="#FF3300">SUPPRESS PRINTING</font>
-</b>    END-IF.
-END DECLARATIVES.</font></code></pre>
+    IF SalesTotal &lt; 10000
+       SUPPRESS PRINTING
+    END-IF.
+END DECLARATIVES.</code></pre>
 </blockquote>
 </td>
 </tr>
