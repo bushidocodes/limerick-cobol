@@ -321,21 +321,17 @@ DISPLAY PrinterSetupCodes UPON PrinterPort1.
 </div>
 <div align="center">
 <div align="left">
-<pre class="language-cobol"><code class="language-cobol">
+<pre class="language-cobol"><code class="language-cobol">*&gt; CurrentDate is the date in YYMMDD format
 01 CurrentDate         PIC 9(6).
-*&gt; CurrentDate is the date in YYMMDD format
 
-
-01 DayOfYear           PIC 9(5).
 *&gt; DayOfYear is current day in YYDDD format
+01 DayOfYear           PIC 9(5).
 
-
-01 DayOfWeek           PIC 9.
 *&gt; DAY-OF-WEEK is a single digit where 1=Monday
+01 DayOfWeek           PIC 9.
 
-
-01 CurrentTime         PIC 9(8).
 *&gt; CurrentTime is the time in HHMMSSss format where s = S/100
+01 CurrentTime         PIC 9(8).
 </code></pre>
 </div>
 </div>
@@ -367,10 +363,11 @@ DISPLAY PrinterSetupCodes UPON PrinterPort1.
 <p>When the new formatting instructions are used, the receiving fields 
               must be defined as; </p>
 <blockquote>
-<pre class="language-cobol"><code class="language-cobol">01 Y2KDate PIC 9(8).
-*&gt; Y2KDate is the date in YYYYMMDD format </code></pre>
-<pre class="language-cobol"><code class="language-cobol">01 Y2KDayOfYear PIC 9(7).
-*&gt; Y2KDayOfYear is current day in YYYYDDD format </code></pre>
+<pre class="language-cobol"><code class="language-cobol">*&gt; Y2KDate is the date in YYYYMMDD format
+01 Y2KDate PIC 9(8).
+
+*&gt; Y2KDayOfYear is current day in YYYYDDD format
+01 Y2KDayOfYear PIC 9(7).</code></pre>
 </blockquote>
 <hr width="50%"/>
 </td>
@@ -430,13 +427,11 @@ WORKING-STORAGE SECTION.
     02  FILLER          PIC 9(4).
     02  YearDay         PIC 9(3).
 
-
 *&gt; HHMMSSss   s = S/100
 01 CurrentTime.
     02  CurrentHour     PIC 99.
     02  CurrentMinute   PIC 99.
     02  FILLER          PIC 9(4).
-
 
 PROCEDURE DIVISION.
 Begin.
@@ -463,7 +458,7 @@ Begin.
 <tr bgcolor="#E1FFE1">
 <td>
 <p align="center"><b>Results of running <font size="-1">ACCEPT.CBL</font></b></p>
-<pre class="language-cobol"><code class="language-cobol">
+<pre>
 Enter student details using template below
 Enter - ID,Surname,Initials,CourseCode,Gender
 SSSSSSSNNNNNNNNIICCCCG
@@ -472,7 +467,7 @@ Name is NS Power
 Date is 01 03 1999
 Today is day 060 of the year
 The time is 14:41
-</code></pre>
+</pre>
 </td>
 </tr>
 </table>
@@ -494,10 +489,10 @@ The time is 14:41
 </td>
 </tr>
 <tr>
-<td align="LEFT" bgcolor="#FFFFCC" height="355" valign="top" width="160">
+<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="160">
 <h4 align="left"><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
 </td>
-<td height="355" valign="top" width="540">
+<td valign="top" width="540">
 <p>In "strongly typed" languages like Modula-2, Pascal or ADA the 
               assignment operation is simple because assignment is only allowed 
               between data items with compatible types. The simplicity of assignment 
