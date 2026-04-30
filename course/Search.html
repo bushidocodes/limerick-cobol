@@ -2,6 +2,9 @@
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 <meta content="Mozilla/4.0 [en] (WinNT; I) [Netscape]" name="GENERATOR"/>
 <title>Searching Tables</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cobol.min.js"></script>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <style type="text/css">
   img { max-width: 100%; height: auto; }
@@ -466,21 +469,21 @@
               we might encounter with the index item. For instance, to display 
               the value of the index item we would require following code - </p>
 <blockquote>
-<pre>SET LetterPos TO LetterIdx
+<pre class="language-cobol"><code class="language-cobol">SET LetterPos TO LetterIdx
 MOVE LetterPos TO PrnPos
 DISPLAY LetterIn, " is in position ", PrnPos
-</pre>
+</code></pre>
 </blockquote>
 <p>The example below is not meant to be a practical example of how 
               to find the position of a letter in the alphabet. Nowadays, this 
               task would be accomplished in much the same way as it would in C 
               or Modula-2 except that, in COBOL, we would use the Intrinsic Function 
               - ORD - as shown below. </p>
-<pre>COMPUTE PrnIdx = FUNCTION ORD(LetterIn) - FUNCTION ORD("A") + 1 </pre>
+<pre class="language-cobol"><code class="language-cobol">COMPUTE PrnIdx = FUNCTION ORD(LetterIn) - FUNCTION ORD("A") + 1 </code></pre>
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="475">
 <tr>
 <td>
-<pre>       &gt;&gt;SOURCE FORMAT IS FREE
+<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. LetterSearch.
 AUTHOR. Michael Coughlan.
@@ -517,7 +520,7 @@ Begin.
             MOVE LetterPos TO PrnPos
             DISPLAY LetterIn, " is in position ", PrnPos
     END-SEARCH
-    STOP RUN.</pre>
+    STOP RUN.</code></pre>
 </td>
 </tr>
 </table>
@@ -565,7 +568,7 @@ Begin.
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="475">
 <tr>
 <td>
-<pre>       &gt;&gt;SOURCE FORMAT IS FREE
+<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. CountyTaxTable.
 AUTHOR. Michael Coughlan.
@@ -664,7 +667,7 @@ DisplayCountyTaxes.
       MOVE CountyTax(Idx)  TO PrnTax
       MOVE PayerCount(Idx) TO PrnPayers
       DISPLAY CountyTaxLine
-   END-IF.</pre>
+   END-IF.</code></pre>
 </td>
 </tr>
 </table>
@@ -708,20 +711,20 @@ DisplayCountyTaxes.
 <p align="left">For instance, suppose a hotel keeps an Occupancy Table 
               showing which rooms in the hotel are currently occupied. The table 
               might be described as - </p>
-<pre align="left">01 HotelOccupanyTable.
+<pre class="language-cobol" align="left"><code class="language-cobol">01 HotelOccupanyTable.
    02 Floor OCCURS 5 TIMES INDEXED BY Fidx.
       03 Room OCCURS 25 TIMES INDEXED BY Ridx.
          04 CustomerId  PIC 9(6).
-         04 NumOfOccupants PIC 9.</pre>
+         04 NumOfOccupants PIC 9.</code></pre>
 <p align="left"> and we can represent this diagrammatically as follows 
               -</p>
 <div align="center">
-<pre align="left">
+<pre class="language-cobol" align="left"><code class="language-cobol">
 <img height="170" src="Resources/pics/Search5.gif" width="411"/>
-</pre>
+</code></pre>
 </div>
-<pre align="left"> 
-</pre>
+<pre class="language-cobol" align="left"><code class="language-cobol"> 
+</code></pre>
 <p align="left"> Suppose we want to search the table to discover which 
               room is occupied by customer 126789. We can't use the <font size="-1">SEARCH</font> 
               to search the whole two-dimension table directly but we can use 
@@ -741,7 +744,7 @@ DisplayCountyTaxes.
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="475">
 <tr>
 <td>
-<pre>       &gt;&gt;SOURCE FORMAT IS FREE
+<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. HotelSearch.
 AUTHOR. Michael Coughlan.
@@ -805,7 +808,7 @@ LoadTable.
         AT END SET EndOfFile TO TRUE
       END-READ
    END-PERFORM
-   CLOSE OccupancyFile.</pre>
+   CLOSE OccupancyFile.</code></pre>
 </td>
 </tr>
 </table>
@@ -825,14 +828,14 @@ LoadTable.
 <p>Suppose that we want to use a two-dimension table to hold the finishing 
               positions of drivers in fifteen races. The table to hold these details 
               may be described as - </p>
-<pre>01 RaceResultsTable. 
+<pre class="language-cobol"><code class="language-cobol">01 RaceResultsTable. 
    02 Race OCCURS 15 TIMES INDEXED BY Ridx.
       03 Venue  PIC X(20).
       03 RacePos OCCURS 50 TIMES INDEXED BY Pidx.
          04 DriverId    PIC 9(4).
       
 
-</pre>
+</code></pre>
 <p>We can represent this diagramatically as follows - </p>
 <p align="center"><img height="109" src="Resources/pics/Search6.gif" width="469"/></p>
 <p>In the example program below, the first dimension of the table 
@@ -852,7 +855,7 @@ LoadTable.
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="475">
 <tr>
 <td>
-<pre>       &gt;&gt;SOURCE FORMAT IS FREE
+<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. RaceSearch.
 AUTHOR. Michael Coughlan.
@@ -920,7 +923,7 @@ LoadTable.
         AT END SET EndOfFile TO TRUE
       END-READ
    END-PERFORM
-   CLOSE RaceResultsFile.</pre>
+   CLOSE RaceResultsFile.</code></pre>
 </td>
 </tr>
 </table>
@@ -928,7 +931,7 @@ LoadTable.
               <font size="-1">SEARCH</font>. This was not strictly necessary. 
               The same result could have been achieved with nested <font size="-1">SEARCH</font> 
               statements. For instance - </p>
-<pre>SET Ridx TO 1
+<pre class="language-cobol"><code class="language-cobol">SET Ridx TO 1
 SEARCH Race
    AT END DISPLAY "Venue not found."
    WHEN Venue(Ridx) = VenueName 
@@ -941,7 +944,7 @@ SEARCH Race
              DISPLAY "Driver " DriverIdNum
                      " finished in position " PosNum
      END-SEARCH
-END-SEARCH</pre>
+END-SEARCH</code></pre>
 </td>
 </tr>
 <tr>
@@ -1031,7 +1034,7 @@ END-SEARCH</pre>
 <table align="center" bgcolor="#E1FFE1" border="1" cellpadding="5" width="93%">
 <tr>
 <td>
-<pre>PERFORM UNTIL ItemFound OR ItemNotInTable
+<pre class="language-cobol"><code class="language-cobol">PERFORM UNTIL ItemFound OR ItemNotInTable
   COMPUTE Middle = (Lower + Upper) / 2 
   EVALUATE TRUE
     WHEN Key(Middle) &lt; SearchItem COMPUTE Lower = Middle + 1
@@ -1039,7 +1042,7 @@ END-SEARCH</pre>
     WHEN Key(Middle) = SearchItem SET ItemFound TO TRUE
     WHEN Lower &gt; Upper THEN SET ItemNotInTable TO TRUE
   END-EVALUATE 
-END-PERFORM</pre>
+END-PERFORM</code></pre>
 </td>
 </tr>
 </table>
@@ -1049,7 +1052,7 @@ END-PERFORM</pre>
               <font size="-1">SEARCH ALL</font> the description of the table has 
               to be amended to include a <font size="-1">KEY IS</font> phrase 
               as shown below. </p>
-<pre>01  LetterTable.
+<pre class="language-cobol"><code class="language-cobol">01  LetterTable.
     02 LetterValues.
        03 FILLER PIC X(13) 
           VALUE "ABCDEFGHIJKLM".
@@ -1059,16 +1062,16 @@ END-PERFORM</pre>
        03 Letter PIC X OCCURS 26 TIMES 
                        <b><font color="#FF0000">ASCENDING KEY IS Letter</font></b>
                        INDEXED BY LetterIdx.
-</pre>
+</code></pre>
 <p>When the table description contains a KEY IS phrase we can search 
               it using the following statement - </p>
 <blockquote>
-<pre>SEARCH ALL Letter
+<pre class="language-cobol"><code class="language-cobol">SEARCH ALL Letter
   AT END DISPLAY "Letter " SearchLetter " was not found!"
   WHEN Letter(LetterIdx) = SearchLetter
        SET LetterPos TO LetterIdx
        DISPLAY SearchLetter " is in position " LetterPos
-END-SEARCH.</pre>
+END-SEARCH.</code></pre>
 </blockquote>
 <p align="center"><a href="Resources/ppz/TC-Search2.html"><img border="0" height="62" src="Resources/pics/i-Animation.gif" width="62"/></a>
 </p>
@@ -1085,7 +1088,7 @@ END-SEARCH.</pre>
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="475">
 <tr>
 <td>
-<pre>       &gt;&gt;SOURCE FORMAT IS FREE
+<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. LetterSearchAll.
 AUTHOR. Michael Coughlan.
@@ -1123,7 +1126,7 @@ Begin.
        DISPLAY SearchLetter " is in position " LetterPos
     END-SEARCH
     STOP RUN.
-</pre>
+</code></pre>
 </td>
 </tr>
 </table>
@@ -1151,7 +1154,7 @@ Begin.
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="475">
 <tr>
 <td>
-<pre>       &gt;&gt;SOURCE FORMAT IS FREE
+<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. CountyTaxTable4.
 AUTHOR. Michael Coughlan.
@@ -1251,7 +1254,7 @@ DisplayCountyTaxes.
       MOVE CountyTax(Idx)  TO PrnTax
       MOVE PayerCount(Idx) TO PrnPayers
       DISPLAY CountyTaxLine
-   END-IF.</pre>
+   END-IF.</code></pre>
 </td>
 </tr>
 </table>

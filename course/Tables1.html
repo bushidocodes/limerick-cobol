@@ -2,6 +2,9 @@
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 <meta content="Mozilla/4.0 [en] (WinNT; I) [Netscape]" name="GENERATOR"/>
 <title>Using Tables</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cobol.min.js"></script>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <style type="text/css">
   img { max-width: 100%; height: auto; }
@@ -236,12 +239,12 @@
 <table bgcolor="#E1FFE1" border="1" cellpadding="5" width="40%">
 <tr>
 <td height="71">
-<pre>01 TaxRec.
+<pre class="language-cobol"><code class="language-cobol">01 TaxRec.
    88 EndOfTaxFile  VALUE HIGH-VALUES.
    02 PAYENum    PIC 9(8)
    02 CountyCode PIC 99.
    02 TaxPaid    PIC 9(7)V99.
-</pre>
+</code></pre>
 </td>
 </tr>
 </table>
@@ -252,7 +255,7 @@
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="475">
 <tr>
 <td>
-<pre>PROCEDURE DIVISION.
+<pre class="language-cobol"><code class="language-cobol">PROCEDURE DIVISION.
 Begin.
    OPEN INPUT TaxFile
    READ TaxFile
@@ -267,7 +270,7 @@ Begin.
    DISPLAY "Total taxes are ", TaxTotal
    CLOSE TaxFile
    STOP RUN. 
-</pre>
+</code></pre>
 </td>
 </tr>
 </table>
@@ -306,13 +309,13 @@ Begin.
 <blockquote>
 <div align="center">
 <div align="left">
-<pre align="left">
+<pre class="language-cobol" align="left"><code class="language-cobol">
 EVALUATE CountyCode
    WHEN      1      ADD TaxPaid TO County1TaxTotal
    WHEN      2      ADD TaxPaid TO County2TaxTotal
    WHEN      3      ADD TaxPaid TO County3TaxTotal
          ..... 23 more WHEN branches
-END-EVALUATE</pre>
+END-EVALUATE</code></pre>
 </div>
 </div>
 </blockquote>
@@ -328,10 +331,10 @@ END-EVALUATE</pre>
 <blockquote>
 <div align="center">
 <div align="left">
-<pre>DISPLAY "County 1 total is ", County1TaxTotal
+<pre class="language-cobol"><code class="language-cobol">DISPLAY "County 1 total is ", County1TaxTotal
 DISPLAY "County 2 total is ", County2TaxTotal
 DISPLAY "County 3 total is ", County3TaxTotal
-        ..... 23 more DISPLAY statements </pre>
+        ..... 23 more DISPLAY statements </code></pre>
 </div>
 </div>
 </blockquote>
@@ -420,8 +423,8 @@ DISPLAY "County 3 total is ", County3TaxTotal
               specifying that the data-item is to be repeated <i>x</i> number 
               of times. For instance, the CountyTax table might be defined as 
               - </p>
-<pre align="left">01 CountyTaxTable.
-   02 CountyTax       PIC 9(8)V99  OCCURS 26 TIMES.</pre>
+<pre class="language-cobol" align="left"><code class="language-cobol">01 CountyTaxTable.
+   02 CountyTax       PIC 9(8)V99  OCCURS 26 TIMES.</code></pre>
 <p align="left">The CountyTax table can be represented diagrammatically 
               as shown below. All the elements of the table have the name CountyTax 
               and we can refer to a specific one by using that name, followed 
@@ -434,10 +437,10 @@ DISPLAY "County 3 total is ", County3TaxTotal
               arithmetic expression.</p>
 <p align="left"><a href="Resources/ppz/TC-Tables1.html"><img border="0" height="71" src="Resources/pics/Tables1.gif" width="456"/></a></p>
 <blockquote>
-<pre align="left">MOVE 10 TO CountyTax(3)
+<pre class="language-cobol" align="left"><code class="language-cobol">MOVE 10 TO CountyTax(3)
 ADD TaxPaid TO CountyTax(CountyCode)
 ADD TaxPaid TO CountyTax(CountyCode + 1)
-ADD TaxPaid TO CountyTax(CountyCode - 2)</pre>
+ADD TaxPaid TO CountyTax(CountyCode - 2)</code></pre>
 </blockquote>
 <hr align="center" size="1" width="100%"/>
 </td>
@@ -468,7 +471,7 @@ ADD TaxPaid TO CountyTax(CountyCode - 2)</pre>
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="475">
 <tr>
 <td>
-<pre>PROCEDURE DIVISION.
+<pre class="language-cobol"><code class="language-cobol">PROCEDURE DIVISION.
 Begin.
    OPEN INPUT TaxFile
    READ TaxFile
@@ -486,7 +489,7 @@ Begin.
               " tax total is " CountyTax(Idx)
    END-PERFORM
    CLOSE TaxFile
-   STOP RUN.</pre>
+   STOP RUN.</code></pre>
 </td>
 </tr>
 </table>
@@ -546,11 +549,11 @@ Begin.
 <p>One solution might be to use an <font size="-1">EVALUATE</font> 
                   to examine the CountyCode and then display the appropriate message. 
                   For example - </p>
-<pre align="left">EVALUATE CountyCode
+<pre class="language-cobol" align="left"><code class="language-cobol">EVALUATE CountyCode
   WHEN      1       DISPLAY "Carlow tax total is " CountyTax(1)
   WHEN      2       DISPLAY "Cavan tax total is "  CountyTax(2)
          .... 24 more WHEN branches
-END-EVALUATE.</pre>
+END-EVALUATE.</code></pre>
 <p>But this solution is not very satisfactory. It is simply reverting 
               to the 26 <font size="-1">WHEN</font> branch solution presented 
               earlier. But this time, we know that there must be a more elegant 
@@ -559,15 +562,15 @@ END-EVALUATE.</pre>
               names of the counties, we can replace the <font size="-1">EVALUATE</font> 
               solution above, with one simple statement -</p>
 <blockquote>
-<pre>DISPLAY CountyName(Idx) " tax total is " CountyTax(Idx).
-</pre>
+<pre class="language-cobol"><code class="language-cobol">DISPLAY CountyName(Idx) " tax total is " CountyTax(Idx).
+</code></pre>
 </blockquote>
 <p>We can incorporate this statement into the County Tax Report program 
               as follows - </p>
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="475">
 <tr>
 <td>
-<pre>PROCEDURE DIVISION.
+<pre class="language-cobol"><code class="language-cobol">PROCEDURE DIVISION.
 Begin.
    OPEN INPUT TaxFile
    READ TaxFile
@@ -584,7 +587,7 @@ Begin.
   <b>    <font color="#FF0000">DISPLAY CountyName(Idx) " tax total is " CountyTax(Id</font></b><font color="#FF0000">x)</font>
    END-PERFORM
    CLOSE TaxFile
-   STOP RUN.</pre>
+   STOP RUN.</code></pre>
 </td>
 </tr>
 </table>
@@ -645,12 +648,12 @@ Begin.
 <table bgcolor="#E1FFE1" border="1" cellpadding="5" width="40%">
 <tr>
 <td height="71">
-<pre>01 TaxRec.
+<pre class="language-cobol"><code class="language-cobol">01 TaxRec.
    88 EndOfTaxFile  VALUE HIGH-VALUES.
    02 PAYENum    PIC 9(8)
    02 County     PIC X(9).
    02 TaxPaid    PIC 9(7)V99.
-</pre>
+</code></pre>
 </td>
 </tr>
 </table>
@@ -676,12 +679,12 @@ Begin.
 <p align="left">One approach we might try, is the now discredited<font size="-1"> 
               EVALUATE</font> based solution. For example -</p>
 <blockquote>
-<pre>EVALUATE County
+<pre class="language-cobol"><code class="language-cobol">EVALUATE County
    WHEN "Carlow" MOVE 1 TO CountyNum
    WHEN "Cavan"  MOVE 2 TO CountyNum
    ..... 24 more WHEN branches
 END-EVALUATE
-ADD TaxPaid TO CountyTax(CountyNum)</pre>
+ADD TaxPaid TO CountyTax(CountyNum)</code></pre>
 </blockquote>
 <p align="left">But by now we realise that there must be a more elegant 
               solution. The question is - what is it?</p>
@@ -715,10 +718,10 @@ ADD TaxPaid TO CountyTax(CountyNum)</pre>
 <p align="left">To compare the value of County with each element of 
               the CountyNames table we can use a <font size="-1">PERFORM..VARYING</font>. 
               For example - </p>
-<pre align="left">    PERFORM VARYING CountyNum FROM 1 BY 1
+<pre class="language-cobol" align="left"><code class="language-cobol">    PERFORM VARYING CountyNum FROM 1 BY 1
          UNTIL CountyName(CountyNum) = County
     END-PERFORM
-    ADD TaxPaid TO CountyTax(CountyNum)</pre>
+    ADD TaxPaid TO CountyTax(CountyNum)</code></pre>
 <p align="left">You can see how this <font size="-1">PERFORM..VARYING</font> 
               works, in the following animation -</p>
 <p align="center"><a href="Resources/ppz/TC-Tables2.html"><img border="0" height="62" src="Resources/pics/i-Animation.gif" width="62"/></a></p>
@@ -727,7 +730,7 @@ ADD TaxPaid TO CountyTax(CountyNum)</pre>
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="475">
 <tr>
 <td>
-<pre>PROCEDURE DIVISION.
+<pre class="language-cobol"><code class="language-cobol">PROCEDURE DIVISION.
 Begin.
    OPEN INPUT TaxFile
    READ TaxFile
@@ -749,7 +752,7 @@ Begin.
               " tax total is " CountyTax(CountyNum)
 </font>   END-PERFORM
    CLOSE TaxFile
-   STOP RUN.</pre>
+   STOP RUN.</code></pre>
 </td>
 </tr>
 </table>

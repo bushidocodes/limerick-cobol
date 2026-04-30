@@ -2,6 +2,9 @@
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 <meta content="Mozilla/4.0 [en] (WinNT; I) [Netscape]" name="GENERATOR"/>
 <title>The INSPECT verb</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cobol.min.js"></script>
 <style type="text/css">
 <!--
 -->
@@ -272,7 +275,7 @@
 </tr>
 <tr>
 <td background="Resources/pics/code.gif" width="525">
-<pre>PROCEDURE DIVISION.
+<pre class="language-cobol"><code class="language-cobol">PROCEDURE DIVISION.
 Begin.
     OPEN INPUT TextFile
     READ TextFile 
@@ -296,7 +299,7 @@ Begin.
     END-PERFORM
     CLOSE TextFile
     STOP RUN.
-</pre>
+</code></pre>
 </td>
 </tr>
 </table>
@@ -383,11 +386,11 @@ Begin.
 <h3><font color="#800000">Examples</font></h3>
 </td>
 <td width="525">
-<pre>INSPECT FullName TALLYING UnstrPtr FOR LEADING SPACES.
+<pre class="language-cobol"><code class="language-cobol">INSPECT FullName TALLYING UnstrPtr FOR LEADING SPACES.
 
 INSPECT SourceLine TALLYING ECount
         FOR ALL "e" AFTER  INITIAL "start"
-                    BEFORE INITIAL "end".   </pre>
+                    BEFORE INITIAL "end".   </code></pre>
 </td>
 </tr>
 </table>
@@ -444,7 +447,7 @@ INSPECT SourceLine TALLYING ECount
         </font>statements (use left click or PageDown for next item and right 
         click or PageUp for previsou item) .  </p>
 <blockquote>
-<pre>
+<pre class="language-cobol"><code class="language-cobol">
 1. INSPECT StringData REPLACING ALL "<b>R</b><b><font color="#0000FF"></font></b>" BY "<font color="#0000FF"><b>G</b></font><font color="#0000FF"><b></b></font><font color="#FF0000"><b></b></font><font color="#FF0000"><b></b></font><b></b>" 
        AFTER INITIAL "<font color="#FF0000"><b>A</b></font><font color="#008000"><b></b></font><b></b>" BEFORE INITIAL "<font color="#FF0000"><b>Q</b></font><font color="#008000"><b></b></font><font color="#009900"><b></b></font><font color="#00CC33"><b></b></font><font color="#00CC33"><b></b></font><font color="#00FF00"><b></b></font><b></b>".
 
@@ -460,7 +463,7 @@ INSPECT SourceLine TALLYING ECount
 5. INSPECT StringData REPLACING 
        ALL "<b>RRRR</b>" BY "<font color="#0000FF"><b>FROG</b></font><b></b>" 
        AFTER INITIAL "<font color="#FF0000"><b>A</b></font><b></b>" BEFORE INITIAL "<font color="#FF0000"><b>Q</b></font><b></b>".
-</pre>
+</code></pre>
 </blockquote>
 <center>
 <p><iframe height="125" src="Resources/pdf-viewer.html?src=ppz/Inspect1.pdf" style="border:1px solid #ccc; width:100%; aspect-ratio: 500/125;" width="500"></iframe> </p>
@@ -476,9 +479,9 @@ INSPECT SourceLine TALLYING ECount
 <p>This example inspects the string TextLine and checks it for each of the 
         4 letter swear words in the table. If one is found it is replaced by the 
         text *#@!.</p>
-<pre>PERFORM VARYING idx FROM 1 BY 1 UNTIL idx &gt; 10
+<pre class="language-cobol"><code class="language-cobol">PERFORM VARYING idx FROM 1 BY 1 UNTIL idx &gt; 10
   INSPECT TextLine REPLACING SwearWord(idx) BY "*#@!"
-END-PERFORM</pre>
+END-PERFORM</code></pre>
 <hr/>
 </td>
 </tr>
@@ -567,7 +570,7 @@ END-PERFORM</pre>
         in Convert$il on a one for one basis. </p>
 <p>For instance the statement - </p>
 <blockquote>
-<pre>INSPECT StringData CONVERTING "abc" TO "XYZ". </pre>
+<pre class="language-cobol"><code class="language-cobol">INSPECT StringData CONVERTING "abc" TO "XYZ". </code></pre>
 </blockquote>
 <p> replaces "a" with "X", "b" with "Y" and "c" with "Z". </p>
 <hr/>
@@ -608,7 +611,7 @@ END-PERFORM</pre>
         </p>
 <blockquote>
 <div align="LEFT">
-<pre>
+<pre class="language-cobol"><code class="language-cobol">
 1. INSPECT StringData CONVERTING "<b>fxtd"</b> TO "<b><font color="#FF0000">ZYAB</font></b>".
 
 2. INSPECT StringData REPLACING "<b>fxtd"</b> BY "<b><font color="#FF0000">ZYAB</font></b>".
@@ -617,7 +620,7 @@ END-PERFORM</pre>
                                     "<b>d</b>" BY "<b><font color="#FF0000">Z</font></b>"
                                     "<b>f</b>" BY "<b><font color="#FF0000">S</font></b>".
 
-</pre>
+</code></pre>
 </div>
 </blockquote>
 <p><iframe height="125" src="Resources/pdf-viewer.html?src=ppz/Inspect1.pdf" style="border:1px solid #ccc; width:100%; aspect-ratio: 500/125;" width="500"></iframe> </p>
@@ -635,9 +638,9 @@ END-PERFORM</pre>
 <p>It converts the character 0 to character 5, 1 to 2, 2 to 9, 3 to 8 etc. 
         Conversion starts when the word "codeon" is encountered in the string 
         and stops when "codeoff" is encountered. </p>
-<pre>INSPECT TextLine 
+<pre class="language-cobol"><code class="language-cobol">INSPECT TextLine 
     CONVERTING "0123456789" TO "5298317046"
-    AFTER INITIAL "codeon" BEFORE INITIAL "codeoff". </pre>
+    AFTER INITIAL "codeon" BEFORE INITIAL "codeoff". </code></pre>
 <hr/>
 </td>
 </tr>
@@ -653,19 +656,20 @@ END-PERFORM</pre>
         strings in data items makes the conversion operation more versatile.</p>
 <p>Actually, these days we can do this with the <font size="2">UPPER-CASE</font> 
         and <font size="2">LOWER-CASE</font> Intrinsic Functions. </p>
-<pre>*&gt; Data Division entries 
-01 AlphaChars. 
-   02 AlphaLower PIC X(26) VALUE "abcdefghijklmnopqrstuvwxyz". 
-   02 AlphaUpper PIC X(26) VALUE "ABCDEFGHIJKLMNOPQRSTUVWXYZ".</pre>
-<pre>*&gt; Procedure Division entries 
+<pre class="language-cobol"><code class="language-cobol">*&gt; Data Division entries
+01 AlphaChars.
+   02 AlphaLower PIC X(26) VALUE "abcdefghijklmnopqrstuvwxyz".
+   02 AlphaUpper PIC X(26) VALUE "ABCDEFGHIJKLMNOPQRSTUVWXYZ".
+
+*&gt; Procedure Division entries
     INSPECT CustAddress
         CONVERTING "abcdefghijklmnopqrstuvwxyz"
             TO     "ABCDEFGHIJKLMNOPQRSTUVWXYZ".
 
-    INSPECT CustAddress 
-        CONVERTING AlphaLower TO AlphaUpper. </pre>
-<pre>    INSPECT CustAddress
-        CONVERTING AlphaUpper TO AlphaLower.    </pre>
+    INSPECT CustAddress
+        CONVERTING AlphaLower TO AlphaUpper.
+    INSPECT CustAddress
+        CONVERTING AlphaUpper TO AlphaLower.    </code></pre>
 </td>
 </tr>
 </table>

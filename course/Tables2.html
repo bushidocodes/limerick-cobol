@@ -2,6 +2,9 @@
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 <meta content="Mozilla/4.0 [en] (WinNT; I) [Netscape]" name="GENERATOR"/>
 <title>Creating tables - syntax and semantics</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cobol.min.js"></script>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <style type="text/css">
   img { max-width: 100%; height: auto; }
@@ -294,12 +297,12 @@
               element. For instance, we might declare the <i>CountyTaxTable</i> 
               as - </p>
 <blockquote>
-<pre>01 CountyTax   PIC 9(8)V99  OCCURS 26 TIMES.</pre>
+<pre class="language-cobol"><code class="language-cobol">01 CountyTax   PIC 9(8)V99  OCCURS 26 TIMES.</code></pre>
 <blockquote>
 <p>or as</p>
 </blockquote>
-<pre>01 CountyTax   OCCURS 26 TIMES PIC 9(8)V99.
-</pre>
+<pre class="language-cobol"><code class="language-cobol">01 CountyTax   OCCURS 26 TIMES PIC 9(8)V99.
+</code></pre>
 </blockquote>
 <div align="left">
 <p>We can represent the county tax table diagrammatically as follows;</p>
@@ -312,9 +315,9 @@
                 the whole table and so it is usual to define a table as subordinate 
                 to a group item which is named to indicate the whole table. For 
                 example the CountyTax table would probably be described as -</p>
-<pre align="left">01 CountyTaxTable.
+<pre class="language-cobol" align="left"><code class="language-cobol">01 CountyTaxTable.
 
-   02 CountyTax  PIC 9(8)V99  OCCURS 26 TIMES.</pre>
+   02 CountyTax  PIC 9(8)V99  OCCURS 26 TIMES.</code></pre>
 <p>When declared like this we can refer to <i>CountyTax(sub)</i> 
                 when we want to access an element of the table and <i>CountyTaxTable</i> 
                 when we want to refer to the whole table.</p>
@@ -389,7 +392,7 @@
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" height="171" width="475">
 <tr>
 <td>
-<pre>WORKING-STORAGE SECTION.
+<pre class="language-cobol"><code class="language-cobol">WORKING-STORAGE SECTION.
 01 DeptTotalsTable.
    02 DeptTotal PIC 9(6) OCCURS 7.
 
@@ -405,7 +408,7 @@
 
 
 
-01 MonthName   PIC X(3)OCCURS 12 TIMES. </pre>
+01 MonthName   PIC X(3)OCCURS 12 TIMES. </code></pre>
 </td>
 </tr>
 </table>
@@ -500,9 +503,9 @@
                 the first dimension of a table.</li>
 </ol>
 <p><b>Example</b></p>
-<pre>01 BooksReservedTable. 
+<pre class="language-cobol"><code class="language-cobol">01 BooksReservedTable. 
    02 BookId PIC 9(7) OCCURS 1 TO 10 
-                      DEPENDING ON NumOfReservations. </pre>
+                      DEPENDING ON NumOfReservations. </code></pre>
 </td>
 </tr>
 <tr>
@@ -544,21 +547,21 @@
 <p>One way we could satisfy this change to the specification would 
               involve setting up separate tables to hold the county tax totals 
               and county tax payer counts. For example- </p>
-<pre>01 CountyTaxTable.
+<pre class="language-cobol"><code class="language-cobol">01 CountyTaxTable.
    02 CountyTax   PIC 9(8)V99  OCCURS 26 TIMES.
 
 
 01 CountyPayerTable.
-   02 PayerCount  PIC 9(7) OCCURS 26 TIMES.</pre>
+   02 PayerCount  PIC 9(7) OCCURS 26 TIMES.</code></pre>
 <p>But we could also solve the problem by setting up just a single 
               table and defining each element as a group item. The group item 
               would consist of the <i>CountyTax</i> and the <i>PayerCount</i>. 
             </p>
 <p>For example -</p>
-<pre>01 CountyTaxTable.
+<pre class="language-cobol"><code class="language-cobol">01 CountyTaxTable.
    02 CountyTaxDetails OCCURS 26 TIMES.
       03 CountyTax   PIC 9(8)V99.  
-      03 PayerCount  PIC 9(7). </pre>
+      03 PayerCount  PIC 9(7). </code></pre>
 <p>In this example, <i>CountyTaxTable</i> is the name for the whole 
               table and each element is called <i>CountyTaxDetails</i>. The element 
               is further subdivided into the elementary items <i>CountyTax </i>and 
@@ -589,11 +592,11 @@
 <p>Q1. Examine the CountyTaxTable described above. Suppose that in 
               our program we have the following statements;</p>
 <blockquote>
-<pre>MOVE ZEROS TO CountyTax(3)
+<pre class="language-cobol"><code class="language-cobol">MOVE ZEROS TO CountyTax(3)
 MOVE 67 TO PayerCount(6)
 MOVE 1234.45 TO CountyTax(4)
 MOVE ZEROS TO CountyTaxDetails(4)
-MOVE ZEROS TO CountyTaxTable</pre>
+MOVE ZEROS TO CountyTaxTable</code></pre>
 </blockquote>
             What effect on the table will each of these statements have? Copy 
             the table diagram above, fill in your answer and then click on the 
@@ -602,7 +605,7 @@ MOVE ZEROS TO CountyTaxTable</pre>
 
 <p>Q2. What is the difference between the following data descriptions;</p>
 <blockquote>
-<pre>01 CountyTaxTable1.
+<pre class="language-cobol"><code class="language-cobol">01 CountyTaxTable1.
    02 CountyTaxDetails OCCURS 26 TIMES.
       03 CountyTax   PIC 9(8)V99.  
       03 PayerCount  PIC 9(7). 
@@ -613,7 +616,7 @@ MOVE ZEROS TO CountyTaxTable</pre>
    02 CountyTaxDetails 
       03 CountyTax   PIC 9(8)V99 OCCURS 26 TIMES.  
       03 PayerCount  PIC 9(7)OCCURS 26 TIMES. 
-</pre>
+</code></pre>
 </blockquote>
 <form action="Tables2.html" method="post">
 <div align="center">
@@ -680,7 +683,7 @@ MOVE ZEROS TO CountyTaxTable</pre>
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="475">
 <tr>
 <td>
-<pre>       &gt;&gt;SOURCE FORMAT IS FREE
+<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. CountyTaxTable.
 AUTHOR. Michael Coughlan.
@@ -741,7 +744,7 @@ DisplayCountyTaxes.
       MOVE CountyTax(Idx) TO PrnTax
       MOVE PayerCount(Idx) TO PrnPayers
       DISPLAY CountyTaxLine
-   END-IF.</pre>
+   END-IF.</code></pre>
 </td>
 </tr>
 </table>
@@ -858,8 +861,8 @@ DisplayCountyTaxes.
               so we might think that the six element, single-dimension, table 
               shown below might do the trick.</p>
 <blockquote>
-<pre>01 PopulationTable.
-   02 PopTotal PIC 9(6) OCCURS 6 TIMES.</pre>
+<pre class="language-cobol"><code class="language-cobol">01 PopulationTable.
+   02 PopTotal PIC 9(6) OCCURS 6 TIMES.</code></pre>
 </blockquote>
 <p align="left">The problem with this is - what can we use as an index 
               into the table? No single item in the record will do. The index 
@@ -868,13 +871,13 @@ DisplayCountyTaxes.
               below, to map the <i>AgeCategory</i> and <i>Gender</i> to a combined 
               index value.</p>
 <blockquote>
-<pre align="left">EVALUATE AgeCategory ALSO Gender
+<pre class="language-cobol" align="left"><code class="language-cobol">EVALUATE AgeCategory ALSO Gender
   WHEN        1      ALSO    1      MOVE 1 TO Idx
   WHEN        1      ALSO    2      MOVE 2 TO Idx
   WHEN        2      ALSO    1      MOVE 3 TO Idx
           etc...
 END-EVALUATE.
-</pre>
+</code></pre>
 </blockquote>
 <p align="left">Or we could manipulate the values arithmetically to 
               map them to the index value. For instance <i>COMPUTE Idx = ((AgeCategory 
@@ -899,19 +902,19 @@ END-EVALUATE.
 <p align="left">A multi-dimension table is declared by nesting <font size="-1">OCCURS</font> 
               clauses. So we can define the two dimension <i>PopulationTable</i> 
               as follows - </p>
-<pre align="left">01 PopulationTable.
+<pre class="language-cobol" align="left"><code class="language-cobol">01 PopulationTable.
    02 Age OCCURS 3 TIMES.
       03 PopTotal   PIC 9(6)OCCURS 2 TIMES.
 
-      </pre>
+      </code></pre>
 <p align="left">While the table description shown above is correct; 
               it is not, perhaps, as understandable as it might be. You might 
               prefer to define the table as shown below.</p>
-<pre align="left"><b>01 PopulationTable.
+<pre class="language-cobol" align="left"><code class="language-cobol"><b>01 PopulationTable.
 <font color="#FF0000">   02 Age OCCURS 3 TIMES</font>.
       <font color="#008000">03 Gender OCCURS 2 TIMES.
 </font>         <font color="#666666">04 PopTotal   PIC 9(6).</font><font color="#008040"> </font></b>
-</pre>
+</code></pre>
 <p align="left">We can represent this table diagrammatically as -</p>
 <p align="center"><img height="170" src="Resources/pics/Tables4.gif" width="470"/></p>
 <p align="left">Two dimension tables are sometimes represented as 
@@ -936,11 +939,11 @@ END-EVALUATE.
               the contents of the table are effected when the following statements 
               are executed.</p>
 <blockquote>
-<pre>MOVE ZEROS TO PopulationTable
+<pre class="language-cobol"><code class="language-cobol">MOVE ZEROS TO PopulationTable
 MOVE 123 TO PopTotal(3,1)
 MOVE 456 TO Gender(3,2)
 ADD 1255 TO PopTotal(2,2)
-MOVE ZEROS TO Age(3)</pre>
+MOVE ZEROS TO Age(3)</code></pre>
 </blockquote>
 <p>Click on the animation icon below to see an animated answer.</p>
 <p align="center"><a href="Resources/ppz/TC-Tables4.html"><img border="0" height="62" src="Resources/pics/i-Animation.gif" width="62"/></a></p>
@@ -961,7 +964,7 @@ MOVE ZEROS TO Age(3)</pre>
 <p>If we are asked to display the six Age/Gender totals for each county 
               then we will obviously need to store 26 instances of the Age/Gender 
               totals. We could of course do this as</p>
-<pre>01 CountyTotal01.
+<pre class="language-cobol"><code class="language-cobol">01 CountyTotal01.
    02 Age OCCURS 3 TIMES.
       03 Gender OCCURS 2 TIMES.
          04 PopTotal   PIC 9(6).
@@ -973,7 +976,7 @@ MOVE ZEROS TO Age(3)</pre>
       03 Gender OCCURS 2 TIMES.
          04 PopTotal   PIC 9(6).
 
-         etc....</pre>
+         etc....</code></pre>
 <p>But by now you are aware of the arguments against this approach 
               so let's go directly to the table based solution.</p>
 <p>What we want to do is to create a 26 element table, each element 
@@ -995,12 +998,12 @@ MOVE ZEROS TO Age(3)</pre>
               dimension <i>PopulationTable</i> may be defined as shown below. 
               To access the <i>PopTotal</i> element three subscripts are now required, 
               one for each <font size="-1">OCCURS </font>clause.</p>
-<pre><b>01 PopulationTable.
+<pre class="language-cobol"><code class="language-cobol"><b>01 PopulationTable.
 <font color="#FF0000">   02 County OCCURS 26 TIMES.
 </font><font color="#008000">      03 Age OCCURS 3 TIMES.
 </font><font color="#000080">         04 Gender OCCURS 2 TIMES.
 </font>          <font color="#666666">  05 PopTotal   PIC 9(6). </font> 
-</b></pre>
+</b></code></pre>
 <p>This table may be represented diagrammatically as follows - </p>
 <p align="center"><img height="145" src="Resources/pics/Tables5.gif" width="480"/></p>
 <hr size="1" width="100%"/>
@@ -1017,12 +1020,12 @@ MOVE ZEROS TO Age(3)</pre>
               the contents of the table are effected when the following statements 
               are executed.</p>
 <blockquote>
-<pre>MOVE ZEROS TO County(1)
+<pre class="language-cobol"><code class="language-cobol">MOVE ZEROS TO County(1)
 MOVE ZEROS TO Age(2,3)
 MOVE ZEROS TO PopTotal(2,1,2)
 MOVE 56 TO PopTotal(1,3,2)
 MOVE 12 TO PopTotal(2,1,1) 
-MOVE ZEROS TO PopulationTable</pre>
+MOVE ZEROS TO PopulationTable</code></pre>
 </blockquote>
 <p>Click on the animation icon below to see an animated answer.</p>
 <p align="center"><a href="Resources/ppz/TC-Tables5.html"><img border="0" height="62" src="Resources/pics/i-Animation.gif" width="62"/></a></p>
@@ -1051,11 +1054,11 @@ MOVE ZEROS TO PopulationTable</pre>
               would we insert the CarOwnersTotal. </p>
 <p>Let's examine the existing table and see if we can figure out where 
               the CarOwnersTotal should go.</p>
-<pre><font color="#000000">01 PopulationTable.
+<pre class="language-cobol"><code class="language-cobol"><font color="#000000">01 PopulationTable.
    02 County OCCURS 26 TIMES.
       03 Age OCCURS 3 TIMES.
          04 Gender OCCURS 2 TIMES.
-</font>          <font color="#000000">  05 PopTotal   PIC 9(6). </font><b> </b></pre>
+</font>          <font color="#000000">  05 PopTotal   PIC 9(6). </font><b> </b></code></pre>
 <p>We can't add <i>CarOwnersTotal </i>to the same level as the <i>PopTotal</i> 
               because that would create six CarOwnersTotals for each county - 
               one for each Age/Gender combination. We only want one CarOwnersTotal 
@@ -1067,12 +1070,12 @@ MOVE ZEROS TO PopulationTable</pre>
               element consists of the <i>CarOwnersTotal</i> and a two dimension 
               table containing the rest of the population information for the 
               county.</p>
-<pre><font color="#000000"><b>01 PopulationTable.
+<pre class="language-cobol"><code class="language-cobol"><font color="#000000"><b>01 PopulationTable.
 <font color="#FF0000">   02 County OCCURS 26 TIMES.
 </font><font color="#616161">      03 CarOwnersTotal   PIC 9(6).</font><font color="#808080">
 </font><font color="#004000">      03 Age OCCURS 3 TIMES.
 </font><font color="#000080">         04 Gender OCCURS 2 TIMES.
-</font></b></font>          <font color="#616161"><b>  05 PopTotal   PIC 9(6).  </b></font></pre>
+</font></b></font>          <font color="#616161"><b>  05 PopTotal   PIC 9(6).  </b></font></code></pre>
 <p>We can represent the declaration above diagrammatically as follows 
               - </p>
 <p align="center"><img height="156" src="Resources/pics/Tables6.gif" width="481"/></p>
@@ -1094,11 +1097,11 @@ MOVE ZEROS TO PopulationTable</pre>
               <font size="-1">OCCURS</font> clauses).</p>
 <p><b>Examples of use</b></p>
 <blockquote>
-<pre>MOVE ZEROS TO County(23)
+<pre class="language-cobol"><code class="language-cobol">MOVE ZEROS TO County(23)
 ADD 1643 TO CarOwnersTotal(15)
 MOVE ZEROS TO Age(17,3)
 MOVE ZEROS TO Gender(18,3,2)
-ADD 56 TO PopTotal(12,3,2)</pre>
+ADD 56 TO PopTotal(12,3,2)</code></pre>
 </blockquote>
 
 </td>
@@ -1167,8 +1170,8 @@ ADD 56 TO PopTotal(12,3,2)</pre>
               the number into <i>TextValue</i> and then treat <i>TextValue </i>as 
               if it were described as PIC 9(5)V99. For instance - </p>
 <blockquote>
-<pre align="left">01  TextValue    PIC X(7).
-01  NumericValue REDEFINES TextValue PIC 9(5)V99.</pre>
+<pre class="language-cobol" align="left"><code class="language-cobol">01  TextValue    PIC X(7).
+01  NumericValue REDEFINES TextValue PIC 9(5)V99.</code></pre>
 </blockquote>
 <p align="left"><b>Example 2<br/>
 </b>The<font size="-1"> REDEFINES</font> clause is not just used 
@@ -1194,7 +1197,7 @@ ADD 56 TO PopTotal(12,3,2)</pre>
               month and year fields without recourse to special programming. For 
               instance, if define the <i>InputDate</i> as - </p>
 <blockquote>
-<pre align="left">01 InputDate.
+<pre class="language-cobol" align="left"><code class="language-cobol">01 InputDate.
    02 DateType         PIC 9.
       88 DateIsSort    VALUE 1.
       88 DateIsEuro    VALUE 2.
@@ -1211,11 +1214,11 @@ ADD 56 TO PopTotal(12,3,2)</pre>
       03 USMonth       PIC 99.
       03 USDay         PIC 99.
       03 USYear        PIC 9(4).
-</pre>
+</code></pre>
 </blockquote>
 <p>we can use statements like -</p>
 <blockquote>
-<pre align="left">EVALUATE TRUE
+<pre class="language-cobol" align="left"><code class="language-cobol">EVALUATE TRUE
     WHEN DateIsSort
            DISPLAY "SortDate format is yyyy-mm-dd "
            DISPLAY  SortYear "-" SortMonth "-" SortYear
@@ -1225,7 +1228,7 @@ ADD 56 TO PopTotal(12,3,2)</pre>
     WHEN DateIsUS 
            DISPLAY "USDate format is mm-dd-yyyy "
            DISPLAY  USMonth "-" USDay "-" USYear
-END-EVALUATE </pre>
+END-EVALUATE </code></pre>
 </blockquote>
 <p>- and still get the correct values displayed.</p>
 <p align="left"><b>Example 3<br/>
@@ -1235,10 +1238,10 @@ END-EVALUATE </pre>
               it were 12.345 if we refer to <i>10Rate</i>, 123.45 if we refer 
               to <i>100Rate</i>, and 1234.5 if we refer to <i>1000Rate</i>.</p>
 <blockquote>
-<pre align="left">01 Rates.
+<pre class="language-cobol" align="left"><code class="language-cobol">01 Rates.
    02 10Rate                    PIC 99V999.
    02 100Rate  REDEFINES 10Rate PIC 999V99.
-   02 1000Rate REDEFINES 10Rate PIC 9999V9.</pre>
+   02 1000Rate REDEFINES 10Rate PIC 9999V9.</code></pre>
 </blockquote>
 
 <p align="left"><b>Animated versions of the examples above</b></p>
@@ -1296,7 +1299,7 @@ END-EVALUATE </pre>
 <p>For example, if we want to declare a table pre-filled with the 
               names of the months, the first step is to reserve an area of storage 
               and fill it with the names of the months -</p>
-<pre>01 MonthTable.
+<pre class="language-cobol"><code class="language-cobol">01 MonthTable.
    02 MonthValues.
       03 FILLER       PIC X(18) VALUE "January  February".
       03 FILLER       PIC X(18) VALUE "March    April".
@@ -1304,10 +1307,10 @@ END-EVALUATE </pre>
       03 FILLER       PIC X(18) VALUE "July     August".
       03 FILLER       PIC X(18) VALUE "SeptemberOctober".
       03 FILLER       PIC X(18) VALUE "November December".
-</pre>
+</code></pre>
 <p>then we redefine is as a table as follows - </p>
-<pre>   02 FILLER REDEFINES MonthValues.
-      03 Month OCCURS 12 TIMES PIC X(9).</pre>
+<pre class="language-cobol"><code class="language-cobol">   02 FILLER REDEFINES MonthValues.
+      03 Month OCCURS 12 TIMES PIC X(9).</code></pre>
 <p> Examine the animation below to view this and other examples. </p>
 <p align="center"><a href="Resources/ppz/TC-Tables8.html"><img border="0" height="62" src="Resources/pics/i-Animation.gif" width="62"/></a>
 </p>
@@ -1337,7 +1340,7 @@ END-EVALUATE </pre>
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="475">
 <tr>
 <td>
-<pre>       &gt;&gt;SOURCE FORMAT IS FREE
+<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. CountyTaxTable.
 AUTHOR. Michael Coughlan.
@@ -1435,7 +1438,7 @@ DisplayCountyTaxes.
 </b></font>      MOVE CountyTax(Idx) TO PrnTax
       MOVE PayerCount(Idx) TO PrnPayers
       DISPLAY CountyTaxLine
-   END-IF.</pre>
+   END-IF.</code></pre>
 </td>
 </tr>
 </table>
@@ -1460,13 +1463,13 @@ DisplayCountyTaxes.
               <i>Day </i>actually declares the table but we have given the table 
               the overall group name <i>- DayTable</i>. Assigning the values to 
               this groupname fills the area of the table with the values.</p>
-<pre>01 DayTable VALUE "<font color="#FF0000"><b>MonTueWedThrFriSatSun</b></font>". 
+<pre class="language-cobol"><code class="language-cobol">01 DayTable VALUE "<font color="#FF0000"><b>MonTueWedThrFriSatSun</b></font>". 
    02 Day OCCURS 7 TIMES PIC X(3). 
 
-</pre>
+</code></pre>
 <div align="center">
-<pre>
-<img height="84" src="Resources/pics/Tables7.gif" width="369"/></pre>
+<pre class="language-cobol"><code class="language-cobol">
+<img height="84" src="Resources/pics/Tables7.gif" width="369"/></code></pre>
 </div>
 </td>
 </tr>
@@ -1484,28 +1487,28 @@ DisplayCountyTaxes.
               items. All that was required was to move the initialising value 
               to the table's group name. For instance, the statement <i>- MOVE 
               ZEROS TO TaxTable</i> - initialises the table below to zeros.</p>
-<pre>01 TaxTable. 
+<pre class="language-cobol"><code class="language-cobol">01 TaxTable. 
    02 CountyTax  PIC 9(5) OCCURS 26 TIMES. 
-</pre>
+</code></pre>
 <p>But initialising a table was much more difficult if each element 
               was a group item that contained different types of data. For example, 
               in the table below, the <i>CountyTax</i> part of the element has 
               to be initialised to zeros and the CountyName part has to be initialised 
               to spaces. The only way do this is to initialise the items, element 
               by element, using an iteration.</p>
-<pre>01 TaxTable. 
+<pre class="language-cobol"><code class="language-cobol">01 TaxTable. 
    02 County OCCURS 26 TIMES. 
       03 CountyTax  PIC 9(5). 
-      03 CountyName PIC X(12).</pre>
+      03 CountyName PIC X(12).</code></pre>
 <p>At least that was the way it had to be done before the 1985 COBOL 
               standard. Now the table can be initialised by assigning an initial 
               value to each part of an element using the <font size="-1">VALUE 
               </font>clause. The description below initialises the CountyTax part 
               of the element to zeros and the CountyName part to spaces.</p>
-<pre>01 TaxTable. 
+<pre class="language-cobol"><code class="language-cobol">01 TaxTable. 
    02 County OCCURS 26 TIMES. 
       03 CountyTax  PIC 9(5) VALUE ZEROS. 
-      03 CountyName PIC X(12) VALUE SPACES.</pre>
+      03 CountyName PIC X(12) VALUE SPACES.</code></pre>
 </td>
 </tr>
 <tr>

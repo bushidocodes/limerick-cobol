@@ -2,6 +2,9 @@
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 <meta content="Mozilla/4.0 [en] (WinNT; I) [Netscape]" name="GENERATOR"/>
 <title>COBOL Selection Constructs</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cobol.min.js"></script>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <style type="text/css">
   img { max-width: 100%; height: auto; }
@@ -271,7 +274,7 @@
 <table align="center" border="0" width="85%">
 <tr>
 <td valign="top" width="46%">
-<pre>
+<pre class="language-cobol"><code class="language-cobol">
 Statement1
 Statement2
 IF VarA &gt; VarD THEN
@@ -279,16 +282,16 @@ IF VarA &gt; VarD THEN
    Statement4
 END-IF
 Statement5
-Statement6.</pre>
+Statement6.</code></pre>
 </td>
 <td valign="top" width="46%">
-<pre>Statement1
+<pre class="language-cobol"><code class="language-cobol">Statement1
 Statement2
 IF VarA &gt; VarD THEN
    Statement3
    Statement4
 Statement5
-Statement6.</pre>
+Statement6.</code></pre>
 </td>
 </tr>
 </table>
@@ -365,10 +368,10 @@ Statement6.</pre>
 <p align="left">Note that the values of the compared items must 
                   be type compatible. For instance, it is not valid to have a 
                   statement that says </p>
-<pre align="left">IF "mike" IS EQUAL TO 123 THEN etc
-                  </pre>
+<pre class="language-cobol" align="left"><code class="language-cobol">IF "mike" IS EQUAL TO 123 THEN etc
+                  </code></pre>
 <div align="left">
-<pre align="left">  </pre>
+<pre class="language-cobol" align="left"><code class="language-cobol">  </code></pre>
 </div>
 </div>
 </div>
@@ -420,13 +423,13 @@ Statement6.</pre>
               consist entirely of the characters listed in the definition of the 
               UserDefinedClassName.</p>
 <p><b>Example </b></p>
-<pre>
+<pre class="language-cobol"><code class="language-cobol">
 *&gt; Uses the UPPER Intrinsic Function to convert to uppercase
 IF InputChar IS ALPHABETIC-LOWER
    MOVE FUNCTION UPPER (InputChar) TO InputChar
 END-IF
 
-</pre>
+</code></pre>
 </td>
 </tr>
 <tr>
@@ -525,14 +528,14 @@ END-IF
 </table>
 <p><b>Example</b></p>
 <blockquote>
-<pre>IF Row &gt; 0 AND Row &lt; 26 THEN
+<pre class="language-cobol"><code class="language-cobol">IF Row &gt; 0 AND Row &lt; 26 THEN
    DISPLAY "On Screen" 
 END-IF 
 
 IF NOT Amnt1 &lt; 10 OR Amnt2 = 50 AND Amnt3 &gt; 150 THEN
    DISPLAY "Done"
 END-IF
-</pre>
+</code></pre>
 </blockquote>
 <p><b>The effect of bracketing<br/>
 </b>Let's examine the last example above to see what difference 
@@ -570,7 +573,7 @@ END-IF
 <p align="center"><font size="-1">Expressed as</font></p>
 </td>
 <td bgcolor="#E1FFE1" width="84%">
-<pre>   (NOT    (T))   OR      ((T)   AND      (T)) </pre>
+<pre class="language-cobol"><code class="language-cobol">   (NOT    (T))   OR      ((T)   AND      (T)) </code></pre>
 </td>
 </tr>
 <tr>
@@ -578,7 +581,7 @@ END-IF
 <div align="center"><font size="-1">Evaluates to</font></div>
 </td>
 <td bgcolor="#E1FFE1" height="17" width="84%">
-<pre>      (F)         OR             (T) </pre>
+<pre class="language-cobol"><code class="language-cobol">      (F)         OR             (T) </code></pre>
 </td>
 </tr>
 <tr>
@@ -586,7 +589,7 @@ END-IF
 <div align="center"><font size="-1">Evaluates to</font></div>
 </td>
 <td bgcolor="#E1FFE1" width="84%">
-<pre>                 <b><font color="#FF0000">True </font></b></pre>
+<pre class="language-cobol"><code class="language-cobol">                 <b><font color="#FF0000">True </font></b></code></pre>
 </td>
 </tr>
 </table>
@@ -608,7 +611,7 @@ END-IF
 <p align="center"><font size="-1">Expressed as</font></p>
 </td>
 <td bgcolor="#E1FFE1" width="84%">
-<pre>   NOT     ((T)   OR      (T))   AND      (T)</pre>
+<pre class="language-cobol"><code class="language-cobol">   NOT     ((T)   OR      (T))   AND      (T)</code></pre>
 </td>
 </tr>
 <tr>
@@ -616,7 +619,7 @@ END-IF
 <div align="center"><font size="-1">Evaluates to</font></div>
 </td>
 <td bgcolor="#E1FFE1" height="17" width="84%">
-<pre>   NOT            (T)            AND      (T)</pre>
+<pre class="language-cobol"><code class="language-cobol">   NOT            (T)            AND      (T)</code></pre>
 </td>
 </tr>
 <tr>
@@ -624,7 +627,7 @@ END-IF
 <div align="center"><font size="-1">Evaluates to</font></div>
 </td>
 <td bgcolor="#E1FFE1" width="84%">
-<pre>          (F)                    AND      (T)</pre>
+<pre class="language-cobol"><code class="language-cobol">          (F)                    AND      (T)</code></pre>
 </td>
 </tr>
 <tr>
@@ -632,7 +635,7 @@ END-IF
 <div align="center"><font size="-1">Evaluates to</font></div>
 </td>
 <td bgcolor="#E1FFE1" width="84%">
-<pre>                 <font color="#FF0000"><b>False</b></font></pre>
+<pre class="language-cobol"><code class="language-cobol">                 <font color="#FF0000"><b>False</b></font></code></pre>
 </td>
 </tr>
 </table>
@@ -665,13 +668,13 @@ END-IF
               we check to see if Row is greater than 0 and Row is less than 26. 
               We could rewrite this statement using Implied Subjects as-</p>
 <blockquote>
-<pre>IF Row &gt; 0 AND &lt; 26 THEN etc</pre>
+<pre class="language-cobol"><code class="language-cobol">IF Row &gt; 0 AND &lt; 26 THEN etc</code></pre>
 </blockquote>
 <p>the Implied Subject here is Row.</p>
 <p><b>Examples</b><br/>
               In these examples the full condition is shown first and is followed 
               by the condition using Implied Subjects</p>
-<pre>IF TotalAmt &gt; 10000 AND TotalAmt &lt; 50000 THEN etc. 
+<pre class="language-cobol"><code class="language-cobol">IF TotalAmt &gt; 10000 AND TotalAmt &lt; 50000 THEN etc. 
 IF TotalAmt &gt; 10000 AND &lt; 50000 THEN etc
 *&gt; The Implied Subject is - TotalAmt
 
@@ -687,7 +690,7 @@ IF VarA &gt; VarB AND VarC AND VarD
 END-IF 
 *&gt; The Implied Subject is - VarA &gt;
 
-</pre>
+</code></pre>
 <hr width="50%"/>
 </td>
 </tr>
@@ -710,7 +713,7 @@ END-IF
 <p> COBOL allows nested <font size="-1">IF</font> statements.</p>
 <p> For example: </p>
 <blockquote>
-<pre>IF ( VarA &lt; 10 ) AND ( VarB NOT &gt; VarC ) THEN 
+<pre class="language-cobol"><code class="language-cobol">IF ( VarA &lt; 10 ) AND ( VarB NOT &gt; VarC ) THEN 
    IF VarG = 14 THEN 
         DISPLAY "First"
     ELSE 
@@ -718,7 +721,7 @@ END-IF
    END-IF 
  ELSE DISPLAY "Third" 
 END-IF 
-</pre>
+</code></pre>
 </blockquote>
 <p>The table below contains representations of the variables used 
               in the nested <font size="-1">Ifs</font> above. In each instance, 
@@ -836,8 +839,8 @@ END-IF
 </form>
 
 <blockquote>
-<pre> 
-</pre>
+<pre class="language-cobol"><code class="language-cobol"> 
+</code></pre>
 </blockquote>
 </td>
 </tr>
@@ -894,8 +897,8 @@ END-IF
             </p>
 <blockquote>
 <div align="left">
-<pre align="left">e.g. 02 DeptCode          PIC X. 
-        88 ProductionDept VALUE "I","L","T". </pre>
+<pre class="language-cobol" align="left"><code class="language-cobol">e.g. 02 DeptCode          PIC X. 
+        88 ProductionDept VALUE "I","L","T". </code></pre>
 </div>
 </blockquote>
 <p align="left">To specify a range, use the keyword <font size="-1">THRU</font>, 
@@ -903,19 +906,19 @@ END-IF
               values.</p>
 <blockquote>
 <div align="left">
-<pre align="left">E.g. 02 AgeInYears  PIC 9(3). 
-        88 Teenager VALUE 13 THRU 19. </pre>
+<pre class="language-cobol" align="left"><code class="language-cobol">E.g. 02 AgeInYears  PIC 9(3). 
+        88 Teenager VALUE 13 THRU 19. </code></pre>
 </div>
 <div align="left"></div>
 </blockquote>
 <p align="left">Several Condition Names may be associated with a single 
               data item, </p>
 <blockquote>
-<pre align="left">e.g. 02 AgeInYears  PIC 9(3). 
+<pre class="language-cobol" align="left"><code class="language-cobol">e.g. 02 AgeInYears  PIC 9(3). 
         88 Child    VALUE 0  THRU 12. 
         88 Teenager VALUE 13 THRU 19. 
         88 Adult    VALUE 21 THRU 999. 
-</pre>
+</code></pre>
 </blockquote>
 <blockquote>
 <div align="left"></div>
@@ -925,12 +928,12 @@ END-IF
               time. For instance, if AgeInYears contains the value 20 both Teenager 
               and Voter will be true.</p>
 <blockquote>
-<pre align="left">E.g. 02 AgeInYears  PIC 9(3). 
+<pre class="language-cobol" align="left"><code class="language-cobol">E.g. 02 AgeInYears  PIC 9(3). 
         88 Child    VALUE 0  THRU 12. 
         88 Teenager VALUE 13 THRU 19. 
         88 Adult    VALUE 21 THRU 999.
         88 Voter    VALUE 18 THRU 999. 
-</pre>
+</code></pre>
 </blockquote>
 
 <p align="left"><b>Condition Name notes</b></p>
@@ -980,7 +983,7 @@ END-IF
 <table align="center" border="1" width="75%">
 <tr align="left" bgcolor="#E1FFE1">
 <td>
-<pre>01 EUCountryCode PIC 99. 
+<pre class="language-cobol"><code class="language-cobol">01 EUCountryCode PIC 99. 
    88 CodeIs1 VALUE 1. 
    88 CodeIs2 VALUE 2. 
    88 CodeIs3 VALUE 3. 
@@ -992,7 +995,7 @@ END-IF
 IF CodeIs1 THEN 
    SUBTRACT Bonus FROM StructuralFunds(EUCountry) 
 END-IF 
-                 </pre>
+                 </code></pre>
 </td>
 </tr>
 </table>
@@ -1009,7 +1012,7 @@ END-IF
 <table align="center" border="1" width="75%">
 <tr bgcolor="#E1FFE1">
 <td>
-<pre>01 EUCountryCode PIC 99. 
+<pre class="language-cobol"><code class="language-cobol">01 EUCountryCode PIC 99. 
    88 France  VALUE 1. 
    88 Ireland VALUE 2. 
    88 Denmark VALUE 3. 
@@ -1022,7 +1025,7 @@ END-IF
 IF France THEN 
    SUBTRACT Bonus FROM StructuralFunds(EUCountry) 
 END-IF 
-</pre>
+</code></pre>
 </td>
 </tr>
 </table>
@@ -1134,7 +1137,7 @@ END-IF
 <table align="center" background="Resources/pics/code.gif" border="1" height="93" width="95%">
 <tr>
 <td>
-<pre>DATA DIVISION.
+<pre class="language-cobol"><code class="language-cobol">DATA DIVISION.
 FILE SECTION.
 FD StudentFile.
 01 StudentDetails.
@@ -1172,7 +1175,7 @@ Begin.
    STOP RUN.
 
 
-</pre>
+</code></pre>
 </td>
 </tr>
 </table>
@@ -1279,7 +1282,7 @@ Begin.
 <table align="center" border="1" cellpadding="5" cellspacing="0" width="76%">
 <tr bgcolor="#E1FFE1">
 <td>
-<pre>EVALUATE TRUE   ALSO Position
+<pre class="language-cobol"><code class="language-cobol">EVALUATE TRUE   ALSO Position
    WHEN L-Arrow ALSO 2 THRU 10 SUBTRACT 1 FROM Position
    WHEN R-Arrow ALSO 1 THRU 9  ADD 1 TO Position
    WHEN L-Arrow ALSO    1      MOVE 10 TO Position
@@ -1290,7 +1293,7 @@ Begin.
    WHEN Char ALSO     10       PERFORM InsertChar 
    WHEN OTHER PERFORM DisplayErrorMessage
 END-EVALUATE
-</pre>
+</code></pre>
 </td>
 </tr>
 </table>
@@ -1601,7 +1604,7 @@ END-EVALUATE
 <table align="center" bgcolor="#E1FFE1" border="1" cellpadding="5" width="96%">
 <tr valign="top">
 <td height="331">
-<pre>EVALUATE Qty     ALSO    TRUE    ALSO Member 
+<pre class="language-cobol"><code class="language-cobol">EVALUATE Qty     ALSO    TRUE    ALSO Member 
  WHEN  1 THRU 5  ALSO VOP &lt; 501  ALSO "Y"  MOVE 2  TO Discount
  WHEN  6 THRU 16 ALSO VOP &lt; 501  ALSO "Y"  MOVE 3  TO Discount
  WHEN 17 THRU 99 ALSO VOP &lt; 501  ALSO "Y"  MOVE 5  TO Discount
@@ -1621,7 +1624,7 @@ END-EVALUATE
  WHEN  6 THRU 16 ALSO VOP &gt; 2000 ALSO "N"  MOVE 23 TO Discount
  WHEN 17 THRU 99 ALSO VOP &gt; 2000 ALSO "N"  MOVE 28 TO Discount
 END-EVALUATE
-</pre>
+</code></pre>
 </td>
 </tr>
 </table>
@@ -1632,9 +1635,9 @@ END-EVALUATE
               problems later. For instance, at the moment, a discount of 23% is 
               offered in two places in the table. A programmer writing in C might 
               be tempted to take advantage of this by coding;</p>
-<pre>if((Qty &gt; 5) &amp;&amp; (Qty &lt; 17)) &amp;&amp; (VOP &gt; 2000)
+<pre class="language-cobol"><code class="language-cobol">if((Qty &gt; 5) &amp;&amp; (Qty &lt; 17)) &amp;&amp; (VOP &gt; 2000)
  { Discount = 23;
- }//end-if</pre>
+ }//end-if</code></pre>
 <p>This immediately causes problems of readability. You have to ask 
               yourself; is this an accurate reflection of the decision table or 
               has the programmer introduced an error? </p>

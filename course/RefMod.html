@@ -2,6 +2,9 @@
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 <meta content="Mozilla/4.0 [en] (WinNT; I) [Netscape]" name="GENERATOR"/>
 <title>Reference Modification</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cobol.min.js"></script>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <style type="text/css">
   img { max-width: 100%; height: auto; }
@@ -259,12 +262,12 @@
 <h4><font color="#800000" face="Arial, Helvetica, sans-serif">Examples</font></h4>
 </td>
 <td valign="top" width="525">
-<pre>WORKING-STORAGE SECTION.
+<pre class="language-cobol"><code class="language-cobol">WORKING-STORAGE SECTION.
 01 xString    PIC X(38) VALUE "This is the alphanumeric string". 
 01 nString    PIC 9(5)V99 VALUE 34526.56. 
 01 SubStrSize PIC 99 VALUE 12. 
 01 StartPos   PIC 99 VALUE 18.
-             </pre>
+             </code></pre>
 <p align="center"> <iframe height="333" src="Resources/pdf-viewer.html?src=ppz/TC-RefModEg.pdf" style="border:1px solid #ccc; width:100%; aspect-ratio: 520/333;" width="520"></iframe> </p>
 <hr/>
 </td>
@@ -354,8 +357,8 @@
               is one or more parameters supplied to the function.</p>
 <p>Example declarations.</p>
 <blockquote>
-<pre>MOVE <b>FUNCTION RANDOM(99)</b> TO RandNum. </pre>
-<pre>DISPLAY <b>FUNCTION UPPER-CASE("this will be in upper case")</b>.</pre>
+<pre class="language-cobol"><code class="language-cobol">MOVE <b>FUNCTION RANDOM(99)</b> TO RandNum. </code></pre>
+<pre class="language-cobol"><code class="language-cobol">DISPLAY <b>FUNCTION UPPER-CASE("this will be in upper case")</b>.</code></pre>
 </blockquote>
 <hr/>
 </td>
@@ -390,9 +393,9 @@
 <p>For instance the ORD-MAX function may take a parameter list or 
               an array may be used: </p>
 <blockquote>
-<pre>MOVE FUNCTION ORD-MAX(12 23 03 78 65) TO OrdPos
+<pre class="language-cobol"><code class="language-cobol">MOVE FUNCTION ORD-MAX(12 23 03 78 65) TO OrdPos
                      <b>or</b>
-MOVE FUNCTION ORD-MAX(IntElement(ALL)) TO OrdPos             </pre>
+MOVE FUNCTION ORD-MAX(IntElement(ALL)) TO OrdPos             </code></pre>
 </blockquote>
 <hr/>
 </td>
@@ -534,7 +537,7 @@ MOVE FUNCTION ORD-MAX(IntElement(ALL)) TO OrdPos             </pre>
 <table background="Resources/pics/code.gif" border="0" width="100%">
 <tr>
 <td>
-<pre>
+<pre class="language-cobol"><code class="language-cobol">
 WORKING-STORAGE SECTION. 
 01 xString PIC X(38) VALUE "This is the alphanumeric string". 
 01 OrdPos PIC 99. 
@@ -565,7 +568,7 @@ Begin.
   DISPLAY FUNCTION LOWER-CASE(xString)
   STOP RUN.
 
-</pre>
+</code></pre>
 </td>
 </tr></table>
 <hr/>
@@ -722,7 +725,7 @@ Begin.
 <table background="Resources/pics/code.gif" border="0" width="100%">
 <tr>
 <td>
-<pre>IDENTIFICATION DIVISION.
+<pre class="language-cobol"><code class="language-cobol">IDENTIFICATION DIVISION.
 PROGRAM-ID. DateFunctions.
 AUTHOR. Michael Coughlan.
 DATA DIVISION.
@@ -793,7 +796,7 @@ Begin.
   DISPLAY "The date in "
   NumOfDays " days time will be " MonthD "/" DayD "/" YearD
   STOP RUN.
-</pre>
+</code></pre>
 </td>
 </tr>
 </table>
@@ -1159,7 +1162,7 @@ Begin.
 <table background="Resources/pics/code.gif" border="0" width="100%">
 <tr>
 <td valign="top">
-<pre>IDENTIFICATION DIVISION.
+<pre class="language-cobol"><code class="language-cobol">IDENTIFICATION DIVISION.
 PROGRAM-ID.  OtherFunctions.
 AUTHOR.  Michael Coughlan.
 *&gt; An example program using misc Intrinsic Functions
@@ -1202,7 +1205,7 @@ Begin.
 
   MOVE FUNCTION VARIANCE(Ielement(ALL)) TO IResult
   DISPLAY "The variance of the values is " IResult
-  STOP RUN.</pre>
+  STOP RUN.</code></pre>
 </td>
 </tr>
 </table>
@@ -1252,7 +1255,7 @@ Begin.
 <table background="Resources/pics/code.gif" border="0" width="100%">
 <tr>
 <td valign="top">
-<pre>IDENTIFICATION DIVISION.
+<pre class="language-cobol"><code class="language-cobol">IDENTIFICATION DIVISION.
 PROGRAM-ID.  Lotto.
 AUTHOR.  Michael Coughlan.
 *&gt; This program displays six unique random lotto numbers.
@@ -1287,7 +1290,7 @@ Begin.
    END-PERFORM
    STOP RUN.
                                       
-</pre>
+</code></pre>
 </td>
 </tr>
 </table>

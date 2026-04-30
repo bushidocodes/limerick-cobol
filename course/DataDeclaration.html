@@ -2,6 +2,9 @@
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 <meta content="Mozilla/4.0 [en] (WinNT; I) [Netscape]" name="GENERATOR"/>
 <title>Declaring Data in COBOL</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cobol.min.js"></script>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <style type="text/css">
   img { max-width: 100%; height: auto; }
@@ -548,11 +551,11 @@
 <p>Recurring symbols may be specified by using a 'repeat' factor inside 
               brackets. For instance: </p>
 <blockquote>
-<pre>PIC 9(6)       is equivalent to PICTURE 999999
+<pre class="language-cobol"><code class="language-cobol">PIC 9(6)       is equivalent to PICTURE 999999
 PIC 9(6)V99    is equivalent to PIC 999999V99
 PICTURE X(10)  is equivalent to PIC XXXXXXXXXX
 PIC S9(4)V9(4) is equivalent to PIC S9999V9999
-PIC 9(18)      is equivalent to PIC 999999999999999999 </pre>
+PIC 9(18)      is equivalent to PIC 999999999999999999 </code></pre>
 </blockquote>
 <p>Numeric values can have a maximum of 18 (eighteen) digits. </p>
 <p>The limit on string values is usually system dependent. </p>
@@ -620,13 +623,13 @@ PIC 9(18)      is equivalent to PIC 999999999999999999 </pre>
               called the <font size="-1">VALUE</font> clause. </p>
 <p align="left"><b>Some examples:</b></p>
 <blockquote>
-<pre>01 GrossPay       PIC 9(5)V99 VALUE ZEROS.
+<pre class="language-cobol"><code class="language-cobol">01 GrossPay       PIC 9(5)V99 VALUE ZEROS.
 
 01 NetPay         PIC 9(5)V99 VALUE ZEROS.
 
 01 CustomerName   PIC X(20) VALUE SPACES.
 
-01 CustDiscount   PIC V99 VALUE .25.</pre>
+01 CustDiscount   PIC V99 VALUE .25.</code></pre>
 </blockquote>
 <hr width="50%"/>
 </td>
@@ -707,7 +710,7 @@ PIC 9(18)      is equivalent to PIC 999999999999999999 </pre>
 </tr>
 <tr>
 <td width="51%">
-<pre>01 StudentDetails.
+<pre class="language-cobol"><code class="language-cobol">01 StudentDetails.
    02 StudentId        PIC 9(7). 
    02 StudentName. 
       03 FirstName     PIC X(10).
@@ -718,7 +721,7 @@ PIC 9(18)      is equivalent to PIC 999999999999999999 </pre>
       03 MonthOfBirth  PIC 99.
       03 YearOfBirth   PIC 9(4).
    02 CourseCode       PIC X(4).
-</pre>
+</code></pre>
 </td>
 </tr>
 </table>
@@ -731,7 +734,7 @@ PIC 9(18)      is equivalent to PIC 999999999999999999 </pre>
 </tr>
 <tr>
 <td width="49%">
-<pre>01 StudentDetails.
+<pre class="language-cobol"><code class="language-cobol">01 StudentDetails.
    05 StudentId        PIC 9(7). 
    05 StudentName. 
       07 FirstName     PIC X(10).
@@ -742,7 +745,7 @@ PIC 9(18)      is equivalent to PIC 999999999999999999 </pre>
       07 MonthOfBirth  PIC 99.
       07 YearOfBirth   PIC 9(4).
    05 CourseCode       PIC X(4).
-</pre>
+</code></pre>
 </td>
 </tr>
 </table>

@@ -2,6 +2,9 @@
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 <meta content="Mozilla/4.0 [en] (WinNT; I) [Netscape]" name="GENERATOR"/>
 <title>The UNSTRING verb</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cobol.min.js"></script>
 <style type="text/css">
 <!--
 -->
@@ -189,7 +192,7 @@
 <p>Since not all addresses will have six parts exactly, we use the <font size="2">TALLYING</font> 
         clause to discover how many parts there are.</p>
 <blockquote>
-<pre>UNSTRING FullName DELIMITED BY ALL SPACES
+<pre class="language-cobol"><code class="language-cobol">UNSTRING FullName DELIMITED BY ALL SPACES
     INTO FirstName, SecondName, Surname
 END-UNSTRING.
 
@@ -197,7 +200,7 @@ UNSTRING CustAddress DELIMITED BY ","
    INTO AdrLine(1), AdrLine(2), AdrLine(3), 
         AdrLine(4), AdrLine(5), AdrLine(6) 
    TALLYING IN AdrLinesUsed
-END-UNSTRING.</pre>
+END-UNSTRING.</code></pre>
 </blockquote>
 <hr/>
 </td>
@@ -503,7 +506,7 @@ END-UNSTRING.</pre>
 <table background="Resources/pics/code.gif" border="1" bordercolor="#C0C0C0" cellpadding="10" cellspacing="0" width="75%">
 <tr>
 <td>
-<pre>IDENTIFICATION DIVISION.
+<pre class="language-cobol"><code class="language-cobol">IDENTIFICATION DIVISION.
 PROGRAM-ID. CDFILE.
 AUTHOR. Michael Coughlan.
 
@@ -556,7 +559,7 @@ Begin.
        END-READ
     END-PERFORM
     CLOSE CommaDelimitedFile, CustomerFile
-    STOP RUN.</pre>
+    STOP RUN.</code></pre>
 </td>
 </tr>
 </table>
@@ -596,7 +599,7 @@ Begin.
 <h3><font color="#800000">Data items used in the example</font> </h3>
 </td>
 <td width="525">
-<pre>01 OldName  PIC X(80).
+<pre class="language-cobol"><code class="language-cobol">01 OldName  PIC X(80).
   
 01 TempName.
    02 NameInitial  PIC X.
@@ -607,7 +610,7 @@ Begin.
 01 Pointers.
    02 StrPtr       PIC 99 VALUE 1.
    02 UnstrPtr     PIC 99 VALUE 1.
-      88 NameProcessed VALUE 81.</pre>
+      88 NameProcessed VALUE 81.</code></pre>
 <p>
 <center>
 </center>

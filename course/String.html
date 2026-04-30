@@ -2,6 +2,9 @@
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 <meta content="Mozilla/4.0 [en] (WinNT; I) [Netscape]" name="GENERATOR"/>
 <title>The STRING verb</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cobol.min.js"></script>
 <style type="text/css">
 <!--
 -->
@@ -184,7 +187,7 @@
         partial contents of Ident2 (all the characters up to the first space) 
         and Ident3 (all the characters up to the word "frogs").</p>
 <blockquote>
-<pre>STRING Ident1, Ident2, "10" DELIMITED BY SIZE
+<pre class="language-cobol"><code class="language-cobol">STRING Ident1, Ident2, "10" DELIMITED BY SIZE
     INTO DestString
 END-STRING        
 
@@ -193,7 +196,7 @@ STRING
    Ident2 DELIMITED BY SPACES
    Ident3 DELIMITED BY "Frogs"
 INTO Ident4 WITH POINTER StrPtr
-END-STRING.</pre>
+END-STRING.</code></pre>
 </blockquote>
 <hr/>
 </td>
@@ -414,7 +417,7 @@ END-STRING.</pre>
         the frame below write down your own answer. </p>
 
 <p><b>Data Declarations. </b></p>
-<pre>01 StringFields.
+<pre class="language-cobol"><code class="language-cobol">01 StringFields.
    02 Field1   PIC X(18) VALUE "Where does this go".
    02 Field2   PIC X(30) VALUE "This is the destination string".
    02 Field3   PIC X(15) VALUE "Here is another".
@@ -422,9 +425,9 @@ END-STRING.</pre>
 
 01 StrPointers.
    02 StrPtr  PIC 99.
-   02 NewPtr  PIC 9.</pre>
+   02 NewPtr  PIC 9.</code></pre>
 <p><b>STRING examples. </b></p>
-<pre>1. STRING Field1 DELIMITED BY SPACES INTO Field2.
+<pre class="language-cobol"><code class="language-cobol">1. STRING Field1 DELIMITED BY SPACES INTO Field2.
    DISPLAY Field2.
 
 2. STRING Field1 DELIMITED BY SIZE INTO Field2.
@@ -459,7 +462,7 @@ END-STRING.</pre>
        ON OVERFLOW DISPLAY "String Error"
        NOT ON OVERFLOW DISPLAY "No Error"
    END-STRING.
-   DISPLAY Field2. </pre>
+   DISPLAY Field2. </code></pre>
 </td>
 </tr>
 <tr>

@@ -2,6 +2,9 @@
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 <meta content="Mozilla/4.0 [en] (WinNT; I) [Netscape]" name="GENERATOR"/>
 <title>COBOL Report Writer - Syntax and Semantics</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cobol.min.js"></script>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <style type="text/css">
   img { max-width: 100%; height: auto; }
@@ -264,7 +267,7 @@
 <table background="Resources/pics/code.gif" border="1" width="100%">
 <tr>
 <td>
-<pre>ENVIRONMENT DIVISION.
+<pre class="language-cobol"><code class="language-cobol">ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
     SELECT SalesFile ASSIGN TO "GBPAY.DAT"
@@ -297,7 +300,7 @@ FD  SalesFile.
     FIRST DETAIL 6
     LAST DETAIL 42
     FOOTING 52.</font></font><b><font color="#FF0000"><font color="#000000">
-</font></font></b></pre>
+</font></font></b></code></pre>
 </td>
 </tr>
 </table>
@@ -662,13 +665,13 @@ FD  SalesFile.
 <table background="Resources/pics/code.gif" border="1" width="100%">
 <tr>
 <td>
-<pre>01  DetailLine TYPE IS DETAIL.
+<pre class="language-cobol"><code class="language-cobol">01  DetailLine TYPE IS DETAIL.
     02 LINE IS PLUS 1.
        03 COLUMN 1      PIC X(9)
                         SOURCE CityName(CityCode) <font color="#FF0000"><b>GROUP INDICATE</b></font>.
        03 COLUMN 15     PIC 9
                         SOURCE SalesPersonNum  <b><font color="#FF0000">GROUP INDICATE</font></b>.
-       03 COLUMN 25     PIC $$,$$$.99 SOURCE ValueOfSale.</pre>
+       03 COLUMN 25     PIC $$,$$$.99 SOURCE ValueOfSale.</code></pre>
 </td>
 </tr>
 </table>
@@ -732,7 +735,7 @@ FD  SalesFile.
 <table background="Resources/pics/code.gif" border="1" width="100%">
 <tr>
 <td>
-<pre>01  SalesPersonGrp
+<pre class="language-cobol"><code class="language-cobol">01  SalesPersonGrp
     TYPE IS CONTROL FOOTING SalesPersonNum  NEXT GROUP PLUS 2.
                       :<i> other entries</i> :
                       :<i> other entries</i> :
@@ -750,7 +753,7 @@ FD  SalesFile.
 01  TotalSalesGrp TYPE IS CONTROL FOOTING FINAL.
                       :<i> other entries</i> :
                       :<i> other entries</i> :
-       03 COLUMN 45     PIC $$$$$,$$$.99 <b><font color="#FF0000">SUM CS</font></b>.</pre>
+       03 COLUMN 45     PIC $$$$$,$$$.99 <b><font color="#FF0000">SUM CS</font></b>.</code></pre>
 </td>
 </tr>
 </table>
@@ -766,14 +769,14 @@ FD  SalesFile.
 <table background="Resources/pics/code.gif" border="1" width="100%">
 <tr>
 <td>
-<pre>01  ShopTotalsGrp
+<pre class="language-cobol"><code class="language-cobol">01  ShopTotalsGrp
     TYPE IS CONTROL FOOTING ShopNum  NEXT GROUP PLUS 2.
                       :<i> other entries</i> :
                       :<i> other entries</i> :
        03 <font color="#FF0000"><b>SPS</b></font> COLUMN 20 PIC $$$,$$$.99  <font color="#FF0000"><b>SUM SalesPersonSale</b></font>.
        03 <font color="#FF0000"><b>SCS</b></font> COLUMN 40 PIC $$$,$$$.99  <font color="#FF0000"><b>SUM CounterSale</b></font>.
        03     COLUMN 60 PIC $$$$,$$$.99 <font color="#FF0000"><b>SUM SPS, SCS</b></font>.
-</pre>
+</code></pre>
 </td>
 </tr>
 </table>
@@ -884,12 +887,12 @@ FD  SalesFile.
 <table background="Resources/pics/code.gif" border="1" width="100%">
 <tr>
 <td>
-<pre>01  TYPE IS PAGE FOOTING.
+<pre class="language-cobol"><code class="language-cobol">01  TYPE IS PAGE FOOTING.
     02 LINE IS 53.
        03 COLUMN 1      PIC X(29) 
                         VALUE "Programmer - Michael Coughlan".
        03 COLUMN 45     PIC X(6) VALUE "Page :".
-       03 COLUMN 52     PIC Z9 SOURCE<b><font color="#FF0000"> PAGE-COUNTER.</font></b></pre>
+       03 COLUMN 52     PIC Z9 SOURCE<b><font color="#FF0000"> PAGE-COUNTER.</font></b></code></pre>
 </td>
 </tr>
 </table>
@@ -1016,7 +1019,7 @@ FD  SalesFile.
 <table background="Resources/pics/code.gif" border="0" width="100%">
 <tr>
 <td valign="top">
-<pre>          An example COBOL Report Program              
+<pre class="language-cobol"><code class="language-cobol">          An example COBOL Report Program              
      Bible Salesperson - Sales and Salary Report        
                                                         
  City      Salesperson     Sale                         
@@ -1070,7 +1073,7 @@ FD  SalesFile.
                                                         
 Programmer - Michael Coughlan               Page :  1   
                                                         
-  </pre>
+  </code></pre>
 </td>
 </tr>
 </table>
@@ -1162,7 +1165,7 @@ Programmer - Michael Coughlan               Page :  1
 <table background="Resources/pics/code.gif" border="1" width="90%">
 <tr>
 <td>
-<pre>PROCEDURE DIVISION.
+<pre class="language-cobol"><code class="language-cobol">PROCEDURE DIVISION.
 <b><font color="#FF0000">DECLARATIVES.
 Calc SECTION.
     USE BEFORE REPORTING SalesPersonGrp.
@@ -1178,7 +1181,7 @@ Begin.
     OPEN INPUT SalesFile.
     OPEN OUTPUT PrintFile.
        : etc :
-       : etc : </pre>
+       : etc : </code></pre>
 </td>
 </tr>
 </table>
@@ -1208,7 +1211,7 @@ Begin.
 <tr>
 <td>
 <blockquote>
-<pre><font color="#000000">PROCEDURE DIVISION.
+<pre class="language-cobol"><code class="language-cobol"><font color="#000000">PROCEDURE DIVISION.
 DECLARATIVES.
 CheckShopSales SECTION.
     USE BEFORE REPORTING ShopTotalGrp.
@@ -1216,7 +1219,7 @@ PrintMajorShopsOnly.
     IF SalesTotal &lt; 10000<b>
        <font color="#FF3300">SUPPRESS PRINTING</font>
 </b>    END-IF.
-END DECLARATIVES.</font></pre>
+END DECLARATIVES.</font></code></pre>
 </blockquote>
 </td>
 </tr>
