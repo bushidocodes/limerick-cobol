@@ -410,7 +410,10 @@
 <tr>
 <td>
 <pre class="language-cobol"><code class="language-cobol"><b>
-CALL "DateValidate"<br/>     USING BY CONTENT TempDate<br/>     USING BY REFERENCE DateCheckResult.<br/></b></code></pre>
+CALL "DateValidate"
+     USING BY CONTENT TempDate
+     USING BY REFERENCE DateCheckResult.
+</b></code></pre>
 </td>
 </tr>
 </table>
@@ -421,7 +424,24 @@ CALL "DateValidate"<br/>     USING BY CONTENT TempDate<br/>     USING BY REFEREN
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="374">
 <tr>
 <td>
-<pre class="language-cobol"><code class="language-cobol"><b><br/>IDENTIFICATION DIVISION.<br/>PROGRAM-ID DateValidate IS INITIAL.<br/>DATA DIVISION.<br/>WORKING-STORAGE SECTION.<br/>          ? ? ? ? ? ? ? ? ? ? ? ? <br/>LINKAGE SECTION.<br/>01  DateParam            PIC X(8).<br/>01  DateResult           PIC 9.<br/>PROCEDURE DIVISION USING DateParam, DateResult.<br/>Begin. <br/>       ? ? ? ? ? ? ? ? ? ? ? ? <br/>       ? ? ? ? ? ? ? ? ? ? ? ?<br/>       EXIT PROGRAM.<br/>??????.<br/>       ? ? ? ? ? ? ? ? ? ? ? ?<br/><br/></b></code></pre>
+<pre class="language-cobol"><code class="language-cobol"><b>
+IDENTIFICATION DIVISION.
+PROGRAM-ID DateValidate IS INITIAL.
+DATA DIVISION.
+WORKING-STORAGE SECTION.
+          ? ? ? ? ? ? ? ? ? ? ? ? 
+LINKAGE SECTION.
+01  DateParam            PIC X(8).
+01  DateResult           PIC 9.
+PROCEDURE DIVISION USING DateParam, DateResult.
+Begin. 
+       ? ? ? ? ? ? ? ? ? ? ? ? 
+       ? ? ? ? ? ? ? ? ? ? ? ?
+       EXIT PROGRAM.
+??????.
+       ? ? ? ? ? ? ? ? ? ? ? ?
+
+</b></code></pre>
 </td>
 </tr>
 </table>
@@ -500,19 +520,24 @@ CALL "DateValidate"<br/>     USING BY CONTENT TempDate<br/>     USING BY REFEREN
 <pre class="language-cobol"><code class="language-cobol"><b>
 ? ? ? ? ? ? ? ? ? ? 
 MOVE 12 TO IncrementVal.
-CALL "Steadfast" USING BY CONTENT IncrementVal.<br/>
+CALL "Steadfast" USING BY CONTENT IncrementVal.
+
 MOVE 5 TO IncrementVal
-CALL "Steadfast" USING BY CONTENT IncrementVal.<br/>
+CALL "Steadfast" USING BY CONTENT IncrementVal.
+
 MOVE 12 TO IncrementVal.
-CALL "Steadfast" USING BY CONTENT IncrementVal.<br/>
+CALL "Steadfast" USING BY CONTENT IncrementVal.
+
 ? ? ? ? ? ? ? ? ? ? 
 MOVE 12 TO IncrementVal.
-CALL "Fickle" USING BY CONTENT IncrementVal.<br/>
+CALL "Fickle" USING BY CONTENT IncrementVal.
+
 MOVE 5 TO IncrementVal.
 CALL "Fickle" USING BY CONTENT IncrementVal.
 MOVE 12 TO IncrementVal.
 CALL "Fickle" USING BY CONTENT IncrementVal.
-? ? ? ? ? ? ? ? ? ? <br/></b></code></pre>
+? ? ? ? ? ? ? ? ? ? 
+</b></code></pre>
 </td>
 </tr>
 </table>
@@ -523,7 +548,9 @@ CALL "Fickle" USING BY CONTENT IncrementVal.
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="439">
 <tr>
 <td valign="top">
-<pre class="language-cobol"><code class="language-cobol"><b>       &gt;&gt;SOURCE FORMAT IS FREE<br/>IDENTIFICATION DIVISION.<br/>PROGRAM-ID. Steadfast IS INITIAL.</b></code></pre>
+<pre class="language-cobol"><code class="language-cobol"><b>       &gt;&gt;SOURCE FORMAT IS FREE
+IDENTIFICATION DIVISION.
+PROGRAM-ID. Steadfast IS INITIAL.</b></code></pre>
 <pre class="language-cobol"><code class="language-cobol"><b>DATA DIVISION.
 WORKING-STORAGE SECTION.
 01 RunningTotal PIC 9(5) VALUE 50.</b></code></pre>
@@ -533,7 +560,8 @@ WORKING-STORAGE SECTION.
 Begin.
    ADD ParamValue TO RunningTotal.
    DISPLAY "Total = ", RunningTotal.
-   EXIT PROGRAM.</b><b><br/></b></code></pre>
+   EXIT PROGRAM.</b><b>
+</b></code></pre>
 </td>
 <td bgcolor="#FFFFFF" valign="top">
 <div align="left">
@@ -571,10 +599,23 @@ Begin.
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="439">
 <tr>
 <td valign="top">
-<pre class="language-cobol"><code class="language-cobol"><b>       &gt;&gt;SOURCE FORMAT IS FREE<br/>IDENTIFICATION DIVISION.<br/>PROGRAM-ID. Fickle.
-<br/>DATA DIVISION.<br/>WORKING-STORAGE SECTION.<br/>01 RunningTotal   PIC 9(5) VALUE 50.
-<br/>LINKAGE SECTION.<br/>01 ParamValue     PIC 99.
-<br/>PROCEDURE DIVISION USING ParamValue.<br/>Begin.<br/>   ADD ParamValue TO RunningTotal.<br/>   DISPLAY "Total = ", RunningTotal.<br/>   EXIT PROGRAM.</b><b><br/></b></code></pre>
+<pre class="language-cobol"><code class="language-cobol"><b>       &gt;&gt;SOURCE FORMAT IS FREE
+IDENTIFICATION DIVISION.
+PROGRAM-ID. Fickle.
+
+DATA DIVISION.
+WORKING-STORAGE SECTION.
+01 RunningTotal   PIC 9(5) VALUE 50.
+
+LINKAGE SECTION.
+01 ParamValue     PIC 99.
+
+PROCEDURE DIVISION USING ParamValue.
+Begin.
+   ADD ParamValue TO RunningTotal.
+   DISPLAY "Total = ", RunningTotal.
+   EXIT PROGRAM.</b><b>
+</b></code></pre>
 </td>
 <td bgcolor="#FFFFFF" valign="top">
 <div align="left">
@@ -782,22 +823,37 @@ CALL "Fickle" USING BY CONTENT IncValue</b>.</code></pre>
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="383">
 <tr>
 <td width="0">
-<pre class="language-cobol"><code class="language-cobol">      <b>&gt;&gt;SOURCE FORMAT IS FREE<br/>IDENTIFICATION DIVISION.<br/>PROGRAM-ID. ContainerProgram.
-   ? ? ? ? ? ? ? ? ?<br/><font color="#FF0000">01 NameTable IS GLOBAL.
+<pre class="language-cobol"><code class="language-cobol">      <b>&gt;&gt;SOURCE FORMAT IS FREE
+IDENTIFICATION DIVISION.
+PROGRAM-ID. ContainerProgram.
+   ? ? ? ? ? ? ? ? ?
+<font color="#FF0000">01 NameTable IS GLOBAL.
 <font size="-1">   02 SName OCCURS 200 TIMES PIC X(20).</font></font><font size="-1">
-   </font>? ? ? ? ? ? ? ? ? <br/>PROCEDURE DIVISION.
+   </font>? ? ? ? ? ? ? ? ? 
+PROCEDURE DIVISION.
    ? ? ? ? ? ? ? ? ?
    CALL "PutToTable" USING ???
    ? ? ? ? ? ? ? ? ?
    CALL "ReportFromTable"
-   ? ? ? ? ? ? ? ? ? <br/>   EXIT PROGRAM.
-<br/><font color="#0000CC">IDENTIFICATION DIVISION.<br/>PROGRAM-ID. PutToTable.<br/>   ? ? ? ? ? ? ? ? ?</font><font color="#0000FF">
-  <font color="#FF0000"> MOVE StudName TO SName(SNum).</font><br/><font color="#0000CC">   ? ? ? ? ? ? ? ? ? 
-   EXIT PROGRAM<br/>END-PROGRAM PutToTable.</font></font>
+   ? ? ? ? ? ? ? ? ? 
+   EXIT PROGRAM.
 
-<font color="#0000CC">IDENTIFICATION DIVISION.<br/>PROGRAM-ID. ReportFromTable.<br/>   ? ? ? ? ? ? ? ? ?</font><font color="#0000FF">
-   <font color="#FF0000">DISPLAY "Student " SNum " = " SName(SNum).</font><br/><font color="#0000CC">   ? ? ? ? ? ? ? ? ? 
-   EXIT PROGRAM<br/>END-PROGRAM ReportFromTable.</font></font><br/>END-PROGRAM ContainerProgram.</b></code></pre>
+<font color="#0000CC">IDENTIFICATION DIVISION.
+PROGRAM-ID. PutToTable.
+   ? ? ? ? ? ? ? ? ?</font><font color="#0000FF">
+  <font color="#FF0000"> MOVE StudName TO SName(SNum).</font>
+<font color="#0000CC">   ? ? ? ? ? ? ? ? ? 
+   EXIT PROGRAM
+END-PROGRAM PutToTable.</font></font>
+
+<font color="#0000CC">IDENTIFICATION DIVISION.
+PROGRAM-ID. ReportFromTable.
+   ? ? ? ? ? ? ? ? ?</font><font color="#0000FF">
+   <font color="#FF0000">DISPLAY "Student " SNum " = " SName(SNum).</font>
+<font color="#0000CC">   ? ? ? ? ? ? ? ? ? 
+   EXIT PROGRAM
+END-PROGRAM ReportFromTable.</font></font>
+END-PROGRAM ContainerProgram.</b></code></pre>
 </td>
 </tr>
 </table>
@@ -895,13 +951,38 @@ CALL "Fickle" USING BY CONTENT IncValue</b>.</code></pre>
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="374">
 <tr>
 <td valign="top" width="0">
-<pre class="language-cobol"><code class="language-cobol">      <b>&gt;&gt;SOURCE FORMAT IS FREE<br/>IDENTIFICATION DIVISION.<br/>PROGRAM-ID. MainProgram.<br/>DATA DIVISION.<br/>WORKING-STORAGE SECTION.<br/>01 SharedItem     PIC X(25) IS GLOBAL.<br/>PROCEDURE DIVISION.
-Begin.<br/>    CALL "InsertData"<br/>    MOVE "Main can also use the share" TO SharedItem<br/>    CALL "DisplayData"<br/>    STOP RUN.
-<font color="#000099"><br/>IDENTIFICATION DIVISION.<br/>PROGRAM-ID. InsertData.<br/>PROCEDURE DIVISION.
-Begin.<br/>    MOVE "Shared area works" TO SharedItem<br/>    CALL "DisplayData"<br/>    EXIT PROGRAM.<br/>END PROGRAM InsertData.</font>
-<br/><font color="#000099">IDENTIFICATION DIVISION.<br/>PROGRAM-ID. DisplayData IS COMMON PROGRAM.<br/>PROCEDURE DIVISION.
-Begin.<br/>    DISPLAY SharedItem.<br/>    EXIT PROGRAM<br/>END PROGRAM DisplayData.</font>
-<br/>END PROGRAM MainProgram.<br/></b></code></pre>
+<pre class="language-cobol"><code class="language-cobol">      <b>&gt;&gt;SOURCE FORMAT IS FREE
+IDENTIFICATION DIVISION.
+PROGRAM-ID. MainProgram.
+DATA DIVISION.
+WORKING-STORAGE SECTION.
+01 SharedItem     PIC X(25) IS GLOBAL.
+PROCEDURE DIVISION.
+Begin.
+    CALL "InsertData"
+    MOVE "Main can also use the share" TO SharedItem
+    CALL "DisplayData"
+    STOP RUN.
+<font color="#000099">
+IDENTIFICATION DIVISION.
+PROGRAM-ID. InsertData.
+PROCEDURE DIVISION.
+Begin.
+    MOVE "Shared area works" TO SharedItem
+    CALL "DisplayData"
+    EXIT PROGRAM.
+END PROGRAM InsertData.</font>
+
+<font color="#000099">IDENTIFICATION DIVISION.
+PROGRAM-ID. DisplayData IS COMMON PROGRAM.
+PROCEDURE DIVISION.
+Begin.
+    DISPLAY SharedItem.
+    EXIT PROGRAM
+END PROGRAM DisplayData.</font>
+
+END PROGRAM MainProgram.
+</b></code></pre>
 </td>
 </tr>
 </table>
@@ -931,14 +1012,89 @@ Begin.<br/>    DISPLAY SharedItem.<br/>    EXIT PROGRAM<br/>END PROGRAM DisplayD
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="374">
 <tr>
 <td valign="top" width="0">
-<pre class="language-cobol"><code class="language-cobol"><b>       &gt;&gt;SOURCE FORMAT IS FREE<br/>IDENTIFICATION DIVISION.<br/>PROGRAM-ID. Counter.<br/>DATA DIVISION.<br/>WORKING-STORAGE SECTION.<br/>01 Increment      PIC 99 VALUE ZERO.<br/>   88 EndOfData VALUE ZERO.<br/>PROCEDURE DIVISION.<br/>Begin.<br/>*&gt; Demonstrates the difference between Fickle<br/>*&gt; and Steadfast.  Entering a 0 ends the iteration<br/>  DISPLAY "Enter value - " WITH NO ADVANCING.<br/>  ACCEPT Increment.<br/>  PERFORM UNTIL EndOfData<br/>     CALL "Fickle"    USING BY CONTENT Increment<br/>     CALL "Steadfast" USING BY CONTENT Increment<br/>     DISPLAY "Enter value - " WITH NO ADVANCING<br/>     ACCEPT Increment<br/>  END-PERFORM.
-<br/>*&gt; Shows how CANCEL may be used to initialise<br/>*&gt; Fickle periodically.  Fickle is used to get the<br/>*&gt; square of a number by repeated addition.<br/>  DISPLAY "Enter the value to be squared"<br/>  DISPLAY "Value - " WITH NO ADVANCING.<br/>  ACCEPT Increment.<br/>  PERFORM UNTIL EndOfData<br/>     CANCEL "Fickle"<br/>     PERFORM Increment TIMES<br/>       CALL "Fickle" USING BY CONTENT Increment<br/>     END-PERFORM<br/>     DISPLAY "Value - " WITH NO ADVANCING<br/>     ACCEPT Increment<br/>  END-PERFORM.<br/>  STOP RUN.
+<pre class="language-cobol"><code class="language-cobol"><b>       &gt;&gt;SOURCE FORMAT IS FREE
+IDENTIFICATION DIVISION.
+PROGRAM-ID. Counter.
+DATA DIVISION.
+WORKING-STORAGE SECTION.
+01 Increment      PIC 99 VALUE ZERO.
+   88 EndOfData VALUE ZERO.
+PROCEDURE DIVISION.
+Begin.
+*&gt; Demonstrates the difference between Fickle
+*&gt; and Steadfast.  Entering a 0 ends the iteration
+  DISPLAY "Enter value - " WITH NO ADVANCING.
+  ACCEPT Increment.
+  PERFORM UNTIL EndOfData
+     CALL "Fickle"    USING BY CONTENT Increment
+     CALL "Steadfast" USING BY CONTENT Increment
+     DISPLAY "Enter value - " WITH NO ADVANCING
+     ACCEPT Increment
+  END-PERFORM.
 
-<br/><font color="#000099">IDENTIFICATION DIVISION.<br/>PROGRAM-ID. Fickle.<br/>DATA DIVISION.<br/>WORKING-STORAGE SECTION.<br/>01 RunningTotal   PIC 9(5) VALUE ZERO.<br/>LINKAGE SECTION.<br/>01 ParamValue     PIC 99.<br/>PROCEDURE DIVISION USING ParamValue.<br/>Begin.<br/>  ADD ParamValue TO RunningTotal.<br/>  DISPLAY "Fickle total    = " WITH NO ADVANCING<br/>  CALL "DisplayTotal" USING BY CONTENT RunningTotal<br/>  EXIT PROGRAM.<br/>END PROGRAM Fickle.</font>
+*&gt; Shows how CANCEL may be used to initialise
+*&gt; Fickle periodically.  Fickle is used to get the
+*&gt; square of a number by repeated addition.
+  DISPLAY "Enter the value to be squared"
+  DISPLAY "Value - " WITH NO ADVANCING.
+  ACCEPT Increment.
+  PERFORM UNTIL EndOfData
+     CANCEL "Fickle"
+     PERFORM Increment TIMES
+       CALL "Fickle" USING BY CONTENT Increment
+     END-PERFORM
+     DISPLAY "Value - " WITH NO ADVANCING
+     ACCEPT Increment
+  END-PERFORM.
+  STOP RUN.
 
-<font color="#0000CC"><br/>IDENTIFICATION DIVISION.<br/>PROGRAM-ID. Steadfast IS INITIAL.<br/>DATA DIVISION.<br/>WORKING-STORAGE SECTION.<br/>01 RunningTotal PIC 9(5) VALUE ZERO.<br/>LINKAGE SECTION.<br/>01 ParamValue PIC 99.<br/>PROCEDURE DIVISION USING ParamValue.<br/>Begin.<br/>  ADD ParamValue TO RunningTotal.<br/>  DISPLAY "Steadfast total = " WITH NO ADVANCING<br/>  CALL "DisplayTotal" USING BY CONTENT RunningTotal<br/>  EXIT PROGRAM.<br/>END PROGRAM Steadfast.
+
+<font color="#000099">IDENTIFICATION DIVISION.
+PROGRAM-ID. Fickle.
+DATA DIVISION.
+WORKING-STORAGE SECTION.
+01 RunningTotal   PIC 9(5) VALUE ZERO.
+LINKAGE SECTION.
+01 ParamValue     PIC 99.
+PROCEDURE DIVISION USING ParamValue.
+Begin.
+  ADD ParamValue TO RunningTotal.
+  DISPLAY "Fickle total    = " WITH NO ADVANCING
+  CALL "DisplayTotal" USING BY CONTENT RunningTotal
+  EXIT PROGRAM.
+END PROGRAM Fickle.</font>
+
+<font color="#0000CC">
+IDENTIFICATION DIVISION.
+PROGRAM-ID. Steadfast IS INITIAL.
+DATA DIVISION.
+WORKING-STORAGE SECTION.
+01 RunningTotal PIC 9(5) VALUE ZERO.
+LINKAGE SECTION.
+01 ParamValue PIC 99.
+PROCEDURE DIVISION USING ParamValue.
+Begin.
+  ADD ParamValue TO RunningTotal.
+  DISPLAY "Steadfast total = " WITH NO ADVANCING
+  CALL "DisplayTotal" USING BY CONTENT RunningTotal
+  EXIT PROGRAM.
+END PROGRAM Steadfast.
 </font>
-<font color="#000099"><br/>IDENTIFICATION DIVISION.<br/>PROGRAM-ID. DisplayTotal IS COMMON INITIAL PROGRAM.<br/>DATA DIVISION.<br/>WORKING-STORAGE SECTION.<br/>01 PrnTotal  PIC ZZ,ZZ9.<br/>LINKAGE SECTION.<br/>01 Total     PIC 9(5).<br/>PROCEDURE DIVISION USING Total.<br/>Begin.<br/>  MOVE Total TO PrnTotal.<br/>  DISPLAY PrnTotal.<br/>  EXIT PROGRAM.<br/>END PROGRAM DisplayTotal.</font><br/>END PROGRAM Counter.</b></code></pre>
+<font color="#000099">
+IDENTIFICATION DIVISION.
+PROGRAM-ID. DisplayTotal IS COMMON INITIAL PROGRAM.
+DATA DIVISION.
+WORKING-STORAGE SECTION.
+01 PrnTotal  PIC ZZ,ZZ9.
+LINKAGE SECTION.
+01 Total     PIC 9(5).
+PROCEDURE DIVISION USING Total.
+Begin.
+  MOVE Total TO PrnTotal.
+  DISPLAY PrnTotal.
+  EXIT PROGRAM.
+END PROGRAM DisplayTotal.</font>
+END PROGRAM Counter.</b></code></pre>
 </td>
 </tr>
 <tr>
