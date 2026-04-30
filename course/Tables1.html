@@ -20,6 +20,8 @@
     hr[width] { width: 100% !important; }
     img, iframe, video, embed, object { max-width: min(100%, calc(100vw - 16px)) !important; height: auto; }
     pre { max-width: min(100%, calc(100vw - 16px)) !important; white-space: pre-wrap; word-wrap: break-word; overflow-wrap: break-word; }
+    pre[class*="language-"], code[class*="language-"] { white-space: pre-wrap !important; word-break: break-word; overflow-wrap: break-word; }
+    pre[class*="language-"] { font-size: 0.8em; line-height: 1.35; padding: 0.6em; overflow-x: auto; }
     table[width="715"], table[width="725"],
     table[width="715"] > tbody, table[width="725"] > tbody,
     table[width="715"] > tbody > tr, table[width="725"] > tbody > tr,
@@ -311,10 +313,10 @@ Begin.
 <div align="left">
 <pre class="language-cobol" align="left"><code class="language-cobol">
 EVALUATE CountyCode
-   WHEN      1      ADD TaxPaid TO County1TaxTotal
-   WHEN      2      ADD TaxPaid TO County2TaxTotal
-   WHEN      3      ADD TaxPaid TO County3TaxTotal
-         ..... 23 more WHEN branches
+   WHEN 1 ADD TaxPaid TO County1TaxTotal
+   WHEN 2 ADD TaxPaid TO County2TaxTotal
+   WHEN 3 ADD TaxPaid TO County3TaxTotal
+   ..... 23 more WHEN branches
 END-EVALUATE</code></pre>
 </div>
 </div>
@@ -550,9 +552,9 @@ Begin.
                   to examine the CountyCode and then display the appropriate message. 
                   For example - </p>
 <pre class="language-cobol" align="left"><code class="language-cobol">EVALUATE CountyCode
-  WHEN      1       DISPLAY "Carlow tax total is " CountyTax(1)
-  WHEN      2       DISPLAY "Cavan tax total is "  CountyTax(2)
-         .... 24 more WHEN branches
+  WHEN 1 DISPLAY "Carlow tax total is " CountyTax(1)
+  WHEN 2 DISPLAY "Cavan tax total is "  CountyTax(2)
+   .... 24 more WHEN branches
 END-EVALUATE.</code></pre>
 <p>But this solution is not very satisfactory. It is simply reverting 
               to the 26 <font size="-1">WHEN</font> branch solution presented 
