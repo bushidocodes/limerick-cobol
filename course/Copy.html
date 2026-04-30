@@ -2,6 +2,9 @@
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 <meta content="Mozilla/4.0 [en] (WinNT; I) [Netscape]" name="GENERATOR"/>
 <title>The COPY verb</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cobol.min.js"></script>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <style type="text/css">
   img { max-width: 100%; height: auto; }
@@ -395,11 +398,11 @@
               in the <font size="-1">REPLACING</font> phrase.</p>
 <h4>Some example COPY statements</h4>
 <blockquote>
-<pre>COPY CopyFile2 REPLACING XYZ BY 120. 
+<pre class="language-cobol"><code class="language-cobol">COPY CopyFile2 REPLACING XYZ BY 120. 
 COPY CopyFile5 REPLACING X(3) BY X(19).
 COPY CopyFile3 IN EGLIB.
 COPY CopyFile5 REPLACING ==X(3)== BY ==X(19)==.
-COPY CopyFile4 IN EGLIB.</pre>
+COPY CopyFile4 IN EGLIB.</code></pre>
 </blockquote>
 <hr align="center" size="1" width="100%"/>
 </td>
@@ -507,7 +510,7 @@ COPY CopyFile4 IN EGLIB.</pre>
 <td valign="top">
 <div align="center"><font color="#009933"><b><font color="#000099" face="Arial, Helvetica, sans-serif">Source 
                     Text</font><font color="#000099"> </font></b> </font> </div>
-<pre>       &gt;&gt;SOURCE FORMAT IS FREE
+<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. COPYEG1.
 AUTHOR.  Michael Coughlan.
@@ -535,7 +538,7 @@ BeginProg.
          AT END SET EndOfSF TO TRUE
       END-READ
    END-PERFORM
-   STOP RUN.<b><br/></b></pre>
+   STOP RUN.<b><br/></b></code></pre>
 </td>
 </tr>
 <tr>
@@ -544,7 +547,7 @@ BeginProg.
                     in COPYFILE1</font></b><br/>
 <br/>
 </div>
-<pre>
+<pre class="language-cobol"><code class="language-cobol">
 01  StudentRec.
     88  EndOfSF      VALUE HIGH-VALUES.
     02  StudentNumber                PIC 9(7).
@@ -552,7 +555,7 @@ BeginProg.
     02  CourseCode                   PIC X(4).
     02  FeesOwed                     PIC 9(4).
     02  AmountPaid                   PIC 9(4)V99.
-				  </pre>
+				  </code></pre>
 </td>
 </tr>
 <tr>
@@ -560,7 +563,7 @@ BeginProg.
 <div align="center"><b><font color="#000099" face="Arial, Helvetica, sans-serif">Source 
                     Text after processing</font><br/>
 </b> </div>
-<pre>
+<pre class="language-cobol"><code class="language-cobol">
        &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.                                 
 PROGRAM-ID. COPYEG1.                                     
@@ -596,7 +599,7 @@ BeginProg.
          AT END SET EndOfSF TO TRUE                      
       END-READ                                           
    END-PERFORM                                           
-   STOP RUN.</pre>
+   STOP RUN.</code></pre>
 </td>
 </tr>
 </table>
@@ -668,7 +671,7 @@ BeginProg.
 <td valign="top">
 <div align="center"><font color="#009933"><b><font color="#000099" face="Arial, Helvetica, sans-serif">Source 
                     Text</font><font color="#000099"> </font></b> </font> </div>
-<pre>       &gt;&gt;SOURCE FORMAT IS FREE
+<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. COPYEG2.
 AUTHOR.  Michael Coughlan.
@@ -705,7 +708,7 @@ PROCEDURE DIVISION.
 BeginProg.
 
 STOP RUN.				  
-				  </pre>
+				  </code></pre>
 </td>
 </tr>
 <tr>
@@ -713,9 +716,9 @@ STOP RUN.
 <div align="center"> <b><font color="#000099">Text in CopyFile2</font></b><br/>
 <br/>
 </div>
-<pre>
+<pre class="language-cobol"><code class="language-cobol">
     02 StudName PIC X(20) OCCURS XYZ TIMES.
-				  </pre>
+				  </code></pre>
 </td>
 </tr>
 <tr>
@@ -723,9 +726,9 @@ STOP RUN.
 <div align="center"><b><font color="#000099">Text in CopyFile3</font></b><br/>
 <br/>
 </div>
-<pre>
+<pre class="language-cobol"><code class="language-cobol">
     02  CustOrder           PIC 9(R).
-		</pre>
+		</code></pre>
 </td>
 </tr>
 <tr>
@@ -733,9 +736,9 @@ STOP RUN.
 <div align="center"><b><font color="#000099">Text in CopyFile4</font></b><br/>
 <br/>
 </div>
-<pre>
+<pre class="language-cobol"><code class="language-cobol">
     02 CustOrder2           PIC 9(6)V99.
-		</pre>
+		</code></pre>
 </td>
 </tr>
 <tr>
@@ -743,9 +746,9 @@ STOP RUN.
 <div align="center"><b><font color="#000099">Text in CopyFile5</font></b><br/>
 <br/>
 </div>
-<pre>
+<pre class="language-cobol"><code class="language-cobol">
     02 CustKey              PIC X(3) VALUE "KEY".
-		</pre>
+		</code></pre>
 </td>
 </tr>
 <tr>
@@ -753,7 +756,7 @@ STOP RUN.
 <div align="center"><b><font color="#000099" face="Arial, Helvetica, sans-serif">Source 
                     Text after processing</font><br/>
 </b> </div>
-<pre>
+<pre class="language-cobol"><code class="language-cobol">
        &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.                         
 PROGRAM-ID. COPYEG2.                             
@@ -800,7 +803,7 @@ BeginProg.
                <b>                         
                                                  
 </b>STOP RUN.  <b>                                      
-</b></pre>
+</b></code></pre>
 </td>
 </tr>
 </table>
@@ -866,7 +869,7 @@ BeginProg.
 <td valign="top">
 <div align="center"><font color="#009933"><b><font color="#000099" face="Arial, Helvetica, sans-serif">Source 
                     Text</font><font color="#000099"> </font></b> </font> </div>
-<pre>       &gt;&gt;SOURCE FORMAT IS FREE
+<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. COPYEG3.
 AUTHOR.  Michael Coughlan.
@@ -904,7 +907,7 @@ BeginProg.
    STOP RUN.				  
 				  
 				  
-				  </pre>
+				  </code></pre>
 </td>
 </tr>
 <tr>
@@ -913,9 +916,9 @@ BeginProg.
                     CopyFile5</font></b><br/>
 <br/>
 </div>
-<pre>
+<pre class="language-cobol"><code class="language-cobol">
     02 CustKey              PIC X(3) VALUE "KEY".
-		</pre>
+		</code></pre>
 </td>
 </tr>
 <tr>
@@ -923,7 +926,7 @@ BeginProg.
 <div align="center"><b><font color="#000099" face="Arial, Helvetica, sans-serif">Source 
                     Text after processing</font><br/>
 </b> </div>
-<pre><b>
+<pre class="language-cobol"><code class="language-cobol"><b>
 </b>       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION. 
 PROGRAM-ID. COPYEG3. 
@@ -969,7 +972,7 @@ PROCEDURE DIVISION.
 BeginProg. 
 
    STOP RUN.  <b>                                    
-</b></pre>
+</b></code></pre>
 </td>
 </tr>
 </table>
@@ -1010,7 +1013,7 @@ BeginProg.
 <td valign="top">
 <div align="center"><font color="#009933"><b><font color="#000099" face="Arial, Helvetica, sans-serif">Source 
                     Text</font><font color="#000099"> </font></b> </font> </div>
-<pre>
+<pre class="language-cobol"><code class="language-cobol">
        &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. COPYEG4.
@@ -1035,7 +1038,7 @@ BeginProg.
                          R1 BY Result.</b></font>
    DISPLAY "The result is = " Result.
    STOP RUN.
-</pre>
+</code></pre>
 </td>
 </tr>
 <tr>
@@ -1044,10 +1047,10 @@ BeginProg.
                     CopyFile6</font></b><br/>
 <br/>
 </div>
-<pre>
+<pre class="language-cobol"><code class="language-cobol">
     02 CustKey              PIC X(4) VALUE "Mike".
 01  NameTable               PIC X(10)  OCCURS ?? TIMES.
-		</pre>
+		</code></pre>
 </td>
 </tr>
 <tr>
@@ -1056,9 +1059,9 @@ BeginProg.
                     CopyFile7</font></b><br/>
 <br/>
 </div>
-<pre>
+<pre class="language-cobol"><code class="language-cobol">
     ADD N1, N2 GIVING R1.
-		</pre>
+		</code></pre>
 </td>
 </tr>
 <tr>
@@ -1066,7 +1069,7 @@ BeginProg.
 <div align="center"><b><font color="#000099" face="Arial, Helvetica, sans-serif">Source 
                     Text after processing</font><br/>
 </b> </div>
-<pre><b>
+<pre class="language-cobol"><code class="language-cobol"><b>
 </b>       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.                               
 PROGRAM-ID. COPYEG4.                                   
@@ -1095,7 +1098,7 @@ BeginProg.
                          N2 BY Num2                    
                          R1 BY Result.  </b></font>               
 <b><font color="#FF0000">    ADD Num1, Num2 GIVING Result. </font></b><font color="#FF0000"> </font>
-    STOP RUN.</pre>
+    STOP RUN.</code></pre>
 </td>
 </tr>
 </table>

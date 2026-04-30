@@ -2,6 +2,9 @@
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 <meta content="Mozilla/4.0 [en] (WinNT; I) [Netscape]" name="GENERATOR"/>
 <title>Introduction to Sequential Files</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cobol.min.js"></script>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <style type="text/css">
   img { max-width: 100%; height: auto; }
@@ -445,12 +448,12 @@
 <table align="center" bgcolor="#E1FFE1" border="1" cellpadding="5" width="58%">
 <tr>
 <td>
-<pre>01 StudentRec.
+<pre class="language-cobol"><code class="language-cobol">01 StudentRec.
    02 StudentId         PIC 9(7).
    02 StudentName       PIC X(10).
    02 DateOfBirth       PIC 9(8).
    02 CourseCode        PIC X(4).
-   02 Gender            PIC X.</pre>
+   02 Gender            PIC X.</code></pre>
 </td>
 </tr>
 </table>
@@ -466,7 +469,7 @@
 <table align="center" bgcolor="#E1FFE1" border="1" cellpadding="5" width="58%">
 <tr>
 <td>
-<pre>01 StudentRec.
+<pre class="language-cobol"><code class="language-cobol">01 StudentRec.
    02 StudentId         PIC 9(7).
    02 StudentName.
       03 Surname        PIC X(8).
@@ -476,7 +479,7 @@
       03 MOBirth        PIC 99.
       03 DOBirth        PIC 99.
    02 CourseCode        PIC X(4).
-   02 Gender            PIC X.</pre>
+   02 Gender            PIC X.</code></pre>
 </td>
 </tr>
 </table>
@@ -506,7 +509,7 @@
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="58%">
 <tr>
 <td>
-<pre>DATA DIVISION.
+<pre class="language-cobol"><code class="language-cobol">DATA DIVISION.
 FILE SECTION.
 FD StudentFile.
 01 StudentRec.
@@ -519,7 +522,7 @@ FD StudentFile.
       03 MOBirth        PIC 99.
       03 DOBirth        PIC 99.
    02 CourseCode        PIC X(4).
-   02 Gender            PIC X.</pre>
+   02 Gender            PIC X.</code></pre>
 </td>
 </tr>
 </table>
@@ -554,7 +557,7 @@ FD StudentFile.
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="58%">
 <tr>
 <td>
-<pre>ENVIRONMENT DIVISION.
+<pre class="language-cobol"><code class="language-cobol">ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
    SELECT StudentFile 
@@ -572,7 +575,7 @@ FD StudentFile.
       03 MOBirth        PIC 99.
       03 DOBirth        PIC 99.
    02 CourseCode        PIC X(4).
-   02 Gender            PIC X.</pre>
+   02 Gender            PIC X.</code></pre>
 </td>
 </tr>
 </table>
@@ -623,12 +626,12 @@ FD StudentFile.
                 with an actual file using statements like:</p>
 </div>
 <blockquote>
-<pre align="left">SELECT StudentFile 
+<pre class="language-cobol" align="left"><code class="language-cobol">SELECT StudentFile 
        ASSIGN TO "D:\Cobol\ExampleProgs\Students.Dat"
 
 SELECT StudentFile 
        ASSIGN TO "A:\Students.Dat"
-</pre>
+</code></pre>
 </blockquote>
 <div align="center">
 <div align="left"></div>
@@ -800,13 +803,13 @@ SELECT StudentFile
 <table align="center" bgcolor="#E1FFE1" border="1" cellpadding="5" width="58%">
 <tr>
 <td>
-<pre>FD StudentFile.
+<pre class="language-cobol"><code class="language-cobol">FD StudentFile.
 01 StudentRec.
    88 EndOfFile     VALUE HIGH-VALUES.
 
    02 StudentId     PIC 9(7).
        etc
-</pre>
+</code></pre>
 </td>
 </tr>
 </table>
@@ -885,7 +888,7 @@ SELECT StudentFile
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="486">
 <tr valign="top">
 <td>
-<pre>       &gt;&gt;SOURCE FORMAT IS FREE
+<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  SeqWriteRead.
 AUTHOR.  Michael Coughlan.
@@ -951,7 +954,7 @@ GetStudentRecord.
 
 
 
- </pre>
+ </code></pre>
 </td>
 </tr>
 </table>

@@ -2,6 +2,9 @@
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 <meta content="Mozilla/4.0 [en] (WinNT; I) [Netscape]" name="GENERATOR"/>
 <title>Print files and variable-length records</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cobol.min.js"></script>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <style type="text/css">
   img { max-width: 100%; height: auto; }
@@ -283,7 +286,7 @@
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="58%">
 <tr>
 <td>
-<pre>ENVIRONMENT DIVISION.
+<pre class="language-cobol"><code class="language-cobol">ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
    SELECT TransFile 
@@ -312,7 +315,7 @@ FD TransFile.
 <b><font color="#008000">01 UpdateRec.
    02 StudentId         PIC 9(7).
    02 NewCourseCode     PIC X(4).
-</font></b></pre>
+</font></b></code></pre>
 </td>
 </tr>
 </table>
@@ -439,7 +442,7 @@ FD TransFile.
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="58%">
 <tr>
 <td>
-<pre>ENVIRONMENT DIVISION.
+<pre class="language-cobol"><code class="language-cobol">ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
    SELECT TransFile 
@@ -469,7 +472,7 @@ FD TransFile.
    02 TransCode         PIC X.
    02 StudentId         PIC 9(7).
    02 NewCourseCode     PIC X(4).
-</pre>
+</code></pre>
 </td>
 </tr>
 </table>
@@ -529,7 +532,7 @@ FD TransFile.
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="58%">
 <tr>
 <td>
-<pre>ENVIRONMENT DIVISION.
+<pre class="language-cobol"><code class="language-cobol">ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
    SELECT TransFile 
@@ -558,7 +561,7 @@ FD TransFile.
 01 UpdateRec.
    02 FILLER            PIC X(8).
    02 NewCourseCode     PIC X(4).
-</pre>
+</code></pre>
 </td>
 </tr>
 </table>
@@ -655,7 +658,7 @@ FD TransFile.
 </tr>
 <tr valign="top">
 <td>
-<pre>  01 Heading1.
+<pre class="language-cobol"><code class="language-cobol">  01 Heading1.
      02 FILLER      PIC X(7)  VALUE SPACES.
      02 FILLER      PIC X(25) 
                       VALUE "UL Student Details Report".
@@ -664,7 +667,7 @@ FD TransFile.
      02 FILLER      PIC X(21) VALUE "StudentId StudentName".
      02 FILLER      PIC X(14) VALUE " Gender Course".
 
-</pre>
+</code></pre>
 </td>
 </tr>
 <tr>
@@ -675,13 +678,13 @@ FD TransFile.
 </tr>
 <tr valign="top">
 <td>
-<pre>  01 StudentDetailLine.
+<pre class="language-cobol"><code class="language-cobol">  01 StudentDetailLine.
      02 PrnStudId   PIC B9(7)BB.
      02 PrnStudName PIC X(10).
      02 PrnGender   PIC BBBBX.
      02 PrnCourse   PIC BBBBX(4).
 
-</pre>
+</code></pre>
 </td>
 </tr>
 <tr>
@@ -691,12 +694,12 @@ FD TransFile.
 </tr>
 <tr valign="top">
 <td>
-<pre>  01 PageFooting.
+<pre class="language-cobol"><code class="language-cobol">  01 PageFooting.
      02 FILLER      PIC X(19) VALUE SPACES.
      02 FILLER      PIC X(7) VALUE "Page : ".
      02 PageNum     PIC Z9.
 
-</pre>
+</code></pre>
 </td>
 </tr>
 <tr>
@@ -706,9 +709,9 @@ FD TransFile.
 </tr>
 <tr valign="top">
 <td>
-<pre>  01 ReportFooting  PIC X(38)
+<pre class="language-cobol"><code class="language-cobol">  01 ReportFooting  PIC X(38)
            VALUE "*** End of Student Details Report ***".
-</pre>
+</code></pre>
 </td>
 </tr>
 </table>
@@ -818,7 +821,7 @@ FD TransFile.
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="58%">
 <tr>
 <td>
-<pre>       &gt;&gt;SOURCE FORMAT IS FREE
+<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  StudDetailsRpt.
 AUTHOR.  Michael Coughlan.
@@ -928,7 +931,7 @@ PrintPageHeadings.
          AFTER ADVANCING 2 LINES
    MOVE 3 TO LineCount.
     
-</pre>
+</code></pre>
 </td>
 </tr>
 </table>
@@ -1002,7 +1005,7 @@ PrintPageHeadings.
               declared in the <font size="-1">WORKING-STORAGE SECTION</font>.</p>
 <p align="left"><b>Examples</b></p>
 <blockquote>
-<pre align="left">FD TransFile
+<pre class="language-cobol" align="left"><code class="language-cobol">FD TransFile
    RECORD IS VARYING IN SIZE 
    FROM 8 TO 31 CHARACTERS.
 
@@ -1010,7 +1013,7 @@ PrintPageHeadings.
 FD Stringfile
    RECORD IS VARYING IN SIZE
    FROM 1 TO 80 CHARACTERS
-   DEPENDING ON StringSize.</pre>
+   DEPENDING ON StringSize.</code></pre>
 <div align="left"></div>
 </blockquote>
 <hr align="center" width="50%"/>
@@ -1064,7 +1067,7 @@ FD Stringfile
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="370">
 <tr valign="top">
 <td>
-<pre>       &gt;&gt;SOURCE FORMAT IS FREE
+<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  VarLenRecs.
 AUTHOR.  Michael Coughlan.
@@ -1167,7 +1170,7 @@ DisplayTransactions.
      AT END SET EndOfTrans TO TRUE
    END-READ.
 
-</pre>
+</code></pre>
 </td>
 </tr>
 </table>

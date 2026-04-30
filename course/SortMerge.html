@@ -2,6 +2,9 @@
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 <meta content="Mozilla/4.0 [en] (WinNT; I) [Netscape]" name="GENERATOR"/>
 <title>Sorting and Merging files</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cobol.min.js"></script>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <style type="text/css">
   img { max-width: 100%; height: auto; }
@@ -290,22 +293,22 @@
 <p>The calls file in an unordered Sequential file. The record 
                       description is as follows; </p>
 <blockquote>
-<pre><b>FIELD          TYPE   LENGTH        VALUE
+<pre class="language-cobol"><code class="language-cobol"><b>FIELD          TYPE   LENGTH        VALUE
 </b>SubscriberNum    9      8    00000001 - 99999999
-UnitsUsed        9      5       00001 - 99999</pre>
+UnitsUsed        9      5       00001 - 99999</code></pre>
 </blockquote>
 <p>The report must be printed on ascending subscriber number 
                       and has the following format;</p>
 <blockquote>
-<pre>Telephone Analysis Monthly Report</pre>
-<pre>
+<pre class="language-cobol"><code class="language-cobol">Telephone Analysis Monthly Report</code></pre>
+<pre class="language-cobol"><code class="language-cobol">
 SubscriberNum      ValueOfCalls
 
   99999999         999,999.99
   99999999         999,999.99
   99999999         999,999.99
 -------------------------------
-Total value =  999,999,999.99</pre>
+Total value =  999,999,999.99</code></pre>
 </blockquote>
 </td>
 </tr>
@@ -345,14 +348,14 @@ Total value =  999,999,999.99</pre>
                   in the file we would have to;</p>
 <blockquote>
 <blockquote>
-<pre>Read the Sequential File
+<pre class="language-cobol"><code class="language-cobol">Read the Sequential File
 IF the record already exists THEN
    Read the Relative Record
    Add the units to the total units
    Write the Relative Record to the file
 ELSE
    Write a new Relative Record to the file
-END-IF</pre>
+END-IF</code></pre>
 </blockquote>
 </blockquote>
 <p align="left">And when the calls file ended we would have to 
@@ -426,7 +429,7 @@ END-IF</pre>
 <blockquote>
 <div align="center">
 <div align="left">
-<pre align="left">SORT WorkFile ON ASCENDING KEY CourseCode
+<pre class="language-cobol" align="left"><code class="language-cobol">SORT WorkFile ON ASCENDING KEY CourseCode
      USING  StudentFile
      GIVING SortedStudentsFile.
 
@@ -434,7 +437,7 @@ END-IF</pre>
 SORT WorkFile ON ASCENDING ProvinceCode 
                  DESCENDING VendorNumber
                  USING SalesFile
-                 GIVING SortedSalesFile.</pre>
+                 GIVING SortedSalesFile.</code></pre>
 </div>
 </div>
 </blockquote>
@@ -509,7 +512,7 @@ SORT WorkFile ON ASCENDING ProvinceCode
 <table background="Resources/pics/code.gif" border="1" cellpadding="5" width="475">
 <tr>
 <td>
-<pre>ENVIRONMENT DIVISION.
+<pre class="language-cobol"><code class="language-cobol">ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
    SELECT CallsFile 
@@ -551,7 +554,7 @@ Begin.
 
         etc.
 
-</pre>
+</code></pre>
 </td>
 </tr>
 </table>
@@ -578,10 +581,10 @@ Begin.
 <p align="center"><img height="270" src="Resources/pics/Sort2.gif" width="470"/>
 </p>
 <blockquote>
-<pre align="center">SORT <font color="#000000">WorkFile</font> ON ASCENDING <font color="#000000">SubscriberNumWF</font>
+<pre class="language-cobol" align="center"><code class="language-cobol">SORT <font color="#000000">WorkFile</font> ON ASCENDING <font color="#000000">SubscriberNumWF</font>
      USING  CallsFile
      GIVING SortedCallsFile.
-</pre>
+</code></pre>
 </blockquote>
 <hr align="center" size="1" width="100%"/>
 </td>
@@ -601,10 +604,10 @@ Begin.
               descending VendorNumber, within ascending ProvinceCode, by the following 
               <font size="-1">SORT</font> statement; </p>
 <blockquote>
-<pre align="left">SORT WorkFile ON ASCENDING ProvinceCode 
+<pre class="language-cobol" align="left"><code class="language-cobol">SORT WorkFile ON ASCENDING ProvinceCode 
                  DESCENDING VendorNumber
                  USING SalesFile
-                 GIVING SortedSalesFile</pre>
+                 GIVING SortedSalesFile</code></pre>
 </blockquote>
 <p align="left">Notice that ProvinceCode is the major key, and that 
               VendorNumber is only in descending sequence, <i>within</i> ProvinceCode. 
@@ -637,7 +640,7 @@ Begin.
 <tr>
 <td valign="top" width="58">
 <div align="center">
-<pre>1
+<pre class="language-cobol"><code class="language-cobol">1
 1
 1
 1
@@ -659,12 +662,12 @@ Begin.
 3
 4
 4
-4</pre>
+4</code></pre>
 </div>
 </td>
 <td valign="top" width="64">
 <div align="center">
-<pre>91234
+<pre class="language-cobol"><code class="language-cobol">91234
 91234
 81234
 71234
@@ -686,12 +689,12 @@ Begin.
 11111
 56789
 56789
-44444</pre>
+44444</code></pre>
 </div>
 </td>
 <td valign="top" width="45">
 <div align="center">
-<pre>etc.
+<pre class="language-cobol"><code class="language-cobol">etc.
 etc.
 etc.
 etc.
@@ -713,7 +716,7 @@ etc.
 etc.
 etc.
 etc.
-etc.</pre>
+etc.</code></pre>
 </div>
 </td>
 </tr>
@@ -763,7 +766,7 @@ etc.</pre>
 <p align="left"><img height="274" src="Resources/pics/Sort3.gif" width="486"/></p>
             e.g. 
 
-              <pre align="left">
+              <pre class="language-cobol" align="left"><code class="language-cobol">
 SORT WorkFile ON ASCENDING CountyNumWF, VendorNumWF
               INPUT PROCEDURE RejectNorthernRecs 
               GIVING SortedSalesFile.
@@ -777,7 +780,7 @@ SORT WorkFile ON ASCENDING CountryNameWF
 SORT WorkFile ON ASCENDING CountryNameWF, CustomerNameWF
               INPUT PROCEDURE IS RestructureRecords 
               GIVING SortedSubscriptionsFile. 
-</pre>
+</code></pre>
 <p align="left"><font size="-1"><b>INPUT PROCEDURE</b></font><b> notes</b><br/>
               When an <font size="-1">INPUT PROCEDURE</font> is used, it replaces 
               the <font size="-1">USING </font>phrase. The <i>ProcName</i> in 
@@ -851,10 +854,10 @@ SORT WorkFile ON ASCENDING CountryNameWF, CustomerNameWF
 
 <p align="center"><img height="240" src="Resources/pics/Sort5.gif" width="435"/></p>
 <blockquote>
-<pre>SORT WorkFile ON ASCENDING CountryNameWF
+<pre class="language-cobol"><code class="language-cobol">SORT WorkFile ON ASCENDING CountryNameWF
               INPUT PROCEDURE IS SelectForeignGuests
               GIVING SortedGuestsFile.
-</pre>
+</code></pre>
 </blockquote>
 <hr align="center" size="1" width="100%"/>
 </td>
@@ -883,14 +886,14 @@ SORT WorkFile ON ASCENDING CountryNameWF, CustomerNameWF
 <table bgcolor="#E1FFE1" border="1" cellpadding="10" width="40%">
 <tr>
 <td>
-<pre>OPEN INPUT InFileName
+<pre class="language-cobol"><code class="language-cobol">OPEN INPUT InFileName
 READ InFileName
 PERFORM UNTIL TerminatingCondition
    <i>Process input record
 </i>   RELEASE SDWorkRec
    READ InFileName
 END-PERFORM 
-CLOSE InFileName</pre>
+CLOSE InFileName</code></pre>
 </td>
 </tr>
 </table>
@@ -938,7 +941,7 @@ CLOSE InFileName</pre>
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="10" width="475">
 <tr>
 <td>
-<pre>       &gt;&gt;SOURCE FORMAT IS FREE
+<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  ForeignGuestsRpt.
 AUTHOR.  Michael Coughlan.
@@ -1057,7 +1060,7 @@ PrintReportBody.
    MOVE VisitorCount TO PrnVisitorCount
    WRITE PrintLine FROM CountryLine 
          AFTER ADVANCING 1 LINE.
-</pre>
+</code></pre>
 </td>
 </tr>
 </table>
@@ -1102,7 +1105,7 @@ PrintReportBody.
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="10" height="962" width="475">
 <tr>
 <td>
-<pre>       &gt;&gt;SOURCE FORMAT IS FREE
+<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  SortInput.
 AUTHOR.  Michael Coughlan.
@@ -1166,7 +1169,7 @@ GetStudentDetails.
     PERFORM UNTIL WorkRec = SPACES
        RELEASE WorkRec
        ACCEPT WorkRec
-    END-PERFORM.</pre>
+    END-PERFORM.</code></pre>
 </td>
 </tr>
 </table>
@@ -1230,7 +1233,7 @@ GetStudentDetails.
               the <font size="-1">SORT</font> verb.</p>
 <p><img height="306" src="Resources/pics/Sort4.gif" width="502"/></p>
 <p>e.g.</p>
-<pre>SORT WorkFile ON ASCENDING CustNameWF
+<pre class="language-cobol"><code class="language-cobol">SORT WorkFile ON ASCENDING CustNameWF
      INPUT PROCEDURE IS SelectEssentialOils
      OUTPUT PROCEDURE IS PrintOilSalesReport.
 
@@ -1238,7 +1241,7 @@ GetStudentDetails.
 SORT WorkFile ON ASCENDING KEY SalespersonNumWF
      USING SalesFile
      OUTPUT PROCEDURE IS SummariseSales.
-             </pre>
+             </code></pre>
 <p><font size="-1"><b>OUTPUT PROCEDURE </b></font><b>notes</b><br/>
               An <font size="-1">OUTPUT PROCEDURE</font> is used to retrieve sorted 
               records from the work file using the <font size="-1">RETURN</font> 
@@ -1279,10 +1282,10 @@ SORT WorkFile ON ASCENDING KEY SalespersonNumWF
               the records have been sorted into salesperson number order, the 
               quantities sold cannot be summed.</p>
 <p align="center"><img height="235" src="Resources/pics/Sort7.gif" width="435"/></p>
-<pre align="center">SORT WorkFile ON ASCENDING KEY SalespersonNumWF
+<pre class="language-cobol" align="center"><code class="language-cobol">SORT WorkFile ON ASCENDING KEY SalespersonNumWF
      USING SalesFile
      OUTPUT PROCEDURE IS SummariseSales.
-</pre>
+</code></pre>
 <hr align="center" size="1" width="100%"/>
 </td>
 </tr>
@@ -1312,7 +1315,7 @@ SORT WorkFile ON ASCENDING KEY SalespersonNumWF
 <table bgcolor="#E1FFE1" border="1" cellpadding="10" height="121" width="40%">
 <tr>
 <td>
-<pre>OPEN OUTPUT OutFile
+<pre class="language-cobol"><code class="language-cobol">OPEN OUTPUT OutFile
 RETURN SDWorkFile RECORD
 PERFORM UNTIL TerminatingCondition
    <i>Setup OutRec
@@ -1320,7 +1323,7 @@ PERFORM UNTIL TerminatingCondition
    RETURN SDWorkFile RECORD
 END-PERFORM
 CLOSE OutFile
-</pre>
+</code></pre>
 </td>
 </tr>
 </table>
@@ -1350,7 +1353,7 @@ CLOSE OutFile
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="10" height="930" width="475">
 <tr>
 <td>
-<pre>       &gt;&gt;SOURCE FORMAT IS FREE
+<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. MakeSummaryFile.
 AUTHOR. Michael Coughlan.
@@ -1407,7 +1410,7 @@ SummariseSales.
       WRITE SummaryRec
     END-PERFORM
     CLOSE SalesSummaryFile.
-</pre>
+</code></pre>
 </td>
 </tr>
 </table>
@@ -1433,7 +1436,7 @@ SummariseSales.
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="10" width="475">
 <tr>
 <td>
-<pre>       &gt;&gt;SOURCE FORMAT IS FREE
+<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  ForeignGuestsRpt2.
 AUTHOR.  Michael Coughlan.
@@ -1544,7 +1547,7 @@ PrintReportBody.
    MOVE VisitorCount TO PrnVisitorCount
    WRITE PrintLine FROM CountryLine 
          AFTER ADVANCING 1 LINE.
-</pre>
+</code></pre>
 </td>
 </tr>
 </table>
@@ -1596,10 +1599,10 @@ PrintReportBody.
 <td valign="top" width="525">
 <p><img height="229" src="Resources/pics/Sort8.gif" width="494"/></p>
 <p>e.g.</p>
-<pre>MERGE MergeWorkFile 
+<pre class="language-cobol"><code class="language-cobol">MERGE MergeWorkFile 
    ON ASCENDING KEY TransDateWF, TransCodeWF, StudentIdWF
    USING InsertTransFile, DeleteTransFile, UpdateTransFile
-   GIVING CombinedTransFile. </pre>
+   GIVING CombinedTransFile. </code></pre>
 <p><font size="-1"><b>MERGE</b></font><b> notes</b><br/>
               The results of the <font size="-1">MERGE</font> verb are predictable 
               only when the records in the input files are ordered as described 
@@ -1653,7 +1656,7 @@ PrintReportBody.
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="10" width="475">
 <tr>
 <td>
-<pre>       &gt;&gt;SOURCE FORMAT IS FREE
+<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. MergeFiles.
 AUTHOR. MICHAEL COUGHLAN.
@@ -1698,7 +1701,7 @@ Begin.
        USING InsertionsFile,  StudentFile
        GIVING NewStudentFile.
     STOP RUN.
-</pre>
+</code></pre>
 </td>
 </tr>
 </table>

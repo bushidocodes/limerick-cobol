@@ -4,6 +4,9 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta name="GENERATOR" content="Mozilla/4.0 [en] (WinNT; I) [Netscape]">
    <title>Introduction to COBOL</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cobol.min.js"></script>
 <style type="text/css">
   img { max-width: 100%; height: auto; }
   table { max-width: 100%; }
@@ -569,23 +572,23 @@
             <p align="left">What COBOL program statements will we need to do the 
               job specified above and what data items will we need to access?<br>
             </p>
-            <blockquote> 
+            <blockquote>
               <p>We will need a statement to take in the first number and store
-                it in the named memory location (a variable) - Num1<b><font face="Courier New, Courier, mono" size="+1"><br>
-                ACCEPT Num1.</font></b></p>
+                it in the named memory location (a variable) - Num1</p>
+<pre class="language-cobol"><code class="language-cobol">ACCEPT Num1.</code></pre>
             </blockquote>
-            <blockquote> 
+            <blockquote>
               <p>We will need a statement to take in the second number and store
-                it in the named memory location - Num2<b><font size="+1" face="Courier New, Courier, mono"><br>
-                ACCEPT Num2.</font></b></p>
+                it in the named memory location - Num2</p>
+<pre class="language-cobol"><code class="language-cobol">ACCEPT Num2.</code></pre>
             </blockquote>
-            <blockquote> 
+            <blockquote>
               <p>We will need a statement to multiply the two numbers together
-                and to store the result in the named location - Result<font size="+1"><b><br>
-                <font face="Courier New, Courier, mono">MULTIPLY Num1 BY Num2 GIVING Result.</font></b></font></p>
+                and to store the result in the named location - Result</p>
+<pre class="language-cobol"><code class="language-cobol">MULTIPLY Num1 BY Num2 GIVING Result.</code></pre>
               <p>We will need a statement to display the value in the named memory
-                location &quot;<b>Result</b>&quot; on the computer screen -<br>
-                <b><font size="+1"><font face="Courier New, Courier, mono">DISPLAY &quot;Result is = &quot;, Result.</font></font></b></p>
+                location &quot;<b>Result</b>&quot; on the computer screen -</p>
+<pre class="language-cobol"><code class="language-cobol">DISPLAY "Result is = ", Result.</code></pre>
             </blockquote>
             <hr size="1" width="100%">
           </td>
@@ -834,10 +837,8 @@
             <p align="left">Since the ellipsis symbol is placed outside the curly 
               brackets we can interpret this to mean that each result field can 
               have its own <font size="-1">ROUNDED</font> phase. In other words 
-              we could have a <font size="-1">COMPUTE</font> statement like -<br>
-              <br>
-              <b><font face="Courier New, Courier, mono">COMPUTE Result1 ROUNDED, 
-              Result2 = ((9*9)+8)/5</font></b></p>
+              we could have a <font size="-1">COMPUTE</font> statement like -</p>
+<pre class="language-cobol"><code class="language-cobol">COMPUTE Result1 ROUNDED, Result2 = ((9*9)+8)/5</code></pre>
             <p align="left">where Result1 would be assigned a value of 18 and 
               Result2 would be assigned a value of 17.8.</p>
             <p align="left">The square brackets after the Arithmetic Expression 
@@ -936,11 +937,10 @@
               by the language. A section name is followed by the word <font size="-1">SECTION</font> 
               and a period. <br>
               See the two example names below -</p>
-            <blockquote> 
-              <p> <b><font face="Courier New, Courier, mono">SelectUnpaidBills 
-                SECTION.<br>
-                </font></b><font face="Courier New, Courier, mono"><b>FILE SECTION.</b></font></p>
-              </blockquote>
+            <blockquote>
+<pre class="language-cobol"><code class="language-cobol">SelectUnpaidBills SECTION.
+FILE SECTION.</code></pre>
+            </blockquote>
             <p><font face="Arial, Helvetica, sans-serif"><b>Paragraphs</b></font><br>
               A paragraph is a block of code made up of one or more sentences. 
               A paragraph begins with the paragraph name and ends with the next 
@@ -948,28 +948,25 @@
             <p>A paragraph name is devised by the programmer or defined by the 
               language, and is followed by a period. <br>
               See the two example names below -</p>
-            <blockquote> 
-              <p><font face="Courier New, Courier, mono"><b>PrintFinalTotals.<br>
-                </b></font><font face="Courier New, Courier, mono"><b>PROGRAM-ID.</b></font><br>
-              </p>
+            <blockquote>
+<pre class="language-cobol"><code class="language-cobol">PrintFinalTotals.
+PROGRAM-ID.</code></pre>
             </blockquote>
             <p><font face="Arial, Helvetica, sans-serif"><b>Sentences and statements</b></font><br>
               A sentence consists of one or more statements and is terminated 
               by a period.<br>
               For example:</p>
-            <blockquote> 
-              <p><b><font face="Courier New, Courier, mono">MOVE .21 TO VatRate<br>
-                &nbsp;&nbsp;&nbsp;MOVE 1235.76 TO ProductCost<br>
-                &nbsp;&nbsp;&nbsp;COMPUTE VatAmount = ProductCost * VatRate.</font></b></p>
+            <blockquote>
+<pre class="language-cobol"><code class="language-cobol">MOVE .21 TO VatRate
+   MOVE 1235.76 TO ProductCost
+   COMPUTE VatAmount = ProductCost * VatRate.</code></pre>
             </blockquote>
             <p><br>
-              A statement consists of a COBOL verb and an operand or operands. 
+              A statement consists of a COBOL verb and an operand or operands.
               <br>
               For example:</p>
-            <blockquote> 
-              <p><b><font face="Courier New, Courier, mono">SUBTRACT Tax FROM 
-                GrossPay GIVING NetPay</font></b><br>
-              </p>
+            <blockquote>
+<pre class="language-cobol"><code class="language-cobol">SUBTRACT Tax FROM GrossPay GIVING NetPay</code></pre>
             </blockquote>
           </td>
         </tr>
@@ -1034,11 +1031,11 @@
               to a subprogram.</p>
             <p>The <font size="-1">IDENTIFICATION DIVISION </font>has the following 
               structure:</p>
-            <blockquote> 
-              <p><font face="Courier New, Courier, mono"><b>IDENTIFICATION DIVISION<br>
-                PROGRAM-ID. NameOfProgram.<br>
-                [AUTHOR. YourName.]<br>
-                other entries here</b></font></p>
+            <blockquote>
+<pre class="language-cobol"><code class="language-cobol">IDENTIFICATION DIVISION
+PROGRAM-ID. NameOfProgram.
+[AUTHOR. YourName.]
+other entries here</code></pre>
             </blockquote>
             <p>The keywords - <font size="-1">IDENTIFICATION DIVISION</font> - 
               represent the division header, and signal the commencement of the 
@@ -1051,9 +1048,9 @@
             <table width="374" border="1" align="center" background="Resources/pics/code.gif" cellpadding="5">
               <tr> 
                 <td> 
-                  <pre><font face="Courier New, Courier, mono">IDENTIFICATION DIVISION.
+                  <pre class="language-cobol"><code class="language-cobol"><font face="Courier New, Courier, mono">IDENTIFICATION DIVISION.
 PROGRAM-ID. SequenceProgram.
-AUTHOR. Michael Coughlan.</font></pre>
+AUTHOR. Michael Coughlan.</font></code></pre>
                 </td>
               </tr>
             </table>
@@ -1111,7 +1108,7 @@ AUTHOR. Michael Coughlan.</font></pre>
             <table width="406" border="1" align="center" background="Resources/pics/code.gif" cellpadding="5">
               <tr> 
                 <td> 
-                  <pre><font face="Courier New, Courier, mono">IDENTIFICATION DIVISION.
+                  <pre class="language-cobol"><code class="language-cobol"><font face="Courier New, Courier, mono">IDENTIFICATION DIVISION.
 PROGRAM-ID. SequenceProgram.
 AUTHOR. Michael Coughlan.
 
@@ -1119,7 +1116,7 @@ DATA DIVISION.
 WORKING-STORAGE SECTION.
 01 Num1   PIC 9  VALUE ZEROS.
 01 Num2   PIC 9  VALUE ZEROS.
-01 Result PIC 99 VALUE ZEROS.</font></pre>
+01 Result PIC 99 VALUE ZEROS.</font></code></pre>
                 </td>
               </tr>
             </table>
@@ -1148,7 +1145,7 @@ WORKING-STORAGE SECTION.
             <table width="390" border="1" align="center" background="Resources/pics/code.gif" cellpadding="5">
               <tr> 
                 <td> 
-                  <pre><font face="Courier New, Courier, mono">IDENTIFICATION DIVISION.
+                  <pre class="language-cobol"><code class="language-cobol"><font face="Courier New, Courier, mono">IDENTIFICATION DIVISION.
 PROGRAM-ID. SequenceProgram.
 AUTHOR. Michael Coughlan.
 
@@ -1165,7 +1162,7 @@ CalculateResult.
    MULTIPLY Num1 BY Num2
        GIVING Result.
    DISPLAY &quot;Result is = &quot;, Result.
-   STOP RUN.</font></pre>
+   STOP RUN.</font></code></pre>
                 </td>
               </tr>
             </table>
@@ -1178,13 +1175,13 @@ CalculateResult.
             <table width="390" border="1" align="center" background="Resources/pics/code.gif" cellpadding="5">
               <tr> 
                 <td> 
-                  <pre><font face="Courier New, Courier, mono">IDENTIFICATION DIVISION.
+                  <pre class="language-cobol"><code class="language-cobol"><font face="Courier New, Courier, mono">IDENTIFICATION DIVISION.
 PROGRAM-ID. SmallestProgram.
 
 PROCEDURE DIVISION.
 DisplayGreeting.
    DISPLAY &quot;Hello world&quot;.
-   STOP RUN.</font></pre>
+   STOP RUN.</font></code></pre>
                 </td>
               </tr>
             </table>
