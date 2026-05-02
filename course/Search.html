@@ -11,7 +11,8 @@
   table { max-width: 100%; }
   body > table, body > hr { margin-left: auto; margin-right: auto; }
   pre { overflow-x: auto; max-width: 100%; }
-  pre[class*="language-"] { max-width: 510px; box-sizing: border-box; }
+  /* Keep Prism code blocks within the page's 525px content cells; 510px = 525px minus 15px to account for Prism's horizontal padding/gutter and avoid widening the table layout. */
+  pre[class*="language-"] { max-width: min(100%, calc(525px - 15px)); box-sizing: border-box; }
   body { -webkit-text-size-adjust: 100%; }
   @media (max-width: 600px) {
     body { margin: 4px; overflow-wrap: break-word; word-wrap: break-word; }
