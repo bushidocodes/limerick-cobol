@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Inserting records in a Sequential File</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<style type="text/css">
@@ -137,237 +137,175 @@
 			}
 		</style>
 	</head>
-
 	<body text="#000000" bgcolor="#FFFFFF" link="#0000FF" vlink="#FF0000" alink="#009B00">
-		<center>
-			<img src="T-CobolExercise.gif" height="56" width="183" />
-		</center>
-
+		<center><img src="T-CobolExercise.gif" height="56" width="183" /></center>
 		<center>
 			<h2>Inserting records in a Sequential File</h2>
 		</center>
-
 		<center>
 			<hr width="100%" />
 		</center>
-
-		<center>
-			<font size="-1">READ, WRITE, PERFORM..UNTIL, IF, DISPLAY</font>
-		</center>
-
+		<center><font size="-1">READ, WRITE, PERFORM..UNTIL, IF, DISPLAY</font></center>
 		<center>
 			<hr width="100%" />
 		</center>
-
 		<h2>Introduction</h2>
-		Using the <a href="../examples/SeqWrite/SEQWRITE.CBL">SeqWrite.Cbl</a>
-		program as a starting point write a program called SeqInsert.Cbl to take a file of new student records
-		(TransIns.Dat) and insert them into the correct order into the student file (Students.Dat).&nbsp; To do this you
-		will need to create a new file (Students.New) containing the merged records.
-
+		Using the <a href="../examples/SeqWrite/SEQWRITE.CBL">SeqWrite.Cbl</a> program as a starting point write a
+		program called SeqInsert.Cbl to take a file of new student records (TransIns.Dat) and insert them into the
+		correct order into the student file (Students.Dat).&nbsp; To do this you will need to create a new file
+		(Students.New) containing the merged records.
 		<p>
-			Download
-			<a href="../examples/SeqIns/STUDENTS.DAT">Students.Dat</a> and save it to theWorkArea directory on drive D:.
+			Download <a href="../examples/SeqIns/STUDENTS.DAT">Students.Dat</a> and save it to theWorkArea directory on
+			drive D:.
 		</p>
-
-		<p>
-			Download
-			<a href="../examples/SeqIns/TRANSINS.DAT">TransIns.Dat</a> and save it to the same place.
-		</p>
+		<p>Download <a href="../examples/SeqIns/TRANSINS.DAT">TransIns.Dat</a> and save it to the same place.</p>
 		<h2>The File Descriptions</h2>
 		Details of new students are initially recorded in a transaction file (TransIns.Dat).&nbsp; Records in the file
 		are ordered on ascending StudentId.
-
 		<p>
 			Details of existing students are held in the student file (Students.Dat).&nbsp; Records in this file are
 			also ordered on ascending StudentId.
 		</p>
-
 		<p>
 			A program is required which will merge these two files to create a new student file (Students.New) which
 			contains the records of both files.&nbsp; Records in the new student file must be ordered on ascending
 			StudentId.
 		</p>
-
 		<p>
-			The records in the transaction file, the students file and the new file all have the same description.
-			<br />All three records consist of the following items;
+			The records in the transaction file, the students file and the new file all have the same description.<br />
+			All three records consist of the following items;
 		</p>
-
 		<table border width="39%">
 			<tr>
 				<td width="100">
 					<center><b>Field</b></center>
 				</td>
-
 				<td width="67">
 					<center><b>Type</b></center>
 				</td>
-
 				<td width="84">
 					<center><b>Length</b></center>
 				</td>
-
 				<td width="127">
 					<center><b>Value</b></center>
 				</td>
 			</tr>
-
 			<tr>
 				<td width="144">Student Id</td>
-
 				<td width="67">
 					<center>9</center>
 				</td>
-
 				<td width="84">
 					<center>7</center>
 				</td>
-
 				<td width="127">
 					<center>0-9999999</center>
 				</td>
 			</tr>
-
 			<tr>
 				<td width="144">Student Name</td>
-
 				<td width="67">
 					<center>.</center>
 				</td>
-
 				<td width="84">
 					<center>.</center>
 				</td>
-
 				<td width="127">
 					<center>Group</center>
 				</td>
 			</tr>
-
 			<tr>
 				<td width="144">Surname</td>
-
 				<td width="67">
 					<center>X</center>
 				</td>
-
 				<td width="84">
 					<center>8</center>
 				</td>
-
 				<td width="127">
 					<center>-</center>
 				</td>
 			</tr>
-
 			<tr>
 				<td width="144">Initials</td>
-
 				<td width="67">
 					<center>X</center>
 				</td>
-
 				<td width="84">
 					<center>2</center>
 				</td>
-
 				<td width="127">
 					<center>-</center>
 				</td>
 			</tr>
-
 			<tr>
 				<td width="144">DateOfBirth</td>
-
 				<td width="67">
 					<center>.</center>
 				</td>
-
 				<td width="84">
 					<center>.</center>
 				</td>
-
 				<td width="127">
 					<center>Group</center>
 				</td>
 			</tr>
-
 			<tr>
 				<td width="144">Year</td>
-
 				<td width="67">
 					<center>9</center>
 				</td>
-
 				<td width="84">
 					<center>4</center>
 				</td>
-
 				<td width="127">
 					<center>0000-9999</center>
 				</td>
 			</tr>
-
 			<tr>
 				<td width="144">Month</td>
-
 				<td width="67">
 					<center>9</center>
 				</td>
-
 				<td width="84">
 					<center>2</center>
 				</td>
-
 				<td width="127">
 					<center>01-12</center>
 				</td>
 			</tr>
-
 			<tr>
 				<td width="144">Day</td>
-
 				<td width="67">
 					<center>9</center>
 				</td>
-
 				<td width="84">
 					<center>2</center>
 				</td>
-
 				<td width="127">
 					<center>01-31</center>
 				</td>
 			</tr>
-
 			<tr>
 				<td width="144">Course Code</td>
-
 				<td width="67">
 					<center>X</center>
 				</td>
-
 				<td width="84">
 					<center>4</center>
 				</td>
-
 				<td width="127">
 					<center>-</center>
 				</td>
 			</tr>
-
 			<tr>
 				<td width="144">Gender</td>
-
 				<td width="67">
 					<center>X</center>
 				</td>
-
 				<td width="84">
 					<center>1</center>
 				</td>
-
 				<td width="127">
 					<center>M/F</center>
 				</td>
@@ -375,83 +313,96 @@
 		</table>
 		<h2>Further Work</h2>
 		Add code to your program to read the file you have just created and display the StudentId and StudentName from
-		each record.&nbsp; Display the records as shown in
-		<br />the example run below:
+		each record.&nbsp; Display the records as shown in<br />
+		the example run below:
 		<ul>
 			<ul>
-				<u>
-					<font size="+2">Example Run</font>
-				</u>
+				<u><font size="+2">Example Run</font></u>
 			</ul>
 			<tt>&nbsp;&nbsp;&nbsp;&nbsp; Stud-Id Surname</tt>
 			<ul>
-				<tt>8812356&nbsp; MACKEY&nbsp; TD</tt>
-				<br /><tt>8812357&nbsp; BOBBIN&nbsp; WE</tt>
-				<br /><tt>8812358&nbsp; DALEY&nbsp;&nbsp; FR</tt>
-				<br /><tt>8812359&nbsp; SWINDON GL</tt>
-				<br /><tt>8912345&nbsp; Insert2 ok</tt>
-				<br /><tt>8912351&nbsp; DEWEY&nbsp;&nbsp; AS</tt>
-				<br /><tt>8912352&nbsp; RICHARDSTR</tt>
-				<br /><tt>8912353&nbsp; GORMAN&nbsp; WJ</tt>
-				<br /><tt>8912354&nbsp; FAHY&nbsp;&nbsp;&nbsp; ML</tt>
-				<br /><tt>8912355&nbsp; RYAN&nbsp;&nbsp;&nbsp; GN</tt>
-				<br /><tt>8912356&nbsp; CORKERY DF</tt>
-				<br /><tt>8912357&nbsp; COFFEY&nbsp; SD</tt>
-				<br /><tt>8912358&nbsp; FORD&nbsp;&nbsp;&nbsp; LM</tt>
-				<br /><tt>8912359&nbsp; GRANT&nbsp;&nbsp; HS</tt>
-				<br /><tt>9012351&nbsp; FLOOD&nbsp;&nbsp; MB</tt>
-				<br /><tt>9012352&nbsp; HUBERT&nbsp; TJ</tt>
-				<br /><tt>9012353&nbsp; JONES&nbsp;&nbsp; VT</tt>
-				<br /><tt>9012354&nbsp; KINGSTONDR</tt>
-				<br /><tt>9012355&nbsp; LANGAN&nbsp; RR</tt>
-				<br /><tt>9012356&nbsp; MORGAN&nbsp; WR</tt>
-				<br /><tt>9012357&nbsp; MANLEY&nbsp; FL</tt>
-				<br /><tt>9012358&nbsp; NORMAN&nbsp; LK</tt>
-				<br /><tt>9012359&nbsp; OTTERMANFD</tt>
-				<br /><tt>9123453&nbsp; Insert3 ok</tt>
+				<tt>8812356&nbsp; MACKEY&nbsp; TD</tt
+				><br />
+				<tt>8812357&nbsp; BOBBIN&nbsp; WE</tt
+				><br />
+				<tt>8812358&nbsp; DALEY&nbsp;&nbsp; FR</tt
+				><br />
+				<tt>8812359&nbsp; SWINDON GL</tt
+				><br />
+				<tt>8912345&nbsp; Insert2 ok</tt
+				><br />
+				<tt>8912351&nbsp; DEWEY&nbsp;&nbsp; AS</tt
+				><br />
+				<tt>8912352&nbsp; RICHARDSTR</tt
+				><br />
+				<tt>8912353&nbsp; GORMAN&nbsp; WJ</tt
+				><br />
+				<tt>8912354&nbsp; FAHY&nbsp;&nbsp;&nbsp; ML</tt
+				><br />
+				<tt>8912355&nbsp; RYAN&nbsp;&nbsp;&nbsp; GN</tt
+				><br />
+				<tt>8912356&nbsp; CORKERY DF</tt
+				><br />
+				<tt>8912357&nbsp; COFFEY&nbsp; SD</tt
+				><br />
+				<tt>8912358&nbsp; FORD&nbsp;&nbsp;&nbsp; LM</tt
+				><br />
+				<tt>8912359&nbsp; GRANT&nbsp;&nbsp; HS</tt
+				><br />
+				<tt>9012351&nbsp; FLOOD&nbsp;&nbsp; MB</tt
+				><br />
+				<tt>9012352&nbsp; HUBERT&nbsp; TJ</tt
+				><br />
+				<tt>9012353&nbsp; JONES&nbsp;&nbsp; VT</tt
+				><br />
+				<tt>9012354&nbsp; KINGSTONDR</tt
+				><br />
+				<tt>9012355&nbsp; LANGAN&nbsp; RR</tt
+				><br />
+				<tt>9012356&nbsp; MORGAN&nbsp; WR</tt
+				><br />
+				<tt>9012357&nbsp; MANLEY&nbsp; FL</tt
+				><br />
+				<tt>9012358&nbsp; NORMAN&nbsp; LK</tt
+				><br />
+				<tt>9012359&nbsp; OTTERMANFD</tt
+				><br />
+				<tt>9123453&nbsp; Insert3 ok</tt>
 			</ul>
 			&nbsp;
 		</ul>
-
 		<h2>Sample Solution</h2>
 		When you have written your program and have compiled it and have it working correctly you may wish to compare it
-		with this
-		<br /><a href="../examples/SeqIns/seqinsert.CBL">sample solution</a>.
-		<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		with this<br />
+		<a href="../examples/SeqIns/seqinsert.CBL">sample solution</a>.<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<b
-			><u>
-				<font color="#FF0000">WARNING</font>
-			</u></b
-		>
-		<br />Do not look at the solution until you have finished your own or at least have made a substantial effort to
+			><u><font color="#FF0000">WARNING</font></u></b
+		><br />
+		Do not look at the solution until you have finished your own or at least have made a substantial effort to
 		complete it.
 		<h2>Examining the sample solution</h2>
 		Compile and run the sample solution provided.&nbsp; Use the Animator to step through the program and examine the
-		contents of the records as the program executes.
-		<br />
+		contents of the records as the program executes.<br />
 		As you examine the program, attempt to answer the following questions:-
 		<ol>
 			<li>Why is FILLER used in the record descriptions.?</li>
-
 			<li>
 				In the program, the field StudentName is not described as it is in the record description above.&nbsp;
 				Why is it still a valid description?
 			</li>
-
 			<li>
 				Why are the Student File and Transaction File records filled with "9"'s when the end of file is reached?
 				What problem does this solve neatly?
 			</li>
-
 			<li>
 				The READ TransFile statement in the paragraph MergeTheFiles is outside the scope of the second IF
 				statment.&nbsp; Why is the IF statement written like this?
 			</li>
 		</ol>
-
 		<hr />
 		<table cellspacing="0" cellpadding="0" cols="1" width="200">
-			<tr align="CENTER" valign="TOP">
+			<tr align="center" valign="top">
 				<td>
 					<a href="index.html"
 						><img

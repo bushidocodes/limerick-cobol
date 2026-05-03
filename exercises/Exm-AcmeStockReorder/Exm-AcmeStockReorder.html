@@ -137,44 +137,36 @@
 		</style>
 		<title>ACME Stock Reorder 1999 (Exam Paper)</title>
 	</head>
-
 	<body bgcolor="#FFFFFF" class="Normal" lang="EN-GB" link="blue" vlink="purple">
 		<table border="1" cellpadding="5" cellspacing="0" height="72%" width="694">
 			<tr>
 				<td bgcolor="#990000" colspan="3" height="48" valign="middle">
 					<h2 align="center">
 						<font color="#FFFF00"
-							>The ACME <br />
+							>The ACME<br />
 							Stock Reorder System</font
 						>
 					</h2>
 				</td>
 			</tr>
 			<tr valign="top">
-				<td bgcolor="#FFFFFF" colspan="2" height="27">
-					<b>Time to complete</b>
-				</td>
+				<td bgcolor="#FFFFFF" colspan="2" height="27"><b>Time to complete</b></td>
 				<td bgcolor="#FFFFFF" height="27" width="78%">This is a tough one. Allow 6 hours continuous.</td>
 			</tr>
 			<tr valign="top">
-				<td bgcolor="#FFFFFF" colspan="2" height="87">
-					<b>Program Download</b>
-				</td>
+				<td bgcolor="#FFFFFF" colspan="2" height="87"><b>Program Download</b></td>
 				<td bgcolor="#FFFFFF" height="87" width="78%">
 					<p>
 						<a href="Acme99.CBL">ACME99.Cbl</a> is a model answer. Don't look at this until you have made
 						your own attempt at the program.
 					</p>
 					<p>
-						The main program (ACME99.cbl) calls the
-						<a href="POSTAGE-RATE.CBL">PostageRate.Cbl</a> program..
+						The main program (ACME99.cbl) calls the <a href="POSTAGE-RATE.CBL">PostageRate.Cbl</a> program..
 					</p>
 				</td>
 			</tr>
 			<tr valign="top">
-				<td bgcolor="#FFFFFF" colspan="2" height="8">
-					<b>Example Output </b>
-				</td>
+				<td bgcolor="#FFFFFF" colspan="2" height="8"><b>Example Output</b></td>
 				<td bgcolor="#FFFFFF" height="8" width="78%">
 					<p>
 						<a href="DataFiles.doc">DataFiles.Doc</a> (A word file showing the contents of the Orders file
@@ -184,16 +176,13 @@
 				</td>
 			</tr>
 			<tr valign="top">
-				<td bgcolor="#FFFFFF" colspan="2" height="195">
-					<b>Example Input</b>
-				</td>
+				<td bgcolor="#FFFFFF" colspan="2" height="195"><b>Example Input</b></td>
 				<td bgcolor="#FFFFFF" height="195" width="78%">
 					<p>
 						<a href="DataFilesBefore/INSTK.DAT">InStk.Dat</a> and
 						<a href="DataFilesBefore/INMANF.DAT">In-Manf.Dat</a> are sequential files that must be converted
 						into the relative Stock File (Stock.Dat) and the indexed Manufacturer File (Manf.Dat) by using
-						<a href="DataFilesBefore/Seq2Direct.CBL"> the Seq2Direct.Cbl</a>
-						program.
+						<a href="DataFilesBefore/Seq2Direct.CBL">the Seq2Direct.Cbl</a> program.
 					</p>
 					<p>
 						The conversion program is required because direct access files are not standard ASCII files and
@@ -201,16 +190,12 @@
 					</p>
 					<p>
 						To view the contents of the Stock and Manufacturer files they must first be converted into
-						sequential files using the
-						<a href="DataFilesAfter/Direct2Seq.CBL">Direct2Seq.Cbl</a>
-						program.
+						sequential files using the <a href="DataFilesAfter/Direct2Seq.CBL">Direct2Seq.Cbl</a> program.
 					</p>
 				</td>
 			</tr>
 			<tr valign="top">
-				<td bgcolor="#FFFFFF" colspan="2" height="23">
-					<b>Major Constructs</b>
-				</td>
+				<td bgcolor="#FFFFFF" colspan="2" height="23"><b>Major Constructs</b></td>
 				<td bgcolor="#FFFFFF" height="23" width="78%">
 					<font size="-1"
 						>Indexed files, Relative Files, SubPrograms, CALL..USING, READ, WRITE, REWRITE, Condition Names
@@ -221,13 +206,11 @@
 			<tr>
 				<td colspan="3" height="1373" valign="top">
 					<hr />
-					<h3>
-						<span style="font-variant: normal; text-transform: uppercase">Introduction</span>
-					</h3>
+					<h3><span style="font-variant: normal; text-transform: uppercase">Introduction</span></h3>
 					<p>
 						Acme Manufacturing Plc. manufactures a range of cheap catering equipment for the European
 						market. Some of the parts used are fabricated within the company, but most are standard units
-						purchased from a range of companies in Europe and Ireland. <br />
+						purchased from a range of companies in Europe and Ireland.<br />
 						<br />
 						<br />
 					</p>
@@ -239,20 +222,22 @@
 					</p>
 					<p>
 						For each stock item that needs to be re-ordered the program will create a record in the Orders
-						file and will set an O<font size="-1">N</font>O<font size="-1">RDER</font>
-						flag in the Stock file to show that the item has been ordered.
+						file and will set an O<font size="-1">N</font>O<font size="-1">RDER</font> flag in the Stock
+						file to show that the item has been ordered.
 					</p>
 					<p>
 						Acme Manufacturing tries to pay all suppliers in EU countries in advance. For these countries,
-						the C<font size="-1">OST</font>O<font size="-1">F</font>I
-						<font size="-1">TEMS</font>
-						and P<font size="-1">OSTAGE</font> fields of each Orders file record must be calculated.
+						the C<font size="-1">OST</font>O<font size="-1">F</font>I <font size="-1">TEMS</font> and P<font
+							size="-1"
+							>OSTAGE</font
+						>
+						fields of each Orders file record must be calculated.
 					</p>
 					<p>
 						With the exception of the Republic of Ireland, postage rates for all EU countries are the same.
 						The postage rates are obtained by calling a program "PostageRate" with two parameters; the
 						P<font size="-1">OST</font>N<font size="-1">UMBER</font> (In) and the P<font size="-1">OST</font
-						>C<font size="-1">HARGE </font>(In/Out). The P<font size="-1">OST</font>N<font size="-1"
+						>C<font size="-1">HARGE</font> (In/Out). The P<font size="-1">OST</font>N<font size="-1"
 							>UMBER</font
 						>
 						is derived, as shown by the decision table below. The P<font size="-1">OST</font>C<font
@@ -273,7 +258,7 @@
 									<p align="center" style="text-align: center">
 										<b><span style="text-transform: uppercase">Weight To</span></b
 										><br />
-										500  g
+										500&nbsp; g
 									</p>
 								</td>
 								<td class="Normal" valign="top" width="38">
@@ -288,120 +273,120 @@
 										Y
 									</p>
 								</td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
 							</tr>
 							<tr>
 								<td bgcolor="#FFFFCC" class="Normal" valign="top" width="111">
-									<p align="center" style="text-align: center">1    kg</p>
+									<p align="center" style="text-align: center">1&nbsp;&nbsp;&nbsp; kg</p>
 								</td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
 								<td class="Normal" valign="top" width="38">
 									<p align="center" style="text-align: center">Y</p>
 								</td>
 								<td class="Normal" valign="top" width="38">
 									<p align="center" style="text-align: center">Y</p>
 								</td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
 							</tr>
 							<tr>
 								<td bgcolor="#FFFFCC" class="Normal" valign="top" width="111">
-									<p align="center" style="text-align: center">3    kg</p>
+									<p align="center" style="text-align: center">3&nbsp;&nbsp;&nbsp; kg</p>
 								</td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
 								<td class="Normal" valign="top" width="38">
 									<p align="center" style="text-align: center">Y</p>
 								</td>
 								<td class="Normal" valign="top" width="38">
 									<p align="center" style="text-align: center">Y</p>
 								</td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
 							</tr>
 							<tr>
 								<td bgcolor="#FFFFCC" class="Normal" valign="top" width="111">
-									<p align="center" style="text-align: center">5    kg</p>
+									<p align="center" style="text-align: center">5&nbsp;&nbsp;&nbsp; kg</p>
 								</td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
 								<td class="Normal" valign="top" width="38">
 									<p align="center" style="text-align: center">Y</p>
 								</td>
 								<td class="Normal" valign="top" width="38">
 									<p align="center" style="text-align: center">Y</p>
 								</td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
 							</tr>
 							<tr>
 								<td bgcolor="#FFFFCC" class="Normal" valign="top" width="111">
-									<p align="center" style="text-align: center">10  kg</p>
+									<p align="center" style="text-align: center">10&nbsp; kg</p>
 								</td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
 								<td class="Normal" valign="top" width="38">
 									<p align="center" style="text-align: center">Y</p>
 								</td>
 								<td class="Normal" valign="top" width="38">
 									<p align="center" style="text-align: center">Y</p>
 								</td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
 							</tr>
 							<tr>
 								<td bgcolor="#FFFFCC" class="Normal" valign="top" width="111">
-									<p align="center" style="text-align: center">50  kg</p>
+									<p align="center" style="text-align: center">50&nbsp; kg</p>
 								</td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
 								<td class="Normal" valign="top" width="38">
 									<p align="center" style="text-align: center">Y</p>
 								</td>
 								<td class="Normal" valign="top" width="38">
-									<p align="center" style="text-align: center"> Y</p>
+									<p align="center" style="text-align: center">&nbsp;Y</p>
 								</td>
 							</tr>
 							<tr>
@@ -410,18 +395,18 @@
 										<b><span style="text-transform: uppercase">Country</span></b>
 									</p>
 								</td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
-								<td class="Normal" valign="top" width="38"> </td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
 							</tr>
 							<tr>
 								<td bgcolor="#FFFFCC" class="Normal" valign="top" width="111">
@@ -430,122 +415,96 @@
 								<td class="Normal" valign="top" width="38">
 									<p align="center" style="text-align: center">Y</p>
 								</td>
-								<td class="Normal" valign="top" width="38"> </td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
 								<td class="Normal" valign="top" width="38">
 									<p align="center" style="text-align: center">Y</p>
 								</td>
-								<td class="Normal" valign="top" width="38"> </td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
 								<td class="Normal" valign="top" width="38">
 									<p align="center" style="text-align: center">Y</p>
 								</td>
-								<td class="Normal" valign="top" width="38"> </td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
 								<td class="Normal" valign="top" width="38">
 									<p align="center" style="text-align: center">Y</p>
 								</td>
-								<td class="Normal" valign="top" width="38"> </td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
 								<td class="Normal" valign="top" width="38">
 									<p align="center" style="text-align: center">Y</p>
 								</td>
-								<td class="Normal" valign="top" width="38"> </td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
 								<td class="Normal" valign="top" width="38">
 									<p align="center" style="text-align: center">Y</p>
 								</td>
-								<td class="Normal" valign="top" width="38"> </td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
 							</tr>
 							<tr>
 								<td bgcolor="#FFFFCC" class="Normal" valign="top" width="111">
 									<p align="center" style="text-align: center">Other EU</p>
 								</td>
-								<td class="Normal" valign="top" width="38"> </td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
 								<td class="Normal" valign="top" width="38">
 									<p align="center" style="text-align: center">Y</p>
 								</td>
-								<td class="Normal" valign="top" width="38"> </td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
 								<td class="Normal" valign="top" width="38">
 									<p align="center" style="text-align: center">Y</p>
 								</td>
-								<td class="Normal" valign="top" width="38"> </td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
 								<td class="Normal" valign="top" width="38">
 									<p align="center" style="text-align: center">Y</p>
 								</td>
-								<td class="Normal" valign="top" width="38"> </td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
 								<td class="Normal" valign="top" width="38">
 									<p align="center" style="text-align: center">Y</p>
 								</td>
-								<td class="Normal" valign="top" width="38"> </td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
 								<td class="Normal" valign="top" width="38">
 									<p align="center" style="text-align: center">Y</p>
 								</td>
-								<td class="Normal" valign="top" width="38"> </td>
+								<td class="Normal" valign="top" width="38">&nbsp;</td>
 								<td class="Normal" valign="top" width="38">
 									<p align="center" style="text-align: center">Y</p>
 								</td>
 							</tr>
 							<tr>
 								<td bgcolor="#FFFFCC" class="Normal" valign="top" width="111">
-									<p align="center" style="text-align: center">
-										<b>Post Number</b>
-									</p>
+									<p align="center" style="text-align: center"><b>Post Number</b></p>
 								</td>
 								<td class="Normal" valign="top" width="38">
-									<p align="center" style="text-align: center">
-										<b>1</b>
-									</p>
+									<p align="center" style="text-align: center"><b>1</b></p>
 								</td>
 								<td class="Normal" valign="top" width="38">
-									<p align="center" style="text-align: center">
-										<b>2</b>
-									</p>
+									<p align="center" style="text-align: center"><b>2</b></p>
 								</td>
 								<td class="Normal" valign="top" width="38">
-									<p align="center" style="text-align: center">
-										<b>3</b>
-									</p>
+									<p align="center" style="text-align: center"><b>3</b></p>
 								</td>
 								<td class="Normal" valign="top" width="38">
-									<p align="center" style="text-align: center">
-										<b>4</b>
-									</p>
+									<p align="center" style="text-align: center"><b>4</b></p>
 								</td>
 								<td class="Normal" valign="top" width="38">
-									<p align="center" style="text-align: center">
-										<b>5</b>
-									</p>
+									<p align="center" style="text-align: center"><b>5</b></p>
 								</td>
 								<td class="Normal" valign="top" width="38">
-									<p align="center" style="text-align: center">
-										<b>6</b>
-									</p>
+									<p align="center" style="text-align: center"><b>6</b></p>
 								</td>
 								<td class="Normal" valign="top" width="38">
-									<p align="center" style="text-align: center">
-										<b>7</b>
-									</p>
+									<p align="center" style="text-align: center"><b>7</b></p>
 								</td>
 								<td class="Normal" valign="top" width="38">
-									<p align="center" style="text-align: center">
-										<b>8</b>
-									</p>
+									<p align="center" style="text-align: center"><b>8</b></p>
 								</td>
 								<td class="Normal" valign="top" width="38">
-									<p align="center" style="text-align: center">
-										<b>9</b>
-									</p>
+									<p align="center" style="text-align: center"><b>9</b></p>
 								</td>
 								<td class="Normal" valign="top" width="38">
-									<p align="center" style="text-align: center">
-										<b>10</b>
-									</p>
+									<p align="center" style="text-align: center"><b>10</b></p>
 								</td>
 								<td class="Normal" valign="top" width="38">
-									<p align="center" style="text-align: center">
-										<b>11</b>
-									</p>
+									<p align="center" style="text-align: center"><b>11</b></p>
 								</td>
 								<td class="Normal" valign="top" width="38">
-									<p align="center" style="text-align: center">
-										<b>12</b>
-									</p>
+									<p align="center" style="text-align: center"><b>12</b></p>
 								</td>
 							</tr>
 						</table>
@@ -561,31 +520,21 @@
 						<table border="1" cellpadding="0" cellspacing="0">
 							<tr bgcolor="#FFFFCC">
 								<td class="Normal" valign="top" width="139">
-									<p align="center" style="text-align: center">
-										<b>Field</b>
-									</p>
+									<p align="center" style="text-align: center"><b>Field</b></p>
 								</td>
 								<td class="Normal" valign="top" width="67">
-									<p align="center" style="text-align: center">
-										<b>Type</b>
-									</p>
+									<p align="center" style="text-align: center"><b>Type</b></p>
 								</td>
 								<td class="Normal" valign="top" width="100">
-									<p align="center" style="text-align: center">
-										<b>Length</b>
-									</p>
+									<p align="center" style="text-align: center"><b>Length</b></p>
 								</td>
 								<td class="Normal" valign="top" width="154">
-									<p align="center" style="text-align: center">
-										<b>Values</b>
-									</p>
+									<p align="center" style="text-align: center"><b>Values</b></p>
 								</td>
 							</tr>
 							<tr>
 								<td class="Normal" valign="top" width="139">
-									<p>
-										<span style="text-transform: uppercase">ItemDescription</span>
-									</p>
+									<p><span style="text-transform: uppercase">ItemDescription</span></p>
 								</td>
 								<td class="Normal" valign="top" width="67">
 									<p align="center" style="text-align: center">X</p>
@@ -599,9 +548,7 @@
 							</tr>
 							<tr>
 								<td class="Normal" height="20" valign="top" width="139">
-									<p>
-										<span style="text-transform: uppercase">ManfName</span>
-									</p>
+									<p><span style="text-transform: uppercase">ManfName</span></p>
 								</td>
 								<td class="Normal" height="20" valign="top" width="67">
 									<p align="center" style="text-align: center">X</p>
@@ -615,9 +562,7 @@
 							</tr>
 							<tr>
 								<td class="Normal" valign="top" width="139">
-									<p>
-										<span style="text-transform: uppercase">QtyRequired</span>
-									</p>
+									<p><span style="text-transform: uppercase">QtyRequired</span></p>
 								</td>
 								<td class="Normal" valign="top" width="67">
 									<p align="center" style="text-align: center">9</p>
@@ -631,9 +576,7 @@
 							</tr>
 							<tr>
 								<td class="Normal" valign="top" width="139">
-									<p>
-										<span style="text-transform: uppercase">CostOfItems</span>
-									</p>
+									<p><span style="text-transform: uppercase">CostOfItems</span></p>
 								</td>
 								<td class="Normal" valign="top" width="67">
 									<p align="center" style="text-align: center">9</p>
@@ -647,9 +590,7 @@
 							</tr>
 							<tr>
 								<td class="Normal" valign="top" width="139">
-									<p>
-										<span style="text-transform: uppercase">Postage</span>
-									</p>
+									<p><span style="text-transform: uppercase">Postage</span></p>
 								</td>
 								<td class="Normal" valign="top" width="67">
 									<p align="center" style="text-align: center">9</p>
@@ -658,25 +599,19 @@
 									<p align="center" style="text-align: center">4</p>
 								</td>
 								<td class="Normal" valign="top" width="154">
-									<p align="center">0.00  - 99.99</p>
+									<p align="center">0.00&nbsp; - 99.99</p>
 								</td>
 							</tr>
 						</table>
 						<p align="left">
 							The last two items are 0 for all non EU countries.<br />
-							The
-							<span style="text-transform: uppercase">QtyRequired</span>
-							is obtained from the
-							<span style="text-transform: uppercase">ReorderQty</span>
-							field in the Stock File.
+							The <span style="text-transform: uppercase">QtyRequired</span> is obtained from the
+							<span style="text-transform: uppercase">ReorderQty</span> field in the Stock File.
 						</p>
 					</div>
 					<p>
-						The
-						<span style="text-transform: uppercase">CostOfItems</span>
-						is the
-						<span style="text-transform: uppercase">QtyRequired</span>
-						multiplied by the
+						The <span style="text-transform: uppercase">CostOfItems</span> is the
+						<span style="text-transform: uppercase">QtyRequired</span> multiplied by the
 						<span style="text-transform: uppercase">ItemCost</span>.<br />
 						<br />
 					</p>
@@ -685,31 +620,21 @@
 						<table border="1" cellpadding="0" cellspacing="0">
 							<tr bgcolor="#FFFFCC">
 								<td class="Normal" valign="top" width="139">
-									<p align="center" style="text-align: center">
-										<b>Field</b>
-									</p>
+									<p align="center" style="text-align: center"><b>Field</b></p>
 								</td>
 								<td class="Normal" valign="top" width="67">
-									<p align="center" style="text-align: center">
-										<b>Type</b>
-									</p>
+									<p align="center" style="text-align: center"><b>Type</b></p>
 								</td>
 								<td class="Normal" valign="top" width="100">
-									<p align="center" style="text-align: center">
-										<b>Length</b>
-									</p>
+									<p align="center" style="text-align: center"><b>Length</b></p>
 								</td>
 								<td class="Normal" valign="top" width="154">
-									<p align="center" style="text-align: center">
-										<b>Values</b>
-									</p>
+									<p align="center" style="text-align: center"><b>Values</b></p>
 								</td>
 							</tr>
 							<tr>
 								<td class="Normal" valign="top" width="139">
-									<p>
-										<span style="text-transform: uppercase">StockNumber</span>
-									</p>
+									<p><span style="text-transform: uppercase">StockNumber</span></p>
 								</td>
 								<td class="Normal" valign="top" width="66">
 									<p align="center" style="text-align: center">
@@ -729,9 +654,7 @@
 							</tr>
 							<tr>
 								<td class="Normal" valign="top" width="139">
-									<p>
-										<span style="text-transform: uppercase">ManfCode</span>
-									</p>
+									<p><span style="text-transform: uppercase">ManfCode</span></p>
 								</td>
 								<td class="Normal" valign="top" width="66">
 									<p align="center" style="text-align: center">
@@ -751,9 +674,7 @@
 							</tr>
 							<tr>
 								<td class="Normal" valign="top" width="139">
-									<p>
-										<span style="text-transform: uppercase">ItemDescription</span>
-									</p>
+									<p><span style="text-transform: uppercase">ItemDescription</span></p>
 								</td>
 								<td class="Normal" valign="top" width="66">
 									<p align="center" style="text-align: center">
@@ -773,9 +694,7 @@
 							</tr>
 							<tr>
 								<td class="Normal" valign="top" width="139">
-									<p>
-										<span style="text-transform: uppercase">QtyInStock</span>
-									</p>
+									<p><span style="text-transform: uppercase">QtyInStock</span></p>
 								</td>
 								<td class="Normal" valign="top" width="66">
 									<p align="center" style="text-align: center">
@@ -795,9 +714,7 @@
 							</tr>
 							<tr>
 								<td class="Normal" valign="top" width="139">
-									<p>
-										<span style="text-transform: uppercase">ReorderLevel</span>
-									</p>
+									<p><span style="text-transform: uppercase">ReorderLevel</span></p>
 								</td>
 								<td class="Normal" valign="top" width="66">
 									<p align="center" style="text-align: center">
@@ -817,9 +734,7 @@
 							</tr>
 							<tr>
 								<td class="Normal" valign="top" width="139">
-									<p>
-										<span style="text-transform: uppercase">ReorderQty</span>
-									</p>
+									<p><span style="text-transform: uppercase">ReorderQty</span></p>
 								</td>
 								<td class="Normal" valign="top" width="66">
 									<p align="center" style="text-align: center">
@@ -839,9 +754,7 @@
 							</tr>
 							<tr>
 								<td class="Normal" valign="top" width="139">
-									<p>
-										<span style="text-transform: uppercase">ItemCost</span>
-									</p>
+									<p><span style="text-transform: uppercase">ItemCost</span></p>
 								</td>
 								<td class="Normal" valign="top" width="66">
 									<p align="center" style="text-align: center">
@@ -861,9 +774,7 @@
 							</tr>
 							<tr>
 								<td class="Normal" valign="top" width="139">
-									<p>
-										<span style="text-transform: uppercase">ItemWeight</span>
-									</p>
+									<p><span style="text-transform: uppercase">ItemWeight</span></p>
 								</td>
 								<td class="Normal" valign="top" width="66">
 									<p align="center" style="text-align: center">
@@ -886,9 +797,7 @@
 							</tr>
 							<tr>
 								<td class="Normal" valign="top" width="139">
-									<p>
-										<span style="text-transform: uppercase">OnOrder</span>
-									</p>
+									<p><span style="text-transform: uppercase">OnOrder</span></p>
 								</td>
 								<td class="Normal" valign="top" width="66">
 									<p align="center" style="text-align: center">
@@ -908,47 +817,33 @@
 							</tr>
 						</table>
 					</div>
-
 					<p>
 						<b>Note:</b> The relative record key is obtained by subtracting 10000 from the
 						<span style="text-transform: uppercase">StockNumber</span>.
 					</p>
-
 					<p><b>Manufacturer File (Indexed)</b></p>
 					<div align="center">
 						<table border="1" cellpadding="0" cellspacing="0">
 							<tr bgcolor="#FFFFCC">
 								<td class="Normal" valign="top" width="102">
-									<p align="center" style="text-align: center">
-										<b>Field</b>
-									</p>
+									<p align="center" style="text-align: center"><b>Field</b></p>
 								</td>
 								<td class="Normal" valign="top" width="139">
-									<p align="center" style="text-align: center">
-										<b>Key</b>
-									</p>
+									<p align="center" style="text-align: center"><b>Key</b></p>
 								</td>
 								<td class="Normal" valign="top" width="66">
-									<p align="center" style="text-align: center">
-										<b>Type</b>
-									</p>
+									<p align="center" style="text-align: center"><b>Type</b></p>
 								</td>
 								<td class="Normal" valign="top" width="77">
-									<p align="center" style="text-align: center">
-										<b>Length</b>
-									</p>
+									<p align="center" style="text-align: center"><b>Length</b></p>
 								</td>
 								<td class="Normal" valign="top" width="112">
-									<p align="center" style="text-align: center">
-										<b>Values</b>
-									</p>
+									<p align="center" style="text-align: center"><b>Values</b></p>
 								</td>
 							</tr>
 							<tr>
 								<td class="Normal" valign="top" width="102">
-									<p>
-										<span style="text-transform: uppercase">ManfCode</span>
-									</p>
+									<p><span style="text-transform: uppercase">ManfCode</span></p>
 								</td>
 								<td class="Normal" valign="top" width="139">
 									<p align="center" style="text-align: center">Primary</p>
@@ -965,9 +860,7 @@
 							</tr>
 							<tr>
 								<td class="Normal" valign="top" width="102">
-									<p>
-										<span style="text-transform: uppercase">ManfName</span>
-									</p>
+									<p><span style="text-transform: uppercase">ManfName</span></p>
 								</td>
 								<td class="Normal" valign="top" width="139">
 									<p align="center" style="text-align: center">ALT with Duplicates</p>
@@ -984,9 +877,7 @@
 							</tr>
 							<tr>
 								<td class="Normal" valign="top" width="102">
-									<p>
-										<span style="text-transform: uppercase">ManfAddress</span>
-									</p>
+									<p><span style="text-transform: uppercase">ManfAddress</span></p>
 								</td>
 								<td class="Normal" valign="top" width="139">
 									<p align="center" style="text-align: center">-</p>
@@ -1003,34 +894,30 @@
 							</tr>
 						</table>
 					</div>
-
-					<p><b>Note.</b> </p>
+					<p><b>Note.</b>&nbsp;</p>
 					<p>
 						The constituent parts of the address are separated by commas, with the country name coming
-						last. 
+						last.&nbsp;
 					</p>
 					<p>
 						The country name for Ireland and Northern Ireland is always <b>Ireland</b> even though, for
-						postage charge purposes, Northern Ireland is treated as an Other EU country. 
+						postage charge purposes, Northern Ireland is treated as an Other EU country.&nbsp;
 					</p>
 					<p>
-						The second last item in an Irish address is the county name.  This allows us to distinguish
-						Northern Ireland addresses from those in the Republic.   
-						<br />
-						e.g. 
+						The second last item in an Irish address is the county name.&nbsp; This allows us to distinguish
+						Northern Ireland addresses from those in the Republic.&nbsp;&nbsp;&nbsp;<br />
+						e.g.&nbsp;
 						<span style="font-size: 10pt">SMALL PARTS LTD.,15 SHORE ROAD,BALLYMENA,ANTRIM,IRELAND</span>
 					</p>
 					<p>Each constituent part of the address will immediately follow its preceding comma.</p>
 					<p>Addresses are always in upper case.</p>
-
 					<p>
-						<b>EU countries<br /> </b>Austria, Belgium, Denmark, England, Finland, France, Germany, Greece,
+						<b>EU countries<br /></b> Austria, Belgium, Denmark, England, Finland, France, Germany, Greece,
 						Ireland, Italy, Luxembourg, Portugal, Scotland, Spain, Sweden, Wales.
 					</p>
 					<p>
-						<b>Northern Ireland counties<br /> </b>Antrim, Armagh, Derry, Down, Fermanagh, Tyrone.
+						<b>Northern Ireland counties<br /></b> Antrim, Armagh, Derry, Down, Fermanagh, Tyrone.
 					</p>
-
 					<hr />
 					<p align="center">
 						<font size="-1"><b>Copyright Notice</b></font>

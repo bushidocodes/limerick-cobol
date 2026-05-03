@@ -180,7 +180,6 @@
 			}
 		</style>
 	</head>
-
 	<body alink="#009B00" bgcolor="#FFFFFF" link="#0000FF" text="#000000" vlink="#FF0000">
 		<table border="1" width="715">
 			<tr>
@@ -189,9 +188,7 @@
 						<tr>
 							<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top">
 								<center>
-									<p>
-										<img height="59" src="Resources/pics/t-CobolTut.gif" width="173" />
-									</p>
+									<p><img height="59" src="Resources/pics/t-CobolTut.gif" width="173" /></p>
 								</center>
 								<center>
 									<h1>Searching Tables</h1>
@@ -218,7 +215,7 @@
 										>
 									</li>
 									<li>
-										<a href="#part3">Searching multi-dimension tables </a><br />
+										<a href="#part3">Searching multi-dimension tables</a><br />
 										<font size="-1"
 											>The SEARCH cannot be applied directly to search a multi-dimension table.
 											This section demonstrates how to overcome this restriction by treating the
@@ -241,19 +238,17 @@
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#993300" colspan="2" valign="top">
-								<h2 align="CENTER" id="intro">
-									<font color="#FFFF00">
-										<font face="Arial, Helvetica, sans-serif">Introduction</font>
-									</font>
+							<td align="left" bgcolor="#993300" colspan="2" valign="top">
+								<h2 align="center" id="intro">
+									<font color="#FFFF00"
+										><font face="Arial, Helvetica, sans-serif">Introduction</font></font
+									>
 								</h2>
 							</td>
 						</tr>
 						<tr>
 							<td bgcolor="#FFFFCC" valign="top" width="175">
-								<h4>
-									<font color="#993300" face="Arial, Helvetica, sans-serif">Aims</font>
-								</h4>
+								<h4><font color="#993300" face="Arial, Helvetica, sans-serif">Aims</font></h4>
 							</td>
 							<td valign="top" width="525">
 								<div align="center">
@@ -268,14 +263,13 @@
 										binary search may be used.
 									</p>
 									<p align="left">
-										In COBOL, the
-										<font size="-1">SEARCH</font> verb is used for sequential searches and the
-										<font size="-1">SEARCH ALL</font> for binary searches.
+										In COBOL, the <font size="-1">SEARCH</font> verb is used for sequential searches
+										and the <font size="-1">SEARCH ALL</font> for binary searches.
 									</p>
 									<p align="left">
 										This tutorial introduces the syntax and rules of operation of the
 										<font size="-1">SEARCH</font> and <font size="-1">SEARCH ALL</font> verbs. It
-										introduces the extensions to the<font size="-1"> OCCURS </font>clause that are
+										introduces the extensions to the <font size="-1">OCCURS</font> clause that are
 										required when the <font size="-1">SEARCH</font> or
 										<font size="-1">SEARCH ALL</font> is used. It shows how the SET verb may be used
 										to alter the value of an index and it demonstrates how the
@@ -287,33 +281,26 @@
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="175">
-								<h4>
-									<font color="#800000" face="Arial, Helvetica, sans-serif">Objectives</font>
-								</h4>
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+								<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Objectives</font></h4>
 							</td>
 							<td valign="top" width="525">
 								<p>By the end of this unit you should -</p>
 								<ol>
 									<li>
-										Know the new
-										<font size="-1">OCCURS</font> clause entries that are required when the
-										<font size="-1">SEARCH</font> is used to search a table.
+										Know the new <font size="-1">OCCURS</font> clause entries that are required when
+										the <font size="-1">SEARCH</font> is used to search a table.
 									</li>
-									<li>
-										Be able to use the
-										<font size="-1">SEARCH</font> to search a table.
-									</li>
+									<li>Be able to use the <font size="-1">SEARCH</font> to search a table.</li>
 									<li>Understand the restrictions that apply to manipulating a table index.</li>
 									<li>Be able to use the SET verb to change the value of a table index.</li>
 									<li>
-										Understand how the
-										<font size="-1">SEARCH </font>can be used to search a multi-dimension table.
+										Understand how the <font size="-1">SEARCH</font> can be used to search a
+										multi-dimension table.
 									</li>
 									<li>
-										Know the new
-										<font size="-1">OCCURS</font> clause entries that are required when the
-										<font size="-1">SEARCH ALL </font>is used to search a table.
+										Know the new <font size="-1">OCCURS</font> clause entries that are required when
+										the <font size="-1">SEARCH ALL</font> is used to search a table.
 									</li>
 									<li>Understand how a binary search works.</li>
 								</ol>
@@ -321,10 +308,8 @@
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="175">
-								<h4>
-									<font color="#800000" face="Arial, Helvetica, sans-serif">Prerequisites</font>
-								</h4>
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+								<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Prerequisites</font></h4>
 							</td>
 							<td valign="top" width="525">
 								<ul>
@@ -347,27 +332,25 @@
 								<div align="center">
 									<hr width="100%" />
 									<p>
-										<a href="#top">
-											<img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+										<a href="#top"
+											><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
 										/></a>
 									</p>
 								</div>
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#993300" colspan="2" valign="top">
-								<h2 align="CENTER" id="part1">
-									<font color="#FFFF00">
-										<font face="Arial, Helvetica, sans-serif">Occurs clause extensions</font>
-									</font>
+							<td align="left" bgcolor="#993300" colspan="2" valign="top">
+								<h2 align="center" id="part1">
+									<font color="#FFFF00"
+										><font face="Arial, Helvetica, sans-serif">Occurs clause extensions</font></font
+									>
 								</h2>
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-								<h4>
-									<font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font>
-								</h4>
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+								<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
 							</td>
 							<td valign="top" width="525">
 								<p align="left">
@@ -375,11 +358,10 @@
 									used the normal table declarations are no longer sufficient and the
 									<font size="-1">OCCURS</font> clause must be extended with the
 									<font size="-1">INDEXED BY</font> phrase and, in the case of the
-									<font size="-1">SEARCH ALL</font>, by the <font size="-1">KEY IS </font>phrase.
+									<font size="-1">SEARCH ALL</font>, by the <font size="-1">KEY IS</font> phrase.
 								</p>
 								<p align="left">
-									The full syntax of the
-									<font size="-1">OCCURS </font>clause, including the
+									The full syntax of the <font size="-1">OCCURS</font> clause, including the
 									<font size="-1">INDEXED BY</font> and <font size="-1">KEY IS</font> phrases is shown
 									below.
 								</p>
@@ -387,25 +369,20 @@
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4>
 									<font color="#800000" face="Arial, Helvetica, sans-serif"
 										>Full OCCURS clause syntax</font
 									>
 								</h4>
-
-								<h4 align="center">
-									<font size="-1"> </font>
-								</h4>
+								<h4 align="center"><font size="-1"></font></h4>
 							</td>
 							<td valign="top" width="525">
-								<p align="left">
-									<img height="122" src="Resources/pics/Search1.gif" width="331" />
-								</p>
+								<p align="left"><img height="122" src="Resources/pics/Search1.gif" width="331" /></p>
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4>
 									<font color="#800000" face="Arial, Helvetica, sans-serif"
 										>INDEXED BY phrase - notes</font
@@ -414,19 +391,18 @@
 							</td>
 							<td valign="top" width="525">
 								<p align="left">
-									Before the <font size="-1">SEARCH </font>or <font size="-1">SEARCH ALL</font> can be
+									Before the <font size="-1">SEARCH</font> or <font size="-1">SEARCH ALL</font> can be
 									used to search a table, the table must be defined as having an index item associated
 									with it.
 								</p>
 								<p align="left">
-									The index is specified by the
-									<i>IndexName </i>given in the <font size="-1">INDEXED BY</font> phrase.
+									The index is specified by the <i>IndexName</i> given in the
+									<font size="-1">INDEXED BY</font> phrase.
 								</p>
 								<p align="left">
 									The index defined in a table declaration is associated with that table and is the
-									subscript which the
-									<font size="-1">SEARCH</font> or <font size="-1">SEARCH ALL</font> uses to access
-									the table.
+									subscript which the <font size="-1">SEARCH</font> or
+									<font size="-1">SEARCH ALL</font> uses to access the table.
 								</p>
 								<p align="left">
 									Using an index makes the searching more efficient. Since the index is linked to a
@@ -435,10 +411,9 @@
 									the search.
 								</p>
 								<p align="left">
-									The only entry that needs to be made for an
-									<i>IndexName</i> is to use it in an<font size="-1"> INDEXED BY</font>
-									phrase. There is no need to define a picture clause for it, because the compiler
-									handles its declaration automatically.
+									The only entry that needs to be made for an <i>IndexName</i> is to use it in an
+									<font size="-1">INDEXED BY</font> phrase. There is no need to define a picture
+									clause for it, because the compiler handles its declaration automatically.
 								</p>
 								<p align="left">
 									Because an index has a special internal representation it cannot be displayed and
@@ -448,13 +423,13 @@
 								</p>
 								<p align="left">
 									Normal arithmetic cannot be performed on a table index. The
-									<font size="-1"> SET</font> verb must be used to increment or decrement the value of
+									<font size="-1">SET</font> verb must be used to increment or decrement the value of
 									an index item.
 								</p>
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4>
 									<font color="#800000" face="Arial, Helvetica, sans-serif"
 										>KEY IS phrase - notes</font
@@ -463,18 +438,17 @@
 							</td>
 							<td valign="top" width="525">
 								<p>
-									While the
-									<font size="-1">SEARCH</font> performs a sequential search on a table, the
+									While the <font size="-1">SEARCH</font> performs a sequential search on a table, the
 									<font size="-1">SEARCH ALL</font> performs a binary search. But a binary search
 									requires that the table is ordered on some key field. The key field may be the
 									element itself or, where the element is a group item, a field within the element.
 								</p>
 								<p>
-									Before a table can be searched with the
-									<font size="-1">SEARCH ALL</font>, the key field must be identified by using the
-									<font size="-1">KEY IS</font> phrase in the table declaration. As well as
-									identifying the key field, the <font size="-1">KEY IS</font> phrase specifies
-									whether the table is in ascending or descending order.
+									Before a table can be searched with the <font size="-1">SEARCH ALL</font>, the key
+									field must be identified by using the <font size="-1">KEY IS</font> phrase in the
+									table declaration. As well as identifying the key field, the
+									<font size="-1">KEY IS</font> phrase specifies whether the table is in ascending or
+									descending order.
 								</p>
 							</td>
 						</tr>
@@ -483,27 +457,25 @@
 								<div align="center">
 									<hr width="100%" />
 									<p>
-										<a href="#top">
-											<img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+										<a href="#top"
+											><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
 										/></a>
 									</p>
 								</div>
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#993300" colspan="2" valign="top">
-								<h2 align="CENTER" id="part2">
-									<font color="#FFFF00">
-										<font face="Arial, Helvetica, sans-serif">The SEARCH verb</font>
-									</font>
+							<td align="left" bgcolor="#993300" colspan="2" valign="top">
+								<h2 align="center" id="part2">
+									<font color="#FFFF00"
+										><font face="Arial, Helvetica, sans-serif">The SEARCH verb</font></font
+									>
 								</h2>
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-								<h4>
-									<font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font>
-								</h4>
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+								<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
 							</td>
 							<td valign="top" width="525">
 								<p>
@@ -514,43 +486,36 @@
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-								<h4>
-									<font color="#800000" face="Arial, Helvetica, sans-serif">SEARCH syntax </font>
-								</h4>
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+								<h4><font color="#800000" face="Arial, Helvetica, sans-serif">SEARCH syntax</font></h4>
 							</td>
 							<td valign="top" width="525">
+								<p><img height="152" src="Resources/pics/Search2.gif" width="374" /></p>
 								<p>
-									<img height="152" src="Resources/pics/Search2.gif" width="374" />
-								</p>
-								<p>
-									<b> <font size="-1">SEARCH</font> rules </b>
+									<b><font size="-1">SEARCH</font> rules</b>
 								</p>
 								<ol>
 									<li>
 										<i>TableName</i> must identify a data-item in the table hierarchy with both
-										<font size="-1">OCCURS</font> and
-										<font size="-1">INDEXED BY</font>
-										clauses. The index specified in the
-										<font size="-1">INDEXED BY</font> clause of <i>TableName</i> is the controlling
-										index of the <font size="-1">SEARCH</font>.
+										<font size="-1">OCCURS</font> and <font size="-1">INDEXED BY</font> clauses. The
+										index specified in the <font size="-1">INDEXED BY</font> clause of
+										<i>TableName</i> is the controlling index of the <font size="-1">SEARCH</font>.
 									</li>
 									<li>
-										The <font size="-1">SEARCH </font>can only be used if the table to be searched
+										The <font size="-1">SEARCH</font> can only be used if the table to be searched
 										has an index item associated with it. An index item is associated with a table
-										by using the<font size="-1"> INDEXED BY</font> phrase in the table declaration.
+										by using the <font size="-1">INDEXED BY</font> phrase in the table declaration.
 										The index item is known as the table index. The table index is the subscript
 										which the <font size="-1">SEARCH</font> uses to access the table.
 									</li>
 								</ol>
 								<p>
-									<b> <font size="-1">SEARCH</font> notes </b>
+									<b><font size="-1">SEARCH</font> notes</b>
 								</p>
 								<ul>
 									<li>
-										The<font size="-1"> SEARCH</font>
-										searches a table sequentially starting at the element pointed to by the table
-										index.
+										The <font size="-1">SEARCH</font> searches a table sequentially starting at the
+										element pointed to by the table index.
 									</li>
 									<li>
 										The starting value of the table index is under the control of the programmer.
@@ -560,9 +525,8 @@
 										size of the table).
 									</li>
 									<li>
-										The
-										<font size="-1">VARYING</font> phrase is only required when we require data-item
-										to mirror the values of the table index. When the
+										The <font size="-1">VARYING</font> phrase is only required when we require
+										data-item to mirror the values of the table index. When the
 										<font size="-1">VARYING</font> phrase is used, and the associated data-item is
 										not the table index, then the data-item is varied along with the index.
 									</li>
@@ -571,24 +535,24 @@
 										action to be taken if the searched for item is not found in the table.
 									</li>
 									<li>
-										When the
-										<font size="-1">AT END</font> is specified, and the index is incremented beyond
-										the highest legal occurrence for the table (i.e. the item has not been found),
-										then the statements following the <font size="-1">AT END</font> will be executed
-										and the <font size="-1">SEARCH </font>will terminate.
+										When the <font size="-1">AT END</font> is specified, and the index is
+										incremented beyond the highest legal occurrence for the table (i.e. the item has
+										not been found), then the statements following the
+										<font size="-1">AT END</font> will be executed and the
+										<font size="-1">SEARCH</font> will terminate.
 									</li>
 									<li>
-										The conditions attached to the
-										<font size="-1">SEARCH</font> are evaluated in turn and as soon as one is true
-										the statements following the <font size="-1">WHEN </font>phrase are executed and
-										the <font size="-1">SEARCH</font> ends.
+										The conditions attached to the <font size="-1">SEARCH</font> are evaluated in
+										turn and as soon as one is true the statements following the
+										<font size="-1">WHEN</font> phrase are executed and the
+										<font size="-1">SEARCH</font> ends.
 									</li>
 								</ul>
 								<hr size="1" width="100%" />
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4>
 									<font color="#800000" face="Arial, Helvetica, sans-serif">The SET verb syntax</font>
 								</h4>
@@ -610,41 +574,33 @@
 									be handled by the <font size="-1">SET</font> verb.
 								</p>
 								<p>
-									The versions of the
-									<font size="-1">SET</font> verb shown below are used to assign a value to an index
-									item, to assign the value of an index item to a variable, and to increment or
-									decrement the value of an index item.
+									The versions of the <font size="-1">SET</font> verb shown below are used to assign a
+									value to an index item, to assign the value of an index item to a variable, and to
+									increment or decrement the value of an index item.
 								</p>
-								<p>
-									<img height="148" src="Resources/pics/Search4.gif" width="326" />
-								</p>
+								<p><img height="148" src="Resources/pics/Search4.gif" width="326" /></p>
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4>
 									<font color="#800000" face="Arial, Helvetica, sans-serif">SEARCH example 1</font>
 								</h4>
-
-								<p align="center">
-									<img height="44" src="Resources/pics/program.gif" width="42" />
-								</p>
+								<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
 							</td>
 							<td valign="top" width="525">
 								<p>
 									The example program below accepts an upper case letter from the user and then uses
-									the
-									<font size="-1">SEARCH</font> verb to searche a pre-filled table of letters to find
-									and display the position of the letter in the alphabet.
+									the <font size="-1">SEARCH</font> verb to searche a pre-filled table of letters to
+									find and display the position of the letter in the alphabet.
 								</p>
 								<p>
 									Because a table index can be tricky to manipulate (can't display it, can't move it)
-									the program uses the
-									<font size="-1">VARYING</font> phrase to vary an ordinary numeric value along with
-									the index. When the letter is found in the table, this item will contain the same
-									value as the index and we can display it without the complications we might
-									encounter with the index item. For instance, to display the value of the index item
-									we would require following code -
+									the program uses the <font size="-1">VARYING</font> phrase to vary an ordinary
+									numeric value along with the index. When the letter is found in the table, this item
+									will contain the same value as the index and we can display it without the
+									complications we might encounter with the index item. For instance, to display the
+									value of the index item we would require following code -
 								</p>
 								<pre class="language-cobol"><code class="language-cobol">SET LetterPos TO LetterIdx
 MOVE LetterPos TO PrnPos
@@ -711,29 +667,24 @@ Begin.
 										</td>
 									</tr>
 								</table>
-
 								<hr size="1" width="100%" />
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4>
 									<font color="#800000" face="Arial, Helvetica, sans-serif">Example program 2</font>
 								</h4>
-
-								<p align="center">
-									<img height="44" src="Resources/pics/program.gif" width="42" />
-								</p>
+								<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
 							</td>
 							<td valign="top" width="525">
 								<p>
 									In this example below, we return to the County Tax Report problem. In the last
-									question we posed in the
-									<i>Using Tables</i> tutorial we asked how the County Tax report problem could be
-									solved if the tax record contained a county name instead of a county code. We noted
-									that the county name had to be converted into a numeric value that we could use as a
-									subscript. In the <i>Using Tables</i> tutorial we used a
-									<font size="-1">PERFORM</font> to search through the table to find the numeric
+									question we posed in the <i>Using Tables</i> tutorial we asked how the County Tax
+									report problem could be solved if the tax record contained a county name instead of
+									a county code. We noted that the county name had to be converted into a numeric
+									value that we could use as a subscript. In the <i>Using Tables</i> tutorial we used
+									a <font size="-1">PERFORM</font> to search through the table to find the numeric
 									equivalent of the county name. In this example we use the
 									<font size="-1">SEARCH</font>.
 								</p>
@@ -743,7 +694,6 @@ Begin.
 									the <i>CountyIdx</i>. We can not use <i>CountyIdx</i> as a subscript for the
 									<i>CountyTaxTable</i> because it is bound to the <i>CountyNameTable</i>.
 								</p>
-
 								<table
 									align="center"
 									background="Resources/pics/code.gif"
@@ -865,34 +815,32 @@ DisplayCountyTaxes.
 								<div align="center">
 									<hr />
 									<p>
-										<a href="#top">
-											<img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+										<a href="#top"
+											><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
 										/></a>
 									</p>
 								</div>
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#993300" colspan="2" valign="top">
-								<h2 align="CENTER" id="part3">
-									<font color="#FFFF00">
-										<font face="Arial, Helvetica, sans-serif"
+							<td align="left" bgcolor="#993300" colspan="2" valign="top">
+								<h2 align="center" id="part3">
+									<font color="#FFFF00"
+										><font face="Arial, Helvetica, sans-serif"
 											>Searching multi-dimension tables</font
-										>
-									</font>
+										></font
+									>
 								</h2>
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-								<h4>
-									<font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font>
-								</h4>
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+								<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
 							</td>
 							<td valign="top" width="525">
 								<p align="left">
 									When the <font size="-1">SEARCH</font> verb is used, the target of the
-									<font size="-1">SEARCH </font>must be an item in the table with both an
+									<font size="-1">SEARCH</font> must be an item in the table with both an
 									<font size="-1">OCCURS</font> clause and an
 									<font size="-1">INDEXED BY</font> phrase. The index item specified in the
 									<font size="-1">INDEXED BY</font> phrase is the controlling index of the search. The
@@ -930,12 +878,11 @@ DisplayCountyTaxes.
 								</div>
 								<p align="left">
 									Suppose we want to search the table to discover which room is occupied by customer
-									126789. We can't use the
-									<font size="-1">SEARCH</font> to search the whole two-dimension table directly but
-									we can use the <font size="-1">SEARCH</font> to search the table floor by floor. In
-									other words, we can treat the table as if it were a collection of floor tables and
-									we use the <font size="-1">SEARCH </font>to search all the rooms in a particular
-									floor table.
+									126789. We can't use the <font size="-1">SEARCH</font> to search the whole
+									two-dimension table directly but we can use the <font size="-1">SEARCH</font> to
+									search the table floor by floor. In other words, we can treat the table as if it
+									were a collection of floor tables and we use the <font size="-1">SEARCH</font> to
+									search all the rooms in a particular floor table.
 								</p>
 								<p align="left">
 									The example program below demonstrates how the <font size="-1">SEARCH</font> verb
@@ -944,10 +891,8 @@ DisplayCountyTaxes.
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-								<p align="center">
-									<img height="44" src="Resources/pics/program.gif" width="42" />
-								</p>
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+								<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
 							</td>
 							<td valign="top" width="525">
 								<table
@@ -1033,17 +978,17 @@ LoadTable.
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4>
 									<font color="#800000" face="Arial, Helvetica, sans-serif"
-										>The Race Results Example program
-									</font>
+										>The Race Results Example program</font
+									>
 								</h4>
 							</td>
 							<td valign="top" width="525">
 								<p>
-									This example demonstrates how the<font size="-1"> SEARCH</font>
-									may be used to search either of the dimensions of a two-dimension table.
+									This example demonstrates how the <font size="-1">SEARCH</font> may be used to
+									search either of the dimensions of a two-dimension table.
 								</p>
 								<p>
 									Suppose that we want to use a two-dimension table to hold the finishing positions of
@@ -1058,9 +1003,7 @@ LoadTable.
 
 </code></pre>
 								<p>We can represent this diagramatically as follows -</p>
-								<p align="center">
-									<img height="109" src="Resources/pics/Search6.gif" width="469" />
-								</p>
+								<p align="center"><img height="109" src="Resources/pics/Search6.gif" width="469" /></p>
 								<p>
 									In the example program below, the first dimension of the table is searched to find
 									the results for a particular venue and then the second dimension, representing the
@@ -1070,10 +1013,8 @@ LoadTable.
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-								<p align="center">
-									<img height="44" src="Resources/pics/program.gif" width="42" />
-								</p>
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+								<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
 							</td>
 							<td valign="top" width="525">
 								<table
@@ -1162,9 +1103,8 @@ LoadTable.
 								<p>
 									In the example above an out-of-line perform was used for the second
 									<font size="-1">SEARCH</font>. This was not strictly necessary. The same result
-									could have been achieved with nested
-									<font size="-1">SEARCH</font>
-									statements. For instance -
+									could have been achieved with nested <font size="-1">SEARCH</font> statements. For
+									instance -
 								</p>
 								<pre class="language-cobol"><code class="language-cobol">SET Ridx TO 1
 SEARCH Race
@@ -1187,24 +1127,24 @@ END-SEARCH</code></pre>
 								<div align="center">
 									<hr />
 									<p>
-										<a href="#top">
-											<img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+										<a href="#top"
+											><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
 										/></a>
 									</p>
 								</div>
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#993300" colspan="2" valign="top">
-								<h2 align="CENTER" id="part4">
-									<font color="#FFFF00">
-										<font face="Arial, Helvetica, sans-serif">The SEARCH ALL verb</font>
-									</font>
+							<td align="left" bgcolor="#993300" colspan="2" valign="top">
+								<h2 align="center" id="part4">
+									<font color="#FFFF00"
+										><font face="Arial, Helvetica, sans-serif">The SEARCH ALL verb</font></font
+									>
 								</h2>
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4 align="left">
 									<font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font>
 								</h4>
@@ -1222,53 +1162,48 @@ END-SEARCH</code></pre>
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4>
 									<font color="#800000" face="Arial, Helvetica, sans-serif">SEARCH ALL syntax</font>
 								</h4>
 							</td>
 							<td valign="top" width="525">
+								<p align="left"><img height="302" src="Resources/pics/Search3.gif" width="492" /></p>
 								<p align="left">
-									<img height="302" src="Resources/pics/Search3.gif" width="492" />
-								</p>
-								<p align="left">
-									<b> <font size="-1">SEARCH ALL</font> rules </b>
+									<b><font size="-1">SEARCH ALL</font> rules</b>
 								</p>
 								<ol>
 									<li>
 										The <font size="-1">OCCURS</font> clause of the table to be searched must have a
 										<font size="-1">KEY IS</font> clause in addition to an
-										<font size="-1">INDEXED BY</font>
-										clause.
+										<font size="-1">INDEXED BY</font> clause.
 									</li>
 									<li>
 										The <i>ElementIdentifier</i> must be the item referenced by the
-										<font size="-1">KEY IS </font>phrase of the table's
+										<font size="-1">KEY IS</font> phrase of the table's
 										<font size="-1">OCCURS</font> clause.
 									</li>
 									<li>
 										The <i>ConditionName</i> must have only one value and it must be associated with
-										a data-item referenced by the <font size="-1">KEY IS </font>phrase of the
+										a data-item referenced by the <font size="-1">KEY IS</font> phrase of the
 										table's <font size="-1">OCCURS</font> clause.
 									</li>
 								</ol>
 								<p align="left">
-									<b>
-										<font size="-1">SEARCH ALL</font>
-										notes<br /> </b
-									>The<font size="-1"> KEY IS </font>phrase identifies the data-item upon which the
-									table is ordered.
+									<b><font size="-1">SEARCH ALL</font> notes<br /></b> The
+									<font size="-1">KEY IS</font> phrase identifies the data-item upon which the table
+									is ordered.
 								</p>
 								<p align="left">
-									When the
-									<font size="-1">SEARCH ALL</font> is used, the programmer does not need to set the
-									table index to a starting value because the
+									When the <font size="-1">SEARCH ALL</font> is used, the programmer does not need to
+									set the table index to a starting value because the
 									<font size="-1">SEARCH ALL</font> controls it automatically.
 								</p>
 								<p align="left">
 									<b
-										>Some problems using the <font size="-1">SEARCH ALL<br /> </font></b
-									>If the table to be searched is only partially populated, the
+										>Some problems using the <font size="-1">SEARCH ALL<br /></font
+									></b>
+									If the table to be searched is only partially populated, the
 									<font size="-1">SEARCH ALL</font> may not work correctly. If the table is ordered in
 									ascending sequence then, to get the <font size="-1">SEARCH ALL</font> to function
 									correctly, the unpopulated elements must be filled with
@@ -1279,7 +1214,7 @@ END-SEARCH</code></pre>
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4>
 									<font color="#800000" face="Arial, Helvetica, sans-serif"
 										>How a binary search works</font
@@ -1315,9 +1250,9 @@ END-PERFORM</code></pre>
 								<p>
 									The animation below demonstrates how the binary search works. It uses a search of
 									the letter table described in one of the examples above, as an example. To allow the
-									table to be searched with the
-									<font size="-1">SEARCH ALL</font> the description of the table has to be amended to
-									include a <font size="-1">KEY IS</font> phrase as shown below.
+									table to be searched with the <font size="-1">SEARCH ALL</font> the description of
+									the table has to be amended to include a <font size="-1">KEY IS</font> phrase as
+									shown below.
 								</p>
 								<pre class="language-cobol"><code class="language-cobol">01  LetterTable.
     02 LetterValues.
@@ -1349,10 +1284,8 @@ END-SEARCH.</code></pre>
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-								<p align="center">
-									<img height="44" src="Resources/pics/program.gif" width="42" />
-								</p>
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+								<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
 							</td>
 							<td valign="top" width="525">
 								<table
@@ -1408,19 +1341,15 @@ Begin.
 										</td>
 									</tr>
 								</table>
-
 								<hr size="1" width="100%" />
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4>
-									<font color="#800000" face="Arial, Helvetica, sans-serif">Example program </font>
+									<font color="#800000" face="Arial, Helvetica, sans-serif">Example program</font>
 								</h4>
-
-								<p align="center">
-									<img height="44" src="Resources/pics/program.gif" width="42" />
-								</p>
+								<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
 							</td>
 							<td valign="top" width="525">
 								<p>
@@ -1551,8 +1480,8 @@ DisplayCountyTaxes.
 								<hr width="100%" />
 								<div align="center">
 									<p>
-										<a href="#top">
-											<img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+										<a href="#top"
+											><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
 										/></a>
 									</p>
 									<hr />
@@ -1565,13 +1494,11 @@ DisplayCountyTaxes.
 											>All rights reserved. No part of these course materials may be reproduced in
 											any form or by any means - graphic, electronic, mechanical, photocopying,
 											printing, recording, taping or stored in an information storage and
-											retrieval system - without the written permission of
-										</font>
+											retrieval system - without the written permission of</font
+										>
 										<font size="2">the author.</font>
 									</p>
-									<p align="center">
-										<font size="2">(c) Michael Coughlan</font>
-									</p>
+									<p align="center"><font size="2">(c) Michael Coughlan</font></p>
 								</div>
 							</td>
 						</tr>

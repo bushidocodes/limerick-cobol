@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Updating a Sequential File</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<style type="text/css">
@@ -137,306 +137,230 @@
 			}
 		</style>
 	</head>
-
 	<body text="#000000" bgcolor="#FFFFFF" link="#0000FF" vlink="#FF0000" alink="#009B00">
-		<center>
-			<img src="T-CobolExercise.gif" height="56" width="183" />
-		</center>
-
+		<center><img src="T-CobolExercise.gif" height="56" width="183" /></center>
 		<center>
 			<h2>Updating a Sequential File</h2>
 		</center>
-
 		<center>
 			<hr width="100%" />
 		</center>
-
 		<center>
 			<font size="-1">READ, WRITE, PERFORM..UNTIL, EVALUATE, DISPLAY</font>
 			<hr width="100%" />
 		</center>
-
-		<h2>
-			<b>Introduction</b>
-		</h2>
+		<h2><b>Introduction</b></h2>
 		The transaction file (Transfer.Dat) contains records of students who have transferred from one University of
 		Limerick (UL) course to another. The file is sequenced on ascending StudentId. Using this file, update the
 		records in the student file (Students.Dat). Do this by creating a new file (Students.New) which contains the
 		updated records. The students file and the new file are sequential files held in ascending StudentId order.
-
 		<p>We are guaranteed that there will not be more than one transaction record for a particular Student.</p>
-
 		<p>The program must be able to detect two kinds of error;</p>
 		<ol>
 			<li>
 				It must be able to detect when a record in the transaction file does not have a matching record in the
 				student file.
 			</li>
-
 			<li>
 				It must be able to detect (in mataching records) when the OldCourseCode of the transaction record is not
 				the same as the CourseCode in the student record.
 			</li>
 		</ol>
-		&nbsp;Download
-		<a href="../examples/SeqRead/STUDENTS.DAT">Students.Dat</a>
-		and save it to the WorkArea directory on the drive D:
-		<p>
-			Download
-			<a href="../examples/SeqUpd/Transfer.dat">Transfer.Dat</a> and save it to the same place.
-		</p>
+		&nbsp;Download <a href="../examples/SeqRead/STUDENTS.DAT">Students.Dat</a> and save it to the WorkArea directory
+		on the drive D:
+		<p>Download <a href="../examples/SeqUpd/Transfer.dat">Transfer.Dat</a> and save it to the same place.</p>
 		<h2>File Descriptions</h2>
-		The transaction file is a sequential file ordered on ascending StudentId.
-		<br />The records in the transaction file (Transfer.Dat) have the following description;
+		The transaction file is a sequential file ordered on ascending StudentId.<br />
+		The records in the transaction file (Transfer.Dat) have the following description;
 		<table border>
 			<tr>
 				<td width="144">
 					<center><b>Field</b></center>
 				</td>
-
 				<td width="67">
 					<center><b>Type</b></center>
 				</td>
-
 				<td width="78">
 					<center><b>Length</b></center>
 				</td>
-
 				<td width="133">
 					<center><b>Value</b></center>
 				</td>
 			</tr>
-
 			<tr>
 				<td width="144">Student Id</td>
-
 				<td width="67">
 					<center>9</center>
 				</td>
-
 				<td width="78">
 					<center>7</center>
 				</td>
-
 				<td width="133">
 					<center>0-9999999</center>
 				</td>
 			</tr>
-
 			<tr>
 				<td width="144">Old Course Code</td>
-
 				<td width="67">
 					<center>X</center>
 				</td>
-
 				<td width="78">
 					<center>4</center>
 				</td>
-
 				<td width="133">
 					<center>-</center>
 				</td>
 			</tr>
-
 			<tr>
 				<td width="144">New Course Code</td>
-
 				<td width="67">
 					<center>X</center>
 				</td>
-
 				<td width="78">
 					<center>4</center>
 				</td>
-
 				<td width="133">
 					<center>-</center>
 				</td>
 			</tr>
 		</table>
 		&nbsp;
-
 		<p>
-			The students file is a sequential file ordered on ascending StudentId. <br />The records in the students
-			file and the new file have the same description. <br />Records in these files have the following
-			description;
+			The students file is a sequential file ordered on ascending StudentId.<br />
+			The records in the students file and the new file have the same description.<br />
+			Records in these files have the following description;
 		</p>
-
 		<table border>
 			<tr>
 				<td width="144">
 					<center><b>Field</b></center>
 				</td>
-
 				<td width="67">
 					<center><b>Type</b></center>
 				</td>
-
 				<td width="78">
 					<center><b>Length</b></center>
 				</td>
-
 				<td width="133">
 					<center><b>Value</b></center>
 				</td>
 			</tr>
-
 			<tr>
 				<td width="144">Student Id</td>
-
 				<td width="67">
 					<center>9</center>
 				</td>
-
 				<td width="78">
 					<center>7</center>
 				</td>
-
 				<td width="133">
 					<center>0-9999999</center>
 				</td>
 			</tr>
-
 			<tr>
 				<td width="144">Student Name</td>
-
 				<td width="67">
 					<center>.</center>
 				</td>
-
 				<td width="78">
 					<center>.</center>
 				</td>
-
 				<td width="133">
 					<center>Group</center>
 				</td>
 			</tr>
-
 			<tr>
 				<td width="144">Surname</td>
-
 				<td width="67">
 					<center>X</center>
 				</td>
-
 				<td width="78">
 					<center>8</center>
 				</td>
-
 				<td width="133">
 					<center>-</center>
 				</td>
 			</tr>
-
 			<tr>
 				<td width="144">Initials</td>
-
 				<td width="67">
 					<center>X</center>
 				</td>
-
 				<td width="78">
 					<center>2</center>
 				</td>
-
 				<td width="133">
 					<center>-</center>
 				</td>
 			</tr>
-
 			<tr>
 				<td width="144">DateOfBirth</td>
-
 				<td width="67">
 					<center>.</center>
 				</td>
-
 				<td width="78">
 					<center>.</center>
 				</td>
-
 				<td width="133">
 					<center>Group</center>
 				</td>
 			</tr>
-
 			<tr>
 				<td width="144">Year</td>
-
 				<td width="67">
 					<center>9</center>
 				</td>
-
 				<td width="78">
 					<center>4</center>
 				</td>
-
 				<td width="133">
 					<center>0000-9999</center>
 				</td>
 			</tr>
-
 			<tr>
 				<td width="144">Month</td>
-
 				<td width="67">
 					<center>9</center>
 				</td>
-
 				<td width="78">
 					<center>2</center>
 				</td>
-
 				<td width="133">
 					<center>01-12</center>
 				</td>
 			</tr>
-
 			<tr>
 				<td width="144">Day</td>
-
 				<td width="67">
 					<center>9</center>
 				</td>
-
 				<td width="78">
 					<center>2</center>
 				</td>
-
 				<td width="133">
 					<center>01-31</center>
 				</td>
 			</tr>
-
 			<tr>
 				<td width="144">Course Code</td>
-
 				<td width="67">
 					<center>X</center>
 				</td>
-
 				<td width="78">
 					<center>4</center>
 				</td>
-
 				<td width="133">
 					<center>-</center>
 				</td>
 			</tr>
-
 			<tr>
 				<td width="144">Gender</td>
-
 				<td width="67">
 					<center>X</center>
 				</td>
-
 				<td width="78">
 					<center>1</center>
 				</td>
-
 				<td width="133">
 					<center>M/F</center>
 				</td>
@@ -445,29 +369,32 @@
 		<h2>Suggested Approaches</h2>
 		This is quite a tricky problem so you may have some difficulty devising a solution to it.&nbsp; Here are some
 		suggestions that may help you.
-
 		<p>
 			You need to work out what must to be done to solve the problem before you can write the program to solve
 			it.&nbsp; One way of finding out what must be done is to solve the problem yourself on paper and note what
 			you had to do.&nbsp; You can do this by running through some simple test data.
 		</p>
-
 		<p>
 			In the example test data which follows <b>T</b> represents the records in the transaction file and
 			<b>S</b> represents the records in the student file.&nbsp; The numbers represent the StudentIds of the
 			records.&nbsp; A "y" following the transaction number means the CourseCodes are ok, an "n" means that the
 			CourseCodes do not match and an "x" means it is not relevant.
 		</p>
-
 		<ul>
 			<ul>
-				<b><tt>T&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; S</tt></b>
-				<br /><tt>05y&nbsp;&nbsp;&nbsp;&nbsp; 01</tt>
-				<br /><tt>15x&nbsp;&nbsp;&nbsp;&nbsp; 05</tt>
-				<br /><tt>25y&nbsp;&nbsp;&nbsp;&nbsp; 10</tt>
-				<br /><tt>50y&nbsp;&nbsp;&nbsp;&nbsp; 25</tt>
-				<br /><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 50</tt>
-				<br /><tt></tt
+				<b><tt>T&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; S</tt></b
+				><br />
+				<tt>05y&nbsp;&nbsp;&nbsp;&nbsp; 01</tt
+				><br />
+				<tt>15x&nbsp;&nbsp;&nbsp;&nbsp; 05</tt
+				><br />
+				<tt>25y&nbsp;&nbsp;&nbsp;&nbsp; 10</tt
+				><br />
+				<tt>50y&nbsp;&nbsp;&nbsp;&nbsp; 25</tt
+				><br />
+				<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 50</tt
+				><br />
+				<tt></tt
 				>&nbsp;
 			</ul>
 		</ul>
@@ -479,35 +406,29 @@
 					what file(s) must be read?&nbsp;&nbsp; Must a record be written to the new file?</tt
 				>
 			</li>
-
 			<li>
 				<tt
 					>When T = S what file(s) must be read?&nbsp; Must a record be written to the new file? Is there
 					anything else that needs to be taken into consideration?</tt
 				>
 			</li>
-
-			<li>
-				<tt>When T &gt; S what file(s) must be read?&nbsp; Must a record be written to the new file?</tt>
-			</li>
+			<li><tt>When T &gt; S what file(s) must be read?&nbsp; Must a record be written to the new file?</tt></li>
 		</ol>
 		<tt></tt>&nbsp;
 		<h2>Sample Solution</h2>
 		When you have written your program and have compiled it and have it working correctly you may wish to compare it
-		with this
-		<br /><a href="../examples/SeqUpd/SeqUpdate.cbl">sample solution</a>.
-		<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		with this<br />
+		<a href="../examples/SeqUpd/SeqUpdate.cbl">sample solution</a>.<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<b
-			><u>
-				<font color="#FF0000">WARNING</font>
-			</u></b
-		>
-		<br />As always please do not look at the solution until you have finished your own program.&nbsp;&nbsp; At the
-		very least you should make a substantial effort to complete your own attempt at the program before examining the
+			><u><font color="#FF0000">WARNING</font></u></b
+		><br />
+		As always please do not look at the solution until you have finished your own program.&nbsp;&nbsp; At the very
+		least you should make a substantial effort to complete your own attempt at the program before examining the
 		sample solution.
 		<hr />
 		<table cellspacing="0" cellpadding="0" cols="1" width="200">
-			<tr align="CENTER" valign="TOP">
+			<tr align="center" valign="top">
 				<td>
 					<a href="index.html"
 						><img

@@ -1,8 +1,8 @@
 <!doctype html>
 <html>
 	<head>
-		<title>AromaOilFileMainRpt &ndash; Aromamora Oil Stock Maintenance and Report (COBOL source)</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>AromaOilFileMainRpt – Aromamora Oil Stock Maintenance and Report (COBOL source)</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link href="../../course/Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
 		<script src="../../course/Resources/vendor/prism/prism.min.js" defer></script>
@@ -140,7 +140,6 @@
 			}
 		</style>
 	</head>
-
 	<body bgcolor="#FFFFFF" background="../../lectures/Code.gif">
 		<pre class="language-cobol"><code class="language-cobol">
        &gt;&gt;SOURCE FORMAT IS FREE
@@ -179,30 +178,30 @@ DATA DIVISION.
 FILE SECTION.
 FD Oil-Details-File.
 01 ODF-Rec.
-   88 End-Of-ODF		VALUE HIGH-VALUES.
+   88 End-Of-ODF                VALUE HIGH-VALUES.
    02 Oil-Num-ODF               PIC 9(4).
    02 Oil-Name-ODF              PIC X(20).
-   02 Unit-Size-ODF		PIC 9(2).
-   02 Unit-Cost-ODF		PIC 99V99.
+   02 Unit-Size-ODF             PIC 9(2).
+   02 Unit-Cost-ODF             PIC 99V99.
 
 FD Oil-Stock-File.
 01 OSF-Rec.
-   02 Oil-Num-OSF		PIC 9(4).
-   02 Qty-In-Stock-OSF		PIC 9(5).
+   02 Oil-Num-OSF               PIC 9(4).
+   02 Qty-In-Stock-OSF          PIC 9(5).
 
 FD Trans-File.
 01 Trans-Rec.
-   88 End-Of-Trans		VALUE HIGH-VALUES.
-   02 Type-Code			PIC 9.
-      88 Add-To-Stock		VALUE 1.
+   88 End-Of-Trans              VALUE HIGH-VALUES.
+   02 Type-Code                 PIC 9.
+      88 Add-To-Stock           VALUE 1.
       88 Remove-From-Stock      VALUE 2.
    02 Oil-Num.
-      03  Rel-Rec-Num		PIC 9(3).
-      03  FILLER		PIC 9.
-   02 Qty			PIC 9(5).
+      03  Rel-Rec-Num           PIC 9(3).
+      03  FILLER                PIC 9.
+   02 Qty                       PIC 9(5).
 
 FD Error-File.
-01 Error-Rec			PIC X(10).
+01 Error-Rec                    PIC X(10).
 
 FD Report-File REPORT IS Oil-Stock-Report.
 
@@ -211,11 +210,11 @@ WORKING-STORAGE SECTION.
 01 Status-Codes.
    02 ODF-Status                PIC X(2).
    02 OSF-Status                PIC X(2).
-      88 No-Error-Found		VALUE "00".
-      88 Rec-Not-Found		VALUE "23".
+      88 No-Error-Found         VALUE "00".
+      88 Rec-Not-Found          VALUE "23".
 
 
-01 Stock-Value			PIC 9(5)V99.
+01 Stock-Value                  PIC 9(5)V99.
 
 REPORT SECTION.
 RD Oil-Stock-Report
@@ -229,29 +228,29 @@ RD Oil-Stock-Report
 
 01 TYPE IS REPORT HEADING.
    02 LINE 2.
-      03 COLUMN 15		PIC X(18) VALUE "OIL  STOCK  REPORT".
+      03 COLUMN 15              PIC X(18) VALUE "OIL  STOCK  REPORT".
    02 LINE 3.
-      03 COLUMN 13		PIC X(22) VALUE ALL "-".
+      03 COLUMN 13              PIC X(22) VALUE ALL "-".
    
 01 TYPE IS PAGE HEADING.
    02 LINE 6.
-      03 COLUMN 03		PIC X(9)  VALUE "OIL  NAME".
-      03 COLUMN 23		PIC X(4)  VALUE "OIL#".
-      03 COLUMN 29		PIC X(4)  VALUE "SIZE".
-      03 COLUMN 36		PIC X(3)  VALUE "QTY".
-      03 COLUMN 44		PIC X(11) VALUE "STOCK VALUE".
+      03 COLUMN 03              PIC X(9)  VALUE "OIL  NAME".
+      03 COLUMN 23              PIC X(4)  VALUE "OIL#".
+      03 COLUMN 29              PIC X(4)  VALUE "SIZE".
+      03 COLUMN 36              PIC X(3)  VALUE "QTY".
+      03 COLUMN 44              PIC X(11) VALUE "STOCK VALUE".
 
 01 Stock-Detail-Line TYPE IS DETAIL.
    02 LINE IS PLUS 2.
-      03 COLUMN 01		PIC X(20) SOURCE Oil-Name-ODF GROUP INDICATE.
-      03 COLUMN 23		PIC 9(4)  SOURCE Oil-Num-ODF.
-      03 COLUMN 30		PIC 99    SOURCE Unit-Size-ODF.
+      03 COLUMN 01              PIC X(20) SOURCE Oil-Name-ODF GROUP INDICATE.
+      03 COLUMN 23              PIC 9(4)  SOURCE Oil-Num-ODF.
+      03 COLUMN 30              PIC 99    SOURCE Unit-Size-ODF.
       03 COLUMN 35              PIC ZZ,ZZ9 SOURCE Qty-In-Stock-OSF.
       03 COLUMN 44              PIC $$$,$$9.99 SOURCE Stock-Value.
 
 01 TYPE IS CONTROL FOOTING Oil-Name-ODF NEXT GROUP PLUS 1.
    02 LINE IS PLUS 2.
-      03 COLUMN 27		PIC X(15) VALUE "TOTAL OIL VALUE".
+      03 COLUMN 27              PIC X(15) VALUE "TOTAL OIL VALUE".
       03 Oil-Val COLUMN 44      PIC $$$$,$$9.99 SUM Stock-Value.
 
 01 TYPE IS CONTROL FOOTING FINAL.

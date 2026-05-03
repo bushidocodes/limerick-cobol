@@ -1,8 +1,8 @@
 <!doctype html>
 <html>
 	<head>
-		<title>DueSubsRpt &ndash; NetNews Due Subscriptions Report (COBOL source)</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>DueSubsRpt – NetNews Due Subscriptions Report (COBOL source)</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link href="../../course/Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
 		<script src="../../course/Resources/vendor/prism/prism.min.js" defer></script>
@@ -140,7 +140,6 @@
 			}
 		</style>
 	</head>
-
 	<body bgcolor="#FFFFFF" background="../../lectures/Code.gif">
 		<pre class="language-cobol"><code class="language-cobol">
        &gt;&gt;SOURCE FORMAT IS FREE
@@ -172,45 +171,45 @@ FILE SECTION.
 FD DueSubsFile.
 01 DueSubsRec.
    88   EndOfDueSubsFile    VALUE HIGH-VALUES.
-   02	CustomerNameDS	PIC X(22).
-   02	PayMethodDS		PIC 9.
-   02	PayFreqDS		PIC 9.
-   02	FILLER			PIC X(24).
-   02	CountryCodeDS		PIC XX.
+   02   CustomerNameDS  PIC X(22).
+   02   PayMethodDS             PIC 9.
+   02   PayFreqDS               PIC 9.
+   02   FILLER                  PIC X(24).
+   02   CountryCodeDS           PIC XX.
 
 SD WorkFile.
 01 WorkRec.
-   88	EndOfWorkFile VALUE HIGH-VALUES.
-   02	CustomerNameWF	PIC X(22).
-   02	PayMethodWF		PIC 9.
-   02	PayFreqWF		PIC 9.
-   02	CountryNameWF		PIC X(25).
-   02	CountryCodeWF		PIC XX.
+   88   EndOfWorkFile VALUE HIGH-VALUES.
+   02   CustomerNameWF  PIC X(22).
+   02   PayMethodWF             PIC 9.
+   02   PayFreqWF               PIC 9.
+   02   CountryNameWF           PIC X(25).
+   02   CountryCodeWF           PIC XX.
 
 
 FD DueSubsReport.
-01 PrintLine			PIC X(77).
+01 PrintLine                    PIC X(77).
 
 FD SortedSubsFile.
 01 SortedSubsRec.
-   88	EndOfSortedSubs VALUE HIGH-VALUES.
-   02	CustomerNameSS	PIC X(22).
-   02	PayMethodSS		PIC 9.
+   88   EndOfSortedSubs VALUE HIGH-VALUES.
+   02   CustomerNameSS  PIC X(22).
+   02   PayMethodSS             PIC 9.
         88 ByVisa         VALUE 1.
         88 ByAccess       VALUE 2.
         88 ByExpress      VALUE 3.
         88 ByCheque       VALUE 4.
-   02	PayFreqSS		PIC 9.
-   02	CountryNameSS		PIC X(25).
-   02	CountryCodeSS		PIC XX.
+   02   PayFreqSS               PIC 9.
+   02   CountryNameSS           PIC X(25).
+   02   CountryCodeSS           PIC XX.
 
 
 FD CountryFile.
 01 CountryRec.
-   88	EndOfCountryFile VALUE HIGH-VALUES.
-   02	CountryCodeCF		PIC XX.
-   02	CountryNameCF		PIC X(25).
-   02	ExchangeRateCF		PIC 9(5)V9(5).
+   88   EndOfCountryFile VALUE HIGH-VALUES.
+   02   CountryCodeCF           PIC XX.
+   02   CountryNameCF           PIC X(25).
+   02   ExchangeRateCF          PIC 9(5)V9(5).
 
 
 WORKING-STORAGE SECTION.
@@ -223,16 +222,16 @@ WORKING-STORAGE SECTION.
 
 01  CountryTable.
     02  Country OCCURS 242 TIMES
-		ASCENDING KEY IS CountryCodeCT
+                ASCENDING KEY IS CountryCodeCT
                 INDEXED BY CIDX.
-	03 CountryCodeCT	PIC XX.
-   	03 CountryNameCT	PIC X(25).
-   	03 ExchangeRateCT	PIC 9(5)V9(5).
+        03 CountryCodeCT        PIC XX.
+        03 CountryNameCT        PIC X(25).
+        03 ExchangeRateCT       PIC 9(5)V9(5).
 
 
 
 01  ReportHeadingLine.
-    02	FILLER PIC X(18) VALUE SPACES.
+    02  FILLER PIC X(18) VALUE SPACES.
     02  FILLER PIC X(35)  VALUE "NETNEWS  DUE  SUBSCRIPTIONS  REPORT".
 
 
@@ -253,69 +252,69 @@ WORKING-STORAGE SECTION.
 
 
 01  CustLine.
-    02  PrnCountryName		PIC X(25).
-    02  PrnCustName		PIC BX(22).
-    02	PrnPayMethod		PIC BX(9).
-    02	PrnSubs			PIC BBB$$$9.
+    02  PrnCountryName          PIC X(25).
+    02  PrnCustName             PIC BX(22).
+    02  PrnPayMethod            PIC BX(9).
+    02  PrnSubs                 PIC BBB$$$9.
     02  PrnLCSubs               PIC BBZZ,ZZZ,ZZ9.
 
 01  VisaLine.
-    02	FILLER			PIC X(41) VALUE SPACES.
-    02  FILLER			PIC X(17) VALUE "VISA      TOTAL  ". 
-    02	PrnVisaTotal		PIC $$$,$$9.
+    02  FILLER                  PIC X(41) VALUE SPACES.
+    02  FILLER                  PIC X(17) VALUE "VISA      TOTAL  ". 
+    02  PrnVisaTotal            PIC $$$,$$9.
 
 01  AccessLine.
-    02	FILLER			PIC X(41) VALUE SPACES.
-    02  FILLER			PIC X(17) VALUE "ACCESS    TOTAL  ". 
-    02	PrnAccessTotal  	PIC $$$,$$9.
+    02  FILLER                  PIC X(41) VALUE SPACES.
+    02  FILLER                  PIC X(17) VALUE "ACCESS    TOTAL  ". 
+    02  PrnAccessTotal          PIC $$$,$$9.
 
 01  AmExLine.
-    02	FILLER			PIC X(41) VALUE SPACES.
-    02  FILLER			PIC X(17) VALUE "AMEXPRESS TOTAL  ". 
-    02	PrnAmExTotal		PIC $$$,$$9.
+    02  FILLER                  PIC X(41) VALUE SPACES.
+    02  FILLER                  PIC X(17) VALUE "AMEXPRESS TOTAL  ". 
+    02  PrnAmExTotal            PIC $$$,$$9.
 
 01  ChequeLine.
-    02	FILLER			PIC X(41) VALUE SPACES.
+    02  FILLER                  PIC X(41) VALUE SPACES.
     02  FILLER                  PIC X(17) VALUE "CHEQUE    TOTAL  ".
-    02	PrnChequeTotal		PIC $$$,$$9.
+    02  PrnChequeTotal          PIC $$$,$$9.
                
 
 01  VisaTotalLine.
-    02	FILLER			PIC X(35) VALUE SPACES.
-    02  FILLER			PIC X(23) VALUE "FINAL VISA      TOTAL  ". 
-    02	PrnVisaFinalTotal	PIC $$,$$$,$$9.
+    02  FILLER                  PIC X(35) VALUE SPACES.
+    02  FILLER                  PIC X(23) VALUE "FINAL VISA      TOTAL  ". 
+    02  PrnVisaFinalTotal       PIC $$,$$$,$$9.
 
 
 01  AccessTotalLine.
-    02	FILLER			PIC X(35) VALUE SPACES.
-    02  FILLER			PIC X(23) VALUE "FINAL ACCESS    TOTAL  ". 
-    02	PrnAccessFinalTotal	PIC $$,$$$,$$9.
+    02  FILLER                  PIC X(35) VALUE SPACES.
+    02  FILLER                  PIC X(23) VALUE "FINAL ACCESS    TOTAL  ". 
+    02  PrnAccessFinalTotal     PIC $$,$$$,$$9.
 
 01  AmExTotalLine.
-    02	FILLER			PIC X(35) VALUE SPACES.
-    02  FILLER			PIC X(23) VALUE "FINAL AMEXPRESS TOTAL  ". 
-    02	PrnAMExFinalTotal	PIC $$,$$$,$$9.
+    02  FILLER                  PIC X(35) VALUE SPACES.
+    02  FILLER                  PIC X(23) VALUE "FINAL AMEXPRESS TOTAL  ". 
+    02  PrnAMExFinalTotal       PIC $$,$$$,$$9.
 
 01  ChequeTotalLine.
-    02	FILLER			PIC X(35) VALUE SPACES.
-    02  FILLER			PIC X(23) VALUE "FINAL CHEQUE    TOTAL  ". 
-    02	PrnChequeFinalTotal	PIC $$,$$$,$$9.
+    02  FILLER                  PIC X(35) VALUE SPACES.
+    02  FILLER                  PIC X(23) VALUE "FINAL CHEQUE    TOTAL  ". 
+    02  PrnChequeFinalTotal     PIC $$,$$$,$$9.
 
 
 01  SubTotals.
-    02 VisaTotal		PIC 9(5).
-    02 AccessTotal		PIC 9(5).
-    02 AmExTotal		PIC 9(5).
-    02 ChequeTotal		PIC 9(5).
+    02 VisaTotal                PIC 9(5).
+    02 AccessTotal              PIC 9(5).
+    02 AmExTotal                PIC 9(5).
+    02 ChequeTotal              PIC 9(5).
 
 01  FinalTotals.
-    02 VisaFinalTotal		PIC 9(7) VALUE ZEROS.
-    02 AccessFinalTotal		PIC 9(7) VALUE ZEROS.
-    02 AmExFinalTotal		PIC 9(7) VALUE ZEROS.
-    02 ChequeFinalTotal		PIC 9(7) VALUE ZEROS.
+    02 VisaFinalTotal           PIC 9(7) VALUE ZEROS.
+    02 AccessFinalTotal         PIC 9(7) VALUE ZEROS.
+    02 AmExFinalTotal           PIC 9(7) VALUE ZEROS.
+    02 ChequeFinalTotal         PIC 9(7) VALUE ZEROS.
 
-01  PrevCountryCode		PIC XX.
-01  ExchangeRate		PIC 99999V99999.
+01  PrevCountryCode             PIC XX.
+01  ExchangeRate                PIC 99999V99999.
 01  LCSubs                      PIC 9(5).
 
 PROCEDURE DIVISION.
@@ -335,7 +334,7 @@ ProduceSubscriptionsReport.
     WRITE PrintLine FROM SPACES            AFTER ADVANCING 1 LINE   
     
     READ SortedSubsFile 
-	AT END SET EndOfSortedSubs TO TRUE
+        AT END SET EndOfSortedSubs TO TRUE
     END-READ
     PERFORM PrintReportBody UNTIL EndOfSortedSubs
     
@@ -349,12 +348,12 @@ LoadCountryTable.
     MOVE HIGH-VALUES TO CountryTable
     OPEN INPUT CountryFile
     READ CountryFile
-	AT END SET EndOfCountryFile TO TRUE
+        AT END SET EndOfCountryFile TO TRUE
     END-READ
     PERFORM VARYING CIDX FROM 1 BY 1 UNTIL EndOfCountryFile
-	MOVE CountryRec TO Country(CIDX)
-	READ CountryFile
-	   AT END SET EndOfCountryFile TO TRUE
+        MOVE CountryRec TO Country(CIDX)
+        READ CountryFile
+           AT END SET EndOfCountryFile TO TRUE
         END-READ       
     END-PERFORM
     CLOSE CountryFile.
@@ -363,22 +362,22 @@ LoadCountryTable.
 RestructureRecords.
     OPEN INPUT DueSubsFile
     READ DueSubsFile
-	AT END SET EndOfDueSubsFile TO TRUE
+        AT END SET EndOfDueSubsFile TO TRUE
     END-READ
     PERFORM UNTIL EndOfDueSubsFile
         MOVE CustomerNameDS TO CustomerNameWF
-	MOVE PayMethodDS TO PayMethodWF
-	MOVE PayFreqDS TO PayFreqWF
-	MOVE CountryCodeDS To CountryCodeWF
+        MOVE PayMethodDS TO PayMethodWF
+        MOVE PayFreqDS TO PayFreqWF
+        MOVE CountryCodeDS To CountryCodeWF
         SEARCH ALL Country 
            AT END DISPLAY "Name for " CountryCodeDS " not found."
            WHEN CountryCodeCT(CIDX) = CountryCodeDS
                MOVE CountryNameCT(CIDX) TO CountryNameWF
-	END-SEARCH
+        END-SEARCH
         RELEASE WorkRec
-    	READ DueSubsFile
- 	   AT END SET EndOfDueSubsFile TO TRUE
-    	END-READ
+        READ DueSubsFile
+           AT END SET EndOfDueSubsFile TO TRUE
+        END-READ
     END-PERFORM
     CLOSE DueSubsFile.
 
@@ -389,13 +388,13 @@ PrintReportBody.
     SEARCH ALL Country 
         AT END DISPLAY "Name for " CountryCodeSS " not found."
         WHEN CountryCodeCT(CIDX) = CountryCodeSS
-	MOVE ExchangeRateCT(CIDX) TO ExchangeRate
+        MOVE ExchangeRateCT(CIDX) TO ExchangeRate
     END-SEARCH
     MOVE ZEROS TO SubTotals
 
     PERFORM PrintCountryLines UNTIL
-		CountryCodeSS NOT EQUAL TO PrevCountryCode
-		OR EndOfSortedSubs
+                CountryCodeSS NOT EQUAL TO PrevCountryCode
+                OR EndOfSortedSubs
 
     MOVE VisaTotal TO PrnVisaTotal
     MOVE AccessTotal TO PrnAccessTotal
@@ -422,13 +421,13 @@ PrintCountryLines.
         WHEN ByExpress ADD SubsFT(PayFreqSS) TO AmExTotal, AmExFinalTotal
         WHEN ByCheque ADD SubsFT(PayFreqSS) TO ChequeTotal, ChequeFinalTotal
     END-EVALUATE
-  	
+        
     WRITE PrintLine FROM CustLine 
-	AFTER ADVANCING 1 LINE	
+        AFTER ADVANCING 1 LINE  
     MOVE SPACES TO PrnCountryName
 
     READ SortedSubsFile 
-	AT END SET EndOfSortedSubs TO TRUE
+        AT END SET EndOfSortedSubs TO TRUE
     END-READ.
 
 PrintFinalTotals.

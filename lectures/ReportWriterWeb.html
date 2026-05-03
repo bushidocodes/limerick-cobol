@@ -1,156 +1,157 @@
 <!doctype html>
 <html>
-	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-	<title>COBOL Report Writer</title>
-	<meta content="width=device-width, initial-scale=1" name="viewport" />
-	<style type="text/css">
-		img {
-			max-width: 100%;
-			height: auto;
-		}
-
-		table {
-			max-width: 100%;
-		}
-
-		pre {
-			overflow-x: auto;
-			max-width: 100%;
-		}
-
-		body {
-			-webkit-text-size-adjust: 100%;
-		}
-
-		@media (max-width: 600px) {
-			body {
-				margin: 4px;
-				overflow-wrap: break-word;
-				word-wrap: break-word;
-			}
-
-			table[width] {
-				width: 100% !important;
-				height: auto !important;
-			}
-
-			td[width],
-			th[width],
-			td[height],
-			th[height] {
-				width: auto !important;
-				height: auto !important;
-			}
-
-			td[bgcolor="#993300"] > h2,
-			td[bgcolor="#993300"] > h3 {
-				margin: 0.3em 0;
-			}
-
-			blockquote {
-				margin-left: 12px;
-				margin-right: 12px;
-			}
-
-			hr[width] {
-				width: 100% !important;
-			}
-
-			img,
-			iframe,
-			video,
-			embed,
-			object {
-				max-width: min(100%, calc(100vw - 16px)) !important;
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<title>COBOL Report Writer</title>
+		<meta content="width=device-width, initial-scale=1" name="viewport" />
+		<style type="text/css">
+			img {
+				max-width: 100%;
 				height: auto;
 			}
 
+			table {
+				max-width: 100%;
+			}
+
 			pre {
-				max-width: min(100%, calc(100vw - 16px)) !important;
-				white-space: pre-wrap;
-				word-wrap: break-word;
-				overflow-wrap: break-word;
+				overflow-x: auto;
+				max-width: 100%;
 			}
 
-			table[width="715"],
-			table[width="725"],
-			table[width="715"] > tbody,
-			table[width="725"] > tbody,
-			table[width="715"] > tbody > tr,
-			table[width="725"] > tbody > tr,
-			table[width="715"] > tbody > tr > td,
-			table[width="725"] > tbody > tr > td,
-			table[width="710"]:not(:has(> tbody > tr > td[width="93%"])),
-			table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody,
-			table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr,
-			table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr > td {
-				display: block;
-				width: auto !important;
+			body {
+				-webkit-text-size-adjust: 100%;
 			}
 
-			table[width="710"]:has(> tbody > tr > td[width="93%"]),
-			table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody {
-				display: block;
-				width: 100% !important;
+			@media (max-width: 600px) {
+				body {
+					margin: 4px;
+					overflow-wrap: break-word;
+					word-wrap: break-word;
+				}
+
+				table[width] {
+					width: 100% !important;
+					height: auto !important;
+				}
+
+				td[width],
+				th[width],
+				td[height],
+				th[height] {
+					width: auto !important;
+					height: auto !important;
+				}
+
+				td[bgcolor="#993300"] > h2,
+				td[bgcolor="#993300"] > h3 {
+					margin: 0.3em 0;
+				}
+
+				blockquote {
+					margin-left: 12px;
+					margin-right: 12px;
+				}
+
+				hr[width] {
+					width: 100% !important;
+				}
+
+				img,
+				iframe,
+				video,
+				embed,
+				object {
+					max-width: min(100%, calc(100vw - 16px)) !important;
+					height: auto;
+				}
+
+				pre {
+					max-width: min(100%, calc(100vw - 16px)) !important;
+					white-space: pre-wrap;
+					word-wrap: break-word;
+					overflow-wrap: break-word;
+				}
+
+				table[width="715"],
+				table[width="725"],
+				table[width="715"] > tbody,
+				table[width="725"] > tbody,
+				table[width="715"] > tbody > tr,
+				table[width="725"] > tbody > tr,
+				table[width="715"] > tbody > tr > td,
+				table[width="725"] > tbody > tr > td,
+				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])),
+				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody,
+				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr,
+				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr > td {
+					display: block;
+					width: auto !important;
+				}
+
+				table[width="710"]:has(> tbody > tr > td[width="93%"]),
+				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody {
+					display: block;
+					width: 100% !important;
+				}
+
+				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr {
+					display: flex;
+					align-items: baseline;
+					gap: 0.4em;
+					margin: 0.4em 0;
+				}
+
+				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="3%"] {
+					display: none;
+				}
+
+				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="4%"] {
+					display: block;
+					flex: 0 0 auto;
+					width: auto !important;
+					padding: 0;
+				}
+
+				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="93%"] {
+					display: block;
+					flex: 1 1 auto;
+					width: auto !important;
+					padding: 0;
+				}
+
+				td[width="175"] > h4:not(:first-child):not(:has(img)),
+				td[width="160"] > h4:not(:first-child):not(:has(img)),
+				h4:has(> img[src*="PanelLine"]) {
+					display: none;
+				}
+
+				td[width="175"] > h3,
+				td[width="175"] > h4,
+				td[width="175"] > p,
+				td[width="160"] > h3,
+				td[width="160"] > h4,
+				td[width="160"] > p {
+					margin: 0.2em 0;
+				}
 			}
 
-			table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr {
-				display: flex;
-				align-items: baseline;
-				gap: 0.4em;
-				margin: 0.4em 0;
+			ul.toc {
+				list-style-image: url(Ballgreeng.gif);
+				padding-left: 2.5em;
+				margin: 1em 0;
 			}
 
-			table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="3%"] {
-				display: none;
+			ul.toc > li {
+				padding-left: 0.4em;
+				margin-bottom: 0.6em;
 			}
 
-			table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="4%"] {
-				display: block;
-				flex: 0 0 auto;
-				width: auto !important;
-				padding: 0;
+			ul.toc a {
+				font-weight: bold;
 			}
-
-			table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="93%"] {
-				display: block;
-				flex: 1 1 auto;
-				width: auto !important;
-				padding: 0;
-			}
-
-			td[width="175"] > h4:not(:first-child):not(:has(img)),
-			td[width="160"] > h4:not(:first-child):not(:has(img)),
-			h4:has(> img[src*="PanelLine"]) {
-				display: none;
-			}
-
-			td[width="175"] > h3,
-			td[width="175"] > h4,
-			td[width="175"] > p,
-			td[width="160"] > h3,
-			td[width="160"] > h4,
-			td[width="160"] > p {
-				margin: 0.2em 0;
-			}
-		}
-
-		ul.toc {
-			list-style-image: url(Ballgreeng.gif);
-			padding-left: 2.5em;
-			margin: 1em 0;
-		}
-
-		ul.toc > li {
-			padding-left: 0.4em;
-			margin-bottom: 0.6em;
-		}
-
-		ul.toc a {
-			font-weight: bold;
-		}
-	</style>
-
+		</style>
+	</head>
 	<body alink="#009B00" bgcolor="#FFFFFF" link="#0000FF" text="#000000" vlink="#FF0000">
 		<table border="1" width="715">
 			<tr>
@@ -161,7 +162,7 @@
 								<center>
 									<h2>
 										<img
-											align="MIDDLE"
+											align="middle"
 											alt="Cobol Course"
 											border="0"
 											height="56"
@@ -224,19 +225,17 @@
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#993300" colspan="2" valign="top" width="700">
-								<h2 align="CENTER" id="intro">
-									<font color="#FFFF00">
-										<font face="Arial, Helvetica, sans-serif">Introduction</font>
-									</font>
+							<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+								<h2 align="center" id="intro">
+									<font color="#FFFF00"
+										><font face="Arial, Helvetica, sans-serif">Introduction</font></font
+									>
 								</h2>
 							</td>
 						</tr>
 						<tr>
 							<td bgcolor="#FFFFCC" valign="top" width="160">
-								<h4>
-									<font color="#993300" face="Arial, Helvetica, sans-serif">Aims</font>
-								</h4>
+								<h4><font color="#993300" face="Arial, Helvetica, sans-serif">Aims</font></h4>
 							</td>
 							<td width="540">
 								<p>
@@ -265,10 +264,8 @@
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="160">
-								<h4>
-									<font color="#800000" face="Arial, Helvetica, sans-serif">Objectives</font>
-								</h4>
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="160">
+								<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Objectives</font></h4>
 							</td>
 							<td width="540">
 								<p>By the end of this unit you should -</p>
@@ -290,10 +287,8 @@
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="160">
-								<h4>
-									<font color="#800000" face="Arial, Helvetica, sans-serif">Prerequisites</font>
-								</h4>
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="160">
+								<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Prerequisites</font></h4>
 							</td>
 							<td width="525">
 								<p>You should be familiar with the material covered in the unit;</p>
@@ -303,9 +298,9 @@
 									<li>Selection</li>
 									<li>Tables</li>
 									<li>Edited Pictures</li>
-									<li>The<font size="2"> INSPECT</font> verb</li>
+									<li>The <font size="2">INSPECT</font> verb</li>
 									<li>The <font size="2">STRING</font> verb</li>
-									<li>The<font size="-1"> UNSTRING</font> verb</li>
+									<li>The <font size="-1">UNSTRING</font> verb</li>
 									<li>Sequential files</li>
 								</ul>
 							</td>
@@ -315,27 +310,27 @@
 								<div align="center">
 									<hr />
 									<p>
-										<a href="#top">
-											<img border="0" height="38" src="i-pagetop.gif" width="132"
+										<a href="#top"
+											><img border="0" height="38" src="i-pagetop.gif" width="132"
 										/></a>
 									</p>
 								</div>
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#993300" colspan="2" valign="top" width="700">
-								<h2 align="CENTER" id="part1">
-									<font color="#FFFF00">
-										<font face="Arial, Helvetica, sans-serif">The Report Writer in Action</font>
-									</font>
+							<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+								<h2 align="center" id="part1">
+									<font color="#FFFF00"
+										><font face="Arial, Helvetica, sans-serif"
+											>The Report Writer in Action</font
+										></font
+									>
 								</h2>
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="160">
-								<h4>
-									<font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font>
-								</h4>
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="160">
+								<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
 							</td>
 							<td valign="top" width="540">
 								<p>
@@ -349,14 +344,13 @@
 									The COBOL Report Writer is very large. It includes many new
 									<font size="2">DATA DIVISION</font> entries, including a
 									<font size="2">REPORT SECTION</font>, and a number of new
-									<font size="2">PROCEDURE DIVISION</font>
-									verbs.
+									<font size="2">PROCEDURE DIVISION</font> verbs.
 								</p>
 								<hr />
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4 align="center">
 									<font color="#800000" face="Arial, Helvetica, sans-serif"
 										>An example report - with animated commentary.</font
@@ -391,23 +385,20 @@
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4 align="center">
 									<font color="#800000" face="Arial, Helvetica, sans-serif"
-										>The Procedure Division that produces the sales report
-									</font>
+										>The Procedure Division that produces the sales report</font
+									>
 								</h4>
 							</td>
 							<td valign="top" width="525">
 								<p>
-									In a program that did not use the Report Writer, the<font size="-1">
-										PROCEDURE DIVISION</font
-									>
-									required to produce the sales report shown above would occupy a hundred lines or so
-									of code. When the
+									In a program that did not use the Report Writer, the
+									<font size="-1">PROCEDURE DIVISION</font> required to produce the sales report shown
+									above would occupy a hundred lines or so of code. When the
 									<font size="-1">REPORT WRITER</font> is used, only the
-									<font size="-1">PROCEDURE DIVISION</font>
-									shown below is required.
+									<font size="-1">PROCEDURE DIVISION</font> shown below is required.
 								</p>
 								<p>All the work of printing the report is being done in just 10 statements.</p>
 								<hr />
@@ -443,7 +434,7 @@ PrintSalaryReport.
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4 align="center">
 									<font color="#800000" face="Arial, Helvetica, sans-serif"
 										>So much work, so little Procedure Division code</font
@@ -453,21 +444,19 @@ PrintSalaryReport.
 							<td valign="top" width="525">
 								<p>
 									How can so much work be done in so little
-									<font size="-1">PROCEDURE DIVISION</font>
-									code? How does the report writer know that page headings are required or that it is
-									time to print the salesperson or city totals.
+									<font size="-1">PROCEDURE DIVISION</font> code? How does the report writer know that
+									page headings are required or that it is time to print the salesperson or city
+									totals.
 								</p>
 								<p>
-									To achieve so much in so little
-									<font size="-1">PROCEDURE DIVISION</font>
-									code, the Report Writer uses a declarative approach to programming rather than the
-									procedural one familiar to most programmers.
+									To achieve so much in so little <font size="-1">PROCEDURE DIVISION</font> code, the
+									Report Writer uses a declarative approach to programming rather than the procedural
+									one familiar to most programmers.
 								</p>
 								<p>
-									When the Report Writer is used, the programmer declares <b>what</b>
-									to print when a page heading, page footing, salesman total, city total or final
-									total is required and the Report Writer works out
-									<b>when</b> to print these items.
+									When the Report Writer is used, the programmer declares <b>what</b> to print when a
+									page heading, page footing, salesman total, city total or final total is required
+									and the Report Writer works out <b>when</b> to print these items.
 								</p>
 								<p>
 									In keeping with the adage that "there is no such thing as free lunch", the
@@ -479,8 +468,8 @@ PrintSalaryReport.
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#993300" colspan="2" valign="TOP">
-								<h2 align="CENTER" id="part1b">
+							<td align="left" bgcolor="#993300" colspan="2" valign="top">
+								<h2 align="center" id="part1b">
 									<font color="#FFFF00" face="Arial, Helvetica, sans-serif"
 										>How the Report Writer works</font
 									>
@@ -488,10 +477,8 @@ PrintSalaryReport.
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-								<h4>
-									<font color="#800000" face="Arial, Helvetica, sans-serif">Report Groups </font>
-								</h4>
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+								<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Report Groups</font></h4>
 							</td>
 							<td valign="top" width="525">
 								<p>
@@ -519,23 +506,23 @@ PrintSalaryReport.
 								<blockquote>
 									<p>
 										REPORT HEADING or RH group<br />
-										<font size="-1">- printed once at the beginning of the report </font>
+										<font size="-1">- printed once at the beginning of the report</font>
 									</p>
 								</blockquote>
 								<ol>
 									<blockquote>
 										<p>
-											PAGE HEADING of PH group <br />
-											<font size="-1">- printed at the top of each page </font>
+											PAGE HEADING of PH group<br />
+											<font size="-1">- printed at the top of each page</font>
 										</p>
 										<blockquote>
 											<p>
 												CONTROL HEADING or CH group<br />
-												<font size="-1">- printed at the beginning of each control break </font>
+												<font size="-1">- printed at the beginning of each control break</font>
 											</p>
 											<blockquote>
 												<p>
-													DETAIL or DE group <br />
+													DETAIL or DE group<br />
 													<font size="-1"
 														>- printed each time the GENERATE statement is executed</font
 													>
@@ -543,30 +530,31 @@ PrintSalaryReport.
 											</blockquote>
 											<p>
 												CONTROL FOOTING or CF group<br />
-												<font size="-1">- printed at the end of each control break </font>
+												<font size="-1">- printed at the end of each control break</font>
 											</p>
 										</blockquote>
 										<p>
-											PAGE FOOTING or PF group <br />
-											<font size="-1">- printed at the bottom of each page </font>
+											PAGE FOOTING or PF group<br />
+											<font size="-1">- printed at the bottom of each page</font>
 										</p>
 									</blockquote>
 								</ol>
 								<blockquote>
 									<p>
-										REPORT FOOTING or RF group <br />
-										<font size="-1">- printed once at the end of the report. </font>
+										REPORT FOOTING or RF group<br />
+										<font size="-1">- printed once at the end of the report.</font>
 									</p>
 								</blockquote>
 								<p>
-									Report Groups are defined as records in the
-									<font size="-1">REPORT SECTION</font> of the <font size="-1">DATA DIVISION</font>.
-									Most groups are defined once for each report, but control groups are defined for
-									each control break item. For instance, in the example program, control footings are
-									defined on the SalesPersonNumber, the CityCode and <font size="-1">FINAL</font>.
-									<font size="-1">FINAL</font> is a special control group that is invoked before the
-									normal control groups (<font size="-1">CONTROL HEADING FINAL</font>) and after the
-									normal control groups (<font size="-1">CONTROL FOOTING FINAL</font>).
+									Report Groups are defined as records in the <font size="-1">REPORT SECTION</font> of
+									the <font size="-1">DATA DIVISION</font>. Most groups are defined once for each
+									report, but control groups are defined for each control break item. For instance, in
+									the example program, control footings are defined on the SalesPersonNumber, the
+									CityCode and <font size="-1">FINAL</font>. <font size="-1">FINAL</font> is a special
+									control group that is invoked before the normal control groups (<font size="-1"
+										>CONTROL HEADING FINAL</font
+									>) and after the normal control groups (<font size="-1">CONTROL FOOTING FINAL</font
+									>).
 								</p>
 								<p>
 									An ordinary control group is defined on some control break data-item. The Report
@@ -574,12 +562,11 @@ PrintSalaryReport.
 									a control break is automatically initiated and the
 									<font size="-1">CONTROL FOOTING</font> group (if there is one) is printed.
 								</p>
-
 								<hr />
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4 align="center">
 									<font color="#800000" face="Arial, Helvetica, sans-serif"
 										>Report writing made easy</font
@@ -598,7 +585,7 @@ PrintSalaryReport.
 								<ul>
 									<li>
 										Allowing simple vertical and horizontal placement of printed items using the
-										<font size="-1">LINE IS</font> and <font size="-1">COLUMN IS </font>phrases in
+										<font size="-1">LINE IS</font> and <font size="-1">COLUMN IS</font> phrases in
 										the data declaration
 									</li>
 									<li>Automatically moving data values to output items</li>
@@ -616,21 +603,19 @@ PrintSalaryReport.
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#993300" colspan="2" valign="top" width="700">
-								<h2 align="CENTER" id="part2">
-									<font color="#FFFF00">
-										<font face="Arial, Helvetica, sans-serif"
+							<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+								<h2 align="center" id="part2">
+									<font color="#FFFF00"
+										><font face="Arial, Helvetica, sans-serif"
 											>Let's write a Report Writer program!</font
-										>
-									</font>
+										></font
+									>
 								</h2>
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-								<h4>
-									<font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font>
-								</h4>
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+								<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
 							</td>
 							<td valign="top" width="525">
 								<div align="center">
@@ -648,11 +633,11 @@ PrintSalaryReport.
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4>
-									<font color="#800000" face="Arial, Helvetica, sans-serif">
-										Report Specification
-									</font>
+									<font color="#800000" face="Arial, Helvetica, sans-serif"
+										>Report Specification</font
+									>
 								</h4>
 							</td>
 							<td valign="top" width="525">
@@ -678,9 +663,9 @@ PrintSalaryReport.
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4>
-									<font color="#800000" face="Arial, Helvetica, sans-serif">A simple report </font>
+									<font color="#800000" face="Arial, Helvetica, sans-serif">A simple report</font>
 								</h4>
 							</td>
 							<td valign="top" width="525">
@@ -757,11 +742,9 @@ Programmer - Michael Coughlan               Page :  1
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4>
-									<font color="#800000" face="Arial, Helvetica, sans-serif"
-										>Code &amp; Commentary</font
-									>
+									<font color="#800000" face="Arial, Helvetica, sans-serif">Code & Commentary</font>
 								</h4>
 							</td>
 							<td valign="top" width="525">
@@ -782,14 +765,14 @@ Programmer - Michael Coughlan               Page :  1
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#993300" colspan="2" valign="top" width="700">
-								<h2 align="CENTER" id="part3">
+							<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+								<h2 align="center" id="part3">
 									<font color="#FFFF00">Let's add some features to our Report Program</font>
 								</h2>
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4>
 									<font color="#800000" face="Arial, Helvetica, sans-serif"
 										>Adding a city and a final total</font
@@ -812,7 +795,7 @@ Programmer - Michael Coughlan               Page :  1
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4>
 									<font color="#800000" face="Arial, Helvetica, sans-serif"
 										>Printing the city total</font
@@ -822,7 +805,7 @@ Programmer - Michael Coughlan               Page :  1
 							<td valign="top" width="525">
 								<p>
 									If we want to print the city total we must set up a report group for it describing
-									<b>what </b>we want printed. To describe <b>when</b> we want the group printed, we
+									<b>what</b> we want printed. To describe <b>when</b> we want the group printed, we
 									must specify that the group is a CONTROL FOOTING group and we must identify the
 									CityCode as the control break data-item. Since the city control break is senior to
 									the salesperson control break we must indicate this by placing CityCode before
@@ -842,7 +825,7 @@ Programmer - Michael Coughlan               Page :  1
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4>
 									<font color="#800000" face="Arial, Helvetica, sans-serif"
 										>Printing a Final Total</font
@@ -866,7 +849,7 @@ Programmer - Michael Coughlan               Page :  1
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4>
 									<font color="#800000" face="Arial, Helvetica, sans-serif"
 										>REPORT SECTION changes</font
@@ -918,7 +901,7 @@ RD  SalesReport
        03 COLUMN 15     PIC 9
                         SOURCE SalesPersonNum  GROUP INDICATE.
        03 COLUMN 25     PIC $$,$$$.99 SOURCE ValueOfSale.
-		
+                
 
 01  SalesPersonGrp
     TYPE IS CONTROL FOOTING SalesPersonNum  NEXT GROUP PLUS 2.
@@ -960,7 +943,7 @@ RD  SalesReport
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4>
 									<font color="#800000" face="Arial, Helvetica, sans-serif"
 										>Changes to the Procedure Division</font
@@ -978,8 +961,8 @@ RD  SalesReport
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#993300" colspan="2" valign="TOP">
-								<h2 align="CENTER" id="part4">
+							<td align="left" bgcolor="#993300" colspan="2" valign="top">
+								<h2 align="center" id="part4">
 									<font color="#FFFF00" face="Arial, Helvetica, sans-serif"
 										>Report Writer Declaratives</font
 									>
@@ -987,37 +970,30 @@ RD  SalesReport
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-								<h4>
-									<font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font>
-								</h4>
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+								<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
 							</td>
 							<td valign="top" width="525">
 								<p>
 									The Report Writer is a wonderful tool if the structure of the required report fits
 									in to the way the Report Writer does things. But sometimes, the structure or
 									requirements of the report are such that the standard Report Writer alone is an
-									insufficient tool. In these cases,
-									<font size="-1">DECLARATIVES</font> may be used to extend the functionality of the
-									Report Writer.
+									insufficient tool. In these cases, <font size="-1">DECLARATIVES</font> may be used
+									to extend the functionality of the Report Writer.
 								</p>
 								<p>
-									The
-									<font size="-1">USE BEFORE REPORTING</font>
-									phrase allows code specified in the
+									The <font size="-1">USE BEFORE REPORTING</font> phrase allows code specified in the
 									<font size="-1">DECLARATIVES</font> to be executed just before a report group is
 									printed. The code in the <font size="-1">DECLARATIVES</font> extends the
 									functionality of the Report Writer by performing tasks or calculations that the
 									Report Writer can not do automatically or by selectively stopping the report group
-									from being printed (using the
-									<font size="-1">SUPPRESS PRINTING</font>
-									command).
+									from being printed (using the <font size="-1">SUPPRESS PRINTING</font> command).
 								</p>
 								<hr />
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4>
 									<font color="#800000" face="Arial, Helvetica, sans-serif"
 										>Calculating the salesperson's commission and salary</font
@@ -1041,25 +1017,22 @@ RD  SalesReport
 									Calculating the commission requires more than just simple addition so the Report
 									Writer cannot handle it automatically. To calculate the commission are
 									<font size="-1">DECLARATIVES</font> are required. The
-									<font size="-1">USE BEFORE REPORTING</font>
-									Salespsn-Line phrase in the
-									<font size="-1">DECLARATIVES </font> allows these items to be calculated when the
+									<font size="-1">USE BEFORE REPORTING</font> Salespsn-Line phrase in the
+									<font size="-1">DECLARATIVES</font> allows these items to be calculated when the
 									Salespsn-Number control footer group is about to be printed.
 								</p>
 								<p>
-									In the example program,
-									<font size="-1">DECLARATIVES</font> are used because the Report Writer cannot
-									automatically calculate a salesperson's commission and salary. The
-									<font size="-1">USE BEFORE REPORTING</font>
-									SalesPersonGrp phrase in the
-									<font size="-1">DECLARATIVES </font> allows these items to be calculated when the
+									In the example program, <font size="-1">DECLARATIVES</font> are used because the
+									Report Writer cannot automatically calculate a salesperson's commission and salary.
+									The <font size="-1">USE BEFORE REPORTING</font> SalesPersonGrp phrase in the
+									<font size="-1">DECLARATIVES</font> allows these items to be calculated when the
 									SalesPersonGrp control footer group is about to be printed.
 								</p>
 								<hr />
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4>
 									<font color="#800000" face="Arial, Helvetica, sans-serif"
 										>Values of control break items</font
@@ -1097,7 +1070,7 @@ RD  SalesReport
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4>
 									<font color="#800000" face="Arial, Helvetica, sans-serif"
 										>The full program and the report it produces</font
@@ -1217,7 +1190,7 @@ RD  SalesReport
        03 COLUMN 15     PIC 9
                         SOURCE SalesPersonNum  GROUP INDICATE.
        03 COLUMN 25     PIC $$,$$$.99 SOURCE ValueOfSale.
-		
+                
 
 01  SalesPersonGrp
     TYPE IS CONTROL FOOTING SalesPersonNum  NEXT GROUP PLUS 2.
@@ -1321,7 +1294,6 @@ PrintSalaryReport.
 										</td>
 									</tr>
 								</table>
-
 								<hr />
 								<table background="Code.gif" border="0" width="100%">
 									<tr>
@@ -1388,7 +1360,7 @@ Programmer - Michael Coughlan               Page :  1 </pre
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4>
 									<font color="#800000" face="Arial, Helvetica, sans-serif"
 										>Referencing control break items - summary</font
@@ -1409,8 +1381,8 @@ Programmer - Michael Coughlan               Page :  1 </pre
 								<hr />
 								<div align="center">
 									<p>
-										<a href="#top">
-											<img border="0" height="38" src="i-pagetop.gif" width="132"
+										<a href="#top"
+											><img border="0" height="38" src="i-pagetop.gif" width="132"
 										/></a>
 									</p>
 									<hr />
@@ -1423,13 +1395,11 @@ Programmer - Michael Coughlan               Page :  1 </pre
 											>All rights reserved. No part of these course materials may be reproduced in
 											any form or by any means - graphic, electronic, mechanical, photocopying,
 											printing, recording, taping or stored in an information storage and
-											retrieval system - without the written permission of
-										</font>
+											retrieval system - without the written permission of</font
+										>
 										<font size="2">the author.</font>
 									</p>
-									<p align="center">
-										<font size="2">(c) Michael Coughlan</font>
-									</p>
+									<p align="center"><font size="2">(c) Michael Coughlan</font></p>
 								</div>
 							</td>
 						</tr>

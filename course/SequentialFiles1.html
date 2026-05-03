@@ -174,7 +174,6 @@
 			}
 		</style>
 	</head>
-
 	<body alink="#009B00" bgcolor="#FFFFFF" link="#0000FF" text="#000000" vlink="#FF0000">
 		<table border="1" width="715">
 			<tr>
@@ -183,9 +182,7 @@
 						<tr>
 							<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
 								<center>
-									<p>
-										<img height="59" src="Resources/pics/t-CobolTut.gif" width="173" />
-									</p>
+									<p><img height="59" src="Resources/pics/t-CobolTut.gif" width="173" /></p>
 								</center>
 								<center>
 									<h1>Introduction to Sequential Files</h1>
@@ -197,7 +194,7 @@
 										<font size="-1">Unit aims, objectives, prerequisites.</font>
 									</li>
 									<li>
-										<a href="#part1">Introduction to record-based files </a><br />
+										<a href="#part1">Introduction to record-based files</a><br />
 										<font size="-1"
 											>This section introduces record-based files, the concept of the record
 											buffer and defines terminology such as file, record and field.</font
@@ -212,7 +209,7 @@
 										>
 									</li>
 									<li>
-										<a href="#part3">COBOL file handling verbs </a><br />
+										<a href="#part3">COBOL file handling verbs</a><br />
 										<font size="-1"
 											>The COBOL verbs for processing Sequential Files are introduced in this
 											section. The section ends with a full example program.</font
@@ -223,28 +220,25 @@
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#993300" colspan="2" valign="top" width="700">
-								<h2 align="CENTER" id="intro">
-									<font color="#FFFF00">
-										<font face="Arial, Helvetica, sans-serif">Introduction</font>
-									</font>
+							<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+								<h2 align="center" id="intro">
+									<font color="#FFFF00"
+										><font face="Arial, Helvetica, sans-serif">Introduction</font></font
+									>
 								</h2>
 							</td>
 						</tr>
 						<tr>
 							<td bgcolor="#FFFFCC" valign="top" width="175">
-								<h4>
-									<font color="#993300" face="Arial, Helvetica, sans-serif">Aims</font>
-								</h4>
+								<h4><font color="#993300" face="Arial, Helvetica, sans-serif">Aims</font></h4>
 							</td>
 							<td valign="top" width="540">
 								<div align="center">
 									<p align="left">
 										Files are repositories of data that reside on backing storage (hard disk,
-										magnetic tape or
-										<font size="-1">CD-ROM</font>). Nowadays, files are used to store a variety of
-										different types of information, such as programs, documents, spreadsheets,
-										videos, sounds, pictures and record-based data.
+										magnetic tape or <font size="-1">CD-ROM</font>). Nowadays, files are used to
+										store a variety of different types of information, such as programs, documents,
+										spreadsheets, videos, sounds, pictures and record-based data.
 									</p>
 									<p align="left">
 										Although COBOL can be used to process these other kinds of data file, it is
@@ -286,10 +280,8 @@
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="175">
-								<h4>
-									<font color="#800000" face="Arial, Helvetica, sans-serif">Objectives</font>
-								</h4>
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+								<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Objectives</font></h4>
 							</td>
 							<td valign="top" width="540">
 								<p>By the end of this unit you should -</p>
@@ -298,13 +290,9 @@
 										Understand concepts and terminology like file, record, field and record buffer.
 									</li>
 									<li>Be able to write the file and record declarations for a Sequential File.</li>
+									<li>Understand how <font size="-1">READ</font> verbs works</li>
 									<li>
-										Understand how
-										<font size="-1">READ</font> verbs works
-									</li>
-									<li>
-										Be able to use the
-										<font size="-1">READ</font>, <font size="-1">WRITE</font>,
+										Be able to use the <font size="-1">READ</font>, <font size="-1">WRITE</font>,
 										<font size="-1">OPEN</font> and <font size="-1">CLOSE</font> verbs to process a
 										Sequential File.
 									</li>
@@ -313,10 +301,8 @@
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" height="77" valign="top" width="175">
-								<h4>
-									<font color="#800000" face="Arial, Helvetica, sans-serif">Prerequisites</font>
-								</h4>
+							<td align="left" bgcolor="#FFFFCC" height="77" valign="top" width="175">
+								<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Prerequisites</font></h4>
 							</td>
 							<td height="77" valign="top" width="525">
 								<ul>
@@ -333,29 +319,27 @@
 								<div align="center">
 									<hr width="100%" />
 									<p>
-										<a href="#top">
-											<img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+										<a href="#top"
+											><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
 										/></a>
 									</p>
 								</div>
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#993300" colspan="2" valign="top" width="700">
-								<h2 align="CENTER" id="part1">
-									<font color="#FFFF00">
-										<font face="Arial, Helvetica, sans-serif"
+							<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+								<h2 align="center" id="part1">
+									<font color="#FFFF00"
+										><font face="Arial, Helvetica, sans-serif"
 											>Introduction to record-based files</font
-										>
-									</font>
+										></font
+									>
 								</h2>
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-								<h4>
-									<font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font>
-								</h4>
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+								<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
 							</td>
 							<td valign="top" width="525">
 								<div align="center">
@@ -374,16 +358,13 @@
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4>
 									<font color="#800000" face="Arial, Helvetica, sans-serif"
 										>Files, Records, Fields</font
 									>
 								</h4>
-
-								<h4 align="center">
-									<font size="-1"> </font>
-								</h4>
+								<h4 align="center"><font size="-1"></font></h4>
 							</td>
 							<td valign="top" width="525">
 								<div align="center">
@@ -392,7 +373,7 @@
 								<ul>
 									<li>
 										<div align="left">
-											We use the term<i> file</i>, to describe a collection of one or more
+											We use the term <i>file</i>, to describe a collection of one or more
 											occurrences (instances) of a record type (template).
 										</div>
 									</li>
@@ -404,7 +385,7 @@
 									</li>
 									<li>
 										<div align="left">
-											We use the term <i>field, </i>to describe an item of information recorded
+											We use the term <i>field,</i> to describe an item of information recorded
 											about an object (e.g. StudentName, DateOfBirth).
 										</div>
 									</li>
@@ -415,7 +396,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4>
 									<font color="#800000" face="Arial, Helvetica, sans-serif"
 										>Record instance vs Record type</font
@@ -447,7 +428,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4 align="left">
 									<font color="#800000" face="Arial, Helvetica, sans-serif">The record buffer</font>
 								</h4>
@@ -476,22 +457,18 @@
 									record buffer. The record buffer is the only connection between the program and the
 									records in the file.
 								</p>
-								<p align="center">
-									<img height="248" src="Resources/pics/FileSeq2.gif" width="471" />
-								</p>
+								<p align="center"><img height="248" src="Resources/pics/FileSeq2.gif" width="471" /></p>
 								<hr width="50%" />
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4>
 									<font color="#800000" face="Arial, Helvetica, sans-serif"
 										>Some implications of "buffers"</font
 									>
 								</h4>
-								<p align="center">
-									<img height="44" src="Resources/pics/program.gif" width="42" />
-								</p>
+								<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
 							</td>
 							<td valign="top" width="525">
 								<p>
@@ -499,14 +476,14 @@
 									file.
 								</p>
 								<p>
-									To process all the records in an
-									<font size="-1">INPUT</font> file, we must ensure that each record instance is
-									copied (read) from the file, into the record buffer, when required.
+									To process all the records in an <font size="-1">INPUT</font> file, we must ensure
+									that each record instance is copied (read) from the file, into the record buffer,
+									when required.
 								</p>
 								<p>
-									To create an
-									<font size="-1">OUTPUT</font> file containing data records, we must ensure that each
-									record is placed in the record buffer and then transferred (written) to the file.
+									To create an <font size="-1">OUTPUT</font> file containing data records, we must
+									ensure that each record is placed in the record buffer and then transferred
+									(written) to the file.
 								</p>
 								<p>
 									To transfer a record from an input file to an output file we must read the record
@@ -521,28 +498,29 @@
 								<div align="center">
 									<hr />
 									<p>
-										<a href="#top">
-											<img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+										<a href="#top"
+											><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
 										/></a>
 									</p>
 								</div>
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#993300" colspan="2" valign="top" width="700">
-								<h2 align="CENTER" id="part2">
-									<font color="#FFFF00">
-										<font face="Arial, Helvetica, sans-serif">Declaring Records and Files</font>
-									</font>
+							<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+								<h2 align="center" id="part2">
+									<font color="#FFFF00"
+										><font face="Arial, Helvetica, sans-serif"
+											>Declaring Records and Files</font
+										></font
+									>
 								</h2>
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4 align="left">
 									<font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font>
 								</h4>
-
 								<aside>
 									<p align="center">
 										<img height="37" src="Resources/pics/i-Detail.gif" width="30" /><br />
@@ -576,7 +554,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" height="355" valign="top" width="175">
+							<td align="left" bgcolor="#FFFFCC" height="355" valign="top" width="175">
 								<h4 align="left">
 									<font color="#800000" face="Arial, Helvetica, sans-serif">Creating a record</font>
 								</h4>
@@ -655,22 +633,19 @@
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" height="355" valign="top" width="175">
+							<td align="left" bgcolor="#FFFFCC" height="355" valign="top" width="175">
 								<h4 align="left">
 									<font color="#800000" face="Arial, Helvetica, sans-serif"
 										>Declaring a record buffer in your program</font
 									>
 								</h4>
-
-								<p align="center">
-									<img height="44" src="Resources/pics/ProgFrag.gif" width="48" />
-								</p>
+								<p align="center"><img height="44" src="Resources/pics/ProgFrag.gif" width="48" /></p>
 							</td>
 							<td height="355" valign="top" width="525">
 								<p>
 									The record type/template/buffer of every file used in a program must be described in
-									the <font size="-1">FILE SECTION </font>by means of an
-									<font size="-1">FD </font>(file description) entry. The
+									the <font size="-1">FILE SECTION</font> by means of an
+									<font size="-1">FD</font> (file description) entry. The
 									<font size="-1">FD</font> entry consists of the letters
 									<font size="-1">FD</font> and an internal name that the programmer assigns to the
 									file.
@@ -704,23 +679,19 @@ FD StudentFile.
 								</table>
 								<p>
 									Note that we have assigned the name StudentFile as the internal file name. The
-									actual name of the file on disk is
-									<i>Students.Dat</i>.
+									actual name of the file on disk is <i>Students.Dat</i>.
 								</p>
 								<hr width="50%" />
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4 align="left">
 									<font color="#800000" face="Arial, Helvetica, sans-serif"
 										>The SELECT and ASSIGN clause</font
 									>
 								</h4>
-
-								<p align="center">
-									<img height="44" src="Resources/pics/ProgFrag.gif" width="48" />
-								</p>
+								<p align="center"><img height="44" src="Resources/pics/ProgFrag.gif" width="48" /></p>
 							</td>
 							<td valign="top" width="525">
 								<p>
@@ -729,14 +700,13 @@ FD StudentFile.
 									going to use internally with the actual name of the program on disk?
 								</p>
 								<p>
-									The internal file name used in a file's
-									<font size="-1">FD</font> entry is connected to an external file (on disk, tape or
-									<font size="-1">CD-ROM</font>) by means of the <font size="-1">SELECT </font>and
-									<font size="-1">ASSIGN</font> clause. The <font size="-1">SELECT </font>and
-									<font size="-1">ASSIGN</font> clause is an entry in the
-									<font size="-1">FILE-CONTRO</font>L paragraph in the<font size="-1">
-										INPUT-OUTPUT SECTION </font
-									>in the <font size="-1">ENVIRONMENT DIVISION</font>.
+									The internal file name used in a file's <font size="-1">FD</font> entry is connected
+									to an external file (on disk, tape or <font size="-1">CD-ROM</font>) by means of the
+									<font size="-1">SELECT</font> and <font size="-1">ASSIGN</font> clause. The
+									<font size="-1">SELECT</font> and <font size="-1">ASSIGN</font> clause is an entry
+									in the <font size="-1">FILE-CONTRO</font>L paragraph in the
+									<font size="-1">INPUT-OUTPUT SECTION</font> in the
+									<font size="-1">ENVIRONMENT DIVISION</font>.
 								</p>
 								<table
 									align="center"
@@ -774,7 +744,7 @@ FD StudentFile.
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" height="551" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" height="551" valign="top" width="175">
 								<h4>
 									<font color="#800000" face="Arial, Helvetica, sans-serif"
 										>SELECT and ASSIGN syntax for Sequential files</font
@@ -790,7 +760,6 @@ FD StudentFile.
 										>
 									</p>
 								</aside>
-
 								<aside>
 									<p align="center">
 										<img height="37" src="Resources/pics/i-Detail.gif" width="30" /><br />
@@ -820,17 +789,16 @@ FD StudentFile.
 										>.
 									</p>
 									<p align="left">
-										<font size="-1"> </font>
-										<font size="-1">LINE SEQUENTIAL </font>files, are files in which each record is
-										followed by the carriage return and line feed characters. These are the kind of
-										files produced by a text editor such as Notepad.
+										<font size="-1"></font> <font size="-1">LINE SEQUENTIAL</font> files, are files
+										in which each record is followed by the carriage return and line feed
+										characters. These are the kind of files produced by a text editor such as
+										Notepad.
 									</p>
 									<p align="left">
-										<font size="-1">RECORD SEQUENTIAL</font>
-										files, are files where the file consists of a stream of bytes. Only the fact
-										that we know the size of each record allows us to retrieve them. Files that are
-										not record based, can be processed by defining them as
-										<font size="-1">RECORD SEQUENTIAL</font>.
+										<font size="-1">RECORD SEQUENTIAL</font> files, are files where the file
+										consists of a stream of bytes. Only the fact that we know the size of each
+										record allows us to retrieve them. Files that are not record based, can be
+										processed by defining them as <font size="-1">RECORD SEQUENTIAL</font>.
 									</p>
 									<p align="left">
 										The <i>ExternalFileReference</i> can be a simple file name, or a full, or a
@@ -855,7 +823,7 @@ SELECT StudentFile
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4>
 									<font color="#800000" face="Arial, Helvetica, sans-serif"
 										>What is the purpose of the SELECT and ASSIGN clause?</font
@@ -881,24 +849,26 @@ SELECT StudentFile
 								<div align="center">
 									<hr />
 									<p>
-										<a href="#top">
-											<img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+										<a href="#top"
+											><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
 										/></a>
 									</p>
 								</div>
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#993300" colspan="2" valign="top" width="700">
-								<h2 align="CENTER" id="part3">
-									<font color="#FFFF00">
-										<font face="Arial, Helvetica, sans-serif">COBOL file handling verbs</font>
-									</font>
+							<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+								<h2 align="center" id="part3">
+									<font color="#FFFF00"
+										><font face="Arial, Helvetica, sans-serif"
+											>COBOL file handling verbs</font
+										></font
+									>
 								</h2>
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4 align="left">
 									<font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font>
 								</h4>
@@ -906,9 +876,9 @@ SELECT StudentFile
 							<td valign="top" width="525">
 								<p>
 									Sequential files are uncomplicated. To write programs that process Sequential Files
-									you only need to know four new verbs - the
-									<font size="-1">OPEN</font>, <font size="-1">CLOSE</font>,
-									<font size="-1">READ</font> and <font size="-1">WRITE</font>.
+									you only need to know four new verbs - the <font size="-1">OPEN</font>,
+									<font size="-1">CLOSE</font>, <font size="-1">READ</font> and
+									<font size="-1">WRITE</font>.
 								</p>
 								<p>
 									You must ensure that (before terminating) your program closes all the files it has
@@ -919,11 +889,10 @@ SELECT StudentFile
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4 align="left">
 									<font color="#800000" face="Arial, Helvetica, sans-serif">The OPEN verb</font>
 								</h4>
-
 								<aside>
 									<p align="center">
 										<img height="44" src="Resources/pics/i-LightBulbTip.gif" width="42" /><br />
@@ -939,9 +908,7 @@ SELECT StudentFile
 								</aside>
 							</td>
 							<td valign="top" width="525">
-								<p align="left">
-									<img height="78" src="Resources/pics/FileSeq4.gif" width="277" />
-								</p>
+								<p align="left"><img height="78" src="Resources/pics/FileSeq4.gif" width="277" /></p>
 								<p align="left">
 									Before your program can access the data in an input file or place data in an output
 									file, you must make the file available to the program by
@@ -951,39 +918,32 @@ SELECT StudentFile
 									When you open a file you have to indicate how you intend to use it (e.g.
 									<font size="-1">INPUT</font>, <font size="-1">OUTPUT</font>,
 									<font size="-1">EXTEND</font>) so that the system can manage the file
-									correctly.Opening a file does not transfer any data to the record buffer, it simply
+									correctly.Opening a file does not transfer any data to the record buffer, it simply
 									provides access.
 								</p>
 								<p>
-									<b>
-										<font size="-1">OPEN</font>
-										notes<br /> </b
-									>When a file is opened for <font size="-1">INPUT</font> or
-									<font size="-1">EXTEND</font>, the file must exist or the<font size="-1">
-										OPEN</font
-									>
-									will fail.
+									<b><font size="-1">OPEN</font> notes<br /></b> When a file is opened for
+									<font size="-1">INPUT</font> or <font size="-1">EXTEND</font>, the file must exist
+									or the <font size="-1">OPEN</font> will fail.
 								</p>
 								<p>
-									When a file is opened for
-									<font size="-1">INPUT</font>, the <i>Next Record Pointer</i> is positioned at the
-									beginning of the file.
+									When a file is opened for <font size="-1">INPUT</font>, the
+									<i>Next Record Pointer</i> is positioned at the beginning of the file.
 								</p>
 								<p>
-									When the file is opened for
-									<font size="-1">EXTEND</font>, the Next Record Pointer is positioned after the last
-									record in the file. This allows records to be appended to the file.
+									When the file is opened for <font size="-1">EXTEND</font>, the Next Record Pointer
+									is positioned after the last record in the file. This allows records to be appended
+									to the file.
 								</p>
 								<p>
-									When a file is opened for
-									<font size="-1">OUTPUT</font>, it is created if it does not exist, and is
-									overwritten, if it already exists.
+									When a file is opened for <font size="-1">OUTPUT</font>, it is created if it does
+									not exist, and is overwritten, if it already exists.
 								</p>
 								<hr width="50%" />
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4 align="left">
 									<font color="#800000" face="Arial, Helvetica, sans-serif">The CLOSE verb</font>
 								</h4>
@@ -999,15 +959,13 @@ SELECT StudentFile
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" height="355" valign="top" width="175">
+							<td align="left" bgcolor="#FFFFCC" height="355" valign="top" width="175">
 								<h4 align="left">
 									<font color="#800000" face="Arial, Helvetica, sans-serif">The READ verb</font>
 								</h4>
 							</td>
 							<td height="355" valign="top" width="525">
-								<p>
-									<img height="101" src="Resources/pics/FileSeq5.gif" width="288" />
-								</p>
+								<p><img height="101" src="Resources/pics/FileSeq5.gif" width="288" /></p>
 								<p>
 									Once the system has opened a file and made it available to the program it is the
 									programmers responsibility to process it correctly. To process all the records in
@@ -1019,9 +977,9 @@ SELECT StudentFile
 									record buffer.
 								</p>
 								<p>
-									<b> <font size="-1">READ</font> notes <br /> </b>When the
+									<b><font size="-1">READ</font> notes<br /></b> When the
 									<font size="-1">READ</font> attempts to read a record from the file and encounters
-									the end of file marker, the <font size="-1">AT END </font>is triggered and the
+									the end of file marker, the <font size="-1">AT END</font> is triggered and the
 									<i>StatementBlock</i> following the <font size="-1">AT END</font> is executed.
 								</p>
 								<p>
@@ -1035,20 +993,22 @@ SELECT StudentFile
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4 align="left">
 									<font color="#800000" face="Arial, Helvetica, sans-serif">How the READ works</font>
 								</h4>
 							</td>
 							<td valign="top" width="525">
 								<p>
-									The animation below demonstrates how the
-									<font size="-1">READ</font> works. When a record is read it is copied from the
-									backing storage file into the record buffer in <font size="-1">RAM</font>. When an
-									attempt to <font size="-1">READ</font> detects the end of file the
-									<font size="-1">AT END </font>is triggered and the condition name EndOfFile is set
-									to true. Since the condition name is set up as shown below, setting it to true fills
-									the whole record with <font size="-1">HIGH</font>-<font size="-1">VALUES</font>.
+									The animation below demonstrates how the <font size="-1">READ</font> works. When a
+									record is read it is copied from the backing storage file into the record buffer in
+									<font size="-1">RAM</font>. When an attempt to <font size="-1">READ</font> detects
+									the end of file the <font size="-1">AT END</font> is triggered and the condition
+									name EndOfFile is set to true. Since the condition name is set up as shown below,
+									setting it to true fills the whole record with <font size="-1">HIGH</font>-<font
+										size="-1"
+										>VALUES</font
+									>.
 								</p>
 								<table align="center" bgcolor="#E1FFE1" border="1" cellpadding="5" width="58%">
 									<tr>
@@ -1072,7 +1032,7 @@ SELECT StudentFile
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4 align="left">
 									<font color="#800000" face="Arial, Helvetica, sans-serif">The WRITE verb</font>
 								</h4>
@@ -1088,11 +1048,7 @@ SELECT StudentFile
 								</aside>
 							</td>
 							<td valign="top" width="525">
-								<p>
-									<u>WRITE</u>
-									<font size="-1"> </font>RecordName [<u>FROM</u>
-									Identifier]
-								</p>
+								<p><u>WRITE</u> <font size="-1"></font>RecordName [<u>FROM</u> Identifier]</p>
 								<p>
 									The <font size="-1">WRITE</font> verb is used to copy data from the record buffer
 									(RAM) to the file on backing storage (Disk, tape or <font size="-1">CD-ROM</font>).
@@ -1103,27 +1059,18 @@ SELECT StudentFile
 									of record buffer to the file.
 								</p>
 								<p>
-									When the
-									<font size="-1">WRITE..FROM</font> is used the data contained in the
+									When the <font size="-1">WRITE..FROM</font> is used the data contained in the
 									<i>Identifier</i> is copied into the record buffer and is then written to the file.
-									The <font size="-1">WRITE..FROM </font>is the equivalent of a
-									<font size="-1"><i>MOVE</i></font
-									><i>
-										Identifier
-										<font size="-1">TO</font> RecordBuffer
-									</i>
-									statement followed by a
-									<i>
-										<font size="-1">WRITE</font>
-										RecordBuffer
-									</i>
-									statement.
+									The <font size="-1">WRITE..FROM</font> is the equivalent of a
+									<font size="-1"><i>MOVE</i></font>
+									<i>Identifier <font size="-1">TO</font> RecordBuffer</i> statement followed by a
+									<i><font size="-1">WRITE</font> RecordBuffer</i> statement.
 								</p>
 								<hr width="50%" />
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4 align="left">
 									<font color="#800000" face="Arial, Helvetica, sans-serif"
 										>Read a file, Write a record</font
@@ -1145,33 +1092,22 @@ SELECT StudentFile
 								</p>
 								<p>
 									When we read a record from the transaction file we don't know which of the types
-									will be supplied; so we must -
-									<i>
-										<font size="-1">READ</font>
-										Filename </i
-									>. It is the programmers responsibility to discover what type of record has been
-									supplied.
+									will be supplied; so we must - <i><font size="-1">READ</font> Filename</i> . It is
+									the programmers responsibility to discover what type of record has been supplied.
 								</p>
 								<p>
 									When we write a record to the a file we have to specify which of the record types we
-									want to write; so we must -
-									<i>
-										<font size="-1">WRITE</font>
-										RecordName </i
-									>.
+									want to write; so we must - <i><font size="-1">WRITE</font> RecordName</i> .
 								</p>
 								<hr width="50%" />
 							</td>
 						</tr>
 						<tr>
-							<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="175">
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<h4 align="left">
-									<font color="#800000" face="Arial, Helvetica, sans-serif">Example Program </font>
+									<font color="#800000" face="Arial, Helvetica, sans-serif">Example Program</font>
 								</h4>
-
-								<p align="center">
-									<img height="44" src="Resources/pics/program.gif" width="42" />
-								</p>
+								<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
 							</td>
 							<td valign="top" width="525">
 								<p>
@@ -1206,7 +1142,7 @@ ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
     SELECT StudentFile ASSIGN TO "STUDENTS.DAT"
-		ORGANIZATION IS LINE SEQUENTIAL.
+                ORGANIZATION IS LINE SEQUENTIAL.
 
 DATA DIVISION.
 FILE SECTION.
@@ -1267,8 +1203,8 @@ GetStudentRecord.
 								<hr width="100%" />
 								<div align="center">
 									<p>
-										<a href="#top">
-											<img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+										<a href="#top"
+											><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
 										/></a>
 									</p>
 									<hr />
@@ -1281,13 +1217,11 @@ GetStudentRecord.
 											>All rights reserved. No part of these course materials may be reproduced in
 											any form or by any means - graphic, electronic, mechanical, photocopying,
 											printing, recording, taping or stored in an information storage and
-											retrieval system - without the written permission of
-										</font>
+											retrieval system - without the written permission of</font
+										>
 										<font size="2">the author.</font>
 									</p>
-									<p align="center">
-										<font size="2">(c) Michael Coughlan</font>
-									</p>
+									<p align="center"><font size="2">(c) Michael Coughlan</font></p>
 								</div>
 							</td>
 						</tr>
