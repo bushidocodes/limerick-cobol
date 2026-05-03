@@ -95,51 +95,12 @@
 					overflow-x: auto;
 				}
 
-				table[width="715"],
-				table[width="725"],
-				table[width="715"] > tbody,
-				table[width="725"] > tbody,
-				table[width="715"] > tbody > tr,
-				table[width="725"] > tbody > tr,
-				table[width="715"] > tbody > tr > td,
-				table[width="725"] > tbody > tr > td,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])),
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr > td {
+				#layout-table,
+				#layout-table > tbody,
+				#layout-table > tbody > tr,
+				#layout-table > tbody > tr > td {
 					display: block;
 					width: auto !important;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]),
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody {
-					display: block;
-					width: 100% !important;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr {
-					display: flex;
-					align-items: baseline;
-					gap: 0.4em;
-					margin: 0.4em 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="3%"] {
-					display: none;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="4%"] {
-					display: block;
-					flex: 0 0 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="93%"] {
-					display: block;
-					flex: 1 1 auto;
-					width: auto !important;
-					padding: 0;
 				}
 
 				td[width="175"] > h4:not(:first-child):not(:has(img)),
@@ -175,250 +136,234 @@
 		</style>
 	</head>
 	<body alink="#009B00" bgcolor="#FFFFFF" link="#0000FF" text="#000000" vlink="#FF0000">
-		<table border="1" width="715">
+		<table id="layout-table" border="1" width="715" cellpadding="4" cellspacing="0">
 			<tr>
-				<td>
-					<table border="0" cellpadding="4" cellspacing="0" width="710">
-						<tr>
-							<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
-								<center>
-									<p><img height="59" src="Resources/pics/t-CobolTut.gif" width="173" /></p>
-								</center>
-								<center>
-									<h1>Sorting and Merging files</h1>
-									<hr />
-								</center>
-								<ul class="toc">
-									<li>
-										<a href="#intro">Introduction</a><br />
-										<font size="-1">Unit aims, objectives, prerequisites.</font>
-									</li>
-									<li>
-										<a href="#part1">Simple SORTing</a><br />
-										<font size="-1"
-											>This section introduces a simplified version of SORT verb syntax, and
-											discusses why we might need to sort a file as part of a solution to a
-											programming problem..</font
-										>
-									</li>
-									<li>
-										<a href="#part2">Sorting with an INPUT PROCEDURE</a><br />
-										<font size="-1"
-											>This section introduces a SORT with an INPUT PROCEDURE and demonstrates how
-											an INPUT PROCEDURE may be used to filter, or alter, records before they are
-											supplied to the sort process.</font
-										>
-									</li>
-									<li>
-										<a href="#part3">Sorting with an OUTPUT PROCEDURE</a><br />
-										<font size="-1"
-											>This section shows how an OUTPUT PROCEDURE may be used to filter, or alter,
-											records after they have been sorted.</font
-										>
-									</li>
-									<li>
-										<a href="#part4">MERGEing files</a><br />
-										<font size="-1"
-											>In this section the MERGE verb is introduced. The MERGE verb may be used to
-											merge two or more ordered files.</font
-										>
-									</li>
-								</ul>
-								<hr />
-							</td>
-						</tr>
-						<tr>
-							<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
-								<h2 align="center" id="intro">
-									<font color="#FFFF00"
-										><font face="Arial, Helvetica, sans-serif">Introduction</font></font
-									>
-								</h2>
-							</td>
-						</tr>
-						<tr>
-							<td bgcolor="#FFFFCC" valign="top" width="175">
-								<h4><font color="#993300" face="Arial, Helvetica, sans-serif">Aims</font></h4>
-							</td>
-							<td valign="top" width="525">
-								<div align="center">
-									<p align="left">
-										As we noted in the tutorial - Processing Sequential Files - it is possible to
-										apply processing to an ordered sequential file that is difficult, or impossible,
-										when the file is unordered.
-									</p>
-									<p align="left">
-										When this kind of processing is required, and the data file we have to work with
-										is an unordered Sequential file, then part of the solution to the problem must
-										be to sort the file. COBOL provides the <font size="-1">SORT</font> verb for
-										this purpose.
-									</p>
-									<p align="left">
-										Sometimes, when two or more files are ordered on the same key field or fields,
-										we may want to combine them into one single ordered file. COBOL provides the
-										<font size="-1">MERGE</font> verb for this purpose.
-									</p>
-									<p align="left">
-										This tutorial explores the syntax, semantics, and use of the
-										<font size="-1">SORT</font> and <font size="-1">MERGE</font> verbs.
-									</p>
-								</div>
-								<hr align="center" size="1" width="100%" />
-							</td>
-						</tr>
-						<tr>
-							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-								<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Objectives</font></h4>
-							</td>
-							<td valign="top" width="525">
-								<p>By the end of this unit you should -</p>
-								<ol>
-									<li>
-										Understand why you might want to sort a file as part of your solution to a
-										programming problem.
-									</li>
-									<li>
-										Understand the role of the temporary work file and the
-										<font size="-1">USING</font> and <font size="-1">GIVING</font> files.
-									</li>
-									<li>
-										Be able to apply the <font size="-1">SORT</font> to sort a file on ascending or
-										descending or multiple keys..
-									</li>
-									<li>
-										Understand why you might want to use an
-										<font size="-1">INPUT PROCEDURE</font> or an
-										<font size="-1">OUTPUT PROCEDURE</font> to filter or alter records.
-									</li>
-									<li>
-										Know the difference between an <font size="-1">INPUT PROCEDURE</font> and an
-										<font size="-1">OUTPUT PROCEDURE</font> and know when to use one, and when the
-										other.
-									</li>
-									<li>
-										Be able to use the <font size="-1">MERGE</font> verb to merge two or more files.
-									</li>
-									<li>Understand the significance of the merge keys.</li>
-								</ol>
-								<hr align="center" size="1" width="100%" />
-							</td>
-						</tr>
-						<tr>
-							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-								<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Prerequisites</font></h4>
-							</td>
-							<td valign="top" width="525">
-								<ul>
-									<li>Introduction to COBOL</li>
-									<li>Declaring data in COBOL</li>
-									<li>Basic Procedure Division Commands</li>
-									<li>Selection Constructs</li>
-									<li>Iteration Constructs</li>
-									<li>Introduction to Sequential files</li>
-									<li>Processing Sequential files</li>
-									<li>Print files and variable length records</li>
-								</ul>
-							</td>
-						</tr>
-						<tr>
-							<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
-								<div align="center">
-									<hr width="100%" />
+				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
+					<center>
+						<p><img height="59" src="Resources/pics/t-CobolTut.gif" width="173" /></p>
+					</center>
+					<center>
+						<h1>Sorting and Merging files</h1>
+						<hr />
+					</center>
+					<ul class="toc">
+						<li>
+							<a href="#intro">Introduction</a><br />
+							<font size="-1">Unit aims, objectives, prerequisites.</font>
+						</li>
+						<li>
+							<a href="#part1">Simple SORTing</a><br />
+							<font size="-1"
+								>This section introduces a simplified version of SORT verb syntax, and discusses why we
+								might need to sort a file as part of a solution to a programming problem..</font
+							>
+						</li>
+						<li>
+							<a href="#part2">Sorting with an INPUT PROCEDURE</a><br />
+							<font size="-1"
+								>This section introduces a SORT with an INPUT PROCEDURE and demonstrates how an INPUT
+								PROCEDURE may be used to filter, or alter, records before they are supplied to the sort
+								process.</font
+							>
+						</li>
+						<li>
+							<a href="#part3">Sorting with an OUTPUT PROCEDURE</a><br />
+							<font size="-1"
+								>This section shows how an OUTPUT PROCEDURE may be used to filter, or alter, records
+								after they have been sorted.</font
+							>
+						</li>
+						<li>
+							<a href="#part4">MERGEing files</a><br />
+							<font size="-1"
+								>In this section the MERGE verb is introduced. The MERGE verb may be used to merge two
+								or more ordered files.</font
+							>
+						</li>
+					</ul>
+					<hr />
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+					<h2 align="center" id="intro">
+						<font color="#FFFF00"><font face="Arial, Helvetica, sans-serif">Introduction</font></font>
+					</h2>
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor="#FFFFCC" valign="top" width="175">
+					<h4><font color="#993300" face="Arial, Helvetica, sans-serif">Aims</font></h4>
+				</td>
+				<td valign="top" width="525">
+					<div align="center">
+						<p align="left">
+							As we noted in the tutorial - Processing Sequential Files - it is possible to apply
+							processing to an ordered sequential file that is difficult, or impossible, when the file is
+							unordered.
+						</p>
+						<p align="left">
+							When this kind of processing is required, and the data file we have to work with is an
+							unordered Sequential file, then part of the solution to the problem must be to sort the
+							file. COBOL provides the <font size="-1">SORT</font> verb for this purpose.
+						</p>
+						<p align="left">
+							Sometimes, when two or more files are ordered on the same key field or fields, we may want
+							to combine them into one single ordered file. COBOL provides the
+							<font size="-1">MERGE</font> verb for this purpose.
+						</p>
+						<p align="left">
+							This tutorial explores the syntax, semantics, and use of the
+							<font size="-1">SORT</font> and <font size="-1">MERGE</font> verbs.
+						</p>
+					</div>
+					<hr align="center" size="1" width="100%" />
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+					<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Objectives</font></h4>
+				</td>
+				<td valign="top" width="525">
+					<p>By the end of this unit you should -</p>
+					<ol>
+						<li>
+							Understand why you might want to sort a file as part of your solution to a programming
+							problem.
+						</li>
+						<li>
+							Understand the role of the temporary work file and the
+							<font size="-1">USING</font> and <font size="-1">GIVING</font> files.
+						</li>
+						<li>
+							Be able to apply the <font size="-1">SORT</font> to sort a file on ascending or descending
+							or multiple keys..
+						</li>
+						<li>
+							Understand why you might want to use an
+							<font size="-1">INPUT PROCEDURE</font> or an <font size="-1">OUTPUT PROCEDURE</font> to
+							filter or alter records.
+						</li>
+						<li>
+							Know the difference between an <font size="-1">INPUT PROCEDURE</font> and an
+							<font size="-1">OUTPUT PROCEDURE</font> and know when to use one, and when the other.
+						</li>
+						<li>Be able to use the <font size="-1">MERGE</font> verb to merge two or more files.</li>
+						<li>Understand the significance of the merge keys.</li>
+					</ol>
+					<hr align="center" size="1" width="100%" />
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+					<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Prerequisites</font></h4>
+				</td>
+				<td valign="top" width="525">
+					<ul>
+						<li>Introduction to COBOL</li>
+						<li>Declaring data in COBOL</li>
+						<li>Basic Procedure Division Commands</li>
+						<li>Selection Constructs</li>
+						<li>Iteration Constructs</li>
+						<li>Introduction to Sequential files</li>
+						<li>Processing Sequential files</li>
+						<li>Print files and variable length records</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
+					<div align="center">
+						<hr width="100%" />
+						<p>
+							<a href="#top"
+								><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+							/></a>
+						</p>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+					<h2 align="center" id="part1">
+						<font color="#FFFF00"><font face="Arial, Helvetica, sans-serif">Simple Sorting</font></font>
+					</h2>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+					<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
+				</td>
+				<td valign="top" width="525">
+					<div align="center">
+						<p align="left">
+							In COBOL programs, the <font size="-1">SORT</font> verb is usually used to sort Sequential
+							files.
+						</p>
+						<p align="left">
+							Some programmers claim that <font size="-1">SORT</font> verb is unnecessary, preferring to
+							use a vendor-provided or "bought in" sort. But one major advantage of using the
+							<font size="-1">SORT</font> verb, is that it enhances the portability of COBOL programs.
+						</p>
+						<p align="left">
+							Because the <font size="-1">SORT</font> verb is available in every COBOL compiler, when a
+							program that uses the <font size="-1">SORT</font> verb has to be moved to a different
+							computer system, it can make the transition without requiring any changes to the
+							<font size="-1">SORT</font>. This is rarely the case when programs rely on a vendor-supplied
+							or "bought in" sort.
+						</p>
+					</div>
+					<hr align="center" size="1" width="100%" />
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+					<h4>
+						<font color="#800000" face="Arial, Helvetica, sans-serif">Why sort the file?</font>
+					</h4>
+					<h4 align="center"><font size="-1"></font></h4>
+				</td>
+				<td valign="top" width="525">
+					<div align="center">
+						<p align="left">
+							Sometimes, processing that is is difficult or impossible to do if the file is unordered, is
+							easy if the file is ordered. In these situations, an obvious part of the solution is to sort
+							the file. This is an approach to problem solving sometimes called, "beneficial wishful
+							thinking". We start by thinking
+							<i>if only this file were ordered, then it would be easy to write the code to process it</i
+							>, and then take the next logical step which is - "Well then, let's sort the file first".
+						</p>
+						<p align="left">Consider the following specification;</p>
+						<table bgcolor="#E1FFE1" border="1" cellpadding="10" width="500">
+							<tr>
+								<td>
 									<p>
-										<a href="#top"
-											><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
-										/></a>
+										A program is required to print out a monthly report detailing the value of calls
+										made by each telephone subscriber (i.e. anyone who has a telephone and who used
+										it in the month in question).
 									</p>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
-								<h2 align="center" id="part1">
-									<font color="#FFFF00"
-										><font face="Arial, Helvetica, sans-serif">Simple Sorting</font></font
-									>
-								</h2>
-							</td>
-						</tr>
-						<tr>
-							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-								<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
-							</td>
-							<td valign="top" width="525">
-								<div align="center">
-									<p align="left">
-										In COBOL programs, the <font size="-1">SORT</font> verb is usually used to sort
-										Sequential files.
+									<p>
+										The program will use as input, the file
+										<font size="-1">CALLS.DAT</font>. This file contains a record of all the calls
+										made that month. The cost per unit is 0.10.
 									</p>
-									<p align="left">
-										Some programmers claim that <font size="-1">SORT</font> verb is unnecessary,
-										preferring to use a vendor-provided or "bought in" sort. But one major advantage
-										of using the <font size="-1">SORT</font> verb, is that it enhances the
-										portability of COBOL programs.
+									<p>
+										The calls file in an unordered Sequential file. The record description is as
+										follows;
 									</p>
-									<p align="left">
-										Because the <font size="-1">SORT</font> verb is available in every COBOL
-										compiler, when a program that uses the <font size="-1">SORT</font> verb has to
-										be moved to a different computer system, it can make the transition without
-										requiring any changes to the <font size="-1">SORT</font>. This is rarely the
-										case when programs rely on a vendor-supplied or "bought in" sort.
-									</p>
-								</div>
-								<hr align="center" size="1" width="100%" />
-							</td>
-						</tr>
-						<tr>
-							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-								<h4>
-									<font color="#800000" face="Arial, Helvetica, sans-serif">Why sort the file?</font>
-								</h4>
-								<h4 align="center"><font size="-1"></font></h4>
-							</td>
-							<td valign="top" width="525">
-								<div align="center">
-									<p align="left">
-										Sometimes, processing that is is difficult or impossible to do if the file is
-										unordered, is easy if the file is ordered. In these situations, an obvious part
-										of the solution is to sort the file. This is an approach to problem solving
-										sometimes called, "beneficial wishful thinking". We start by thinking
-										<i
-											>if only this file were ordered, then it would be easy to write the code to
-											process it</i
-										>, and then take the next logical step which is - "Well then, let's sort the
-										file first".
-									</p>
-									<p align="left">Consider the following specification;</p>
-									<table bgcolor="#E1FFE1" border="1" cellpadding="10" width="500">
-										<tr>
-											<td>
-												<p>
-													A program is required to print out a monthly report detailing the
-													value of calls made by each telephone subscriber (i.e. anyone who
-													has a telephone and who used it in the month in question).
-												</p>
-												<p>
-													The program will use as input, the file
-													<font size="-1">CALLS.DAT</font>. This file contains a record of all
-													the calls made that month. The cost per unit is 0.10.
-												</p>
-												<p>
-													The calls file in an unordered Sequential file. The record
-													description is as follows;
-												</p>
-												<pre
-													class="language-cobol"
-												><code class="language-cobol">FIELD          TYPE   LENGTH        VALUE
+									<pre
+										class="language-cobol"
+									><code class="language-cobol">FIELD          TYPE   LENGTH        VALUE
 SubscriberNum    9      8    00000001 - 99999999
 UnitsUsed        9      5       00001 - 99999</code></pre>
-												<p>
-													The report must be printed on ascending subscriber number and has
-													the following format;
-												</p>
-												<pre
-													class="language-cobol"
-												><code class="language-cobol">Telephone Analysis Monthly Report</code></pre>
-												<pre class="language-cobol"><code class="language-cobol">
+									<p>
+										The report must be printed on ascending subscriber number and has the following
+										format;
+									</p>
+									<pre
+										class="language-cobol"
+									><code class="language-cobol">Telephone Analysis Monthly Report</code></pre>
+									<pre class="language-cobol"><code class="language-cobol">
 SubscriberNum      ValueOfCalls
 
   99999999         999,999.99
@@ -426,47 +371,45 @@ SubscriberNum      ValueOfCalls
   99999999         999,999.99
 -------------------------------
 Total value =  999,999,999.99</code></pre>
-											</td>
-										</tr>
-									</table>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-								<h4>
-									<font color="#800000" face="Arial, Helvetica, sans-serif"
-										>Solving the problem without sorting the file?</font
-									>
-								</h4>
-							</td>
-							<td valign="top" width="525">
-								<p align="left">
-									There are millions of telephone subscribers and, in the course of a month, they will
-									make tens, if not hundreds, of calls. So the calls file will contain tens of
-									millions, or hundreds of millions, of records. Is there any viable way for a program
-									to produce the report, without first sorting the calls file?
-								</p>
-								<p align="left">
-									An array or table based solution does not seem viable. For one thing, the array
-									would have to contain millions of elements. For another, new subscribers are
-									constantly joining, so the array would have to be re-dimensioned every time the
-									program ran.
-								</p>
-								<p align="left">
-									If we had pointers available to us, we might try a linked list or tree based
-									solution. But the problem with these solutions is that, with millions of subscribers
-									in the list or tree, the search to find a particular subscriber would involve a
-									serious performance hit, as well as being complicated to implement.
-								</p>
-								<p align="left">
-									Since a Relative file may be thought of as a table on disk, a Relative file solution
-									might beckon. But while Relative file based solution would be easy to implement
-									(though still not as easy as the control break solution) there would be serious
-									performance implications. For each of the millions of records in the file we would
-									have to;
-								</p>
-								<pre class="language-cobol"><code class="language-cobol">Read the Sequential File
+								</td>
+							</tr>
+						</table>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+					<h4>
+						<font color="#800000" face="Arial, Helvetica, sans-serif"
+							>Solving the problem without sorting the file?</font
+						>
+					</h4>
+				</td>
+				<td valign="top" width="525">
+					<p align="left">
+						There are millions of telephone subscribers and, in the course of a month, they will make tens,
+						if not hundreds, of calls. So the calls file will contain tens of millions, or hundreds of
+						millions, of records. Is there any viable way for a program to produce the report, without first
+						sorting the calls file?
+					</p>
+					<p align="left">
+						An array or table based solution does not seem viable. For one thing, the array would have to
+						contain millions of elements. For another, new subscribers are constantly joining, so the array
+						would have to be re-dimensioned every time the program ran.
+					</p>
+					<p align="left">
+						If we had pointers available to us, we might try a linked list or tree based solution. But the
+						problem with these solutions is that, with millions of subscribers in the list or tree, the
+						search to find a particular subscriber would involve a serious performance hit, as well as being
+						complicated to implement.
+					</p>
+					<p align="left">
+						Since a Relative file may be thought of as a table on disk, a Relative file solution might
+						beckon. But while Relative file based solution would be easy to implement (though still not as
+						easy as the control break solution) there would be serious performance implications. For each of
+						the millions of records in the file we would have to;
+					</p>
+					<pre class="language-cobol"><code class="language-cobol">Read the Sequential File
 IF the record already exists THEN
    Read the Relative Record
    Add the units to the total units
@@ -474,167 +417,158 @@ IF the record already exists THEN
 ELSE
    Write a new Relative Record to the file
 END-IF</code></pre>
-								<p align="left">
-									And when the calls file ended we would have to read through the entire Relative file
-									again to create the report.
-								</p>
-								<p align="left">
-									We can arrive at the most viable solution by using "beneficial wishful thinking". We
-									might think -
-									<i
-										>If only the calls file were ordered on ascending subscriber number, then this
-										would be a very simple control break problem. For each subscriber, we'd sum all
-										the units until there was a change of subscriber number, and then we'd multiply
-										the total units by the cost per unit.</i
-									>
-									This thinking would lead us to the obvious conclusion - we must sort the calls file.
-								</p>
-								<hr align="center" size="1" width="100%" />
-							</td>
-						</tr>
-						<tr>
-							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-								<h4>
-									<font color="#800000" face="Arial, Helvetica, sans-serif"
-										>Syntax of a simplified SORT</font
-									>
-								</h4>
-								<aside>
-									<p align="center">
-										<img height="37" src="Resources/pics/i-Detail.gif" width="30" /><br />
-										<font size="-1"
-											>Records in <font size="-2">LINE SEQUENTIAL</font> files are followed by the
-											carriage return and line feed characters, but
-											<font size="-2">RECORD SEQUENTIAL</font> files are organized as a simple
-											stream of bytes.</font
-										>
-									</p>
-								</aside>
-								<p align="center"><img height="44" src="Resources/pics/ProgFrag.gif" width="48" /></p>
-							</td>
-							<td valign="top" width="525">
-								<div align="center">
-									<p align="left">
-										The syntax for a simplified version of the <font size="-1">SORT</font> is shown
-										below. The <font size="-1">SORT</font> takes the records in the
-										<i>InFileName</i> file, sorts them on the <i>SortKeyIdentifier</i> key or keys
-										and writes the sorted records to the <i>OutFileName</i> file.
-									</p>
-									<p align="left"><img height="194" src="Resources/pics/Sort1.gif" width="436" /></p>
-									<p align="left">e.g.</p>
-								</div>
-								<blockquote>
-									<div align="center">
-										<div align="left">
-											<pre
-												class="language-cobol"
-												align="left"
-											><code class="language-cobol">SORT WorkFile ON ASCENDING KEY CourseCode
+					<p align="left">
+						And when the calls file ended we would have to read through the entire Relative file again to
+						create the report.
+					</p>
+					<p align="left">
+						We can arrive at the most viable solution by using "beneficial wishful thinking". We might think
+						-
+						<i
+							>If only the calls file were ordered on ascending subscriber number, then this would be a
+							very simple control break problem. For each subscriber, we'd sum all the units until there
+							was a change of subscriber number, and then we'd multiply the total units by the cost per
+							unit.</i
+						>
+						This thinking would lead us to the obvious conclusion - we must sort the calls file.
+					</p>
+					<hr align="center" size="1" width="100%" />
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+					<h4>
+						<font color="#800000" face="Arial, Helvetica, sans-serif">Syntax of a simplified SORT</font>
+					</h4>
+					<aside>
+						<p align="center">
+							<img height="37" src="Resources/pics/i-Detail.gif" width="30" /><br />
+							<font size="-1"
+								>Records in <font size="-2">LINE SEQUENTIAL</font> files are followed by the carriage
+								return and line feed characters, but <font size="-2">RECORD SEQUENTIAL</font> files are
+								organized as a simple stream of bytes.</font
+							>
+						</p>
+					</aside>
+					<p align="center"><img height="44" src="Resources/pics/ProgFrag.gif" width="48" /></p>
+				</td>
+				<td valign="top" width="525">
+					<div align="center">
+						<p align="left">
+							The syntax for a simplified version of the <font size="-1">SORT</font> is shown below. The
+							<font size="-1">SORT</font> takes the records in the <i>InFileName</i> file, sorts them on
+							the <i>SortKeyIdentifier</i> key or keys and writes the sorted records to the
+							<i>OutFileName</i> file.
+						</p>
+						<p align="left"><img height="194" src="Resources/pics/Sort1.gif" width="436" /></p>
+						<p align="left">e.g.</p>
+					</div>
+					<blockquote>
+						<div align="center">
+							<div align="left">
+								<pre
+									class="language-cobol"
+									align="left"
+								><code class="language-cobol">SORT WorkFile ON ASCENDING KEY CourseCode
      USING  StudentFile
      GIVING SortedStudentsFile.
-
 
 SORT WorkFile ON ASCENDING ProvinceCode 
                  DESCENDING VendorNumber
                  USING SalesFile
                  GIVING SortedSalesFile.</code></pre>
-										</div>
-									</div>
-								</blockquote>
-								<div align="center">
-									<p align="left">
-										<b><font size="-1">SORT</font> notes</b><br />
-										The <i>SDWorkFileName</i> identifies a temporary work file that the
-										<font size="-1">SORT</font> process uses for the sort. It is defined in the
-										<font size="-1">FILE SECTION</font> using an
-										<font size="-1">SD</font> (Stream/Sort Description) entry. Even though the work
-										file is a temporary file, it must still have an associated
-										<font size="-1">SELECT</font> and <font size="-1">ASSIGN</font> clause in the
-										<font size="-1">ENVIRONMENT DIVISION.</font>
-									</p>
-									<p align="left">
-										The <i>SDWorkFileName</i> file is a Sequential file with an organization of
-										<font size="-1">RECORD SEQUENTIAL</font>. Since this is the default organization
-										is it usually omitted; as it is in the example below.
-									</p>
-									<p align="left">
-										Each <i>SortKeyIdentifier</i> identifies a field in the record of the work file.
-										The sorted file will be in sequence on this key field(s).
-									</p>
-									<p align="left">
-										When more than one <i>SortKeyIdentifier</i> is specified, the keys decrease in
-										significance from left to right (leftmost key is most significant, rightmost is
-										least significant).
-									</p>
-									<p align="left">
-										<i>InFileName</i> and <i>OutFileName</i>, are the names of the input and output
-										files respectively.
-									</p>
-									<p align="left">
-										If the <font size="-1">DUPLICATES</font> clause is used then, when the file has
-										been sorted, the final order of records with the duplicate keys is the same as
-										that in the unsorted file. If no <font size="-1">DUPLICATES</font> clause is
-										used, the order of records with duplicate keys is undefined.
-									</p>
-									<p align="left">
-										<i>AlphabetName</i> is an alphabet-name defined in the
-										<font size="-1">SPECIAL-NAMES</font> paragraph of the
-										<font size="-1">ENVIRONMENT DIVISION</font>. This clause is used to select the
-										character set the <font size="-1">SORT</font> verb uses for collating the
-										records in the file. The character set may be <font size="-1">ASCII</font> (8 or
-										7 bit ), <font size="-1">EBCDIC</font>,or user-defined.
-									</p>
-									<p align="left">
-										<font size="-1"><b>SORT</b></font> <b>rules</b>
-									</p>
-								</div>
-								<ol>
-									<li>
-										<div align="left">
-											The <font size="-1">SORT</font> can be used anywhere in the
-											<font size="-1">PROCEDURE DIVISION</font> except in an
-											<font size="-1">INPUT</font> or <font size="-1">OUTPUT PROCEDURE,</font> or
-											another <font size="-1">SORT</font>, or a <font size="-1">MERGE,</font> or
-											in the <font size="-1">DECLARATIVES SECTION</font>.
-										</div>
-									</li>
-									<li>
-										<div align="left">
-											The records described for the input file (<font size="-1">USING</font>) must
-											be able to fit into the records described for the <i>SDWorkFileName</i>.
-										</div>
-									</li>
-									<li>
-										<div align="left">
-											The records described for the <i>SDWorkFileName</i> must be able to fit into
-											the records described for the output file (<font size="-1">GIVING</font>).
-										</div>
-									</li>
-									<li>
-										<div align="left">
-											The <i>SortKeyIdentifer</i> description cannot contain an
-											<font size="-1">OCCURS</font> clause (i.e., it can't be a table/array) nor
-											can it be subordinate to an entry that does contain one.
-										</div>
-									</li>
-									<li>
-										<i>InFileName</i> and <i>OutFileName</i> files are automatically opened by the
-										<font size="-1">SORT</font>. When the <font size="-1">SORT</font> executes they
-										must <b>not</b> be open already.
-									</li>
-								</ol>
-								<div align="center">
-									<p align="left">
-										<b><font size="-1">SORT</font> example</b>
-									</p>
-								</div>
-								<div align="center">
-									<table background="Resources/pics/code.gif" border="1" cellpadding="5" width="475">
-										<tr>
-											<td>
-												<pre
-													class="language-cobol"
-												><code class="language-cobol">ENVIRONMENT DIVISION.
+							</div>
+						</div>
+					</blockquote>
+					<div align="center">
+						<p align="left">
+							<b><font size="-1">SORT</font> notes</b><br />
+							The <i>SDWorkFileName</i> identifies a temporary work file that the
+							<font size="-1">SORT</font> process uses for the sort. It is defined in the
+							<font size="-1">FILE SECTION</font> using an <font size="-1">SD</font> (Stream/Sort
+							Description) entry. Even though the work file is a temporary file, it must still have an
+							associated <font size="-1">SELECT</font> and <font size="-1">ASSIGN</font> clause in the
+							<font size="-1">ENVIRONMENT DIVISION.</font>
+						</p>
+						<p align="left">
+							The <i>SDWorkFileName</i> file is a Sequential file with an organization of
+							<font size="-1">RECORD SEQUENTIAL</font>. Since this is the default organization is it
+							usually omitted; as it is in the example below.
+						</p>
+						<p align="left">
+							Each <i>SortKeyIdentifier</i> identifies a field in the record of the work file. The sorted
+							file will be in sequence on this key field(s).
+						</p>
+						<p align="left">
+							When more than one <i>SortKeyIdentifier</i> is specified, the keys decrease in significance
+							from left to right (leftmost key is most significant, rightmost is least significant).
+						</p>
+						<p align="left">
+							<i>InFileName</i> and <i>OutFileName</i>, are the names of the input and output files
+							respectively.
+						</p>
+						<p align="left">
+							If the <font size="-1">DUPLICATES</font> clause is used then, when the file has been sorted,
+							the final order of records with the duplicate keys is the same as that in the unsorted file.
+							If no <font size="-1">DUPLICATES</font> clause is used, the order of records with duplicate
+							keys is undefined.
+						</p>
+						<p align="left">
+							<i>AlphabetName</i> is an alphabet-name defined in the
+							<font size="-1">SPECIAL-NAMES</font> paragraph of the
+							<font size="-1">ENVIRONMENT DIVISION</font>. This clause is used to select the character set
+							the <font size="-1">SORT</font> verb uses for collating the records in the file. The
+							character set may be <font size="-1">ASCII</font> (8 or 7 bit ),
+							<font size="-1">EBCDIC</font>,or user-defined.
+						</p>
+						<p align="left">
+							<font size="-1"><b>SORT</b></font> <b>rules</b>
+						</p>
+					</div>
+					<ol>
+						<li>
+							<div align="left">
+								The <font size="-1">SORT</font> can be used anywhere in the
+								<font size="-1">PROCEDURE DIVISION</font> except in an <font size="-1">INPUT</font> or
+								<font size="-1">OUTPUT PROCEDURE,</font> or another <font size="-1">SORT</font>, or a
+								<font size="-1">MERGE,</font> or in the <font size="-1">DECLARATIVES SECTION</font>.
+							</div>
+						</li>
+						<li>
+							<div align="left">
+								The records described for the input file (<font size="-1">USING</font>) must be able to
+								fit into the records described for the <i>SDWorkFileName</i>.
+							</div>
+						</li>
+						<li>
+							<div align="left">
+								The records described for the <i>SDWorkFileName</i> must be able to fit into the records
+								described for the output file (<font size="-1">GIVING</font>).
+							</div>
+						</li>
+						<li>
+							<div align="left">
+								The <i>SortKeyIdentifer</i> description cannot contain an
+								<font size="-1">OCCURS</font> clause (i.e., it can't be a table/array) nor can it be
+								subordinate to an entry that does contain one.
+							</div>
+						</li>
+						<li>
+							<i>InFileName</i> and <i>OutFileName</i> files are automatically opened by the
+							<font size="-1">SORT</font>. When the <font size="-1">SORT</font> executes they must
+							<b>not</b> be open already.
+						</li>
+					</ol>
+					<div align="center">
+						<p align="left">
+							<b><font size="-1">SORT</font> example</b>
+						</p>
+					</div>
+					<div align="center">
+						<table background="Resources/pics/code.gif" border="1" cellpadding="5" width="475">
+							<tr>
+								<td>
+									<pre class="language-cobol"><code class="language-cobol">ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
    SELECT CallsFile 
@@ -667,7 +601,6 @@ SD WorkFile.
 
         etc.
 
-
 PROCEDURE DIVISION.
 Begin.
    SORT WorkFile ON ASCENDING SubscriberNumWF
@@ -677,120 +610,113 @@ Begin.
         etc.
 
 </code></pre>
-											</td>
-										</tr>
-									</table>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+					<h4>
+						<font color="#800000" face="Arial, Helvetica, sans-serif">How a simple SORT works</font>
+					</h4>
+				</td>
+				<td valign="top" width="525">
+					<p align="left">
+						As illustrated by the diagram below, the sort process takes records from the input file
+						(CallsFile) <i></i>and sorts them using the temporary file (WorkFile) on the field(s), and in
+						the sequence, specified in the <font size="-1">KEY</font> phrase. When all the records have been
+						sorted, the sort process writes them to the output file (SortedCallsFile).
+					</p>
+					<p align="left">
+						Remember - the <font size="-1">SORT</font> automatically opens the CallsFile and the
+						SortedCallsFile. These files must not be open when the <font size="-1">SORT</font> executes or
+						it<font size="-1"></font> will fail.
+					</p>
+					<p align="center"><img height="270" src="Resources/pics/Sort2.gif" width="470" /></p>
+					<pre
+						class="language-cobol"
+						align="center"
+					><code class="language-cobol">SORT WorkFile ON ASCENDING SubscriberNumWF
+     USING  CallsFile
+     GIVING SortedCallsFile.
+</code></pre>
+					<hr align="center" size="1" width="100%" />
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+					<h4>
+						<font color="#800000" face="Arial, Helvetica, sans-serif">Using multiple keys.</font>
+					</h4>
+					<h4><font color="#800000" face="Arial, Helvetica, sans-serif"></font></h4>
+				</td>
+				<td valign="top" width="525">
+					<p align="left">
+						If you examine the <font size="-1">SORT</font> syntax diagram above, carefully, you will realize
+						that, not only can a file be sorted on a number of keys, but that one key can be ascending while
+						another can be descending. This is illustrated in the table below. The table contains a sales
+						file that has been sorted into descending VendorNumber, within ascending ProvinceCode, by the
+						following <font size="-1">SORT</font> statement;
+					</p>
+					<pre
+						class="language-cobol"
+						align="left"
+					><code class="language-cobol">SORT WorkFile ON ASCENDING ProvinceCode 
+                 DESCENDING VendorNumber
+                 USING SalesFile
+                 GIVING SortedSalesFile</code></pre>
+					<p align="left">
+						Notice that ProvinceCode is the major key, and that VendorNumber is only in descending sequence,
+						<i>within</i> ProvinceCode. The first key named in a <font size="-1">SORT</font> statement is
+						the major key and keys get less significant with each successive declaration.
+					</p>
+					<p align="center"><b>SortedSalesFile</b></p>
+					<table align="center" bgcolor="#E1FFE1" border="1" width="36%">
+						<tr bgcolor="#FFFFCC">
+							<td valign="top" width="58">
+								<p align="center">
+									<font size="-1"
+										><b
+											>Ascending<br />
+											Province<br />
+											Cod</b
+										></font
+									><b>e</b>
+								</p>
+							</td>
+							<td valign="top" width="64">
+								<div align="center">
+									<font size="-1"
+										><b
+											>Descending<br />
+											Vendor<br />
+											Number</b
+										></font
+									>
+								</div>
+							</td>
+							<td valign="top" width="45">
+								<div align="center">
+									<font size="-1"
+										><b
+											>Remaining<br />
+											Record</b
+										></font
+									>
 								</div>
 							</td>
 						</tr>
 						<tr>
-							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-								<h4>
-									<font color="#800000" face="Arial, Helvetica, sans-serif"
-										>How a simple SORT works</font
-									>
-								</h4>
-							</td>
-							<td valign="top" width="525">
-								<p align="left">
-									As illustrated by the diagram below, the sort process takes records from the input
-									file (CallsFile) <i></i>and sorts them using the temporary file (WorkFile) on the
-									field(s), and in the sequence, specified in the <font size="-1">KEY</font> phrase.
-									When all the records have been sorted, the sort process writes them to the output
-									file (SortedCallsFile).
-								</p>
-								<p align="left">
-									Remember - the <font size="-1">SORT</font> automatically opens the CallsFile and the
-									SortedCallsFile. These files must not be open when the
-									<font size="-1">SORT</font> executes or it<font size="-1"></font> will fail.
-								</p>
-								<p align="center"><img height="270" src="Resources/pics/Sort2.gif" width="470" /></p>
-								<pre
-									class="language-cobol"
-									align="center"
-								><code class="language-cobol">SORT WorkFile ON ASCENDING SubscriberNumWF
-     USING  CallsFile
-     GIVING SortedCallsFile.
-</code></pre>
-								<hr align="center" size="1" width="100%" />
-							</td>
+							<td bgcolor="#CCCCCC" valign="top" width="58"></td>
+							<td bgcolor="#CCCCCC" valign="top" width="64"></td>
+							<td bgcolor="#CCCCCC" valign="top" width="45"></td>
 						</tr>
 						<tr>
-							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-								<h4>
-									<font color="#800000" face="Arial, Helvetica, sans-serif"
-										>Using multiple keys.</font
-									>
-								</h4>
-								<h4><font color="#800000" face="Arial, Helvetica, sans-serif"></font></h4>
-							</td>
-							<td valign="top" width="525">
-								<p align="left">
-									If you examine the <font size="-1">SORT</font> syntax diagram above, carefully, you
-									will realize that, not only can a file be sorted on a number of keys, but that one
-									key can be ascending while another can be descending. This is illustrated in the
-									table below. The table contains a sales file that has been sorted into descending
-									VendorNumber, within ascending ProvinceCode, by the following
-									<font size="-1">SORT</font> statement;
-								</p>
-								<pre
-									class="language-cobol"
-									align="left"
-								><code class="language-cobol">SORT WorkFile ON ASCENDING ProvinceCode 
-                 DESCENDING VendorNumber
-                 USING SalesFile
-                 GIVING SortedSalesFile</code></pre>
-								<p align="left">
-									Notice that ProvinceCode is the major key, and that VendorNumber is only in
-									descending sequence, <i>within</i> ProvinceCode. The first key named in a
-									<font size="-1">SORT</font> statement is the major key and keys get less significant
-									with each successive declaration.
-								</p>
-								<p align="center"><b>SortedSalesFile</b></p>
-								<table align="center" bgcolor="#E1FFE1" border="1" width="36%">
-									<tr bgcolor="#FFFFCC">
-										<td valign="top" width="58">
-											<p align="center">
-												<font size="-1"
-													><b
-														>Ascending<br />
-														Province<br />
-														Cod</b
-													></font
-												><b>e</b>
-											</p>
-										</td>
-										<td valign="top" width="64">
-											<div align="center">
-												<font size="-1"
-													><b
-														>Descending<br />
-														Vendor<br />
-														Number</b
-													></font
-												>
-											</div>
-										</td>
-										<td valign="top" width="45">
-											<div align="center">
-												<font size="-1"
-													><b
-														>Remaining<br />
-														Record</b
-													></font
-												>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td bgcolor="#CCCCCC" valign="top" width="58"></td>
-										<td bgcolor="#CCCCCC" valign="top" width="64"></td>
-										<td bgcolor="#CCCCCC" valign="top" width="45"></td>
-									</tr>
-									<tr>
-										<td valign="top" width="58">
-											<div align="center">
-												<pre class="language-cobol"><code class="language-cobol">1
+							<td valign="top" width="58">
+								<div align="center">
+									<pre class="language-cobol"><code class="language-cobol">1
 1
 1
 1
@@ -813,11 +739,11 @@ Begin.
 4
 4
 4</code></pre>
-											</div>
-										</td>
-										<td valign="top" width="64">
-											<div align="center">
-												<pre class="language-cobol"><code class="language-cobol">91234
+								</div>
+							</td>
+							<td valign="top" width="64">
+								<div align="center">
+									<pre class="language-cobol"><code class="language-cobol">91234
 91234
 81234
 71234
@@ -840,11 +766,11 @@ Begin.
 56789
 56789
 44444</code></pre>
-											</div>
-										</td>
-										<td valign="top" width="45">
-											<div align="center">
-												<pre class="language-cobol"><code class="language-cobol">etc.
+								</div>
+							</td>
+							<td valign="top" width="45">
+								<div align="center">
+									<pre class="language-cobol"><code class="language-cobol">etc.
 etc.
 etc.
 etc.
@@ -867,210 +793,197 @@ etc.
 etc.
 etc.
 etc.</code></pre>
-											</div>
-										</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-						<tr>
-							<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
-								<div align="center">
-									<hr />
-									<p>
-										<a href="#top"
-											><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
-										/></a>
-									</p>
 								</div>
 							</td>
 						</tr>
-						<tr>
-							<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
-								<h2 align="center" id="part2">
-									<font color="#FFFF00"
-										><font face="Arial, Helvetica, sans-serif"
-											>SORTing with an INPUT PROCEDURE</font
-										></font
-									>
-								</h2>
-							</td>
-						</tr>
-						<tr>
-							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-								<h4 align="left">
-									<font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font>
-								</h4>
-							</td>
-							<td valign="top" width="525">
-								<p>
-									Some times, not all the records in an unsorted file are required in the sorted file.
-									Other times, it may be that the sorted file records require additional, altered, or
-									fewer fields, than the unsorted records. In these cases, an
-									<font size="-1">INPUT PROCEDURE</font> can be used to eliminate unwanted records, or
-									to alter the format of the records, before they are submitted to the sort process.
-								</p>
-								<p>
-									Since sorting is a disk-based process, and thus comparatively slow, every effort
-									should be made to reduce the amount of data that has to be sorted.
-								</p>
-								<hr align="center" size="1" width="100%" />
-							</td>
-						</tr>
-						<tr>
-							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-								<h4 align="left">
-									<font color="#800000" face="Arial, Helvetica, sans-serif"
-										>SORT syntax with INPUT PROCEDURE</font
-									>
-								</h4>
-							</td>
-							<td valign="top" width="525">
-								<p align="left"><img height="274" src="Resources/pics/Sort3.gif" width="486" /></p>
-								e.g.
-								<pre class="language-cobol" align="left"><code class="language-cobol">
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
+					<div align="center">
+						<hr />
+						<p>
+							<a href="#top"
+								><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+							/></a>
+						</p>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+					<h2 align="center" id="part2">
+						<font color="#FFFF00"
+							><font face="Arial, Helvetica, sans-serif">SORTing with an INPUT PROCEDURE</font></font
+						>
+					</h2>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+					<h4 align="left">
+						<font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font>
+					</h4>
+				</td>
+				<td valign="top" width="525">
+					<p>
+						Some times, not all the records in an unsorted file are required in the sorted file. Other
+						times, it may be that the sorted file records require additional, altered, or fewer fields, than
+						the unsorted records. In these cases, an
+						<font size="-1">INPUT PROCEDURE</font> can be used to eliminate unwanted records, or to alter
+						the format of the records, before they are submitted to the sort process.
+					</p>
+					<p>
+						Since sorting is a disk-based process, and thus comparatively slow, every effort should be made
+						to reduce the amount of data that has to be sorted.
+					</p>
+					<hr align="center" size="1" width="100%" />
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+					<h4 align="left">
+						<font color="#800000" face="Arial, Helvetica, sans-serif"
+							>SORT syntax with INPUT PROCEDURE</font
+						>
+					</h4>
+				</td>
+				<td valign="top" width="525">
+					<p align="left"><img height="274" src="Resources/pics/Sort3.gif" width="486" /></p>
+					e.g.
+					<pre class="language-cobol" align="left"><code class="language-cobol">
 SORT WorkFile ON ASCENDING CountyNumWF, VendorNumWF
               INPUT PROCEDURE RejectNorthernRecs 
               GIVING SortedSalesFile.
-
 
 SORT WorkFile ON ASCENDING CountryNameWF
               INPUT PROCEDURE IS SelectForeignGuests
               GIVING SortedGuestsFile.
 
-
 SORT WorkFile ON ASCENDING CountryNameWF, CustomerNameWF
               INPUT PROCEDURE IS RestructureRecords 
               GIVING SortedSubscriptionsFile. 
 </code></pre>
-								<p align="left">
-									<font size="-1"><b>INPUT PROCEDURE</b></font> <b>notes</b><br />
-									When an <font size="-1">INPUT PROCEDURE</font> is used, it replaces the
-									<font size="-1">USING</font> phrase. The <i>ProcName</i> in the
-									<font size="-1">INPUT PROCEDURE</font> phrase, identifies a block of code, that uses
-									the <font size="-1">RELEASE</font> verb to supply records to the sort process.
-								</p>
-								<p align="left">
-									The <font size="-1">INPUT PROCEDURE</font> must finish before the sort process sorts
-									the records supplied to it by the procedure. That's why the records are
-									<font size="-1">RELEASE</font>d to the work file. They are stored there until the
-									<font size="-1">INPUT PROCEDURE</font> finishes and then they are sorted.
-								</p>
-								<p align="left">
-									An <font size="-1">INPUT PROCEDURE</font> allows us to select which records, and
-									what type of records, will be submitted to the sort process. Because an
-									<font size="-1">INPUT PROCEDURE</font> executes before the sort process sorts the
-									records, only the data that is actually required in the sorted file will be sorted.
-								</p>
-								<p align="left">
-									<b><font size="-1">INPUT PROCEDURE</font> rules</b>
-								</p>
-								<ol>
-									<li>
-										The <font size="-1">INPUT PROCEDURE</font> must contain at least one
-										<font size="-1">RELEASE</font> statement to transfer the records to the
-										<i>SDWorkFileName</i>.
-									</li>
-									<li>
-										The old COBOL rules for the <font size="-1">SORT</font> verb stated that the
-										<font size="-1">INPUT</font> and <font size="-1">OUTPUT</font> procedures had to
-										be self-contained sections of code, and could not be entered from elsewhere in
-										the program.
-									</li>
-									<li>
-										In COBOL '85, <font size="-1">INPUT</font> and
-										<font size="-1">OUTPUT</font> procedures can be any contiguous group of
-										paragraphs or sections. The only restriction is that the range of paragraphs or
-										sections used, must not overlap.
-									</li>
-								</ol>
-								<hr align="center" size="1" width="100%" />
-							</td>
-						</tr>
-						<tr>
-							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-								<h4 align="left">
-									<font color="#800000" face="Arial, Helvetica, sans-serif"
-										>How a SORT with and INPUT PROCEDURE works.</font
-									>
-								</h4>
-							</td>
-							<td valign="top" width="525">
-								<p align="left">
-									A simple <font size="-1">SORT</font> works by taking records from the
-									<font size="-1">USING</font> file, sorting them, and then writing them to the
-									<font size="-1">GIVING</font> file. When an
-									<font size="-1">INPUT PROCEDURE</font> is used, there is no
-									<font size="-1">USING</font> file, so the <font size="-1">SORT</font> process has to
-									get its records from the <font size="-1">INPUT PROCEDURE</font> . The
-									<font size="-1">INPUT PROCEDURE</font> uses the <font size="-1">RELEASE</font> verb
-									to supply the records to the <font size="-1">SORT,</font> one at a time.
-								</p>
-								<p align="left">
-									Although an <font size="-1">INPUT PROCEDURE</font> usually gets the records it
-									supplies to the sort process from an input file, the records can actually originate
-									from anywhere. For instance, if we wanted to sort the elements of a table, we could
-									use an <font size="-1">INPUT PROCEDURE</font> to send the elements, one at a time,
-									to the sort process. Or if we wanted to sort the records as they were entered by the
-									user, we could use an <font size="-1">INPUT PROCEDURE</font> to get the records from
-									the user and supply them to the sort process.
-								</p>
-								<p align="left">
-									When an <font size="-1">INPUT PROCEDURE</font> gets its records from an input file
-									it can select which records to send to the sort process and can even alter the
-									structure of the records before they are sent.
-								</p>
-								<p align="left">
-									In the example below, an <font size="-1">INPUT PROCEDURE</font> is used to select
-									only the records of foreign guests, for sorting. The diagram shows how an
-									<font size="-1">INPUT PROCEDURE,</font> is used to sit between the input file and
-									the sort process, to filter the records.
-								</p>
-								<p align="center"><img height="240" src="Resources/pics/Sort5.gif" width="435" /></p>
-								<pre
-									class="language-cobol"
-								><code class="language-cobol">SORT WorkFile ON ASCENDING CountryNameWF
+					<p align="left">
+						<font size="-1"><b>INPUT PROCEDURE</b></font> <b>notes</b><br />
+						When an <font size="-1">INPUT PROCEDURE</font> is used, it replaces the
+						<font size="-1">USING</font> phrase. The <i>ProcName</i> in the
+						<font size="-1">INPUT PROCEDURE</font> phrase, identifies a block of code, that uses the
+						<font size="-1">RELEASE</font> verb to supply records to the sort process.
+					</p>
+					<p align="left">
+						The <font size="-1">INPUT PROCEDURE</font> must finish before the sort process sorts the records
+						supplied to it by the procedure. That's why the records are <font size="-1">RELEASE</font>d to
+						the work file. They are stored there until the <font size="-1">INPUT PROCEDURE</font> finishes
+						and then they are sorted.
+					</p>
+					<p align="left">
+						An <font size="-1">INPUT PROCEDURE</font> allows us to select which records, and what type of
+						records, will be submitted to the sort process. Because an
+						<font size="-1">INPUT PROCEDURE</font> executes before the sort process sorts the records, only
+						the data that is actually required in the sorted file will be sorted.
+					</p>
+					<p align="left">
+						<b><font size="-1">INPUT PROCEDURE</font> rules</b>
+					</p>
+					<ol>
+						<li>
+							The <font size="-1">INPUT PROCEDURE</font> must contain at least one
+							<font size="-1">RELEASE</font> statement to transfer the records to the
+							<i>SDWorkFileName</i>.
+						</li>
+						<li>
+							The old COBOL rules for the <font size="-1">SORT</font> verb stated that the
+							<font size="-1">INPUT</font> and <font size="-1">OUTPUT</font> procedures had to be
+							self-contained sections of code, and could not be entered from elsewhere in the program.
+						</li>
+						<li>
+							In COBOL '85, <font size="-1">INPUT</font> and <font size="-1">OUTPUT</font> procedures can
+							be any contiguous group of paragraphs or sections. The only restriction is that the range of
+							paragraphs or sections used, must not overlap.
+						</li>
+					</ol>
+					<hr align="center" size="1" width="100%" />
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+					<h4 align="left">
+						<font color="#800000" face="Arial, Helvetica, sans-serif"
+							>How a SORT with and INPUT PROCEDURE works.</font
+						>
+					</h4>
+				</td>
+				<td valign="top" width="525">
+					<p align="left">
+						A simple <font size="-1">SORT</font> works by taking records from the
+						<font size="-1">USING</font> file, sorting them, and then writing them to the
+						<font size="-1">GIVING</font> file. When an <font size="-1">INPUT PROCEDURE</font> is used,
+						there is no <font size="-1">USING</font> file, so the <font size="-1">SORT</font> process has to
+						get its records from the <font size="-1">INPUT PROCEDURE</font> . The
+						<font size="-1">INPUT PROCEDURE</font> uses the <font size="-1">RELEASE</font> verb to supply
+						the records to the <font size="-1">SORT,</font> one at a time.
+					</p>
+					<p align="left">
+						Although an <font size="-1">INPUT PROCEDURE</font> usually gets the records it supplies to the
+						sort process from an input file, the records can actually originate from anywhere. For instance,
+						if we wanted to sort the elements of a table, we could use an
+						<font size="-1">INPUT PROCEDURE</font> to send the elements, one at a time, to the sort process.
+						Or if we wanted to sort the records as they were entered by the user, we could use an
+						<font size="-1">INPUT PROCEDURE</font> to get the records from the user and supply them to the
+						sort process.
+					</p>
+					<p align="left">
+						When an <font size="-1">INPUT PROCEDURE</font> gets its records from an input file it can select
+						which records to send to the sort process and can even alter the structure of the records before
+						they are sent.
+					</p>
+					<p align="left">
+						In the example below, an <font size="-1">INPUT PROCEDURE</font> is used to select only the
+						records of foreign guests, for sorting. The diagram shows how an
+						<font size="-1">INPUT PROCEDURE,</font> is used to sit between the input file and the sort
+						process, to filter the records.
+					</p>
+					<p align="center"><img height="240" src="Resources/pics/Sort5.gif" width="435" /></p>
+					<pre class="language-cobol"><code class="language-cobol">SORT WorkFile ON ASCENDING CountryNameWF
               INPUT PROCEDURE IS SelectForeignGuests
               GIVING SortedGuestsFile.
 </code></pre>
-								<hr align="center" size="1" width="100%" />
-							</td>
-						</tr>
-						<tr>
-							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-								<h4 align="left">
-									<font color="#800000" face="Arial, Helvetica, sans-serif"
-										>Creating an INPUT PROCEDURE</font
-									>
-								</h4>
-							</td>
-							<td valign="top" width="525">
-								<p>
-									An <font size="-1">INPUT PROCEDURE</font> supplies records to the sort process by
-									writing them to the work file declared in the <font size="-1">SORT</font>'s
-									<font size="-1">SD</font> entry. But to write the records to the work file a special
-									verb - the <font size="-1">RELEASE</font> verb is used. The syntax of the
-									<font size="-1">RELEASE</font> verb is;
-								</p>
-								<blockquote>
-									<p><u>RELEASE</u> <i>SDRecordName</i> [<u>FROM</u> <i>Identifier</i>]</p>
-								</blockquote>
-								<p>
-									where SDRecordName is the name of the record declared in the work file's
-									<font size="-1">SD</font> entry.
-								</p>
-								<p>
-									An operational template for an <font size="-1">INPUT PROCEDURE</font>, which gets
-									records from and input file and <font size="-1">RELEASE</font>s them to the work
-									file, is shown in the table below.
-								</p>
-								<div align="center">
-									<table bgcolor="#E1FFE1" border="1" cellpadding="10" width="40%">
-										<tr>
-											<td>
-												<pre
-													class="language-cobol"
-												><code class="language-cobol">OPEN INPUT InFileName
+					<hr align="center" size="1" width="100%" />
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+					<h4 align="left">
+						<font color="#800000" face="Arial, Helvetica, sans-serif">Creating an INPUT PROCEDURE</font>
+					</h4>
+				</td>
+				<td valign="top" width="525">
+					<p>
+						An <font size="-1">INPUT PROCEDURE</font> supplies records to the sort process by writing them
+						to the work file declared in the <font size="-1">SORT</font>'s <font size="-1">SD</font> entry.
+						But to write the records to the work file a special verb - the
+						<font size="-1">RELEASE</font> verb is used. The syntax of the
+						<font size="-1">RELEASE</font> verb is;
+					</p>
+					<blockquote>
+						<p><u>RELEASE</u> <i>SDRecordName</i> [<u>FROM</u> <i>Identifier</i>]</p>
+					</blockquote>
+					<p>
+						where SDRecordName is the name of the record declared in the work file's
+						<font size="-1">SD</font> entry.
+					</p>
+					<p>
+						An operational template for an <font size="-1">INPUT PROCEDURE</font>, which gets records from
+						and input file and <font size="-1">RELEASE</font>s them to the work file, is shown in the table
+						below.
+					</p>
+					<div align="center">
+						<table bgcolor="#E1FFE1" border="1" cellpadding="10" width="40%">
+							<tr>
+								<td>
+									<pre class="language-cobol"><code class="language-cobol">OPEN INPUT InFileName
 READ InFileName
 PERFORM UNTIL TerminatingCondition
    <i>Process input record
@@ -1078,68 +991,61 @@ PERFORM UNTIL TerminatingCondition
    READ InFileName
 END-PERFORM 
 CLOSE InFileName</code></pre>
-											</td>
-										</tr>
-									</table>
-								</div>
-								<hr align="center" size="1" width="100%" />
-							</td>
-						</tr>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<hr align="center" size="1" width="100%" />
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+					<h4 align="left">
+						<font color="#800000" face="Arial, Helvetica, sans-serif"
+							>The Foreign Guests Report - example program</font
+						>
+					</h4>
+					<aside>
+						<p align="center">
+							<img height="37" src="Resources/pics/i-Detail.gif" width="30" /><br />
+							<font size="-1"
+								>In this instance, since the number of countries in the world is fairly static, a
+								table-based solution might also be viable.</font
+							>
+						</p>
+					</aside>
+					<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
+				</td>
+				<td valign="top" width="525">
+					<p>
+						Visitors to the CSIS web site are asked to fill in a "guestbook" form. The form requests the
+						name of the visitor, his/her country of origin and a comment. These fields are stored, as a
+						fixed length record, in the GuestBook file.
+					</p>
+					<p>
+						The example program below prints a report showing the number of visitors from each foreign
+						country. The records in the GuestBook file are not in any particular order, so before the report
+						can be printed, the file must be sorted by CountryName.
+					</p>
+					<p>
+						Since we are only interested in foreign visitors, there is no point in sorting the whole file.
+						The program uses an <font size="-1">INPUT PROCEDURE</font> to select only the records of
+						visitors from foreign countries.
+					</p>
+					<p>
+						When we examine the fields of a GuestBook record, we notice that, for the purposes of this
+						report, the GuestName and GuestComment are irrelevant. The only field we actually need for the
+						report, is the CountryName field. So as well as selecting only foreign guests, the
+						<font size="-1">INPUT PROCEDURE</font> alters the structure of the GuestBook records supplied to
+						the sort process. Since the new records are only 20 characters in size, rather than 80
+						characters, the amount of data that has to be sorted is substantially reduced.
+					</p>
+					<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="10" width="475">
 						<tr>
-							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-								<h4 align="left">
-									<font color="#800000" face="Arial, Helvetica, sans-serif"
-										>The Foreign Guests Report - example program</font
-									>
-								</h4>
-								<aside>
-									<p align="center">
-										<img height="37" src="Resources/pics/i-Detail.gif" width="30" /><br />
-										<font size="-1"
-											>In this instance, since the number of countries in the world is fairly
-											static, a table-based solution might also be viable.</font
-										>
-									</p>
-								</aside>
-								<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
-							</td>
-							<td valign="top" width="525">
-								<p>
-									Visitors to the CSIS web site are asked to fill in a "guestbook" form. The form
-									requests the name of the visitor, his/her country of origin and a comment. These
-									fields are stored, as a fixed length record, in the GuestBook file.
-								</p>
-								<p>
-									The example program below prints a report showing the number of visitors from each
-									foreign country. The records in the GuestBook file are not in any particular order,
-									so before the report can be printed, the file must be sorted by CountryName.
-								</p>
-								<p>
-									Since we are only interested in foreign visitors, there is no point in sorting the
-									whole file. The program uses an <font size="-1">INPUT PROCEDURE</font> to select
-									only the records of visitors from foreign countries.
-								</p>
-								<p>
-									When we examine the fields of a GuestBook record, we notice that, for the purposes
-									of this report, the GuestName and GuestComment are irrelevant. The only field we
-									actually need for the report, is the CountryName field. So as well as selecting only
-									foreign guests, the <font size="-1">INPUT PROCEDURE</font> alters the structure of
-									the GuestBook records supplied to the sort process. Since the new records are only
-									20 characters in size, rather than 80 characters, the amount of data that has to be
-									sorted is substantially reduced.
-								</p>
-								<table
-									align="center"
-									background="Resources/pics/code.gif"
-									border="1"
-									cellpadding="10"
-									width="475"
-								>
-									<tr>
-										<td>
-											<pre
-												class="language-cobol"
-											><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+							<td>
+								<pre
+									class="language-cobol"
+								><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  ForeignGuestsRpt.
 AUTHOR.  Michael Coughlan.
@@ -1186,7 +1092,6 @@ FD SortedGuestsFile.
 
 FD ForeignGuestReport.
 01 PrintLine               PIC X(38).
-
 
 WORKING-STORAGE SECTION.
 01 Heading1                PIC X(37) 
@@ -1244,7 +1149,6 @@ SelectForeignGuests.
    END-PERFORM
    CLOSE GuestBookFile.
 
-
 PrintReportBody.
    MOVE CountryNameSF TO PrnCountryName
    MOVE ZEROS TO VisitorCount
@@ -1259,51 +1163,50 @@ PrintReportBody.
    WRITE PrintLine FROM CountryLine 
          AFTER ADVANCING 1 LINE.
 </code></pre>
-										</td>
-									</tr>
-								</table>
-								<hr align="center" size="1" width="100%" />
 							</td>
 						</tr>
-						<tr>
-							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-								<h4>
-									<font color="#800000" face="Arial, Helvetica, sans-serif"
-										>Feeding the SORT from the keyboard - example program</font
-									>
-								</h4>
-								<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
-							</td>
-							<td valign="top" width="525">
-								<div align="center">
-									<p align="left">
-										As we noted earlier, because the <font size="-1">INPUT PROCEDURE</font> is
-										responsible for supplying records to the sort process, the records could be
-										coming from anywhere. We could obtain them from a table, or, as in this example,
-										directly from the user.
-									</p>
-									<p align="left">
-										As the illustration below shows, this example program gets records from the
-										user, sorts them on ascending StudentId, and then outputs them to the
-										StudentFile. Notice that the sort process only sorts the file, when the
-										<font size="-1">INPUT PROCEDURE</font> has finished.
-									</p>
-									<p align="center">
-										<img height="295" src="Resources/pics/Sort6.gif" width="515" />
-									</p>
-									<table
-										align="center"
-										background="Resources/pics/code.gif"
-										border="1"
-										cellpadding="10"
-										height="962"
-										width="475"
-									>
-										<tr>
-											<td>
-												<pre
-													class="language-cobol"
-												><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+					</table>
+					<hr align="center" size="1" width="100%" />
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+					<h4>
+						<font color="#800000" face="Arial, Helvetica, sans-serif"
+							>Feeding the SORT from the keyboard - example program</font
+						>
+					</h4>
+					<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
+				</td>
+				<td valign="top" width="525">
+					<div align="center">
+						<p align="left">
+							As we noted earlier, because the <font size="-1">INPUT PROCEDURE</font> is responsible for
+							supplying records to the sort process, the records could be coming from anywhere. We could
+							obtain them from a table, or, as in this example, directly from the user.
+						</p>
+						<p align="left">
+							As the illustration below shows, this example program gets records from the user, sorts them
+							on ascending StudentId, and then outputs them to the StudentFile. Notice that the sort
+							process only sorts the file, when the
+							<font size="-1">INPUT PROCEDURE</font> has finished.
+						</p>
+						<p align="center">
+							<img height="295" src="Resources/pics/Sort6.gif" width="515" />
+						</p>
+						<table
+							align="center"
+							background="Resources/pics/code.gif"
+							border="1"
+							cellpadding="10"
+							height="962"
+							width="475"
+						>
+							<tr>
+								<td>
+									<pre
+										class="language-cobol"
+									><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  SortInput.
 AUTHOR.  Michael Coughlan.
@@ -1321,7 +1224,6 @@ FILE-CONTROL.
            ORGANIZATION IS LINE SEQUENTIAL.
 
     SELECT WorkFile ASSIGN TO "WORK.TMP".
-
 
 DATA DIVISION.
 FILE SECTION.
@@ -1344,12 +1246,10 @@ FD StudentFile.
 *&gt;    02  CourseCode      PIC X(4).
 *&gt;    02  Gender          PIC X.
 
-
 SD WorkFile.
 01 WorkRec.
    02 StudentIdWF        PIC 9(7).
    02 FILLER             PIC X(23).
-
 
 PROCEDURE DIVISION.
 Begin.
@@ -1357,7 +1257,6 @@ Begin.
         INPUT PROCEDURE IS GetStudentDetails
         GIVING StudentFile.
    STOP RUN.
-
 
 GetStudentDetails.
     DISPLAY "Enter student details using template below."
@@ -1368,206 +1267,185 @@ GetStudentDetails.
        RELEASE WorkRec
        ACCEPT WorkRec
     END-PERFORM.</code></pre>
-											</td>
-										</tr>
-									</table>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
-								<div align="center">
-									<hr />
-									<p>
-										<a href="#top"
-											><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
-										/></a>
-									</p>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
-								<h2 align="center" id="part3">
-									<font color="#FFFF00"
-										><font face="Arial, Helvetica, sans-serif"
-											>Sorting with an OUTPUT PROCEDURE</font
-										></font
-									>
-								</h2>
-							</td>
-						</tr>
-						<tr>
-							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-								<h4 align="left">
-									<font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font>
-								</h4>
-							</td>
-							<td valign="top" width="525">
-								<p>
-									The advantage of an <font size="-1">INPUT PROCEDURE</font> is that it allows us to
-									filter, or alter, records before they are supplied to the sort process and this can
-									substantially reduce the amount of data that has to be sorted.
-								</p>
-								<p>
-									An <font size="-1">OUTPUT PROCEDURE</font> has no such advantage. An
-									<font size="-1">OUTPUT PROCEDURE</font> only executes when the sort process has
-									already sorted the file.
-								</p>
-								<p>
-									Nevertheless, an <font size="-1">OUTPUT PROCEDURE</font> is useful when we don't
-									need to preserve the sorted file. For instance, if we are sorting records to produce
-									a once-off report, we can use an <font size="-1">OUTPUT PROCEDURE</font> to create
-									the report directly, without first having to create a file containing the sorted
-									records. This is what we do in the revised ForeignGuestsRpt program below. Instead
-									of creating a sorted guest file and then reading it to create the report; we use an
-									<font size="-1">OUTPUT PROCEDURE</font> to create the report directly.
-								</p>
-								<p>
-									An <font size="-1">OUTPUT PROCEDURE</font> is also useful when we want to alter the
-									structure of the records written to the sorted file. For instance, in the first
-									example program below, we use an <font size="-1">OUTPUT PROCEDURE</font> to
-									summarize the sorted records. The resulting sorted file contains summary records,
-									rather than the detail records, contained in the unsorted file.
-								</p>
-								<hr align="center" size="1" width="100%" />
-							</td>
-						</tr>
-						<tr>
-							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-								<h4 align="left">
-									<font color="#800000" face="Arial, Helvetica, sans-serif"
-										>SORT syntax with OUTPUT<br
-									/></font>
-									<font color="#800000" face="Arial, Helvetica, sans-serif">PROCEDURE</font>
-								</h4>
-							</td>
-							<td valign="top" width="525">
-								<p align="left">
-									The syntax diagram below is the complete syntax for the
-									<font size="-1">SORT</font> verb.
-								</p>
-								<p><img height="306" src="Resources/pics/Sort4.gif" width="502" /></p>
-								<p>e.g.</p>
-								<pre
-									class="language-cobol"
-								><code class="language-cobol">SORT WorkFile ON ASCENDING CustNameWF
+								</td>
+							</tr>
+						</table>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
+					<div align="center">
+						<hr />
+						<p>
+							<a href="#top"
+								><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+							/></a>
+						</p>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+					<h2 align="center" id="part3">
+						<font color="#FFFF00"
+							><font face="Arial, Helvetica, sans-serif">Sorting with an OUTPUT PROCEDURE</font></font
+						>
+					</h2>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+					<h4 align="left">
+						<font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font>
+					</h4>
+				</td>
+				<td valign="top" width="525">
+					<p>
+						The advantage of an <font size="-1">INPUT PROCEDURE</font> is that it allows us to filter, or
+						alter, records before they are supplied to the sort process and this can substantially reduce
+						the amount of data that has to be sorted.
+					</p>
+					<p>
+						An <font size="-1">OUTPUT PROCEDURE</font> has no such advantage. An
+						<font size="-1">OUTPUT PROCEDURE</font> only executes when the sort process has already sorted
+						the file.
+					</p>
+					<p>
+						Nevertheless, an <font size="-1">OUTPUT PROCEDURE</font> is useful when we don't need to
+						preserve the sorted file. For instance, if we are sorting records to produce a once-off report,
+						we can use an <font size="-1">OUTPUT PROCEDURE</font> to create the report directly, without
+						first having to create a file containing the sorted records. This is what we do in the revised
+						ForeignGuestsRpt program below. Instead of creating a sorted guest file and then reading it to
+						create the report; we use an <font size="-1">OUTPUT PROCEDURE</font> to create the report
+						directly.
+					</p>
+					<p>
+						An <font size="-1">OUTPUT PROCEDURE</font> is also useful when we want to alter the structure of
+						the records written to the sorted file. For instance, in the first example program below, we use
+						an <font size="-1">OUTPUT PROCEDURE</font> to summarize the sorted records. The resulting sorted
+						file contains summary records, rather than the detail records, contained in the unsorted file.
+					</p>
+					<hr align="center" size="1" width="100%" />
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+					<h4 align="left">
+						<font color="#800000" face="Arial, Helvetica, sans-serif">SORT syntax with OUTPUT<br /></font>
+						<font color="#800000" face="Arial, Helvetica, sans-serif">PROCEDURE</font>
+					</h4>
+				</td>
+				<td valign="top" width="525">
+					<p align="left">
+						The syntax diagram below is the complete syntax for the
+						<font size="-1">SORT</font> verb.
+					</p>
+					<p><img height="306" src="Resources/pics/Sort4.gif" width="502" /></p>
+					<p>e.g.</p>
+					<pre class="language-cobol"><code class="language-cobol">SORT WorkFile ON ASCENDING CustNameWF
      INPUT PROCEDURE IS SelectEssentialOils
      OUTPUT PROCEDURE IS PrintOilSalesReport.
-
 
 SORT WorkFile ON ASCENDING KEY SalespersonNumWF
      USING SalesFile
      OUTPUT PROCEDURE IS SummariseSales.
              </code></pre>
-								<p>
-									<font size="-1"><b>OUTPUT PROCEDURE</b></font> <b>notes</b><br />
-									An <font size="-1">OUTPUT PROCEDURE</font> is used to retrieve sorted records from
-									the work file using the <font size="-1">RETURN</font> verb.
-								</p>
-								<p>
-									An <font size="-1">OUTPUT PROCEDURE</font> only executes after the file has been
-									sorted.
-								</p>
-								<p>
-									<b><font size="-1">OUTPUT PROCEDURE</font> rules</b>
-								</p>
-								<ol>
-									<li>
-										An <font size="-1">OUTPUT PROCEDURE</font> must contain at least one
-										<font size="-1">RETURN</font> statement to get the records from the SortFile.
-									</li>
-									<li>
-										The <font size="-1">SORT ..GIVING</font> phrase cannot be used if an
-										<font size="-1">OUTPUT PROCEDURE</font> is used.
-									</li>
-								</ol>
-								<hr align="center" size="1" width="100%" />
-							</td>
-						</tr>
-						<tr>
-							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-								<h4 align="left">
-									<font color="#800000" face="Arial, Helvetica, sans-serif"
-										>How the OUTPUT PROCEDURE works</font
-									>
-								</h4>
-							</td>
-							<td valign="top" width="525">
-								<p>
-									An <font size="-1">OUTPUT PROCEDURE</font> uses the
-									<font size="-1">RETURN</font> verb to retrieve sorted records from the work file. An
-									<font size="-1">OUTPUT PROCEDURE</font> can do what it likes with the records it
-									gets from work file. It could put them into an array, display them on the screen, or
-									send them to an output file.
-								</p>
-								<p>
-									When the <font size="-1">OUTPUT PROCEDURE</font> sends records to an output file, it
-									can control which records, and what type of records, appear in the file. For
-									instance, the <font size="-1">SORT</font> statement in the illustration below
-									produces a sorted SalesSummaryFile from an unsorted SalesFile.
-								</p>
-								<p>
-									The SalesSummaryFile is a sequential file sorted on ascending salesperson number but
-									each record in the summary file is the <i>sum</i> of all the items sold by a
-									particular salesperson.
-								</p>
-								<p>
-									An <font size="-1">OUTPUT PROCEDURE</font> is used because, until the records have
-									been sorted into salesperson number order, the quantities sold cannot be summed.
-								</p>
-								<p align="center"><img height="235" src="Resources/pics/Sort7.gif" width="435" /></p>
-								<pre
-									class="language-cobol"
-									align="center"
-								><code class="language-cobol">SORT WorkFile ON ASCENDING KEY SalespersonNumWF
+					<p>
+						<font size="-1"><b>OUTPUT PROCEDURE</b></font> <b>notes</b><br />
+						An <font size="-1">OUTPUT PROCEDURE</font> is used to retrieve sorted records from the work file
+						using the <font size="-1">RETURN</font> verb.
+					</p>
+					<p>An <font size="-1">OUTPUT PROCEDURE</font> only executes after the file has been sorted.</p>
+					<p>
+						<b><font size="-1">OUTPUT PROCEDURE</font> rules</b>
+					</p>
+					<ol>
+						<li>
+							An <font size="-1">OUTPUT PROCEDURE</font> must contain at least one
+							<font size="-1">RETURN</font> statement to get the records from the SortFile.
+						</li>
+						<li>
+							The <font size="-1">SORT ..GIVING</font> phrase cannot be used if an
+							<font size="-1">OUTPUT PROCEDURE</font> is used.
+						</li>
+					</ol>
+					<hr align="center" size="1" width="100%" />
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+					<h4 align="left">
+						<font color="#800000" face="Arial, Helvetica, sans-serif">How the OUTPUT PROCEDURE works</font>
+					</h4>
+				</td>
+				<td valign="top" width="525">
+					<p>
+						An <font size="-1">OUTPUT PROCEDURE</font> uses the <font size="-1">RETURN</font> verb to
+						retrieve sorted records from the work file. An <font size="-1">OUTPUT PROCEDURE</font> can do
+						what it likes with the records it gets from work file. It could put them into an array, display
+						them on the screen, or send them to an output file.
+					</p>
+					<p>
+						When the <font size="-1">OUTPUT PROCEDURE</font> sends records to an output file, it can control
+						which records, and what type of records, appear in the file. For instance, the
+						<font size="-1">SORT</font> statement in the illustration below produces a sorted
+						SalesSummaryFile from an unsorted SalesFile.
+					</p>
+					<p>
+						The SalesSummaryFile is a sequential file sorted on ascending salesperson number but each record
+						in the summary file is the <i>sum</i> of all the items sold by a particular salesperson.
+					</p>
+					<p>
+						An <font size="-1">OUTPUT PROCEDURE</font> is used because, until the records have been sorted
+						into salesperson number order, the quantities sold cannot be summed.
+					</p>
+					<p align="center"><img height="235" src="Resources/pics/Sort7.gif" width="435" /></p>
+					<pre
+						class="language-cobol"
+						align="center"
+					><code class="language-cobol">SORT WorkFile ON ASCENDING KEY SalespersonNumWF
      USING SalesFile
      OUTPUT PROCEDURE IS SummariseSales.
 </code></pre>
-								<hr align="center" size="1" width="100%" />
-							</td>
-						</tr>
-						<tr>
-							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-								<h4 align="left">
-									<font color="#800000" face="Arial, Helvetica, sans-serif"
-										>Creating an OUTPUT PROCEDURE</font
-									>
-								</h4>
-							</td>
-							<td valign="top" width="525">
-								<p>
-									An <font size="-1">OUTPUT PROCEDURE</font> uses the RETURN verb to read sorted
-									records from the work file declared in the <font size="-1">Sort's</font>
-									<font size="-1">SD</font> entry. The syntax of the
-									<font size="-1">RETURN</font> verb is;
-								</p>
-								<blockquote>
-									<p>
-										<u>RETURN</u> <i>SDFileName</i> RECORD [<u>INTO</u> <i>Identifier</i>]<br />
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AT END
-										<i>StatementBlock</i><br />
-										END-RETURN
-									</p>
-								</blockquote>
-								<p>
-									where SDFileName is the name of the file declared in the
-									<font size="-1">SD</font> entry.
-								</p>
-								<p>
-									An operational template for an <font size="-1">OUTPUT PROCEDURE</font>, which gets
-									records from the work file and writes them to an output file, is shown in the table
-									below. Notice that the work file is not opened by the code in the
-									<font size="-1">OUTPUT PROCEDURE</font>. The work file is automatically opened by
-									the <font size="-1">SORT</font>.
-								</p>
-								<div align="center">
-									<table bgcolor="#E1FFE1" border="1" cellpadding="10" height="121" width="40%">
-										<tr>
-											<td>
-												<pre
-													class="language-cobol"
-												><code class="language-cobol">OPEN OUTPUT OutFile
+					<hr align="center" size="1" width="100%" />
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+					<h4 align="left">
+						<font color="#800000" face="Arial, Helvetica, sans-serif">Creating an OUTPUT PROCEDURE</font>
+					</h4>
+				</td>
+				<td valign="top" width="525">
+					<p>
+						An <font size="-1">OUTPUT PROCEDURE</font> uses the RETURN verb to read sorted records from the
+						work file declared in the <font size="-1">Sort's</font> <font size="-1">SD</font> entry. The
+						syntax of the <font size="-1">RETURN</font> verb is;
+					</p>
+					<blockquote>
+						<p>
+							<u>RETURN</u> <i>SDFileName</i> RECORD [<u>INTO</u> <i>Identifier</i>]<br />
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AT END
+							<i>StatementBlock</i><br />
+							END-RETURN
+						</p>
+					</blockquote>
+					<p>
+						where SDFileName is the name of the file declared in the
+						<font size="-1">SD</font> entry.
+					</p>
+					<p>
+						An operational template for an <font size="-1">OUTPUT PROCEDURE</font>, which gets records from
+						the work file and writes them to an output file, is shown in the table below. Notice that the
+						work file is not opened by the code in the <font size="-1">OUTPUT PROCEDURE</font>. The work
+						file is automatically opened by the <font size="-1">SORT</font>.
+					</p>
+					<div align="center">
+						<table bgcolor="#E1FFE1" border="1" cellpadding="10" height="121" width="40%">
+							<tr>
+								<td>
+									<pre class="language-cobol"><code class="language-cobol">OPEN OUTPUT OutFile
 RETURN SDWorkFile RECORD
 PERFORM UNTIL TerminatingCondition
    <i>Setup OutRec
@@ -1576,44 +1454,43 @@ PERFORM UNTIL TerminatingCondition
 END-PERFORM
 CLOSE OutFile
 </code></pre>
-											</td>
-										</tr>
-									</table>
-								</div>
-								<hr align="center" size="1" width="100%" />
-							</td>
-						</tr>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<hr align="center" size="1" width="100%" />
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+					<h4 align="left">
+						<font color="#800000" face="Arial, Helvetica, sans-serif"
+							>Sales summary file - example program</font
+						>
+					</h4>
+					<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
+				</td>
+				<td valign="top" width="525">
+					<p>
+						The example below creates a sorted SalesSummaryFile from an unsorted SalesFile. The
+						SalesSummaryFile is a sequential file, sorted on ascending salesperson-number. Each record in
+						the summary file is the sum of all the items sold by a particular salesperson. An
+						<font size="-1">OUTPUT PROCEDURE</font> is used, because until the records have been sorted into
+						salesperson number order, the salesperson records cannot be summarized.
+					</p>
+					<table
+						align="center"
+						background="Resources/pics/code.gif"
+						border="1"
+						cellpadding="10"
+						height="930"
+						width="475"
+					>
 						<tr>
-							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-								<h4 align="left">
-									<font color="#800000" face="Arial, Helvetica, sans-serif"
-										>Sales summary file - example program</font
-									>
-								</h4>
-								<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
-							</td>
-							<td valign="top" width="525">
-								<p>
-									The example below creates a sorted SalesSummaryFile from an unsorted SalesFile. The
-									SalesSummaryFile is a sequential file, sorted on ascending salesperson-number. Each
-									record in the summary file is the sum of all the items sold by a particular
-									salesperson. An <font size="-1">OUTPUT PROCEDURE</font> is used, because until the
-									records have been sorted into salesperson number order, the salesperson records
-									cannot be summarized.
-								</p>
-								<table
-									align="center"
-									background="Resources/pics/code.gif"
-									border="1"
-									cellpadding="10"
-									height="930"
-									width="475"
-								>
-									<tr>
-										<td>
-											<pre
-												class="language-cobol"
-											><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+							<td>
+								<pre
+									class="language-cobol"
+								><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. MakeSummaryFile.
 AUTHOR. Michael Coughlan.
@@ -1671,41 +1548,34 @@ SummariseSales.
     END-PERFORM
     CLOSE SalesSummaryFile.
 </code></pre>
-										</td>
-									</tr>
-								</table>
-								<hr align="center" size="1" width="100%" />
 							</td>
 						</tr>
+					</table>
+					<hr align="center" size="1" width="100%" />
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+					<h4 align="left">
+						<font color="#800000" face="Arial, Helvetica, sans-serif"
+							>Revised Foreign Guests Report - example program</font
+						>
+					</h4>
+					<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
+				</td>
+				<td valign="top" width="525">
+					<p>
+						This example program is a revised version of the Foreign Guest Report program. In this example,
+						instead of creating a sorted file which is read to create the report; the report is created
+						directly from the <font size="-1">OUTPUT PROCEDURE</font>. This has the effect of making the
+						program simpler and shorter, since we no longer need all the sorted file declarations.
+					</p>
+					<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="10" width="475">
 						<tr>
-							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-								<h4 align="left">
-									<font color="#800000" face="Arial, Helvetica, sans-serif"
-										>Revised Foreign Guests Report - example program</font
-									>
-								</h4>
-								<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
-							</td>
-							<td valign="top" width="525">
-								<p>
-									This example program is a revised version of the Foreign Guest Report program. In
-									this example, instead of creating a sorted file which is read to create the report;
-									the report is created directly from the <font size="-1">OUTPUT PROCEDURE</font>.
-									This has the effect of making the program simpler and shorter, since we no longer
-									need all the sorted file declarations.
-								</p>
-								<table
-									align="center"
-									background="Resources/pics/code.gif"
-									border="1"
-									cellpadding="10"
-									width="475"
-								>
-									<tr>
-										<td>
-											<pre
-												class="language-cobol"
-											><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+							<td>
+								<pre
+									class="language-cobol"
+								><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  ForeignGuestsRpt2.
 AUTHOR.  Michael Coughlan.
@@ -1745,7 +1615,6 @@ SD WorkFile.
 
 FD ForeignGuestReport.
 01 PrintLine               PIC X(38).
-
 
 WORKING-STORAGE SECTION.
 01 Heading1                PIC X(37) 
@@ -1788,7 +1657,6 @@ SelectForeignGuests.
    END-PERFORM
    CLOSE GuestBookFile.
 
-
 PrintGuestReport.
    OPEN OUTPUT ForeignGuestReport
    WRITE PrintLine FROM Heading1
@@ -1817,147 +1685,132 @@ PrintReportBody.
    WRITE PrintLine FROM CountryLine 
          AFTER ADVANCING 1 LINE.
 </code></pre>
-										</td>
-									</tr>
-								</table>
 							</td>
 						</tr>
-						<tr>
-							<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
-								<div align="center">
-									<hr />
-									<p>
-										<a href="#top"
-											><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
-										/></a>
-									</p>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
-								<h2 align="center" id="part4">
-									<font color="#FFFF00"
-										><font face="Arial, Helvetica, sans-serif">MERGEing files</font></font
-									>
-								</h2>
-							</td>
-						</tr>
-						<tr>
-							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-								<h4 align="left">
-									<font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font>
-								</h4>
-							</td>
-							<td valign="top" width="525">
-								<p>
-									It is often useful to combine two or more files into a single large file. If the
-									files are unordered, this is easy to accomplish because we can simply append the
-									records in one file to the end of the other. But if the files are unordered, the
-									task is somewhat more complicated, especially if there are more than two files,
-									because we must preserve the ordering in the combined file.
-								</p>
-								<p>
-									In COBOL, instead of having to write special code every time we want to merge files,
-									we can use the <font size="-1">MERGE</font> verb. The
-									<font size="-1">MERGE</font> verb takes two or more identically sequenced files and
-									combines them, according to the key values specified. The combined file is then sent
-									to an output file or an <font size="-1">OUTPUT PROCEDURE</font>.
-								</p>
-								<hr align="center" size="1" width="100%" />
-							</td>
-						</tr>
-						<tr>
-							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-								<h4 align="left">
-									<font color="#800000" face="Arial, Helvetica, sans-serif">MERGE syntax</font>
-								</h4>
-							</td>
-							<td valign="top" width="525">
-								<p><img height="229" src="Resources/pics/Sort8.gif" width="494" /></p>
-								<p>e.g.</p>
-								<pre class="language-cobol"><code class="language-cobol">MERGE MergeWorkFile 
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
+					<div align="center">
+						<hr />
+						<p>
+							<a href="#top"
+								><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+							/></a>
+						</p>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+					<h2 align="center" id="part4">
+						<font color="#FFFF00"><font face="Arial, Helvetica, sans-serif">MERGEing files</font></font>
+					</h2>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+					<h4 align="left">
+						<font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font>
+					</h4>
+				</td>
+				<td valign="top" width="525">
+					<p>
+						It is often useful to combine two or more files into a single large file. If the files are
+						unordered, this is easy to accomplish because we can simply append the records in one file to
+						the end of the other. But if the files are unordered, the task is somewhat more complicated,
+						especially if there are more than two files, because we must preserve the ordering in the
+						combined file.
+					</p>
+					<p>
+						In COBOL, instead of having to write special code every time we want to merge files, we can use
+						the <font size="-1">MERGE</font> verb. The <font size="-1">MERGE</font> verb takes two or more
+						identically sequenced files and combines them, according to the key values specified. The
+						combined file is then sent to an output file or an <font size="-1">OUTPUT PROCEDURE</font>.
+					</p>
+					<hr align="center" size="1" width="100%" />
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+					<h4 align="left">
+						<font color="#800000" face="Arial, Helvetica, sans-serif">MERGE syntax</font>
+					</h4>
+				</td>
+				<td valign="top" width="525">
+					<p><img height="229" src="Resources/pics/Sort8.gif" width="494" /></p>
+					<p>e.g.</p>
+					<pre class="language-cobol"><code class="language-cobol">MERGE MergeWorkFile 
    ON ASCENDING KEY TransDateWF, TransCodeWF, StudentIdWF
    USING InsertTransFile, DeleteTransFile, UpdateTransFile
    GIVING CombinedTransFile. </code></pre>
-								<p>
-									<font size="-1"><b>MERGE</b></font> <b>notes</b><br />
-									The results of the <font size="-1">MERGE</font> verb are predictable only when the
-									records in the input files are ordered as described in the
-									<font size="-1">KEY</font> clause associated with the
-									<font size="-1">MERGE</font> statement. For instance, if the
-									<font size="-1">MERGE</font> statement has an
-									<font size="-1">ON DESCENDING KEY</font> StudentId clause, then all the
-									<font size="-1">USING</font> files must be ordered on descending StudentId.
-								</p>
-								<p>
-									As with the <font size="-1">SORT</font>, the <i>SDWorkFileName</i> is the name of a
-									temporary file, with an <font size="-1">SD</font> entry in the
-									<font size="-1">FILE SECTION</font>, a <font size="-1">SELECT</font> and
-									<font size="-1">ASSIGN</font> entry in the
-									<font size="-1">INPUT-OUTPUT SECTION</font>, and an organization of
-									<font size="-1">RECORD SEQUENTIAL.</font>
-								</p>
-								<p align="left">
-									Each <i>MergeKeyIdentifier</i> identifies a field in the record of the work file.
-									The sorted file will be in sequence on this key field(s).
-								</p>
-								<p align="left">
-									When more than one <i>MergeKeyIdentifier</i> is specified, the keys decrease in
-									significance from left to right (leftmost key is most significant, rightmost is
-									least significant).
-								</p>
-								<p align="left">
-									<i>InFileName</i> and <i>OutFileName</i>, are the names of the input and output
-									files respectively. These files are automatically opened by the
-									<font size="-1">MERGE</font>. When the <font size="-1">MERGE</font> executes they
-									must <b>not</b> be already open.
-								</p>
-								<p align="left">
-									<i>AlphabetName</i> is an alphabet-name defined in the
-									<font size="-1">SPECIAL-NAMES</font> paragraph of the
-									<font size="-1">ENVIRONMENT DIVISION</font>. This clause is used to select the
-									character set the <font size="-1">SORT</font> verb uses for collating the records in
-									the file. The character set may be <font size="-1">ASCII</font> (8 or 7 bit ),
-									<font size="-1">EBCDIC</font>,or user-defined.
-								</p>
-								<p>
-									The <font size="-1">MERGE</font> can use an
-									<font size="-1">OUTPUT PROCEDURE</font> and the <font size="-1">RETURN</font> verb
-									to get merged records from the <i>SDWorkFileName.</i>
-								</p>
-								<p>
-									The <font size="-1">OUTPUT PROCEDURE</font> only executes after the files have been
-									merged and must contain at least one <font size="-1">RETURN</font> statement to get
-									the records from the SortFile.
-								</p>
-								<hr align="center" size="1" width="100%" />
-							</td>
-						</tr>
+					<p>
+						<font size="-1"><b>MERGE</b></font> <b>notes</b><br />
+						The results of the <font size="-1">MERGE</font> verb are predictable only when the records in
+						the input files are ordered as described in the <font size="-1">KEY</font> clause associated
+						with the <font size="-1">MERGE</font> statement. For instance, if the
+						<font size="-1">MERGE</font> statement has an <font size="-1">ON DESCENDING KEY</font> StudentId
+						clause, then all the <font size="-1">USING</font> files must be ordered on descending StudentId.
+					</p>
+					<p>
+						As with the <font size="-1">SORT</font>, the <i>SDWorkFileName</i> is the name of a temporary
+						file, with an <font size="-1">SD</font> entry in the <font size="-1">FILE SECTION</font>, a
+						<font size="-1">SELECT</font> and <font size="-1">ASSIGN</font> entry in the
+						<font size="-1">INPUT-OUTPUT SECTION</font>, and an organization of
+						<font size="-1">RECORD SEQUENTIAL.</font>
+					</p>
+					<p align="left">
+						Each <i>MergeKeyIdentifier</i> identifies a field in the record of the work file. The sorted
+						file will be in sequence on this key field(s).
+					</p>
+					<p align="left">
+						When more than one <i>MergeKeyIdentifier</i> is specified, the keys decrease in significance
+						from left to right (leftmost key is most significant, rightmost is least significant).
+					</p>
+					<p align="left">
+						<i>InFileName</i> and <i>OutFileName</i>, are the names of the input and output files
+						respectively. These files are automatically opened by the <font size="-1">MERGE</font>. When the
+						<font size="-1">MERGE</font> executes they must <b>not</b> be already open.
+					</p>
+					<p align="left">
+						<i>AlphabetName</i> is an alphabet-name defined in the
+						<font size="-1">SPECIAL-NAMES</font> paragraph of the
+						<font size="-1">ENVIRONMENT DIVISION</font>. This clause is used to select the character set the
+						<font size="-1">SORT</font> verb uses for collating the records in the file. The character set
+						may be <font size="-1">ASCII</font> (8 or 7 bit ), <font size="-1">EBCDIC</font>,or
+						user-defined.
+					</p>
+					<p>
+						The <font size="-1">MERGE</font> can use an <font size="-1">OUTPUT PROCEDURE</font> and the
+						<font size="-1">RETURN</font> verb to get merged records from the <i>SDWorkFileName.</i>
+					</p>
+					<p>
+						The <font size="-1">OUTPUT PROCEDURE</font> only executes after the files have been merged and
+						must contain at least one <font size="-1">RETURN</font> statement to get the records from the
+						SortFile.
+					</p>
+					<hr align="center" size="1" width="100%" />
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+					<h4 align="left">
+						<font color="#800000" face="Arial, Helvetica, sans-serif">MERGE example</font>
+					</h4>
+				</td>
+				<td valign="top" width="525">
+					<p>
+						In this example program, instead of writing code to insert records from a transaction file into
+						an ordered master file, we have used the
+						<font size="-1">MERGE</font> verb to merge the files.
+					</p>
+					<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="10" width="475">
 						<tr>
-							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-								<h4 align="left">
-									<font color="#800000" face="Arial, Helvetica, sans-serif">MERGE example</font>
-								</h4>
-							</td>
-							<td valign="top" width="525">
-								<p>
-									In this example program, instead of writing code to insert records from a
-									transaction file into an ordered master file, we have used the
-									<font size="-1">MERGE</font> verb to merge the files.
-								</p>
-								<table
-									align="center"
-									background="Resources/pics/code.gif"
-									border="1"
-									cellpadding="10"
-									width="475"
-								>
-									<tr>
-										<td>
-											<pre
-												class="language-cobol"
-											><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+							<td>
+								<pre
+									class="language-cobol"
+								><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. MergeFiles.
 AUTHOR. MICHAEL COUGHLAN.
@@ -2003,39 +1856,36 @@ Begin.
        GIVING NewStudentFile.
     STOP RUN.
 </code></pre>
-										</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-						<tr>
-							<td align="left" bgcolor="#FFFFFF" colspan="2" width="700">
-								<hr width="100%" />
-								<div align="center">
-									<p>
-										<a href="#top"
-											><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
-										/></a>
-									</p>
-									<hr />
-									<h3 align="center">Copyright Notice</h3>
-									<p align="center">
-										These COBOL course materials are the copyright property of Michael Coughlan.
-									</p>
-									<p align="left">
-										<font size="2"
-											>All rights reserved. No part of these course materials may be reproduced in
-											any form or by any means - graphic, electronic, mechanical, photocopying,
-											printing, recording, taping or stored in an information storage and
-											retrieval system - without the written permission of</font
-										>
-										<font size="2">the author.</font>
-									</p>
-									<p align="center"><font size="2">(c) Michael Coughlan</font></p>
-								</div>
 							</td>
 						</tr>
 					</table>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" bgcolor="#FFFFFF" colspan="2" width="700">
+					<hr width="100%" />
+					<div align="center">
+						<p>
+							<a href="#top"
+								><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+							/></a>
+						</p>
+						<hr />
+						<h3 align="center">Copyright Notice</h3>
+						<p align="center">
+							These COBOL course materials are the copyright property of Michael Coughlan.
+						</p>
+						<p align="left">
+							<font size="2"
+								>All rights reserved. No part of these course materials may be reproduced in any form or
+								by any means - graphic, electronic, mechanical, photocopying, printing, recording,
+								taping or stored in an information storage and retrieval system - without the written
+								permission of</font
+							>
+							<font size="2">the author.</font>
+						</p>
+						<p align="center"><font size="2">(c) Michael Coughlan</font></p>
+					</div>
 				</td>
 			</tr>
 		</table>
