@@ -617,34 +617,21 @@ FD TransFile.
               a Student Details Report which shows the StudentName, StudentId, 
               Gender and CourseCode of each student in the students file. </p>
 <p>In the Student Details Report there will be; </p>
-<table align="center" border="0" width="91%">
-<tr>
-<td>
-<li>two Page Heading lines which we can declare as -</li>
-</td>
-</tr>
-<tr valign="top">
-<td>
+<ul>
+<li>two Page Heading lines which we can declare as -
 <pre class="language-cobol"><code class="language-cobol">  01 Heading1.
      02 FILLER      PIC X(7)  VALUE SPACES.
-     02 FILLER      PIC X(25) 
+     02 FILLER      PIC X(25)
                       VALUE "UL Student Details Report".
 
-  01 Heading2. 
+  01 Heading2.
      02 FILLER      PIC X(21) VALUE "StudentId StudentName".
      02 FILLER      PIC X(14) VALUE " Gender Course".
 
 </code></pre>
-</td>
-</tr>
-<tr>
-<td>
-<li> a Detail Line to print the student details which we declare 
-                    as - </li>
-</td>
-</tr>
-<tr valign="top">
-<td>
+</li>
+<li> a Detail Line to print the student details which we declare
+                    as -
 <pre class="language-cobol"><code class="language-cobol">  01 StudentDetailLine.
      02 PrnStudId   PIC B9(7)BB.
      02 PrnStudName PIC X(10).
@@ -652,36 +639,21 @@ FD TransFile.
      02 PrnCourse   PIC BBBBX(4).
 
 </code></pre>
-</td>
-</tr>
-<tr>
-<td>
-<li> a Page Footing line declared as - </li>
-</td>
-</tr>
-<tr valign="top">
-<td>
+</li>
+<li> a Page Footing line declared as -
 <pre class="language-cobol"><code class="language-cobol">  01 PageFooting.
      02 FILLER      PIC X(19) VALUE SPACES.
      02 FILLER      PIC X(7) VALUE "Page : ".
      02 PageNum     PIC Z9.
 
 </code></pre>
-</td>
-</tr>
-<tr>
-<td>
-<li>and a Report Footing line</li>
-</td>
-</tr>
-<tr valign="top">
-<td>
+</li>
+<li>and a Report Footing line
 <pre class="language-cobol"><code class="language-cobol">  01 ReportFooting  PIC X(38)
            VALUE "*** End of Student Details Report ***".
 </code></pre>
-</td>
-</tr>
-</table>
+</li>
+</ul>
 <hr align="center" width="50%"/>
 </td>
 </tr>
