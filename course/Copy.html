@@ -1,690 +1,743 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
-<head>
-	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-	<title>The COPY verb</title>
-	<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
-	<script src="Resources/vendor/prism/prism.min.js" defer></script>
-	<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
-	<meta content="width=device-width, initial-scale=1" name="viewport" />
-	<style type="text/css">
-		img {
-			max-width: 100%;
-			height: auto;
-		}
-
-		table {
-			max-width: 100%;
-		}
-
-		body>table,
-		body>hr {
-			margin-left: auto;
-			margin-right: auto;
-		}
-
-		pre {
-			overflow-x: auto;
-			max-width: 100%;
-		}
-
-		body {
-			-webkit-text-size-adjust: 100%;
-		}
-
-		@media (max-width: 600px) {
-			body {
-				margin: 4px;
-				overflow-wrap: break-word;
-				word-wrap: break-word;
-			}
-
-			table[width] {
-				width: 100% !important;
-				height: auto !important;
-			}
-
-			td[width],
-			th[width],
-			td[height],
-			th[height] {
-				width: auto !important;
-				height: auto !important;
-			}
-
-			td[bgcolor="#993300"]>h2,
-			td[bgcolor="#993300"]>h3 {
-				margin: 0.3em 0;
-			}
-
-			blockquote {
-				margin-left: 12px;
-				margin-right: 12px;
-			}
-
-			hr[width] {
-				width: 100% !important;
-			}
-
-			img,
-			iframe,
-			video,
-			embed,
-			object {
-				max-width: min(100%, calc(100vw - 16px)) !important;
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<title>The COPY verb</title>
+		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
+		<script src="Resources/vendor/prism/prism.min.js" defer></script>
+		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
+		<meta content="width=device-width, initial-scale=1" name="viewport" />
+		<style type="text/css">
+			img {
+				max-width: 100%;
 				height: auto;
 			}
 
+			table {
+				max-width: 100%;
+			}
+
+			body > table,
+			body > hr {
+				margin-left: auto;
+				margin-right: auto;
+			}
+
 			pre {
-				max-width: min(100%, calc(100vw - 16px)) !important;
-				white-space: pre-wrap;
-				word-wrap: break-word;
-				overflow-wrap: break-word;
-			}
-
-			pre[class*="language-"],
-			code[class*="language-"] {
-				white-space: pre-wrap !important;
-				overflow-wrap: break-word;
-			}
-
-			pre[class*="language-"] {
-				font-size: 0.8em;
-				line-height: 1.35;
-				padding: 0.6em;
 				overflow-x: auto;
+				max-width: 100%;
 			}
 
-			table[width="715"],
-			table[width="725"],
-			table[width="715"]>tbody,
-			table[width="725"]>tbody,
-			table[width="715"]>tbody>tr,
-			table[width="725"]>tbody>tr,
-			table[width="715"]>tbody>tr>td,
-			table[width="725"]>tbody>tr>td,
-			table[width="710"]:not(:has(> tbody > tr > td[width="93%"])),
-			table[width="710"]:not(:has(> tbody > tr > td[width="93%"]))>tbody,
-			table[width="710"]:not(:has(> tbody > tr > td[width="93%"]))>tbody>tr,
-			table[width="710"]:not(:has(> tbody > tr > td[width="93%"]))>tbody>tr>td {
-				display: block;
-				width: auto !important;
+			body {
+				-webkit-text-size-adjust: 100%;
 			}
 
-			table[width="710"]:has(> tbody > tr > td[width="93%"]),
-			table[width="710"]:has(> tbody > tr > td[width="93%"])>tbody {
-				display: block;
-				width: 100% !important;
+			@media (max-width: 600px) {
+				body {
+					margin: 4px;
+					overflow-wrap: break-word;
+					word-wrap: break-word;
+				}
+
+				table[width] {
+					width: 100% !important;
+					height: auto !important;
+				}
+
+				td[width],
+				th[width],
+				td[height],
+				th[height] {
+					width: auto !important;
+					height: auto !important;
+				}
+
+				td[bgcolor="#993300"] > h2,
+				td[bgcolor="#993300"] > h3 {
+					margin: 0.3em 0;
+				}
+
+				blockquote {
+					margin-left: 12px;
+					margin-right: 12px;
+				}
+
+				hr[width] {
+					width: 100% !important;
+				}
+
+				img,
+				iframe,
+				video,
+				embed,
+				object {
+					max-width: min(100%, calc(100vw - 16px)) !important;
+					height: auto;
+				}
+
+				pre {
+					max-width: min(100%, calc(100vw - 16px)) !important;
+					white-space: pre-wrap;
+					word-wrap: break-word;
+					overflow-wrap: break-word;
+				}
+
+				pre[class*="language-"],
+				code[class*="language-"] {
+					white-space: pre-wrap !important;
+					overflow-wrap: break-word;
+				}
+
+				pre[class*="language-"] {
+					font-size: 0.8em;
+					line-height: 1.35;
+					padding: 0.6em;
+					overflow-x: auto;
+				}
+
+				table[width="715"],
+				table[width="725"],
+				table[width="715"] > tbody,
+				table[width="725"] > tbody,
+				table[width="715"] > tbody > tr,
+				table[width="725"] > tbody > tr,
+				table[width="715"] > tbody > tr > td,
+				table[width="725"] > tbody > tr > td,
+				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])),
+				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody,
+				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr,
+				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr > td {
+					display: block;
+					width: auto !important;
+				}
+
+				table[width="710"]:has(> tbody > tr > td[width="93%"]),
+				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody {
+					display: block;
+					width: 100% !important;
+				}
+
+				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr {
+					display: flex;
+					align-items: baseline;
+					gap: 0.4em;
+					margin: 0.4em 0;
+				}
+
+				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="3%"] {
+					display: none;
+				}
+
+				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="4%"] {
+					display: block;
+					flex: 0 0 auto;
+					width: auto !important;
+					padding: 0;
+				}
+
+				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="93%"] {
+					display: block;
+					flex: 1 1 auto;
+					width: auto !important;
+					padding: 0;
+				}
+
+				td[width="175"] > h4:not(:first-child):not(:has(img)),
+				td[width="160"] > h4:not(:first-child):not(:has(img)),
+				h4:has(> img[src*="PanelLine"]) {
+					display: none;
+				}
+
+				td[width="175"] > h3,
+				td[width="175"] > h4,
+				td[width="175"] > p,
+				td[width="160"] > h3,
+				td[width="160"] > h4,
+				td[width="160"] > p {
+					margin: 0.2em 0;
+				}
 			}
 
-			table[width="710"]:has(> tbody > tr > td[width="93%"])>tbody>tr {
-				display: flex;
-				align-items: baseline;
-				gap: 0.4em;
-				margin: 0.4em 0;
+			ul.toc {
+				list-style-image: url(Resources/pics/BallGreenG.gif);
+				padding-left: 2.5em;
+				margin: 1em 0;
 			}
 
-			table[width="710"]:has(> tbody > tr > td[width="93%"])>tbody>tr>td[width="3%"] {
-				display: none;
+			ul.toc > li {
+				padding-left: 0.4em;
+				margin-bottom: 0.6em;
 			}
 
-			table[width="710"]:has(> tbody > tr > td[width="93%"])>tbody>tr>td[width="4%"] {
-				display: block;
-				flex: 0 0 auto;
-				width: auto !important;
-				padding: 0;
+			ul.toc a {
+				font-weight: bold;
 			}
-
-			table[width="710"]:has(> tbody > tr > td[width="93%"])>tbody>tr>td[width="93%"] {
-				display: block;
-				flex: 1 1 auto;
-				width: auto !important;
-				padding: 0;
-			}
-
-			td[width="175"]>h4:not(:first-child):not(:has(img)),
-			td[width="160"]>h4:not(:first-child):not(:has(img)),
-			h4:has(> img[src*="PanelLine"]) {
-				display: none;
-			}
-
-			td[width="175"]>h3,
-			td[width="175"]>h4,
-			td[width="175"]>p,
-			td[width="160"]>h3,
-			td[width="160"]>h4,
-			td[width="160"]>p {
-				margin: 0.2em 0;
-			}
-		}
-
-		ul.toc {
-			list-style-image: url(Resources/pics/BallGreenG.gif);
-			padding-left: 2.5em;
-			margin: 1em 0;
-		}
-
-		ul.toc>li {
-			padding-left: 0.4em;
-			margin-bottom: 0.6em;
-		}
-
-		ul.toc a {
-			font-weight: bold;
-		}
-	</style>
-
-</head>
-
-<body alink="#009B00" bgcolor="#FFFFFF" link="#0000FF" text="#000000" vlink="#FF0000">
-	<table border="1" height="100%" width="715">
-		<tr>
-			<td>
-				<table border="0" cellpadding="4" cellspacing="0" width="710">
-					<tr>
-						<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top">
-							<center>
-								<p><img height="59" src="Resources/pics/t-CobolTut.gif" width="173" /></p>
-							</center>
-							<center>
-								<h1>The COPY verb</h1>
+		</style>
+	</head>
+	<body alink="#009B00" bgcolor="#FFFFFF" link="#0000FF" text="#000000" vlink="#FF0000">
+		<table border="1" height="100%" width="715">
+			<tr>
+				<td>
+					<table border="0" cellpadding="4" cellspacing="0" width="710">
+						<tr>
+							<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top">
+								<center>
+									<p><img height="59" src="Resources/pics/t-CobolTut.gif" width="173" /></p>
+								</center>
+								<center>
+									<h1>The COPY verb</h1>
+									<hr />
+								</center>
+								<ul class="toc">
+									<li>
+										<a href="#intro">Introduction</a><br />
+										<font size="-1">Unit aims, objectives, prerequisites.</font>
+									</li>
+									<li>
+										<a href="#part1">Using COPY statements</a><br />
+										<font size="-1"
+											>Introduction to the COPY verb. Using the COPY verb when creating large
+											software systems</font
+										>
+									</li>
+									<li>
+										<a href="#part2">The COPY verb - Syntax and Semantics</a><br />
+										<font size="-1"
+											>The COPY syntax. How the COPY works. How the REPLACING phrase works. COPY
+											rules.</font
+										>
+									</li>
+									<li>
+										<a href="#part3">COPY examples</a><br />
+										<font size="-1"
+											>Four example programs showing the program source text before processing the
+											COPY statements, the copy library text, and the program source text after
+											processing the COPY statements in the program.</font
+										>
+									</li>
+								</ul>
 								<hr />
-							</center>
-							<ul class="toc">
-								<li><a href="#intro">Introduction</a><br />
-									<font size="-1">Unit aims, objectives, prerequisites.</font>
-								</li>
-								<li><a href="#part1">Using COPY statements</a><br />
-									<font size="-1">Introduction to the COPY verb. Using the
-										COPY verb when creating large software systems</font>
-								</li>
-								<li><a href="#part2">The
-										COPY verb - Syntax and Semantics</a><br />
-									<font size="-1">The COPY syntax. How the COPY works. How
-										the REPLACING phrase works. COPY rules.</font>
-								</li>
-								<li><a href="#part3">COPY
-										examples </a><br />
-									<font size="-1">Four example programs showing the program
-										source text before processing the COPY statements, the copy
-										library text, and the program source text after processing the
-										COPY statements in the program.</font>
-								</li>
-							</ul>
-							<hr />
-						</td>
-					</tr>
-					<tr>
-						<td align="LEFT" bgcolor="#993300" colspan="2" valign="top">
-							<h2 align="CENTER" id="intro">
-								<font color="#FFFF00">
-									<font face="Arial, Helvetica, sans-serif">Introduction</font>
-								</font>
-							</h2>
-						</td>
-					</tr>
-					<tr>
-						<td bgcolor="#FFFFCC" valign="top" width="175">
-							<h4>
-								<font color="#993300" face="Arial, Helvetica, sans-serif">Aims</font>
-							</h4>
-							<h4><img height="1" src="Resources/pics/PanelLine.gif" width="175" /></h4>
-						</td>
-						<td valign="top" width="525">
-							<div align="center">
-								<p align="left">In a large software system it is often very useful
-									to be able keep record, file and table descriptions in a central
-									source text library and then to import those descriptions into
-									the programs that require them. In COBOL the <font size="-1">COPY</font>
-									verb allows us to do this.</p>
-								<p align="left">This unit introduces the <font size="-1">COPY</font>
-									verb. </p>
-								<p align="left">It describes some problems of large software systems
-									which use of the <font size="-1">COPY</font> helps to alleviate.</p>
-								<p align="left">It introduces the syntax of the <font size="-1">COPY</font>
-									verb and discusses how the <font size="-1">COPY</font> verb, and
-									in particular they <font size="-1">COPY..REPLACING</font>, works.
-								</p>
-								<p align="left">It introduces the notion of a text word and describes
-									the role that these play in matching the text in the <font size="-1">REPLACING
-									</font>
-									phrase with the text in the library file. </p>
-								<p align="left">The unit ends with a number of example programs.</p>
-							</div>
-							<hr align="center" size="1" width="100%" />
-						</td>
-					</tr>
-					<tr>
-						<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="175">
-							<h4>
-								<font color="#800000" face="Arial, Helvetica, sans-serif">Objectives</font>
-							</h4>
-						</td>
-						<td valign="top" width="525">
-							<p>By the end of this unit you should - </p>
-							<ol>
-								<li>Be aware of some of the advantages of using the COPY verb.<br />
-									<br />
-								</li>
-								<li>Understand what a text word and be able to identify text words
-									in library text.<br />
-									<br />
-								</li>
-								<li>Be able to use the COPY.. REPLACING to copy source text from
-									a library file and replace sections of it as required.</li>
-							</ol>
-							<hr align="center" size="1" width="100%" />
-						</td>
-					</tr>
-					<tr>
-						<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="175">
-							<h4>
-								<font color="#800000" face="Arial, Helvetica, sans-serif">Prerequisites</font>
-							</h4>
-						</td>
-						<td valign="top" width="525">
-							<ul>
-								<li>Introduction to COBOL</li>
-								<li>Declaring data in COBOL</li>
-								<li>Basic Procedure Division commands</li>
-								<li>Selection in COBOL</li>
-								<li>Iteration in COBOL</li>
-								<li>Introduction to Sequential files</li>
-								<li>Processing Sequential files</li>
-								<li>Edited Pictures</li>
-								<li>The USAGE clause</li>
-								<li>COBOL print files and variable-length records</li>
-								<li>Sorting and Merging</li>
-								<li>Introduction to direct access files</li>
-								<li>Relative Files</li>
-								<li>Indexed Files</li>
-								<li>Using tables</li>
-								<li>Creating tables - syntax and semantics</li>
-								<li>Searching tables</li>
-								<li>CALLing subprograms</li>
-							</ul>
-						</td>
-					</tr>
-					<tr>
-						<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top">
-							<div align="center">
-								<hr />
-								<p><a href="#top"> <img border="0" height="38" src="Resources/pics/i-pagetop.gif"
-											width="132" /></a>
-								</p>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td align="LEFT" bgcolor="#993300" colspan="2" valign="top">
-							<h2 align="CENTER" id="part1">
-								<font color="#FFFF00">
-									<font face="Arial, Helvetica, sans-serif">Using
-										the COPY verb</font>
-								</font>
-							</h2>
-						</td>
-					</tr>
-					<tr>
-						<td bgcolor="#FFFFCC" valign="top" width="175">
-							<h4>
-								<font color="#993300" face="Arial, Helvetica, sans-serif">Introduction</font>
-							</h4>
-							<h4><img height="1" src="Resources/pics/PanelLine.gif" width="175" /></h4>
-						</td>
-						<td valign="top" width="525">
-							<div align="center">
-								<p align="left">
-									<font size="-1">COPY</font> statements in a COBOL
-									program are very different from other COBOL statements. While
-									other statements are executed at run time, <font size="-1">COPY</font>
-									statements are executed at compile time.<br />
-								</p>
-								<p align="left">A <font size="-1">COPY</font> statement is similar
-									to the "Include" used in languages like C and C++. It
-									allows programs to include frequently used source code text. </p>
-								<p align="left">When a <font size="-1">COPY</font> statement is
-									used in a COBOL program the source code text is copied into the
-									program from from a copy file or from a copy library before the
-									program is compiled.</p>
-								<p align="left">A copy file, is a file containing a segment of COBOL
-									code. </p>
-								<p align="left">A copy library, is a collection code segment each
-									of which can be referenced using a name. Each program that wants
-									to use items described in the copy library uses the <font size="-1">COPY</font>
-									verb to include the descriptions it requires.</p>
-								<p align="left">When <font size="-1">COPY</font> statements include
-									source code in a program, the code can be included without change
-									or the text can be changed as it is copied into the program. The
-									ability to change the code as it being included greatly adds to
-									the versatility of the <font size="-1">COPY</font> verb. </p>
-							</div>
-							<hr align="center" size="1" width="100%" />
-						</td>
-					</tr>
-					<tr>
-						<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="175">
-							<h4>
-								<font color="#800000"><b>
-										<font face="Arial, Helvetica, sans-serif">Using
-											the COPY verb in large software systems</font>
-									</b></font>
-							</h4>
-						</td>
-						<td valign="top" width="525">
-							<p>The <font size="-1">COPY</font> verb is generally used when creating
-								large software systems. These systems are subject to a number of
-								problems that the <font size="-1">COPY</font> verb helps to alleviate.</p>
-							<p>For instance, when data files are used by a number of programs
-								in a large software system, it is easy for programmers describing
-								those files to make errors in defining the key fields (Indexed files)
-								or the file organization or the type of access allowed or the number,
-								type and size of the fields in a record. Any errors in these descriptions
-								may result in difficult-to-find bugs. For instance, if one program
-								writes a file using an incorrect record description and the others
-								read it using the correct description, a program crash may occur
-								in in one of the correct subprograms rather than the one which actually
-								has the problem. </p>
-							<p>Using copy libraries or files helps to reduce programmer transcription
-								errors and also makes implementation simpler by reducing the amount
-								of coding required. For instance, when a number of programs need
-								to access the same file, the relevant file and record descriptions
-								can be copied from a copy library instead of each programmer having
-								to type their own (and possibly get them wrong).</p>
-							<p>Another advantage of using copy libraries is that they permit item
-								descriptions such as file, record and table descriptions, to be
-								kept and updated centrally in a copy library, often under the control
-								of a copy librarian. This makes it more difficult for programmers
-								to make ad hoc changes to file and record formats. Such changes
-								generally have to be approved by the COPY librarian.<br />
-								<br />
-							</p>
-							<p>In a large software system using the COPY verb makes some maintenance
-								tasks easier and safer. Certain changes may only require an update
-								to the text in the copy library and a recompilation of any affected
-								programs. If a copy library were not used each affected program
-								would have to be changed</p>
-							<hr align="center" size="1" width="100%" />
-						</td>
-					</tr>
-					<tr>
-						<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top">
-							<div align="center">
-								<hr />
-								<p><a href="#top"> <img border="0" height="38" src="Resources/pics/i-pagetop.gif"
-											width="132" /></a>
-								</p>
-							</div>
-						</td>
-					<tr>
-						<td align="LEFT" bgcolor="#993300" colspan="2" valign="top">
-							<h2 align="CENTER" id="part2">
-								<font color="#FFFF00">
-									<font color="#FFFF00" face="Arial, Helvetica, sans-serif"><b>The
-											COPY verb <br />
-											Syntax and Semantics</b></font>
-								</font>
-							</h2>
-						</td>
-					</tr>
-					<tr>
-						<td bgcolor="#FFFFCC" valign="top" width="175">
-							<h4>
-								<font color="#993300" face="Arial, Helvetica, sans-serif">COPY
-									Syntax</font>
-							</h4>
-							<aside>
-								<p align="center"><img height="37" src="Resources/pics/aa%20i-Detail.gif"
-										width="30" /><br />
-									<font size="-1">The syntax diagram shown opposite has been simplified
-										for the sake of completeness and clarity. It is the author's opinion
-										that the standard syntax diagram does not clearly identify all the
-										replaceable objects.</font>
-								</p>
-							</aside>
-							<h4><img height="1" src="Resources/pics/PanelLine.gif" width="175" /></h4>
-						</td>
-						<td valign="top" width="525">
-							<div align="center">
-								<p align="center"><img height="98" src="Resources/pics/CopySyn1.gif" width="366" /></p>
-
-								<p align="left"><b>Text Words<br />
-									</b>The matching procedure in the <font size="-1">REPLACING </font>phrase
-									operates on text words.<br />
-								</p>
-								<p align="left">A text word is defined as ;<br />
-								</p>
-								<div align="left">
-									<ul>
-										<li>Any COBOL text enclosed in double equal signs (e.g.<font
-												face="Arial, Helvetica, sans-serif">
-												==ADD 1==</font>). This text is known as PseudoText and it
-											allows us to replace a series of words or characters as opposed
-											to an individual identifier, literal or word.<br />
-											<br />
-										</li>
-										<li>Any literal including opening and closing quotes<br />
-											<br />
-										</li>
-										<li>Any separator other than;<br />
-											      A space<br />
-											      A Pseudo-Text delimiter
-											<br />
-											      A Comma
-										</li>
-									</ul>
-									<ul>
-										<li>Any COBOL reserved word<br />
-											<br />
-										</li>
-										<li>Any Identifier.<br />
-										</li>
-									</ul>
-									<ul>
-										<li>Any other sequence of contiguous characters bounded by separators.<br />
-											<br />
-										</li>
-									</ul>
+							</td>
+						</tr>
+						<tr>
+							<td align="left" bgcolor="#993300" colspan="2" valign="top">
+								<h2 align="center" id="intro">
+									<font color="#FFFF00"
+										><font face="Arial, Helvetica, sans-serif">Introduction</font></font
+									>
+								</h2>
+							</td>
+						</tr>
+						<tr>
+							<td bgcolor="#FFFFCC" valign="top" width="175">
+								<h4><font color="#993300" face="Arial, Helvetica, sans-serif">Aims</font></h4>
+								<h4><img height="1" src="Resources/pics/PanelLine.gif" width="175" /></h4>
+							</td>
+							<td valign="top" width="525">
+								<div align="center">
+									<p align="left">
+										In a large software system it is often very useful to be able keep record, file
+										and table descriptions in a central source text library and then to import those
+										descriptions into the programs that require them. In COBOL the
+										<font size="-1">COPY</font> verb allows us to do this.
+									</p>
+									<p align="left">This unit introduces the <font size="-1">COPY</font> verb.</p>
+									<p align="left">
+										It describes some problems of large software systems which use of the
+										<font size="-1">COPY</font> helps to alleviate.
+									</p>
+									<p align="left">
+										It introduces the syntax of the <font size="-1">COPY</font> verb and discusses
+										how the <font size="-1">COPY</font> verb, and in particular they
+										<font size="-1">COPY..REPLACING</font>, works.
+									</p>
+									<p align="left">
+										It introduces the notion of a text word and describes the role that these play
+										in matching the text in the <font size="-1">REPLACING</font> phrase with the
+										text in the library file.
+									</p>
+									<p align="left">The unit ends with a number of example programs.</p>
 								</div>
-								<p align="left"><b>Text Word examples</b></p>
-								<blockquote>
-									<p align="left"><b>MOVE</b> <br />
-										1 Text Word<br />
+								<hr align="center" size="1" width="100%" />
+							</td>
+						</tr>
+						<tr>
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+								<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Objectives</font></h4>
+							</td>
+							<td valign="top" width="525">
+								<p>By the end of this unit you should -</p>
+								<ol>
+									<li>
+										Be aware of some of the advantages of using the COPY verb.<br />
 										<br />
-										<b>MOVE Total TO Print-Total </b><br />
-										4 Text Words - <font color="#0000FF"><b>MOVE </b></font><b>
-											<font color="#0000FF">
-												<font color="#FF0000">Total</font>
-												TO <font color="#FF0000">Print-Total</font>
-											</font>
-										</b>
+									</li>
+									<li>
+										Understand what a text word and be able to identify text words in library
+										text.<br />
+										<br />
+									</li>
+									<li>
+										Be able to use the COPY.. REPLACING to copy source text from a library file and
+										replace sections of it as required.
+									</li>
+								</ol>
+								<hr align="center" size="1" width="100%" />
+							</td>
+						</tr>
+						<tr>
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+								<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Prerequisites</font></h4>
+							</td>
+							<td valign="top" width="525">
+								<ul>
+									<li>Introduction to COBOL</li>
+									<li>Declaring data in COBOL</li>
+									<li>Basic Procedure Division commands</li>
+									<li>Selection in COBOL</li>
+									<li>Iteration in COBOL</li>
+									<li>Introduction to Sequential files</li>
+									<li>Processing Sequential files</li>
+									<li>Edited Pictures</li>
+									<li>The USAGE clause</li>
+									<li>COBOL print files and variable-length records</li>
+									<li>Sorting and Merging</li>
+									<li>Introduction to direct access files</li>
+									<li>Relative Files</li>
+									<li>Indexed Files</li>
+									<li>Using tables</li>
+									<li>Creating tables - syntax and semantics</li>
+									<li>Searching tables</li>
+									<li>CALLing subprograms</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top">
+								<div align="center">
+									<hr />
+									<p>
+										<a href="#top"
+											><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+										/></a>
 									</p>
-									<p align="left"><b>MOVE Total TO Print-Total. </b><br />
-										5 Text Words - <font color="#0000FF"><b>MOVE</b></font> <b>
-											<font color="#FF0000">Total</font>
-											<font color="#0000FF">TO </font>
-											<font color="#FF0000">Print-Total</font>
-											<font color="#0000FF">.</font>
-										</b></p>
-									<p align="left"><b>PIC S9(4)V9(6)</b><br />
-										9 Text words -<b>
-											<font color="#0000FF">PIC</font>
-											<font color="#0000FF">
-												<font color="#FF0000">S9</font>
-												( <font color="#FF0000">4 </font>) <font color="#FF0000">V9</font>
-												( <font color="#FF0000">6</font> )
-											</font>
-										</b></p>
-									<p align="left"><b>“PIC S9(4)V9(6)”</b><br />
-										1 Text word - <font color="#0000FF"><b>“PIC S9(4)V9(6)”</b></font><br />
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td align="left" bgcolor="#993300" colspan="2" valign="top">
+								<h2 align="center" id="part1">
+									<font color="#FFFF00"
+										><font face="Arial, Helvetica, sans-serif">Using the COPY verb</font></font
+									>
+								</h2>
+							</td>
+						</tr>
+						<tr>
+							<td bgcolor="#FFFFCC" valign="top" width="175">
+								<h4><font color="#993300" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
+								<h4><img height="1" src="Resources/pics/PanelLine.gif" width="175" /></h4>
+							</td>
+							<td valign="top" width="525">
+								<div align="center">
+									<p align="left">
+										<font size="-1">COPY</font> statements in a COBOL program are very different
+										from other COBOL statements. While other statements are executed at run time,
+										<font size="-1">COPY</font> statements are executed at compile time.<br />
 									</p>
-								</blockquote>
-							</div>
-							<hr align="center" size="1" width="100%" />
-						</td>
-					</tr>
-					<tr>
-						<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="175">
-							<h4><b>
-									<font color="#800000" face="Arial, Helvetica, sans-serif">How
-										the COPY works</font>
-								</b></h4>
-						</td>
-						<td valign="top" width="525">
-							<p>If the <font size="-1">REPLACING</font> phrase is not used the
-								compiler simply copies the text into the client program without
-								change.<br />
-							</p>
-							<p>If the <font size="-1">COPY</font> does use the <font size="-1">REPLACING</font>
-								phrase the text is copied and each occurrence of <i>TextWord1</i>
-								in the library text is replaced by the corresponding <i>TextWord2</i>
-								in the <font size="-1">REPLACING</font> phrase.</p>
-							<h4>Some example COPY statements</h4>
-							<pre class="language-cobol"><code class="language-cobol">COPY CopyFile2 REPLACING XYZ BY 120. 
+									<p align="left">
+										A <font size="-1">COPY</font> statement is similar to the "Include" used in
+										languages like C and C++. It allows programs to include frequently used source
+										code text.
+									</p>
+									<p align="left">
+										When a <font size="-1">COPY</font> statement is used in a COBOL program the
+										source code text is copied into the program from from a copy file or from a copy
+										library before the program is compiled.
+									</p>
+									<p align="left">A copy file, is a file containing a segment of COBOL code.</p>
+									<p align="left">
+										A copy library, is a collection code segment each of which can be referenced
+										using a name. Each program that wants to use items described in the copy library
+										uses the <font size="-1">COPY</font> verb to include the descriptions it
+										requires.
+									</p>
+									<p align="left">
+										When <font size="-1">COPY</font> statements include source code in a program,
+										the code can be included without change or the text can be changed as it is
+										copied into the program. The ability to change the code as it being included
+										greatly adds to the versatility of the <font size="-1">COPY</font> verb.
+									</p>
+								</div>
+								<hr align="center" size="1" width="100%" />
+							</td>
+						</tr>
+						<tr>
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+								<h4>
+									<font color="#800000"
+										><b
+											><font face="Arial, Helvetica, sans-serif"
+												>Using the COPY verb in large software systems</font
+											></b
+										></font
+									>
+								</h4>
+							</td>
+							<td valign="top" width="525">
+								<p>
+									The <font size="-1">COPY</font> verb is generally used when creating large software
+									systems. These systems are subject to a number of problems that the
+									<font size="-1">COPY</font> verb helps to alleviate.
+								</p>
+								<p>
+									For instance, when data files are used by a number of programs in a large software
+									system, it is easy for programmers describing those files to make errors in defining
+									the key fields (Indexed files) or the file organization or the type of access
+									allowed or the number, type and size of the fields in a record. Any errors in these
+									descriptions may result in difficult-to-find bugs. For instance, if one program
+									writes a file using an incorrect record description and the others read it using the
+									correct description, a program crash may occur in in one of the correct subprograms
+									rather than the one which actually has the problem.
+								</p>
+								<p>
+									Using copy libraries or files helps to reduce programmer transcription errors and
+									also makes implementation simpler by reducing the amount of coding required. For
+									instance, when a number of programs need to access the same file, the relevant file
+									and record descriptions can be copied from a copy library instead of each programmer
+									having to type their own (and possibly get them wrong).
+								</p>
+								<p>
+									Another advantage of using copy libraries is that they permit item descriptions such
+									as file, record and table descriptions, to be kept and updated centrally in a copy
+									library, often under the control of a copy librarian. This makes it more difficult
+									for programmers to make ad hoc changes to file and record formats. Such changes
+									generally have to be approved by the COPY librarian.<br />
+									<br />
+								</p>
+								<p>
+									In a large software system using the COPY verb makes some maintenance tasks easier
+									and safer. Certain changes may only require an update to the text in the copy
+									library and a recompilation of any affected programs. If a copy library were not
+									used each affected program would have to be changed
+								</p>
+								<hr align="center" size="1" width="100%" />
+							</td>
+						</tr>
+						<tr>
+							<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top">
+								<div align="center">
+									<hr />
+									<p>
+										<a href="#top"
+											><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+										/></a>
+									</p>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td align="left" bgcolor="#993300" colspan="2" valign="top">
+								<h2 align="center" id="part2">
+									<font color="#FFFF00"
+										><font color="#FFFF00" face="Arial, Helvetica, sans-serif"
+											><b
+												>The COPY verb<br />
+												Syntax and Semantics</b
+											></font
+										></font
+									>
+								</h2>
+							</td>
+						</tr>
+						<tr>
+							<td bgcolor="#FFFFCC" valign="top" width="175">
+								<h4><font color="#993300" face="Arial, Helvetica, sans-serif">COPY Syntax</font></h4>
+								<aside>
+									<p align="center">
+										<img height="37" src="Resources/pics/aa%20i-Detail.gif" width="30" /><br />
+										<font size="-1"
+											>The syntax diagram shown opposite has been simplified for the sake of
+											completeness and clarity. It is the author's opinion that the standard
+											syntax diagram does not clearly identify all the replaceable objects.</font
+										>
+									</p>
+								</aside>
+								<h4><img height="1" src="Resources/pics/PanelLine.gif" width="175" /></h4>
+							</td>
+							<td valign="top" width="525">
+								<div align="center">
+									<p align="center">
+										<img height="98" src="Resources/pics/CopySyn1.gif" width="366" />
+									</p>
+									<p align="left">
+										<b>Text Words<br /></b> The matching procedure in the
+										<font size="-1">REPLACING</font> phrase operates on text words.<br />
+									</p>
+									<p align="left">A text word is defined as ;<br /></p>
+									<div align="left">
+										<ul>
+											<li>
+												Any COBOL text enclosed in double equal signs (e.g.
+												<font face="Arial, Helvetica, sans-serif">==ADD 1==</font>). This text
+												is known as PseudoText and it allows us to replace a series of words or
+												characters as opposed to an individual identifier, literal or word.<br />
+												<br />
+											</li>
+											<li>
+												Any literal including opening and closing quotes<br />
+												<br />
+											</li>
+											<li>
+												Any separator other than;<br />
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A space<br />
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A Pseudo-Text delimiter<br />
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A Comma
+											</li>
+										</ul>
+										<ul>
+											<li>
+												Any COBOL reserved word<br />
+												<br />
+											</li>
+											<li>Any Identifier.<br /></li>
+										</ul>
+										<ul>
+											<li>
+												Any other sequence of contiguous characters bounded by separators.<br />
+												<br />
+											</li>
+										</ul>
+									</div>
+									<p align="left"><b>Text Word examples</b></p>
+									<blockquote>
+										<p align="left">
+											<b>MOVE</b><br />
+											1 Text Word<br />
+											<br />
+											<b>MOVE Total TO Print-Total</b><br />
+											4 Text Words - <font color="#0000FF"><b>MOVE</b></font>
+											<b
+												><font color="#0000FF"
+													><font color="#FF0000">Total</font> TO
+													<font color="#FF0000">Print-Total</font></font
+												></b
+											>
+										</p>
+										<p align="left">
+											<b>MOVE Total TO Print-Total.</b><br />
+											5 Text Words - <font color="#0000FF"><b>MOVE</b></font>
+											<b
+												><font color="#FF0000">Total</font> <font color="#0000FF">TO</font>
+												<font color="#FF0000">Print-Total</font>
+												<font color="#0000FF">.</font></b
+											>
+										</p>
+										<p align="left">
+											<b>PIC S9(4)V9(6)</b><br />
+											9 Text words -
+											<b
+												><font color="#0000FF">PIC</font>
+												<font color="#0000FF"
+													><font color="#FF0000">S9</font> ( <font color="#FF0000">4</font> )
+													<font color="#FF0000">V9</font> (
+													<font color="#FF0000">6</font> )</font
+												></b
+											>
+										</p>
+										<p align="left">
+											<b>“PIC S9(4)V9(6)”</b><br />
+											1 Text word - <font color="#0000FF"><b>“PIC S9(4)V9(6)”</b></font
+											><br />
+										</p>
+									</blockquote>
+								</div>
+								<hr align="center" size="1" width="100%" />
+							</td>
+						</tr>
+						<tr>
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+								<h4>
+									<b
+										><font color="#800000" face="Arial, Helvetica, sans-serif"
+											>How the COPY works</font
+										></b
+									>
+								</h4>
+							</td>
+							<td valign="top" width="525">
+								<p>
+									If the <font size="-1">REPLACING</font> phrase is not used the compiler simply
+									copies the text into the client program without change.<br />
+								</p>
+								<p>
+									If the <font size="-1">COPY</font> does use the
+									<font size="-1">REPLACING</font> phrase the text is copied and each occurrence of
+									<i>TextWord1</i> in the library text is replaced by the corresponding
+									<i>TextWord2</i> in the <font size="-1">REPLACING</font> phrase.
+								</p>
+								<h4>Some example COPY statements</h4>
+								<pre
+									class="language-cobol"
+								><code class="language-cobol">COPY CopyFile2 REPLACING XYZ BY 120. 
 COPY CopyFile5 REPLACING X(3) BY X(19).
 COPY CopyFile3 IN EGLIB.
 COPY CopyFile5 REPLACING ==X(3)== BY ==X(19)==.
 COPY CopyFile4 IN EGLIB.</code></pre>
-							<hr align="center" size="1" width="100%" />
-						</td>
-					</tr>
-					<tr>
-						<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="175">
-							<h4>
-								<font color="#800000" face="Arial, Helvetica, sans-serif">How
-									the REPLACING phrase works</font>
-							</h4>
-						</td>
-						<td valign="top" width="525">
-							<p>The <font size="-1">REPLACING</font> phrase tries to match the
-								TextWord1 items with text words in the library text.If a match
-								is achieved, then as the text is copied from the library, the matched
-								text is replaced by the TextWord2 items.</p>
-							<p>For purposes of matching, each occurrence of aseparator comma,
-								semicolon, space or comment line in the library text or in TextWord1
-								is considered to be a single space. </p>
-							<p>Each sequence of one or more space separators is also considered
-								to be a single space. </p>
-							<p>Comment lines in the library text is or in TextWord2 are copied
-								into the target text unchanged. </p>
-							<hr align="center" size="1" width="100%" />
-						</td>
-					</tr>
-					<tr>
-						<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="175">
-							<h4>
-								<font color="#800000" face="Arial, Helvetica, sans-serif">COPY
-									Rules </font>
-							</h4>
-						</td>
-						<td valign="top" width="525">
-							<ol>
-								<li>When TextWord1 is PseudoText it must not be null, nor can it
-									consist solely of either the character space(s) or comment lines.
-									<br />
-									<br />
-								</li>
-								<li>When TextWord2 is PseudoText it can be null. Null PseudoText
-									is indicated by four equal signs (e.g.<font face="Arial, Helvetica, sans-serif">
-										====</font>)<br />
-									<br />
-								</li>
-								<li>A <font size="-1">COPY</font> statement can occur anywhere a
-									character-string or a separator can occur except that a <font size="-1">COPY</font>
-									statement must not occur within another <font size="-1">COPY</font>
-									statement.<br />
-									<br />
-								</li>
-								<li>TextName defines a unique external filename which conforms to
-									the rules for user defined words. <br />
-									<br />
-								</li>
-								<li>If the word <font size="-1">COPY</font> appears in a comment-entry
-									or in the place where a comment entry can appear, it is considered
-									part of the comment-entry. <br />
-									<br />
-								</li>
-								<li>The text produced as a result of the complete processing of
-									a <font size="-1">COPY</font> statement must not contain a <font size="-1">COPY
-									</font>
-									statement. <br />
-									<br />
-								</li>
-								<li>Normally a textword in the copy text is replaced by a textword
-									in the replacement text but it is possible to replace only part
-									of a text-word by enclosing the text to be replaced by either
-									parentheses or colons.<br />
-									For example - (Prefix) or :Prefix:</li>
-							</ol>
-							<hr align="center" size="1" width="100%" />
-						</td>
-					</tr>
-					<tr>
-						<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top">
-							<div align="center">
-								<hr />
-								<p><a href="#top"> <img border="0" height="38" src="Resources/pics/i-pagetop.gif"
-											width="132" /></a>
+								<hr align="center" size="1" width="100%" />
+							</td>
+						</tr>
+						<tr>
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+								<h4>
+									<font color="#800000" face="Arial, Helvetica, sans-serif"
+										>How the REPLACING phrase works</font
+									>
+								</h4>
+							</td>
+							<td valign="top" width="525">
+								<p>
+									The <font size="-1">REPLACING</font> phrase tries to match the TextWord1 items with
+									text words in the library text.If a match is achieved, then as the text is copied
+									from the library, the matched text is replaced by the TextWord2 items.
 								</p>
-							</div>
-						</td>
-					<tr>
-						<td align="LEFT" bgcolor="#993300" colspan="2" valign="top">
-							<h2 align="CENTER" id="part3">
-								<font color="#FFFF00">
-									<font face="Arial, Helvetica, sans-serif">COPY
-										examples </font>
-								</font>
-							</h2>
-						</td>
-					</tr>
-					<tr>
-						<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-							<p>
-								<font color="#800000" face="Arial, Helvetica, sans-serif"><b>COPY
-										Example1</b></font>
-							</p>
-							<p align="center"><b>
-									<font color="#800000" face="Arial, Helvetica, sans-serif"><img height="62"
-											src="Resources/pics/aai-Legend.gif" width="65" /></font>
-								</b></p>
-							<p>
-								<font size="-1">Text in </font>
-								<font color="#006600"><b>green</b></font>
-								<font size="-1">
-									is the copy statement in the source text before processing.</font>
-							</p>
-							<p>
-								<font size="-1">Text in </font><b>
-									<font color="#FF0000">red</font>
-								</b>
-								<font size="-1">
-									is the copied library text which may have been altered by the REPLACING
-									phrase if one was present and found matching text in the library
-									file.</font>
-							</p>
-							<p>
-								<font size="-1">Text in </font><b>
-									<font color="#CCCCCC">grey</font>
-								</b>
-								<font size="-1">
-									is the COPY statement which has been applied.</font>
-							</p>
-						</td>
-						<td valign="top" width="525">
-							<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5"
-								width="374">
-								<tr>
-									<td valign="top">
-										<div align="center">
-											<font color="#009933"><b>
-													<font color="#000099" face="Arial, Helvetica, sans-serif">Source
-														Text</font>
-													<font color="#000099"> </font>
-												</b> </font>
-										</div>
-										<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+								<p>
+									For purposes of matching, each occurrence of aseparator comma, semicolon, space or
+									comment line in the library text or in TextWord1 is considered to be a single space.
+								</p>
+								<p>
+									Each sequence of one or more space separators is also considered to be a single
+									space.
+								</p>
+								<p>
+									Comment lines in the library text is or in TextWord2 are copied into the target text
+									unchanged.
+								</p>
+								<hr align="center" size="1" width="100%" />
+							</td>
+						</tr>
+						<tr>
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+								<h4><font color="#800000" face="Arial, Helvetica, sans-serif">COPY Rules</font></h4>
+							</td>
+							<td valign="top" width="525">
+								<ol>
+									<li>
+										When TextWord1 is PseudoText it must not be null, nor can it consist solely of
+										either the character space(s) or comment lines.<br />
+										<br />
+									</li>
+									<li>
+										When TextWord2 is PseudoText it can be null. Null PseudoText is indicated by
+										four equal signs (e.g.
+										<font face="Arial, Helvetica, sans-serif">====</font>)<br />
+										<br />
+									</li>
+									<li>
+										A <font size="-1">COPY</font> statement can occur anywhere a character-string or
+										a separator can occur except that a <font size="-1">COPY</font> statement must
+										not occur within another <font size="-1">COPY</font> statement.<br />
+										<br />
+									</li>
+									<li>
+										TextName defines a unique external filename which conforms to the rules for user
+										defined words.<br />
+										<br />
+									</li>
+									<li>
+										If the word <font size="-1">COPY</font> appears in a comment-entry or in the
+										place where a comment entry can appear, it is considered part of the
+										comment-entry.<br />
+										<br />
+									</li>
+									<li>
+										The text produced as a result of the complete processing of a
+										<font size="-1">COPY</font> statement must not contain a
+										<font size="-1">COPY</font> statement.<br />
+										<br />
+									</li>
+									<li>
+										Normally a textword in the copy text is replaced by a textword in the
+										replacement text but it is possible to replace only part of a text-word by
+										enclosing the text to be replaced by either parentheses or colons.<br />
+										For example - (Prefix) or :Prefix:
+									</li>
+								</ol>
+								<hr align="center" size="1" width="100%" />
+							</td>
+						</tr>
+						<tr>
+							<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top">
+								<div align="center">
+									<hr />
+									<p>
+										<a href="#top"
+											><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+										/></a>
+									</p>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td align="left" bgcolor="#993300" colspan="2" valign="top">
+								<h2 align="center" id="part3">
+									<font color="#FFFF00"
+										><font face="Arial, Helvetica, sans-serif">COPY examples</font></font
+									>
+								</h2>
+							</td>
+						</tr>
+						<tr>
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+								<p>
+									<font color="#800000" face="Arial, Helvetica, sans-serif"
+										><b>COPY Example1</b></font
+									>
+								</p>
+								<p align="center">
+									<b
+										><font color="#800000" face="Arial, Helvetica, sans-serif"
+											><img height="62" src="Resources/pics/aai-Legend.gif" width="65" /></font
+									></b>
+								</p>
+								<p>
+									<font size="-1">Text in</font> <font color="#006600"><b>green</b></font>
+									<font size="-1">is the copy statement in the source text before processing.</font>
+								</p>
+								<p>
+									<font size="-1">Text in</font> <b><font color="#FF0000">red</font></b>
+									<font size="-1"
+										>is the copied library text which may have been altered by the REPLACING phrase
+										if one was present and found matching text in the library file.</font
+									>
+								</p>
+								<p>
+									<font size="-1">Text in</font> <b><font color="#CCCCCC">grey</font></b>
+									<font size="-1">is the COPY statement which has been applied.</font>
+								</p>
+							</td>
+							<td valign="top" width="525">
+								<table
+									align="center"
+									background="Resources/pics/code.gif"
+									border="1"
+									cellpadding="5"
+									width="374"
+								>
+									<tr>
+										<td valign="top">
+											<div align="center">
+												<font color="#009933"
+													><b
+														><font color="#000099" face="Arial, Helvetica, sans-serif"
+															>Source Text</font
+														>
+														<font color="#000099"></font></b
+												></font>
+											</div>
+											<pre
+												class="language-cobol"
+											><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. COPYEG1.
 AUTHOR.  Michael Coughlan.
@@ -714,17 +767,19 @@ BeginProg.
    END-PERFORM
    STOP RUN.
 </code></pre>
-									</td>
-								</tr>
-								<tr>
-									<td bgcolor="#FFFFFF" valign="top">
-										<div align="center"> <b>
-												<font color="#000099" face="Arial, Helvetica, sans-serif">Text
-													in COPYFILE1</font>
-											</b><br />
-											<br />
-										</div>
-										<pre class="language-cobol"><code class="language-cobol">
+										</td>
+									</tr>
+									<tr>
+										<td bgcolor="#FFFFFF" valign="top">
+											<div align="center">
+												<b
+													><font color="#000099" face="Arial, Helvetica, sans-serif"
+														>Text in COPYFILE1</font
+													></b
+												><br />
+												<br />
+											</div>
+											<pre class="language-cobol"><code class="language-cobol">
 01  StudentRec.
     88  EndOfSF      VALUE HIGH-VALUES.
     02  StudentNumber                PIC 9(7).
@@ -732,16 +787,19 @@ BeginProg.
     02  CourseCode                   PIC X(4).
     02  FeesOwed                     PIC 9(4).
     02  AmountPaid                   PIC 9(4)V99.
-				  </code></pre>
-									</td>
-								</tr>
-								<tr>
-									<td valign="top">
-										<div align="center"><b>
-												<font color="#000099" face="Arial, Helvetica, sans-serif">Source
-													Text after processing</font><br />
-											</b> </div>
-										<pre class="language-cobol"><code class="language-cobol">
+                                  </code></pre>
+										</td>
+									</tr>
+									<tr>
+										<td valign="top">
+											<div align="center">
+												<b
+													><font color="#000099" face="Arial, Helvetica, sans-serif"
+														>Source Text after processing</font
+													><br
+												/></b>
+											</div>
+											<pre class="language-cobol"><code class="language-cobol">
        &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.                                 
 PROGRAM-ID. COPYEG1.                                     
@@ -778,79 +836,102 @@ BeginProg.
       END-READ                                           
    END-PERFORM                                           
    STOP RUN.</code></pre>
-									</td>
-								</tr>
-							</table>
-
-							<hr align="center" size="1" width="100%" />
-						</td>
-					</tr>
-					<tr>
-						<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-							<p>
-								<font color="#800000" face="Arial, Helvetica, sans-serif"><b>COPY
-										Example2</b></font>
-							</p>
-							<aside>
-								<p align="center"><img height="37" src="Resources/pics/aa%20i-Detail.gif" width="30" />
+										</td>
+									</tr>
+								</table>
+								<hr align="center" size="1" width="100%" />
+							</td>
+						</tr>
+						<tr>
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+								<p>
+									<font color="#800000" face="Arial, Helvetica, sans-serif"
+										><b>COPY Example2</b></font
+									>
 								</p>
-								<p align="left">
-									<font size="-1"><b>Note1</b><br />
-										The TextWord XYZ in the library text is replaced by 120. </font>
-								</p>
-								<p align="left">
-									<font size="-1"><b>Note2</b><br />
-										The PseudoText symbols tell us that we are looking for the text
-										word R in the library text. Other R's in the text which might be
-										part of a word are not matched because they are not text words.
-										The replaced R is a text word because it is bounded by two other
-										text words i.e. the parentheses ( and ).</font>
-								</p>
-								<p align="left">
-									<font size="-1"><b>Note3</b><br />
-										The PseudoText ==V99== is replaced by nothing; effectively deleting
-										it.</font>
-								</p>
-								<p align="left">
-									<font size="-1"><b>Note4</b><br />
-										The literal "KEY" in the library text is replaced by "ABC"</font>
-								</p>
-								<p align="left">
-									<font size="-1"><b>Note5</b><br />
-										In this case the library text is copied without change because the
-										literal "KEY" in the library text is not the same as the
-										word <i>KEY</i> in TextWord2.</font>
-								</p>
-								<p align="left">
-									<font size="-1"><b>Note6</b><br />
-										Similar to the previous example demonstrates the difference between
-										CustKey and the literal "CustKey". A literal text word
-										includes the opening and closing quotes.</font>
-								</p>
-								<p align="left">
-									<font size="-1"><b>Note7</b><br />
-										Replaces "KEY" by two lines of text. Note that we are
-										only replacing the literal "KEY" in the library text.
-										So the full stop after "KEY" is not replaced and that
-										is why there is no full stop after the PIC 9(8) in the TextWord2
-										replacement text.</font>
-								</p>
-							</aside>
-							<p align="left"><img height="1" src="Resources/pics/PanelLine.gif" width="175" /></p>
-						</td>
-						<td valign="top" width="525">
-							<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5"
-								width="374">
-								<tr>
-									<td valign="top">
-										<div align="center">
-											<font color="#009933"><b>
-													<font color="#000099" face="Arial, Helvetica, sans-serif">Source
-														Text</font>
-													<font color="#000099"> </font>
-												</b> </font>
-										</div>
-										<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+								<aside>
+									<p align="center">
+										<img height="37" src="Resources/pics/aa%20i-Detail.gif" width="30" />
+									</p>
+									<p align="left">
+										<font size="-1"
+											><b>Note1</b><br />
+											The TextWord XYZ in the library text is replaced by 120.</font
+										>
+									</p>
+									<p align="left">
+										<font size="-1"
+											><b>Note2</b><br />
+											The PseudoText symbols tell us that we are looking for the text word R in
+											the library text. Other R's in the text which might be part of a word are
+											not matched because they are not text words. The replaced R is a text word
+											because it is bounded by two other text words i.e. the parentheses ( and
+											).</font
+										>
+									</p>
+									<p align="left">
+										<font size="-1"
+											><b>Note3</b><br />
+											The PseudoText ==V99== is replaced by nothing; effectively deleting
+											it.</font
+										>
+									</p>
+									<p align="left">
+										<font size="-1"
+											><b>Note4</b><br />
+											The literal "KEY" in the library text is replaced by "ABC"</font
+										>
+									</p>
+									<p align="left">
+										<font size="-1"
+											><b>Note5</b><br />
+											In this case the library text is copied without change because the literal
+											"KEY" in the library text is not the same as the word <i>KEY</i> in
+											TextWord2.</font
+										>
+									</p>
+									<p align="left">
+										<font size="-1"
+											><b>Note6</b><br />
+											Similar to the previous example demonstrates the difference between CustKey
+											and the literal "CustKey". A literal text word includes the opening and
+											closing quotes.</font
+										>
+									</p>
+									<p align="left">
+										<font size="-1"
+											><b>Note7</b><br />
+											Replaces "KEY" by two lines of text. Note that we are only replacing the
+											literal "KEY" in the library text. So the full stop after "KEY" is not
+											replaced and that is why there is no full stop after the PIC 9(8) in the
+											TextWord2 replacement text.</font
+										>
+									</p>
+								</aside>
+								<p align="left"><img height="1" src="Resources/pics/PanelLine.gif" width="175" /></p>
+							</td>
+							<td valign="top" width="525">
+								<table
+									align="center"
+									background="Resources/pics/code.gif"
+									border="1"
+									cellpadding="5"
+									width="374"
+								>
+									<tr>
+										<td valign="top">
+											<div align="center">
+												<font color="#009933"
+													><b
+														><font color="#000099" face="Arial, Helvetica, sans-serif"
+															>Source Text</font
+														>
+														<font color="#000099"></font></b
+												></font>
+											</div>
+											<pre
+												class="language-cobol"
+											><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. COPYEG2.
 AUTHOR.  Michael Coughlan.
@@ -886,65 +967,68 @@ COPY CopyFile5 REPLACING "KEY" BY =="ABC".
 PROCEDURE DIVISION.
 BeginProg.
 
-STOP RUN.				  
-				  </code></pre>
-									</td>
-								</tr>
-								<tr>
-									<td bgcolor="#FFFFFF" valign="top">
-										<div align="center"> <b>
-												<font color="#000099">Text in CopyFile2</font>
-											</b><br />
-											<br />
-										</div>
-										<pre class="language-cobol"><code class="language-cobol">
+STOP RUN.                                 
+                                  </code></pre>
+										</td>
+									</tr>
+									<tr>
+										<td bgcolor="#FFFFFF" valign="top">
+											<div align="center">
+												<b><font color="#000099">Text in CopyFile2</font></b
+												><br />
+												<br />
+											</div>
+											<pre class="language-cobol"><code class="language-cobol">
     02 StudName PIC X(20) OCCURS XYZ TIMES.
-				  </code></pre>
-									</td>
-								</tr>
-								<tr>
-									<td bgcolor="#FFFFFF" valign="top">
-										<div align="center"><b>
-												<font color="#000099">Text in CopyFile3</font>
-											</b><br />
-											<br />
-										</div>
-										<pre class="language-cobol"><code class="language-cobol">
+                                  </code></pre>
+										</td>
+									</tr>
+									<tr>
+										<td bgcolor="#FFFFFF" valign="top">
+											<div align="center">
+												<b><font color="#000099">Text in CopyFile3</font></b
+												><br />
+												<br />
+											</div>
+											<pre class="language-cobol"><code class="language-cobol">
     02  CustOrder           PIC 9(R).
-		</code></pre>
-									</td>
-								</tr>
-								<tr>
-									<td bgcolor="#FFFFFF" valign="top">
-										<div align="center"><b>
-												<font color="#000099">Text in CopyFile4</font>
-											</b><br />
-											<br />
-										</div>
-										<pre class="language-cobol"><code class="language-cobol">
+                </code></pre>
+										</td>
+									</tr>
+									<tr>
+										<td bgcolor="#FFFFFF" valign="top">
+											<div align="center">
+												<b><font color="#000099">Text in CopyFile4</font></b
+												><br />
+												<br />
+											</div>
+											<pre class="language-cobol"><code class="language-cobol">
     02 CustOrder2           PIC 9(6)V99.
-		</code></pre>
-									</td>
-								</tr>
-								<tr>
-									<td bgcolor="#FFFFFF" valign="top">
-										<div align="center"><b>
-												<font color="#000099">Text in CopyFile5</font>
-											</b><br />
-											<br />
-										</div>
-										<pre class="language-cobol"><code class="language-cobol">
+                </code></pre>
+										</td>
+									</tr>
+									<tr>
+										<td bgcolor="#FFFFFF" valign="top">
+											<div align="center">
+												<b><font color="#000099">Text in CopyFile5</font></b
+												><br />
+												<br />
+											</div>
+											<pre class="language-cobol"><code class="language-cobol">
     02 CustKey              PIC X(3) VALUE "KEY".
-		</code></pre>
-									</td>
-								</tr>
-								<tr>
-									<td valign="top">
-										<div align="center"><b>
-												<font color="#000099" face="Arial, Helvetica, sans-serif">Source
-													Text after processing</font><br />
-											</b> </div>
-										<pre class="language-cobol"><code class="language-cobol">
+                </code></pre>
+										</td>
+									</tr>
+									<tr>
+										<td valign="top">
+											<div align="center">
+												<b
+													><font color="#000099" face="Arial, Helvetica, sans-serif"
+														>Source Text after processing</font
+													><br
+												/></b>
+											</div>
+											<pre class="language-cobol"><code class="language-cobol">
        &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.                         
 PROGRAM-ID. COPYEG2.                             
@@ -992,86 +1076,115 @@ BeginProg.
                                                  
 STOP RUN.                                        
 </code></pre>
-									</td>
-								</tr>
-							</table>
-							<hr align="center" size="1" width="100%" />
-						</td>
-					</tr>
-					<tr>
-						<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-							<p>
-								<font color="#800000" face="Arial, Helvetica, sans-serif"><b>COPY
-										Example3</b></font>
-							</p>
-							<aside>
-								<p align="center"><img height="37" src="Resources/pics/aa%20i-Detail.gif" width="30" />
-								</p>
-								<p align="left">
-									<font size="-1">Note that these COPY statements, which
-										are themselves syntactically correct, result in statements which
-										cause syntax errors. This is a clear indication that COPY statements
-										are processed before the resulting program is compiled.</font>
-								</p>
-								<p align="left">
-									<font size="-1"><b>Note1</b><br />
-										The text word ( in the library text is replaced by @. Demonstrates
-										that ( is a text word.</font>
-								</p>
-								<p align="left">
-									<font size="-1"><b>Note2</b><br />
-										Demonstrates that the 3 between ( and ) is a text word.</font>
-								</p>
-								<p align="left">
-									<font size="-1">Note3<br />
-										Demonstrates that ) is a textword.</font>
-								</p>
-								<p align="left">
-									<font size="-1"><b>Note4</b><br />
-										Demonstrates that the X before (3) is a textword and is replaced
-										by the PseudoText "Replace the X" </font>
-								</p>
+										</td>
+									</tr>
+								</table>
+								<hr align="center" size="1" width="100%" />
+							</td>
+						</tr>
+						<tr>
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 								<p>
-									<font size="-1"><b>Note5</b><br />
-										The PseudoText X(3) is replaced by X(19) </font>
+									<font color="#800000" face="Arial, Helvetica, sans-serif"
+										><b>COPY Example3</b></font
+									>
 								</p>
-								<p>
-									<font size="-1"><b>Note6</b><br />
-										This looks the same as number 5 but what is actually happening is
-										that the series of textwords<br />
-									</font>
-									<font size="-1"> <b>X</b> and<b> (</b> and<b> 3 </b>and<b>
-											) </b>is replaced by the series <b>X ( 19 ) </b></font>
-								</p>
-								<p>
-									<font size="-1"><b>Note7</b><br />
-										The textword PIC (bounded by separator spaces) is replaced by the
-										PseudoText <i>Pic is Replaced </i></font>
-								</p>
-								<p>
-									<font size="-1"><b>Note8</b><br />
-										But the letter P in PIC is not a textword by itself and so is not
-										replaced.</font>
-								</p>
-								<p align="left">
-									<font size="-1"><br />
-									</font>
-								</p>
-							</aside>
-						</td>
-						<td valign="top" width="525">
-							<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5"
-								width="500">
-								<tr>
-									<td valign="top">
-										<div align="center">
-											<font color="#009933"><b>
-													<font color="#000099" face="Arial, Helvetica, sans-serif">Source
-														Text</font>
-													<font color="#000099"> </font>
-												</b> </font>
-										</div>
-										<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+								<aside>
+									<p align="center">
+										<img height="37" src="Resources/pics/aa%20i-Detail.gif" width="30" />
+									</p>
+									<p align="left">
+										<font size="-1"
+											>Note that these COPY statements, which are themselves syntactically
+											correct, result in statements which cause syntax errors. This is a clear
+											indication that COPY statements are processed before the resulting program
+											is compiled.</font
+										>
+									</p>
+									<p align="left">
+										<font size="-1"
+											><b>Note1</b><br />
+											The text word ( in the library text is replaced by @. Demonstrates that ( is
+											a text word.</font
+										>
+									</p>
+									<p align="left">
+										<font size="-1"
+											><b>Note2</b><br />
+											Demonstrates that the 3 between ( and ) is a text word.</font
+										>
+									</p>
+									<p align="left">
+										<font size="-1"
+											>Note3<br />
+											Demonstrates that ) is a textword.</font
+										>
+									</p>
+									<p align="left">
+										<font size="-1"
+											><b>Note4</b><br />
+											Demonstrates that the X before (3) is a textword and is replaced by the
+											PseudoText "Replace the X"</font
+										>
+									</p>
+									<p>
+										<font size="-1"
+											><b>Note5</b><br />
+											The PseudoText X(3) is replaced by X(19)</font
+										>
+									</p>
+									<p>
+										<font size="-1"
+											><b>Note6</b><br />
+											This looks the same as number 5 but what is actually happening is that the
+											series of textwords<br
+										/></font>
+										<font size="-1"
+											><b>X</b> and <b>(</b> and <b>3</b> and <b>)</b> is replaced by the series
+											<b>X ( 19 )</b></font
+										>
+									</p>
+									<p>
+										<font size="-1"
+											><b>Note7</b><br />
+											The textword PIC (bounded by separator spaces) is replaced by the PseudoText
+											<i>Pic is Replaced</i></font
+										>
+									</p>
+									<p>
+										<font size="-1"
+											><b>Note8</b><br />
+											But the letter P in PIC is not a textword by itself and so is not
+											replaced.</font
+										>
+									</p>
+									<p align="left">
+										<font size="-1"><br /></font>
+									</p>
+								</aside>
+							</td>
+							<td valign="top" width="525">
+								<table
+									align="center"
+									background="Resources/pics/code.gif"
+									border="1"
+									cellpadding="5"
+									width="500"
+								>
+									<tr>
+										<td valign="top">
+											<div align="center">
+												<font color="#009933"
+													><b
+														><font color="#000099" face="Arial, Helvetica, sans-serif"
+															>Source Text</font
+														>
+														<font color="#000099"></font></b
+												></font>
+											</div>
+											<pre
+												class="language-cobol"
+											><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. COPYEG3.
 AUTHOR.  Michael Coughlan.
@@ -1106,32 +1219,34 @@ COPY CopyFile5 REPLACING P BY ==But P in PIC not replaced==.
 PROCEDURE DIVISION.
 BeginProg.
 
-   STOP RUN.				  
-				  
-				  
-				  </code></pre>
-									</td>
-								</tr>
-								<tr>
-									<td bgcolor="#FFFFFF" valign="top">
-										<div align="center"><b>
-												<font color="#000099">Library Text in
-													CopyFile5</font>
-											</b><br />
-											<br />
-										</div>
-										<pre class="language-cobol"><code class="language-cobol">
+   STOP RUN.                              
+                                  
+                                  
+                                  </code></pre>
+										</td>
+									</tr>
+									<tr>
+										<td bgcolor="#FFFFFF" valign="top">
+											<div align="center">
+												<b><font color="#000099">Library Text in CopyFile5</font></b
+												><br />
+												<br />
+											</div>
+											<pre class="language-cobol"><code class="language-cobol">
     02 CustKey              PIC X(3) VALUE "KEY".
-		</code></pre>
-									</td>
-								</tr>
-								<tr>
-									<td valign="top">
-										<div align="center"><b>
-												<font color="#000099" face="Arial, Helvetica, sans-serif">Source
-													Text after processing</font><br />
-											</b> </div>
-										<pre class="language-cobol"><code class="language-cobol">
+                </code></pre>
+										</td>
+									</tr>
+									<tr>
+										<td valign="top">
+											<div align="center">
+												<b
+													><font color="#000099" face="Arial, Helvetica, sans-serif"
+														>Source Text after processing</font
+													><br
+												/></b>
+											</div>
+											<pre class="language-cobol"><code class="language-cobol">
        &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION. 
 PROGRAM-ID. COPYEG3. 
@@ -1151,7 +1266,7 @@ COPY CopyFile5 REPLACING 3 BY three.
 
 *&gt;See note3
 COPY CopyFile5 REPLACING ) BY &amp;. 
-    02 CustKey              PIC X(3&amp; VALUE "KEY". 
+    02 CustKey              PIC X(3& VALUE "KEY". 
   
 *&gt;See note4
 COPY CopyFile5 REPLACING X BY ==Replace the X==.  
@@ -1178,62 +1293,58 @@ BeginProg.
 
    STOP RUN.                                      
 </code></pre>
-									</td>
-								</tr>
-							</table>
-							<hr align="center" size="1" width="100%" />
-						</td>
-					</tr>
-					<tr>
-						<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-							<p>
-								<font color="#800000" face="Arial, Helvetica, sans-serif"><b>COPY
-										Example4</b></font>
-							</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-							<aside>
-								<p align="center"><img height="37" src="Resources/pics/aa%20i-Detail.gif" width="30" />
+										</td>
+									</tr>
+								</table>
+								<hr align="center" size="1" width="100%" />
+							</td>
+						</tr>
+						<tr>
+							<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+								<p>
+									<font color="#800000" face="Arial, Helvetica, sans-serif"
+										><b>COPY Example4</b></font
+									>
 								</p>
-								<p align="left">
-									<font size="-1"><b>Note1</b><br />
-										This example demonstrates that a single COPY statement can be used
-										to replace more than one set of items.</font>
-								</p>
-								<p align="left">
-									<font size="-1"><b>Note2</b><br />
-										As above. </font>
-								</p>
-							</aside>
-
-						</td>
-						<td valign="top" width="525">
-							<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5"
-								width="485">
-								<tr>
-									<td valign="top">
-										<div align="center">
-											<font color="#009933"><b>
-													<font color="#000099" face="Arial, Helvetica, sans-serif">Source
-														Text</font>
-													<font color="#000099"> </font>
-												</b> </font>
-										</div>
-										<pre class="language-cobol"><code class="language-cobol">
+								<aside>
+									<p align="center">
+										<img height="37" src="Resources/pics/aa%20i-Detail.gif" width="30" />
+									</p>
+									<p align="left">
+										<font size="-1"
+											><b>Note1</b><br />
+											This example demonstrates that a single COPY statement can be used to
+											replace more than one set of items.</font
+										>
+									</p>
+									<p align="left">
+										<font size="-1"
+											><b>Note2</b><br />
+											As above.</font
+										>
+									</p>
+								</aside>
+							</td>
+							<td valign="top" width="525">
+								<table
+									align="center"
+									background="Resources/pics/code.gif"
+									border="1"
+									cellpadding="5"
+									width="485"
+								>
+									<tr>
+										<td valign="top">
+											<div align="center">
+												<font color="#009933"
+													><b
+														><font color="#000099" face="Arial, Helvetica, sans-serif"
+															>Source Text</font
+														>
+														<font color="#000099"></font></b
+												></font>
+											</div>
+											<pre class="language-cobol"><code class="language-cobol">
        &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. COPYEG4.
@@ -1259,42 +1370,43 @@ COPY CopyFile7 REPLACING N1 BY Num1
    DISPLAY "The result is = " Result.
    STOP RUN.
 </code></pre>
-									</td>
-								</tr>
-								<tr>
-									<td bgcolor="#FFFFFF" valign="top">
-										<div align="center"><b>
-												<font color="#000099">Library Text in
-													CopyFile6</font>
-											</b><br />
-											<br />
-										</div>
-										<pre class="language-cobol"><code class="language-cobol">
+										</td>
+									</tr>
+									<tr>
+										<td bgcolor="#FFFFFF" valign="top">
+											<div align="center">
+												<b><font color="#000099">Library Text in CopyFile6</font></b
+												><br />
+												<br />
+											</div>
+											<pre class="language-cobol"><code class="language-cobol">
     02 CustKey              PIC X(4) VALUE "Mike".
 01  NameTable               PIC X(10)  OCCURS ?? TIMES.
-		</code></pre>
-									</td>
-								</tr>
-								<tr>
-									<td bgcolor="#FFFFFF" valign="top">
-										<div align="center"><b>
-												<font color="#000099">Library Text in
-													CopyFile7</font>
-											</b><br />
-											<br />
-										</div>
-										<pre class="language-cobol"><code class="language-cobol">
+                </code></pre>
+										</td>
+									</tr>
+									<tr>
+										<td bgcolor="#FFFFFF" valign="top">
+											<div align="center">
+												<b><font color="#000099">Library Text in CopyFile7</font></b
+												><br />
+												<br />
+											</div>
+											<pre class="language-cobol"><code class="language-cobol">
     ADD N1, N2 GIVING R1.
-		</code></pre>
-									</td>
-								</tr>
-								<tr>
-									<td valign="top">
-										<div align="center"><b>
-												<font color="#000099" face="Arial, Helvetica, sans-serif">Source
-													Text after processing</font><br />
-											</b> </div>
-										<pre class="language-cobol"><code class="language-cobol">
+                </code></pre>
+										</td>
+									</tr>
+									<tr>
+										<td valign="top">
+											<div align="center">
+												<b
+													><font color="#000099" face="Arial, Helvetica, sans-serif"
+														>Source Text after processing</font
+													><br
+												/></b>
+											</div>
+											<pre class="language-cobol"><code class="language-cobol">
        &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.                               
 PROGRAM-ID. COPYEG4.                                   
@@ -1322,43 +1434,41 @@ COPY CopyFile7 REPLACING N1 BY Num1
                          R1 BY Result.                 
     ADD Num1, Num2 GIVING Result.  
     STOP RUN.</code></pre>
-									</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<td align="left" bgcolor="#FFFFFF" colspan="2">
-							<hr width="100%" />
-							<div align="center">
-								<p><a href="#top"> <img border="0" height="38" src="Resources/pics/i-pagetop.gif"
-											width="132" /></a>
-								</p>
-								<hr />
-								<h3 align="center">Copyright Notice</h3>
-								<p align="center">These COBOL course materials are the copyright
-									property of Michael Coughlan.</p>
-								<p align="left">
-									<font size="2">All rights reserved. No part of these
-										course materials may be reproduced in any form or by any means
-										- graphic, electronic, mechanical, photocopying, printing, recording,
-										taping or stored in an information storage and retrieval system
-										- without the written permission of </font>
-									<font size="2">the
-										author.</font>
-								</p>
-								<p align="center">
-									<font size="2">(c) Michael Coughlan</font>
-								</p>
-							</div>
-						</td>
-					</tr>
-		</tr>
-		</tr>
-	</table>
-	</td>
-	</tr>
-	</table>
-</body>
-
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td align="left" bgcolor="#FFFFFF" colspan="2">
+								<hr width="100%" />
+								<div align="center">
+									<p>
+										<a href="#top"
+											><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+										/></a>
+									</p>
+									<hr />
+									<h3 align="center">Copyright Notice</h3>
+									<p align="center">
+										These COBOL course materials are the copyright property of Michael Coughlan.
+									</p>
+									<p align="left">
+										<font size="2"
+											>All rights reserved. No part of these course materials may be reproduced in
+											any form or by any means - graphic, electronic, mechanical, photocopying,
+											printing, recording, taping or stored in an information storage and
+											retrieval system - without the written permission of</font
+										>
+										<font size="2">the author.</font>
+									</p>
+									<p align="center"><font size="2">(c) Michael Coughlan</font></p>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
 </html>

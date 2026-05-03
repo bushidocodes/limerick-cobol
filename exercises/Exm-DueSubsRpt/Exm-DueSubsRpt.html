@@ -137,7 +137,6 @@
 		</style>
 		<title>NetNews - Due Subscriptions Report (Exam Paper)</title>
 	</head>
-
 	<body bgcolor="#FFFFFF" class="Normal" lang="EN-GB" link="blue" vlink="purple">
 		<table border="1" cellpadding="5" cellspacing="0" height="72%" width="694">
 			<tr>
@@ -151,35 +150,27 @@
 				</td>
 			</tr>
 			<tr valign="top">
-				<td bgcolor="#FFFFFF" colspan="2" height="22">
-					<b>Time to complete</b>
-				</td>
+				<td bgcolor="#FFFFFF" colspan="2" height="22"><b>Time to complete</b></td>
 				<td bgcolor="#FFFFFF" height="22" width="78%">Allow 4-6 hours continuous.</td>
 			</tr>
 			<tr valign="top">
-				<td bgcolor="#FFFFFF" colspan="2" height="8">
-					<b>Program Download</b>
-				</td>
+				<td bgcolor="#FFFFFF" colspan="2" height="8"><b>Program Download</b></td>
 				<td bgcolor="#FFFFFF" height="8" width="78%">
 					<a href="DueSubsRpt.CBL">DueSubRpt.Cbl</a> is a model answer. Don't look at this until you have made
 					your own attempt at the program.
 				</td>
 			</tr>
 			<tr valign="top">
-				<td bgcolor="#FFFFFF" colspan="2" height="8">
-					<b>Example Output </b>
-				</td>
+				<td bgcolor="#FFFFFF" colspan="2" height="8"><b>Example Output</b></td>
 				<td bgcolor="#FFFFFF" height="8" width="78%">
 					<p><a href="DUESUBS.RPT">DueSubs.Rpt</a> (The report produced by running the program)</p>
 				</td>
 			</tr>
 			<tr valign="top">
-				<td bgcolor="#FFFFFF" colspan="2" height="103">
-					<b>Example Input</b>
-				</td>
+				<td bgcolor="#FFFFFF" colspan="2" height="103"><b>Example Input</b></td>
 				<td bgcolor="#FFFFFF" height="103" width="78%">
-					<a href="duesubs.dat">DueSubs.Dat</a>
-					( The sequential containing the details of all customers whose subscription has fallen due.)
+					<a href="duesubs.dat">DueSubs.Dat</a> ( The sequential containing the details of all customers whose
+					subscription has fallen due.)
 					<p>
 						<a href="country.dat">Country.Dat</a> (The sequential file containing the country and exchange
 						rate details)
@@ -187,31 +178,26 @@
 				</td>
 			</tr>
 			<tr valign="top">
-				<td bgcolor="#FFFFFF" colspan="2" height="161">
-					<b>Exam Practice</b>
-				</td>
+				<td bgcolor="#FFFFFF" colspan="2" height="161"><b>Exam Practice</b></td>
 				<td bgcolor="#FFFFFF" height="161" width="78%">
 					<p>
 						If you want to try out the exam under the same conditions as our students you can write the
-						program as the our students do by printing
-						<a href="DueSubsOutline.doc">DueSubsOutlineDoc</a>. This is an MS-Word file containing the
-						program outline.
+						program as the our students do by printing <a href="DueSubsOutline.doc">DueSubsOutlineDoc</a>.
+						This is an MS-Word file containing the program outline.
 					</p>
 					<p>
-						<a href="DueSubsDataFiles.doc">DueSubsDataFiles.Doc</a>
-						contains the input data files and the report produced by running the program.
+						<a href="DueSubsDataFiles.doc">DueSubsDataFiles.Doc</a> contains the input data files and the
+						report produced by running the program.
 					</p>
 					<p>Don't forget to have the COBOL Metalanguage elements available for reference.</p>
 					<p>The time allotted for the exam was 2.5 hours.<br /></p>
 				</td>
 			</tr>
 			<tr valign="top">
-				<td bgcolor="#FFFFFF" colspan="2" height="2">
-					<b>Major Constructs</b>
-				</td>
+				<td bgcolor="#FFFFFF" colspan="2" height="2"><b>Major Constructs</b></td>
 				<td bgcolor="#FFFFFF" height="2" width="78%">
-					<font size="-1">
-						Sequential Files, Print Files, SORT with Input Procedure, Tables, SEARCH ALL, EVALUATE</font
+					<font size="-1"
+						>Sequential Files, Print Files, SORT with Input Procedure, Tables, SEARCH ALL, EVALUATE</font
 					>
 				</td>
 			</tr>
@@ -221,31 +207,32 @@
 					<h3>Introduction</h3>
 					<p>
 						NetNews is a company which runs an NNTP server carrying the complete USENET news feed with over
-						15,000 news groups.  Access to this server is available to internet users all over the world.  
-						Users of the system pay a subscription fee for access.   The fee may be paid monthly ($20),
-						half-yearly ($100) or yearly ($180).
+						15,000 news groups.&nbsp; Access to this server is available to internet users all over the
+						world.&nbsp;&nbsp; Users of the system pay a subscription fee for access.&nbsp;&nbsp; The fee
+						may be paid monthly ($20), half-yearly ($100) or yearly ($180).
 					</p>
 					<p>
 						A program is required to produce a report showing those subscriptions which are now due. The
-						report will be based on the Due Subscriptions file. 
+						report will be based on the Due Subscriptions file.&nbsp;
 					</p>
 					<p>
-						The Due Subscriptions file is a sequential file sorted on ascending  CardNumber within ascending
-						PaymentMethod.
+						The Due Subscriptions file is a sequential file sorted on ascending&nbsp; CardNumber within
+						ascending PaymentMethod.
 					</p>
-					<p>The report must be printed on ascending CustomerName within ascending  CountryName.</p>
+					<p>The report must be printed on ascending CustomerName within ascending&nbsp; CountryName.</p>
 					<p>Four items in the report cannot be obtained directly from the Due Subscriptions file;</p>
 					<ul>
 						<li>
 							The PaymentMethod field in the Due Subscription file must be converted to its equivalent
-							string value using the following code  assignments :- <br />
-							       1 = VISA,  2 = Access,  3 = AmExpress, 4 = Cheque.
+							string value using the following code&nbsp; assignments :-<br />
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 = VISA,&nbsp; 2 = Access,&nbsp; 3 = AmExpress, 4 =
+							Cheque.
 						</li>
 						<li>The CountryCode field must be converted to a CountryName</li>
 						<li>
 							The PaymentFrequency field in the Due Subscriptions file must be converted into a
 							SubscriptionCharge using the following assignments;<br />
-							       1 = $20,  2 = $100, 3 = $180
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 = $20,&nbsp; 2 = $100, 3 = $180
 						</li>
 						<li>
 							When there is an exchange rate for the country, the SubscriptionCharge must be converted to
@@ -254,15 +241,15 @@
 					</ul>
 					<p>
 						The exchange rates, the country codes and their corresponding country names are contained in a
-						sequential Country file.  The file is ordered on ascending  CountryCode.   To allow efficient
-						conversion of the CountryCode to the CountryName and of the SubscriptionCharge to local
-						currency, the Country file must be loaded into a table in memory.   There are currently 243
-						country names in the file.
+						sequential Country file.&nbsp; The file is ordered on ascending&nbsp; CountryCode.&nbsp;&nbsp;
+						To allow efficient conversion of the CountryCode to the CountryName and of the
+						SubscriptionCharge to local currency, the Country file must be loaded into a table in
+						memory.&nbsp;&nbsp; There are currently 243 country names in the file.
 					</p>
 					<p>
-						The Country file contains exchange rates for major currencies only.  Where there is no exchange
-						rate for a country there is a zero in the ExchangeRate field. When the exchange rate is 0  a
-						zero must be returned for the local currency subscription charge.
+						The Country file contains exchange rates for major currencies only.&nbsp; Where there is no
+						exchange rate for a country there is a zero in the ExchangeRate field. When the exchange rate is
+						0 &nbsp;a zero must be returned for the local currency subscription charge.
 					</p>
 					<h3>
 						<br />
@@ -270,31 +257,23 @@
 					</h3>
 					<h4>The Country File</h4>
 					<p>
-						The Country File is a sequential file ordered on ascending  CountryCode.   The record
-						descriptions are shown below;  
+						The Country File is a sequential file ordered on ascending&nbsp; CountryCode.&nbsp;&nbsp; The
+						record descriptions are shown below;&nbsp;&nbsp;
 					</p>
 					<div align="center">
 						<table border="1" cellpadding="0" cellspacing="0">
 							<tr bgcolor="#FFFFCC">
 								<td class="Normal" valign="top" width="103">
-									<p align="center" class="TableHead">
-										<b>Field</b>
-									</p>
+									<p align="center" class="TableHead"><b>Field</b></p>
 								</td>
 								<td class="Normal" valign="top" width="64">
-									<p align="center" class="TableHead">
-										<b>Type</b>
-									</p>
+									<p align="center" class="TableHead"><b>Type</b></p>
 								</td>
 								<td class="Normal" valign="top" width="61">
-									<p align="center" class="TableHead">
-										<b>Length</b>
-									</p>
+									<p align="center" class="TableHead"><b>Length</b></p>
 								</td>
 								<td class="Normal" valign="top" width="127">
-									<p align="center" class="TableHead">
-										<b>Value</b>
-									</p>
+									<p align="center" class="TableHead"><b>Value</b></p>
 								</td>
 							</tr>
 							<tr>
@@ -344,31 +323,23 @@
 					<h4>The Due Subscriptions File</h4>
 					<p>
 						The Due Subscriptions file contains details of all customers whose subscription have fallen
-						due.  It is a sequential file sorted on ascending  CardNumber within ascending  PaymentMethod.  
-						Records in the file have the following description:
+						due.&nbsp; It is a sequential file sorted on ascending &nbsp;CardNumber within ascending
+						&nbsp;PaymentMethod.&nbsp;&nbsp; Records in the file have the following description:
 					</p>
 					<div align="center">
 						<table border="1" cellpadding="0" cellspacing="0">
 							<tr bgcolor="#FFFFCC">
 								<td class="Normal" valign="top" width="124">
-									<p align="center" class="TableHead">
-										<b>Field</b>
-									</p>
+									<p align="center" class="TableHead"><b>Field</b></p>
 								</td>
 								<td class="Normal" valign="top" width="68">
-									<p align="center" class="TableHead">
-										<b>Type</b>
-									</p>
+									<p align="center" class="TableHead"><b>Type</b></p>
 								</td>
 								<td class="Normal" valign="top" width="69">
-									<p align="center" class="TableHead">
-										<b>Length</b>
-									</p>
+									<p align="center" class="TableHead"><b>Length</b></p>
 								</td>
 								<td class="Normal" valign="top" width="110">
-									<p align="center" class="TableHead">
-										<b>Value</b>
-									</p>
+									<p align="center" class="TableHead"><b>Value</b></p>
 								</td>
 							</tr>
 							<tr>
@@ -471,7 +442,6 @@
 							</tr>
 						</table>
 					</div>
-
 					<h3>The Due Subscriptions Report</h3>
 					<p>
 						Numeric values must be printed using comma insertion and either zero suppression or the floating
@@ -482,43 +452,42 @@
 					<div align="center">
 						<table border="0" cellpadding="0" cellspacing="0" width="650">
 							<tr valign="top">
-								<td width="14%">Line 2-6    </td>
+								<td width="14%">Line 2-6&nbsp;&nbsp;&nbsp;&nbsp;</td>
 								<td width="86%">
-									Report Heading.  To be printed on the first page of the report only.<br />
+									Report Heading.&nbsp; To be printed on the first page of the report only.<br />
 								</td>
 							</tr>
 							<tr valign="top">
-								<td width="14%">Line 8 </td>
+								<td width="14%">Line 8&nbsp;</td>
 								<td width="86%">
-									Customer Details.  The CountryName is supressed after its first occurrence. <br />
+									Customer Details.&nbsp; The CountryName is supressed after its first occurrence.<br />
 									The PayMethod is VISA, Access, AmExpress or Cheque.<br />
-									Subs is the subscription charge:- $20, $100 or  $180.<br />
-									LC Subs is the subscription charge in local currency.  This value is rounded to
-									produce a whole number.  Do not precede this value by a dollar sign.  It should be
-									zero suppressed and have commas inserted as appropriate.<br />
+									Subs is the subscription charge:- $20, $100 or&nbsp; $180.<br />
+									LC Subs is the subscription charge in local currency.&nbsp; This value is rounded to
+									produce a whole number.&nbsp; Do not precede this value by a dollar sign.&nbsp; It
+									should be zero suppressed and have commas inserted as appropriate.<br />
 								</td>
 							</tr>
 							<tr valign="top">
-								<td width="14%">Line 15-18 </td>
+								<td width="14%">Line 15-18&nbsp;</td>
 								<td width="86%">
-									Country totals.  These are the sum of the dollar subscription charges for customers
-									in this country.<br />
+									Country totals.&nbsp; These are the sum of the dollar subscription charges for
+									customers in this country.<br />
 								</td>
 							</tr>
 							<tr valign="top">
-								<td width="14%">Line 32-35 </td>
+								<td width="14%">Line 32-35&nbsp;</td>
 								<td width="86%">
-									        Final Totals. These are the sum of all the customer dollar subscription
-									charges. <br />
+									&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Final Totals. These are the sum of all the
+									customer dollar subscription charges.<br />
 								</td>
 							</tr>
 						</table>
 					</div>
-
 					<p align="center">
 						<br />
-						<a href="DueSubsRpt.gif"><img border="1" height="242" src="SDueSubsRpt.gif" width="346" /></a>
-						<br />
+						<a href="DueSubsRpt.gif"><img border="1" height="242" src="SDueSubsRpt.gif" width="346" /></a
+						><br />
 						Click to view full version
 					</p>
 					<hr />
