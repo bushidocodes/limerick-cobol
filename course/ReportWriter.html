@@ -103,37 +103,6 @@
 					width: auto !important;
 				}
 
-				table[width="710"]:has(> tbody > tr > td[width="93%"]),
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody {
-					display: block;
-					width: 100% !important;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr {
-					display: flex;
-					align-items: baseline;
-					gap: 0.4em;
-					margin: 0.4em 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="3%"] {
-					display: none;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="4%"] {
-					display: block;
-					flex: 0 0 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="93%"] {
-					display: block;
-					flex: 1 1 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
 				td[width="175"] > h4:not(:first-child):not(:has(img)),
 				td[width="160"] > h4:not(:first-child):not(:has(img)),
 				h4:has(> img[src*="PanelLine"]) {
@@ -420,7 +389,6 @@ Begin.
     TERMINATE SalesReport.
     CLOSE SalesFile, PrintFile.
     STOP RUN.
-
 
 PrintSalaryReport.
     GENERATE DetailLine.
@@ -893,7 +861,6 @@ RD  SalesReport
        03 COLUMN 13     PIC X(6) VALUE "Number".
        03 COLUMN 28     PIC X(5) VALUE "Value".
 
-
 01  DetailLine TYPE IS DETAIL.
     02 LINE IS PLUS 1.
        03 COLUMN 1      PIC X(9)
@@ -911,7 +878,6 @@ RD  SalesReport
        03 COLUMN 43     PIC X VALUE "=".
        03 SMS COLUMN 45 PIC $$$$$,$$$.99 SUM ValueOfSale.
 
-
 01  CityGrp TYPE IS CONTROL FOOTING CityCode NEXT GROUP PLUS 2.
     02 LINE IS PLUS 2.
        03 COLUMN 15     PIC X(9) VALUE "Sales for".
@@ -919,14 +885,12 @@ RD  SalesReport
        03 COLUMN 43     PIC X VALUE "=".
        03 CS COLUMN 45  PIC $$$$$,$$$.99 SUM SMS.
 
-
 01  TotalSalesGrp TYPE IS CONTROL FOOTING FINAL.
     02 LINE IS PLUS 4.
        03 COLUMN 15     PIC X(11)
                         VALUE "Total sales".
        03 COLUMN 43     PIC X VALUE "=".
        03 COLUMN 45     PIC $$$$$,$$$.99 SUM CS.
-
 
 01  TYPE IS PAGE FOOTING.
     02 LINE IS 53.
@@ -1096,7 +1060,6 @@ FILE-CONTROL.
            ORGANIZATION IS LINE SEQUENTIAL.
     SELECT PrintFile ASSIGN TO "SALESREPORT.LPT".
 
-
 DATA DIVISION.
 FILE SECTION.
 FD  SalesFile.
@@ -1151,7 +1114,6 @@ WORKING-STORAGE SECTION.
     02 SalesPersonNow   PIC 9.
     02 CityNow          PIC 9.
 
-
 REPORT SECTION.
 RD  SalesReport
     CONTROLS ARE FINAL
@@ -1183,7 +1145,6 @@ RD  SalesReport
        03 COLUMN 2      PIC X(4) VALUE "Name".
        03 COLUMN 13     PIC X(6) VALUE "Number".
        03 COLUMN 28     PIC X(5) VALUE "Value".
-
 
 01  DetailLine TYPE IS DETAIL.
     02 LINE IS PLUS 1.
@@ -1222,8 +1183,6 @@ RD  SalesReport
                         VALUE "Previous salesperson number = ".
        03 COLUMN 45     PIC 9 SOURCE SalesPersonNum.
 
-
-
 01  CityGrp TYPE IS CONTROL FOOTING CityCode NEXT GROUP PLUS 2.
     02 LINE IS PLUS 2.
        03 COLUMN 15     PIC X(9) VALUE "Sales for".
@@ -1243,7 +1202,6 @@ RD  SalesReport
        03 COLUMN 43     PIC X VALUE "=".
        03 COLUMN 45     PIC 9   SOURCE CityCode.
 
-
 01  TotalSalesGrp TYPE IS CONTROL FOOTING FINAL.
     02 LINE IS PLUS 4.
        03 COLUMN 15     PIC X(11)
@@ -1251,14 +1209,12 @@ RD  SalesReport
        03 COLUMN 43     PIC X VALUE "=".
        03 COLUMN 45     PIC $$$$$,$$$.99 SUM CS.
 
-
 01  TYPE IS PAGE FOOTING.
     02 LINE IS 53.
        03 COLUMN 1      PIC X(29) 
                         VALUE "Programmer - Michael Coughlan".
        03 COLUMN 45     PIC X(6) VALUE "Page :".
        03 COLUMN 52     PIC Z9 SOURCE PAGE-COUNTER.
-
 
 PROCEDURE DIVISION.
 DECLARATIVES.
@@ -1284,7 +1240,6 @@ Begin.
     TERMINATE SalesReport.
     CLOSE SalesFile, PrintFile.
     STOP RUN.
-
 
 PrintSalaryReport.
     MOVE CityCode TO CityNow.

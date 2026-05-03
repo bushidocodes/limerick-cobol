@@ -103,37 +103,6 @@
 					width: auto !important;
 				}
 
-				table[width="710"]:has(> tbody > tr > td[width="93%"]),
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody {
-					display: block;
-					width: 100% !important;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr {
-					display: flex;
-					align-items: baseline;
-					gap: 0.4em;
-					margin: 0.4em 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="3%"] {
-					display: none;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="4%"] {
-					display: block;
-					flex: 0 0 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="93%"] {
-					display: block;
-					flex: 1 1 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
 				td[width="175"] > h4:not(:first-child):not(:has(img)),
 				td[width="160"] > h4:not(:first-child):not(:has(img)),
 				h4:has(> img[src*="PanelLine"]) {
@@ -411,10 +380,8 @@ FD TransFile.
    02 CourseCode        PIC X(4).
    02 Gender            PIC X.
 
-
 01 DeleteRec.
    02 StudentId         PIC 9(7).
-
 
 01 UpdateRec.
    02 StudentId         PIC 9(7).
@@ -1005,7 +972,6 @@ FD StudentFile.
 FD StudentDetailsReport.
 01 PrintLine          PIC X(38).
 
-
 WORKING-STORAGE SECTION.
 01 Heading1.
    02 FILLER          PIC X(7)  VALUE SPACES.
@@ -1175,7 +1141,6 @@ PrintPageHeadings.
    RECORD IS VARYING IN SIZE 
    FROM 8 TO 31 CHARACTERS.
 
-
 FD Stringfile
    RECORD IS VARYING IN SIZE
    FROM 1 TO 80 CHARACTERS
@@ -1261,7 +1226,6 @@ AUTHOR.  Michael Coughlan.
 *&gt; It uses Reference Modification to extract the input
 *&gt; string from the record buffer.
 
-
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
@@ -1301,7 +1265,6 @@ FD TransFile
 01 UpdateRec.
    02 FILLER            PIC X(8).
    02 NewCourseCode     PIC X(4).
-
 
 FD Stringfile
    RECORD IS VARYING IN SIZE

@@ -103,37 +103,6 @@
 					width: auto !important;
 				}
 
-				table[width="710"]:has(> tbody > tr > td[width="93%"]),
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody {
-					display: block;
-					width: 100% !important;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr {
-					display: flex;
-					align-items: baseline;
-					gap: 0.4em;
-					margin: 0.4em 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="3%"] {
-					display: none;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="4%"] {
-					display: block;
-					flex: 0 0 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="93%"] {
-					display: block;
-					flex: 1 1 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
 				td[width="175"] > h4:not(:first-child):not(:has(img)),
 				td[width="160"] > h4:not(:first-child):not(:has(img)),
 				h4:has(> img[src*="PanelLine"]) {
@@ -555,17 +524,12 @@
 01 DeptTotalsTable.
    02 DeptTotal PIC 9(6) OCCURS 7.
 
-
 01 VATRateTable.
    02 VATRate   PIC 99V99 OCCURS 3.
-
-
 
 01 RatesTable VALUE ZEROES.
    88 TableNotPrimed  VALUE ZEROS.     
    02 ExchangeRate OCCURS 50 TIMES PIC 9(5)V99.
-
-
 
 01 MonthName   PIC X(3)OCCURS 12 TIMES. </code></pre>
 										</td>
@@ -744,7 +708,6 @@
 								<pre class="language-cobol"><code class="language-cobol">01 CountyTaxTable.
    02 CountyTax   PIC 9(8)V99  OCCURS 26 TIMES.
 
-
 01 CountyPayerTable.
    02 PayerCount  PIC 9(7) OCCURS 26 TIMES.</code></pre>
 								<p>
@@ -805,8 +768,6 @@ MOVE ZEROS TO CountyTaxTable</code></pre>
    02 CountyTaxDetails OCCURS 26 TIMES.
       03 CountyTax   PIC 9(8)V99.  
       03 PayerCount  PIC 9(7). 
-
-
 
 01 CountyTaxTable2.
    02 CountyTaxDetails 
@@ -1204,8 +1165,6 @@ MOVE ZEROS TO Age(3)</code></pre>
    02 Age OCCURS 3 TIMES.
       03 Gender OCCURS 2 TIMES.
          04 PopTotal   PIC 9(6).
-
-
 
 01 CountyTotal02.
    02 Age OCCURS 3 TIMES.
@@ -1694,7 +1653,6 @@ WORKING-STORAGE SECTION.
    02 PrnTax         PIC $$$,$$$,$$9.99.
    02 FILLER         PIC X(12) VALUE "   Payers = ".
    02 PrnPayers      PIC Z,ZZZ,ZZ9.
-
 
 01 CountyTable.
    02 TableValues.
