@@ -1,429 +1,559 @@
 <html>
-<title>Campus Bookshop Purchase Requirements Report (Exam Paper)</title><meta content="width=device-width, initial-scale=1" name="viewport"/>
-<style type="text/css">
-  img { max-width: 100%; height: auto; }
-  table { max-width: 100%; }
-  pre { overflow-x: auto; max-width: 100%; }
-  body { -webkit-text-size-adjust: 100%; }
-  @media (max-width: 600px) {
-    body { margin: 4px; overflow-wrap: break-word; word-wrap: break-word; }
-    table[width] { width: 100% !important; height: auto !important; }
-    td[width], th[width], td[height], th[height] { width: auto !important; height: auto !important; }
-    td[bgcolor="#993300"] > h2, td[bgcolor="#993300"] > h3 { margin: 0.3em 0; }
-    blockquote { margin-left: 12px; margin-right: 12px; }
-    hr[width] { width: 100% !important; }
-    img, iframe, video, embed, object { max-width: min(100%, calc(100vw - 16px)) !important; height: auto; }
-    pre { max-width: min(100%, calc(100vw - 16px)) !important; white-space: pre-wrap; word-wrap: break-word; overflow-wrap: break-word; }
-    table[width="715"], table[width="725"],
-    table[width="715"] > tbody, table[width="725"] > tbody,
-    table[width="715"] > tbody > tr, table[width="725"] > tbody > tr,
-    table[width="715"] > tbody > tr > td, table[width="725"] > tbody > tr > td,
-    table[width="710"]:not(:has(> tbody > tr > td[width="93%"])),
-    table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody,
-    table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr,
-    table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr > td {
-      display: block;
-      width: auto !important;
-    }
-    table[width="710"]:has(> tbody > tr > td[width="93%"]),
-    table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody {
-      display: block;
-      width: 100% !important;
-    }
-    table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr {
-      display: flex;
-      align-items: baseline;
-      gap: 0.4em;
-      margin: 0.4em 0;
-    }
-    table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="3%"] {
-      display: none;
-    }
-    table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="4%"] {
-      display: block;
-      flex: 0 0 auto;
-      width: auto !important;
-      padding: 0;
-    }
-    table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="93%"] {
-      display: block;
-      flex: 1 1 auto;
-      width: auto !important;
-      padding: 0;
-    }
-    td[width="175"] > h4:not(:first-child):not(:has(img)),
-    td[width="160"] > h4:not(:first-child):not(:has(img)),
-    h4:has(> img[src*="PanelLine"]) {
-      display: none;
-    }
-    td[width="175"] > h3, td[width="175"] > h4, td[width="175"] > p,
-    td[width="160"] > h3, td[width="160"] > h4, td[width="160"] > p {
-      margin: 0.2em 0;
-    }
-  }
-</style>
+	<title>Campus Bookshop Purchase Requirements Report (Exam Paper)</title>
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<style type="text/css">
+		img {
+			max-width: 100%;
+			height: auto;
+		}
 
-<body bgcolor="#FFFFFF" class="Normal" lang="EN-GB" link="blue" vlink="purple">
-<table border="1" cellpadding="5" cellspacing="0" height="72%" width="694">
-<tr>
-<td bgcolor="#990000" colspan="3" height="27" valign="middle">
-<h3 align="center"><font color="#FFFF00">Campus Bookshop <br/>
-        Purchase Requirements Report</font></h3>
-</td>
-</tr>
-<tr valign="top">
-<td bgcolor="#FFFFFF" colspan="2" height="27"><b>Time to complete</b></td>
-<td bgcolor="#FFFFFF" height="27" width="78%">This is a tough one. Allow 6 
-      hours continuous.</td>
-</tr>
-<tr valign="top">
-<td bgcolor="#FFFFFF" colspan="2" height="8"><b>Program Download</b></td>
-<td bgcolor="#FFFFFF" height="8" width="78%"><a href="BookshopRpt91.Cbl">BookshopRpt91.Cbl</a> 
-      is a model answer. Don't look at this until you have made your own attempt 
-      at the program.</td>
-</tr>
-<tr valign="top">
-<td bgcolor="#FFFFFF" colspan="2" height="8"><b>Example Output </b></td>
-<td bgcolor="#FFFFFF" height="8" width="78%">
-<p><a href="BOOKSHOP.RPT">Bookshop.Rpt</a> (The Campus bookshop Lecturer 
-        Purchase Requirements Report)</p>
-</td>
-</tr>
-<tr valign="top">
-<td bgcolor="#FFFFFF" colspan="2" height="22"><b>Example Input</b></td>
-<td bgcolor="#FFFFFF" height="22" width="78%">
-<p><a href="IN-PREQ.DAT">In-PReq.Dat</a> and <a href="IN-BOOK.DAT">In-Book.Dat</a> 
-        and <a href="IN-PUB.DAT">In-Pub.Dat</a> are sequential files that be converted 
-        into the following indexed files - </p>
-<ul>
-<li>The Purchase Requirements File (<font size="-1">PRFILE.DAT</font>)</li>
-<li>The Book File (<font size="-1">BOOKFILE.DAT</font>)</li>
-<li>The Publisher File (<font size="-1">PUBFILE.DAT</font>)</li>
-</ul>
-<p> using <a href="SETUPIdxFiles.Cbl"> this program</a>.</p>
-<p>The conversion program is required because Indexed files are not standard 
-        ASCII files and cannot be viewed or edited in a standard text application 
-        like Notepad. </p>
-</td>
-</tr>
-<tr valign="top">
-<td bgcolor="#FFFFFF" colspan="2" height="23"><b>Major Constructs</b></td>
-<td bgcolor="#FFFFFF" height="23" width="78%"><font size="-1">Indexed files, 
-      Report Writer, Report Section, INITIATE, GENERATE, TERMINATE, READ, WRITE, 
-      REWRITE, START</font></td>
-</tr>
-<tr>
-<td colspan="3" height="1373" valign="top">
-<hr/>
-<h3>Introduction</h3>
-<p>Two months before the beginning of each semester the Campus Bookshop 
-        produces a Purchase Requirements Report. This report details the books 
-        that have to be purchased for the coming semester. In the past this was 
-        done manually but now management have decided to computerise the operation.<br/>
-        Accordingly, lecturers' requirements have been captured and the results 
-        used to update a Purchase Requirements File. This is a permanent file 
-        which contains details of the lecturers' book requirements for both semesters.<br/>
-</p>
-<p>You are required to write a program to produce a Purchase Requirements 
-        Report from the Publisher, Book and Purchase Requirements files. The report 
-        should be sequenced on ascending Publisher Name and should only detail 
-        the purchase requirements for the semester under scrutiny. The semester 
-        number (1 or 2) should be accepted from the user at the start of the program 
-        using a simple <font size="-1">ACCEPT </font>and <font size="-1">DISPLAY</font>.<br/>
-<br/>
-<br/>
-</p>
-<h3>File Descriptions</h3>
-<h4>Purchase Requirements File (Indexed)</h4>
-<p>There is a record for each book title required by a lecturer. Note that 
-        a book may be required by more than one lecturer.</p>
-<div align="center">
-<table border="1" cellpadding="0" cellspacing="0" height="60" width="497">
-<tr>
-<td bgcolor="#FFFFCC" height="23" valign="top" width="119">
-<p align="center" class="MsoNormal" style="text-align:center"><b>Field</b></p>
-</td>
-<td bgcolor="#FFFFCC" height="23" valign="top" width="136">
-<div align="center"><b>KeyType</b></div>
-</td>
-<td bgcolor="#FFFFCC" height="23" valign="top" width="40">
-<p align="center" class="MsoNormal" style="text-align:center"><b>Type</b><b></b></p>
-</td>
-<td bgcolor="#FFFFCC" height="23" valign="top" width="71">
-<p align="center" class="MsoNormal" style="text-align:center"><b>Length</b><b></b></p>
-</td>
-<td bgcolor="#FFFFCC" height="23" valign="top" width="119">
-<p align="center" class="MsoNormal" style="text-align:center"><b>Value</b><b></b></p>
-</td>
-</tr>
-<tr>
-<td height="2" valign="top" width="119">
-<div align="left">PR-Number</div>
-</td>
-<td height="2" valign="top" width="136">
-<div align="center">Primary</div>
-</td>
-<td height="2" valign="top" width="40">
-<div align="center">9</div>
-</td>
-<td height="2" valign="top" width="71">
-<div align="center">4</div>
-</td>
-<td height="2" valign="top" width="119">
-<div align="center">1-9999</div>
-</td>
-</tr>
-<tr>
-<td height="2" valign="top" width="119">
-<div align="left">Lecturer-Name</div>
-</td>
-<td height="2" valign="top" width="136">
-<div align="center">Alt with duplicates</div>
-</td>
-<td height="2" valign="top" width="40">
-<div align="center">X</div>
-</td>
-<td height="2" valign="top" width="71">
-<div align="center">20</div>
-</td>
-<td height="2" valign="top" width="119">
-<div align="center">--</div>
-</td>
-</tr>
-<tr>
-<td height="2" valign="top" width="119">
-<div align="left">Book-Number</div>
-</td>
-<td height="2" valign="top" width="136">
-<div align="center">Alt with duplicates</div>
-</td>
-<td height="2" valign="top" width="40">
-<div align="center">9</div>
-</td>
-<td height="2" valign="top" width="71">
-<div align="center">4</div>
-</td>
-<td height="2" valign="top" width="119">
-<div align="center">1-9999 </div>
-</td>
-</tr>
-<tr>
-<td height="2" valign="top" width="119">
-<div align="left">Module-Code</div>
-</td>
-<td height="2" valign="top" width="136">
-<div align="center">--</div>
-</td>
-<td height="2" valign="top" width="40">
-<div align="center">X</div>
-</td>
-<td height="2" valign="top" width="71">
-<div align="center">5</div>
-</td>
-<td height="2" valign="top" width="119">
-<div align="center">--</div>
-</td>
-</tr>
-<tr>
-<td height="2" valign="top" width="119">Copies-Required</td>
-<td height="2" valign="top" width="136">
-<div align="center">--</div>
-</td>
-<td height="2" valign="top" width="40">
-<div align="center">9</div>
-</td>
-<td height="2" valign="top" width="71">
-<div align="center">3</div>
-</td>
-<td height="2" valign="top" width="119">
-<div align="center">1-999</div>
-</td>
-</tr>
-<tr>
-<td height="2" valign="top" width="119">Semester</td>
-<td height="2" valign="top" width="136">
-<div align="center">--</div>
-</td>
-<td height="2" valign="top" width="40">
-<div align="center">9</div>
-</td>
-<td height="2" valign="top" width="71">
-<div align="center">1</div>
-</td>
-<td height="2" valign="top" width="119">
-<div align="center">1/2</div>
-</td>
-</tr>
-</table>
-</div>
+		table {
+			max-width: 100%;
+		}
 
-<h4>Book File (Indexed)</h4>
-<div align="center">
-<table border="1" cellpadding="0" cellspacing="0" height="60" width="497">
-<tr>
-<td bgcolor="#FFFFCC" height="23" valign="top" width="119">
-<p align="center" class="MsoNormal" style="text-align:center"><b>Field</b></p>
-</td>
-<td bgcolor="#FFFFCC" height="23" valign="top" width="136">
-<div align="center"><b>KeyType</b></div>
-</td>
-<td bgcolor="#FFFFCC" height="23" valign="top" width="40">
-<p align="center" class="MsoNormal" style="text-align:center"><b>Type</b><b></b></p>
-</td>
-<td bgcolor="#FFFFCC" height="23" valign="top" width="71">
-<p align="center" class="MsoNormal" style="text-align:center"><b>Length</b><b></b></p>
-</td>
-<td bgcolor="#FFFFCC" height="23" valign="top" width="119">
-<p align="center" class="MsoNormal" style="text-align:center"><b>Value</b><b></b></p>
-</td>
-</tr>
-<tr>
-<td height="2" valign="top" width="119">
-<div align="left">Book-Number</div>
-</td>
-<td height="2" valign="top" width="136">
-<div align="center">Primary</div>
-</td>
-<td height="2" valign="top" width="40">
-<div align="center">9</div>
-</td>
-<td height="2" valign="top" width="71">
-<div align="center">4</div>
-</td>
-<td height="2" valign="top" width="119">
-<div align="center">1-9999 </div>
-</td>
-</tr>
-<tr>
-<td height="2" valign="top" width="119">
-<div align="left">Publisher-Number</div>
-</td>
-<td height="2" valign="top" width="136">
-<div align="center">Alt with duplicates</div>
-</td>
-<td height="2" valign="top" width="40">
-<div align="center">9</div>
-</td>
-<td height="2" valign="top" width="71">
-<div align="center">4</div>
-</td>
-<td height="2" valign="top" width="119">
-<div align="center">1-9999</div>
-</td>
-</tr>
-<tr>
-<td height="2" valign="top" width="119">Book-Title</td>
-<td height="2" valign="top" width="136">
-<div align="center">--</div>
-</td>
-<td height="2" valign="top" width="40">
-<div align="center">X</div>
-</td>
-<td height="2" valign="top" width="71">
-<div align="center">30</div>
-</td>
-<td height="2" valign="top" width="119">
-<div align="center">--</div>
-</td>
-</tr>
-</table>
-</div>
+		pre {
+			overflow-x: auto;
+			max-width: 100%;
+		}
 
-<h4>Publisher File (Indexed)</h4>
-<div align="center">
-<table border="1" cellpadding="0" cellspacing="0" height="60" width="497">
-<tr>
-<td bgcolor="#FFFFCC" height="23" valign="top" width="119">
-<p align="center" class="MsoNormal" style="text-align:center"><b>Field</b></p>
-</td>
-<td bgcolor="#FFFFCC" height="23" valign="top" width="136">
-<div align="center"><b>KeyType</b></div>
-</td>
-<td bgcolor="#FFFFCC" height="23" valign="top" width="40">
-<p align="center" class="MsoNormal" style="text-align:center"><b>Type</b><b></b></p>
-</td>
-<td bgcolor="#FFFFCC" height="23" valign="top" width="71">
-<p align="center" class="MsoNormal" style="text-align:center"><b>Length</b><b></b></p>
-</td>
-<td bgcolor="#FFFFCC" height="23" valign="top" width="119">
-<p align="center" class="MsoNormal" style="text-align:center"><b>Value</b><b></b></p>
-</td>
-</tr>
-<tr>
-<td height="2" valign="top" width="119">
-<div align="left">Publisher-Number</div>
-</td>
-<td height="2" valign="top" width="136">
-<div align="center">Primary</div>
-</td>
-<td height="2" valign="top" width="40">
-<div align="center">9</div>
-</td>
-<td height="2" valign="top" width="71">
-<div align="center">4</div>
-</td>
-<td height="2" valign="top" width="119">
-<div align="center">1-9999 </div>
-</td>
-</tr>
-<tr>
-<td height="2" valign="top" width="119">
-<div align="left">Publisher-Name</div>
-</td>
-<td height="2" valign="top" width="136">
-<div align="center">Alt with duplicates</div>
-</td>
-<td height="2" valign="top" width="40">
-<div align="center">X</div>
-</td>
-<td height="2" valign="top" width="71">
-<div align="center">20</div>
-</td>
-<td height="2" valign="top" width="119">
-<div align="center">--</div>
-</td>
-</tr>
-<tr>
-<td height="2" valign="top" width="119">Publisher-Address</td>
-<td height="2" valign="top" width="136">
-<div align="center">--</div>
-</td>
-<td height="2" valign="top" width="40">
-<div align="center">X</div>
-</td>
-<td height="2" valign="top" width="71">
-<div align="center">40</div>
-</td>
-<td height="2" valign="top" width="119">
-<div align="center">--</div>
-</td>
-</tr>
-</table>
-</div>
+		body {
+			-webkit-text-size-adjust: 100%;
+		}
 
-<h3>Print Specification</h3>
-<p><b>Notes</b><br/>
-        The report must be produced using the Report Writer.<br/>
-        The Publisher-Name must be suppressed after its first occurrence.<br/>
-        The headings should be printed at the top of each page and the words *** 
-        END OF REPORT *** should be printed on line 56 on the last page of the 
-        report. <br/>
-        Ordinarily a new page is required after line 50.<br/>
-        The Qty field which is a synonym for Copies-Required should be zero suppressed 
-        up to but not including the last digit. <br/>
-        The page number field should also be zero suppressed.</p>
-<p align="center"><br/>
-<a href="Exm-BookshopLectReqRpt.gif"><img border="1" height="213" src="SExm-BookshopLectReqRpt.gif" width="304"/></a>
-<br/>
-        Click to view full version</p>
-<hr/>
-<p align="center"><font size="-1"><b>Copyright Notice</b></font></p>
-<p align="left"><font size="-1">This COBOL project specification is the 
-        copyright property of Michael Coughlan. You have permission to use this 
-        material for your own personal use but you may not reproduce it in any 
-        published work without written permission from the author.</font></p>
-</td>
-</tr>
-</table>
-</body>
+		@media (max-width: 600px) {
+			body {
+				margin: 4px;
+				overflow-wrap: break-word;
+				word-wrap: break-word;
+			}
+
+			table[width] {
+				width: 100% !important;
+				height: auto !important;
+			}
+
+			td[width],
+			th[width],
+			td[height],
+			th[height] {
+				width: auto !important;
+				height: auto !important;
+			}
+
+			td[bgcolor="#993300"] > h2,
+			td[bgcolor="#993300"] > h3 {
+				margin: 0.3em 0;
+			}
+
+			blockquote {
+				margin-left: 12px;
+				margin-right: 12px;
+			}
+
+			hr[width] {
+				width: 100% !important;
+			}
+
+			img,
+			iframe,
+			video,
+			embed,
+			object {
+				max-width: min(100%, calc(100vw - 16px)) !important;
+				height: auto;
+			}
+
+			pre {
+				max-width: min(100%, calc(100vw - 16px)) !important;
+				white-space: pre-wrap;
+				word-wrap: break-word;
+				overflow-wrap: break-word;
+			}
+
+			table[width="715"],
+			table[width="725"],
+			table[width="715"] > tbody,
+			table[width="725"] > tbody,
+			table[width="715"] > tbody > tr,
+			table[width="725"] > tbody > tr,
+			table[width="715"] > tbody > tr > td,
+			table[width="725"] > tbody > tr > td,
+			table[width="710"]:not(:has(> tbody > tr > td[width="93%"])),
+			table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody,
+			table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr,
+			table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr > td {
+				display: block;
+				width: auto !important;
+			}
+
+			table[width="710"]:has(> tbody > tr > td[width="93%"]),
+			table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody {
+				display: block;
+				width: 100% !important;
+			}
+
+			table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr {
+				display: flex;
+				align-items: baseline;
+				gap: 0.4em;
+				margin: 0.4em 0;
+			}
+
+			table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="3%"] {
+				display: none;
+			}
+
+			table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="4%"] {
+				display: block;
+				flex: 0 0 auto;
+				width: auto !important;
+				padding: 0;
+			}
+
+			table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="93%"] {
+				display: block;
+				flex: 1 1 auto;
+				width: auto !important;
+				padding: 0;
+			}
+
+			td[width="175"] > h4:not(:first-child):not(:has(img)),
+			td[width="160"] > h4:not(:first-child):not(:has(img)),
+			h4:has(> img[src*="PanelLine"]) {
+				display: none;
+			}
+
+			td[width="175"] > h3,
+			td[width="175"] > h4,
+			td[width="175"] > p,
+			td[width="160"] > h3,
+			td[width="160"] > h4,
+			td[width="160"] > p {
+				margin: 0.2em 0;
+			}
+		}
+	</style>
+
+	<body bgcolor="#FFFFFF" class="Normal" lang="EN-GB" link="blue" vlink="purple">
+		<table border="1" cellpadding="5" cellspacing="0" height="72%" width="694">
+			<tr>
+				<td bgcolor="#990000" colspan="3" height="27" valign="middle">
+					<h3 align="center">
+						<font color="#FFFF00"
+							>Campus Bookshop <br />
+							Purchase Requirements Report</font
+						>
+					</h3>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td bgcolor="#FFFFFF" colspan="2" height="27">
+					<b>Time to complete</b>
+				</td>
+				<td bgcolor="#FFFFFF" height="27" width="78%">This is a tough one. Allow 6 hours continuous.</td>
+			</tr>
+			<tr valign="top">
+				<td bgcolor="#FFFFFF" colspan="2" height="8">
+					<b>Program Download</b>
+				</td>
+				<td bgcolor="#FFFFFF" height="8" width="78%">
+					<a href="BookshopRpt91.Cbl">BookshopRpt91.Cbl</a> is a model answer. Don't look at this until you
+					have made your own attempt at the program.
+				</td>
+			</tr>
+			<tr valign="top">
+				<td bgcolor="#FFFFFF" colspan="2" height="8">
+					<b>Example Output </b>
+				</td>
+				<td bgcolor="#FFFFFF" height="8" width="78%">
+					<p>
+						<a href="BOOKSHOP.RPT">Bookshop.Rpt</a> (The Campus bookshop Lecturer Purchase Requirements
+						Report)
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td bgcolor="#FFFFFF" colspan="2" height="22">
+					<b>Example Input</b>
+				</td>
+				<td bgcolor="#FFFFFF" height="22" width="78%">
+					<p>
+						<a href="IN-PREQ.DAT">In-PReq.Dat</a> and <a href="IN-BOOK.DAT">In-Book.Dat</a> and
+						<a href="IN-PUB.DAT">In-Pub.Dat</a> are sequential files that be converted into the following
+						indexed files -
+					</p>
+					<ul>
+						<li>The Purchase Requirements File (<font size="-1">PRFILE.DAT</font>)</li>
+						<li>The Book File (<font size="-1">BOOKFILE.DAT</font>)</li>
+						<li>The Publisher File (<font size="-1">PUBFILE.DAT</font>)</li>
+					</ul>
+					<p>using <a href="SETUPIdxFiles.Cbl"> this program</a>.</p>
+					<p>
+						The conversion program is required because Indexed files are not standard ASCII files and cannot
+						be viewed or edited in a standard text application like Notepad.
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td bgcolor="#FFFFFF" colspan="2" height="23">
+					<b>Major Constructs</b>
+				</td>
+				<td bgcolor="#FFFFFF" height="23" width="78%">
+					<font size="-1"
+						>Indexed files, Report Writer, Report Section, INITIATE, GENERATE, TERMINATE, READ, WRITE,
+						REWRITE, START</font
+					>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" height="1373" valign="top">
+					<hr />
+					<h3>Introduction</h3>
+					<p>
+						Two months before the beginning of each semester the Campus Bookshop produces a Purchase
+						Requirements Report. This report details the books that have to be purchased for the coming
+						semester. In the past this was done manually but now management have decided to computerise the
+						operation.<br />
+						Accordingly, lecturers' requirements have been captured and the results used to update a
+						Purchase Requirements File. This is a permanent file which contains details of the lecturers'
+						book requirements for both semesters.<br />
+					</p>
+					<p>
+						You are required to write a program to produce a Purchase Requirements Report from the
+						Publisher, Book and Purchase Requirements files. The report should be sequenced on ascending
+						Publisher Name and should only detail the purchase requirements for the semester under scrutiny.
+						The semester number (1 or 2) should be accepted from the user at the start of the program using
+						a simple <font size="-1">ACCEPT </font>and <font size="-1">DISPLAY</font>.<br />
+						<br />
+						<br />
+					</p>
+					<h3>File Descriptions</h3>
+					<h4>Purchase Requirements File (Indexed)</h4>
+					<p>
+						There is a record for each book title required by a lecturer. Note that a book may be required
+						by more than one lecturer.
+					</p>
+					<div align="center">
+						<table border="1" cellpadding="0" cellspacing="0" height="60" width="497">
+							<tr>
+								<td bgcolor="#FFFFCC" height="23" valign="top" width="119">
+									<p align="center" class="MsoNormal" style="text-align: center">
+										<b>Field</b>
+									</p>
+								</td>
+								<td bgcolor="#FFFFCC" height="23" valign="top" width="136">
+									<div align="center"><b>KeyType</b></div>
+								</td>
+								<td bgcolor="#FFFFCC" height="23" valign="top" width="40">
+									<p align="center" class="MsoNormal" style="text-align: center">
+										<b>Type</b><b></b>
+									</p>
+								</td>
+								<td bgcolor="#FFFFCC" height="23" valign="top" width="71">
+									<p align="center" class="MsoNormal" style="text-align: center">
+										<b>Length</b><b></b>
+									</p>
+								</td>
+								<td bgcolor="#FFFFCC" height="23" valign="top" width="119">
+									<p align="center" class="MsoNormal" style="text-align: center">
+										<b>Value</b><b></b>
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<td height="2" valign="top" width="119">
+									<div align="left">PR-Number</div>
+								</td>
+								<td height="2" valign="top" width="136">
+									<div align="center">Primary</div>
+								</td>
+								<td height="2" valign="top" width="40">
+									<div align="center">9</div>
+								</td>
+								<td height="2" valign="top" width="71">
+									<div align="center">4</div>
+								</td>
+								<td height="2" valign="top" width="119">
+									<div align="center">1-9999</div>
+								</td>
+							</tr>
+							<tr>
+								<td height="2" valign="top" width="119">
+									<div align="left">Lecturer-Name</div>
+								</td>
+								<td height="2" valign="top" width="136">
+									<div align="center">Alt with duplicates</div>
+								</td>
+								<td height="2" valign="top" width="40">
+									<div align="center">X</div>
+								</td>
+								<td height="2" valign="top" width="71">
+									<div align="center">20</div>
+								</td>
+								<td height="2" valign="top" width="119">
+									<div align="center">--</div>
+								</td>
+							</tr>
+							<tr>
+								<td height="2" valign="top" width="119">
+									<div align="left">Book-Number</div>
+								</td>
+								<td height="2" valign="top" width="136">
+									<div align="center">Alt with duplicates</div>
+								</td>
+								<td height="2" valign="top" width="40">
+									<div align="center">9</div>
+								</td>
+								<td height="2" valign="top" width="71">
+									<div align="center">4</div>
+								</td>
+								<td height="2" valign="top" width="119">
+									<div align="center">1-9999</div>
+								</td>
+							</tr>
+							<tr>
+								<td height="2" valign="top" width="119">
+									<div align="left">Module-Code</div>
+								</td>
+								<td height="2" valign="top" width="136">
+									<div align="center">--</div>
+								</td>
+								<td height="2" valign="top" width="40">
+									<div align="center">X</div>
+								</td>
+								<td height="2" valign="top" width="71">
+									<div align="center">5</div>
+								</td>
+								<td height="2" valign="top" width="119">
+									<div align="center">--</div>
+								</td>
+							</tr>
+							<tr>
+								<td height="2" valign="top" width="119">Copies-Required</td>
+								<td height="2" valign="top" width="136">
+									<div align="center">--</div>
+								</td>
+								<td height="2" valign="top" width="40">
+									<div align="center">9</div>
+								</td>
+								<td height="2" valign="top" width="71">
+									<div align="center">3</div>
+								</td>
+								<td height="2" valign="top" width="119">
+									<div align="center">1-999</div>
+								</td>
+							</tr>
+							<tr>
+								<td height="2" valign="top" width="119">Semester</td>
+								<td height="2" valign="top" width="136">
+									<div align="center">--</div>
+								</td>
+								<td height="2" valign="top" width="40">
+									<div align="center">9</div>
+								</td>
+								<td height="2" valign="top" width="71">
+									<div align="center">1</div>
+								</td>
+								<td height="2" valign="top" width="119">
+									<div align="center">1/2</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+
+					<h4>Book File (Indexed)</h4>
+					<div align="center">
+						<table border="1" cellpadding="0" cellspacing="0" height="60" width="497">
+							<tr>
+								<td bgcolor="#FFFFCC" height="23" valign="top" width="119">
+									<p align="center" class="MsoNormal" style="text-align: center">
+										<b>Field</b>
+									</p>
+								</td>
+								<td bgcolor="#FFFFCC" height="23" valign="top" width="136">
+									<div align="center"><b>KeyType</b></div>
+								</td>
+								<td bgcolor="#FFFFCC" height="23" valign="top" width="40">
+									<p align="center" class="MsoNormal" style="text-align: center">
+										<b>Type</b><b></b>
+									</p>
+								</td>
+								<td bgcolor="#FFFFCC" height="23" valign="top" width="71">
+									<p align="center" class="MsoNormal" style="text-align: center">
+										<b>Length</b><b></b>
+									</p>
+								</td>
+								<td bgcolor="#FFFFCC" height="23" valign="top" width="119">
+									<p align="center" class="MsoNormal" style="text-align: center">
+										<b>Value</b><b></b>
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<td height="2" valign="top" width="119">
+									<div align="left">Book-Number</div>
+								</td>
+								<td height="2" valign="top" width="136">
+									<div align="center">Primary</div>
+								</td>
+								<td height="2" valign="top" width="40">
+									<div align="center">9</div>
+								</td>
+								<td height="2" valign="top" width="71">
+									<div align="center">4</div>
+								</td>
+								<td height="2" valign="top" width="119">
+									<div align="center">1-9999</div>
+								</td>
+							</tr>
+							<tr>
+								<td height="2" valign="top" width="119">
+									<div align="left">Publisher-Number</div>
+								</td>
+								<td height="2" valign="top" width="136">
+									<div align="center">Alt with duplicates</div>
+								</td>
+								<td height="2" valign="top" width="40">
+									<div align="center">9</div>
+								</td>
+								<td height="2" valign="top" width="71">
+									<div align="center">4</div>
+								</td>
+								<td height="2" valign="top" width="119">
+									<div align="center">1-9999</div>
+								</td>
+							</tr>
+							<tr>
+								<td height="2" valign="top" width="119">Book-Title</td>
+								<td height="2" valign="top" width="136">
+									<div align="center">--</div>
+								</td>
+								<td height="2" valign="top" width="40">
+									<div align="center">X</div>
+								</td>
+								<td height="2" valign="top" width="71">
+									<div align="center">30</div>
+								</td>
+								<td height="2" valign="top" width="119">
+									<div align="center">--</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+
+					<h4>Publisher File (Indexed)</h4>
+					<div align="center">
+						<table border="1" cellpadding="0" cellspacing="0" height="60" width="497">
+							<tr>
+								<td bgcolor="#FFFFCC" height="23" valign="top" width="119">
+									<p align="center" class="MsoNormal" style="text-align: center">
+										<b>Field</b>
+									</p>
+								</td>
+								<td bgcolor="#FFFFCC" height="23" valign="top" width="136">
+									<div align="center"><b>KeyType</b></div>
+								</td>
+								<td bgcolor="#FFFFCC" height="23" valign="top" width="40">
+									<p align="center" class="MsoNormal" style="text-align: center">
+										<b>Type</b><b></b>
+									</p>
+								</td>
+								<td bgcolor="#FFFFCC" height="23" valign="top" width="71">
+									<p align="center" class="MsoNormal" style="text-align: center">
+										<b>Length</b><b></b>
+									</p>
+								</td>
+								<td bgcolor="#FFFFCC" height="23" valign="top" width="119">
+									<p align="center" class="MsoNormal" style="text-align: center">
+										<b>Value</b><b></b>
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<td height="2" valign="top" width="119">
+									<div align="left">Publisher-Number</div>
+								</td>
+								<td height="2" valign="top" width="136">
+									<div align="center">Primary</div>
+								</td>
+								<td height="2" valign="top" width="40">
+									<div align="center">9</div>
+								</td>
+								<td height="2" valign="top" width="71">
+									<div align="center">4</div>
+								</td>
+								<td height="2" valign="top" width="119">
+									<div align="center">1-9999</div>
+								</td>
+							</tr>
+							<tr>
+								<td height="2" valign="top" width="119">
+									<div align="left">Publisher-Name</div>
+								</td>
+								<td height="2" valign="top" width="136">
+									<div align="center">Alt with duplicates</div>
+								</td>
+								<td height="2" valign="top" width="40">
+									<div align="center">X</div>
+								</td>
+								<td height="2" valign="top" width="71">
+									<div align="center">20</div>
+								</td>
+								<td height="2" valign="top" width="119">
+									<div align="center">--</div>
+								</td>
+							</tr>
+							<tr>
+								<td height="2" valign="top" width="119">Publisher-Address</td>
+								<td height="2" valign="top" width="136">
+									<div align="center">--</div>
+								</td>
+								<td height="2" valign="top" width="40">
+									<div align="center">X</div>
+								</td>
+								<td height="2" valign="top" width="71">
+									<div align="center">40</div>
+								</td>
+								<td height="2" valign="top" width="119">
+									<div align="center">--</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+
+					<h3>Print Specification</h3>
+					<p>
+						<b>Notes</b><br />
+						The report must be produced using the Report Writer.<br />
+						The Publisher-Name must be suppressed after its first occurrence.<br />
+						The headings should be printed at the top of each page and the words *** END OF REPORT ***
+						should be printed on line 56 on the last page of the report. <br />
+						Ordinarily a new page is required after line 50.<br />
+						The Qty field which is a synonym for Copies-Required should be zero suppressed up to but not
+						including the last digit. <br />
+						The page number field should also be zero suppressed.
+					</p>
+					<p align="center">
+						<br />
+						<a href="Exm-BookshopLectReqRpt.gif"
+							><img border="1" height="213" src="SExm-BookshopLectReqRpt.gif" width="304"
+						/></a>
+						<br />
+						Click to view full version
+					</p>
+					<hr />
+					<p align="center">
+						<font size="-1"><b>Copyright Notice</b></font>
+					</p>
+					<p align="left">
+						<font size="-1"
+							>This COBOL project specification is the copyright property of Michael Coughlan. You have
+							permission to use this material for your own personal use but you may not reproduce it in
+							any published work without written permission from the author.</font
+						>
+					</p>
+				</td>
+			</tr>
+		</table>
+	</body>
 </html>

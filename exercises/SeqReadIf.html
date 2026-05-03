@@ -1,305 +1,404 @@
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <meta name="GENERATOR" content="Mozilla/4.0 [en] (WinNT; I) [Netscape]">
-   <title>Counting records in a sequential file</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style type="text/css">
-  img { max-width: 100%; height: auto; }
-  table { max-width: 100%; }
-  pre { overflow-x: auto; max-width: 100%; }
-  body { -webkit-text-size-adjust: 100%; }
-  @media (max-width: 600px) {
-    body { margin: 4px; overflow-wrap: break-word; word-wrap: break-word; }
-    table[width] { width: 100% !important; height: auto !important; }
-    td[width], th[width], td[height], th[height] { width: auto !important; height: auto !important; }
-    td[bgcolor="#993300"] > h2, td[bgcolor="#993300"] > h3 { margin: 0.3em 0; }
-    blockquote { margin-left: 12px; margin-right: 12px; }
-    hr[width] { width: 100% !important; }
-    img, iframe, video, embed, object { max-width: min(100%, calc(100vw - 16px)) !important; height: auto; }
-    pre { max-width: min(100%, calc(100vw - 16px)) !important; white-space: pre-wrap; word-wrap: break-word; overflow-wrap: break-word; }
-    table[width="715"], table[width="725"],
-    table[width="715"] > tbody, table[width="725"] > tbody,
-    table[width="715"] > tbody > tr, table[width="725"] > tbody > tr,
-    table[width="715"] > tbody > tr > td, table[width="725"] > tbody > tr > td,
-    table[width="710"]:not(:has(> tbody > tr > td[width="93%"])),
-    table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody,
-    table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr,
-    table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr > td {
-      display: block;
-      width: auto !important;
-    }
-    table[width="710"]:has(> tbody > tr > td[width="93%"]),
-    table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody {
-      display: block;
-      width: 100% !important;
-    }
-    table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr {
-      display: flex;
-      align-items: baseline;
-      gap: 0.4em;
-      margin: 0.4em 0;
-    }
-    table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="3%"] {
-      display: none;
-    }
-    table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="4%"] {
-      display: block;
-      flex: 0 0 auto;
-      width: auto !important;
-      padding: 0;
-    }
-    table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="93%"] {
-      display: block;
-      flex: 1 1 auto;
-      width: auto !important;
-      padding: 0;
-    }
-    td[width="175"] > h4:not(:first-child):not(:has(img)),
-    td[width="160"] > h4:not(:first-child):not(:has(img)),
-    h4:has(> img[src*="PanelLine"]) {
-      display: none;
-    }
-    td[width="175"] > h3, td[width="175"] > h4, td[width="175"] > p,
-    td[width="160"] > h3, td[width="160"] > h4, td[width="160"] > p {
-      margin: 0.2em 0;
-    }
-  }
-</style>
-</head>
-<body text="#000000" bgcolor="#FFFFFF" link="#0000FF" vlink="#FF0000" alink="#009B00">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>Counting records in a sequential file</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<style type="text/css">
+			img {
+				max-width: 100%;
+				height: auto;
+			}
 
-<center>
-<h2>
-<img src="T-CobolExercise.gif" nosave height="56" width="183"></h2></center>
+			table {
+				max-width: 100%;
+			}
 
-<center>
-<h2>
-Counting records in a sequential file</h2></center>
+			pre {
+				overflow-x: auto;
+				max-width: 100%;
+			}
 
-<hr width="100%">
-<center><font size="-1">READ</font>, <font size="-1">PERFORM</font> .. <font size="-1">UNTIL</font>,
-<font size="-1">IF</font>, <font size="-1">COMPUTE, DISPLAY</font></center>
+			body {
+				-webkit-text-size-adjust: 100%;
+			}
 
-<center>
-<hr width="100%"></center>
+			@media (max-width: 600px) {
+				body {
+					margin: 4px;
+					overflow-wrap: break-word;
+					word-wrap: break-word;
+				}
 
-<h2>
-Introduction</h2>
-The program SeqRead.Cbl reads a sequential file and displays the StudentId, StudentName 
-and the CourseCode of each record in the file on the screen.&nbsp;&nbsp; In this 
-exercise you will re-write this program so that it displays a count of&nbsp; the 
-number of male students and the number of female students in the file Students.Dat. 
-<p>Download the <a href="../examples/SeqRead/Seqread.cbl">SeqRead.Cbl</a>
-  program and save it to the WorkArea directory the D: drive.
-<p>Download the data file <a href="../examples/SeqRead/STUDENTS.DAT">Students.Dat</a>
-and save it to the same place.
+				table[width] {
+					width: 100% !important;
+					height: auto !important;
+				}
 
-<p>Load SeqRead.Cbl into the NetExpress environment. <br>
-  &nbsp;
-<h2>
-Amending SeqRead</h2>
-Change the program SeqRead2.Cbl to produce a program which counts the number of 
-male students and the number of female students in the file Students.Dat and then 
-displays these counts on the computer screen. 
-<p>The student record consists of the following items;
-<table border width="39%">
-<tr>
-<td width="100">
-<center><b>Field</b></center>
-</td>
+				td[width],
+				th[width],
+				td[height],
+				th[height] {
+					width: auto !important;
+					height: auto !important;
+				}
 
-<td width="67">
-<center><b>Type</b></center>
-</td>
+				td[bgcolor="#993300"] > h2,
+				td[bgcolor="#993300"] > h3 {
+					margin: 0.3em 0;
+				}
 
-<td width="84">
-<center><b>Length</b></center>
-</td>
+				blockquote {
+					margin-left: 12px;
+					margin-right: 12px;
+				}
 
-<td width="127">
-<center><b>Value</b></center>
-</td>
-</tr>
+				hr[width] {
+					width: 100% !important;
+				}
 
-<tr>
-<td width="144">Student Id</td>
+				img,
+				iframe,
+				video,
+				embed,
+				object {
+					max-width: min(100%, calc(100vw - 16px)) !important;
+					height: auto;
+				}
 
-<td width="67">
-<center>9</center>
-</td>
+				pre {
+					max-width: min(100%, calc(100vw - 16px)) !important;
+					white-space: pre-wrap;
+					word-wrap: break-word;
+					overflow-wrap: break-word;
+				}
 
-<td width="84">
-<center>7</center>
-</td>
+				table[width="715"],
+				table[width="725"],
+				table[width="715"] > tbody,
+				table[width="725"] > tbody,
+				table[width="715"] > tbody > tr,
+				table[width="725"] > tbody > tr,
+				table[width="715"] > tbody > tr > td,
+				table[width="725"] > tbody > tr > td,
+				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])),
+				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody,
+				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr,
+				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr > td {
+					display: block;
+					width: auto !important;
+				}
 
-<td width="127">
-<center>0-9999999</center>
-</td>
-</tr>
+				table[width="710"]:has(> tbody > tr > td[width="93%"]),
+				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody {
+					display: block;
+					width: 100% !important;
+				}
 
-<tr>
-<td width="144">Student Name</td>
+				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr {
+					display: flex;
+					align-items: baseline;
+					gap: 0.4em;
+					margin: 0.4em 0;
+				}
 
-<td width="67">
-<center>.</center>
-</td>
+				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="3%"] {
+					display: none;
+				}
 
-<td width="84">
-<center>.</center>
-</td>
+				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="4%"] {
+					display: block;
+					flex: 0 0 auto;
+					width: auto !important;
+					padding: 0;
+				}
 
-<td width="127">
-<center>Group</center>
-</td>
-</tr>
+				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="93%"] {
+					display: block;
+					flex: 1 1 auto;
+					width: auto !important;
+					padding: 0;
+				}
 
-<tr>
-<td width="144">Surname</td>
+				td[width="175"] > h4:not(:first-child):not(:has(img)),
+				td[width="160"] > h4:not(:first-child):not(:has(img)),
+				h4:has(> img[src*="PanelLine"]) {
+					display: none;
+				}
 
-<td width="67">
-<center>X</center>
-</td>
+				td[width="175"] > h3,
+				td[width="175"] > h4,
+				td[width="175"] > p,
+				td[width="160"] > h3,
+				td[width="160"] > h4,
+				td[width="160"] > p {
+					margin: 0.2em 0;
+				}
+			}
+		</style>
+	</head>
 
-<td width="84">
-<center>8</center>
-</td>
+	<body text="#000000" bgcolor="#FFFFFF" link="#0000FF" vlink="#FF0000" alink="#009B00">
+		<center>
+			<h2>
+				<img src="T-CobolExercise.gif" nosave height="56" width="183" />
+			</h2>
+		</center>
 
-<td width="127">
-<center>-</center>
-</td>
-</tr>
+		<center>
+			<h2>Counting records in a sequential file</h2>
+		</center>
 
-<tr>
-<td width="144">Initials</td>
+		<hr width="100%" />
+		<center>
+			<font size="-1">READ</font>, <font size="-1">PERFORM</font> .. <font size="-1">UNTIL</font>,
+			<font size="-1">IF</font>,
+			<font size="-1">COMPUTE, DISPLAY</font>
+		</center>
 
-<td width="67">
-<center>X</center>
-</td>
+		<center>
+			<hr width="100%" />
+		</center>
 
-<td width="84">
-<center>2</center>
-</td>
+		<h2>Introduction</h2>
+		The program SeqRead.Cbl reads a sequential file and displays the StudentId, StudentName and the CourseCode of
+		each record in the file on the screen.&nbsp;&nbsp; In this exercise you will re-write this program so that it
+		displays a count of&nbsp; the number of male students and the number of female students in the file
+		Students.Dat.
+		<p>
+			Download the
+			<a href="../examples/SeqRead/Seqread.cbl">SeqRead.Cbl</a> program and save it to the WorkArea directory the
+			D: drive.
+		</p>
 
-<td width="127">
-<center>-</center>
-</td>
-</tr>
+		<p>
+			Download the data file
+			<a href="../examples/SeqRead/STUDENTS.DAT">Students.Dat</a> and save it to the same place.
+		</p>
 
-<tr>
-<td width="144">DateOfBirth</td>
+		<p>
+			Load SeqRead.Cbl into the NetExpress environment. <br />
+			&nbsp;
+		</p>
 
-<td width="67">
-<center>.</center>
-</td>
+		<h2>Amending SeqRead</h2>
+		Change the program SeqRead2.Cbl to produce a program which counts the number of male students and the number of
+		female students in the file Students.Dat and then displays these counts on the computer screen.
+		<p>The student record consists of the following items;</p>
+		<table border width="39%">
+			<tr>
+				<td width="100">
+					<center><b>Field</b></center>
+				</td>
 
-<td width="84">
-<center>.</center>
-</td>
+				<td width="67">
+					<center><b>Type</b></center>
+				</td>
 
-<td width="127">
-<center>Group</center>
-</td>
-</tr>
+				<td width="84">
+					<center><b>Length</b></center>
+				</td>
 
-<tr>
-<td width="144">Year</td>
+				<td width="127">
+					<center><b>Value</b></center>
+				</td>
+			</tr>
 
-<td width="67">
-<center>9</center>
-</td>
+			<tr>
+				<td width="144">Student Id</td>
 
-<td width="84">
-<center>4</center>
-</td>
+				<td width="67">
+					<center>9</center>
+				</td>
 
-<td width="127">
-<center>0000-9999</center>
-</td>
-</tr>
+				<td width="84">
+					<center>7</center>
+				</td>
 
-<tr>
-<td width="144">Month</td>
+				<td width="127">
+					<center>0-9999999</center>
+				</td>
+			</tr>
 
-<td width="67">
-<center>9</center>
-</td>
+			<tr>
+				<td width="144">Student Name</td>
 
-<td width="84">
-<center>2</center>
-</td>
+				<td width="67">
+					<center>.</center>
+				</td>
 
-<td width="127">
-<center>01-12</center>
-</td>
-</tr>
+				<td width="84">
+					<center>.</center>
+				</td>
 
-<tr>
-<td width="144">Day</td>
+				<td width="127">
+					<center>Group</center>
+				</td>
+			</tr>
 
-<td width="67">
-<center>9</center>
-</td>
+			<tr>
+				<td width="144">Surname</td>
 
-<td width="84">
-<center>2</center>
-</td>
+				<td width="67">
+					<center>X</center>
+				</td>
 
-<td width="127">
-<center>01-31</center>
-</td>
-</tr>
+				<td width="84">
+					<center>8</center>
+				</td>
 
-<tr>
-<td width="144">Course Code</td>
+				<td width="127">
+					<center>-</center>
+				</td>
+			</tr>
 
-<td width="67">
-<center>X</center>
-</td>
+			<tr>
+				<td width="144">Initials</td>
 
-<td width="84">
-<center>4</center>
-</td>
+				<td width="67">
+					<center>X</center>
+				</td>
 
-<td width="127">
-<center>-</center>
-</td>
-</tr>
+				<td width="84">
+					<center>2</center>
+				</td>
 
-<tr>
-<td width="144">Gender</td>
+				<td width="127">
+					<center>-</center>
+				</td>
+			</tr>
 
-<td width="67">
-<center>X</center>
-</td>
+			<tr>
+				<td width="144">DateOfBirth</td>
 
-<td width="84">
-<center>1</center>
-</td>
+				<td width="67">
+					<center>.</center>
+				</td>
 
-<td width="127">
-<center>M/F</center>
-</td>
-</tr>
-</table>
-<ul>
-<ul>
-<ul><u><font size="+2">Example Run</font></u></ul>
-<u><font size="+2"></font></u>
+				<td width="84">
+					<center>.</center>
+				</td>
 
-<p><tt>STUDENT NUMBERS :- SUMMARY REPORT</tt><tt></tt>
+				<td width="127">
+					<center>Group</center>
+				</td>
+			</tr>
 
-<p><tt>Number of Males = 20</tt><tt></tt>
+			<tr>
+				<td width="144">Year</td>
 
-<p><tt>Number of Females = 15</tt></ul>
-&nbsp;</ul>
+				<td width="67">
+					<center>9</center>
+				</td>
 
-<br>
-<hr>
-<table cellspacing="0" cellpadding="0" cols="1" width="200"><tr align="CENTER" valign="TOP">
-<td><a href="index.html"><img src="../pics/B-BackArrow.gif" alt="Back to COBOL Exercises page" border="0" height="52" width="52"></a>
-<font size="-2">To COBOL Exercises</font></td>
-</tr>
-</table>
-</body>
+				<td width="84">
+					<center>4</center>
+				</td>
+
+				<td width="127">
+					<center>0000-9999</center>
+				</td>
+			</tr>
+
+			<tr>
+				<td width="144">Month</td>
+
+				<td width="67">
+					<center>9</center>
+				</td>
+
+				<td width="84">
+					<center>2</center>
+				</td>
+
+				<td width="127">
+					<center>01-12</center>
+				</td>
+			</tr>
+
+			<tr>
+				<td width="144">Day</td>
+
+				<td width="67">
+					<center>9</center>
+				</td>
+
+				<td width="84">
+					<center>2</center>
+				</td>
+
+				<td width="127">
+					<center>01-31</center>
+				</td>
+			</tr>
+
+			<tr>
+				<td width="144">Course Code</td>
+
+				<td width="67">
+					<center>X</center>
+				</td>
+
+				<td width="84">
+					<center>4</center>
+				</td>
+
+				<td width="127">
+					<center>-</center>
+				</td>
+			</tr>
+
+			<tr>
+				<td width="144">Gender</td>
+
+				<td width="67">
+					<center>X</center>
+				</td>
+
+				<td width="84">
+					<center>1</center>
+				</td>
+
+				<td width="127">
+					<center>M/F</center>
+				</td>
+			</tr>
+		</table>
+		<ul>
+			<ul>
+				<ul>
+					<u>
+						<font size="+2">Example Run</font>
+					</u>
+				</ul>
+				<u>
+					<font size="+2"></font>
+				</u>
+
+				<p><tt>STUDENT NUMBERS :- SUMMARY REPORT</tt><tt></tt></p>
+
+				<p><tt>Number of Males = 20</tt><tt></tt></p>
+
+				<p><tt>Number of Females = 15</tt></p>
+			</ul>
+			&nbsp;
+		</ul>
+
+		<br />
+		<hr />
+		<table cellspacing="0" cellpadding="0" cols="1" width="200">
+			<tr align="CENTER" valign="TOP">
+				<td>
+					<a href="index.html"
+						><img
+							src="../pics/B-BackArrow.gif"
+							alt="Back to COBOL Exercises page"
+							border="0"
+							height="52"
+							width="52"
+					/></a>
+					<font size="-2">To COBOL Exercises</font>
+				</td>
+			</tr>
+		</table>
+	</body>
 </html>

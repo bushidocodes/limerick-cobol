@@ -1,360 +1,398 @@
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <meta name="GENERATOR" content="Mozilla/4.0 [en] (WinNT; I) [Netscape]">
-   <title>Reading Sequential Files</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style type="text/css">
-  img { max-width: 100%; height: auto; }
-  table { max-width: 100%; }
-  pre { overflow-x: auto; max-width: 100%; }
-  body { -webkit-text-size-adjust: 100%; }
-  @media (max-width: 600px) {
-    body { margin: 4px; overflow-wrap: break-word; word-wrap: break-word; }
-    table[width] { width: 100% !important; height: auto !important; }
-    td[width], th[width], td[height], th[height] { width: auto !important; height: auto !important; }
-    td[bgcolor="#993300"] > h2, td[bgcolor="#993300"] > h3 { margin: 0.3em 0; }
-    blockquote { margin-left: 12px; margin-right: 12px; }
-    hr[width] { width: 100% !important; }
-    img, iframe, video, embed, object { max-width: min(100%, calc(100vw - 16px)) !important; height: auto; }
-    pre { max-width: min(100%, calc(100vw - 16px)) !important; white-space: pre-wrap; word-wrap: break-word; overflow-wrap: break-word; }
-    table[width="715"], table[width="725"],
-    table[width="715"] > tbody, table[width="725"] > tbody,
-    table[width="715"] > tbody > tr, table[width="725"] > tbody > tr,
-    table[width="715"] > tbody > tr > td, table[width="725"] > tbody > tr > td,
-    table[width="710"]:not(:has(> tbody > tr > td[width="93%"])),
-    table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody,
-    table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr,
-    table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr > td {
-      display: block;
-      width: auto !important;
-    }
-    table[width="710"]:has(> tbody > tr > td[width="93%"]),
-    table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody {
-      display: block;
-      width: 100% !important;
-    }
-    table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr {
-      display: flex;
-      align-items: baseline;
-      gap: 0.4em;
-      margin: 0.4em 0;
-    }
-    table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="3%"] {
-      display: none;
-    }
-    table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="4%"] {
-      display: block;
-      flex: 0 0 auto;
-      width: auto !important;
-      padding: 0;
-    }
-    table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="93%"] {
-      display: block;
-      flex: 1 1 auto;
-      width: auto !important;
-      padding: 0;
-    }
-    td[width="175"] > h4:not(:first-child):not(:has(img)),
-    td[width="160"] > h4:not(:first-child):not(:has(img)),
-    h4:has(> img[src*="PanelLine"]) {
-      display: none;
-    }
-    td[width="175"] > h3, td[width="175"] > h4, td[width="175"] > p,
-    td[width="160"] > h3, td[width="160"] > h4, td[width="160"] > p {
-      margin: 0.2em 0;
-    }
-  }
-</style>
-</head>
-<body text="#000000" bgcolor="#FFFFFF" link="#0000FF" vlink="#FF0000" alink="#009B00">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>Reading Sequential Files</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<style type="text/css">
+			img {
+				max-width: 100%;
+				height: auto;
+			}
 
-<center>
-<h2>
-<img src="T-CobolExercise.gif" height="56" width="183"></h2></center>
+			table {
+				max-width: 100%;
+			}
 
-<center>
-<h2>
-Reading Sequential Files</h2></center>
+			pre {
+				overflow-x: auto;
+				max-width: 100%;
+			}
 
-<hr width="100%">
-<center><font size="-1">READ</font>, <font size="-1">PERFORM .. UNTIL</font>,
-<font size="-1">DISPLAY</font></center>
+			body {
+				-webkit-text-size-adjust: 100%;
+			}
 
-<hr width="100%">
-<h2>
-Introduction</h2>
-The program SeqRead.Cbl reads a sequential file and displays the StudentId,
-StudentName and the CourseCode of each record in the file on the screen.&nbsp;&nbsp;
-In this exercise you will re-write this program so that it displays the
-Student Initials, Surname and DateOfBirth on the screen.
+			@media (max-width: 600px) {
+				body {
+					margin: 4px;
+					overflow-wrap: break-word;
+					word-wrap: break-word;
+				}
 
-<p>Download the <a href="../examples/SeqRead/Seqread.cbl">SeqRead.Cbl</a>
-  program and save it to the WorkArea directory on drive D:.
-<p>Download the data file <a href="../examples/SeqRead/STUDENTS.DAT">Students.Dat</a>
-and save it to the same place.
+				table[width] {
+					width: 100% !important;
+					height: auto !important;
+				}
 
-<p>Load SeqRead.Cbl into the NetExpress environment. <br>
-  &nbsp;
-<h2>
-Examining SeqRead</h2>
-Examine the program carefully, paying particular attention to the way the
-end of file is handled.&nbsp; Note the use of&nbsp; the condition name
-EndOfStudentFile.
+				td[width],
+				th[width],
+				td[height],
+				th[height] {
+					width: auto !important;
+					height: auto !important;
+				}
 
-<p>Compile the program.&nbsp;<img src="i-tick.gif" hspace="7" height="24" width="24">
+				td[bgcolor="#993300"] > h2,
+				td[bgcolor="#993300"] > h3 {
+					margin: 0.3em 0;
+				}
 
-<p>Set a breakpoint at the first statement in the Procedure Division (move
-the cursor over the statement, right-click and select Set Breakpoint from
-the menu which appears).
-<br>Use the Animator to step&nbsp;<img src="i-step.gif" hspace="7" height="23" width="23">through
-the program.
+				blockquote {
+					margin-left: 12px;
+					margin-right: 12px;
+				}
 
-<p>Assign the variables StudentDetails, StudentName, Initials, DateOfBirth
-and MOBirth to the watch list (Right-click on the variable, select <b><i>Examine</i></b>
-from menu and then <b><i>Add to list</i></b> from dialogue box).
+				hr[width] {
+					width: 100% !important;
+				}
 
-<p>As the program runs attempt to answer the following questions:-
-<ol>
-  <li> What is the size (in characters) of the StudentDetails record?</li>
-  <li> What is the size of StudentName?</li>
-  <li> What is the size of DateOfBirth?</li>
-  <li> The level number for MOBirth is 03 and that of DateOfBirth is 02.&nbsp; 
-    What is the significance of that?&nbsp; Examine the values in DateOfBirth 
-    and MOBirth as the program runs to see if your answer makes sense.</li>
-</ol>
+				img,
+				iframe,
+				video,
+				embed,
+				object {
+					max-width: min(100%, calc(100vw - 16px)) !important;
+					height: auto;
+				}
 
-<h2>
-Amending SeqRead</h2>
-Change the program SeqRead.Cbl to produce a program which displays the student 
-Initials, Surname and DateOfBirth on the computer screen. The Initials should 
-be immediately followed by a full stop and a space (see example run below). The 
-date should be displayed in the US month, day, year format. The parts of the date 
-should be separated from one another by a hyphen. The year should be the full 
-four digits. 
-<p>The student record consists of the following items;
-<table border width="50%">
-  <tr> 
-    <td width="115"> 
-      <center>
-        <b>Field</b>
-      </center>
-    </td>
-    <td width="11"> 
-      <center>
-        <b>Type</b>
-      </center>
-    </td>
-    <td width="64"> 
-      <center>
-        <b>Length</b>
-      </center>
-    </td>
-    <td width="188"> 
-      <center>
-        <b>Value</b>
-      </center>
-    </td>
-  </tr>
-  <tr> 
-    <td width="115">Student Id</td>
-    <td width="11"> 
-      <center>
-        9
-      </center>
-    </td>
-    <td width="64"> 
-      <center>
-        7
-      </center>
-    </td>
-    <td width="188"> 
-      <center>
-        0-9999999
-      </center>
-    </td>
-  </tr>
-  <tr> 
-    <td width="115">Student Name</td>
-    <td width="11"> 
-      <center>
-        .
-      </center>
-    </td>
-    <td width="64"> 
-      <center>
-        .
-      </center>
-    </td>
-    <td width="188"> 
-      <center>
-        Group
-      </center>
-    </td>
-  </tr>
-  <tr> 
-    <td width="115">Surname</td>
-    <td width="11"> 
-      <center>
-        X
-      </center>
-    </td>
-    <td width="64"> 
-      <center>
-        8
-      </center>
-    </td>
-    <td width="188"> 
-      <center>
-        -
-      </center>
-    </td>
-  </tr>
-  <tr> 
-    <td width="115">Initials</td>
-    <td width="11"> 
-      <center>
-        X
-      </center>
-    </td>
-    <td width="64"> 
-      <center>
-        2
-      </center>
-    </td>
-    <td width="188"> 
-      <center>
-        -
-      </center>
-    </td>
-  </tr>
-  <tr> 
-    <td width="115">DateOfBirth</td>
-    <td width="11"> 
-      <center>
-        .
-      </center>
-    </td>
-    <td width="64"> 
-      <center>
-        .
-      </center>
-    </td>
-    <td width="188"> 
-      <center>
-        Group
-      </center>
-    </td>
-  </tr>
-  <tr> 
-    <td width="115">Year</td>
-    <td width="11"> 
-      <center>
-        9
-      </center>
-    </td>
-    <td width="64"> 
-      <center>
-        4 
-      </center>
-    </td>
-    <td width="188"> 
-      <center>
-        00-9999 
-      </center>
-    </td>
-  </tr>
-  <tr> 
-    <td width="115">Month</td>
-    <td width="11"> 
-      <center>
-        9
-      </center>
-    </td>
-    <td width="64"> 
-      <center>
-        2
-      </center>
-    </td>
-    <td width="188"> 
-      <center>
-        01-12
-      </center>
-    </td>
-  </tr>
-  <tr> 
-    <td width="115">Day</td>
-    <td width="11"> 
-      <center>
-        9
-      </center>
-    </td>
-    <td width="64"> 
-      <center>
-        2
-      </center>
-    </td>
-    <td width="188"> 
-      <center>
-        01-31
-      </center>
-    </td>
-  </tr>
-  <tr> 
-    <td width="115">Course Code</td>
-    <td width="11"> 
-      <center>
-        X
-      </center>
-    </td>
-    <td width="64"> 
-      <center>
-        4
-      </center>
-    </td>
-    <td width="188"> 
-      <center>
-        -
-      </center>
-    </td>
-  </tr>
-  <tr> 
-    <td width="115">Gender</td>
-    <td width="11"> 
-      <center>
-        X
-      </center>
-    </td>
-    <td width="64"> 
-      <center>
-        1
-      </center>
-    </td>
-    <td width="188"> 
-      <center>
-        M/F
-      </center>
-    </td>
-  </tr>
-</table>
-<ul>
-<ul>
-<ul><u><font size="+2">Example Run</font></u></ul>
-<tt>------ STUDENT REPORT ------</tt>
+				pre {
+					max-width: min(100%, calc(100vw - 16px)) !important;
+					white-space: pre-wrap;
+					word-wrap: break-word;
+					overflow-wrap: break-word;
+				}
 
-<p><tt>MS. COUGHLAN DOB = 10-08-1985</tt>
+				table[width="715"],
+				table[width="725"],
+				table[width="715"] > tbody,
+				table[width="725"] > tbody,
+				table[width="715"] > tbody > tr,
+				table[width="725"] > tbody > tr,
+				table[width="715"] > tbody > tr > td,
+				table[width="725"] > tbody > tr > td,
+				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])),
+				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody,
+				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr,
+				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr > td {
+					display: block;
+					width: auto !important;
+				}
 
-<p><tt>SR. SMITH DOB = 01-28-1989</tt>
+				table[width="710"]:has(> tbody > tr > td[width="93%"]),
+				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody {
+					display: block;
+					width: 100% !important;
+				}
 
-<p><tt>JM. Ryan DOB = 09-25-1986</tt>
+				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr {
+					display: flex;
+					align-items: baseline;
+					gap: 0.4em;
+					margin: 0.4em 0;
+				}
 
-<p><tt>etc.</tt></ul>
-</ul>
-<hr>
-<table cellspacing="0" cellpadding="0" cols="1" width="200"><tr align="CENTER" valign="TOP">
-<td><a href="index.html"><img src="../pics/B-BackArrow.gif" alt="Back to COBOL Exercises page" border="0" height="52" width="52"></a>
-<font size="-2">To COBOL Exercises</font></td>
-</tr>
-</table>
-</body>
+				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="3%"] {
+					display: none;
+				}
+
+				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="4%"] {
+					display: block;
+					flex: 0 0 auto;
+					width: auto !important;
+					padding: 0;
+				}
+
+				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="93%"] {
+					display: block;
+					flex: 1 1 auto;
+					width: auto !important;
+					padding: 0;
+				}
+
+				td[width="175"] > h4:not(:first-child):not(:has(img)),
+				td[width="160"] > h4:not(:first-child):not(:has(img)),
+				h4:has(> img[src*="PanelLine"]) {
+					display: none;
+				}
+
+				td[width="175"] > h3,
+				td[width="175"] > h4,
+				td[width="175"] > p,
+				td[width="160"] > h3,
+				td[width="160"] > h4,
+				td[width="160"] > p {
+					margin: 0.2em 0;
+				}
+			}
+		</style>
+	</head>
+
+	<body text="#000000" bgcolor="#FFFFFF" link="#0000FF" vlink="#FF0000" alink="#009B00">
+		<center>
+			<h2>
+				<img src="T-CobolExercise.gif" height="56" width="183" />
+			</h2>
+		</center>
+
+		<center>
+			<h2>Reading Sequential Files</h2>
+		</center>
+
+		<hr width="100%" />
+		<center>
+			<font size="-1">READ</font>, <font size="-1">PERFORM .. UNTIL</font>,
+			<font size="-1">DISPLAY</font>
+		</center>
+
+		<hr width="100%" />
+		<h2>Introduction</h2>
+		The program SeqRead.Cbl reads a sequential file and displays the StudentId, StudentName and the CourseCode of
+		each record in the file on the screen.&nbsp;&nbsp; In this exercise you will re-write this program so that it
+		displays the Student Initials, Surname and DateOfBirth on the screen.
+
+		<p>
+			Download the
+			<a href="../examples/SeqRead/Seqread.cbl">SeqRead.Cbl</a> program and save it to the WorkArea directory on
+			drive D:.
+		</p>
+
+		<p>
+			Download the data file
+			<a href="../examples/SeqRead/STUDENTS.DAT">Students.Dat</a> and save it to the same place.
+		</p>
+
+		<p>
+			Load SeqRead.Cbl into the NetExpress environment. <br />
+			&nbsp;
+		</p>
+
+		<h2>Examining SeqRead</h2>
+		Examine the program carefully, paying particular attention to the way the end of file is handled.&nbsp; Note the
+		use of&nbsp; the condition name EndOfStudentFile.
+
+		<p>Compile the program.&nbsp;<img src="i-tick.gif" hspace="7" height="24" width="24" /></p>
+
+		<p>
+			Set a breakpoint at the first statement in the Procedure Division (move the cursor over the statement,
+			right-click and select Set Breakpoint from the menu which appears). <br />Use the Animator to step&nbsp;<img
+				src="i-step.gif"
+				hspace="7"
+				height="23"
+				width="23"
+			/>through the program.
+		</p>
+
+		<p>
+			Assign the variables StudentDetails, StudentName, Initials, DateOfBirth and MOBirth to the watch list
+			(Right-click on the variable, select <b><i>Examine</i></b> from menu and then <b><i>Add to list</i></b> from
+			dialogue box).
+		</p>
+
+		<p>As the program runs attempt to answer the following questions:-</p>
+		<ol>
+			<li>What is the size (in characters) of the StudentDetails record?</li>
+			<li>What is the size of StudentName?</li>
+			<li>What is the size of DateOfBirth?</li>
+			<li>
+				The level number for MOBirth is 03 and that of DateOfBirth is 02.&nbsp; What is the significance of
+				that?&nbsp; Examine the values in DateOfBirth and MOBirth as the program runs to see if your answer
+				makes sense.
+			</li>
+		</ol>
+
+		<h2>Amending SeqRead</h2>
+		Change the program SeqRead.Cbl to produce a program which displays the student Initials, Surname and DateOfBirth
+		on the computer screen. The Initials should be immediately followed by a full stop and a space (see example run
+		below). The date should be displayed in the US month, day, year format. The parts of the date should be
+		separated from one another by a hyphen. The year should be the full four digits.
+		<p>The student record consists of the following items;</p>
+		<table border width="50%">
+			<tr>
+				<td width="115">
+					<center>
+						<b>Field</b>
+					</center>
+				</td>
+				<td width="11">
+					<center>
+						<b>Type</b>
+					</center>
+				</td>
+				<td width="64">
+					<center>
+						<b>Length</b>
+					</center>
+				</td>
+				<td width="188">
+					<center>
+						<b>Value</b>
+					</center>
+				</td>
+			</tr>
+			<tr>
+				<td width="115">Student Id</td>
+				<td width="11">
+					<center>9</center>
+				</td>
+				<td width="64">
+					<center>7</center>
+				</td>
+				<td width="188">
+					<center>0-9999999</center>
+				</td>
+			</tr>
+			<tr>
+				<td width="115">Student Name</td>
+				<td width="11">
+					<center>.</center>
+				</td>
+				<td width="64">
+					<center>.</center>
+				</td>
+				<td width="188">
+					<center>Group</center>
+				</td>
+			</tr>
+			<tr>
+				<td width="115">Surname</td>
+				<td width="11">
+					<center>X</center>
+				</td>
+				<td width="64">
+					<center>8</center>
+				</td>
+				<td width="188">
+					<center>-</center>
+				</td>
+			</tr>
+			<tr>
+				<td width="115">Initials</td>
+				<td width="11">
+					<center>X</center>
+				</td>
+				<td width="64">
+					<center>2</center>
+				</td>
+				<td width="188">
+					<center>-</center>
+				</td>
+			</tr>
+			<tr>
+				<td width="115">DateOfBirth</td>
+				<td width="11">
+					<center>.</center>
+				</td>
+				<td width="64">
+					<center>.</center>
+				</td>
+				<td width="188">
+					<center>Group</center>
+				</td>
+			</tr>
+			<tr>
+				<td width="115">Year</td>
+				<td width="11">
+					<center>9</center>
+				</td>
+				<td width="64">
+					<center>4</center>
+				</td>
+				<td width="188">
+					<center>00-9999</center>
+				</td>
+			</tr>
+			<tr>
+				<td width="115">Month</td>
+				<td width="11">
+					<center>9</center>
+				</td>
+				<td width="64">
+					<center>2</center>
+				</td>
+				<td width="188">
+					<center>01-12</center>
+				</td>
+			</tr>
+			<tr>
+				<td width="115">Day</td>
+				<td width="11">
+					<center>9</center>
+				</td>
+				<td width="64">
+					<center>2</center>
+				</td>
+				<td width="188">
+					<center>01-31</center>
+				</td>
+			</tr>
+			<tr>
+				<td width="115">Course Code</td>
+				<td width="11">
+					<center>X</center>
+				</td>
+				<td width="64">
+					<center>4</center>
+				</td>
+				<td width="188">
+					<center>-</center>
+				</td>
+			</tr>
+			<tr>
+				<td width="115">Gender</td>
+				<td width="11">
+					<center>X</center>
+				</td>
+				<td width="64">
+					<center>1</center>
+				</td>
+				<td width="188">
+					<center>M/F</center>
+				</td>
+			</tr>
+		</table>
+		<ul>
+			<ul>
+				<ul>
+					<u>
+						<font size="+2">Example Run</font>
+					</u>
+				</ul>
+				<tt>------ STUDENT REPORT ------</tt>
+
+				<p><tt>MS. COUGHLAN DOB = 10-08-1985</tt></p>
+
+				<p><tt>SR. SMITH DOB = 01-28-1989</tt></p>
+
+				<p><tt>JM. Ryan DOB = 09-25-1986</tt></p>
+
+				<p><tt>etc.</tt></p>
+			</ul>
+		</ul>
+		<hr />
+		<table cellspacing="0" cellpadding="0" cols="1" width="200">
+			<tr align="CENTER" valign="TOP">
+				<td>
+					<a href="index.html"
+						><img
+							src="../pics/B-BackArrow.gif"
+							alt="Back to COBOL Exercises page"
+							border="0"
+							height="52"
+							width="52"
+					/></a>
+					<font size="-2">To COBOL Exercises</font>
+				</td>
+			</tr>
+		</table>
+	</body>
 </html>

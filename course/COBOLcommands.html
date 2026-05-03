@@ -1,309 +1,501 @@
 <html>
-<head>
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-<meta content="Mozilla/4.0 [en] (WinNT; I) [Netscape]" name="GENERATOR"/>
-<title>Basic Procedure Division commands</title>
-<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet"/>
-<script src="Resources/vendor/prism/prism.min.js" defer></script>
-<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<style type="text/css">
-  img { max-width: 100%; height: auto; }
-  table { max-width: 100%; }
-  body > table, body > hr { margin-left: auto; margin-right: auto; }
-  pre { overflow-x: auto; max-width: 100%; }
-  body { -webkit-text-size-adjust: 100%; }
-  @media (max-width: 600px) {
-    body { margin: 4px; overflow-wrap: break-word; word-wrap: break-word; }
-    table[width] { width: 100% !important; height: auto !important; }
-    td[width], th[width], td[height], th[height] { width: auto !important; height: auto !important; }
-    td[bgcolor="#993300"] > h2, td[bgcolor="#993300"] > h3 { margin: 0.3em 0; }
-    blockquote { margin-left: 12px; margin-right: 12px; }
-    hr[width] { width: 100% !important; }
-    img, iframe, video, embed, object { max-width: min(100%, calc(100vw - 16px)) !important; height: auto; }
-    pre { max-width: min(100%, calc(100vw - 16px)) !important; white-space: pre-wrap; word-wrap: break-word; overflow-wrap: break-word; }
-    pre[class*="language-"], code[class*="language-"] { white-space: pre-wrap !important; overflow-wrap: break-word; }
-    pre[class*="language-"] { font-size: 0.8em; line-height: 1.35; padding: 0.6em; overflow-x: auto; }
-    table[width="715"], table[width="725"],
-    table[width="715"] > tbody, table[width="725"] > tbody,
-    table[width="715"] > tbody > tr, table[width="725"] > tbody > tr,
-    table[width="715"] > tbody > tr > td, table[width="725"] > tbody > tr > td,
-    table[width="710"]:not(:has(> tbody > tr > td[width="93%"])),
-    table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody,
-    table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr,
-    table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr > td {
-      display: block;
-      width: auto !important;
-    }
-    table[width="710"]:has(> tbody > tr > td[width="93%"]),
-    table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody {
-      display: block;
-      width: 100% !important;
-    }
-    table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr {
-      display: flex;
-      align-items: baseline;
-      gap: 0.4em;
-      margin: 0.4em 0;
-    }
-    table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="3%"] {
-      display: none;
-    }
-    table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="4%"] {
-      display: block;
-      flex: 0 0 auto;
-      width: auto !important;
-      padding: 0;
-    }
-    table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="93%"] {
-      display: block;
-      flex: 1 1 auto;
-      width: auto !important;
-      padding: 0;
-    }
-    td[width="175"] > h4:not(:first-child):not(:has(img)),
-    td[width="160"] > h4:not(:first-child):not(:has(img)),
-    h4:has(> img[src*="PanelLine"]) {
-      display: none;
-    }
-    td[width="175"] > h3, td[width="175"] > h4, td[width="175"] > p,
-    td[width="160"] > h3, td[width="160"] > h4, td[width="160"] > p {
-      margin: 0.2em 0;
-    }
-  }
-  ul.toc { list-style-image: url(Resources/pics/BallGreenG.gif); padding-left: 2.5em; margin: 1em 0; }
-  ul.toc > li { padding-left: 0.4em; margin-bottom: 0.6em; }
-  ul.toc a { font-weight: bold; }
-</style>
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<title>Basic Procedure Division commands</title>
+		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
+		<script src="Resources/vendor/prism/prism.min.js" defer></script>
+		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
+		<meta content="width=device-width, initial-scale=1" name="viewport" />
+		<style type="text/css">
+			img {
+				max-width: 100%;
+				height: auto;
+			}
 
-</head>
-<body alink="#009B00" bgcolor="#FFFFFF" link="#0000FF" text="#000000" vlink="#FF0000">
-<table border="1" width="715">
-<tr>
-<td>
-<table border="0" cellpadding="4" cellspacing="0" width="710">
-<tr>
-<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
-<center>
-<p><img height="59" src="Resources/pics/t-CobolTut.gif" width="173"/></p>
-</center>
-<center>
-<h1>Basic Procedure Division Commands</h1>
-<hr/>
-</center>
-<ul class="toc">
-<li><a href="#intro">Introduction</a><br/>
-<font size="-1">Unit aims, objectives, prerequisites.</font></li>
-<li><a href="#part1">Basic User Input
-                  and Output</a><br/>
-<font size="-1">This section introduces the ACCEPT and DISPLAY
-                  verbs and shows how the ACCEPT may be used to get the system
-                  date and time.</font></li>
-<li><a href="#part2">Assignment using
-                    the MOVE verb</a><br/>
-<font size="-1">This section demonstrates how assignment
-                    is achieved in COBOL.</font></li>
-<li><a href="#part3">Arithmetic in
-                    COBOL</a><br/>
-<font size="-1">This section introduces the ADD, SUBTRACT,
-                    MULTIPLY, DIVIDE and COMPUTE verbs.</font></li>
-</ul>
-<hr width="100%"/>
-</td>
-</tr>
-<tr>
-<td align="LEFT" bgcolor="#993300" colspan="2" valign="top" width="700">
-<h2 align="CENTER" id="intro"><font color="#FFFF00"><font face="Arial, Helvetica, sans-serif">Introduction</font></font></h2>
-</td>
-</tr>
-<tr>
-<td bgcolor="#FFFFCC" valign="top" width="175">
-<h4><font color="#993300" face="Arial, Helvetica, sans-serif">Aims</font></h4>
-</td>
-<td width="540">
-<p>The <font size="-1">PROCEDURE DIVISION</font> contains the code 
-              used to manipulate the data described in the <font size="-1">DATA 
-              DIVISION</font>. This tutorial examines some of the basic COBOL 
-              commands used in the <font size="-1">PROCEDURE DIVISION</font>.</p>
-<p>In the course of this tutorial you will examine how assignment 
-              is done in COBOL, how the date and time can be obtained from the 
-              computer and how arithmetic statements are written.</p>
-<hr width="50%"/>
-</td>
-</tr>
-<tr>
-<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="175">
-<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Objectives</font></h4>
-</td>
-<td width="540">
-<p>By the end of this unit you should - </p>
-<ol>
-<li>Know how to get data from the keyboard and write it to the screen.</li>
-<li>Know how to get the system date and time.</li>
-<li>Understand how the MOVE is used for assignment in COBOL.</li>
-<li>Understand how alphanumeric and numeric moves work.</li>
-<li>Be able to use the arithmetic verbs to perform calculations.</li>
-</ol>
-<hr width="50%"/>
-</td>
-</tr>
-<tr>
-<td align="LEFT" bgcolor="#FFFFCC" height="77" valign="top" width="175">
-<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Prerequisites</font></h4>
-</td>
-<td height="77" valign="top" width="525">
-<ul>
-<li>Introduction to COBOL</li>
-<li>Declaring data in COBOL</li>
-</ul>
-</td>
-</tr>
-<tr>
-<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
-<div align="center">
-<hr/>
-<p><a href="#top"> <img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"/></a>
-</p>
-</div>
-</td>
-</tr>
-<tr>
-<td align="LEFT" bgcolor="#993300" colspan="2" valign="top" width="700">
-<h2 align="CENTER" id="part1"><font color="#FFFF00"><font face="Arial, Helvetica, sans-serif">Basic 
-              User Input and Output</font></font></h2>
-</td>
-</tr>
-<tr>
-<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
-</td>
-<td valign="top" width="525">
-<div align="center">
-<p align="left"> In COBOL, the <font size="-1">ACCEPT </font>and<font size="-1"> 
-                DISPLAY</font> verbs are used to read from the keyboard and write 
-                to the screen. Input and output using these commands is somewhat 
-                primitive because they were originally designed to be used in 
-                a batch programming environment to communicate with the computer 
-                operator.</p>
-<p align="left">In recent years many vendors have augmented the 
-                <font size="-1">ACCEPT</font> and <font size="-1">DISPLAY </font>syntax 
-                to facilitate the creation of on-line systems by allowing such 
-                things as: cursor positioning, character attribute control and 
-                auto-validation of input. </p>
-<p align="left">In this tutorial we will examine only the standard 
-                <font size="-1">ACCEPT</font> and <font size="-1">DISPLAY</font> 
-                syntax.</p>
-<hr width="50%"/>
-</div>
-</td>
-</tr>
-<tr>
-<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-<h4><font color="#800000" face="Arial, Helvetica, sans-serif">The 
-              DISPLAY verb</font></h4>
+			table {
+				max-width: 100%;
+			}
 
-<aside>
-<p align="center"><img height="44" src="Resources/pics/i-LightBulbTip.gif" width="42"/></p>
-<p align="left"><font size="-1">In the COBOL syntax diagrams ( the
-              COBOL metalanguage) upper case words are keywords. If underlined,
-              they are mandatory.<br/>
-</font><font size="-1">{ } brackets mean that one of the options
-              must be selected<br/>
-</font><font size="-1">[ ] brackets mean that the item is optional<br/>
-</font><font size="-1">ellipses (...) mean that the item may be
-              repeated at the programmer's discretion.</font></p>
-<p align="left"><font size="-1">The symbols used in the syntax diagram
-              identifiers have the following significance:-</font><br/>
-<font size="-1"><b>$</b> signifies a string item,<br/>
-<b>#</b> is numeric item, <br/>
-<b>i</b> indicates that the item can be a variable identifier<br/>
-<b>l</b> indicates that the item can be a literal.</font></p>
-</aside>
+			body > table,
+			body > hr {
+				margin-left: auto;
+				margin-right: auto;
+			}
 
-</td>
-<td valign="top" width="525">
-<div align="center">
-<p align="left"><img height="54" src="Resources/pics/Display.gif" width="440"/>
-</p>
-<p align="left">The <font size="-1">DISPLAY</font> verb is used 
-                to send output to the computer screen or to a peripheral device. 
-              </p>
-<p align="left">As you can see from the ellipses (...) in the metalanguage 
-                above a single<font size="-1"> DISPLAY</font> can be used to display 
-                several data-items or literals or any combination of these. </p>
-<p align="left"><b><font size="-1">DISPLAY</font> notes<br/>
-</b>After the items in the display list have been sent to the 
-                screen, the <font size="-1">DISPLAY</font> automatically moves 
-                the screen cursor to the next line unless a <font size="-1">WITH 
-                NO ADVANCING </font>clause is present.</p>
-<p align="left">Mnemonic-Names are used to make programs more readable. 
-                A Mnemonic-Name is a name devised by the programmer to represent 
-                some peripheral device (such as a serial port) or control code. 
-                The name is connected to the actual device or code by entries 
-                in the <font size="-1">ENVIRONMENT DIVISION.</font></p>
-<p align="left">When a Mnemonic-Name is used with the <font size="-1">DISPLAY</font> 
-                it represents an output device (serial port, parallel port etc).</p>
-<p align="left">If a Mnemonic-Name is used output is sent to the 
-                device specified; otherwise, output is sent to the computer screen. 
-              </p>
-<p align="left"><b><font size="-1">DISPLAY</font> examples</b></p>
-</div>
-<pre class="language-cobol" align="left"><code class="language-cobol">DISPLAY "My name is " ProgrammerName.
+			pre {
+				overflow-x: auto;
+				max-width: 100%;
+			}
+
+			body {
+				-webkit-text-size-adjust: 100%;
+			}
+
+			@media (max-width: 600px) {
+				body {
+					margin: 4px;
+					overflow-wrap: break-word;
+					word-wrap: break-word;
+				}
+
+				table[width] {
+					width: 100% !important;
+					height: auto !important;
+				}
+
+				td[width],
+				th[width],
+				td[height],
+				th[height] {
+					width: auto !important;
+					height: auto !important;
+				}
+
+				td[bgcolor="#993300"] > h2,
+				td[bgcolor="#993300"] > h3 {
+					margin: 0.3em 0;
+				}
+
+				blockquote {
+					margin-left: 12px;
+					margin-right: 12px;
+				}
+
+				hr[width] {
+					width: 100% !important;
+				}
+
+				img,
+				iframe,
+				video,
+				embed,
+				object {
+					max-width: min(100%, calc(100vw - 16px)) !important;
+					height: auto;
+				}
+
+				pre {
+					max-width: min(100%, calc(100vw - 16px)) !important;
+					white-space: pre-wrap;
+					word-wrap: break-word;
+					overflow-wrap: break-word;
+				}
+
+				pre[class*="language-"],
+				code[class*="language-"] {
+					white-space: pre-wrap !important;
+					overflow-wrap: break-word;
+				}
+
+				pre[class*="language-"] {
+					font-size: 0.8em;
+					line-height: 1.35;
+					padding: 0.6em;
+					overflow-x: auto;
+				}
+
+				table[width="715"],
+				table[width="725"],
+				table[width="715"] > tbody,
+				table[width="725"] > tbody,
+				table[width="715"] > tbody > tr,
+				table[width="725"] > tbody > tr,
+				table[width="715"] > tbody > tr > td,
+				table[width="725"] > tbody > tr > td,
+				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])),
+				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody,
+				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr,
+				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr > td {
+					display: block;
+					width: auto !important;
+				}
+
+				table[width="710"]:has(> tbody > tr > td[width="93%"]),
+				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody {
+					display: block;
+					width: 100% !important;
+				}
+
+				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr {
+					display: flex;
+					align-items: baseline;
+					gap: 0.4em;
+					margin: 0.4em 0;
+				}
+
+				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="3%"] {
+					display: none;
+				}
+
+				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="4%"] {
+					display: block;
+					flex: 0 0 auto;
+					width: auto !important;
+					padding: 0;
+				}
+
+				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="93%"] {
+					display: block;
+					flex: 1 1 auto;
+					width: auto !important;
+					padding: 0;
+				}
+
+				td[width="175"] > h4:not(:first-child):not(:has(img)),
+				td[width="160"] > h4:not(:first-child):not(:has(img)),
+				h4:has(> img[src*="PanelLine"]) {
+					display: none;
+				}
+
+				td[width="175"] > h3,
+				td[width="175"] > h4,
+				td[width="175"] > p,
+				td[width="160"] > h3,
+				td[width="160"] > h4,
+				td[width="160"] > p {
+					margin: 0.2em 0;
+				}
+			}
+
+			ul.toc {
+				list-style-image: url(Resources/pics/BallGreenG.gif);
+				padding-left: 2.5em;
+				margin: 1em 0;
+			}
+
+			ul.toc > li {
+				padding-left: 0.4em;
+				margin-bottom: 0.6em;
+			}
+
+			ul.toc a {
+				font-weight: bold;
+			}
+		</style>
+	</head>
+
+	<body alink="#009B00" bgcolor="#FFFFFF" link="#0000FF" text="#000000" vlink="#FF0000">
+		<table border="1" width="715">
+			<tr>
+				<td>
+					<table border="0" cellpadding="4" cellspacing="0" width="710">
+						<tr>
+							<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
+								<center>
+									<p>
+										<img height="59" src="Resources/pics/t-CobolTut.gif" width="173" />
+									</p>
+								</center>
+								<center>
+									<h1>Basic Procedure Division Commands</h1>
+									<hr />
+								</center>
+								<ul class="toc">
+									<li>
+										<a href="#intro">Introduction</a><br />
+										<font size="-1">Unit aims, objectives, prerequisites.</font>
+									</li>
+									<li>
+										<a href="#part1">Basic User Input and Output</a><br />
+										<font size="-1"
+											>This section introduces the ACCEPT and DISPLAY verbs and shows how the
+											ACCEPT may be used to get the system date and time.</font
+										>
+									</li>
+									<li>
+										<a href="#part2">Assignment using the MOVE verb</a><br />
+										<font size="-1"
+											>This section demonstrates how assignment is achieved in COBOL.</font
+										>
+									</li>
+									<li>
+										<a href="#part3">Arithmetic in COBOL</a><br />
+										<font size="-1"
+											>This section introduces the ADD, SUBTRACT, MULTIPLY, DIVIDE and COMPUTE
+											verbs.</font
+										>
+									</li>
+								</ul>
+								<hr width="100%" />
+							</td>
+						</tr>
+						<tr>
+							<td align="LEFT" bgcolor="#993300" colspan="2" valign="top" width="700">
+								<h2 align="CENTER" id="intro">
+									<font color="#FFFF00">
+										<font face="Arial, Helvetica, sans-serif">Introduction</font>
+									</font>
+								</h2>
+							</td>
+						</tr>
+						<tr>
+							<td bgcolor="#FFFFCC" valign="top" width="175">
+								<h4>
+									<font color="#993300" face="Arial, Helvetica, sans-serif">Aims</font>
+								</h4>
+							</td>
+							<td width="540">
+								<p>
+									The
+									<font size="-1">PROCEDURE DIVISION</font>
+									contains the code used to manipulate the data described in the
+									<font size="-1">DATA DIVISION</font>. This tutorial examines some of the basic COBOL
+									commands used in the <font size="-1">PROCEDURE DIVISION</font>.
+								</p>
+								<p>
+									In the course of this tutorial you will examine how assignment is done in COBOL, how
+									the date and time can be obtained from the computer and how arithmetic statements
+									are written.
+								</p>
+								<hr width="50%" />
+							</td>
+						</tr>
+						<tr>
+							<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="175">
+								<h4>
+									<font color="#800000" face="Arial, Helvetica, sans-serif">Objectives</font>
+								</h4>
+							</td>
+							<td width="540">
+								<p>By the end of this unit you should -</p>
+								<ol>
+									<li>Know how to get data from the keyboard and write it to the screen.</li>
+									<li>Know how to get the system date and time.</li>
+									<li>Understand how the MOVE is used for assignment in COBOL.</li>
+									<li>Understand how alphanumeric and numeric moves work.</li>
+									<li>Be able to use the arithmetic verbs to perform calculations.</li>
+								</ol>
+								<hr width="50%" />
+							</td>
+						</tr>
+						<tr>
+							<td align="LEFT" bgcolor="#FFFFCC" height="77" valign="top" width="175">
+								<h4>
+									<font color="#800000" face="Arial, Helvetica, sans-serif">Prerequisites</font>
+								</h4>
+							</td>
+							<td height="77" valign="top" width="525">
+								<ul>
+									<li>Introduction to COBOL</li>
+									<li>Declaring data in COBOL</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
+								<div align="center">
+									<hr />
+									<p>
+										<a href="#top">
+											<img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+										/></a>
+									</p>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td align="LEFT" bgcolor="#993300" colspan="2" valign="top" width="700">
+								<h2 align="CENTER" id="part1">
+									<font color="#FFFF00">
+										<font face="Arial, Helvetica, sans-serif">Basic User Input and Output</font>
+									</font>
+								</h2>
+							</td>
+						</tr>
+						<tr>
+							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+								<h4>
+									<font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font>
+								</h4>
+							</td>
+							<td valign="top" width="525">
+								<div align="center">
+									<p align="left">
+										In COBOL, the
+										<font size="-1">ACCEPT </font>and<font size="-1"> DISPLAY</font>
+										verbs are used to read from the keyboard and write to the screen. Input and
+										output using these commands is somewhat primitive because they were originally
+										designed to be used in a batch programming environment to communicate with the
+										computer operator.
+									</p>
+									<p align="left">
+										In recent years many vendors have augmented the
+										<font size="-1">ACCEPT</font> and <font size="-1">DISPLAY </font>syntax to
+										facilitate the creation of on-line systems by allowing such things as: cursor
+										positioning, character attribute control and auto-validation of input.
+									</p>
+									<p align="left">
+										In this tutorial we will examine only the standard
+										<font size="-1">ACCEPT</font> and
+										<font size="-1">DISPLAY</font>
+										syntax.
+									</p>
+									<hr width="50%" />
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+								<h4>
+									<font color="#800000" face="Arial, Helvetica, sans-serif">The DISPLAY verb</font>
+								</h4>
+
+								<aside>
+									<p align="center">
+										<img height="44" src="Resources/pics/i-LightBulbTip.gif" width="42" />
+									</p>
+									<p align="left">
+										<font size="-1"
+											>In the COBOL syntax diagrams ( the COBOL metalanguage) upper case words are
+											keywords. If underlined, they are mandatory.<br />
+										</font>
+										<font size="-1"
+											>{ } brackets mean that one of the options must be selected<br />
+										</font>
+										<font size="-1">[ ] brackets mean that the item is optional<br /> </font>
+										<font size="-1"
+											>ellipses (...) mean that the item may be repeated at the programmer's
+											discretion.</font
+										>
+									</p>
+									<p align="left">
+										<font size="-1"
+											>The symbols used in the syntax diagram identifiers have the following
+											significance:-</font
+										><br />
+										<font size="-1"
+											><b>$</b> signifies a string item,<br />
+											<b>#</b> is numeric item, <br />
+											<b>i</b> indicates that the item can be a variable identifier<br />
+											<b>l</b> indicates that the item can be a literal.
+										</font>
+									</p>
+								</aside>
+							</td>
+							<td valign="top" width="525">
+								<div align="center">
+									<p align="left">
+										<img height="54" src="Resources/pics/Display.gif" width="440" />
+									</p>
+									<p align="left">
+										The <font size="-1">DISPLAY</font> verb is used to send output to the computer
+										screen or to a peripheral device.
+									</p>
+									<p align="left">
+										As you can see from the ellipses (...) in the metalanguage above a single<font
+											size="-1"
+										>
+											DISPLAY</font
+										>
+										can be used to display several data-items or literals or any combination of
+										these.
+									</p>
+									<p align="left">
+										<b>
+											<font size="-1">DISPLAY</font>
+											notes<br /> </b
+										>After the items in the display list have been sent to the screen, the
+										<font size="-1">DISPLAY</font>
+										automatically moves the screen cursor to the next line unless a
+										<font size="-1">WITH NO ADVANCING </font>clause is present.
+									</p>
+									<p align="left">
+										Mnemonic-Names are used to make programs more readable. A Mnemonic-Name is a
+										name devised by the programmer to represent some peripheral device (such as a
+										serial port) or control code. The name is connected to the actual device or code
+										by entries in the
+										<font size="-1">ENVIRONMENT DIVISION.</font>
+									</p>
+									<p align="left">
+										When a Mnemonic-Name is used with the
+										<font size="-1">DISPLAY</font> it represents an output device (serial port,
+										parallel port etc).
+									</p>
+									<p align="left">
+										If a Mnemonic-Name is used output is sent to the device specified; otherwise,
+										output is sent to the computer screen.
+									</p>
+									<p align="left">
+										<b>
+											<font size="-1">DISPLAY</font>
+											examples
+										</b>
+									</p>
+								</div>
+								<pre
+									class="language-cobol"
+									align="left"
+								><code class="language-cobol">DISPLAY "My name is " ProgrammerName.
 DISPLAY "The vat rate is " VatRate. 
 DISPLAY PrinterSetupCodes UPON PrinterPort1.
 </code></pre>
-<hr width="50%"/>
-</td>
-</tr>
-<tr>
-<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-<h4><font color="#800000" face="Arial, Helvetica, sans-serif">The 
-              ACCEPT verb</font></h4>
-</td>
-<td valign="top" width="525">
-<div align="center">
-<p align="left"><img height="120" src="Resources/pics/ACCEPT.gif" width="390"/>
-</p>
-<p align="left">The ACCEPT verb is used to get data from the keyboard, 
-                a peripheral device, or certain system variables.</p>
-<p align="left"><b><font size="-1">ACCEPT </font>notes<br/>
-</b>When the first format is used, the <font size="-1">ACCEPT</font> 
-                inserts the data typed at the keyboard (or coming from the peripheral 
-                device), into the receiving data-item. </p>
-<p align="left">When the second format is used, the <font size="-1">ACCEPT</font> 
-                inserts the data obtained from one of the system variables, into 
-                the receiving data-item. </p>
-</div>
-</td>
-</tr>
-<tr>
-<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Using 
-              the ACCEPT to get the system date and time</font></h4>
-</td>
-<td valign="top" width="525">
-<div align="center">
-<div align="center">
-<p align="left">The second format of the <font size="-1">ACCEPT</font> 
-                  allows the programmer to access the system date and time (i.e. 
-                  the date and time held in the computer's internal clock). The 
-                  system variables provided are - </p>
-<div align="left">
-<ul>
-<li> Date </li>
-<li> Day of the year</li>
-<li> Day of the week</li>
-<li>Time</li>
-</ul>
-</div>
-</div>
-<p align="left">The declarations and comments below show the format 
-                required for data-items receiving each of the system variables. 
-              </p>
-</div>
-<div align="center">
-<div align="left">
-<pre class="language-cobol"><code class="language-cobol">*&gt; CurrentDate is the date in YYMMDD format
+								<hr width="50%" />
+							</td>
+						</tr>
+						<tr>
+							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+								<h4>
+									<font color="#800000" face="Arial, Helvetica, sans-serif">The ACCEPT verb</font>
+								</h4>
+							</td>
+							<td valign="top" width="525">
+								<div align="center">
+									<p align="left">
+										<img height="120" src="Resources/pics/ACCEPT.gif" width="390" />
+									</p>
+									<p align="left">
+										The ACCEPT verb is used to get data from the keyboard, a peripheral device, or
+										certain system variables.
+									</p>
+									<p align="left">
+										<b> <font size="-1">ACCEPT </font>notes<br /> </b>When the first format is used,
+										the <font size="-1">ACCEPT</font> inserts the data typed at the keyboard (or
+										coming from the peripheral device), into the receiving data-item.
+									</p>
+									<p align="left">
+										When the second format is used, the
+										<font size="-1">ACCEPT</font> inserts the data obtained from one of the system
+										variables, into the receiving data-item.
+									</p>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+								<h4>
+									<font color="#800000" face="Arial, Helvetica, sans-serif"
+										>Using the ACCEPT to get the system date and time</font
+									>
+								</h4>
+							</td>
+							<td valign="top" width="525">
+								<div align="center">
+									<div align="center">
+										<p align="left">
+											The second format of the
+											<font size="-1">ACCEPT</font> allows the programmer to access the system
+											date and time (i.e. the date and time held in the computer's internal
+											clock). The system variables provided are -
+										</p>
+										<div align="left">
+											<ul>
+												<li>Date</li>
+												<li>Day of the year</li>
+												<li>Day of the week</li>
+												<li>Time</li>
+											</ul>
+										</div>
+									</div>
+									<p align="left">
+										The declarations and comments below show the format required for data-items
+										receiving each of the system variables.
+									</p>
+								</div>
+								<div align="center">
+									<div align="left">
+										<pre
+											class="language-cobol"
+										><code class="language-cobol">*&gt; CurrentDate is the date in YYMMDD format
 01 CurrentDate         PIC 9(6).
 
 *&gt; DayOfYear is current day in YYDDD format
@@ -315,61 +507,81 @@ DISPLAY PrinterSetupCodes UPON PrinterPort1.
 *&gt; CurrentTime is the time in HHMMSSss format where s = S/100
 01 CurrentTime         PIC 9(8).
 </code></pre>
-</div>
-</div>
-</td>
-</tr>
-<tr>
-<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-<h4><font color="#800000" face="Arial, Helvetica, sans-serif">New 
-              formats for the ACCEPT</font></h4>
-</td>
-<td valign="top" width="525">
-<p>The problem with <font size="-1">ACCEPT ..FROM DATE</font> and 
-              <font size="-1">ACCEPT..FROM DAY</font> is that since they hold 
-              only the year in only two digits, they are subject to the millennium 
-              bug. To resolve this problem, these two formats of now take additional 
-              (optional) formatting instructions to allow the programmer to specify 
-              that the date is to be supplied with a 4 digit year.</p>
-<p align="left">The syntax for these new formatting instructions is: 
-            </p>
-<blockquote>
-<p><u><font size="-1">ACCEPT</font></u> <font size="-1"><u>DATE</u> 
-                [YYYYMMDD]<br/>
-<u>ACCEPT</u> <u>DAY</u> [YYYYDDD]</font><br/>
-</p>
-</blockquote>
-<p>When the new formatting instructions are used, the receiving fields 
-              must be defined as; </p>
-<pre class="language-cobol"><code class="language-cobol">*&gt; Y2KDate is the date in YYYYMMDD format
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+								<h4>
+									<font color="#800000" face="Arial, Helvetica, sans-serif"
+										>New formats for the ACCEPT
+									</font>
+								</h4>
+							</td>
+							<td valign="top" width="525">
+								<p>
+									The problem with
+									<font size="-1">ACCEPT ..FROM DATE</font>
+									and
+									<font size="-1">ACCEPT..FROM DAY</font> is that since they hold only the year in
+									only two digits, they are subject to the millennium bug. To resolve this problem,
+									these two formats of now take additional (optional) formatting instructions to allow
+									the programmer to specify that the date is to be supplied with a 4 digit year.
+								</p>
+								<p align="left">The syntax for these new formatting instructions is:</p>
+								<blockquote>
+									<p>
+										<u>
+											<font size="-1">ACCEPT</font>
+										</u>
+										<font size="-1"
+											><u>DATE</u> [YYYYMMDD]<br />
+											<u>ACCEPT</u>
+											<u>DAY</u> [YYYYDDD] </font
+										><br />
+									</p>
+								</blockquote>
+								<p>
+									When the new formatting instructions are used, the receiving fields must be defined
+									as;
+								</p>
+								<pre
+									class="language-cobol"
+								><code class="language-cobol">*&gt; Y2KDate is the date in YYYYMMDD format
 01 Y2KDate PIC 9(8).
 
 *&gt; Y2KDayOfYear is current day in YYYYDDD format
 01 Y2KDayOfYear PIC 9(7).</code></pre>
-<hr width="50%"/>
-</td>
-</tr>
-<tr>
-<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-<h4 align="left"><font color="#800000" face="Arial, Helvetica, sans-serif">ACCEPT 
-              and DISPLAY example program</font></h4>
+								<hr width="50%" />
+							</td>
+						</tr>
+						<tr>
+							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+								<h4 align="left">
+									<font color="#800000" face="Arial, Helvetica, sans-serif"
+										>ACCEPT and DISPLAY example program</font
+									>
+								</h4>
 
-<p align="center"><img height="44" src="Resources/pics/program.gif" width="42"/></p>
-
-
-
-</td>
-<td valign="top" width="525">
-<p>This example program uses the <font size="-1">ACCEPT</font> and 
-              <font size="-1">DISPLAY</font> to get a student record from the 
-              user and display some of its fields. It also demonstrates how the 
-              <font size="-1">ACCEPT</font> can be used to get the system date 
-              and time. </p>
-<table background="Resources/pics/code.gif" border="1" width="100%">
-<tr>
-<td height="333">
-<div align="left">
-<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+								<p align="center">
+									<img height="44" src="Resources/pics/program.gif" width="42" />
+								</p>
+							</td>
+							<td valign="top" width="525">
+								<p>
+									This example program uses the
+									<font size="-1">ACCEPT</font> and <font size="-1">DISPLAY</font> to get a student
+									record from the user and display some of its fields. It also demonstrates how the
+									<font size="-1">ACCEPT</font> can be used to get the system date and time.
+								</p>
+								<table background="Resources/pics/code.gif" border="1" width="100%">
+									<tr>
+										<td height="333">
+											<div align="left">
+												<pre
+													class="language-cobol"
+												><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  AcceptAndDisplay.
 AUTHOR.  Michael Coughlan.
@@ -426,16 +638,21 @@ Begin.
     DISPLAY "The time is " CurrentHour ":" CurrentMinute.
     STOP RUN.
 </code></pre>
-</div>
-</td>
-</tr>
-</table>
+											</div>
+										</td>
+									</tr>
+								</table>
 
-<table align="center" border="1" cellpadding="5" width="67%">
-<tr bgcolor="#E1FFE1">
-<td>
-<p align="center"><b>Results of running <font size="-1">ACCEPT.CBL</font></b></p>
-<pre>
+								<table align="center" border="1" cellpadding="5" width="67%">
+									<tr bgcolor="#E1FFE1">
+										<td>
+											<p align="center">
+												<b
+													>Results of running
+													<font size="-1">ACCEPT.CBL</font>
+												</b>
+											</p>
+											<pre>
 Enter student details using template below
 Enter - ID,Surname,Initials,CourseCode,Gender
 SSSSSSSNNNNNNNNIICCCCG
@@ -444,586 +661,821 @@ Name is NS Power
 Date is 01 03 1999
 Today is day 060 of the year
 The time is 14:41
-</pre>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-<tr>
-<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
-<div align="center">
-<hr/>
-<p><a href="#top"> <img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"/></a>
-</p>
-</div>
-</td>
-</tr>
-<tr>
-<td align="LEFT" bgcolor="#993300" colspan="2" valign="top" width="700">
-<h2 align="CENTER" id="part2"><font color="#FFFF00"><font face="Arial, Helvetica, sans-serif">Assignment 
-              using the MOVE verb</font></font></h2>
-</td>
-</tr>
-<tr>
-<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="160">
-<h4 align="left"><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
-</td>
-<td valign="top" width="540">
-<p>In "strongly typed" languages like Modula-2, Pascal or ADA the 
-              assignment operation is simple because assignment is only allowed 
-              between data items with compatible types. The simplicity of assignment 
-              in these languages, is achieved at the "cost" of having a large 
-              number of data types. </p>
-<p>In COBOL there are basically only three data types;</p>
-<ul>
-<li>Alphabetic (PIC A) </li>
-<li>Alphanumeric (PIC X) </li>
-<li>Numeric (PIC 9) </li>
-</ul>
-<p>But this simplicity is achieved only at the cost of having a very 
-              complex assignment statement. </p>
-<p>In COBOL, assignment is achieved using the <font size="-1">MOVE</font> 
-              verb. </p>
-<hr width="50%"/>
-</td>
-</tr>
-<tr>
-<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-<h4 align="left"><font color="#800000" face="Arial, Helvetica, sans-serif">The 
-              MOVE verb</font></h4>
-</td>
-<td valign="top" width="525">
-<p align="left"><u>MOVE</u> Source$#il <u>TO</u> Destination$#i ...</p>
-<p>As we can see from the syntax metalanguage above, the <font size="-1">MOVE</font> 
-              copies data from the source identifier or literal to one or more 
-              destination identifiers. </p>
-<p>Although this sounds simple, the actual operation of the <font size="-1">MOVE</font> 
-              is somewhat more complicated and is governed by a number of rules.</p>
-<p><b><font size="-1">MOVE </font>rules<br/>
-</b>In most other programming languages, data is assigned from the 
-              source item on the right to the destination item on the left (e.g. 
-              Qty = 10;) but in COBOL the <font size="-1">MOVE</font> assigns 
-              data from left to right. The source item is on the left of the word 
-              <font size="-1">TO</font> and the receiving item(s) is on the right. 
-            </p>
-<p>The source and destination identifiers can be group or elementary 
-              data-items. </p>
-<p>When data is moved into an item, the contents of the item are completely 
-              replaced. </p>
-<p>If the number of characters in the source data-item is less than 
-              the number in the destination item, the rest of the destination 
-              item is filled with zeros or spaces. </p>
-<p>If the source data-item is larger than the destination item, the 
-              characters that cannot fit into the destination item will be lost. 
-              This is known as truncation.</p>
-<p>When the destination item is alphanumeric or alphabetic (PIC X 
-              or A), data is copied into the destination area from left to right 
-              with space filling or truncation on the right. </p>
-<p>When the destination item is numeric, or edited numeric, data is 
-              aligned along the decimal point with zero filling or truncation 
-              as necessary. </p>
-<p>When the decimal point is not explicitly specified in either the 
-              source or destination items, the item is treated as if it had an 
-              assumed decimal point immediately after its rightmost character. 
-            </p>
-<p> <b><font size="-1">MOVE</font> combinations<br/>
-</b>Although COBOL is much less restrictive in this respect than 
-              many other languages, certain combinations of sending and receiving 
-              data types are not permitted and will be rejected by the compiler. 
-              The valid and invalid <font size="-1">MOVE</font> combinations are 
-              shown in the diagram below: </p>
-<p align="center"><img height="232" src="Resources/pics/Move2.gif" width="520"/></p>
+</pre
+											>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
+								<div align="center">
+									<hr />
+									<p>
+										<a href="#top">
+											<img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+										/></a>
+									</p>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td align="LEFT" bgcolor="#993300" colspan="2" valign="top" width="700">
+								<h2 align="CENTER" id="part2">
+									<font color="#FFFF00">
+										<font face="Arial, Helvetica, sans-serif">Assignment using the MOVE verb</font>
+									</font>
+								</h2>
+							</td>
+						</tr>
+						<tr>
+							<td align="LEFT" bgcolor="#FFFFCC" valign="top" width="160">
+								<h4 align="left">
+									<font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font>
+								</h4>
+							</td>
+							<td valign="top" width="540">
+								<p>
+									In "strongly typed" languages like Modula-2, Pascal or ADA the assignment operation
+									is simple because assignment is only allowed between data items with compatible
+									types. The simplicity of assignment in these languages, is achieved at the "cost" of
+									having a large number of data types.
+								</p>
+								<p>In COBOL there are basically only three data types;</p>
+								<ul>
+									<li>Alphabetic (PIC A)</li>
+									<li>Alphanumeric (PIC X)</li>
+									<li>Numeric (PIC 9)</li>
+								</ul>
+								<p>
+									But this simplicity is achieved only at the cost of having a very complex assignment
+									statement.
+								</p>
+								<p>
+									In COBOL, assignment is achieved using the
+									<font size="-1">MOVE</font> verb.
+								</p>
+								<hr width="50%" />
+							</td>
+						</tr>
+						<tr>
+							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+								<h4 align="left">
+									<font color="#800000" face="Arial, Helvetica, sans-serif">The MOVE verb</font>
+								</h4>
+							</td>
+							<td valign="top" width="525">
+								<p align="left"><u>MOVE</u> Source$#il <u>TO</u> Destination$#i ...</p>
+								<p>
+									As we can see from the syntax metalanguage above, the
+									<font size="-1">MOVE</font> copies data from the source identifier or literal to one
+									or more destination identifiers.
+								</p>
+								<p>
+									Although this sounds simple, the actual operation of the
+									<font size="-1">MOVE</font> is somewhat more complicated and is governed by a number
+									of rules.
+								</p>
+								<p>
+									<b> <font size="-1">MOVE </font>rules<br /> </b>In most other programming languages,
+									data is assigned from the source item on the right to the destination item on the
+									left (e.g. Qty = 10;) but in COBOL the <font size="-1">MOVE</font> assigns data from
+									left to right. The source item is on the left of the word
+									<font size="-1">TO</font> and the receiving item(s) is on the right.
+								</p>
+								<p>The source and destination identifiers can be group or elementary data-items.</p>
+								<p>
+									When data is moved into an item, the contents of the item are completely replaced.
+								</p>
+								<p>
+									If the number of characters in the source data-item is less than the number in the
+									destination item, the rest of the destination item is filled with zeros or spaces.
+								</p>
+								<p>
+									If the source data-item is larger than the destination item, the characters that
+									cannot fit into the destination item will be lost. This is known as truncation.
+								</p>
+								<p>
+									When the destination item is alphanumeric or alphabetic (PIC X or A), data is copied
+									into the destination area from left to right with space filling or truncation on the
+									right.
+								</p>
+								<p>
+									When the destination item is numeric, or edited numeric, data is aligned along the
+									decimal point with zero filling or truncation as necessary.
+								</p>
+								<p>
+									When the decimal point is not explicitly specified in either the source or
+									destination items, the item is treated as if it had an assumed decimal point
+									immediately after its rightmost character.
+								</p>
+								<p>
+									<b>
+										<font size="-1">MOVE</font>
+										combinations<br /> </b
+									>Although COBOL is much less restrictive in this respect than many other languages,
+									certain combinations of sending and receiving data types are not permitted and will
+									be rejected by the compiler. The valid and invalid
+									<font size="-1">MOVE</font> combinations are shown in the diagram below:
+								</p>
+								<p align="center">
+									<img height="232" src="Resources/pics/Move2.gif" width="520" />
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+								<h4 align="left">
+									<font color="#800000" face="Arial, Helvetica, sans-serif">MOVE examples </font>
+								</h4>
+							</td>
+							<td valign="top" width="525">
+								<p id="com1">
+									Examine the examples in the animation below in combination with the
+									<font color="#000000" size="-1">MOVE</font>
+									rules above. Make sure you understand the why the moves produce the results shown.
+								</p>
+								<p align="center">
+									<a href="Resources/ppz/TC-Commands1.html"
+										><img
+											alt="Click to view the animation"
+											border="0"
+											height="62"
+											src="Resources/pics/i-Animation.gif"
+											width="62"
+									/></a>
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
+								<div align="center">
+									<hr />
+									<p>
+										<a href="#top">
+											<img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+										/></a>
+									</p>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td align="LEFT" bgcolor="#993300" colspan="2" valign="top" width="700">
+								<h2 align="CENTER" id="part3">
+									<font color="#FFFF00">
+										<font face="Arial, Helvetica, sans-serif">Arithmetic in COBOL</font>
+									</font>
+								</h2>
+							</td>
+						</tr>
+						<tr>
+							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+								<h4>
+									<font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font>
+								</h4>
+							</td>
+							<td valign="top" width="525">
+								<div align="center">
+									<p align="left">
+										Most procedural programming languages perform computations by assigning the
+										result of an arithmetic expression or a function to a variable. In COBOL the
+										<font size="-1">COMPUTE</font> verb is used to evaluate arithmetic expressions,
+										but there are also specific commands for adding, subtracting, multiplying and
+										dividing.
+									</p>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+								<h4 align="left">
+									<font color="#800000" face="Arial, Helvetica, sans-serif">Data Movement </font>
+								</h4>
+							</td>
+							<td valign="top" width="525">
+								<p>
+									In a <font size="-1">MOVE</font> operation data is moved from a source item on the
+									left to the destination item(s) on the right. Data movement is from left to right.
+									The same direction of data movement can be observed in the COBOL arithmetic verbs.
+								</p>
+								<p>
+									All the arithmetic verbs, except the
+									<font size="-1">COMPUTE,</font>
+									assign the result of the calculation to the rightmost data-items.
+								</p>
+								<hr width="50%" />
+							</td>
+						</tr>
+						<tr>
+							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+								<h4>
+									<font color="#800000" face="Arial, Helvetica, sans-serif">General Rules </font>
+								</h4>
+							</td>
+							<td valign="top" width="525">
+								<div align="center">
+									<p align="left">
+										All the arithmetic verbs move the result of a calculation into a receiving
+										data-item according to the rules for a numeric move; that is, with alignment
+										along the assumed decimal point and with zero-filling or truncation as
+										necessary.
+									</p>
+									<p align="left">
+										All arithmetic verbs must use numeric literals or numeric data-items (PIC 9)
+										that contain numeric data. There is one exception. Identifiers that appear to
+										the right of the word
+										<font size="-1">GIVING</font> may refer to numeric data-items that contain
+										editing symbols.
+									</p>
+									<p align="left">
+										When the
+										<font size="-1">GIVING</font> phrase is used, the data-item following the word
+										<font size="-1">GIVING</font> is the receiving field of the calculation but it
+										is <b>not</b> one of the statement operands (does not contribute to the result).
+										The original values of all the items before the word
+										<font size="-1">GIVING</font> are left intact.
+									</p>
+									<p align="left">
+										If the
+										<font size="-1">GIVING</font> phrase is not used, the data-item(s) after the
+										word <font size="-1">TO</font>, <font size="-1">FROM</font>,
+										<font size="-1">BY</font> or <font size="-1">INTO </font>both contribute to the
+										result and are receiving fields for it.
+									</p>
+									<p align="left">The maximum size of each operand is 18 digits.</p>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+								<h4>
+									<font color="#800000" face="Arial, Helvetica, sans-serif"> The ROUNDED option</font>
+								</h4>
+							</td>
+							<td valign="top" width="525">
+								<p align="left">
+									All the arithmetic verbs allow the
+									<font size="-1">ROUNDED</font> phrase.
+								</p>
+								<p align="left">
+									The <font size="-1">ROUNDED</font> phrase takes effect when, after decimal point
+									alignment, the result calculated must be truncated on the right hand side. The
+									option adds 1 to the receiving item when the leftmost truncated digit has an
+									absolute value of 5 or greater.
+								</p>
+								<table align="center" bgcolor="#E1FFE1" border="1" width="84%">
+									<tr>
+										<td colspan="4">
+											<div align="center">
+												<b>
+													<font size="-1">ROUNDED</font>
+													examples
+												</b>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th scope="col">Receiving Field</th>
+										<th scope="col">Actual Result</th>
+										<th scope="col">Truncated Result</th>
+										<th scope="col">Rounded Result</th>
+									</tr>
+									<tr>
+										<td>
+											<p><b>PIC 9(3)V9</b></p>
+										</td>
+										<td>
+											<b>123.2<font color="#FF0000">5</font></b>
+										</td>
+										<td><b>123.2</b></td>
+										<td><b>123.3</b></td>
+									</tr>
+									<tr>
+										<td><b>PIC 9(3)V9</b></td>
+										<td>
+											<b>123.2<font color="#FF0000">47</font></b>
+										</td>
+										<td><b>123.2</b></td>
+										<td><b>123.2</b></td>
+									</tr>
+									<tr>
+										<td><b>PIC 9(3)</b></td>
+										<td>
+											<b>123.<font color="#FF0000">25</font></b>
+										</td>
+										<td><b>123</b></td>
+										<td><b>123</b></td>
+									</tr>
+								</table>
 
-</td>
-</tr>
-<tr>
-<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-<h4 align="left"><font color="#800000" face="Arial, Helvetica, sans-serif">MOVE 
-              examples </font></h4>
+								<hr width="50%" />
+							</td>
+						</tr>
+						<tr>
+							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+								<h4>
+									<font color="#800000" face="Arial, Helvetica, sans-serif">ON SIZE ERROR</font>
+								</h4>
+							</td>
+							<td valign="top" width="525">
+								<div align="center">
+									<p align="left">
+										When a computation is performed it is possible for the result to be too large or
+										too small to be contained in the receiving field. When this occurs, there will
+										be truncation of the result. The
+										<font size="-1">ON SIZE ERROR</font>
+										phrase detects this condition.
+									</p>
+									<p align="left">
+										<font size="-1"><b>ON SIZE ERROR</b></font
+										><b> notes<br /> </b>All the arithmetic verbs allow the
+										<font size="-1">ON SIZE ERROR</font>
+										phrase.
+									</p>
+									<p align="left">
+										A size error condition exists when, after decimal point alignment, the result is
+										truncated on either the left or the right hand side.
+									</p>
+									<p align="left">
+										If an arithmetic statement has a
+										<font size="-1">ROUNDED</font> phrase then a size error only occurs if there is
+										truncation on the left-hand side (most significant digits) because if we specify
+										the <font size="-1">ROUNDED </font>option we indicate that we know there will be
+										truncation on the right and are specifying rounding to deal with it.
+									</p>
+									<p align="left">Division by 0 always causes a SIZE ERROR.</p>
+									<p align="left">
+										<font size="-1"><b>ON SIZE ERROR</b></font
+										><b> examples</b>
+									</p>
+									<table
+										align="center"
+										bgcolor="#E1FFE1"
+										border="1"
+										cellpadding="5"
+										cellspacing="0"
+										width="70%"
+									>
+										<tr>
+											<th bgcolor="#FFFFCC" width="45%">
+												<div align="center">
+													<b>
+														<font color="#FF0000">Receiving Field</font>
+													</b>
+												</div>
+											</th>
+											<th bgcolor="#FFFFCC" width="19%">
+												<div align="center">
+													<b>
+														<font color="#FF0000">Actual Result</font>
+													</b>
+												</div>
+											</th>
+											<th bgcolor="#FFFFCC" width="22%">
+												<div align="center">
+													<b>
+														<font color="#FF0000">Truncated Result</font>
+													</b>
+												</div>
+											</th>
+											<th bgcolor="#FFFFCC" width="14%">
+												<div align="center">
+													<b>
+														<font color="#FF0000">Size Error?</font>
+													</b>
+												</div>
+											</th>
+										</tr>
+										<tr>
+											<td width="45%">
+												<b> PIC 9(3)V9</b>
+											</td>
+											<td width="19%">
+												<b>  245.9<font color="#FF0000">6</font></b>
+											</td>
+											<td width="22%">
+												<div align="left">
+													<b>   245.9</b>
+												</div>
+											</td>
+											<td width="14%">
+												<div align="center">
+													<b>
+														<font size="-1">
+															<font color="#000000">YES</font>
+														</font>
+													</b>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td width="45%">
+												<b>PIC 9(3)V9</b>
+											</td>
+											<td width="19%">
+												<div align="left">
+													<b>  <font color="#FF0000">3</font>245.9</b>
+												</div>
+											</td>
+											<td width="22%">
+												<div align="left">
+													<b>   245.9</b>
+												</div>
+											</td>
+											<td width="14%">
+												<div align="center">
+													<b>
+														<font size="-1">YES</font>
+													</b>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td width="45%"><b>PIC 9(3)</b></td>
+											<td width="19%">
+												<div align="left">
+													<b>  324</b>
+												</div>
+											</td>
+											<td width="22%">
+												<div align="left">
+													<b>   324</b>
+												</div>
+											</td>
+											<td width="14%">
+												<div align="center">
+													<b>
+														<font size="-1">NO</font>
+													</b>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td width="45%"><b>PIC 9(3)</b></td>
+											<td width="19%">
+												<div align="left">
+													<b> <font color="#FF0000"> 5</font>324</b>
+												</div>
+											</td>
+											<td width="22%">
+												<div align="left">
+													<b>   324</b>
+												</div>
+											</td>
+											<td width="14%">
+												<div align="center">
+													<b>
+														<font size="-1">YES</font>
+													</b>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td valign="top" width="45%">
+												<b>PIC 9(3)V9 not Rounded</b>
+											</td>
+											<td width="19%">
+												<div align="left">
+													<b>  523.3<font color="#FF0000">5</font></b>
+												</div>
+											</td>
+											<td width="22%">
+												<div align="left">
+													<b>   523.3</b>
+												</div>
+											</td>
+											<td width="14%">
+												<div align="center">
+													<b>
+														<font size="-1">YES</font>
+													</b>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td width="45%">
+												<b>PIC 9(3)V9 Rounded</b>
+											</td>
+											<td width="19%">
+												<b>  523.3<font color="#FF0000">5</font></b>
+											</td>
+											<td width="22%"><b>   523.4</b></td>
+											<td width="14%">
+												<div align="center">
+													<b>
+														<font size="-1">NO</font>
+													</b>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td width="45%">
+												<b>PIC 9(3)V9 Rounded</b>
+											</td>
+											<td width="19%">
+												<div align="left">
+													<b>
+														<font color="#FF0000">  3</font>523.3<font color="#FF0000"
+															>5</font
+														>
+													</b>
+												</div>
+											</td>
+											<td width="22%">
+												<div align="left">
+													<b>   523.4</b>
+												</div>
+											</td>
+											<td width="14%">
+												<div align="center">
+													<b>
+														<font size="-1">YES</font>
+													</b>
+												</div>
+											</td>
+										</tr>
+									</table>
 
+									<hr width="50%" />
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+								<h4 align="left">
+									<font color="#800000" face="Arial, Helvetica, sans-serif">ADD verb </font>
+								</h4>
+							</td>
+							<td valign="top" width="525">
+								<p>
+									<img height="74" src="Resources/pics/Add.gif" width="499" />
+								</p>
+								<p>
+									If the <font size="-1">GIVING</font> phrase is used, everything before the word
+									<font size="-1">GIVING</font> is added together and the <b>combined result</b> is
+									moved into each of the Result#i items.
+								</p>
+								<p>
+									If the <font size="-1">GIVING</font> phrase is not used, everything before the word
+									<font size="-1">TO</font> is added together and the <b>combined result</b> is then
+									added to <b>each</b> of the ValueResult#i items in turn.
+								</p>
+								<hr width="50%" />
+							</td>
+						</tr>
+						<tr>
+							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+								<h4 align="left">
+									<font color="#800000" face="Arial, Helvetica, sans-serif">SUBTRACT verb</font>
+								</h4>
+							</td>
+							<td valign="top" width="525">
+								<div align="center">
+									<p align="left">
+										<img height="96" src="Resources/pics/Sub.gif" width="481" />
+									</p>
+									<p align="left">
+										If the
+										<font size="-1">GIVING</font> phrase is used, everything before the word
+										<font size="-1">FROM</font> is added together and the <b>combined result</b> is
+										subtracted from the Value#il item after the word <font size="-1">FROM</font> and
+										the result is moved into each of the Result#i items.
+									</p>
+									<p align="left">
+										If the
+										<font size="-1">GIVING</font> phrase is not used everything before the word
+										<font size="-1">FROM</font> is added together and the <b>combined result</b> is
+										then subtracted from <b>each</b> of the ValueResult#i items after the word
+										<font size="-1">FROM </font> in turn.
+									</p>
+								</div>
+								<hr width="50%" />
+							</td>
+						</tr>
+						<tr>
+							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+								<h4>
+									<font color="#800000" face="Arial, Helvetica, sans-serif">MULTIPLY verb </font>
+								</h4>
+							</td>
+							<td valign="top" width="525">
+								<p>
+									<img height="72" src="Resources/pics/Mult.gif" width="498" />
+								</p>
+								<p>
+									If the <font size="-1">GIVING</font> phrase is used, then the item to the left of
+									the word <font size="-1">BY</font> is multiplied by the Value#i item to the right of
+									the word <font size="-1">BY</font> and the result is moved into <b>each</b> of the
+									Result#i items.
+								</p>
+								<p>
+									If the <font size="-1">GIVING</font> phrase is not used, then the Value#il to the
+									left of the word <font size="-1">BY</font> is multiplied by <b>each</b> of the
+									ValueResult#i items. The result of each calculation is placed in the ValueResult#i
+									involved in the calculation.
+								</p>
+								<hr width="50%" />
+							</td>
+						</tr>
+						<tr>
+							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+								<h4>
+									<font color="#800000" face="Arial, Helvetica, sans-serif">DIVIDE verb </font>
+								</h4>
+							</td>
+							<td valign="top" width="525">
+								<p>The Divide has two main formats. One produces a remainder and the other does not.</p>
+								<p><b>Format1</b></p>
+								<p>
+									<img height="101" src="Resources/pics/Div1.gif" width="525" />
+								</p>
+								<p>
+									If the <font size="-1">GIVING</font> phrase is used, the Value#il to the left of
+									<font size="-1">BY</font> or <font size="-1">INTO</font> is divided by or into the
+									Value#il to the right of <font size="-1">BY</font> or
+									<font size="-1">INTO</font> and the result of the calculation is moved into
+									<b>each</b> of the Result#i items in turn.
+								</p>
+								<p>
+									If the <font size="-1">GIVING</font> phrase is not used, the item to the left of the
+									word <font size="-1">INTO</font> is divided into each of the ValueResult#i items in
+									turn. The result of each calculation is placed in the ValueResult#i involved in the
+									calculation.
+								</p>
 
-
-
-
-
-</td>
-<td valign="top" width="525">
-<p id="com1">Examine the examples in the animation below 
-              in combination with the <font color="#000000" size="-1">MOVE</font> 
-              rules above. Make sure you understand the why the moves produce 
-              the results shown.</p>
-<p align="center"><a href="Resources/ppz/TC-Commands1.html"><img alt="Click to view the animation" border="0" height="62" src="Resources/pics/i-Animation.gif" width="62"/></a></p>
-</td>
-</tr>
-<tr>
-<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
-<div align="center">
-<hr/>
-<p><a href="#top"> <img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"/></a>
-</p>
-</div>
-</td>
-</tr>
-<tr>
-<td align="LEFT" bgcolor="#993300" colspan="2" valign="top" width="700">
-<h2 align="CENTER" id="part3"><font color="#FFFF00"><font face="Arial, Helvetica, sans-serif">Arithmetic 
-              in COBOL</font></font></h2>
-</td>
-</tr>
-<tr>
-<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font></h4>
-</td>
-<td valign="top" width="525">
-<div align="center">
-<p align="left">Most procedural programming languages perform computations 
-                by assigning the result of an arithmetic expression or a function 
-                to a variable. In COBOL the <font size="-1">COMPUTE</font> verb 
-                is used to evaluate arithmetic expressions, but there are also 
-                specific commands for adding, subtracting, multiplying and dividing. 
-              </p>
-</div>
-</td>
-</tr>
-<tr>
-<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-<h4 align="left"><font color="#800000" face="Arial, Helvetica, sans-serif">Data 
-              Movement </font></h4>
-
-</td>
-<td valign="top" width="525">
-<p>In a <font size="-1">MOVE</font> operation data is moved from a 
-              source item on the left to the destination item(s) on the right. 
-              Data movement is from left to right. The same direction of data 
-              movement can be observed in the COBOL arithmetic verbs. </p>
-<p>All the arithmetic verbs, except the <font size="-1">COMPUTE,</font> 
-              assign the result of the calculation to the rightmost data-items. 
-            </p>
-<hr width="50%"/>
-</td>
-</tr>
-<tr>
-<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-<h4><font color="#800000" face="Arial, Helvetica, sans-serif">General 
-              Rules </font></h4>
-</td>
-<td valign="top" width="525">
-<div align="center">
-<p align="left">All the arithmetic verbs move the result of a calculation 
-                into a receiving data-item according to the rules for a numeric 
-                move; that is, with alignment along the assumed decimal point 
-                and with zero-filling or truncation as necessary. </p>
-<p align="left">All arithmetic verbs must use numeric literals or 
-                numeric data-items (PIC 9) that contain numeric data. There is 
-                one exception. Identifiers that appear to the right of the word 
-                <font size="-1">GIVING</font> may refer to numeric data-items 
-                that contain editing symbols. </p>
-<p align="left">When the <font size="-1">GIVING</font> phrase is 
-                used, the data-item following the word <font size="-1">GIVING</font> 
-                is the receiving field of the calculation but it is <b>not</b> 
-                one of the statement operands (does not contribute to the result). 
-                The original values of all the items before the word <font size="-1">GIVING</font> 
-                are left intact. </p>
-<p align="left">If the <font size="-1">GIVING</font> phrase is not 
-                used, the data-item(s) after the word <font size="-1">TO</font>, 
-                <font size="-1">FROM</font>, <font size="-1">BY</font> or <font size="-1">INTO 
-                </font>both contribute to the result and are receiving fields for
-                it. </p>
-<p align="left">The maximum size of each operand is 18 digits. </p>
-
-</div>
-</td>
-</tr>
-<tr>
-<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-<h4><font color="#800000" face="Arial, Helvetica, sans-serif"> The 
-              ROUNDED option</font></h4>
-
-</td>
-<td valign="top" width="525">
-<p align="left">All the arithmetic verbs allow the <font size="-1">ROUNDED</font> 
-              phrase. </p>
-<p align="left">The <font size="-1">ROUNDED</font> phrase takes effect 
-              when, after decimal point alignment, the result calculated must 
-              be truncated on the right hand side. The option adds 1 to the receiving 
-              item when the leftmost truncated digit has an absolute value of 
-              5 or greater. </p>
-<table align="center" bgcolor="#E1FFE1" border="1" width="84%">
-<tr>
-<td colspan="4">
-<div align="center"><b><font size="-1">ROUNDED</font> examples</b></div>
-</td>
-</tr>
-<tr>
-<th scope="col">Receiving Field</th>
-<th scope="col">Actual Result</th>
-<th scope="col">Truncated Result</th>
-<th scope="col">Rounded Result</th>
-</tr>
-<tr>
-<td>
-<p><b>PIC 9(3)V9</b></p>
-</td>
-<td><b>123.2<font color="#FF0000">5</font></b></td>
-<td><b>123.2</b></td>
-<td><b>123.3</b></td>
-</tr>
-<tr>
-<td><b>PIC 9(3)V9</b></td>
-<td><b>123.2<font color="#FF0000">47</font></b></td>
-<td><b>123.2</b></td>
-<td><b>123.2</b></td>
-</tr>
-<tr>
-<td><b>PIC 9(3)</b></td>
-<td><b>123.<font color="#FF0000">25</font></b></td>
-<td><b>123</b></td>
-<td><b>123</b></td>
-</tr>
-</table>
-
-<hr width="50%"/>
-</td>
-</tr>
-<tr>
-<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-<h4><font color="#800000" face="Arial, Helvetica, sans-serif">ON SIZE 
-              ERROR</font></h4>
-
-
-
-</td>
-<td valign="top" width="525">
-<div align="center">
-<p align="left">When a computation is performed it is possible for 
-                the result to be too large or too small to be contained in the 
-                receiving field. When this occurs, there will be truncation of 
-                the result. The <font size="-1">ON SIZE ERROR</font> phrase detects 
-                this condition. </p>
-<p align="left"><font size="-1"><b>ON SIZE ERROR</b></font><b> notes<br/>
-</b>All the arithmetic verbs allow the <font size="-1">ON SIZE 
-                ERROR</font> phrase.</p>
-<p align="left"> A size error condition exists when, after decimal 
-                point alignment, the result is truncated on either the left or 
-                the right hand side. </p>
-<p align="left">If an arithmetic statement has a <font size="-1">ROUNDED</font> 
-                phrase then a size error only occurs if there is truncation on 
-                the left-hand side (most significant digits) because if we specify 
-                the <font size="-1">ROUNDED </font>option we indicate that we 
-                know there will be truncation on the right and are specifying 
-                rounding to deal with it.</p>
-<p align="left">Division by 0 always causes a SIZE ERROR.</p>
-<p align="left"><font size="-1"><b>ON SIZE ERROR</b></font><b> examples</b></p>
-<table align="center" bgcolor="#E1FFE1" border="1" cellpadding="5" cellspacing="0" width="70%">
-<tr>
-<th bgcolor="#FFFFCC" width="45%">
-<div align="center"><b><font color="#FF0000">Receiving Field</font></b></div>
-</th>
-<th bgcolor="#FFFFCC" width="19%">
-<div align="center"><b><font color="#FF0000">Actual Result</font></b></div>
-</th>
-<th bgcolor="#FFFFCC" width="22%">
-<div align="center"><b><font color="#FF0000">Truncated Result</font></b></div>
-</th>
-<th bgcolor="#FFFFCC" width="14%">
-<div align="center"><b><font color="#FF0000">Size Error?</font></b></div>
-</th>
-</tr>
-<tr>
-<td width="45%"> <b> PIC 9(3)V9</b> </td>
-<td width="19%"><b>  245.9<font color="#FF0000">6</font></b></td>
-<td width="22%">
-<div align="left"><b>   245.9</b></div>
-</td>
-<td width="14%">
-<div align="center"><b><font size="-1"><font color="#000000">YES</font></font></b></div>
-</td>
-</tr>
-<tr>
-<td width="45%"><b>PIC 9(3)V9</b></td>
-<td width="19%">
-<div align="left"><b>  <font color="#FF0000">3</font>245.9</b></div>
-</td>
-<td width="22%">
-<div align="left"><b>   245.9</b></div>
-</td>
-<td width="14%">
-<div align="center"><b><font size="-1">YES</font></b></div>
-</td>
-</tr>
-<tr>
-<td width="45%"><b>PIC 9(3)</b></td>
-<td width="19%">
-<div align="left"><b>  324</b></div>
-</td>
-<td width="22%">
-<div align="left"><b>   324</b></div>
-</td>
-<td width="14%">
-<div align="center"><b><font size="-1">NO</font></b></div>
-</td>
-</tr>
-<tr>
-<td width="45%"><b>PIC 9(3)</b></td>
-<td width="19%">
-<div align="left"><b> <font color="#FF0000"> 5</font>324</b></div>
-</td>
-<td width="22%">
-<div align="left"><b>   324</b></div>
-</td>
-<td width="14%">
-<div align="center"><b><font size="-1">YES</font></b></div>
-</td>
-</tr>
-<tr>
-<td valign="top" width="45%"><b>PIC 9(3)V9 not Rounded</b></td>
-<td width="19%">
-<div align="left"><b>  523.3<font color="#FF0000">5</font></b></div>
-</td>
-<td width="22%">
-<div align="left"><b>   523.3</b></div>
-</td>
-<td width="14%">
-<div align="center"><b><font size="-1">YES</font></b></div>
-</td>
-</tr>
-<tr>
-<td width="45%"><b>PIC 9(3)V9 Rounded</b></td>
-<td width="19%"><b>  523.3<font color="#FF0000">5</font></b></td>
-<td width="22%"><b>   523.4</b></td>
-<td width="14%">
-<div align="center"><b><font size="-1">NO</font></b></div>
-</td>
-</tr>
-<tr>
-<td width="45%"><b>PIC 9(3)V9 Rounded</b></td>
-<td width="19%">
-<div align="left"><b><font color="#FF0000">  3</font>523.3<font color="#FF0000">5</font></b></div>
-</td>
-<td width="22%">
-<div align="left"><b>   523.4</b></div>
-</td>
-<td width="14%">
-<div align="center"><b><font size="-1">YES</font></b></div>
-</td>
-</tr>
-</table>
-
-<hr width="50%"/>
-</div>
-</td>
-</tr>
-<tr>
-<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-<h4 align="left"><font color="#800000" face="Arial, Helvetica, sans-serif">ADD 
-              verb </font></h4>
-</td>
-<td valign="top" width="525">
-<p><img height="74" src="Resources/pics/Add.gif" width="499"/></p>
-<p>If the <font size="-1">GIVING</font> phrase is used, everything 
-              before the word <font size="-1">GIVING</font> is added together 
-              and the <b>combined result</b> is moved into each of the Result#i 
-              items.</p>
-<p>If the <font size="-1">GIVING</font> phrase is not used, everything 
-              before the word <font size="-1">TO</font> is added together and 
-              the <b>combined result</b> is then added to <b>each</b> of the ValueResult#i 
-              items in turn. </p>
-<hr width="50%"/>
-</td>
-</tr>
-<tr>
-<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-<h4 align="left"><font color="#800000" face="Arial, Helvetica, sans-serif">SUBTRACT 
-              verb</font></h4>
-</td>
-<td valign="top" width="525">
-<div align="center">
-<p align="left"><img height="96" src="Resources/pics/Sub.gif" width="481"/></p>
-<p align="left">If the <font size="-1">GIVING</font> phrase is used, 
-                everything before the word <font size="-1">FROM</font> is added 
-                together and the <b>combined result</b> is subtracted from the 
-                Value#il item after the word <font size="-1">FROM</font> and the 
-                result is moved into each of the Result#i items.</p>
-<p align="left">If the <font size="-1">GIVING</font> phrase is not 
-                used everything before the word <font size="-1">FROM</font> is 
-                added together and the <b>combined result</b> is then subtracted 
-                from <b>each</b> of the ValueResult#i items after the word <font size="-1">FROM</font> 
-                in turn.</p>
-</div>
-<hr width="50%"/>
-</td>
-</tr>
-<tr>
-<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-<h4><font color="#800000" face="Arial, Helvetica, sans-serif">MULTIPLY 
-              verb </font></h4>
-</td>
-<td valign="top" width="525">
-<p><img height="72" src="Resources/pics/Mult.gif" width="498"/></p>
-<p>If the <font size="-1">GIVING</font> phrase is used, then the item 
-              to the left of the word <font size="-1">BY</font> is multiplied 
-              by the Value#i item to the right of the word <font size="-1">BY</font> 
-              and the result is moved into <b>each</b> of the Result#i items.</p>
-<p>If the <font size="-1">GIVING</font> phrase is not used, then the 
-              Value#il to the left of the word <font size="-1">BY</font> is multiplied 
-              by <b>each</b> of the ValueResult#i items. The result of each calculation 
-              is placed in the ValueResult#i involved in the calculation.</p>
-<hr width="50%"/>
-</td>
-</tr>
-<tr>
-<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-<h4><font color="#800000" face="Arial, Helvetica, sans-serif">DIVIDE 
-              verb </font></h4>
-</td>
-<td valign="top" width="525">
-<p>The Divide has two main formats. One produces a remainder and the 
-              other does not.</p>
-<p><b>Format1</b></p>
-<p><img height="101" src="Resources/pics/Div1.gif" width="525"/></p>
-<p>If the <font size="-1">GIVING</font> phrase is used, the Value#il
-              to the left of <font size="-1">BY</font> or <font size="-1">INTO</font>
-              is divided by or into the Value#il to the right of <font size="-1">BY</font>
-              or <font size="-1">INTO</font> and the result of the calculation
-              is moved into <b>each</b> of the Result#i items in turn.</p>
-<p>If the <font size="-1">GIVING</font> phrase is not used, the item 
-              to the left of the word <font size="-1">INTO</font> is divided into 
-              each of the ValueResult#i items in turn. The result of each calculation 
-              is placed in the ValueResult#i involved in the calculation.</p>
-
-<p><b>Format2</b></p>
-<p><img height="128" src="Resources/pics/Div2.gif" width="462"/></p>
-<p>In this format the Val#il to the left of <font size="-1">BY</font> 
-              or <font size="-1">INTO</font> is divided by or into the Val#il 
-              to the right of <font size="-1">BY</font> or <font size="-1">INTO</font>. 
-              The quotient part of the computation is assigned to Quot#i and the 
-              remainder is assigned to Rem#i.</p>
-<hr width="50%"/>
-</td>
-</tr>
-<tr>
-<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-<h4><font color="#800000" face="Arial, Helvetica, sans-serif">COMPUTE 
-              verb </font></h4>
-</td>
-<td valign="top" width="525">
-<p><img height="77" src="Resources/pics/Compute.gif" width="509"/></p>
-<p>The <font size="-1">COMPUTE</font> assigns the result of an arithmetic 
-              expression to a data-item. The arithmetic expression is evaluated 
-              according to the normal arithmetic rules. That is, the expression 
-              is normally evaluated from left to right but bracketing and the 
-              precedence rules shown below can change the order of evaluation. 
-            </p>
-<title></title>
-<table align="center" bgcolor="#E1FFE1" border="" cellpadding="7" cellspacing="1" width="259">
-<tr>
-<td bgcolor="#FFFFCC" valign="TOP" width="32%">
-<p align="center">Precedence 
-                </p></td>
-<td bgcolor="#FFFFCC" valign="TOP" width="29%">
-<p align="center">Symbol 
-                </p></td>
-<td bgcolor="#FFFFCC" valign="TOP" width="39%">
-<p align="center">Meaning 
-                </p></td>
-</tr>
-<tr>
-<td valign="TOP" width="32%">
-<p align="center">1. 
-                </p></td>
-<td valign="TOP" width="29%">
-<p align="center"><b>**</b>
-</p></td>
-<td valign="TOP" width="39%">
-<p align="center">Power 
-                </p></td>
-</tr>
-<tr>
-<td rowspan="2" valign="TOP" width="32%">
-<p align="center">2. 
-                </p></td>
-<td valign="TOP" width="29%">
-<p align="center"><b>*</b>
-</p></td>
-<td valign="TOP" width="39%">
-<p align="center">multiply 
-                </p></td>
-</tr>
-<tr>
-<td valign="TOP" width="29%">
-<p align="center"><b>/</b>
-</p></td>
-<td valign="TOP" width="39%">
-<p align="center">divide 
-                </p></td>
-</tr>
-<tr>
-<td rowspan="2" valign="TOP" width="32%">
-<p align="center">3. 
-                </p></td>
-<td valign="TOP" width="29%">
-<p align="center"><b>+</b>
-</p></td>
-<td valign="TOP" width="39%">
-<p align="center">add 
-                </p></td>
-</tr>
-<tr>
-<td valign="TOP" width="29%">
-<p align="center"><b>-</b>
-</p></td>
-<td valign="TOP" width="39%">
-<p align="center">subtract 
-                </p></td>
-</tr>
-</table>
-<p>Note that unlike some other programming languages COBOL provides 
-              the ** expression symbol to represent raising to a power.</p>
-<hr width="50%"/>
-</td>
-</tr>
-<tr>
-<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
-<h4><font color="#800000" face="Arial, Helvetica, sans-serif">Arithmetic
-              examples </font></h4>
-</td>
-<td valign="top" width="525">
-<p id="com2">The animation below contains examples of each 
-              of the arithmetic verbs. The arithmetic statement shows the contents 
-              of the variables before the statement executes. Initially the contents 
-              of the variables after execution are hidden; but you can display 
-              them by clicking with the mouse.</p>
-<p> Before you display the contents of the variables, try to figure 
-              out what they are going to be. If you get the wrong answer, make 
-              sure you understand why the statement produces the answer shown. 
-            </p>
-<p align="center"><a href="Resources/ppz/TC-Commands2.html"><img alt="Click to view the animation" border="0" height="62" src="Resources/pics/i-Animation.gif" width="62"/></a></p>
-</td>
-</tr>
-<tr>
-<td align="left" bgcolor="#FFFFFF" colspan="2" width="700">
-<hr width="100%"/>
-<div align="center">
-<p><a href="#top"> <img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"/></a>
-</p>
-<hr width="100%"/>
-<h3 align="center">Copyright Notice</h3>
-<p align="center">These COBOL course materials are the copyright 
-                property of Michael Coughlan.</p>
-<p align="left"><font size="2">All rights reserved. No part of these 
-                course materials may be reproduced in any form or by any means 
-                - graphic, electronic, mechanical, photocopying, printing, recording, 
-                taping or stored in an information storage and retrieval system 
-                - without the written permission of </font><font size="2">the 
-                author.</font></p>
-<p align="center"><font size="2">(c) Michael Coughlan</font></p>
-</div>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-</table>
-</body>
+								<p><b>Format2</b></p>
+								<p>
+									<img height="128" src="Resources/pics/Div2.gif" width="462" />
+								</p>
+								<p>
+									In this format the Val#il to the left of
+									<font size="-1">BY</font> or <font size="-1">INTO</font> is divided by or into the
+									Val#il to the right of <font size="-1">BY</font> or <font size="-1">INTO</font>. The
+									quotient part of the computation is assigned to Quot#i and the remainder is assigned
+									to Rem#i.
+								</p>
+								<hr width="50%" />
+							</td>
+						</tr>
+						<tr>
+							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+								<h4>
+									<font color="#800000" face="Arial, Helvetica, sans-serif">COMPUTE verb </font>
+								</h4>
+							</td>
+							<td valign="top" width="525">
+								<p>
+									<img height="77" src="Resources/pics/Compute.gif" width="509" />
+								</p>
+								<p>
+									The <font size="-1">COMPUTE</font> assigns the result of an arithmetic expression to
+									a data-item. The arithmetic expression is evaluated according to the normal
+									arithmetic rules. That is, the expression is normally evaluated from left to right
+									but bracketing and the precedence rules shown below can change the order of
+									evaluation.
+								</p>
+								<title></title>
+								<table
+									align="center"
+									bgcolor="#E1FFE1"
+									border=""
+									cellpadding="7"
+									cellspacing="1"
+									width="259"
+								>
+									<tr>
+										<td bgcolor="#FFFFCC" valign="TOP" width="32%">
+											<p align="center">Precedence</p>
+										</td>
+										<td bgcolor="#FFFFCC" valign="TOP" width="29%">
+											<p align="center">Symbol</p>
+										</td>
+										<td bgcolor="#FFFFCC" valign="TOP" width="39%">
+											<p align="center">Meaning</p>
+										</td>
+									</tr>
+									<tr>
+										<td valign="TOP" width="32%">
+											<p align="center">1.</p>
+										</td>
+										<td valign="TOP" width="29%">
+											<p align="center"><b>**</b></p>
+										</td>
+										<td valign="TOP" width="39%">
+											<p align="center">Power</p>
+										</td>
+									</tr>
+									<tr>
+										<td rowspan="2" valign="TOP" width="32%">
+											<p align="center">2.</p>
+										</td>
+										<td valign="TOP" width="29%">
+											<p align="center"><b>*</b></p>
+										</td>
+										<td valign="TOP" width="39%">
+											<p align="center">multiply</p>
+										</td>
+									</tr>
+									<tr>
+										<td valign="TOP" width="29%">
+											<p align="center"><b>/</b></p>
+										</td>
+										<td valign="TOP" width="39%">
+											<p align="center">divide</p>
+										</td>
+									</tr>
+									<tr>
+										<td rowspan="2" valign="TOP" width="32%">
+											<p align="center">3.</p>
+										</td>
+										<td valign="TOP" width="29%">
+											<p align="center"><b>+</b></p>
+										</td>
+										<td valign="TOP" width="39%">
+											<p align="center">add</p>
+										</td>
+									</tr>
+									<tr>
+										<td valign="TOP" width="29%">
+											<p align="center"><b>-</b></p>
+										</td>
+										<td valign="TOP" width="39%">
+											<p align="center">subtract</p>
+										</td>
+									</tr>
+								</table>
+								<p>
+									Note that unlike some other programming languages COBOL provides the ** expression
+									symbol to represent raising to a power.
+								</p>
+								<hr width="50%" />
+							</td>
+						</tr>
+						<tr>
+							<td align="LEFT" bgcolor="#FFFFCC" valign="TOP" width="175">
+								<h4>
+									<font color="#800000" face="Arial, Helvetica, sans-serif"
+										>Arithmetic examples
+									</font>
+								</h4>
+							</td>
+							<td valign="top" width="525">
+								<p id="com2">
+									The animation below contains examples of each of the arithmetic verbs. The
+									arithmetic statement shows the contents of the variables before the statement
+									executes. Initially the contents of the variables after execution are hidden; but
+									you can display them by clicking with the mouse.
+								</p>
+								<p>
+									Before you display the contents of the variables, try to figure out what they are
+									going to be. If you get the wrong answer, make sure you understand why the statement
+									produces the answer shown.
+								</p>
+								<p align="center">
+									<a href="Resources/ppz/TC-Commands2.html"
+										><img
+											alt="Click to view the animation"
+											border="0"
+											height="62"
+											src="Resources/pics/i-Animation.gif"
+											width="62"
+									/></a>
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td align="left" bgcolor="#FFFFFF" colspan="2" width="700">
+								<hr width="100%" />
+								<div align="center">
+									<p>
+										<a href="#top">
+											<img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+										/></a>
+									</p>
+									<hr width="100%" />
+									<h3 align="center">Copyright Notice</h3>
+									<p align="center">
+										These COBOL course materials are the copyright property of Michael Coughlan.
+									</p>
+									<p align="left">
+										<font size="2"
+											>All rights reserved. No part of these course materials may be reproduced in
+											any form or by any means - graphic, electronic, mechanical, photocopying,
+											printing, recording, taping or stored in an information storage and
+											retrieval system - without the written permission of
+										</font>
+										<font size="2">the author.</font>
+									</p>
+									<p align="center">
+										<font size="2">(c) Michael Coughlan</font>
+									</p>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
 </html>
