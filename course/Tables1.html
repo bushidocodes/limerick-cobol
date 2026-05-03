@@ -408,12 +408,10 @@ DISPLAY "County 3 total is ", County3TaxTotal
               numeric value between 1 and the size of the table; even a simple 
               arithmetic expression.</p>
 <p align="left"><a href="Resources/ppz/TC-Tables1.html"><img border="0" height="71" src="Resources/pics/Tables1.gif" width="456"/></a></p>
-<blockquote>
 <pre class="language-cobol" align="left"><code class="language-cobol">MOVE 10 TO CountyTax(3)
 ADD TaxPaid TO CountyTax(CountyCode)
 ADD TaxPaid TO CountyTax(CountyCode + 1)
 ADD TaxPaid TO CountyTax(CountyCode - 2)</code></pre>
-</blockquote>
 <hr align="center" size="1" width="100%"/>
 </td>
 </tr>
@@ -533,10 +531,8 @@ END-EVALUATE.</code></pre>
 <p>If we declare a CountyName table and fill its elements with the 
               names of the counties, we can replace the <font size="-1">EVALUATE</font> 
               solution above, with one simple statement -</p>
-<blockquote>
 <pre class="language-cobol"><code class="language-cobol">DISPLAY CountyName(Idx) " tax total is " CountyTax(Idx).
 </code></pre>
-</blockquote>
 <p>We can incorporate this statement into the County Tax Report program 
               as follows - </p>
 <table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="475">
@@ -650,14 +646,12 @@ Begin.
               1, the second into the value 2 and so on. </p>
 <p align="left">One approach we might try, is the now discredited<font size="-1"> 
               EVALUATE</font> based solution. For example -</p>
-<blockquote>
 <pre class="language-cobol"><code class="language-cobol">EVALUATE County
    WHEN "Carlow" MOVE 1 TO CountyNum
    WHEN "Cavan"  MOVE 2 TO CountyNum
    ..... 24 more WHEN branches
 END-EVALUATE
 ADD TaxPaid TO CountyTax(CountyNum)</code></pre>
-</blockquote>
 <p align="left">But by now we realise that there must be a more elegant 
               solution. The question is - what is it?</p>
 
