@@ -270,14 +270,12 @@
               after, the <font size="-1">PICTURE</font> clause that defines the 
               element. For instance, we might declare the <i>CountyTaxTable</i> 
               as - </p>
-<blockquote>
 <pre class="language-cobol"><code class="language-cobol">01 CountyTax   PIC 9(8)V99  OCCURS 26 TIMES.</code></pre>
 <blockquote>
 <p>or as</p>
 </blockquote>
 <pre class="language-cobol"><code class="language-cobol">01 CountyTax   OCCURS 26 TIMES PIC 9(8)V99.
 </code></pre>
-</blockquote>
 <div align="left">
 <p>We can represent the county tax table diagrammatically as follows;</p>
 <p align="center"><a href="Resources/ppz/TC-Tables1.html"><img border="0" height="71" src="Resources/pics/Tables1.gif" width="456"/></a>
@@ -565,20 +563,17 @@
 <td valign="top" width="525">
 <p>Q1. Examine the CountyTaxTable described above. Suppose that in 
               our program we have the following statements;</p>
-<blockquote>
 <pre class="language-cobol"><code class="language-cobol">MOVE ZEROS TO CountyTax(3)
 MOVE 67 TO PayerCount(6)
 MOVE 1234.45 TO CountyTax(4)
 MOVE ZEROS TO CountyTaxDetails(4)
 MOVE ZEROS TO CountyTaxTable</code></pre>
-</blockquote>
             What effect on the table will each of these statements have? Copy 
             the table diagram above, fill in your answer and then click on the 
             animation icon below to see the animated solution. 
             <p align="center"><a href="Resources/ppz/TC-Tables3.html"><img border="0" height="62" src="Resources/pics/i-Animation.gif" width="62"/></a></p>
 
 <p>Q2. What is the difference between the following data descriptions;</p>
-<blockquote>
 <pre class="language-cobol"><code class="language-cobol">01 CountyTaxTable1.
    02 CountyTaxDetails OCCURS 26 TIMES.
       03 CountyTax   PIC 9(8)V99.  
@@ -591,7 +586,6 @@ MOVE ZEROS TO CountyTaxTable</code></pre>
       03 CountyTax   PIC 9(8)V99 OCCURS 26 TIMES.  
       03 PayerCount  PIC 9(7)OCCURS 26 TIMES. 
 </code></pre>
-</blockquote>
 <form action="Tables2.html" method="post">
 <div align="center">
 <select name="select" size="1">
@@ -834,17 +828,14 @@ DisplayCountyTaxes.
               of a table might we require? We can see that six totals are needed, 
               so we might think that the six element, single-dimension, table 
               shown below might do the trick.</p>
-<blockquote>
 <pre class="language-cobol"><code class="language-cobol">01 PopulationTable.
    02 PopTotal PIC 9(6) OCCURS 6 TIMES.</code></pre>
-</blockquote>
 <p align="left">The problem with this is - what can we use as an index 
               into the table? No single item in the record will do. The index 
               must be a combination of the <i>AgeCategory</i> and the <i>Gender</i>. 
               Of course, we could use an <font size="-1">EVALUATE</font>, as shown 
               below, to map the <i>AgeCategory</i> and <i>Gender</i> to a combined 
               index value.</p>
-<blockquote>
 <pre class="language-cobol" align="left"><code class="language-cobol">EVALUATE AgeCategory ALSO Gender
   WHEN        1      ALSO    1      MOVE 1 TO Idx
   WHEN        1      ALSO    2      MOVE 2 TO Idx
@@ -852,7 +843,6 @@ DisplayCountyTaxes.
           etc...
 END-EVALUATE.
 </code></pre>
-</blockquote>
 <p align="left">Or we could manipulate the values arithmetically to 
               map them to the index value. For instance <i>COMPUTE Idx = ((AgeCategory 
               -1) * 2) + Gender</i></p>
@@ -912,13 +902,11 @@ END-EVALUATE.
 <p>Sketch the diagram above on a piece of paper and then show how 
               the contents of the table are effected when the following statements 
               are executed.</p>
-<blockquote>
 <pre class="language-cobol"><code class="language-cobol">MOVE ZEROS TO PopulationTable
 MOVE 123 TO PopTotal(3,1)
 MOVE 456 TO Gender(3,2)
 ADD 1255 TO PopTotal(2,2)
 MOVE ZEROS TO Age(3)</code></pre>
-</blockquote>
 <p>Click on the animation icon below to see an animated answer.</p>
 <p align="center"><a href="Resources/ppz/TC-Tables4.html"><img border="0" height="62" src="Resources/pics/i-Animation.gif" width="62"/></a></p>
 <hr size="1" width="100%"/>
@@ -993,14 +981,12 @@ MOVE ZEROS TO Age(3)</code></pre>
 <p>Sketch the diagram above on a piece of paper and then show how 
               the contents of the table are effected when the following statements 
               are executed.</p>
-<blockquote>
 <pre class="language-cobol"><code class="language-cobol">MOVE ZEROS TO County(1)
 MOVE ZEROS TO Age(2,3)
 MOVE ZEROS TO PopTotal(2,1,2)
 MOVE 56 TO PopTotal(1,3,2)
 MOVE 12 TO PopTotal(2,1,1) 
 MOVE ZEROS TO PopulationTable</code></pre>
-</blockquote>
 <p>Click on the animation icon below to see an animated answer.</p>
 <p align="center"><a href="Resources/ppz/TC-Tables5.html"><img border="0" height="62" src="Resources/pics/i-Animation.gif" width="62"/></a></p>
 <hr size="1" width="100%"/>
@@ -1070,13 +1056,11 @@ MOVE ZEROS TO PopulationTable</code></pre>
               and <i>PopTotal</i> requires three subscripts (three superordinate 
               <font size="-1">OCCURS</font> clauses).</p>
 <p><b>Examples of use</b></p>
-<blockquote>
 <pre class="language-cobol"><code class="language-cobol">MOVE ZEROS TO County(23)
 ADD 1643 TO CarOwnersTotal(15)
 MOVE ZEROS TO Age(17,3)
 MOVE ZEROS TO Gender(18,3,2)
 ADD 56 TO PopTotal(12,3,2)</code></pre>
-</blockquote>
 
 </td>
 </tr>
@@ -1143,10 +1127,8 @@ ADD 56 TO PopTotal(12,3,2)</code></pre>
               us to solve this problem neatly because we can <font size="-1">UNSTRING</font> 
               the number into <i>TextValue</i> and then treat <i>TextValue </i>as 
               if it were described as PIC 9(5)V99. For instance - </p>
-<blockquote>
 <pre class="language-cobol" align="left"><code class="language-cobol">01  TextValue    PIC X(7).
 01  NumericValue REDEFINES TextValue PIC 9(5)V99.</code></pre>
-</blockquote>
 <p align="left"><b>Example 2<br/>
 </b>The<font size="-1"> REDEFINES</font> clause is not just used 
               to create pre-filled tables. It is used whenever a programmer needs 
@@ -1170,7 +1152,6 @@ ADD 56 TO PopTotal(12,3,2)</code></pre>
               of storage holding the date so that we can access the correct day, 
               month and year fields without recourse to special programming. For 
               instance, if define the <i>InputDate</i> as - </p>
-<blockquote>
 <pre class="language-cobol" align="left"><code class="language-cobol">01 InputDate.
    02 DateType         PIC 9.
       88 DateIsSort    VALUE 1.
@@ -1189,9 +1170,7 @@ ADD 56 TO PopTotal(12,3,2)</code></pre>
       03 USDay         PIC 99.
       03 USYear        PIC 9(4).
 </code></pre>
-</blockquote>
 <p>we can use statements like -</p>
-<blockquote>
 <pre class="language-cobol" align="left"><code class="language-cobol">EVALUATE TRUE
     WHEN DateIsSort
            DISPLAY "SortDate format is yyyy-mm-dd "
@@ -1203,7 +1182,6 @@ ADD 56 TO PopTotal(12,3,2)</code></pre>
            DISPLAY "USDate format is mm-dd-yyyy "
            DISPLAY  USMonth "-" USDay "-" USYear
 END-EVALUATE </code></pre>
-</blockquote>
 <p>- and still get the correct values displayed.</p>
 <p align="left"><b>Example 3<br/>
 </b>The <font size="-1">REDEFINES</font> clause is also useful when 
@@ -1211,12 +1189,10 @@ END-EVALUATE </code></pre>
               different places. For instance the value 12345 is treated as if 
               it were 12.345 if we refer to <i>10Rate</i>, 123.45 if we refer 
               to <i>100Rate</i>, and 1234.5 if we refer to <i>1000Rate</i>.</p>
-<blockquote>
 <pre class="language-cobol" align="left"><code class="language-cobol">01 Rates.
    02 10Rate                    PIC 99V999.
    02 100Rate  REDEFINES 10Rate PIC 999V99.
    02 1000Rate REDEFINES 10Rate PIC 9999V9.</code></pre>
-</blockquote>
 
 <p align="left"><b>Animated versions of the examples above</b></p>
 <p align="center"><a href="Resources/ppz/TC-Tables7.html"><img border="0" height="62" src="Resources/pics/i-Animation.gif" width="62"/></a></p>

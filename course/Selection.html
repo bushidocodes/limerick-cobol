@@ -494,7 +494,6 @@ END-IF
 </tr>
 </table>
 <p><b>Example</b></p>
-<blockquote>
 <pre class="language-cobol"><code class="language-cobol">IF Row &gt; 0 AND Row &lt; 26 THEN
    DISPLAY "On Screen" 
 END-IF 
@@ -503,7 +502,6 @@ IF NOT Amnt1 &lt; 10 OR Amnt2 = 50 AND Amnt3 &gt; 150 THEN
    DISPLAY "Done"
 END-IF
 </code></pre>
-</blockquote>
 <p><b>The effect of bracketing<br/>
 </b>Let's examine the last example above to see what difference 
               bracketing makes to the order of evaluation.</p>
@@ -629,9 +627,7 @@ END-IF
 <p>For instance, in the first example in Complex Conditions above, 
               we check to see if Row is greater than 0 and Row is less than 26. 
               We could rewrite this statement using Implied Subjects as-</p>
-<blockquote>
 <pre class="language-cobol"><code class="language-cobol">IF Row &gt; 0 AND &lt; 26 THEN etc</code></pre>
-</blockquote>
 <p>the Implied Subject here is Row.</p>
 <p><b>Examples</b><br/>
               In these examples the full condition is shown first and is followed 
@@ -674,7 +670,6 @@ END-IF
 <td valign="top" width="525">
 <p> COBOL allows nested <font size="-1">IF</font> statements.</p>
 <p> For example: </p>
-<blockquote>
 <pre class="language-cobol"><code class="language-cobol">IF ( VarA &lt; 10 ) AND ( VarB NOT &gt; VarC ) THEN 
    IF VarG = 14 THEN 
         DISPLAY "First"
@@ -684,7 +679,6 @@ END-IF
  ELSE DISPLAY "Third" 
 END-IF 
 </code></pre>
-</blockquote>
 <p>The table below contains representations of the variables used 
               in the nested <font size="-1">Ifs</font> above. In each instance, 
               see if you can figure out which of the messages will be displayed. 
@@ -869,26 +863,22 @@ END-IF
 </blockquote>
 <p align="left">Several Condition Names may be associated with a single 
               data item, </p>
-<blockquote>
 <pre class="language-cobol" align="left"><code class="language-cobol">e.g. 02 AgeInYears  PIC 9(3). 
         88 Child    VALUE 0  THRU 12. 
         88 Teenager VALUE 13 THRU 19. 
         88 Adult    VALUE 21 THRU 999. 
 </code></pre>
-</blockquote>
 <blockquote>
 </blockquote>
 <p align="left">More than one Condition Names may be true at the same 
               time. For instance, if AgeInYears contains the value 20 both Teenager 
               and Voter will be true.</p>
-<blockquote>
 <pre class="language-cobol" align="left"><code class="language-cobol">E.g. 02 AgeInYears  PIC 9(3). 
         88 Child    VALUE 0  THRU 12. 
         88 Teenager VALUE 13 THRU 19. 
         88 Adult    VALUE 21 THRU 999.
         88 Voter    VALUE 18 THRU 999. 
 </code></pre>
-</blockquote>
 
 <p align="left"><b>Condition Name notes</b></p>
 <ul>

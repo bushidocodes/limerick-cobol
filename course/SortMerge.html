@@ -263,14 +263,11 @@
                       The cost per unit is 0.10.</p>
 <p>The calls file in an unordered Sequential file. The record 
                       description is as follows; </p>
-<blockquote>
 <pre class="language-cobol"><code class="language-cobol">FIELD          TYPE   LENGTH        VALUE
 SubscriberNum    9      8    00000001 - 99999999
 UnitsUsed        9      5       00001 - 99999</code></pre>
-</blockquote>
 <p>The report must be printed on ascending subscriber number 
                       and has the following format;</p>
-<blockquote>
 <pre class="language-cobol"><code class="language-cobol">Telephone Analysis Monthly Report</code></pre>
 <pre class="language-cobol"><code class="language-cobol">
 SubscriberNum      ValueOfCalls
@@ -280,7 +277,6 @@ SubscriberNum      ValueOfCalls
   99999999         999,999.99
 -------------------------------
 Total value =  999,999,999.99</code></pre>
-</blockquote>
 </td>
 </tr>
 </table>
@@ -317,7 +313,6 @@ Total value =  999,999,999.99</code></pre>
                   not as easy as the control break solution) there would be serious 
                   performance implications. For each of the millions of records 
                   in the file we would have to;</p>
-<blockquote>
 <pre class="language-cobol"><code class="language-cobol">Read the Sequential File
 IF the record already exists THEN
    Read the Relative Record
@@ -326,7 +321,6 @@ IF the record already exists THEN
 ELSE
    Write a new Relative Record to the file
 END-IF</code></pre>
-</blockquote>
 <p align="left">And when the calls file ended we would have to 
                   read through the entire Relative file again to create the report.</p>
 <p align="left">We can arrive at the most viable solution by using 
@@ -549,12 +543,10 @@ Begin.
               will fail.</p>
 <p align="center"><img height="270" src="Resources/pics/Sort2.gif" width="470"/>
 </p>
-<blockquote>
 <pre class="language-cobol" align="center"><code class="language-cobol">SORT WorkFile ON ASCENDING SubscriberNumWF
      USING  CallsFile
      GIVING SortedCallsFile.
 </code></pre>
-</blockquote>
 <hr align="center" size="1" width="100%"/>
 </td>
 </tr>
@@ -572,12 +564,10 @@ Begin.
               below. The table contains a sales file that has been sorted into 
               descending VendorNumber, within ascending ProvinceCode, by the following 
               <font size="-1">SORT</font> statement; </p>
-<blockquote>
 <pre class="language-cobol" align="left"><code class="language-cobol">SORT WorkFile ON ASCENDING ProvinceCode 
                  DESCENDING VendorNumber
                  USING SalesFile
                  GIVING SortedSalesFile</code></pre>
-</blockquote>
 <p align="left">Notice that ProvinceCode is the major key, and that 
               VendorNumber is only in descending sequence, <i>within</i> ProvinceCode. 
               The first key named in a <font size="-1">SORT</font> statement is 
@@ -822,12 +812,10 @@ SORT WorkFile ON ASCENDING CountryNameWF, CustomerNameWF
               the records.</p>
 
 <p align="center"><img height="240" src="Resources/pics/Sort5.gif" width="435"/></p>
-<blockquote>
 <pre class="language-cobol"><code class="language-cobol">SORT WorkFile ON ASCENDING CountryNameWF
               INPUT PROCEDURE IS SelectForeignGuests
               GIVING SortedGuestsFile.
 </code></pre>
-</blockquote>
 <hr align="center" size="1" width="100%"/>
 </td>
 </tr>
