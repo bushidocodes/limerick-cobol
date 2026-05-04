@@ -243,11 +243,11 @@
 					<ol>
 						<li>Understand concepts and terminology like file, record, field and record buffer.</li>
 						<li>Be able to write the file and record declarations for a Sequential File.</li>
-						<li>Understand how <font size="-1">READ</font> verbs works</li>
+						<li>Understand how <code class="language-cobol">READ</code> verbs works</li>
 						<li>
-							Be able to use the <font size="-1">READ</font>, <font size="-1">WRITE</font>,
-							<font size="-1">OPEN</font> and <font size="-1">CLOSE</font> verbs to process a Sequential
-							File.
+							Be able to use the <code class="language-cobol">READ</code>,
+							<code class="language-cobol">WRITE</code>, <code class="language-cobol">OPEN</code> and
+							<code class="language-cobol">CLOSE</code> verbs to process a Sequential File.
 						</li>
 					</ol>
 					<hr width="50%" />
@@ -419,12 +419,13 @@
 				<td valign="top" width="525">
 					<p>If a program processes more than one file, a record buffer must be defined for each file.</p>
 					<p>
-						To process all the records in an <font size="-1">INPUT</font> file, we must ensure that each
-						record instance is copied (read) from the file, into the record buffer, when required.
+						To process all the records in an <code class="language-cobol">INPUT</code> file, we must ensure
+						that each record instance is copied (read) from the file, into the record buffer, when required.
 					</p>
 					<p>
-						To create an <font size="-1">OUTPUT</font> file containing data records, we must ensure that
-						each record is placed in the record buffer and then transferred (written) to the file.
+						To create an <code class="language-cobol">OUTPUT</code> file containing data records, we must
+						ensure that each record is placed in the record buffer and then transferred (written) to the
+						file.
 					</p>
 					<p>
 						To transfer a record from an input file to an output file we must read the record into the input
@@ -577,9 +578,11 @@
 				<td height="355" valign="top" width="525">
 					<p>
 						The record type/template/buffer of every file used in a program must be described in the
-						<font size="-1">FILE SECTION</font> by means of an <font size="-1">FD</font> (file description)
-						entry. The <font size="-1">FD</font> entry consists of the letters <font size="-1">FD</font> and
-						an internal name that the programmer assigns to the file.
+						<code class="language-cobol">FILE SECTION</code> by means of an
+						<code class="language-cobol">FD</code> (file description) entry. The
+						<code class="language-cobol">FD</code> entry consists of the letters
+						<code class="language-cobol">FD</code> and an internal name that the programmer assigns to the
+						file.
 					</p>
 					<p>So the full file description for the students file might be;.</p>
 					<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="58%">
@@ -623,12 +626,14 @@ FD StudentFile.
 						with the actual name of the program on disk?
 					</p>
 					<p>
-						The internal file name used in a file's <font size="-1">FD</font> entry is connected to an
-						external file (on disk, tape or <font size="-1">CD-ROM</font>) by means of the
-						<font size="-1">SELECT</font> and <font size="-1">ASSIGN</font> clause. The
-						<font size="-1">SELECT</font> and <font size="-1">ASSIGN</font> clause is an entry in the
-						<font size="-1">FILE-CONTRO</font>L paragraph in the
-						<font size="-1">INPUT-OUTPUT SECTION</font> in the <font size="-1">ENVIRONMENT DIVISION</font>.
+						The internal file name used in a file's <code class="language-cobol">FD</code> entry is
+						connected to an external file (on disk, tape or <font size="-1">CD-ROM</font>) by means of the
+						<code class="language-cobol">SELECT</code> and
+						<code class="language-cobol">ASSIGN</code> clause. The
+						<code class="language-cobol">SELECT</code> and <code class="language-cobol">ASSIGN</code> clause
+						is an entry in the <code class="language-cobol">FILE-CONTROL</code> paragraph in the
+						<code class="language-cobol">INPUT-OUTPUT SECTION</code> in the
+						<code class="language-cobol">ENVIRONMENT DIVISION</code>.
 					</p>
 					<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="58%">
 						<tr>
@@ -692,24 +697,20 @@ FD StudentFile.
 							The Microfocus COBOL compiler recognizes two kinds of Sequential File organization
 						</p>
 						<p align="center">
-							<font size="-1">LINE SEQUENTIAL</font><br />
+							<code class="language-cobol">LINE SEQUENTIAL</code><br />
 							and
-							<font size="-1"
-								><br />
-								RECORD SEQUENTIAL</font
-							>.
+							<br /><code class="language-cobol">RECORD SEQUENTIAL</code>.
 						</p>
 						<p align="left">
-							<font size="-1"></font>
-							<font size="-1">LINE SEQUENTIAL</font> files, are files in which each record is followed by
-							the carriage return and line feed characters. These are the kind of files produced by a text
-							editor such as Notepad.
+							<code class="language-cobol">LINE SEQUENTIAL</code> files, are files in which each record is
+							followed by the carriage return and line feed characters. These are the kind of files
+							produced by a text editor such as Notepad.
 						</p>
 						<p align="left">
-							<font size="-1">RECORD SEQUENTIAL</font> files, are files where the file consists of a
-							stream of bytes. Only the fact that we know the size of each record allows us to retrieve
-							them. Files that are not record based, can be processed by defining them as
-							<font size="-1">RECORD SEQUENTIAL</font>.
+							<code class="language-cobol">RECORD SEQUENTIAL</code> files, are files where the file
+							consists of a stream of bytes. Only the fact that we know the size of each record allows us
+							to retrieve them. Files that are not record based, can be processed by defining them as
+							<code class="language-cobol">RECORD SEQUENTIAL</code>.
 						</p>
 						<p align="left">
 							The <i>ExternalFileReference</i> can be a simple file name, or a full, or a partial, file
@@ -740,12 +741,13 @@ SELECT StudentFile
 				<td valign="top" width="525">
 					<div align="center">
 						<p align="left">
-							The <font size="-1">SELECT</font> and <font size="-1">ASSIGN</font> clause allows us to
-							assign a meaningful name to an actual file on a storage device. The advantage of this is
-							that it makes our programs more readable and more easy to maintain. If the location of the
-							file, or the medium on which the file is held, changes then the only change we need to make
-							to our program, is to change the entry in the <font size="-1">SELECT</font> and
-							<font size="-1">ASSIGN</font> clause.
+							The <code class="language-cobol">SELECT</code> and
+							<code class="language-cobol">ASSIGN</code> clause allows us to assign a meaningful name to
+							an actual file on a storage device. The advantage of this is that it makes our programs more
+							readable and more easy to maintain. If the location of the file, or the medium on which the
+							file is held, changes then the only change we need to make to our program, is to change the
+							entry in the <code class="language-cobol">SELECT</code> and
+							<code class="language-cobol">ASSIGN</code> clause.
 						</p>
 					</div>
 				</td>
@@ -780,8 +782,9 @@ SELECT StudentFile
 				<td valign="top" width="525">
 					<p>
 						Sequential files are uncomplicated. To write programs that process Sequential Files you only
-						need to know four new verbs - the <font size="-1">OPEN</font>, <font size="-1">CLOSE</font>,
-						<font size="-1">READ</font> and <font size="-1">WRITE</font>.
+						need to know four new verbs - the <code class="language-cobol">OPEN</code>,
+						<code class="language-cobol">CLOSE</code>, <code class="language-cobol">READ</code> and
+						<code class="language-cobol">WRITE</code>.
 					</p>
 					<p>
 						You must ensure that (before terminating) your program closes all the files it has opened.
@@ -814,30 +817,32 @@ SELECT StudentFile
 					<p align="left">
 						Before your program can access the data in an input file or place data in an output file, you
 						must make the file available to the program by
-						<font size="-1">OPEN</font>ing it.
+						<code class="language-cobol">OPEN</code>ing it.
 					</p>
 					<p>
 						When you open a file you have to indicate how you intend to use it (e.g.
-						<font size="-1">INPUT</font>, <font size="-1">OUTPUT</font>, <font size="-1">EXTEND</font>) so
-						that the system can manage the file correctly.Opening a file does not transfer any data to the
-						record buffer, it simply provides access.
+						<code class="language-cobol">INPUT</code>, <code class="language-cobol">OUTPUT</code>,
+						<code class="language-cobol">EXTEND</code>) so that the system can manage the file
+						correctly.Opening a file does not transfer any data to the record buffer, it simply provides
+						access.
 					</p>
 					<p>
-						<b> <font size="-1">OPEN</font> notes<br /> </b> When a file is opened for
-						<font size="-1">INPUT</font> or <font size="-1">EXTEND</font>, the file must exist or the
-						<font size="-1">OPEN</font> will fail.
+						<b> <code class="language-cobol">OPEN</code> notes<br /> </b> When a file is opened for
+						<code class="language-cobol">INPUT</code> or <code class="language-cobol">EXTEND</code>, the
+						file must exist or the <code class="language-cobol">OPEN</code> will fail.
 					</p>
 					<p>
-						When a file is opened for <font size="-1">INPUT</font>, the <i>Next Record Pointer</i> is
-						positioned at the beginning of the file.
+						When a file is opened for <code class="language-cobol">INPUT</code>, the
+						<i>Next Record Pointer</i>
+						is positioned at the beginning of the file.
 					</p>
 					<p>
-						When the file is opened for <font size="-1">EXTEND</font>, the Next Record Pointer is positioned
-						after the last record in the file. This allows records to be appended to the file.
+						When the file is opened for <code class="language-cobol">EXTEND</code>, the Next Record Pointer
+						is positioned after the last record in the file. This allows records to be appended to the file.
 					</p>
 					<p>
-						When a file is opened for <font size="-1">OUTPUT</font>, it is created if it does not exist, and
-						is overwritten, if it already exists.
+						When a file is opened for <code class="language-cobol">OUTPUT</code>, it is created if it does
+						not exist, and is overwritten, if it already exists.
 					</p>
 					<hr width="50%" />
 				</td>
@@ -876,18 +881,18 @@ SELECT StudentFile
 						The READ copies a record occurrence/instance from the file and places it in the record buffer.
 					</p>
 					<p>
-						<b> <font size="-1">READ</font> notes<br /> </b> When the <font size="-1">READ</font> attempts
-						to read a record from the file and encounters the end of file marker, the
-						<font size="-1">AT END</font> is triggered and the <i>StatementBlock</i> following the
-						<font size="-1">AT END</font> is executed.
+						<b> <code class="language-cobol">READ</code> notes<br /> </b> When the
+						<code class="language-cobol">READ</code> attempts to read a record from the file and encounters
+						the end of file marker, the <code class="language-cobol">AT END</code> is triggered and the
+						<i>StatementBlock</i> following the <code class="language-cobol">AT END</code> is executed.
 					</p>
 					<p>
-						Using the <font size="-1">INTO</font> <i>Identifier</i> clause, causes the data to be read into
-						the record buffer and then copied from there, to the <i>Identifier</i>, in one operation. When
-						this option is used, there will be two copies of the data. One in the record buffer and one in
-						the <i>Identifier</i>. Using this clause is the equivalent of executing a
-						<font size="-1">READ</font> and then moving the contents of the record buffer to the
-						<i>Identifier</i>.
+						Using the <code class="language-cobol">INTO</code> <i>Identifier</i> clause, causes the data to
+						be read into the record buffer and then copied from there, to the <i>Identifier</i>, in one
+						operation. When this option is used, there will be two copies of the data. One in the record
+						buffer and one in the <i>Identifier</i>. Using this clause is the equivalent of executing a
+						<code class="language-cobol">READ</code> and then moving the contents of the record buffer to
+						the <i>Identifier</i>.
 					</p>
 				</td>
 			</tr>
@@ -899,12 +904,13 @@ SELECT StudentFile
 				</td>
 				<td valign="top" width="525">
 					<p>
-						The animation below demonstrates how the <font size="-1">READ</font> works. When a record is
-						read it is copied from the backing storage file into the record buffer in
-						<font size="-1">RAM</font>. When an attempt to <font size="-1">READ</font> detects the end of
-						file the <font size="-1">AT END</font> is triggered and the condition name EndOfFile is set to
-						true. Since the condition name is set up as shown below, setting it to true fills the whole
-						record with <font size="-1">HIGH</font>-<font size="-1">VALUES</font>.
+						The animation below demonstrates how the <code class="language-cobol">READ</code> works. When a
+						record is read it is copied from the backing storage file into the record buffer in
+						<code class="language-cobol">RAM</code>. When an attempt to
+						<code class="language-cobol">READ</code> detects the end of file the
+						<code class="language-cobol">AT END</code> is triggered and the condition name EndOfFile is set
+						to true. Since the condition name is set up as shown below, setting it to true fills the whole
+						record with <code class="language-cobol">HIGH</code>-<code class="language-cobol">VALUES</code>.
 					</p>
 					<table align="center" bgcolor="#E1FFE1" border="1" cellpadding="5" width="58%">
 						<tr>
@@ -936,30 +942,31 @@ SELECT StudentFile
 						<p align="center">
 							<img height="37" src="Resources/pics/i-Detail.gif" width="30" /><br />
 							<font size="-1"
-								>The WRITE format actually contains a number of other entries but these relate to
-								writing to print files and will be covered in subsequent tutorials.</font
+								>The <code class="language-cobol">WRITE</code> format actually contains a number of
+								other entries but these relate to writing to print files and will be covered in
+								subsequent tutorials.</font
 							>
 						</p>
 					</aside>
 				</td>
 				<td valign="top" width="525">
-					<p><u>WRITE</u> <font size="-1"></font>RecordName [<u>FROM</u> Identifier]</p>
+					<p><u>WRITE</u> RecordName [<u>FROM</u> Identifier]</p>
 					<p>
-						The <font size="-1">WRITE</font> verb is used to copy data from the record buffer (RAM) to the
-						file on backing storage (Disk, tape or <font size="-1">CD-ROM</font>).
+						The <code class="language-cobol">WRITE</code> verb is used to copy data from the record buffer
+						(RAM) to the file on backing storage (Disk, tape or <font size="-1">CD-ROM</font>).
 					</p>
 					<p>
-						To <font size="-1">WRITE</font> data to a file we must move the data to the record buffer
-						(declared in the FD entry) and then <font size="-1">WRITE</font> the contents of record buffer
-						to the file.
+						To <code class="language-cobol">WRITE</code> data to a file we must move the data to the record
+						buffer (declared in the FD entry) and then <code class="language-cobol">WRITE</code> the
+						contents of record buffer to the file.
 					</p>
 					<p>
-						When the <font size="-1">WRITE..FROM</font> is used the data contained in the
+						When the <code class="language-cobol">WRITE..FROM</code> is used the data contained in the
 						<i>Identifier</i> is copied into the record buffer and is then written to the file. The
-						<font size="-1">WRITE..FROM</font> is the equivalent of a
-						<font size="-1"><i>MOVE</i></font>
-						<i>Identifier <font size="-1">TO</font> RecordBuffer</i> statement followed by a
-						<i> <font size="-1">WRITE</font> RecordBuffer </i> statement.
+						<code class="language-cobol">WRITE..FROM</code> is the equivalent of a
+						<code class="language-cobol">MOVE</code>
+						<i>Identifier <code class="language-cobol">TO</code> RecordBuffer</i> statement followed by a
+						<i> <code class="language-cobol">WRITE</code> RecordBuffer </i> statement.
 					</p>
 					<hr width="50%" />
 				</td>
@@ -973,7 +980,8 @@ SELECT StudentFile
 				<td valign="top" width="525">
 					<p>
 						If you were paying close attention to the syntax diagrams above you probably noticed that while
-						we <font size="-1">READ</font> a file, we must <font size="-1">WRITE</font> a record.
+						we <code class="language-cobol">READ</code> a file, we must
+						<code class="language-cobol">WRITE</code> a record.
 					</p>
 					<p>
 						The reason we read a file but write a record, is that a file can contain a number of different
@@ -983,12 +991,12 @@ SELECT StudentFile
 					</p>
 					<p>
 						When we read a record from the transaction file we don't know which of the types will be
-						supplied; so we must - <i> <font size="-1">READ</font> Filename </i> . It is the programmers
-						responsibility to discover what type of record has been supplied.
+						supplied; so we must - <i> <code class="language-cobol">READ</code> Filename </i> . It is the
+						programmers responsibility to discover what type of record has been supplied.
 					</p>
 					<p>
 						When we write a record to the a file we have to specify which of the record types we want to
-						write; so we must - <i> <font size="-1">WRITE</font> RecordName </i> .
+						write; so we must - <i> <code class="language-cobol">WRITE</code> RecordName </i> .
 					</p>
 					<hr width="50%" />
 				</td>

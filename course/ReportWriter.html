@@ -259,7 +259,7 @@
 						<li>Edited Pictures</li>
 						<li>The <font size="2">INSPECT</font> verb</li>
 						<li>The <font size="2">STRING</font> verb</li>
-						<li>The <font size="-1">UNSTRING</font> verb</li>
+						<li>The <code class="language-cobol">UNSTRING</code> verb</li>
 						<li>Sequential files</li>
 					</ul>
 				</td>
@@ -349,9 +349,10 @@
 				<td valign="top" width="525">
 					<p>
 						In a program that did not use the Report Writer, the
-						<font size="-1">PROCEDURE DIVISION</font> required to produce the sales report shown above would
-						occupy a hundred lines or so of code. When the <font size="-1">REPORT WRITER</font> is used,
-						only the <font size="-1">PROCEDURE DIVISION</font> shown below is required.
+						<code class="language-cobol">PROCEDURE DIVISION</code> required to produce the sales report
+						shown above would occupy a hundred lines or so of code. When the
+						<code class="language-cobol">REPORT WRITER</code> is used, only the
+						<code class="language-cobol">PROCEDURE DIVISION</code> shown below is required.
 					</p>
 					<p>All the work of printing the report is being done in just 10 statements.</p>
 					<hr />
@@ -394,13 +395,13 @@ PrintSalaryReport.
 				<td valign="top" width="525">
 					<p>
 						How can so much work be done in so little
-						<font size="-1">PROCEDURE DIVISION</font> code? How does the report writer know that page
-						headings are required or that it is time to print the salesperson or city totals.
+						<code class="language-cobol">PROCEDURE DIVISION</code> code? How does the report writer know
+						that page headings are required or that it is time to print the salesperson or city totals.
 					</p>
 					<p>
-						To achieve so much in so little <font size="-1">PROCEDURE DIVISION</font> code, the Report
-						Writer uses a declarative approach to programming rather than the procedural one familiar to
-						most programmers.
+						To achieve so much in so little <code class="language-cobol">PROCEDURE DIVISION</code> code, the
+						Report Writer uses a declarative approach to programming rather than the procedural one familiar
+						to most programmers.
 					</p>
 					<p>
 						When the Report Writer is used, the programmer declares <b>what</b> to print when a page
@@ -409,8 +410,9 @@ PrintSalaryReport.
 					</p>
 					<p>
 						In keeping with the adage that "there is no such thing as free lunch", the
-						<font size="-1">PROCEDURE DIVISION</font> of a Report Writer program is short because most of
-						the work is actually done in the (greatly expanded) <font size="-1">DATA DIVISION</font>.
+						<code class="language-cobol">PROCEDURE DIVISION</code> of a Report Writer program is short
+						because most of the work is actually done in the (greatly expanded)
+						<code class="language-cobol">DATA DIVISION</code>.
 					</p>
 					<hr />
 				</td>
@@ -463,7 +465,10 @@ PrintSalaryReport.
 								<blockquote>
 									<p>
 										DETAIL or DE group<br />
-										<font size="-1">- printed each time the GENERATE statement is executed</font>
+										<font size="-1"
+											>- printed each time the
+											<code class="language-cobol">GENERATE</code> statement is executed</font
+										>
 									</p>
 								</blockquote>
 								<p>
@@ -484,19 +489,23 @@ PrintSalaryReport.
 						</p>
 					</blockquote>
 					<p>
-						Report Groups are defined as records in the <font size="-1">REPORT SECTION</font> of the
-						<font size="-1">DATA DIVISION</font>. Most groups are defined once for each report, but control
-						groups are defined for each control break item. For instance, in the example program, control
-						footings are defined on the SalesPersonNumber, the CityCode and <font size="-1">FINAL</font>.
-						<font size="-1">FINAL</font> is a special control group that is invoked before the normal
-						control groups (<font size="-1">CONTROL HEADING FINAL</font>) and after the normal control
-						groups (<font size="-1">CONTROL FOOTING FINAL</font>).
+						Report Groups are defined as records in the
+						<code class="language-cobol">REPORT SECTION</code> of the
+						<code class="language-cobol">DATA DIVISION</code>. Most groups are defined once for each report,
+						but control groups are defined for each control break item. For instance, in the example
+						program, control footings are defined on the SalesPersonNumber, the CityCode and
+						<code class="language-cobol">FINAL</code>. <code class="language-cobol">FINAL</code> is a
+						special control group that is invoked before the normal control groups (<code
+							class="language-cobol"
+							>CONTROL HEADING FINAL</code
+						>) and after the normal control groups (<code class="language-cobol">CONTROL FOOTING FINAL</code
+						>).
 					</p>
 					<p>
 						An ordinary control group is defined on some control break data-item. The Report Writer monitors
 						the contents of the data-item and when the value in the item changes a control break is
 						automatically initiated and the
-						<font size="-1">CONTROL FOOTING</font> group (if there is one) is printed.
+						<code class="language-cobol">CONTROL FOOTING</code> group (if there is one) is printed.
 					</p>
 					<hr />
 				</td>
@@ -518,8 +527,8 @@ PrintSalaryReport.
 					<ul>
 						<li>
 							Allowing simple vertical and horizontal placement of printed items using the
-							<font size="-1">LINE IS</font> and <font size="-1">COLUMN IS</font> phrases in the data
-							declaration
+							<code class="language-cobol">LINE IS</code> and
+							<code class="language-cobol">COLUMN IS</code> phrases in the data declaration
 						</li>
 						<li>Automatically moving data values to output items</li>
 						<li>
@@ -885,16 +894,16 @@ RD  SalesReport
 						The Report Writer is a wonderful tool if the structure of the required report fits in to the way
 						the Report Writer does things. But sometimes, the structure or requirements of the report are
 						such that the standard Report Writer alone is an insufficient tool. In these cases,
-						<font size="-1">DECLARATIVES</font> may be used to extend the functionality of the Report
-						Writer.
+						<code class="language-cobol">DECLARATIVES</code> may be used to extend the functionality of the
+						Report Writer.
 					</p>
 					<p>
-						The <font size="-1">USE BEFORE REPORTING</font> phrase allows code specified in the
-						<font size="-1">DECLARATIVES</font> to be executed just before a report group is printed. The
-						code in the <font size="-1">DECLARATIVES</font> extends the functionality of the Report Writer
-						by performing tasks or calculations that the Report Writer can not do automatically or by
-						selectively stopping the report group from being printed (using the
-						<font size="-1">SUPPRESS PRINTING</font> command).
+						The <code class="language-cobol">USE BEFORE REPORTING</code> phrase allows code specified in the
+						<code class="language-cobol">DECLARATIVES</code> to be executed just before a report group is
+						printed. The code in the <code class="language-cobol">DECLARATIVES</code> extends the
+						functionality of the Report Writer by performing tasks or calculations that the Report Writer
+						can not do automatically or by selectively stopping the report group from being printed (using
+						the <code class="language-cobol">SUPPRESS PRINTING</code> command).
 					</p>
 					<hr />
 				</td>
@@ -922,17 +931,17 @@ RD  SalesReport
 					<p>
 						Calculating the commission requires more than just simple addition so the Report Writer cannot
 						handle it automatically. To calculate the commission are
-						<font size="-1">DECLARATIVES</font> are required. The
-						<font size="-1">USE BEFORE REPORTING</font> Salespsn-Line phrase in the
-						<font size="-1">DECLARATIVES</font> allows these items to be calculated when the Salespsn-Number
-						control footer group is about to be printed.
+						<code class="language-cobol">DECLARATIVES</code> are required. The
+						<code class="language-cobol">USE BEFORE REPORTING</code> Salespsn-Line phrase in the
+						<code class="language-cobol">DECLARATIVES</code> allows these items to be calculated when the
+						Salespsn-Number control footer group is about to be printed.
 					</p>
 					<p>
-						In the example program, <font size="-1">DECLARATIVES</font> are used because the Report Writer
-						cannot automatically calculate a salesperson's commission and salary. The
-						<font size="-1">USE BEFORE REPORTING</font> SalesPersonGrp phrase in the
-						<font size="-1">DECLARATIVES</font> allows these items to be calculated when the SalesPersonGrp
-						control footer group is about to be printed.
+						In the example program, <code class="language-cobol">DECLARATIVES</code> are used because the
+						Report Writer cannot automatically calculate a salesperson's commission and salary. The
+						<code class="language-cobol">USE BEFORE REPORTING</code> SalesPersonGrp phrase in the
+						<code class="language-cobol">DECLARATIVES</code> allows these items to be calculated when the
+						SalesPersonGrp control footer group is about to be printed.
 					</p>
 					<hr />
 				</td>

@@ -365,8 +365,8 @@ Begin.
 						<p align="left">
 							Another solution that we might adopt is to create 26 variables to hold the county tax
 							totals. Then, in the program, we could use an
-							<font size="-1">EVALUATE</font> statement to add the TaxPaid to the appropriate total. For
-							example -
+							<code class="language-cobol">EVALUATE</code> statement to add the TaxPaid to the appropriate
+							total. For example -
 						</p>
 					</div>
 					<blockquote>
@@ -386,9 +386,9 @@ END-EVALUATE</code></pre>
 						<div align="left">
 							<p>
 								But this solution is not very satisfactory. We have to have a specific
-								<font size="-1">WHEN</font> branch to process each county and we have to declare 26
-								variables to hold the tax totals. And when we want to print the results we have to have
-								26 <font size="-1">DISPLAY</font> statements such as -
+								<code class="language-cobol">WHEN</code> branch to process each county and we have to
+								declare 26 variables to hold the tax totals. And when we want to print the results we
+								have to have 26 <code class="language-cobol">DISPLAY</code> statements such as -
 							</p>
 						</div>
 					</div>
@@ -409,18 +409,18 @@ DISPLAY "County 3 total is ", County3TaxTotal
 							<p>
 								But the suggestion above does contain the germ of a satisfactory solution to the
 								problem. It is interesting to note that the processing of each
-								<font size="-1">WHEN</font> branch is exactly the same - the TaxPaid is added to a
-								particular county total variable. We could replace all 26
-								<font size="-1">WHEN</font> branches with one statement if we could generalize it to
-								something like -
+								<code class="language-cobol">WHEN</code> branch is exactly the same - the TaxPaid is
+								added to a particular county total variable. We could replace all 26
+								<code class="language-cobol">WHEN</code> branches with one statement if we could
+								generalize it to something like -
 								<i>ADD the TaxPaid TO the CountyTotal location indicated by the CountyCode</i>.
 							</p>
 							<p>
 								There is also something interesting we can note about the 26 variables.They all have
-								exactly the same <font size="-1">PICTURE</font> and they all have, more or less, the
-								same name - CountyTaxTotal. The only way we distinguish between one CountyTaxTotal and
-								another is by attaching a number to the name e.g. County1TaxTotal, County2TaxTotal,
-								County3TaxTotal etc.
+								exactly the same <code class="language-cobol">PICTURE</code> and they all have, more or
+								less, the same name - CountyTaxTotal. The only way we distinguish between one
+								CountyTaxTotal and another is by attaching a number to the name e.g. County1TaxTotal,
+								County2TaxTotal, County3TaxTotal etc.
 							</p>
 							<p>
 								When we see a group of variables which all have the same name and the same description
@@ -625,8 +625,8 @@ Begin.
 				</td>
 				<td height="679" valign="top" width="525">
 					<p>
-						One solution might be to use an <font size="-1">EVALUATE</font> to examine the CountyCode and
-						then display the appropriate message. For example -
+						One solution might be to use an <code class="language-cobol">EVALUATE</code> to examine the
+						CountyCode and then display the appropriate message. For example -
 					</p>
 					<pre class="language-cobol" align="left"><code class="language-cobol">EVALUATE CountyCode
   WHEN 1 DISPLAY "Carlow tax total is " CountyTax(1)
@@ -635,12 +635,13 @@ Begin.
 END-EVALUATE.</code></pre>
 					<p>
 						But this solution is not very satisfactory. It is simply reverting to the 26
-						<font size="-1">WHEN</font> branch solution presented earlier. But this time, we know that there
-						must be a more elegant solution. And there is!
+						<code class="language-cobol">WHEN</code> branch solution presented earlier. But this time, we
+						know that there must be a more elegant solution. And there is!
 					</p>
 					<p>
 						If we declare a CountyName table and fill its elements with the names of the counties, we can
-						replace the <font size="-1">EVALUATE</font> solution above, with one simple statement -
+						replace the <code class="language-cobol">EVALUATE</code> solution above, with one simple
+						statement -
 					</p>
 					<pre
 						class="language-cobol"
@@ -685,17 +686,17 @@ Begin.
 					<div align="center">
 						<p align="left">
 							In the next tutorial we will examine how we can use the
-							<font size="-1">REDEFINES</font> clause to set up a predefined table of values. For the
-							moment, we won't concern ourselves with the exact mechanics of setting up the CountyName
-							table but we can represent it diagrammatically as follows;
+							<code class="language-cobol">REDEFINES</code> clause to set up a predefined table of values.
+							For the moment, we won't concern ourselves with the exact mechanics of setting up the
+							CountyName table but we can represent it diagrammatically as follows;
 						</p>
 						<p align="center">
 							<img height="81" src="Resources/pics/Tables2.gif" width="459" />
 						</p>
 						<p align="left">
 							The elements of the table may be referenced in the usual way, so the statement
-							<font size="-1">DISPLAY</font> CountyName(3) will display the value "Cork" and
-							<font size="-1">DISPLAY</font> CountyName(5) will display "Dublin".
+							<code class="language-cobol">DISPLAY</code> CountyName(3) will display the value "Cork" and
+							<code class="language-cobol">DISPLAY</code> CountyName(5) will display "Dublin".
 						</p>
 					</div>
 				</td>
@@ -774,7 +775,7 @@ Begin.
 					</p>
 					<p align="left">
 						One approach we might try, is the now discredited
-						<font size="-1">EVALUATE</font> based solution. For example -
+						<code class="language-cobol">EVALUATE</code> based solution. For example -
 					</p>
 					<pre class="language-cobol"><code class="language-cobol">EVALUATE County
    WHEN "Carlow" MOVE 1 TO CountyNum
@@ -805,7 +806,7 @@ ADD TaxPaid TO CountyTax(CountyNum)</code></pre>
 					</p>
 					<p align="left">
 						To compare the value of County with each element of the CountyNames table we can use a
-						<font size="-1">PERFORM..VARYING</font>. For example -
+						<code class="language-cobol">PERFORM..VARYING</code>. For example -
 					</p>
 					<pre
 						class="language-cobol"
@@ -815,7 +816,8 @@ ADD TaxPaid TO CountyTax(CountyNum)</code></pre>
     END-PERFORM
     ADD TaxPaid TO CountyTax(CountyNum)</code></pre>
 					<p align="left">
-						You can see how this <font size="-1">PERFORM..VARYING</font> works, in the following animation -
+						You can see how this <code class="language-cobol">PERFORM..VARYING</code> works, in the
+						following animation -
 					</p>
 					<p align="center">
 						<a href="Resources/ppz/TC-Tables2.html"

@@ -165,8 +165,8 @@
 						<li>
 							<a href="#part3">Using the SET verb with Condition Names</a><br />
 							<font size="-1"
-								>This section demonstrates how the SET verb may be used to set a Condition Name to
-								true.</font
+								>This section demonstrates how the <code class="language-cobol">SET</code> verb may be
+								used to set a Condition Name to true.</font
 							>
 						</li>
 						<li>
@@ -201,8 +201,8 @@
 					</p>
 					<p>
 						In this tutorial we will examine COBOL's selection constructs, the
-						<font size="-1">IF</font> and the <font size="-1">EVALUATE</font> and we will demonstrate how to
-						create and use Condition Names.
+						<code class="language-cobol">IF</code> and the <code class="language-cobol">EVALUATE</code> and
+						we will demonstrate how to create and use Condition Names.
 					</p>
 					<hr width="50%" />
 				</td>
@@ -216,20 +216,23 @@
 				<td valign="top" width="540">
 					<p>By the end of this unit you should -</p>
 					<ol>
-						<li>Understand how an <font size="-1">IF</font> statement works.</li>
+						<li>Understand how an <code class="language-cobol">IF</code> statement works.</li>
 						<li>
 							Know the types of condition that COBOL supports and understand how and when to use them.
 						</li>
 						<li>
 							Know the condition precedence rules and be able to create complex conditions using
-							<font size="-1">AND</font> and <font size="-1">OR</font>.
+							<code class="language-cobol">AND</code> and <code class="language-cobol">OR</code>.
 						</li>
 						<li>Know how to use Implied subjects.</li>
-						<li>Be able to create nested <font size="-1">IF</font> statements.</li>
+						<li>Be able to create nested <code class="language-cobol">IF</code> statements.</li>
 						<li>Understand how Condition Names work and be able to create and use them.</li>
-						<li>Be able to use the <font size="-1">SET</font> verb to set a Condition Name to true.</li>
+						<li>
+							Be able to use the <code class="language-cobol">SET</code> verb to set a Condition Name to
+							true.
+						</li>
 						<li>Know how to use a Condition Name to signal the end of a Sequential File.</li>
-						<li>Understand how the <font size="-1">EVALUATE</font> works.</li>
+						<li>Understand how the <code class="language-cobol">EVALUATE</code> works.</li>
 					</ol>
 					<hr width="50%" />
 				</td>
@@ -305,14 +308,15 @@
 							<img height="102" src="Resources/pics/Select1.gif" width="379" />
 						</p>
 						<p align="left">
-							When an <font size="-1">IF</font> statement is encountered in a program, the StatementBlock
-							following the <font size="-1">THEN</font> is executed, if the condition is true, and the
-							StatementBlock following the <font size="-1">ELSE</font> (is used) is executed, if the
-							condition is false.
+							When an <code class="language-cobol">IF</code> statement is encountered in a program, the
+							StatementBlock following the <code class="language-cobol">THEN</code> is executed, if the
+							condition is true, and the StatementBlock following the
+							<code class="language-cobol">ELSE</code> (is used) is executed, if the condition is false.
 						</p>
 						<p align="left">
 							The StatementBlock(s) can include any valid COBOL statement including further
-							<font size="-1">IF</font> constructs, <font size="-1">PERFORM</font>s, etc.
+							<code class="language-cobol">IF</code> constructs,
+							<code class="language-cobol">PERFORM</code>s, etc.
 						</p>
 					</div>
 				</td>
@@ -326,16 +330,16 @@
 				<td valign="top" width="525">
 					<div align="center">
 						<p align="left">
-							Although the scope of the <font size="-1">IF</font> statement may be delimited by a
-							full-stop (the old way), or by the <font size="-1">END-IF</font> (the new way), the
-							<font size="-1">END-IF</font> delimiter should always be used.
+							Although the scope of the <code class="language-cobol">IF</code> statement may be delimited
+							by a full-stop (the old way), or by the <code class="language-cobol">END-IF</code> (the new
+							way), the <code class="language-cobol">END-IF</code> delimiter should always be used.
 						</p>
 						<p align="left">
-							The <font size="-1">END-IF</font> makes explicit the scope of the statement. Using a full
-							stop to delimit the scope of the IF can lead to problems. For instance, the two IF
-							statements below are supposed to perform the same task. But the scope of the one on the left
-							is delimited by the <font size="-1">END-IF</font>, while that on the right is delimited by a
-							full stop.
+							The <code class="language-cobol">END-IF</code> makes explicit the scope of the statement.
+							Using a full stop to delimit the scope of the IF can lead to problems. For instance, the two
+							IF statements below are supposed to perform the same task. But the scope of the one on the
+							left is delimited by the <code class="language-cobol">END-IF</code>, while that on the right
+							is delimited by a full stop.
 						</p>
 						<table align="center" border="0" width="85%">
 							<tr>
@@ -362,13 +366,13 @@ Statement6.</code></pre>
 							</tr>
 						</table>
 						<p align="left">
-							Unfortunately, in the <font size="-1">IF</font> on the right, the programmer has forgotten
-							to follow Statement4 by a delimiting full stop. This means that Statement5 and 6 will be
-							included in the scope of the <font size="-1">IF</font> (i.e. will only be executed if the
-							condition is true) by mistake. If you use full stops to delimit the scope of an
-							<font size="-1">IF</font> statement, this is an easy mistake to make and, once made, it is
-							difficult to spot. A full stop is small and unobtrusive compared to an
-							<font size="-1">END-IF</font>.
+							Unfortunately, in the <code class="language-cobol">IF</code> on the right, the programmer
+							has forgotten to follow Statement4 by a delimiting full stop. This means that Statement5 and
+							6 will be included in the scope of the <code class="language-cobol">IF</code> (i.e. will
+							only be executed if the condition is true) by mistake. If you use full stops to delimit the
+							scope of an <code class="language-cobol">IF</code> statement, this is an easy mistake to
+							make and, once made, it is difficult to spot. A full stop is small and unobtrusive compared
+							to an <code class="language-cobol">END-IF</code>.
 						</p>
 						<hr width="50%" />
 					</div>
@@ -382,9 +386,9 @@ Statement6.</code></pre>
 				</td>
 				<td valign="top" width="525">
 					<p>
-						The <font size="-1">IF</font> statement is not as simple as the syntax diagram above seems to
-						suggest. The condition following the <font size="-1">IF,</font> is drawn from one of the
-						condition types shown in the table below.
+						The <code class="language-cobol">IF</code> statement is not as simple as the syntax diagram
+						above seems to suggest. The condition following the <code class="language-cobol">IF</code>, is
+						drawn from one of the condition types shown in the table below.
 					</p>
 					<table align="center" border="1" cellpadding="7" cellspacing="0" height="180" width="241">
 						<tr bgcolor="#FFFFCC">
@@ -438,8 +442,8 @@ Statement6.</code></pre>
 							</p>
 							<p align="left">
 								In the comparison we can use the full words or the symbols shown. Note however, that
-								there is no symbol for <font size="-1">NOT;</font> you must use the word if you want to
-								express this condition.
+								there is no symbol for <code class="language-cobol">NOT</code>; you must use the word if
+								you want to express this condition.
 							</p>
 							<p align="left">
 								When a condition is evaluated, it evaluates to either True or False. It does not
@@ -493,21 +497,22 @@ Statement6.</code></pre>
 						Although COBOL data-items are not "strongly typed", they do fall into some broad categories or
 						classes, such as numeric or alphanumeric. A Class Condition may be used to determine whether the
 						value of data-item is a member of one these classes. For instance, a
-						<font size="-1">NUMERIC</font> Class Condition might be used on an alphanumeric (<font size="-1"
-							>PIC X</font
-						>) or a numeric (<font size="-1">PIC 9</font>) data-item to see if it contained numeric data.
+						<code class="language-cobol">NUMERIC</code> Class Condition might be used on an alphanumeric
+						(<font size="-1">PIC X</font>) or a numeric (<code class="language-cobol">PIC 9</code>)
+						data-item to see if it contained numeric data.
 					</p>
 					<p>
 						The UserDefinedClassName is name that a programmer can assign to a set of characters. The
-						programmer must use the <font size="-1">CLASS</font> clause of the
-						<font size="-1">SPECIAL-NAMES</font> paragraph, of the
-						<font size="-1">CONFIGURATION SECTION,</font> in the
-						<font size="-1">ENVIRONMENT DIVISION,</font> to assign a class name to a set of characters.
+						programmer must use the <code class="language-cobol">CLASS</code> clause of the
+						<code class="language-cobol">SPECIAL-NAMES</code> paragraph, of the
+						<code class="language-cobol">CONFIGURATION SECTION</code>, in the
+						<code class="language-cobol">ENVIRONMENT DIVISION</code>, to assign a class name to a set of
+						characters.
 					</p>
 					<p>
 						<b>Rules<br /></b> The target of a class test must be a data-item whose usage is explicitly or
-						implicitly, <font size="-1">DISPLAY</font>. In the case of numeric tests, data items with a
-						usage of <font size="-1">PACKED-DECIMAL</font> may also be tested.
+						implicitly, <code class="language-cobol">DISPLAY</code>. In the case of numeric tests, data
+						items with a usage of <code class="language-cobol">PACKED-DECIMAL</code> may also be tested.
 					</p>
 					<p>
 						The numeric test may not be used with data items described as alphabetic (PIC A) or with group
@@ -554,8 +559,8 @@ END-IF
 						</p>
 						<p align="left">
 							<font size="-1"
-								>You can see from the IF Amnt1 example, that figuring out how a complex condition will
-								be evaluated is not straightfoward.<br
+								>You can see from the <code class="language-cobol">IF Amnt1</code> example, that
+								figuring out how a complex condition will be evaluated is not straightfoward.<br
 							/></font>
 							<font size="-1">Always use brackets to make the order of evaluation explicit.</font>
 						</p>
@@ -567,7 +572,7 @@ END-IF
 					</p>
 					<p>
 						Complex Conditions are formed by combining two or more simple conditions using the conjunction
-						operators <font size="-1">OR</font> or <font size="-1">AND</font>.
+						operators <code class="language-cobol">OR</code> or <code class="language-cobol">AND</code>.
 					</p>
 					<p>
 						Like other conditions in COBOL, a complex condition evaluates to either True or False. A complex
@@ -599,7 +604,7 @@ END-IF
 							</td>
 							<td valign="top" width="35%">
 								<p align="center">
-									<font size="-1">NOT</font>
+									<code class="language-cobol">NOT</code>
 								</p>
 							</td>
 							<td valign="top" width="42%">
@@ -612,7 +617,7 @@ END-IF
 							</td>
 							<td valign="top" width="35%">
 								<p align="center">
-									<font size="-1">AND</font>
+									<code class="language-cobol">AND</code>
 								</p>
 							</td>
 							<td valign="top" width="42%">
@@ -625,7 +630,7 @@ END-IF
 							</td>
 							<td valign="top" width="35%">
 								<p align="center">
-									<font size="-1">OR</font>
+									<code class="language-cobol">OR</code>
 								</p>
 							</td>
 							<td valign="top" width="42%">
@@ -651,14 +656,17 @@ END-IF
 					</p>
 					<blockquote>
 						<p>
-							The <font size="-1">NOT</font> takes precedence so we must write -
-							<font size="-1"><b>NOT</b></font> <b>(Amnt1 &lt;10)</b>.<br />
-							The <font size="-1">AND</font> is next in precedence so we must bracket -<br />
-							&nbsp;&nbsp;&nbsp;&nbsp;<b>((Amnt2=50) <font size="-1">AND</font> (Amnt3 &gt; 150))</b
+							The <code class="language-cobol">NOT</code> takes precedence so we must write -
+							<code class="language-cobol">NOT</code> <b>(Amnt1 &lt;10)</b>.<br />
+							The <code class="language-cobol">AND</code> is next in precedence so we must bracket -<br />
+							&nbsp;&nbsp;&nbsp;&nbsp;<b
+								>((Amnt2=50) <code class="language-cobol">AND</code> (Amnt3 &gt; 150))</b
 							>.<br />
-							Finally the <font size="-1">OR</font> is evaluated to give the full condition as -<br />
-							&nbsp;&nbsp;&nbsp;&nbsp;(<font size="-1">NOT</font> (Amnt1 &lt; 10))
-							<font size="-1">OR</font> ((Amnt2 = 50) <font size="-1">AND</font> (Amnt3 &gt; 150))
+							Finally the <code class="language-cobol">OR</code> is evaluated to give the full condition
+							as -<br />
+							&nbsp;&nbsp;&nbsp;&nbsp;(<code class="language-cobol">NOT</code> (Amnt1 &lt; 10))
+							<code class="language-cobol">OR</code> ((Amnt2 = 50) <code class="language-cobol">AND</code>
+							(Amnt3 &gt; 150))
 						</p>
 					</blockquote>
 					<p>If all the simple conditions are true; will the Complex Condition be true? Let's check.</p>
@@ -671,8 +679,9 @@ END-IF
 							</th>
 							<td bgcolor="#E1FFE1" width="84%">
 								<p align="center">
-									&nbsp;(<font size="-1">NOT</font> (Amnt1 &lt; 10)) <font size="-1">OR</font> ((Amnt2
-									= 50) <font size="-1">AND</font> (Amnt3 &gt; 150))
+									&nbsp;(<code class="language-cobol">NOT</code> (Amnt1 &lt; 10))
+									<code class="language-cobol">OR</code> ((Amnt2 = 50)
+									<code class="language-cobol">AND</code> (Amnt3 &gt; 150))
 								</p>
 							</td>
 						</tr>
@@ -726,8 +735,9 @@ END-IF
 							</th>
 							<td bgcolor="#E1FFE1" width="84%">
 								<p align="center">
-									<font size="-1">NOT</font> ((Amnt1 &lt; 10) <font size="-1">OR</font> (Amnt2 = 50))
-									<font size="-1">AND</font> (Amnt3 &gt; 150)
+									<code class="language-cobol">NOT</code> ((Amnt1 &lt; 10)
+									<code class="language-cobol">OR</code> (Amnt2 = 50))
+									<code class="language-cobol">AND</code> (Amnt3 &gt; 150)
 								</p>
 							</td>
 						</tr>
@@ -785,8 +795,11 @@ END-IF
 						Condition true if all the Simple Conditions are true?
 					</p>
 					<p align="center">
-						<font size="-1">IF NOT</font> (((Amnt1 &lt; 10) <font size="-1">OR</font> (Amnt2 = 50))
-						<font size="-1">AND</font> (Amnt3 &gt; 150)) <font size="-1">THEN</font>
+						<code class="language-cobol">IF NOT</code> (((Amnt1 &lt; 10)
+						<code class="language-cobol">OR</code>
+						(Amnt2 = 50))
+						<code class="language-cobol">AND</code> (Amnt3 &gt; 150))
+						<code class="language-cobol">THEN</code>
 					</p>
 					<hr width="50%" />
 				</td>
@@ -850,7 +863,7 @@ END-IF
 					<p align="center"><img height="46" src="Resources/pics/i-SAQ2.gif" width="32" /></p>
 				</td>
 				<td valign="top" width="525">
-					<p>COBOL allows nested <font size="-1">IF</font> statements.</p>
+					<p>COBOL allows nested <code class="language-cobol">IF</code> statements.</p>
 					<p>For example:</p>
 					<pre
 						class="language-cobol"
@@ -896,7 +909,7 @@ END-IF
 									<div align="center">
 										<font color="#FF0000"
 											><b>
-												<font size="-1">DISPLAY</font>
+												<code class="language-cobol">DISPLAY</code>
 											</b></font
 										>
 									</div>
@@ -1023,14 +1036,14 @@ END-IF
 				</td>
 				<td height="355" valign="top" width="525">
 					<p>
-						Wherever a condition can occur, such as in an <font size="-1">IF</font> statement or an
-						<font size="-1">EVALUATE</font> or a <font size="-1">PERFORM..UNTIL</font> , a Condition Name
-						(Level 88) may be used.
+						Wherever a condition can occur, such as in an <code class="language-cobol">IF</code> statement
+						or an <code class="language-cobol">EVALUATE</code> or a
+						<code class="language-cobol">PERFORM..UNTIL</code> , a Condition Name (Level 88) may be used.
 					</p>
 					<p>
-						Condition Names are defined in the <font size="-1">DATA DIVISION</font> using the special level
-						number 88. They are always associated with a data-item and are defined immediately after the
-						definition of the data-item.
+						Condition Names are defined in the <code class="language-cobol">DATA DIVISION</code> using the
+						special level number 88. They are always associated with a data-item and are defined immediately
+						after the definition of the data-item.
 					</p>
 					<p>
 						A Condition Name is a name given to a specified subset of the values which its associated
@@ -1049,8 +1062,9 @@ END-IF
 				<td valign="top" width="525">
 					<p align="left"><img height="76" src="Resources/pics/Select6.gif" width="501" /></p>
 					<p align="left">
-						When used with Condition Names, the <font size="-1">VALUE</font> clause does not assign a value.
-						It merely identifies the value(s) in the data-item which make the Condition Name True.
+						When used with Condition Names, the <code class="language-cobol">VALUE</code> clause does not
+						assign a value. It merely identifies the value(s) in the data-item which make the Condition Name
+						True.
 					</p>
 					<p align="left">
 						When identifying the condition values, you can specify a single value, a list of values, a range
@@ -1058,8 +1072,8 @@ END-IF
 					</p>
 					<p align="left">
 						To specify a list of values, simply list the values after the keyword
-						<font size="-1">VALUE</font>. The list entries may be separated by commas or spaces but must
-						terminate with a full-stop.
+						<code class="language-cobol">VALUE</code>. The list entries may be separated by commas or spaces
+						but must terminate with a full-stop.
 					</p>
 					<blockquote>
 						<div align="left">
@@ -1071,8 +1085,8 @@ END-IF
 						</div>
 					</blockquote>
 					<p align="left">
-						To specify a range, use the keyword <font size="-1">THRU</font>, or
-						<font size="-1">THROUGH</font>, to separate the low and high values.
+						To specify a range, use the keyword <code class="language-cobol">THRU</code>, or
+						<code class="language-cobol">THROUGH</code>, to separate the low and high values.
 					</p>
 					<blockquote>
 						<div align="left">
@@ -1241,7 +1255,10 @@ END-IF
 						as a single topic, we will deal each format as we examine the construct to which it is most
 						closely related.
 					</p>
-					<p>In this section, we show how the SET verb may be used to set a Condition Name to True.</p>
+					<p>
+						In this section, we show how the <code class="language-cobol">SET</code> verb may be used to set
+						a Condition Name to True.
+					</p>
 					<hr width="50%" />
 				</td>
 			</tr>
@@ -1254,14 +1271,15 @@ END-IF
 				<td height="355" valign="top" width="525">
 					<p>SET {ConditionName} ... TO TRUE</p>
 					<p>
-						<font size="-1"></font> <b></b>A Condition Name set to true when one of the condition values
-						mentioned in its <font size="-1">VALUE</font> clause is moved into its associated data-item. But
-						you can also set a Condition Name to true using the <font size="-1">SET</font> verb.
+						<b></b>A Condition Name set to true when one of the condition values mentioned in its
+						<code class="language-cobol">VALUE</code> clause is moved into its associated data-item. But you
+						can also set a Condition Name to true using the <code class="language-cobol">SET</code> verb.
 					</p>
 					<p>
-						When the <font size="-1">SET</font> verb is used to set a Condition Name, the first condition
-						value specified after the <font size="-1">VALUE</font> clause in the definition is moved to the
-						associated data-item. Thus, the value of the associated data-item is changed.
+						When the <code class="language-cobol">SET</code> verb is used to set a Condition Name, the first
+						condition value specified after the <code class="language-cobol">VALUE</code> clause in the
+						definition is moved to the associated data-item. Thus, the value of the associated data-item is
+						changed.
 					</p>
 					<p>
 						So, any operation which changes the value of the data-item may change the status of the
@@ -1280,9 +1298,9 @@ END-IF
 				</td>
 				<td height="355" valign="top" width="525">
 					<p>
-						The <font size="-1">SET</font> verb is most often used to set an end of file Condition Name when
-						reading Sequential Files. The animation below demonstrates how to set up and use an end of file
-						Condition Name.
+						The <code class="language-cobol">SET</code> verb is most often used to set an end of file
+						Condition Name when reading Sequential Files. The animation below demonstrates how to set up and
+						use an end of file Condition Name.
 					</p>
 					<p align="center">
 						<a href="Resources/ppz/TC-Condition2.html"
@@ -1309,10 +1327,10 @@ END-IF
 				<td height="355" valign="top" width="525">
 					<p>
 						The animation above demonstrated a simplified version of how the
-						<font size="-1">SET</font> verb may be used with Sequential Files. One problem with the approach
-						shown, is that the Condition Name has to be declared in the
-						<font size="-1">WORKING-STORAGE SECTION</font> and there may be hundreds of lines of code
-						separating it from the file whose end it is signalling.
+						<code class="language-cobol">SET</code> verb may be used with Sequential Files. One problem with
+						the approach shown, is that the Condition Name has to be declared in the
+						<code class="language-cobol">WORKING-STORAGE SECTION</code> and there may be hundreds of lines
+						of code separating it from the file whose end it is signalling.
 					</p>
 					<p>
 						In the program fragment below, a somewhat different approach to setting an end of file Condition
@@ -1321,12 +1339,12 @@ END-IF
 					<p>
 						In this example, the EndOfStudentFile Condition Name is attached to the StudentDetails record.
 						When EndOfStudentFile is set to true, every character of the record is filled with
-						<font size="-1">HIGH-VALUES</font> (the highest <font size="-1">ASCII</font> value the character
-						can hold).
+						<code class="language-cobol">HIGH-VALUES</code> (the highest
+						<code class="language-cobol">ASCII</code> value the character can hold).
 					</p>
 					<p>
-						Filling the record with <font size="-1">HIGH-VALUES</font> produces a useful side-effect which
-						we will examine when we discuss updating Sequential Files.
+						Filling the record with <code class="language-cobol">HIGH-VALUES</code> produces a useful
+						side-effect which we will examine when we discuss updating Sequential Files.
 					</p>
 					<table align="center" background="Resources/pics/code.gif" border="1" height="93" width="95%">
 						<tr>
@@ -1399,14 +1417,14 @@ Begin.
 				</td>
 				<td valign="top" width="525">
 					<p>
-						The <font size="-1">EVALUATE</font> verb is COBOL's version of the Case or Switch construct but
-						the <font size="-1">EVALUATE</font> is far more powerful and easier to use than either of these
-						constructs.
+						The <code class="language-cobol">EVALUATE</code> verb is COBOL's version of the Case or Switch
+						construct but the <code class="language-cobol">EVALUATE</code> is far more powerful and easier
+						to use than either of these constructs.
 					</p>
 					<p>
-						The notes below briefly describe how the <font size="-1">EVALUATE</font> verb works, but you'll
-						want to examine the syntax diagram in combination with the examples to gain a fuller
-						understanding.
+						The notes below briefly describe how the <code class="language-cobol">EVALUATE</code> verb
+						works, but you'll want to examine the syntax diagram in combination with the examples to gain a
+						fuller understanding.
 					</p>
 					<hr width="50%" />
 				</td>
@@ -1421,34 +1439,35 @@ Begin.
 					<p><img height="453" src="Resources/pics/Select7.gif" width="523" /></p>
 					<p>
 						<font size="-1"><b>EVALUATE</b></font> <b>notes</b><br />
-						The items immediately after the word <font size="-1">EVALUATE</font> and before the first
-						<font size="-1">WHEN</font> are called <i>subjects</i>.
+						The items immediately after the word <code class="language-cobol">EVALUATE</code> and before the
+						first <code class="language-cobol">WHEN</code> are called <i>subjects</i>.
 					</p>
 					<p>
-						The items between the <font size="-1">WHEN</font> and its imperative statements are called
-						<i>objects</i>.
+						The items between the <code class="language-cobol">WHEN</code> and its imperative statements are
+						called <i>objects</i>.
 					</p>
 					<p>
 						The number of subject be equal to the number of objects and the type of each
 						<i>subject</i> must be compatible with the type of its corresponding <i>object</i>.
 					</p>
 					<p>
-						The keyword <font size="-1">ALSO</font> must be used to separate each object from its succeeding
-						object and each subject from its succeeding subject.
+						The keyword <code class="language-cobol">ALSO</code> must be used to separate each object from
+						its succeeding object and each subject from its succeeding subject.
 					</p>
 					<p>
-						Only one <font size="-1">WHEN</font> branch is chosen per execution of the
-						<font size="-1">EVALUATE</font>, and the checking of the <font size="-1">WHEN</font> branches is
-						done from top to bottom.
+						Only one <code class="language-cobol">WHEN</code> branch is chosen per execution of the
+						<code class="language-cobol">EVALUATE</code>, and the checking of the
+						<code class="language-cobol">WHEN</code> branches is done from top to bottom.
 					</p>
 					<p>
-						If none of the <font size="-1">WHEN</font> branches can be chosen, and a
-						<font size="-1">WHEN OTHER</font> phrase exists, the <font size="-1">WHEN OTHER</font> branch is
-						executed.
+						If none of the <code class="language-cobol">WHEN</code> branches can be chosen, and a
+						<code class="language-cobol">WHEN OTHER</code> phrase exists, the
+						<code class="language-cobol">WHEN OTHER</code> branch is executed.
 					</p>
 					<p>
-						If none of the <font size="-1">WHEN</font> branches can be chosen, and there is no
-						<font size="-1">WHEN OTHER</font> phrase, the <font size="-1">EVALUATE</font> simply terminates.
+						If none of the <code class="language-cobol">WHEN</code> branches can be chosen, and there is no
+						<code class="language-cobol">WHEN OTHER</code> phrase, the
+						<code class="language-cobol">EVALUATE</code> simply terminates.
 					</p>
 					<hr width="50%" />
 				</td>
@@ -1493,8 +1512,8 @@ Begin.
 					<p>
 						Let's assume we can get a character from the keyboard and that we have used Condition Names to
 						detect the left-arrow, right-arrow and delete characters. What kind of an
-						<font size="-1">EVALUATE</font> statement would we need to implement the rest of the
-						functionality.
+						<code class="language-cobol">EVALUATE</code> statement would we need to implement the rest of
+						the functionality.
 					</p>
 					<table align="center" border="1" cellpadding="5" cellspacing="0" width="76%">
 						<tr bgcolor="#E1FFE1">
@@ -1515,11 +1534,11 @@ END-EVALUATE
 						</tr>
 					</table>
 					<p>
-						<b>How does this <font size="-1">EVALUATE</font> work?</b><br />
-						The <b>subjects</b> are <font size="-1">TRUE</font> and Position. So the first
-						<b>object</b> after the <font size="-1">WHEN</font> clause must specify a condition to be
-						compatible. with its <b>subject</b>, and the second must specify a value or range of values. So
-						the first <font size="-1">WHEN</font> clause reads as -
+						<b>How does this <code class="language-cobol">EVALUATE</code> work?</b><br />
+						The <b>subjects</b> are <code class="language-cobol">TRUE</code> and Position. So the first
+						<b>object</b> after the <code class="language-cobol">WHEN</code> clause must specify a condition
+						to be compatible. with its <b>subject</b>, and the second must specify a value or range of
+						values. So the first <code class="language-cobol">WHEN</code> clause reads as -
 						<i
 							>When the L-Arrow Condition Name is true and the data-item Position has a value in the range
 							2-10 then we add 1 to the Position</i
@@ -1527,7 +1546,7 @@ END-EVALUATE
 					</p>
 					<p>
 						Finally, in a language you are already familiar with, write a Switch/Case statement to do the
-						same thing as the <font size="-1">EVALUATE</font> above does.
+						same thing as the <code class="language-cobol">EVALUATE</code> above does.
 					</p>
 					<hr width="50%" />
 				</td>
@@ -1541,8 +1560,8 @@ END-EVALUATE
 				<td height="355" valign="top" width="525">
 					<p>
 						As you have already seen in the example above, the
-						<font size="-1">EVALUATE</font> is very powerful construct; but where it really shines is
-						implementing decision table logic. Consider the example below.
+						<code class="language-cobol">EVALUATE</code> is very powerful construct; but where it really
+						shines is implementing decision table logic. Consider the example below.
 					</p>
 					<p>
 						Jupiter Books - the largest on-line bookstore in the galaxy - sells books, through the Internet,
@@ -1552,7 +1571,7 @@ END-EVALUATE
 					</p>
 					<p>
 						Jupiter Books uses a decision table to decide what discount to apply. The decision table and the
-						<font size="-1">EVALUATE</font> which implements it are shown below.
+						<code class="language-cobol">EVALUATE</code> which implements it are shown below.
 					</p>
 					<table align="center" bgcolor="#E1FFE1" border="1" width="83%">
 						<tr bgcolor="#FFFFCC" valign="top">
@@ -1855,10 +1874,11 @@ END-EVALUATE
 					</table>
 					<p>
 						<b>Comments<br /></b> Notice how easily and clearly the decision table is implemented using an
-						<font size="-1">EVALUATE</font>. Not only is the <font size="-1">EVALUATE</font> clear but there
-						is no temptation to take shortcuts which may cause problems later. For instance, at the moment,
-						a discount of 23% is offered in two places in the table. A programmer writing in C might be
-						tempted to take advantage of this by coding;
+						<code class="language-cobol">EVALUATE</code>. Not only is the
+						<code class="language-cobol">EVALUATE</code> clear but there is no temptation to take shortcuts
+						which may cause problems later. For instance, at the moment, a discount of 23% is offered in two
+						places in the table. A programmer writing in C might be tempted to take advantage of this by
+						coding;
 					</p>
 					<pre
 						class="language-cobol"

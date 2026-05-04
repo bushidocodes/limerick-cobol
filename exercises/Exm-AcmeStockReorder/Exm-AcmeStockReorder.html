@@ -198,8 +198,11 @@
 				<td bgcolor="#FFFFFF" colspan="2" height="23"><b>Major Constructs</b></td>
 				<td bgcolor="#FFFFFF" height="23" width="78%">
 					<font size="-1"
-						>Indexed files, Relative Files, SubPrograms, CALL..USING, READ, WRITE, REWRITE, Condition Names
-						(level 88s), EVALUATE, UNSTRING, MULTIPLY..ON SIZE ERROR.</font
+						>Indexed files, Relative Files, SubPrograms, <code class="language-cobol">CALL..USING</code>,
+						<code class="language-cobol">READ</code>, <code class="language-cobol">WRITE</code>,
+						<code class="language-cobol">REWRITE</code>, Condition Names (level 88s),
+						<code class="language-cobol">EVALUATE</code>, <code class="language-cobol">UNSTRING</code>,
+						<code class="language-cobol">MULTIPLY..ON SIZE ERROR</code>.</font
 					>
 				</td>
 			</tr>
@@ -222,34 +225,25 @@
 					</p>
 					<p>
 						For each stock item that needs to be re-ordered the program will create a record in the Orders
-						file and will set an O<font size="-1">N</font>O<font size="-1">RDER</font> flag in the Stock
-						file to show that the item has been ordered.
+						file and will set an <code class="language-cobol">ONORDER</code> flag in the Stock file to show
+						that the item has been ordered.
 					</p>
 					<p>
 						Acme Manufacturing tries to pay all suppliers in EU countries in advance. For these countries,
-						the C<font size="-1">OST</font>O<font size="-1">F</font>I <font size="-1">TEMS</font> and P<font
-							size="-1"
-							>OSTAGE</font
-						>
+						the <code class="language-cobol">COSTOFITEMS</code> and
+						<code class="language-cobol">POSTAGE</code>
 						fields of each Orders file record must be calculated.
 					</p>
 					<p>
 						With the exception of the Republic of Ireland, postage rates for all EU countries are the same.
 						The postage rates are obtained by calling a program "PostageRate" with two parameters; the
-						P<font size="-1">OST</font>N<font size="-1">UMBER</font> (In) and the P<font size="-1">OST</font
-						>C<font size="-1">HARGE</font> (In/Out). The P<font size="-1">OST</font>N<font size="-1"
-							>UMBER</font
-						>
-						is derived, as shown by the decision table below. The P<font size="-1">OST</font>C<font
-							size="-1"
-							>HARGE</font
-						>
-						is the value returned (in Euro and Cent :- max €99.99) by "PostageRate" for a particular P<font
-							size="-1"
-							>OST</font
-						>N<font size="-1">UMBER</font>. Note, that if the total weight of the items ordered is greater
-						than 50kg then the items cannot be sent by post and the P<font size="-1">OSTAGE</font> must be
-						set to €0.00.
+						<code class="language-cobol">POSTNUMBER</code> (In) and the
+						<code class="language-cobol">POSTCHARGE</code> (In/Out). The
+						<code class="language-cobol">POSTNUMBER</code> is derived, as shown by the decision table below.
+						The <code class="language-cobol">POSTCHARGE</code> is the value returned (in Euro and Cent :-
+						max €99.99) by "PostageRate" for a particular <code class="language-cobol">POSTNUMBER</code>.
+						Note, that if the total weight of the items ordered is greater than 50kg then the items cannot
+						be sent by post and the <code class="language-cobol">POSTAGE</code> must be set to €0.00.
 					</p>
 					<div align="center">
 						<table border="1" cellpadding="0" cellspacing="0">
