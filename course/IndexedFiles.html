@@ -16,10 +16,23 @@
 			ul.toc > li {
 				padding-left: 0.4em;
 				margin-bottom: 0.6em;
+				font-size: smaller;
 			}
 
 			ul.toc a {
 				font-weight: bold;
+				font-size: larger;
+			}
+
+			td[bgcolor="#993300"] h2 {
+				color: #ffff00;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			td[bgcolor="#FFFFCC"] h3,
+			td[bgcolor="#FFFFCC"] h4 {
+				color: #800000;
+				font-family: Arial, Helvetica, sans-serif;
 			}
 		</style>
 		<meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -208,59 +221,48 @@
 						<ul class="toc">
 							<li>
 								<a href="#intro">Introduction</a><br />
-								<font size="-1">Unit aims, objectives and prerequisites.</font>
+								Unit aims, objectives and prerequisites.
 							</li>
 							<li>
 								<a href="#progs">A look at some programs that use Indexed files</a><br />
-								<font size="-1"
-									>We begin with three example programs. The first creates an Indexed file from a
-									Sequential file, the second reads the Indexed file sequentially or either the
-									primary or the alternate key, and the third reads the file directly on either
-									key.</font
-								>
+								We begin with three example programs. The first creates an Indexed file from a
+								Sequential file, the second reads the Indexed file sequentially or either the primary or
+								the alternate key, and the third reads the file directly on either key.
 							</li>
 							<li>
 								<a href="#org">Indexed file organization</a><br />
-								<font size="-1"
-									>Explains by means of an animated diagram how the index of the primary key is
-									organized and shows how it is used to read a record directly. Explains how the
-									alternate key index is organized and shows how it is used to read a record
-									directly.</font
-								>
+								Explains by means of an animated diagram how the index of the primary key is organized
+								and shows how it is used to read a record directly. Explains how the alternate key index
+								is organized and shows how it is used to read a record directly.
 							</li>
 							<li>
 								<a href="#declar">Indexed file - declarations</a><br />
-								<font size="-1"
-									>Examines the <code class="language-cobol">SELECT</code> and
-									<code class="language-cobol">ASSIGN</code> clause declarations required for an
-									Indexed file.</font
-								>
+								Examines the <code class="language-cobol">SELECT</code> and
+								<code class="language-cobol">ASSIGN</code> clause declarations required for an Indexed
+								file.
 							</li>
 							<li>
 								<a href="#verbs">Indexed file - file processing verbs</a><br />
-								<font size="-1"
-									>Examines the Procedure Division verbs used to process Indexed files -
-									<code class="language-cobol">OPEN</code>, <code class="language-cobol">CLOSE</code>,
-									<code class="language-cobol">READ</code>, <code class="language-cobol">WRITE</code>,
-									<code class="language-cobol">REWRITE</code>,
-									<code class="language-cobol">DELETE</code>,
-									<code class="language-cobol">START</code></font
-								>
+								Examines the Procedure Division verbs used to process Indexed files -
+								<code class="language-cobol">OPEN</code>, <code class="language-cobol">CLOSE</code>,
+								<code class="language-cobol">READ</code>, <code class="language-cobol">WRITE</code>,
+								<code class="language-cobol">REWRITE</code>, <code class="language-cobol">DELETE</code>,
+								<code class="language-cobol">START</code>
 							</li>
 							<li>
 								<a href="#example">A comprehensive example</a><br />
-								<font size="-1">We end with a comprehensive problem specification and solution.</font>
+								We end with a comprehensive problem specification and solution.
 							</li>
 						</ul>
 						<table border="0" cellpadding="4" cellspacing="0" width="710">
 							<tr>
 								<td align="left" bgcolor="#993300" colspan="2" valign="top" width="175">
-									<h2 align="center" id="intro"><font color="#FFFF00">Introduction</font></h2>
+									<h2 align="center" id="intro">Introduction</h2>
 								</td>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#993300">Aims</font></h3>
+									<h3>Aims</h3>
 								</td>
 								<td width="525">
 									<p>
@@ -273,7 +275,7 @@
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Objectives</font></h3>
+									<h3>Objectives</h3>
 								</td>
 								<td width="525">
 									<p>By the end of this unit you should:</p>
@@ -306,7 +308,7 @@
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Prerequisites</font></h3>
+									<h3>Prerequisites</h3>
 								</td>
 								<td width="525">
 									<p>You should be familiar with the material covered in the unit;</p>
@@ -331,16 +333,12 @@
 						<table border="0" cellpadding="4" cellspacing="0" width="710">
 							<tr>
 								<td align="left" bgcolor="#993300" colspan="2" valign="top" width="100%">
-									<h2 align="center" id="progs">
-										<font color="#FFFF00">A look at some programs that use Indexed files</font>
-									</h2>
+									<h2 align="center" id="progs">A look at some programs that use Indexed files</h2>
 								</td>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3 align="left">
-										<font color="#800000">Example program - Creating an Indexed file</font>
-									</h3>
+									<h3 align="left">Example program - Creating an Indexed file</h3>
 								</td>
 								<td width="525">
 									<table border="0" width="100%">
@@ -396,11 +394,7 @@
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3>
-										<font color="#800000"
-											>Example program - Reading an Indexed file sequentially</font
-										>
-									</h3>
+									<h3>Example program - Reading an Indexed file sequentially</h3>
 								</td>
 								<td width="525">
 									<table border="0" width="100%">
@@ -513,9 +507,7 @@ Enter key : 1=VideoCode, 2=VideoTitle -&gt;2
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3>
-										<font color="#800000">Example program - Reading an Indexed file directly</font>
-									</h3>
+									<h3>Example program - Reading an Indexed file directly</h3>
 								</td>
 								<td width="525">
 									<table border="0" width="100%">
@@ -607,14 +599,12 @@ VIDEO STATUS :- 23</code></pre>
 						<table border="0" cellpadding="4" cellspacing="0" width="710">
 							<tr>
 								<td align="left" bgcolor="#993300" colspan="2" valign="top" width="175">
-									<h2 align="center" id="org">
-										<font color="#FFFF00">Indexed file organization</font>
-									</h2>
+									<h2 align="center" id="org">Indexed file organization</h2>
 								</td>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#993300">Introduction</font></h3>
+									<h3>Introduction</h3>
 								</td>
 								<td width="525">
 									<p>
@@ -652,7 +642,7 @@ VIDEO STATUS :- 23</code></pre>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Primary Key Index</font></h3>
+									<h3>Primary Key Index</h3>
 								</td>
 								<td width="525">
 									<p>
@@ -672,7 +662,7 @@ VIDEO STATUS :- 23</code></pre>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Alternate Key Index</font></h3>
+									<h3>Alternate Key Index</h3>
 								</td>
 								<td width="525">
 									<p>
@@ -699,9 +689,7 @@ VIDEO STATUS :- 23</code></pre>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3 align="left">
-										<font color="#800000">Animation of the primary and alternate key indexes</font>
-									</h3>
+									<h3 align="left">Animation of the primary and alternate key indexes</h3>
 								</td>
 								<td width="525">
 									<table border="0" width="100%">
@@ -761,14 +749,12 @@ END-IF</code></pre>
 						<table border="0" cellpadding="4" cellspacing="0" width="710">
 							<tr>
 								<td align="left" bgcolor="#993300" colspan="2" valign="top" width="175">
-									<h2 align="center" id="declar">
-										<font color="#FFFF00">Indexed file - Declarations</font>
-									</h2>
+									<h2 align="center" id="declar">Indexed file - Declarations</h2>
 								</td>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Introduction</font></h3>
+									<h3>Introduction</h3>
 								</td>
 								<td width="525">
 									<p>
@@ -781,7 +767,7 @@ END-IF</code></pre>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Select and Assign clause syntax</font></h3>
+									<h3>Select and Assign clause syntax</h3>
 								</td>
 								<td width="525">
 									<p><img height="245" src="Resources/pics/I-DFidx1.gif" width="474" /></p>
@@ -789,13 +775,10 @@ END-IF</code></pre>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">The Record Key phrase</font></h3>
+									<h3>The Record Key phrase</h3>
 								</td>
 								<td width="525">
-									<p>
-										The <font size="2">RECORD KEY</font> phrase defines the Indexed file's primary
-										key.
-									</p>
+									<p>The RECORD KEY phrase defines the Indexed file's primary key.</p>
 									<p>
 										Every Indexed file must have a primary key. The key <b>must</b> be a field in
 										the record description that contains a unique value for each record.
@@ -809,7 +792,7 @@ END-IF</code></pre>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">The Alternate Record Key phrase</font></h3>
+									<h3>The Alternate Record Key phrase</h3>
 								</td>
 								<td width="525">
 									<div align="center">
@@ -824,7 +807,7 @@ END-IF</code></pre>
 											</p>
 											<p>
 												Each alternate key may be unique or may have duplicate values (for this
-												the <font size="2">WITH DUPLICATES</font> clause is required).
+												the WITH DUPLICATES clause is required).
 											</p>
 										</div>
 									</div>
@@ -847,14 +830,12 @@ END-IF</code></pre>
 						<table border="0" cellpadding="4" cellspacing="0" width="710">
 							<tr>
 								<td align="left" bgcolor="#993300" colspan="2" valign="top" width="100%">
-									<h2 align="center" id="verbs">
-										<font color="#FFFF00">Indexed file - file processing verbs</font>
-									</h2>
+									<h2 align="center" id="verbs">Indexed file - file processing verbs</h2>
 								</td>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Introduction</font></h3>
+									<h3>Introduction</h3>
 								</td>
 								<td width="525">
 									<p>
@@ -862,12 +843,9 @@ END-IF</code></pre>
 										Relative files.
 									</p>
 									<p>
-										Indexed files use the same file processing verbs as Relative files (<font
-											size="2"
-											>OPEN, CLOSE, READ, WRITE, REWRITE, DELETE</font
-										>
-										and <font size="2">START</font>) but there are some syntactic and semantic
-										differences.
+										Indexed files use the same file processing verbs as Relative files (OPEN, CLOSE,
+										READ, WRITE, REWRITE, DELETE and START) but there are some syntactic and
+										semantic differences.
 									</p>
 									<p>
 										In this section we will only examine those verbs which differ in syntax or
@@ -878,77 +856,69 @@ END-IF</code></pre>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">The READ verb</font></h3>
+									<h3>The READ verb</h3>
 								</td>
 								<td width="525">
 									<p>
-										When an Indexed file has an <font size="2">ACCESS MODE</font> of
-										<font size="2">SEQUENTIAL</font> , the format of the
-										<font size="2">READ</font> is the same as for Sequential files, but when the
-										<font size="2">ACCESS MODE</font> is <font size="2">DYNAMIC</font> Sequential
-										processing of the file is complicated by the presence of a number of indexes.
-										The order in which the data records will be read, will depend on which index is
-										being processed sequentially.
+										When an Indexed file has an ACCESS MODE of SEQUENTIAL , the format of the READ
+										is the same as for Sequential files, but when the ACCESS MODE is DYNAMIC
+										Sequential processing of the file is complicated by the presence of a number of
+										indexes. The order in which the data records will be read, will depend on which
+										index is being processed sequentially.
 									</p>
 								</td>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Key Of Reference</font></h3>
+									<h3>Key Of Reference</h3>
 								</td>
 								<td width="525">
 									<p>
-										When an Indexed file has an <font size="2">ACCESS MODE</font> of
-										<font size="2">SEQUENTIAL</font> , the file is always processed in ascending
-										primary key order.
+										When an Indexed file has an ACCESS MODE of SEQUENTIAL , the file is always
+										processed in ascending primary key order.
 									</p>
 									<p>
-										But, if an Indexed file has an <font size="2">ACCESS MODE</font> of
-										<font size="2">DYNAMIC</font> and is processed sequentially, the file system
-										must be able to tell which of the keys to use as the basis for processing the
-										file.
+										But, if an Indexed file has an ACCESS MODE of DYNAMIC and is processed
+										sequentially, the file system must be able to tell which of the keys to use as
+										the basis for processing the file.
 									</p>
 									<p>
-										Since the format of the sequential <font size="2">READ</font> does not have a
-										key phrase, the file system refers to a special item called the Key Of Reference
-										to discover which key to use for processing the file.
+										Since the format of the sequential READ does not have a key phrase, the file
+										system refers to a special item called the Key Of Reference to discover which
+										key to use for processing the file.
 									</p>
 									<p>
-										Before reading a file that has an <font size="2">ACCESS MODE</font> of
-										<font size="2">DYNAMIC</font> sequentially, the programmer must establish one of
-										the file's keys as the Key Of Reference.
+										Before reading a file that has an ACCESS MODE of DYNAMIC sequentially, the
+										programmer must establish one of the file's keys as the Key Of Reference.
 									</p>
 									<p>
-										A Key Of Reference is established by using the key in a
-										<font size="2">START</font> or a direct <font size="2">READ</font>.
+										A Key Of Reference is established by using the key in a START or a direct READ.
 									</p>
 									<p>When the file is opened the primary key is, by default, the Key Of Reference.</p>
 								</td>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Reading Sequentially</font></h3>
+									<h3>Reading Sequentially</h3>
 								</td>
 								<td width="525">
 									<p><img src="Resources/pics/I-DFrel4.gif" /></p>
 									<p>
-										<b>Notes</b><b><br /></b> This format is used when the
-										<font size="2">ACCESS MODE</font> is <font size="2">DYNAMIC</font> and we wish
-										to read the file sequentially.
+										<b>Notes</b><b><br /></b> This format is used when the ACCESS MODE is DYNAMIC
+										and we wish to read the file sequentially.
 									</p>
 									<p>
 										This format will read the file in ascending sequence on the key that has been
 										established as the key of reference.
 									</p>
 									<p>
-										The <font size="2">READ NEXT</font> will read the logical record pointed to by
-										the next record pointer (This will be the current record if positioned by the
-										<font size="2">START</font> and the next record if positioned by a direct
-										<font size="2">READ</font>).
+										The READ NEXT will read the logical record pointed to by the next record pointer
+										(This will be the current record if positioned by the START and the next record
+										if positioned by a direct READ).
 									</p>
 									<p>
 										<b>Operation<br /></b> To read a record sequentially from an Indexed file that
-										has an <font size="2">ACCESS MODE</font> of <font size="2">DYNAMIC</font>
+										has an ACCESS MODE of DYNAMIC
 									</p>
 									<ol>
 										<li>
@@ -956,13 +926,13 @@ END-IF</code></pre>
 											established as the Key Of Reference by doing a START or a direct READ using
 											that key.
 										</li>
-										<li>Then the <font size="2">READ</font> must be executed.</li>
+										<li>Then the READ must be executed.</li>
 									</ol>
 								</td>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Reading using a key</font></h3>
+									<h3>Reading using a key</h3>
 								</td>
 								<td width="525">
 									<p><img src="Resources/pics/I-DFrel3.gif" /></p>
@@ -977,40 +947,35 @@ END-IF</code></pre>
 										<li>
 											The key value must be placed in the <i>KeyName</i> data item (the
 											<i>KeyName</i> data item is the area of storage identified as the primary
-											key or one of the alternate keys in the the <font size="2">SELECT</font> and
-											<font size="2">ASSIGN</font> clause).
+											key or one of the alternate keys in the the SELECT and ASSIGN clause).
 										</li>
-										<li>Then the <font size="2">READ</font> must be executed.</li>
+										<li>Then the READ must be executed.</li>
 									</ol>
 									<p>
-										When the <font size="2">READ</font> is executed the record with the key value
-										equal to the present value of <i>KeyName</i> will be read.
+										When the READ is executed the record with the key value equal to the present
+										value of <i>KeyName</i> will be read.
 									</p>
 									<p>
-										<b>Notes<br /></b> If the record does not exist the
-										<font size="2">INVALID KEY</font> clause will activate and the statement block
-										following the clause will be executed.
+										<b>Notes<br /></b> If the record does not exist the INVALID KEY clause will
+										activate and the statement block following the clause will be executed.
 									</p>
+									<p>If the KEY IS clause is omitted, the key used will be the primary key.</p>
 									<p>
-										If the <font size="2">KEY IS</font> clause is omitted, the key used will be the
-										primary key.
-									</p>
-									<p>
-										When the <font size="2">READ</font> is executed, the key mentioned in the
-										<font size="2">KEY IS</font> phrase will be established as the Key Of Reference.
-									</p>
-									<p>
-										If there is no <font size="2">KEY IS</font> phrase, the primary key will be
+										When the READ is executed, the key mentioned in the KEY IS phrase will be
 										established as the Key Of Reference.
+									</p>
+									<p>
+										If there is no KEY IS phrase, the primary key will be established as the Key Of
+										Reference.
 									</p>
 									<p>
 										If duplicates are allowed, only the first record in a group with duplicates can
 										be read directly. The rest of the duplicates must be read sequentially using the
-										<font size="2">READ NEXT</font> format.
+										READ NEXT format.
 									</p>
 									<p>
-										The <font size="2">KEY IS</font> phrase can only be used with Indexed files and
-										it is used because Indexed files may have more than one key.
+										The KEY IS phrase can only be used with Indexed files and it is used because
+										Indexed files may have more than one key.
 									</p>
 									<p>
 										After the record has been read, the next record pointer points to the next
@@ -1019,25 +984,19 @@ END-IF</code></pre>
 										alternate keys then the pointer will point to the next alternate index base
 										record.
 									</p>
-									<p>
-										The file must have an <font size="2">ACCESS MODE</font> of
-										<font size="2">DYNAMIC</font> or <font size="2">RANDOM</font>.
-									</p>
-									<p>The file must be opened for I-O or <font size="2">INPUT</font>.&nbsp;</p>
+									<p>The file must have an ACCESS MODE of DYNAMIC or RANDOM.</p>
+									<p>The file must be opened for I-O or INPUT.&nbsp;</p>
 									<hr />
 								</td>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3 align="left">
-										<font color="#800000">The WRITE, REWRITE and DELETE verbs.</font>
-									</h3>
+									<h3 align="left">The WRITE, REWRITE and DELETE verbs.</h3>
 								</td>
 								<td width="525">
 									<p>
-										The syntax and semantics of the <font size="2">WRITE</font> ,
-										<font size="2">REWRITE</font> and <font size="2">DELETE</font> verbs is the same
-										as that for Relative files with the following exceptions;
+										The syntax and semantics of the WRITE , REWRITE and DELETE verbs is the same as
+										that for Relative files with the following exceptions;
 									</p>
 									<ul>
 										<li>
@@ -1045,8 +1004,8 @@ END-IF</code></pre>
 											key only.
 										</li>
 										<li>
-											The <font size="2">REWRITE</font> may not change the value of the primary
-											key but it may change the values of any of the alternate keys.
+											The REWRITE may not change the value of the primary key but it may change
+											the values of any of the alternate keys.
 										</li>
 									</ul>
 									<hr />
@@ -1054,18 +1013,16 @@ END-IF</code></pre>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">The START verb</font></h3>
+									<h3>The START verb</h3>
 								</td>
 								<td width="525">
 									<p>
-										In Indexed files, the the <font size="2">START</font> verb is used to control
-										the position of the next record pointer and to establish a key as the Key Of
-										Reference.
+										In Indexed files, the the START verb is used to control the position of the next
+										record pointer and to establish a key as the Key Of Reference.
 									</p>
 									<p>
-										Where the <font size="2">START</font> verb appears in a program it is usually
-										followed by a sequential <font size="2">READ</font> or
-										<font size="2">WRITE</font> .
+										Where the START verb appears in a program it is usually followed by a sequential
+										READ or WRITE .
 									</p>
 									<p><img src="Resources/pics/I-DFrel8.gif" /></p>
 									<p>
@@ -1078,7 +1035,7 @@ END-IF</code></pre>
 											back to the example programs, we might move "Hope and glory" to the
 											VideoTitle if we wanted to establish VideoTitle as the Key Of Reference.
 										</li>
-										<li>Execute the <font size="2">START..KEY IS EQUAL TO</font></li>
+										<li>Execute the START..KEY IS EQUAL TO</li>
 									</ol>
 									<p>
 										To establish a key as the Key of Reference and position the Next Record Pointer
@@ -1090,34 +1047,24 @@ END-IF</code></pre>
 											spaces to VideoTitle to position the pointer at the first logical record in
 											VideoTitle sequence.
 										</li>
-										<li>Execute the <font size="2">START..KEY IS GREATER THAN</font></li>
+										<li>Execute the START..KEY IS GREATER THAN</li>
 									</ol>
 									<p>
 										<b>Notes<br /></b> <i>KeyName</i> is the primary key or one of the alternate
 										keys. It is the key of comparison.
 									</p>
+									<p>Before the START is executed some value must be moved to the <i>KeyName</i>.</p>
+									<p>Using the START with some key establishes that key as the Key Of Reference.</p>
+									<p>The file must be opened for INPUT or I-O when the START is executed.</p>
 									<p>
-										Before the <font size="2">START</font> is executed some value must be moved to
-										the <i>KeyName</i>.
+										Execution of the START statement does not change the contents of the record area
+										(i.e. the START does not actually read the record it merely positions the Next
+										Record Pointer).
 									</p>
 									<p>
-										Using the <font size="2">START</font> with some key establishes that key as the
-										Key Of Reference.
-									</p>
-									<p>
-										The file must be opened for <font size="2">INPUT</font> or I-O when the
-										<font size="2">START</font> is executed.
-									</p>
-									<p>
-										Execution of the <font size="2">START</font> statement does not change the
-										contents of the record area (i.e. the <font size="2">START</font> does not
-										actually read the record it merely positions the Next Record Pointer).
-									</p>
-									<p>
-										When the <font size="2">START</font> is executed the Next Record Pointer is set
-										to the first logical record in the file whose key satisfies the condition. If no
-										record satisfies the condition then the <font size="2">INVALID</font> key clause
-										is activated.
+										When the START is executed the Next Record Pointer is set to the first logical
+										record in the file whose key satisfies the condition. If no record satisfies the
+										condition then the INVALID key clause is activated.
 									</p>
 								</td>
 							</tr>
@@ -1137,14 +1084,12 @@ END-IF</code></pre>
 						<table border="0" cellpadding="4" cellspacing="0" width="710">
 							<tr>
 								<td align="left" bgcolor="#993300" colspan="2" valign="top" width="100%">
-									<h2 align="center" id="example">
-										<font color="#FFFF00">An Comprehensive Example Program</font>
-									</h2>
+									<h2 align="center" id="example">An Comprehensive Example Program</h2>
 								</td>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3 align="left"><font color="#800000">Program Specification</font></h3>
+									<h3 align="left">Program Specification</h3>
 								</td>
 								<td width="525">
 									<p align="center">ROYALTY PAYMENT REPORT PROGRAM.</p>
@@ -1171,10 +1116,8 @@ END-IF</code></pre>
 										specification for the report is on the next page.
 									</p>
 									<p>
-										All the data required to produce the
-										<font size="2">ROYALTY PAYMENT REPORT</font> is contained in two indexed files.
-										The indexed file <font size="2">BOOKS.DAT</font> has the following record
-										description;-
+										All the data required to produce the ROYALTY PAYMENT REPORT is contained in two
+										indexed files. The indexed file BOOKS.DAT has the following record description;-
 									</p>
 									<table border="1" width="100%">
 										<tr>
@@ -1230,10 +1173,7 @@ END-IF</code></pre>
 											<td align="center" width="18%">0-999</td>
 										</tr>
 									</table>
-									<p>
-										The indexed file <font size="2">AUTHOR.DAT</font> has the following record
-										description;-
-									</p>
+									<p>The indexed file AUTHOR.DAT has the following record description;-</p>
 									<table border="1" width="100%">
 										<tr>
 											<td width="26%">
@@ -1554,15 +1494,12 @@ ProcessOneBook.
 										These COBOL course materials are the copyright property of Michael Coughlan.
 									</p>
 									<p>
-										<font size="2"
-											>All rights reserved. No part of these course materials may be reproduced in
-											any form or by any means - graphic, electronic, mechanical, photocopying,
-											printing, recording, taping or stored in an information storage and
-											retrieval system - without the written permission of</font
-										>
-										<font size="2">the author.</font>
+										All rights reserved. No part of these course materials may be reproduced in any
+										form or by any means - graphic, electronic, mechanical, photocopying, printing,
+										recording, taping or stored in an information storage and retrieval system -
+										without the written permission of the author.
 									</p>
-									<p align="center"><font size="2">(c) Michael Coughlan</font></p>
+									<p align="center">(c) Michael Coughlan</p>
 								</td>
 							</tr>
 						</table>

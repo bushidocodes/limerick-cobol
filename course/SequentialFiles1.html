@@ -128,10 +128,23 @@
 			ul.toc > li {
 				padding-left: 0.4em;
 				margin-bottom: 0.6em;
+				font-size: smaller;
 			}
 
 			ul.toc a {
 				font-weight: bold;
+				font-size: larger;
+			}
+
+			td[bgcolor="#993300"] h2 {
+				color: #ffff00;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			td[bgcolor="#FFFFCC"] h3,
+			td[bgcolor="#FFFFCC"] h4 {
+				color: #800000;
+				font-family: Arial, Helvetica, sans-serif;
 			}
 		</style>
 	</head>
@@ -148,29 +161,23 @@
 					<ul class="toc">
 						<li>
 							<a href="#intro">Introduction</a><br />
-							<font size="-1">Unit aims, objectives, prerequisites.</font>
+							Unit aims, objectives, prerequisites.
 						</li>
 						<li>
 							<a href="#part1">Introduction to record-based files</a><br />
-							<font size="-1"
-								>This section introduces record-based files, the concept of the record buffer and
-								defines terminology such as file, record and field.</font
-							>
+							This section introduces record-based files, the concept of the record buffer and defines
+							terminology such as file, record and field.
 						</li>
 						<li>
 							<a href="#part2">Declaring records and files</a><br />
-							<font size="-1"
-								>This section demonstrates how the FD entry is used to describe a files record buffer
-								and show how to use the SELECT and ASSIGN clause to connect an internal file name to an
-								external data repository.</font
-							>
+							This section demonstrates how the FD entry is used to describe a files record buffer and
+							show how to use the SELECT and ASSIGN clause to connect an internal file name to an external
+							data repository.
 						</li>
 						<li>
 							<a href="#part3">COBOL file handling verbs</a><br />
-							<font size="-1"
-								>The COBOL verbs for processing Sequential Files are introduced in this section. The
-								section ends with a full example program.</font
-							>
+							The COBOL verbs for processing Sequential Files are introduced in this section. The section
+							ends with a full example program.
 						</li>
 					</ul>
 					<hr />
@@ -178,26 +185,19 @@
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
-					<h2 align="center" id="intro">
-						<font color="#FFFF00">
-							<font face="Arial, Helvetica, sans-serif">Introduction</font>
-						</font>
-					</h2>
+					<h2 align="center" id="intro">Introduction</h2>
 				</td>
 			</tr>
 			<tr>
 				<td bgcolor="#FFFFCC" valign="top" width="175">
-					<h4>
-						<font color="#993300" face="Arial, Helvetica, sans-serif">Aims</font>
-					</h4>
+					<h4>Aims</h4>
 				</td>
 				<td valign="top" width="540">
 					<div align="center">
 						<p align="left">
 							Files are repositories of data that reside on backing storage (hard disk, magnetic tape or
-							<font size="-1">CD-ROM</font>). Nowadays, files are used to store a variety of different
-							types of information, such as programs, documents, spreadsheets, videos, sounds, pictures
-							and record-based data.
+							CD-ROM). Nowadays, files are used to store a variety of different types of information, such
+							as programs, documents, spreadsheets, videos, sounds, pictures and record-based data.
 						</p>
 						<p align="left">
 							Although COBOL can be used to process these other kinds of data file, it is generally used
@@ -234,9 +234,7 @@
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4>
-						<font color="#800000" face="Arial, Helvetica, sans-serif">Objectives</font>
-					</h4>
+					<h4>Objectives</h4>
 				</td>
 				<td valign="top" width="540">
 					<p>By the end of this unit you should -</p>
@@ -255,9 +253,7 @@
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" height="77" valign="top" width="175">
-					<h4>
-						<font color="#800000" face="Arial, Helvetica, sans-serif">Prerequisites</font>
-					</h4>
+					<h4>Prerequisites</h4>
 				</td>
 				<td height="77" valign="top" width="525">
 					<ul>
@@ -283,18 +279,12 @@
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
-					<h2 align="center" id="part1">
-						<font color="#FFFF00">
-							<font face="Arial, Helvetica, sans-serif">Introduction to record-based files</font>
-						</font>
-					</h2>
+					<h2 align="center" id="part1">Introduction to record-based files</h2>
 				</td>
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4>
-						<font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font>
-					</h4>
+					<h4>Introduction</h4>
 				</td>
 				<td valign="top" width="525">
 					<div align="center">
@@ -313,9 +303,7 @@
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4>
-						<font color="#800000" face="Arial, Helvetica, sans-serif">Files, Records, Fields</font>
-					</h4>
+					<h4>Files, Records, Fields</h4>
 				</td>
 				<td valign="top" width="525">
 					<div align="center">
@@ -348,9 +336,7 @@
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4>
-						<font color="#800000" face="Arial, Helvetica, sans-serif">Record instance vs Record type</font>
-					</h4>
+					<h4>Record instance vs Record type</h4>
 				</td>
 				<td valign="top" width="525">
 					<div align="center">
@@ -378,9 +364,7 @@
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4 align="left">
-						<font color="#800000" face="Arial, Helvetica, sans-serif">The record buffer</font>
-					</h4>
+					<h4 align="left">The record buffer</h4>
 				</td>
 				<td valign="top" width="525">
 					<p>
@@ -411,9 +395,7 @@
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4>
-						<font color="#800000" face="Arial, Helvetica, sans-serif">Some implications of "buffers"</font>
-					</h4>
+					<h4>Some implications of "buffers"</h4>
 					<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
 				</td>
 				<td valign="top" width="525">
@@ -449,25 +431,17 @@
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
-					<h2 align="center" id="part2">
-						<font color="#FFFF00">
-							<font face="Arial, Helvetica, sans-serif">Declaring Records and Files</font>
-						</font>
-					</h2>
+					<h2 align="center" id="part2">Declaring Records and Files</h2>
 				</td>
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4 align="left">
-						<font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font>
-					</h4>
+					<h4 align="left">Introduction</h4>
 					<aside>
 						<p align="center">
 							<img height="37" src="Resources/pics/i-Detail.gif" width="30" /><br />
-							<font size="-1"
-								>This is for demonstration only. In reality we would need to include far more items and
-								some of the fields would have to be considerably larger.</font
-							>
+							This is for demonstration only. In reality we would need to include far more items and some
+							of the fields would have to be considerably larger.
 						</p>
 					</aside>
 				</td>
@@ -494,9 +468,7 @@
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" height="355" valign="top" width="175">
-					<h4 align="left">
-						<font color="#800000" face="Arial, Helvetica, sans-serif">Creating a record</font>
-					</h4>
+					<h4 align="left">Creating a record</h4>
 				</td>
 				<td valign="top" width="525">
 					<p>
@@ -568,11 +540,7 @@
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" height="355" valign="top" width="175">
-					<h4 align="left">
-						<font color="#800000" face="Arial, Helvetica, sans-serif"
-							>Declaring a record buffer in your program
-						</font>
-					</h4>
+					<h4 align="left">Declaring a record buffer in your program</h4>
 					<p align="center"><img height="44" src="Resources/pics/ProgFrag.gif" width="48" /></p>
 				</td>
 				<td height="355" valign="top" width="525">
@@ -614,9 +582,7 @@ FD StudentFile.
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4 align="left">
-						<font color="#800000" face="Arial, Helvetica, sans-serif">The SELECT and ASSIGN clause</font>
-					</h4>
+					<h4 align="left">The SELECT and ASSIGN clause</h4>
 					<p align="center"><img height="44" src="Resources/pics/ProgFrag.gif" width="48" /></p>
 				</td>
 				<td valign="top" width="525">
@@ -627,7 +593,7 @@ FD StudentFile.
 					</p>
 					<p>
 						The internal file name used in a file's <code class="language-cobol">FD</code> entry is
-						connected to an external file (on disk, tape or <font size="-1">CD-ROM</font>) by means of the
+						connected to an external file (on disk, tape or CD-ROM) by means of the
 						<code class="language-cobol">SELECT</code> and
 						<code class="language-cobol">ASSIGN</code> clause. The
 						<code class="language-cobol">SELECT</code> and <code class="language-cobol">ASSIGN</code> clause
@@ -641,7 +607,7 @@ FD StudentFile.
 								<pre class="language-cobol"><code class="language-cobol">ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
-   SELECT StudentFile 
+   SELECT StudentFile
           ASSIGN TO "STUDENTS.DAT".
 DATA DIVISION.
 FILE SECTION.
@@ -664,27 +630,19 @@ FD StudentFile.
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" height="551" valign="top" width="175">
-					<h4>
-						<font color="#800000" face="Arial, Helvetica, sans-serif"
-							>SELECT and ASSIGN syntax for Sequential files</font
-						>
-					</h4>
+					<h4>SELECT and ASSIGN syntax for Sequential files</h4>
 					<aside>
 						<p align="center">
 							<img height="37" src="Resources/pics/i-Detail.gif" width="30" /><br />
-							<font size="-1"
-								>The Select and Assign clause has far more entries (even for Sequential files) than
-								those we show here; but we will examine the other entries in later tutorials.</font
-							>
+							The Select and Assign clause has far more entries (even for Sequential files) than those we
+							show here; but we will examine the other entries in later tutorials.
 						</p>
 					</aside>
 					<aside>
 						<p align="center">
 							<img height="37" src="Resources/pics/i-Detail.gif" width="30" /><br />
-							<font size="-1"
-								>We are only going to deal with statically assigned file names for the moment, but it is
-								possible to assign a file name to a file at run-time.</font
-							>
+							We are only going to deal with statically assigned file names for the moment, but it is
+							possible to assign a file name to a file at run-time.
 						</p>
 					</aside>
 				</td>
@@ -719,10 +677,10 @@ FD StudentFile.
 							could associate the StudentFile with an actual file using statements like:
 						</p>
 					</div>
-					<pre class="language-cobol" align="left"><code class="language-cobol">SELECT StudentFile 
+					<pre class="language-cobol" align="left"><code class="language-cobol">SELECT StudentFile
        ASSIGN TO "D:\Cobol\ExampleProgs\Students.Dat"
 
-SELECT StudentFile 
+SELECT StudentFile
        ASSIGN TO "A:\Students.Dat"
 </code></pre>
 					<div align="center">
@@ -732,11 +690,7 @@ SELECT StudentFile
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4>
-						<font color="#800000" face="Arial, Helvetica, sans-serif"
-							>What is the purpose of the SELECT and ASSIGN clause?</font
-						>
-					</h4>
+					<h4>What is the purpose of the SELECT and ASSIGN clause?</h4>
 				</td>
 				<td valign="top" width="525">
 					<div align="center">
@@ -766,18 +720,12 @@ SELECT StudentFile
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
-					<h2 align="center" id="part3">
-						<font color="#FFFF00">
-							<font face="Arial, Helvetica, sans-serif">COBOL file handling verbs</font>
-						</font>
-					</h2>
+					<h2 align="center" id="part3">COBOL file handling verbs</h2>
 				</td>
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4 align="left">
-						<font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font>
-					</h4>
+					<h4 align="left">Introduction</h4>
 				</td>
 				<td valign="top" width="525">
 					<p>
@@ -796,19 +744,15 @@ SELECT StudentFile
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4 align="left">
-						<font color="#800000" face="Arial, Helvetica, sans-serif">The OPEN verb</font>
-					</h4>
+					<h4 align="left">The OPEN verb</h4>
 					<aside>
 						<p align="center">
 							<img height="44" src="Resources/pics/i-LightBulbTip.gif" width="42" /><br />
-							<font size="-1"
-								>Although, as you can see from the ellipses in the syntax diagram, it is possible to
-								open a number of files with one OPEN statement it not advisable to do so. If an error is
-								detected on opening a file and you have used only one statement to open all the files,
-								the system probably won't be able to show you which particular file is causing the
-								problem. If you open all the files separately, it will.</font
-							>
+							Although, as you can see from the ellipses in the syntax diagram, it is possible to open a
+							number of files with one OPEN statement it not advisable to do so. If an error is detected
+							on opening a file and you have used only one statement to open all the files, the system
+							probably won't be able to show you which particular file is causing the problem. If you open
+							all the files separately, it will.
 						</p>
 					</aside>
 				</td>
@@ -849,9 +793,7 @@ SELECT StudentFile
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4 align="left">
-						<font color="#800000" face="Arial, Helvetica, sans-serif">The CLOSE verb</font>
-					</h4>
+					<h4 align="left">The CLOSE verb</h4>
 				</td>
 				<td valign="top" width="525">
 					<p><u>CLOSE</u> InternalFileName...</p>
@@ -865,9 +807,7 @@ SELECT StudentFile
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" height="355" valign="top" width="175">
-					<h4 align="left">
-						<font color="#800000" face="Arial, Helvetica, sans-serif">The READ verb</font>
-					</h4>
+					<h4 align="left">The READ verb</h4>
 				</td>
 				<td height="355" valign="top" width="525">
 					<p><img height="101" src="Resources/pics/FileSeq5.gif" width="288" /></p>
@@ -898,9 +838,7 @@ SELECT StudentFile
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4 align="left">
-						<font color="#800000" face="Arial, Helvetica, sans-serif">How the READ works</font>
-					</h4>
+					<h4 align="left">How the READ works</h4>
 				</td>
 				<td valign="top" width="525">
 					<p>
@@ -935,17 +873,13 @@ SELECT StudentFile
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4 align="left">
-						<font color="#800000" face="Arial, Helvetica, sans-serif">The WRITE verb</font>
-					</h4>
+					<h4 align="left">The WRITE verb</h4>
 					<aside>
 						<p align="center">
 							<img height="37" src="Resources/pics/i-Detail.gif" width="30" /><br />
-							<font size="-1"
-								>The <code class="language-cobol">WRITE</code> format actually contains a number of
-								other entries but these relate to writing to print files and will be covered in
-								subsequent tutorials.</font
-							>
+							The <code class="language-cobol">WRITE</code> format actually contains a number of other
+							entries but these relate to writing to print files and will be covered in subsequent
+							tutorials.
 						</p>
 					</aside>
 				</td>
@@ -953,7 +887,7 @@ SELECT StudentFile
 					<p><u>WRITE</u> RecordName [<u>FROM</u> Identifier]</p>
 					<p>
 						The <code class="language-cobol">WRITE</code> verb is used to copy data from the record buffer
-						(RAM) to the file on backing storage (Disk, tape or <font size="-1">CD-ROM</font>).
+						(RAM) to the file on backing storage (Disk, tape or CD-ROM).
 					</p>
 					<p>
 						To <code class="language-cobol">WRITE</code> data to a file we must move the data to the record
@@ -973,9 +907,7 @@ SELECT StudentFile
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4 align="left">
-						<font color="#800000" face="Arial, Helvetica, sans-serif">Read a file, Write a record</font>
-					</h4>
+					<h4 align="left">Read a file, Write a record</h4>
 				</td>
 				<td valign="top" width="525">
 					<p>
@@ -1003,9 +935,7 @@ SELECT StudentFile
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4 align="left">
-						<font color="#800000" face="Arial, Helvetica, sans-serif">Example Program</font>
-					</h4>
+					<h4 align="left">Example Program</h4>
 					<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
 				</td>
 				<td valign="top" width="525">
@@ -1026,7 +956,7 @@ AUTHOR.  Michael Coughlan.
 *&gt; using the ACCEPT and the WRITE verbs and then read and
 *&gt; display its records using the READ and DISPLAY.
 *&gt; Note: In this version of COBOL pressing the Carriage Return (CR)
-*&gt; without entering any data results in StudentDetails 
+*&gt; without entering any data results in StudentDetails
 *&gt; being filled with spaces.
 
 ENVIRONMENT DIVISION.
@@ -1102,17 +1032,12 @@ GetStudentRecord.
 							These COBOL course materials are the copyright property of Michael Coughlan.
 						</p>
 						<p align="left">
-							<font size="2"
-								>All rights reserved. No part of these course materials may be reproduced in any form or
-								by any means - graphic, electronic, mechanical, photocopying, printing, recording,
-								taping or stored in an information storage and retrieval system - without the written
-								permission of</font
-							>
-							<font size="2">the author.</font>
+							All rights reserved. No part of these course materials may be reproduced in any form or by
+							any means - graphic, electronic, mechanical, photocopying, printing, recording, taping or
+							stored in an information storage and retrieval system - without the written permission of
+							the author.
 						</p>
-						<p align="center">
-							<font size="2">(c) Michael Coughlan</font>
-						</p>
+						<p align="center">(c) Michael Coughlan</p>
 					</div>
 				</td>
 			</tr>
