@@ -152,8 +152,8 @@
 						<li>
 							<a href="#part1">Defining the Report - Report File entries</a><br />
 							<font size="-1"
-								>This section examines the Environment Division and File Section entries required when
-								we create<br />
+								>This section examines the <code class="language-cobol">ENVIRONMENT DIVISION</code> and
+								File Section entries required when we create<br />
 								a Report Writer program.</font
 							>
 						</li>
@@ -181,24 +181,32 @@
 								>It examines<br />
 								clauses such as -</font
 							>
-							<font size="-1">LINE NUMBER, COLUMN NUMBER, GROUP INDICATE , SOURCE and SUM</font>
-							<font size="-1">.</font>
+							<code class="language-cobol">LINE NUMBER</code>,
+							<code class="language-cobol">COLUMN NUMBER</code>,
+							<code class="language-cobol">GROUP INDICATE</code>,
+							<code class="language-cobol">SOURCE</code> and <code class="language-cobol">SUM</code>.
 						</li>
 						<li>
 							<a href="#part5">Special Report Writer registers</a><br />
 							<font size="-1"
-								>In this section the LINE-COUNTER and PAGE-COUNTER registers are examined.</font
+								>In this section the <code class="language-cobol">LINE-COUNTER</code> and
+								<code class="language-cobol">PAGE-COUNTER</code> registers are examined.</font
 							>
 						</li>
 						<li>
 							<a href="#part6">The Procedure Division Verbs</a><br />
-							<font size="-1">This section introduces the INITIATE, GENERATE and TERMINATE verbs.</font>
+							<font size="-1"
+								>This section introduces the <code class="language-cobol">INITIATE</code>,
+								<code class="language-cobol">GENERATE</code> and
+								<code class="language-cobol">TERMINATE</code> verbs.</font
+							>
 						</li>
 						<li>
 							<a href="#part7">Report Writer Declaratives</a><br />
 							<font size="-1"
-								>In this section elements of the Declaratives, such as USE BEFORE REPORTING, SUPPRESS
-								PRINTING and<br />
+								>In this section elements of the Declaratives, such as
+								<code class="language-cobol">USE BEFORE REPORTING</code>,
+								<code class="language-cobol">SUPPRESS PRINTING</code> and<br />
 								control break registers, are examined.</font
 							>
 						</li>
@@ -231,7 +239,10 @@
 				<td width="540">
 					<p>By the end of this unit you should -</p>
 					<ol>
-						<li>Know how to set up a report file in the Environment Division and the File Section.</li>
+						<li>
+							Know how to set up a report file in the
+							<code class="language-cobol">ENVIRONMENT DIVISION</code> and the File Section.
+						</li>
 						<li>Be able to define a report and the appropriate report groups in the Report Section.</li>
 						<li>
 							Understand how Declaratives may be used to extend the functionality of the Report Writer.
@@ -283,7 +294,9 @@
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="160">
 					<h4>
-						<font color="#800000" face="Arial, Helvetica, sans-serif">Environment Division entries</font>
+						<font color="#800000" face="Arial, Helvetica, sans-serif"
+							><code class="language-cobol">ENVIRONMENT DIVISION</code> entries</font
+						>
 					</h4>
 				</td>
 				<td valign="top" width="540">
@@ -292,8 +305,8 @@
 						external device - usually a report file.
 					</p>
 					<p>
-						The Environment Division entries for a report file are the same as those for an ordinary file.
-						The same Select and Assign clauses apply.
+						The <code class="language-cobol">ENVIRONMENT DIVISION</code> entries for a report file are the
+						same as those for an ordinary file. The same Select and Assign clauses apply.
 					</p>
 					<p>
 						For instance, in the program fragment below, the Select and Assign for the final example program
@@ -353,9 +366,10 @@ RD  SalesReport
 				</td>
 				<td valign="top" width="525">
 					<p>
-						Although the entries in the Environment Division are the same as those for ordinary print files,
-						in the File Section the normal file description is replaced by phrase which points to the Report
-						Description (RD) in the Report Section. The syntax of the phrase is -
+						Although the entries in the <code class="language-cobol">ENVIRONMENT DIVISION</code> are the
+						same as those for ordinary print files, in the File Section the normal file description is
+						replaced by phrase which points to the Report Description (RD) in the Report Section. The syntax
+						of the phrase is -
 					</p>
 					<p align="center">
 						<img height="48" src="Resources/pics/rwReportIS.gif" width="222" />
@@ -549,11 +563,13 @@ RD  SalesReport
 					<p>The <i>ReportGroupName</i> is required only when the group -</p>
 					<ol>
 						<li>
-							is a detail group referenced by a <font size="-1">GENERATE</font> statement or the
-							<font size="-1">UPON</font> phrase of a <font size="-1">SUM</font> clause.
+							is a detail group referenced by a <code class="language-cobol">GENERATE</code> statement or
+							the <code class="language-cobol">UPON</code> phrase of a
+							<code class="language-cobol">SUM</code> clause.
 						</li>
 						<li>
-							is referenced in a <font size="-1">USE BEFORE REPORTING</font> sentence in the Declaratives
+							is referenced in a <code class="language-cobol">USE BEFORE REPORTING</code> sentence in the
+							Declaratives
 						</li>
 						<li>is required to qualify the reference to a sum counter.</li>
 					</ol>
@@ -568,8 +584,8 @@ RD  SalesReport
 				</td>
 				<td valign="top" width="525">
 					<p>
-						The <font size="-1">LINE NUMBER</font> clause is used to specify the vertical positioning of
-						print lines. Lines can be printed on -
+						The <code class="language-cobol">LINE NUMBER</code> clause is used to specify the vertical
+						positioning of print lines. Lines can be printed on -
 					</p>
 					<ul>
 						<ul>
@@ -581,28 +597,29 @@ RD  SalesReport
 					<p><b>Rules:</b></p>
 					<ol>
 						<li>
-							The <font size="-1">LINE NUMBER</font> clause specifies where each line is to be printed so
-							no item that contains a <font size="-1">LINE NUMBER</font> clause may contain a subordinate
-							item that also contains a <font size="-1">LINE NUMBER</font> clause (subordinate items
-							specify the column items).
+							The <code class="language-cobol">LINE NUMBER</code> clause specifies where each line is to
+							be printed so no item that contains a <code class="language-cobol">LINE NUMBER</code> clause
+							may contain a subordinate item that also contains a
+							<code class="language-cobol">LINE NUMBER</code> clause (subordinate items specify the column
+							items).
 						</li>
 						<li>
-							Where absolute <font size="-1">LINE NUMBER</font> clauses are specified all absolute clauses
-							must precede all relative clauses and the line numbers specified in the successive absolute
-							clauses must be in ascending order.
+							Where absolute <code class="language-cobol">LINE NUMBER</code> clauses are specified all
+							absolute clauses must precede all relative clauses and the line numbers specified in the
+							successive absolute clauses must be in ascending order.
 						</li>
 						<li>
-							The first <font size="-1">LINE NUMBER</font> clause specified in a
-							<font size="-1">PAGE FOOTING</font> group must be absolute.
+							The first <code class="language-cobol">LINE NUMBER</code> clause specified in a
+							<code class="language-cobol">PAGE FOOTING</code> group must be absolute.
 						</li>
 						<li>
-							The <font size="-1">NEXT PAGE</font> clause can only appear once in a given report group
-							description and it must be in the first <font size="-1">LINE NUMBER</font> clause in the
-							report group.
+							The <code class="language-cobol">NEXT PAGE</code> clause can only appear once in a given
+							report group description and it must be in the first
+							<code class="language-cobol">LINE NUMBER</code> clause in the report group.
 						</li>
 						<li>
-							The <font size="-1">NEXT PAGE</font> clause cannot appear in any
-							<font size="-1">HEADING</font> group.
+							The <code class="language-cobol">NEXT PAGE</code> clause cannot appear in any
+							<code class="language-cobol">HEADING</code> group.
 						</li>
 					</ol>
 					<hr />
@@ -616,9 +633,10 @@ RD  SalesReport
 				</td>
 				<td valign="top" width="525">
 					<p>
-						The <font size="-1">NEXT GROUP</font> clause is used to specify the vertical positioning of the
-						start of the next group. The <font size="-1">NEXT GROUP</font> clause can be used to specify
-						that the next report groups should be printed on -
+						The <code class="language-cobol">NEXT GROUP</code> clause is used to specify the vertical
+						positioning of the start of the next group. The
+						<code class="language-cobol">NEXT GROUP</code> clause can be used to specify that the next
+						report groups should be printed on -
 					</p>
 					<ul>
 						<ul>
@@ -629,16 +647,18 @@ RD  SalesReport
 					</ul>
 					<p><b>Rules</b></p>
 					<p>
-						The <font size="-1">NEXT PAGE</font> option in the <font size="-1">NEXT GROUP</font> clause must
-						not be specified in a page footing.
+						The <code class="language-cobol">NEXT PAGE</code> option in the
+						<code class="language-cobol">NEXT GROUP</code> clause must not be specified in a page footing.
 					</p>
 					<p>
-						The <font size="-1">NEXT GROUP</font> clause must not be specified in a
-						<font size="-1">REPORT FOOTING</font> or <font size="-1">PAGE HEADING</font> group.
+						The <code class="language-cobol">NEXT GROUP</code> clause must not be specified in a
+						<code class="language-cobol">REPORT FOOTING</code> or
+						<code class="language-cobol">PAGE HEADING</code> group.
 					</p>
 					<p>
-						When used in a <font size="-1">DETAIL</font> group the <font size="-1">NEXT GROUP</font> clause
-						refers to the next <font size="-1">DETAIL</font> group to be printed.
+						When used in a <code class="language-cobol">DETAIL</code> group the
+						<code class="language-cobol">NEXT GROUP</code> clause refers to the next
+						<code class="language-cobol">DETAIL</code> group to be printed.
 					</p>
 					<hr />
 				</td>
@@ -653,8 +673,8 @@ RD  SalesReport
 					<p>
 						The TYPE clause specifies the type of the report group. The type of the report group governs
 						when and where will be printed in the the report (for instance, a
-						<font size="-1">REPORT HEADING</font> group is printed only once - at the beginning of the
-						report).
+						<code class="language-cobol">REPORT HEADING</code> group is printed only once - at the beginning
+						of the report).
 					</p>
 					<p><b>Rules</b></p>
 					<p>
@@ -662,24 +682,31 @@ RD  SalesReport
 						<font size="-1">CONTROL ..FINAL</font> groups) are defined for each control break item.
 					</p>
 					<p>
-						In <font size="-1">REPORT FOOTING</font>, and <font size="-1">CONTROL FOOTING</font> groups,
-						<font size="-1">SOURCE</font> and <font size="-1">USE</font> clauses must not reference any data
-						item which contains a control break item or is subordinate to a control break item.
+						In <code class="language-cobol">REPORT FOOTING</code>, and
+						<code class="language-cobol">CONTROL FOOTING</code> groups,
+						<code class="language-cobol">SOURCE</code> and <code class="language-cobol">USE</code> clauses
+						must not reference any data item which contains a control break item or is subordinate to a
+						control break item.
 					</p>
 					<p>
-						<font size="-1">PAGE HEADING</font> or <font size="-1">FOOTING</font> groups must not reference
-						a control break item or any item subordinate to a control break item.
+						<code class="language-cobol">PAGE HEADING</code> or
+						<code class="language-cobol">FOOTING</code> groups must not reference a control break item or
+						any item subordinate to a control break item.
 					</p>
 					<p>
-						<font size="-1">DETAIL</font> report groups are processed when they are referenced in a
-						<font size="-1">GENERATE</font> statement. All other groups are processed automatically by the
-						Report Writer. There can be more than one <font size="-1">DETAIL</font> group.
+						<code class="language-cobol">DETAIL</code> report groups are processed when they are referenced
+						in a <code class="language-cobol">GENERATE</code> statement. All other groups are processed
+						automatically by the Report Writer. There can be more than one
+						<code class="language-cobol">DETAIL</code> group.
 					</p>
 					<p>
-						The <font size="-1">REPORT HEADING</font>, <font size="-1">PAGE HEADING</font>,
-						<font size="-1">CONTROL HEADING FINAL</font>, <font size="-1">CONTROL FOOTING FINAL</font>,
-						<font size="-1">PAGE FOOTING</font> and <font size="-1">REPORT FOOTING</font> report groups can
-						each appear only once in the description of a report.
+						The <code class="language-cobol">REPORT HEADING</code>,
+						<code class="language-cobol">PAGE HEADING</code>,
+						<code class="language-cobol">CONTROL HEADING FINAL</code>,
+						<code class="language-cobol">CONTROL FOOTING FINAL</code>,
+						<code class="language-cobol">PAGE FOOTING</code> and
+						<code class="language-cobol">REPORT FOOTING</code> report groups can each appear only once in
+						the description of a report.
 					</p>
 					<hr />
 				</td>
@@ -745,14 +772,15 @@ RD  SalesReport
 					</p>
 					<p>
 						As we can see from the syntax diagram, the normal data description clauses such as
-						<font size="-1">PIC</font>, <font size="-1">USAGE</font>, <font size="-1">SIGN</font>,
-						<font size="-1">JUSTIFIED</font>, <font size="-1">BLANK WHEN ZERO</font> and
-						<font size="-1">VALUE</font> may be applied when describing an elementary print item. The Report
-						Writer provides a number of additional clauses that may also be used.
+						<code class="language-cobol">PIC</code>, <code class="language-cobol">USAGE</code>,
+						<code class="language-cobol">SIGN</code>, <code class="language-cobol">JUSTIFIED</code>,
+						<code class="language-cobol">BLANK WHEN ZERO</code> and
+						<code class="language-cobol">VALUE</code> may be applied when describing an elementary print
+						item. The Report Writer provides a number of additional clauses that may also be used.
 					</p>
 					<p>
 						The <i>PrintItemName</i> can only be referenced if the entry uses the
-						<font size="-1">SUM</font> clause to define a sum counter.
+						<code class="language-cobol">SUM</code> clause to define a sum counter.
 					</p>
 					<p><img height="456" src="Resources/pics/rwGroupDesc2.gif" width="413" /></p>
 					<hr />
@@ -766,9 +794,9 @@ RD  SalesReport
 				</td>
 				<td valign="top" width="525">
 					<p>
-						The <font size="-1">COLUMN NUMBER</font> specifies the position of a print item on the print
-						line. When this clause is used it must be subordinate to an item that contains a
-						<font size="-1">LINE NUMBER</font> clause.
+						The <code class="language-cobol">COLUMN NUMBER</code> specifies the position of a print item on
+						the print line. When this clause is used it must be subordinate to an item that contains a
+						<code class="language-cobol">LINE NUMBER</code> clause.
 					</p>
 					<p>Within a given print line the <i>ColNum#l's</i> should be in ascending sequence.</p>
 					<p>
@@ -786,8 +814,9 @@ RD  SalesReport
 				</td>
 				<td valign="top" width="525">
 					<p>
-						The <font size="-1">GROUP INDICATE</font> is used to specify that a print item should be printed
-						only on the first occurrence of its report group after a control break or page advance.
+						The <code class="language-cobol">GROUP INDICATE</code> is used to specify that a print item
+						should be printed only on the first occurrence of its report group after a control break or page
+						advance.
 					</p>
 					<p>
 						For instance in the full version of the example program the CityName and SalesPersonNum are
@@ -807,8 +836,8 @@ RD  SalesReport
 						</tr>
 					</table>
 					<p>
-						The <font size="-1">GROUP INDICATE</font> clause can only appear in a
-						<font size="-1">DETAIL</font> report group
+						The <code class="language-cobol">GROUP INDICATE</code> clause can only appear in a
+						<code class="language-cobol">DETAIL</code> report group
 					</p>
 					<hr />
 				</td>
@@ -848,8 +877,8 @@ RD  SalesReport
 					<hr />
 					<h4><b>Subtotalling</b></h4>
 					<p>
-						In Subtotalling, each time a <font size="-1">GENERATE</font> statement is executed the value to
-						be summed is added to the sum counter.
+						In Subtotalling, each time a <code class="language-cobol">GENERATE</code> statement is executed
+						the value to be summed is added to the sum counter.
 					</p>
 					<hr />
 					<h4><b>Rolling Forward</b></h4>
@@ -864,11 +893,11 @@ RD  SalesReport
 						and CS is used as the value to be summed into the final total (Rolling Forward).
 					</p>
 					<p>
-						In the example code fragment below, each time a <font size="-1">DETAIL</font> line is
-						<font size="-1">GENERATED</font> the ValueOf Sale is added to the SMS sum counter. When a
-						control break occurs on SalesPersonNum the accumulated sum is printed and is added to the CS sum
-						counter. When a control break occurs on the CityCode the sum accumulated in the CS sum counter
-						is added to the final total sum counter.
+						In the example code fragment below, each time a <code class="language-cobol">DETAIL</code> line
+						is <code class="language-cobol">GENERATED</code> the ValueOf Sale is added to the SMS sum
+						counter. When a control break occurs on SalesPersonNum the accumulated sum is printed and is
+						added to the CS sum counter. When a control break occurs on the CityCode the sum accumulated in
+						the CS sum counter is added to the final total sum counter.
 					</p>
 					<table background="Resources/pics/code.gif" border="1" width="100%">
 						<tr>
@@ -922,7 +951,7 @@ RD  SalesReport
 						</li>
 						<li>
 							A SUM clause can appear only in the description of a
-							<font size="-1">CONTROL FOOTING</font> report group.
+							<code class="language-cobol">CONTROL FOOTING</code> report group.
 						</li>
 						<li>
 							Statements in the Procedure Division can be used to alter the contents of the sum counters.
@@ -940,8 +969,8 @@ RD  SalesReport
 				<td valign="top" width="525">
 					<p>
 						Sum counters are normally reset to zero after a control break on the control break item
-						associated with the report group but the <font size="-1">RESET</font> clause can be used to
-						reset the sum counters on the break of a more senior control item.
+						associated with the report group but the <code class="language-cobol">RESET</code> clause can be
+						used to reset the sum counters on the break of a more senior control item.
 					</p>
 					<h4>Rules</h4>
 					<ol>
@@ -987,23 +1016,23 @@ RD  SalesReport
 				</td>
 				<td valign="top" width="525">
 					<p align="left">
-						The reserved word <font size="-1">LINE-COUNTER</font> can be used to access a special register
-						that the Report Writer maintains for each report in the Report Section.
+						The reserved word <code class="language-cobol">LINE-COUNTER</code> can be used to access a
+						special register that the Report Writer maintains for each report in the Report Section.
 					</p>
 					<p align="left">
-						The Report Writer uses the <font size="-1">LINE-COUNTER</font> register to keep track of where
-						the lines are being printed on the report. It uses this information and the information
-						specified in the <font size="-1">PAGE LIMIT</font> clause in the RD entry to decide when a new
-						page is required.
+						The Report Writer uses the <code class="language-cobol">LINE-COUNTER</code> register to keep
+						track of where the lines are being printed on the report. It uses this information and the
+						information specified in the <code class="language-cobol">PAGE LIMIT</code> clause in the RD
+						entry to decide when a new page is required.
 					</p>
 					<p align="left">
-						While the <font size="-1">LINE-COUNTER</font> register can be used as a
-						<font size="-1">SOURCE</font> item in the report no statements in the Procedure Division can
-						alter the value in the register.
+						While the <code class="language-cobol">LINE-COUNTER</code> register can be used as a
+						<code class="language-cobol">SOURCE</code> item in the report no statements in the Procedure
+						Division can alter the value in the register.
 					</p>
 					<p align="left">
-						References to the <font size="-1">LINE-COUNTER</font> register can be qualified by referring to
-						the name of the report given in the RD entry.
+						References to the <code class="language-cobol">LINE-COUNTER</code> register can be qualified by
+						referring to the name of the report given in the RD entry.
 					</p>
 					<hr />
 				</td>
@@ -1017,17 +1046,18 @@ RD  SalesReport
 				<td valign="top" width="525">
 					<div align="center">
 						<p align="left">
-							The reserved word <font size="-1">PAGE-COUNTER</font> can be used to access a special
-							register that the Report Writer maintains for each report in the Report Section.
+							The reserved word <code class="language-cobol">PAGE-COUNTER</code> can be used to access a
+							special register that the Report Writer maintains for each report in the Report Section.
 						</p>
 						<p align="left">
-							The <font size="-1">PAGE-COUNTER</font> is used to count the number of pages in the report.
+							The <code class="language-cobol">PAGE-COUNTER</code> is used to count the number of pages in
+							the report.
 						</p>
 						<p align="left">
-							The <font size="-1">PAGE-COUNTER</font> register can be used as a
-							<font size="-1">SOURCE</font> item in the report but the value of the
-							<font size="-1">PAGE-COUNTER</font> may also be changed by statements in the Procedure
-							Division.
+							The <code class="language-cobol">PAGE-COUNTER</code> register can be used as a
+							<code class="language-cobol">SOURCE</code> item in the report but the value of the
+							<code class="language-cobol">PAGE-COUNTER</code> may also be changed by statements in the
+							Procedure Division.
 						</p>
 						<table background="Resources/pics/code.gif" border="1" width="100%">
 							<tr>
@@ -1074,7 +1104,7 @@ RD  SalesReport
 						<p align="left">
 							The normal Procedure Division verbs will be covered in this section. Please see the section
 							on Declaratives for the
-							<font size="-1">SUPPRESS PRINTING</font> statement.
+							<code class="language-cobol">SUPPRESS PRINTING</code> statement.
 						</p>
 					</div>
 					<hr />
@@ -1095,22 +1125,23 @@ RD  SalesReport
 				</td>
 				<td valign="top" width="525">
 					<p>
-						The <font size="-1">INITIATE</font> statement starts the processing of the
+						The <code class="language-cobol">INITIATE</code> statement starts the processing of the
 						<i>ReportName</i> report or reports.
 					</p>
 					<p>
 						The <i>ReportName</i> must be the name defined for a report in the RD entry in the Report
 						Section.
 					</p>
-					<p>The <font size="-1">INITIATE</font> statement initializes -</p>
+					<p>The <code class="language-cobol">INITIATE</code> statement initializes -</p>
 					<ul>
 						<li>all the report's sum counters to zero</li>
-						<li>the report <font size="-1">LINE-COUNTER</font> to zero</li>
-						<li>the report <font size="-1">PAGE-COUNTER</font> to one</li>
+						<li>the report <code class="language-cobol">LINE-COUNTER</code> to zero</li>
+						<li>the report <code class="language-cobol">PAGE-COUNTER</code> to one</li>
 					</ul>
 					<p>
-						Before the <font size="-1">INITIATE</font> statement is executed the file associated with the
-						Report must have been opened for <font size="-1">OUTPUT</font> or <font size="-1">EXTEND</font>.
+						Before the <code class="language-cobol">INITIATE</code> statement is executed the file
+						associated with the Report must have been opened for
+						<code class="language-cobol">OUTPUT</code> or <code class="language-cobol">EXTEND</code>.
 					</p>
 					<hr />
 				</td>
@@ -1120,25 +1151,28 @@ RD  SalesReport
 					<h4><font color="#800000" face="Arial, Helvetica, sans-serif">GENERATE</font></h4>
 				</td>
 				<td valign="top" width="525">
-					<p>The <font size="-1">GENERATE</font> statement drives the production of the report.</p>
 					<p>
-						The target of a <font size="-1">GENERATE</font> statement is either a
-						<font size="-1">DETAIL</font> report group or a Report Name.
+						The <code class="language-cobol">GENERATE</code> statement drives the production of the report.
+					</p>
+					<p>
+						The target of a <code class="language-cobol">GENERATE</code> statement is either a
+						<code class="language-cobol">DETAIL</code> report group or a Report Name.
 					</p>
 					<p>When the target is a <i>ReportName</i> then the report description must contain -</p>
 					<ul>
-						<li>a <font size="-1">CONTROL</font> clause</li>
-						<li>not more than one <font size="-1">DETAIL</font> group</li>
+						<li>a <code class="language-cobol">CONTROL</code> clause</li>
+						<li>not more than one <code class="language-cobol">DETAIL</code> group</li>
 						<li>
-							at least one group that is not a <font size="-1">PAGE</font> or
-							<font size="-1">REPORT</font> group.
+							at least one group that is not a <code class="language-cobol">PAGE</code> or
+							<code class="language-cobol">REPORT</code> group.
 						</li>
 					</ul>
 					<p>
-						When all the <font size="-1">GENERATE</font> statements for a particular report target the
-						<i>ReportName</i> then the report performs summary processing only and the report produced is
-						called a summary report. For instance to make a summary report from the example report all we
-						have to to is to change the <font size="-1">GENERATE</font> statement from -
+						When all the <code class="language-cobol">GENERATE</code> statements for a particular report
+						target the <i>ReportName</i> then the report performs summary processing only and the report
+						produced is called a summary report. For instance to make a summary report from the example
+						report all we have to to is to change the <code class="language-cobol">GENERATE</code> statement
+						from -
 					</p>
 					<blockquote>
 						<p>GENERATE DetailLine.</p>
@@ -1146,9 +1180,9 @@ RD  SalesReport
 						<p>GENERATE SalesReport.</p>
 					</blockquote>
 					<p>
-						If we specify <font size="-1">GENERATE</font> SalesReport then the
-						<font size="-1">DETAIL</font> group is never printed but the other groups are printed (see the
-						first page of the summary report shown below).
+						If we specify <code class="language-cobol">GENERATE</code> SalesReport then the
+						<code class="language-cobol">DETAIL</code> group is never printed but the other groups are
+						printed (see the first page of the summary report shown below).
 					</p>
 					<hr />
 					<table background="Resources/pics/code.gif" border="0" width="100%">
@@ -1223,10 +1257,10 @@ Programmer - Michael Coughlan               Page :  1
 				</td>
 				<td valign="top" width="525">
 					<p>
-						The <font size="-1">TERMINATE</font> statement instructs the Report Writer to complete the
-						processing of the specified report. The Report Writer prints the Page and Report Footings and
-						all the <font size="-1">CONTROL FOOTING</font> groups are printed as if there had been a control
-						break on the most senior control group.
+						The <code class="language-cobol">TERMINATE</code> statement instructs the Report Writer to
+						complete the processing of the specified report. The Report Writer prints the Page and Report
+						Footings and all the <code class="language-cobol">CONTROL FOOTING</code> groups are printed as
+						if there had been a control break on the most senior control group.
 					</p>
 					<p>
 						After the report has been terminated the file associated with the report must be closed. For
@@ -1253,12 +1287,12 @@ Programmer - Michael Coughlan               Page :  1
 						operations are insufficient of create the desired report. Declaratives extend the functionality
 						of the Report Writer by performing tasks or calculations that the Report Writer can not do
 						automatically or by selectively stopping the report group from being printed (using the
-						<font size="-1">SUPPRESS PRINTING</font> command).
+						<code class="language-cobol">SUPPRESS PRINTING</code> command).
 					</p>
 					<p>
 						When Declaratives are used with the Report Writer the
-						<font size="-1">USE BEFORE REPORTING</font> phrase allows a programmer to specify that the
-						particular section of code is to be executed before some report group is printed.
+						<code class="language-cobol">USE BEFORE REPORTING</code> phrase allows a programmer to specify
+						that the particular section of code is to be executed before some report group is printed.
 					</p>
 					<p>
 						Declaratives may also be used to handle file operation errors. In this case the USE clause
@@ -1288,8 +1322,9 @@ Programmer - Michael Coughlan               Page :  1
 					<p align="left"><b>Rules:</b></p>
 					<p align="left">The ReportGroupName must not appear in more than one USE statement.</p>
 					<p align="left">
-						The <font size="-1">GENERATE</font>, <font size="-1">INITIATE</font> and
-						<font size="-1">TERMINATE</font> statements must not appear in the Declaratives.
+						The <code class="language-cobol">GENERATE</code>,
+						<code class="language-cobol">INITIATE</code> and
+						<code class="language-cobol">TERMINATE</code> statements must not appear in the Declaratives.
 					</p>
 					<p align="left">The value of any control data items must not be altered in the Declaratives.</p>
 					<p align="left">Statements in the Declaratives must not reference non-declarative procedures.</p>
@@ -1338,16 +1373,16 @@ Begin.
 				</td>
 				<td valign="top" width="525">
 					<p>
-						The <font size="-1">SUPPRESS PRINTING</font> statement is used in a Declarative section to stop
-						a particular report group from being printed.
+						The <code class="language-cobol">SUPPRESS PRINTING</code> statement is used in a Declarative
+						section to stop a particular report group from being printed.
 					</p>
 					<p align="left">
 						The report group suppressed is the one mentioned in the USE statement associated with the
-						section containing the <font size="-1">SUPPRESS PRINTING</font> statement.
+						section containing the <code class="language-cobol">SUPPRESS PRINTING</code> statement.
 					</p>
 					<p align="left">
-						The <font size="-1">SUPPRESS PRINTING</font> statement must be executed each time you want to
-						stop the report group from being printed.
+						The <code class="language-cobol">SUPPRESS PRINTING</code> statement must be executed each time
+						you want to stop the report group from being printed.
 					</p>
 					<p align="left">
 						In the example below we only want to print the ShopTotalGrp if the sales for the shop are
@@ -1382,15 +1417,15 @@ END DECLARATIVES.</code></pre>
 						<p align="left">
 							A control break occurs when the value in a control break item changes. This causes an
 							interesting problem when the control break item is used as the
-							<font size="-1">SOURCE</font> value in a control footing because by the time the control
-							footing is printed, the control break item no longer contains the correct value. When we
-							print a control footing and refer to a control break item we normally want to access the
-							previous value of the item not the current one.
+							<code class="language-cobol">SOURCE</code> value in a control footing because by the time
+							the control footing is printed, the control break item no longer contains the correct value.
+							When we print a control footing and refer to a control break item we normally want to access
+							the previous value of the item not the current one.
 						</p>
 						<p align="left">
 							The Report Writer deals with this problem by maintaining a special control break register
 							for each control break item mentioned in the
-							<font size="-1">CONTROLS ARE</font> phrase in the RD entry.
+							<code class="language-cobol">CONTROLS ARE</code> phrase in the RD entry.
 						</p>
 						<p align="left">
 							When a control break item is referred to in a control footing or in the Declaratives the

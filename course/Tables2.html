@@ -177,9 +177,9 @@
 						<li>
 							<a href="#part1">Declaring a single dimension table</a><br />
 							<font size="-1"
-								>In this section we demonstrate how the OCCURS clause is used to declare a single
-								dimension table. We also show how it may be used to declare a variable length
-								table.</font
+								>In this section we demonstrate how the
+								<code class="language-cobol">OCCURS</code> clause is used to declare a single dimension
+								table. We also show how it may be used to declare a variable length table.</font
 							>
 						</li>
 						<li>
@@ -193,8 +193,8 @@
 						<li>
 							<a href="#part3">Declaring multi-dimension tables</a><br />
 							<font size="-1"
-								>This section demonstrates how nested OCCURS clauses are used to create multi-dimension
-								tables</font
+								>This section demonstrates how nested <code class="language-cobol">OCCURS</code> clauses
+								are used to create multi-dimension tables</font
 							>
 							<font size="-1">.</font>
 						</li>
@@ -249,20 +249,23 @@
 				<td valign="top" width="525">
 					<p>By the end of this unit you should -</p>
 					<ol>
-						<li>Understand how the <font size="-1">OCCURS</font> clause is used in a table declaration.</li>
+						<li>
+							Understand how the <code class="language-cobol">OCCURS</code> clause is used in a table
+							declaration.
+						</li>
 						<li>Know how to use a subscript to access the elements of a table.</li>
 						<li>Be able to create a table in which the elements are group items.</li>
 						<li>
 							Know how to set up a multi-dimension table using nested
-							<font size="-1">OCCURS</font> clauses.
+							<code class="language-cobol">OCCURS</code> clauses.
 						</li>
 						<li>
-							Understand how the <font size="-1">REDEFINES</font> clause may be used to give different
-							names and descriptions to the same area of storage.
+							Understand how the <code class="language-cobol">REDEFINES</code> clause may be used to give
+							different names and descriptions to the same area of storage.
 						</li>
 						<li>
-							Be able to use the <font size="-1">REDEFINES</font> clause to set up a table pre-filled with
-							data.
+							Be able to use the <code class="language-cobol">REDEFINES</code> clause to set up a table
+							pre-filled with data.
 						</li>
 					</ol>
 					<hr align="center" size="1" width="100%" />
@@ -369,21 +372,23 @@
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 					<h4>
 						<font color="#800000" face="Arial, Helvetica, sans-serif"
-							>Using the OCCURS clause to declare a table
+							>Using the <code class="language-cobol">OCCURS</code> clause to declare a table
 						</font>
 					</h4>
 				</td>
 				<td valign="top" width="525">
 					<p>
-						Tables are declared using an extension to the <font size="-1">PICTURE</font> clause, called the
-						<font size="-1">OCCURS</font> clause. To declare a table, we define the type and size of the
-						table element, and then use the <font size="-1">OCCURS</font> clause to specify how many times
-						the element <font size="-1">OCCURS</font> (see the examples below).
+						Tables are declared using an extension to the
+						<code class="language-cobol">PICTURE</code> clause, called the
+						<code class="language-cobol">OCCURS</code> clause. To declare a table, we define the type and
+						size of the table element, and then use the <code class="language-cobol">OCCURS</code> clause to
+						specify how many times the element <code class="language-cobol">OCCURS</code> (see the examples
+						below).
 					</p>
 					<p>
-						The <font size="-1">OCCURS</font> clause may appear before, or after, the
-						<font size="-1">PICTURE</font> clause that defines the element. For instance, we might declare
-						the <i>CountyTaxTable</i> as -
+						The <code class="language-cobol">OCCURS</code> clause may appear before, or after, the
+						<code class="language-cobol">PICTURE</code> clause that defines the element. For instance, we
+						might declare the <i>CountyTaxTable</i> as -
 					</p>
 					<pre
 						class="language-cobol"
@@ -427,22 +432,24 @@
 				<td valign="top" width="525">
 					<p>
 						This section of the tutorial introduces simple version of the
-						<font size="-1">OCCURS</font> clause but keep in mind that the
-						<font size="-1">OCCURS</font> clause contains a number of other entries; including entries for
-						declaring variable length tables and for satisfying the special requirements of the
-						<font size="-1">SEARCH</font> verb.
+						<code class="language-cobol">OCCURS</code> clause but keep in mind that the
+						<code class="language-cobol">OCCURS</code> clause contains a number of other entries; including
+						entries for declaring variable length tables and for satisfying the special requirements of the
+						<code class="language-cobol">SEARCH</code> verb.
 					</p>
-					<p>The syntax for the simple version of the <font size="-1">OCCURS</font> clause is -</p>
+					<p>
+						The syntax for the simple version of the <code class="language-cobol">OCCURS</code> clause is -
+					</p>
 					<blockquote>
-						<p><u>OCCURS</u> <i>TableSize#l</i> TIMES</p>
+						<p><code class="language-cobol">OCCURS</code> <i>TableSize#l</i> TIMES</p>
 					</blockquote>
 					<p>
-						<b>Rules for the <font size="-1">OCCURS</font> clause</b>
+						<b>Rules for the <code class="language-cobol">OCCURS</code> clause</b>
 					</p>
 					<ol>
 						<li>
-							The <font size="-1">OCCURS</font> clause cannot appear in the description of a level 77 data
-							name.
+							The <code class="language-cobol">OCCURS</code> clause cannot appear in the description of a
+							level 77 data name.
 						</li>
 						<li>
 							Any data-item whose description includes an occurs clause must be subscripted when referred
@@ -469,8 +476,9 @@
 							dimension table, 2 subscripts for a two dimension table and 3 for a three dimension table.
 						</li>
 						<li>
-							The first subscript applies to the first <font size="-1">OCCURS</font> clause, the second
-							applies to the second <font size="-1">OCCURS</font> clause, and so on.
+							The first subscript applies to the first <code class="language-cobol">OCCURS</code> clause,
+							the second applies to the second <code class="language-cobol">OCCURS</code> clause, and so
+							on.
 						</li>
 						<li>Subscripts must be enclosed in parentheses/brackets.</li>
 					</ol>
@@ -521,7 +529,8 @@
 									<td bgcolor="#FFFFCC" width="8%">Q1</td>
 									<td width="62%">
 										What happens to the elements of the DeptTotalsTable when the statement
-										<font size="-1"><i>MOVE ZEROS TO</i></font> <i>DeptTotalsTable</i> is executed?
+										<code class="language-cobol">MOVE ZEROS TO</code> <i>DeptTotalsTable</i> is
+										executed?
 									</td>
 									<td valign="top" width="30%">
 										<select name="select5" size="1">
@@ -537,8 +546,9 @@
 								<tr>
 									<td bgcolor="#FFFFCC" width="8%">Q2</td>
 									<td width="62%">
-										What happens when the statement <font size="-1"><i>MOVE</i></font> <i>456</i>
-										<font size="-1"><i>TO</i></font> <i>DeptTotal(5)</i> is executed?
+										What happens when the statement <code class="language-cobol">MOVE</code>
+										<i>456</i> <code class="language-cobol">TO</code> <i>DeptTotal(5)</i> is
+										executed?
 									</td>
 									<td valign="top" width="30%">
 										<select name="select6" size="1">
@@ -600,11 +610,12 @@
 				<td valign="top" width="525">
 					<p>
 						A variable-length table may be declared using the
-						<font size="-1">OCCURS</font> clause syntax below.
+						<code class="language-cobol">OCCURS</code> clause syntax below.
 					</p>
 					<blockquote>
 						<p>
-							<u>OCCURS</u> <i>SmallestSize#l</i> TO <i>LargestSize#l</i> TIMES<br />
+							<code class="language-cobol">OCCURS</code> <i>SmallestSize#l</i> TO
+							<i>LargestSize#l</i> TIMES<br />
 							DEPENDING ON ActualSize#i
 						</p>
 					</blockquote>
@@ -778,8 +789,8 @@ MOVE ZEROS TO CountyTaxTable</code></pre>
 						<li>Each element of the table is a group item subdivided into CountyTax and PayerCount.</li>
 						<li>
 							The CountyTax table is subordinate to the data-item CountyTaxTable and this allows the table
-							to be initialised to <font size="-1">ZEROS</font> with the statement
-							<font size="-1"><i>MOVE ZEROS TO</i></font> <i>CountyTaxTable</i>
+							to be initialised to <code class="language-cobol">ZEROS</code> with the statement
+							<code class="language-cobol">MOVE ZEROS TO</code> <i>CountyTaxTable</i>
 						</li>
 						<li>
 							One of the data-items subordinate to the table element is monitored by the condition name -
@@ -973,13 +984,14 @@ DisplayCountyTaxes.
 					<p align="left">
 						In this particular problem there are only six totals required - CFTotal, CMTotal, TFTotal,
 						TMTotal, AFTotal, AMTotal - so a solution which involves creating these totals and using an
-						<font size="-1">EVALUATE</font> to decide which total to increment, would not be entirely out of
-						the question.
+						<code class="language-cobol">EVALUATE</code> to decide which total to increment, would not be
+						entirely out of the question.
 					</p>
 					<p align="left">
-						But instead of an <font size="-1">EVALUATE-</font>based solution let's consider using a table to
-						hold the totals. What kind of a table might we require? We can see that six totals are needed,
-						so we might think that the six element, single-dimension, table shown below might do the trick.
+						But instead of an <code class="language-cobol">EVALUATE-</code>based solution let's consider
+						using a table to hold the totals. What kind of a table might we require? We can see that six
+						totals are needed, so we might think that the six element, single-dimension, table shown below
+						might do the trick.
 					</p>
 					<pre class="language-cobol"><code class="language-cobol">01 PopulationTable.
    02 PopTotal PIC 9(6) OCCURS 6 TIMES.</code></pre>
@@ -987,7 +999,7 @@ DisplayCountyTaxes.
 						The problem with this is - what can we use as an index into the table? No single item in the
 						record will do. The index must be a combination of the
 						<i>AgeCategory</i> and the <i>Gender</i>. Of course, we could use an
-						<font size="-1">EVALUATE</font>, as shown below, to map the <i>AgeCategory</i> and
+						<code class="language-cobol">EVALUATE</code>, as shown below, to map the <i>AgeCategory</i> and
 						<i>Gender</i> to a combined index value.
 					</p>
 					<pre
@@ -1024,7 +1036,7 @@ END-EVALUATE.
 				<td valign="top" width="525">
 					<p align="left">
 						A multi-dimension table is declared by nesting
-						<font size="-1">OCCURS</font> clauses. So we can define the two dimension
+						<code class="language-cobol">OCCURS</code> clauses. So we can define the two dimension
 						<i>PopulationTable</i> as follows -
 					</p>
 					<pre class="language-cobol" align="left"><code class="language-cobol">01 PopulationTable.
@@ -1050,7 +1062,7 @@ END-EVALUATE.
 					<p align="left">
 						The diagram above uses the correct representation for a two dimension table because it expresses
 						the data hierarchy inherent in the table description where one
-						<font size="-1">OCCURS</font> clause is subordinate to the another.
+						<code class="language-cobol">OCCURS</code> clause is subordinate to the another.
 					</p>
 					<hr size="1" width="100%" />
 				</td>
@@ -1136,7 +1148,7 @@ MOVE ZEROS TO Age(3)</code></pre>
 						Creating a three dimension table from the existing two dimension table is as simple as inserting
 						another occurs clause. The three dimension <i>PopulationTable</i> may be defined as shown below.
 						To access the <i>PopTotal</i> element three subscripts are now required, one for each
-						<font size="-1">OCCURS</font> clause.
+						<code class="language-cobol">OCCURS</code> clause.
 					</p>
 					<pre class="language-cobol"><code class="language-cobol">01 PopulationTable.
    02 County OCCURS 26 TIMES.
@@ -1217,7 +1229,7 @@ MOVE ZEROS TO PopulationTable</code></pre>
 						We can't add <i>CarOwnersTotal</i> to the same level as the <i>PopTotal</i> because that would
 						create six CarOwnersTotals for each county - one for each Age/Gender combination. We only want
 						one CarOwnersTotal for each county, so we must make the CarOwnersTotal subordinate to the
-						<font size="-1">OCCURS</font> clause that deals with counties.
+						<code class="language-cobol">OCCURS</code> clause that deals with counties.
 					</p>
 					<p>
 						When we do this, as shown in the table description below, what we are saying is that
@@ -1239,18 +1251,18 @@ MOVE ZEROS TO PopulationTable</code></pre>
 					<blockquote>
 						<p>
 							We need one subscript for each superordinate
-							<font size="-1">OCCURS</font> clause and an additional one if the item itself contains an
-							<font size="-1">OCCURS</font> clause.
+							<code class="language-cobol">OCCURS</code> clause and an additional one if the item itself
+							contains an <code class="language-cobol">OCCURS</code> clause.
 						</p>
 					</blockquote>
 					<p>
 						Applying this rule, <i>CarOwnersTotal</i> only needs one subscript (only one superordinate
-						<font size="-1">OCCURS</font> clause), <i>County</i> only requires one subscript (no
-						superordinate <font size="-1">OCCURS</font> clause but contains an
-						<font size="-1">OCCURS</font> clause itself), <i>Age</i> requires two subscripts (one
-						superordinate <font size="-1">OCCURS</font> clause and contains an
-						<font size="-1">OCCURS</font> clause itself) and <i>PopTotal</i> requires three subscripts
-						(three superordinate <font size="-1">OCCURS</font> clauses).
+						<code class="language-cobol">OCCURS</code> clause), <i>County</i> only requires one subscript
+						(no superordinate <code class="language-cobol">OCCURS</code> clause but contains an
+						<code class="language-cobol">OCCURS</code> clause itself), <i>Age</i> requires two subscripts
+						(one superordinate <code class="language-cobol">OCCURS</code> clause and contains an
+						<code class="language-cobol">OCCURS</code> clause itself) and <i>PopTotal</i> requires three
+						subscripts (three superordinate <code class="language-cobol">OCCURS</code> clauses).
 					</p>
 					<p><b>Examples of use</b></p>
 					<pre class="language-cobol"><code class="language-cobol">MOVE ZEROS TO County(23)
@@ -1292,21 +1304,23 @@ ADD 56 TO PopTotal(12,3,2)</code></pre>
 				<td valign="top" width="525">
 					<p>
 						When a file that contains different types of record is declared in the
-						<font size="-1">FILE SECTION,</font> a record description is created for each record type. But
-						all these record descriptions map on to the same area of storage. They are in effect,
-						redefinitions of the area of storage. The <font size="-1">REDEFINES</font> clause allows us to
-						achieve the same effect for units smaller than a record and in the other parts of the
-						<font size="-1">DATA DIVISION,</font> not just the <font size="-1">FILE SECTION</font>.
+						<code class="language-cobol">FILE SECTION</code>, a record description is created for each
+						record type. But all these record descriptions map on to the same area of storage. They are in
+						effect, redefinitions of the area of storage. The
+						<code class="language-cobol">REDEFINES</code> clause allows us to achieve the same effect for
+						units smaller than a record and in the other parts of the
+						<code class="language-cobol">DATA DIVISION</code>, not just the
+						<code class="language-cobol">FILE SECTION</code>.
 					</p>
 					<p>
-						The <font size="-1">REDEFINES</font> clause allows a programmer to give different data
-						descriptions to the same area of storage.
+						The <code class="language-cobol">REDEFINES</code> clause allows a programmer to give different
+						data descriptions to the same area of storage.
 					</p>
 					<p>
 						Although recent versions of COBOL allow pre-filled tables to be created without using the
-						<font size="-1">REDEFINES</font> clause, these new approaches are only successful when a small
-						amount of data is involved. The standard way to create pre-filled tables in COBOL is to use the
-						<font size="-1">REDEFINES</font> clause.
+						<code class="language-cobol">REDEFINES</code> clause, these new approaches are only successful
+						when a small amount of data is involved. The standard way to create pre-filled tables in COBOL
+						is to use the <code class="language-cobol">REDEFINES</code> clause.
 					</p>
 					<hr size="1" />
 				</td>
@@ -1323,27 +1337,28 @@ ADD 56 TO PopTotal(12,3,2)</code></pre>
 					<p align="left">
 						<b>Example 1<br /></b> Some COBOL statements, like the <font size="-1">UNSTRING,</font> require
 						their receiving fields to be alphanumeric (PIC X) data-items. This is inconvenient if the value
-						of the data-item is actually numeric because then a <font size="-1">MOVE</font> is required to
-						place the value into a numeric item. If the value contains a decimal point then this creates
-						even more difficulties.
+						of the data-item is actually numeric because then a <code class="language-cobol">MOVE</code> is
+						required to place the value into a numeric item. If the value contains a decimal point then this
+						creates even more difficulties.
 					</p>
 					<p align="left">
-						For example, suppose an <font size="-1">UNSTRING</font> statement has just extracted the text
-						value "1234567" from a string and we want to move this value to a numeric item described as PIC
-						9(5)V99. An ordinary <font size="-1">MOVE</font> is not going to work because the computer will
-						not know that we actually want the item treated as if it were the value 12345.67.
+						For example, suppose an <code class="language-cobol">UNSTRING</code> statement has just
+						extracted the text value "1234567" from a string and we want to move this value to a numeric
+						item described as PIC 9(5)V99. An ordinary <code class="language-cobol">MOVE</code> is not going
+						to work because the computer will not know that we actually want the item treated as if it were
+						the value 12345.67.
 					</p>
 					<p align="left">
-						The <font size="-1">REDEFINES</font> clause allows us to solve this problem neatly because we
-						can <font size="-1">UNSTRING</font> the number into <i>TextValue</i> and then treat
-						<i>TextValue</i> as if it were described as PIC 9(5)V99. For instance -
+						The <code class="language-cobol">REDEFINES</code> clause allows us to solve this problem neatly
+						because we can <code class="language-cobol">UNSTRING</code> the number into <i>TextValue</i> and
+						then treat <i>TextValue</i> as if it were described as PIC 9(5)V99. For instance -
 					</p>
 					<pre class="language-cobol" align="left"><code class="language-cobol">01  TextValue    PIC X(7).
 01  NumericValue REDEFINES TextValue PIC 9(5)V99.</code></pre>
 					<p align="left">
-						<b>Example 2<br /></b> The <font size="-1">REDEFINES</font> clause is not just used to create
-						pre-filled tables. It is used whenever a programmer needs to give different data descriptions to
-						the same area of storage.
+						<b>Example 2<br /></b> The <code class="language-cobol">REDEFINES</code> clause is not just used
+						to create pre-filled tables. It is used whenever a programmer needs to give different data
+						descriptions to the same area of storage.
 					</p>
 					<p align="left">
 						For instance, suppose we accept a date from the user and that sometimes the date has the format
@@ -1362,10 +1377,10 @@ ADD 56 TO PopTotal(12,3,2)</code></pre>
 						target date.
 					</p>
 					<p align="left">
-						On the other hand, we could use the <font size="-1">REDEFINES</font> clause to give different
-						names and descriptions to the area of storage holding the date so that we can access the correct
-						day, month and year fields without recourse to special programming. For instance, if define the
-						<i>InputDate</i> as -
+						On the other hand, we could use the <code class="language-cobol">REDEFINES</code> clause to give
+						different names and descriptions to the area of storage holding the date so that we can access
+						the correct day, month and year fields without recourse to special programming. For instance, if
+						define the <i>InputDate</i> as -
 					</p>
 					<pre class="language-cobol" align="left"><code class="language-cobol">01 InputDate.
    02 DateType         PIC 9.
@@ -1399,10 +1414,10 @@ ADD 56 TO PopTotal(12,3,2)</code></pre>
 END-EVALUATE </code></pre>
 					<p>- and still get the correct values displayed.</p>
 					<p align="left">
-						<b>Example 3<br /></b> The <font size="-1">REDEFINES</font> clause is also useful when we need
-						to treat a numeric item as if it had its decimal point in different places. For instance the
-						value 12345 is treated as if it were 12.345 if we refer to <i>10Rate</i>, 123.45 if we refer to
-						<i>100Rate</i>, and 1234.5 if we refer to <i>1000Rate</i>.
+						<b>Example 3<br /></b> The <code class="language-cobol">REDEFINES</code> clause is also useful
+						when we need to treat a numeric item as if it had its decimal point in different places. For
+						instance the value 12345 is treated as if it were 12.345 if we refer to <i>10Rate</i>, 123.45 if
+						we refer to <i>100Rate</i>, and 1234.5 if we refer to <i>1000Rate</i>.
 					</p>
 					<pre class="language-cobol" align="left"><code class="language-cobol">01 Rates.
    02 10Rate                    PIC 99V999.
@@ -1430,23 +1445,24 @@ END-EVALUATE </code></pre>
 					</p>
 					<ol>
 						<li>
-							The <font size="-1">REDEFINES</font> clause must immediately follow Identifier1 (i.e. the
-							<font size="-1">REDEFINES</font> must come before the <font size="-1">PIC</font>.)
+							The <code class="language-cobol">REDEFINES</code> clause must immediately follow Identifier1
+							(i.e. the <code class="language-cobol">REDEFINES</code> must come before the
+							<code class="language-cobol">PIC</code>.)
 						</li>
 						<li>
 							The level numbers of Identifier1 and Identifier2 must be the same and cannot be 66 or 88.
 						</li>
 						<li>
 							The data description of Identifier2 cannot contain an
-							<font size="-1">OCCURS</font> clause (i.e a table element cannot be redefined.)
+							<code class="language-cobol">OCCURS</code> clause (i.e a table element cannot be redefined.)
 						</li>
 						<li>
 							If there are multiple redefinitions of the same area of storage then they must all redefine
 							the data-item that originally defined the area. (See the InputDate and Rates examples above)
 						</li>
 						<li>
-							The redefining entries cannot contain <font size="-1">VALUE</font> clauses except in
-							condition name entries.
+							The redefining entries cannot contain <code class="language-cobol">VALUE</code> clauses
+							except in condition name entries.
 						</li>
 						<li>
 							No entry with a level number lower (i.e. higher in the hierarchy) than the level number of
@@ -1475,12 +1491,12 @@ END-EVALUATE </code></pre>
 					</p>
 					<ol>
 						<li>
-							Reserve an area of storage and use the <font size="-1">VALUE</font> clause to fill it with
-							the values required in the table.
+							Reserve an area of storage and use the <code class="language-cobol">VALUE</code> clause to
+							fill it with the values required in the table.
 						</li>
 						<li>
-							Then, use the <font size="-1">REDEFINES</font> clause to redefine the area of memory as a
-							table.
+							Then, use the <code class="language-cobol">REDEFINES</code> clause to redefine the area of
+							memory as a table.
 						</li>
 					</ol>
 					<p>
@@ -1644,9 +1660,9 @@ DisplayCountyTaxes.
 					<p>
 						The 1985 COBOL standard introduced a number of changes to tables. Among these changes was a
 						method that allowed pre-filled tables to be created without using the
-						<font size="-1">REDEFINES</font> clause. But this new method only works as as long as the number
-						of values is small. For large amounts of data the <font size="-1">REDEFINES</font> clause is
-						still required.
+						<code class="language-cobol">REDEFINES</code> clause. But this new method only works as as long
+						as the number of values is small. For large amounts of data the
+						<code class="language-cobol">REDEFINES</code> clause is still required.
 					</p>
 					<p>
 						The new method works by assigning the values to a groupname defined over a table. For instance,
@@ -1703,8 +1719,8 @@ DisplayCountyTaxes.
 					<p>
 						At least that was the way it had to be done before the 1985 COBOL standard. Now the table can be
 						initialised by assigning an initial value to each part of an element using the
-						<font size="-1">VALUE</font> clause. The description below initialises the CountyTax part of the
-						element to zeros and the CountyName part to spaces.
+						<code class="language-cobol">VALUE</code> clause. The description below initialises the
+						CountyTax part of the element to zeros and the CountyName part to spaces.
 					</p>
 					<pre class="language-cobol"><code class="language-cobol">01 TaxTable. 
    02 County OCCURS 26 TIMES. 
