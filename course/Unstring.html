@@ -16,10 +16,23 @@
 			ul.toc > li {
 				padding-left: 0.4em;
 				margin-bottom: 0.6em;
+				font-size: smaller;
 			}
 
 			ul.toc a {
 				font-weight: bold;
+				font-size: larger;
+			}
+
+			td[bgcolor="#993300"] h2 {
+				color: #ffff00;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			td[bgcolor="#FFFFCC"] h3,
+			td[bgcolor="#FFFFCC"] h4 {
+				color: #800000;
+				font-family: Arial, Helvetica, sans-serif;
 			}
 		</style>
 		<meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -207,68 +220,59 @@
 						<ul class="toc">
 							<li>
 								<a href="#intro">Introduction</a><br />
-								<font size="-1">Unit aims, objectives and prerequisites.</font>
+								Unit aims, objectives and prerequisites.
 							</li>
 							<li>
 								<a href="#verb">The UNSTRING verb</a><br />
-								<font size="-1"
-									>This section examines the syntax, functioning and rules of the
-									<code class="language-cobol">UNSTRING</code>.</font
-								>
+								This section examines the syntax, functioning and rules of the
+								<code class="language-cobol">UNSTRING</code>.
 							</li>
 							<li>
 								<a href="#examples">UNSTRING examples</a><br />
-								<font size="-1"
-									>This section starts with some abstract examples, goes on to a more practical
-									example and ends with a example program</font
-								>
+								This section starts with some abstract examples, goes on to a more practical example and
+								ends with a example program
 							</li>
 							<li>
 								<a href="#combined">A combined example</a><br />
-								<font size="-1"
-									>The unit ends with a practical example that uses the
-									<code class="language-cobol">STRING</code> and
-									<code class="language-cobol">UNSTRING</code> verbs in combination.</font
-								>
+								The unit ends with a practical example that uses the
+								<code class="language-cobol">STRING</code> and
+								<code class="language-cobol">UNSTRING</code> verbs in combination.
 							</li>
 						</ul>
 						<table border="0" cellpadding="4" cellspacing="0" width="710">
 							<tr>
 								<td align="left" bgcolor="#993300" colspan="2" valign="top" width="100%">
-									<h2 align="center" id="intro"><font color="#FFFF00">Introduction</font></h2>
+									<h2 align="center" id="intro">Introduction</h2>
 								</td>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#993300">Aims</font></h3>
+									<h3>Aims</h3>
 								</td>
 								<td width="525">
 									<p>
 										The aim of this unit is to provide to provide you with a solid understanding of
-										the <font size="2">UNSTRING</font> verb.
+										the UNSTRING verb.
 									</p>
 									<hr />
 								</td>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Objectives</font></h3>
+									<h3>Objectives</h3>
 								</td>
 								<td width="525">
 									<p>By the end of this unit you should:By the end of this unit you should:</p>
 									<ol>
-										<li>Understand how the <font size="2">UNSTRING</font> works</li>
-										<li>
-											Be able to use the <font size="2">UNSTRING</font> to divide a string into
-											sub-strings
-										</li>
+										<li>Understand how the UNSTRING works</li>
+										<li>Be able to use the UNSTRING to divide a string into sub-strings</li>
 									</ol>
 									<hr />
 								</td>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Prerequisites</font></h3>
+									<h3>Prerequisites</h3>
 								</td>
 								<td width="525">
 									<p>You should be familiar with the material covered in the unit;</p>
@@ -278,8 +282,8 @@
 										<li>Selection</li>
 										<li>Tables</li>
 										<li>Edited Pictures</li>
-										<li>The <font size="2">INSPECT</font> verb</li>
-										<li>The <font size="2">STRING</font> verb</li>
+										<li>The INSPECT verb</li>
+										<li>The STRING verb</li>
 									</ul>
 								</td>
 							</tr>
@@ -299,18 +303,16 @@
 						<table border="0" cellpadding="4" cellspacing="0" width="710">
 							<tr>
 								<td align="left" bgcolor="#993300" colspan="2" valign="top" width="100%">
-									<h2 align="center" id="verb"><font color="#FFFF00">The UNSTRING verb</font></h2>
+									<h2 align="center" id="verb">The UNSTRING verb</h2>
 								</td>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3 align="left"><font color="#800000">Introduction</font></h3>
+									<h3 align="left">Introduction</h3>
 								</td>
 								<td width="525">
-									<p>
-										The <font size="2">UNSTRING</font> is used to divide a string into sub-strings.
-									</p>
-									<p>The examples below show how the <font size="2">UNSTRING</font> is used.</p>
+									<p>The UNSTRING is used to divide a string into sub-strings.</p>
+									<p>The examples below show how the UNSTRING is used.</p>
 									<p>
 										The first example breaks a name string into its three constituent part - the
 										first name , second name and surname. For instance the string "John Joseph Ryan"
@@ -322,8 +324,8 @@
 										lines are stored in a six element table.
 									</p>
 									<p>
-										Since not all addresses will have six parts exactly, we use the
-										<font size="2">TALLYING</font> clause to discover how many parts there are.
+										Since not all addresses will have six parts exactly, we use the TALLYING clause
+										to discover how many parts there are.
 									</p>
 									<pre
 										class="language-cobol"
@@ -341,7 +343,7 @@ END-UNSTRING.</code></pre>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">UNSTRING syntax</font></h3>
+									<h3>UNSTRING syntax</h3>
 								</td>
 								<td width="525">
 									<p><img src="Resources/pics/I-UnString.gif" /></p>
@@ -379,7 +381,7 @@ END-UNSTRING.</code></pre>
 												<td width="21%">DestCounter#i</td>
 												<td width="79%">
 													Holds the count of the number of destination strings affected by the
-													<font size="2">UNSTRING</font> operation.
+													UNSTRING operation.
 												</td>
 											</tr>
 										</table>
@@ -389,13 +391,12 @@ END-UNSTRING.</code></pre>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">How the UNSTRING works</font></h3>
+									<h3>How the UNSTRING works</h3>
 								</td>
 								<td width="525">
 									<p>
-										The <font size="2">UNSTRING</font> copies characters from the source string, to
-										the destination string, until a condition is encountered that terminates data
-										movement.
+										The UNSTRING copies characters from the source string, to the destination
+										string, until a condition is encountered that terminates data movement.
 									</p>
 									<p>
 										When data movement ends for a particular destination string, the next
@@ -411,20 +412,20 @@ END-UNSTRING.</code></pre>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Data movement termination</font></h3>
+									<h3>Data movement termination</h3>
 								</td>
 								<td width="525">
 									<p>
-										When the <font size="2">DELIMITED BY</font> clause is used data movement from
-										the source string to the current destination string ends when either ;
+										When the DELIMITED BY clause is used data movement from the source string to the
+										current destination string ends when either ;
 									</p>
 									<ul>
 										<li>a delimiter is encountered in the source string</li>
 										<li>the end of the source string is reached.</li>
 									</ul>
 									<p>
-										When the <font size="2">DELIMITED BY</font> clause is not used, data movement
-										from the source string to the current destination string ends when either;
+										When the DELIMITED BY clause is not used, data movement from the source string
+										to the current destination string ends when either;
 									</p>
 									<ul>
 										<li>the destination string is full</li>
@@ -435,10 +436,10 @@ END-UNSTRING.</code></pre>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">UNSTRING termination</font></h3>
+									<h3>UNSTRING termination</h3>
 								</td>
 								<td width="525">
-									<p>The <font size="2">UNSTRING</font> statement terminates when either;</p>
+									<p>The UNSTRING statement terminates when either;</p>
 									<ul>
 										<li>All the characters in the source string have been examined</li>
 										<li>All the destination strings have been processed</li>
@@ -452,13 +453,13 @@ END-UNSTRING.</code></pre>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">UNSTRING rules</font></h3>
+									<h3>UNSTRING rules</h3>
 								</td>
 								<td width="525">
 									<ol>
 										<li>
 											Where a literal can be used any figurative constant can be used except the
-											<font size="2">ALL</font> (literal).<br />
+											ALL (literal).<br />
 											<br />
 										</li>
 										<li>
@@ -467,19 +468,17 @@ END-UNSTRING.</code></pre>
 										</li>
 										<li>
 											Characters are moved from the source string to the destination strings
-											according to the rules for the <font size="2">MOVE</font>, with space
-											filling if required.<br />
+											according to the rules for the MOVE, with space filling if required.<br />
 											<br />
 										</li>
 										<li>
 											The delimiter is moved into HoldDelim$i according to the rules for the
-											<font size="2">MOVE</font>.<br />
+											MOVE.<br />
 											<br />
 										</li>
 										<li>
-											The <font size="2">DELIMITER IN</font> and
-											<font size="2">COUNT IN</font> phrases may be specified only if the
-											<font size="2">DELIMITED BY</font> phrase is used.
+											The DELIMITER IN and COUNT IN phrases may be specified only if the DELIMITED
+											BY phrase is used.
 										</li>
 									</ol>
 									<hr />
@@ -487,18 +486,17 @@ END-UNSTRING.</code></pre>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">UNSTRING clauses</font></h3>
+									<h3>UNSTRING clauses</h3>
 								</td>
 								<td width="525">
 									<p>
-										<font size="2"><b>ON OVERFLOW</b></font
-										><br />
-										The <font size="2">ON OVERFLOW</font> is activated if :-
+										<b>ON OVERFLOW</b><br />
+										The ON OVERFLOW is activated if :-
 									</p>
 									<ul>
 										<li>
 											The unstring pointer (Pointer#i) is not pointing to a character position
-											within the source string when the <font size="2">UNSTRING</font> executes.
+											within the source string when the UNSTRING executes.
 										</li>
 										<li>
 											All the destination strings have been processed but there are still valid
@@ -506,68 +504,52 @@ END-UNSTRING.</code></pre>
 										</li>
 									</ul>
 									<p>
-										The statements following the <font size="2">NOT ON OVERFLOW</font> are executed
-										if the <font size="2">UNSTRING</font> is about to terminate successfully.
+										The statements following the NOT ON OVERFLOW are executed if the UNSTRING is
+										about to terminate successfully.
 									</p>
 									<p>
-										<font size="2"><b>COUNT IN</b></font
-										><br />
-										The <font size="2">COUNT IN</font> clause is associated with a particular
-										destination string and holds a count of the number of characters passed to the
-										destination string.
+										<b>COUNT IN</b><br />
+										The COUNT IN clause is associated with a particular destination string and holds
+										a count of the number of characters passed to the destination string.
 									</p>
 									<p>
-										<font size="2"><b>TALLYING IN</b></font
-										><br />
-										Only one <font size="2">TALLYING</font> clause can be used with each
-										<font size="2">UNSTRING</font> . It holds a count of the number of destination
-										strings affected by the <font size="2">UNSTRING</font> operation.
+										<b>TALLYING IN</b><br />
+										Only one TALLYING clause can be used with each UNSTRING . It holds a count of
+										the number of destination strings affected by the UNSTRING operation.
 									</p>
 									<p>
-										<font size="2"><b>WITH POINTER</b></font
-										><br />
-										When the <font size="2">WITH POINTER</font> clause is used the Pointer#i holds
-										the position of the next non-delimiter character to be examined in the source
-										string.
+										<b>WITH POINTER</b><br />
+										When the WITH POINTER clause is used the Pointer#i holds the position of the
+										next non-delimiter character to be examined in the source string.
 									</p>
 									<p>
 										Pointer#i must be large enough to hold a value one greater than the size of the
 										source string.
 									</p>
 									<p>
-										<font size="2"
-											><b>ALL<br /></b
-										></font>
+										<b>ALL<br /></b>
 										When the ALL phrase is used, contiguous delimiters are treated as if only one
 										delimiter had been encountered. <b></b>
-										<font size="2"
-											><b><br /></b
-										></font>
+										<b><br /></b>
 									</p>
 									<p>
 										If the ALL is not used, contiguous delimiters will result in spaces being sent
 										to some of the destination strings
 									</p>
 									<p>
-										<font size="2"><b>DELIMITER IN</b></font
-										><br />
-										A <font size="2">DELIMITER IN</font> clause is associated with a particular
-										destination string. HoldDelim$i holds the delimiter that was encountered in the
-										source string.
+										<b>DELIMITER IN</b><br />
+										A DELIMITER IN clause is associated with a particular destination string.
+										HoldDelim$i holds the delimiter that was encountered in the source string.
 									</p>
 									<p>
-										If the <font size="2">DELIMITER IN</font> phrase is used with the
-										<font size="2">ALL</font> phrase then only one occurrence of the delimiter will
-										be moved to HoldDelim$i.
+										If the DELIMITER IN phrase is used with the ALL phrase then only one occurrence
+										of the delimiter will be moved to HoldDelim$i.
 									</p>
 									<p>
-										<font size="2"
-											><b>DELIMITED BY<br /></b
-										></font>
-										When the <font size="2">DELIMITED BY</font> phrase is used, characters are
-										examined in the source string and transferred to the current destination string
-										until one of the specified delimiters is encountered or the end the source
-										string is reached.
+										<b>DELIMITED BY<br /></b>
+										When the DELIMITED BY phrase is used, characters are examined in the source
+										string and transferred to the current destination string until one of the
+										specified delimiters is encountered or the end the source string is reached.
 									</p>
 									<p>
 										If there is not enough room in the destination string to take all the characters
@@ -598,12 +580,12 @@ END-UNSTRING.</code></pre>
 						<table border="0" cellpadding="4" cellspacing="0" width="710">
 							<tr>
 								<td align="left" bgcolor="#993300" colspan="2" valign="top" width="100%">
-									<h2 align="center" id="examples"><font color="#FFFF00">UNSTRING examples</font></h2>
+									<h2 align="center" id="examples">UNSTRING examples</h2>
 								</td>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#993300">Introduction</font></h3>
+									<h3>Introduction</h3>
 								</td>
 								<td width="525">
 									<p>
@@ -611,27 +593,22 @@ END-UNSTRING.</code></pre>
 										UNSTRING.
 									</p>
 									<p>Example 7 is a longer and more practical example</p>
-									<p>
-										Finally the section ends with an example program that uses the
-										<font size="2">UNSTRING</font>.
-									</p>
+									<p>Finally the section ends with an example program that uses the UNSTRING.</p>
 									<hr />
 								</td>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 									<h3>
-										<font color="#800000"
-											>Examples 1 - 6<br />
-											(animation)</font
-										>
+										Examples 1 - 6<br />
+										(animation)
 									</h3>
 								</td>
 								<td width="525">
 									<p>
-										When you view these examples start by carefully examining the
-										<font size="2">UNSTRING</font> statement. See if you can figure out what it's
-										going to do (you may need to review the material above for this).
+										When you view these examples start by carefully examining the UNSTRING
+										statement. See if you can figure out what it's going to do (you may need to
+										review the material above for this).
 									</p>
 									<p>
 										When you are happy with your prediction step through the example and see if you
@@ -648,10 +625,8 @@ END-UNSTRING.</code></pre>
 											style="border: 1px solid #ccc; width: 100%; aspect-ratio: 520/416"
 											width="520"
 										></iframe>
-										<font size="2"
-											>Left click or PageDown to go to the next frame and right click or press
-											PageUp to go to the previous frame.</font
-										>
+										Left click or PageDown to go to the next frame and right click or press PageUp
+										to go to the previous frame.
 									</center>
 									<hr />
 								</td>
@@ -659,16 +634,14 @@ END-UNSTRING.</code></pre>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
 									<h3>
-										<font color="#800000"
-											>Example 7<br />
-											(animation)</font
-										>
+										Example 7<br />
+										(animation)
 									</h3>
 								</td>
 								<td width="525">
 									<p>
-										The <font size="2">WITH POINTER</font> phrase is often very useful because it
-										means that we don't have to unpack the whole source string in one go..
+										The WITH POINTER phrase is often very useful because it means that we don't have
+										to unpack the whole source string in one go..
 									</p>
 									<p>
 										In this example, we unpack a full name, any number of Christian names followed
@@ -681,18 +654,16 @@ END-UNSTRING.</code></pre>
 											style="border: 1px solid #ccc; width: 100%; aspect-ratio: 520/416"
 											width="520"
 										></iframe>
-										<font size="2"
-											>Click on the diagram below to step through the animation. Left click or
-											PageDown to go to the next step and right click or press PageUp to go to the
-											previous step.</font
-										>
+										Click on the diagram below to step through the animation. Left click or PageDown
+										to go to the next step and right click or press PageUp to go to the previous
+										step.
 									</center>
 									<hr />
 								</td>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Example program</font></h3>
+									<h3>Example program</h3>
 								</td>
 								<td width="525">
 									<p>
@@ -809,12 +780,12 @@ Begin.
 						<table border="0" cellpadding="4" cellspacing="0" width="710">
 							<tr>
 								<td align="left" bgcolor="#993300" colspan="2" valign="top" width="100%">
-									<h2 align="center" id="combined"><font color="#FFFF00">Combined example</font></h2>
+									<h2 align="center" id="combined">Combined example</h2>
 								</td>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#993300">Introduction</font></h3>
+									<h3>Introduction</h3>
 								</td>
 								<td width="525">
 									<p>
@@ -827,7 +798,7 @@ Begin.
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Data items used in the example</font></h3>
+									<h3>Data items used in the example</h3>
 								</td>
 								<td width="525">
 									<pre class="language-cobol"><code class="language-cobol">01 OldName  PIC X(80).
@@ -847,7 +818,7 @@ Begin.
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Animation</font></h3>
+									<h3>Animation</h3>
 								</td>
 								<td width="525">
 									<center>
@@ -859,11 +830,9 @@ Begin.
 										></iframe>
 									</center>
 									<div align="center">
-										<font size="2"
-											>Click on the diagram below to step through the animation. Left click or
-											PageDown to go to the next step and right click or press PageUp to go to the
-											previous step.</font
-										>
+										Click on the diagram below to step through the animation. Left click or PageDown
+										to go to the next step and right click or press PageUp to go to the previous
+										step.
 									</div>
 								</td>
 							</tr>
@@ -889,15 +858,12 @@ Begin.
 										These COBOL course materials are the copyright property of Michael Coughlan.
 									</p>
 									<p>
-										<font size="2"
-											>All rights reserved. No part of these course materials may be reproduced in
-											any form or by any means - graphic, electronic, mechanical, photocopying,
-											printing, recording, taping or stored in an information storage and
-											retrieval system - without the written permission of</font
-										>
-										<font size="2">the author.</font>
+										All rights reserved. No part of these course materials may be reproduced in any
+										form or by any means - graphic, electronic, mechanical, photocopying, printing,
+										recording, taping or stored in an information storage and retrieval system -
+										without the written permission of the author.
 									</p>
-									<p align="center"><font size="2">(c) Michael Coughlan</font></p>
+									<p align="center">(c) Michael Coughlan</p>
 								</td>
 							</tr>
 						</table>

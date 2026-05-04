@@ -128,10 +128,23 @@
 			ul.toc > li {
 				padding-left: 0.4em;
 				margin-bottom: 0.6em;
+				font-size: smaller;
 			}
 
 			ul.toc a {
 				font-weight: bold;
+				font-size: larger;
+			}
+
+			td[bgcolor="#993300"] h2 {
+				color: #ffff00;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			td[bgcolor="#FFFFCC"] h3,
+			td[bgcolor="#FFFFCC"] h4 {
+				color: #800000;
+				font-family: Arial, Helvetica, sans-serif;
 			}
 		</style>
 	</head>
@@ -148,31 +161,25 @@
 					<ul class="toc">
 						<li>
 							<a href="#intro">Introduction</a><br />
-							<font size="-1">Unit aims, objectives, prerequisites.</font>
+							Unit aims, objectives, prerequisites.
 						</li>
 						<li>
 							<a href="#part1">Multiple record-type files</a><br />
-							<font size="-1"
-								>This section demonstrates how to declare and use files that contain multiple types of
-								record.</font
-							>
+							This section demonstrates how to declare and use files that contain multiple types of
+							record.
 						</li>
 						<li>
 							<a href="#part2">COBOL print files</a><br />
-							<font size="-1"
-								>This section introduces COBOL print files, demonstrates how a print file may be set up
-								and shows how a print file is used to print a report.</font
-							>
+							This section introduces COBOL print files, demonstrates how a print file may be set up and
+							shows how a print file is used to print a report.
 						</li>
 						<li>
 							<a href="#part3">Variable length records</a><br />
-							<font size="-1"
-								>This section introduces variable length records, demonstrates how variable length
-								records may be declared and shows how variable length records with the
-								<code class="language-cobol">DEPENDING ON</code> phrase may be processed. In addition,
-								this section demonstrates how a file name may be assigned to a file at run-time rather
-								than at compile-time.</font
-							>
+							This section introduces variable length records, demonstrates how variable length records
+							may be declared and shows how variable length records with the
+							<code class="language-cobol">DEPENDING ON</code> phrase may be processed. In addition, this
+							section demonstrates how a file name may be assigned to a file at run-time rather than at
+							compile-time.
 						</li>
 					</ul>
 					<hr />
@@ -180,18 +187,12 @@
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
-					<h2 align="center" id="intro">
-						<font color="#FFFF00">
-							<font face="Arial, Helvetica, sans-serif">Introduction</font>
-						</font>
-					</h2>
+					<h2 align="center" id="intro">Introduction</h2>
 				</td>
 			</tr>
 			<tr>
 				<td bgcolor="#FFFFCC" valign="top" width="175">
-					<h4>
-						<font color="#993300" face="Arial, Helvetica, sans-serif">Aims</font>
-					</h4>
+					<h4>Aims</h4>
 				</td>
 				<td valign="top" width="540">
 					<div align="center">
@@ -207,9 +208,7 @@
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4>
-						<font color="#800000" face="Arial, Helvetica, sans-serif">Objectives</font>
-					</h4>
+					<h4>Objectives</h4>
 				</td>
 				<td valign="top" width="540">
 					<p>By the end of this unit you should -</p>
@@ -239,9 +238,7 @@
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4>
-						<font color="#800000" face="Arial, Helvetica, sans-serif">Prerequisites</font>
-					</h4>
+					<h4>Prerequisites</h4>
 				</td>
 				<td valign="top" width="525">
 					<ul>
@@ -269,18 +266,12 @@
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
-					<h2 align="center" id="part1">
-						<font color="#FFFF00">
-							<font face="Arial, Helvetica, sans-serif">Multiple record-type files</font>
-						</font>
-					</h2>
+					<h2 align="center" id="part1">Multiple record-type files</h2>
 				</td>
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4>
-						<font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font>
-					</h4>
+					<h4>Introduction</h4>
 				</td>
 				<td valign="top" width="525">
 					<div align="center">
@@ -303,11 +294,7 @@
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4>
-						<font color="#800000" face="Arial, Helvetica, sans-serif"
-							>Implications of multiple record types
-						</font>
-					</h4>
+					<h4>Implications of multiple record types</h4>
 				</td>
 				<td valign="top" width="525">
 					<div align="center">
@@ -328,11 +315,7 @@
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4>
-						<font color="#800000" face="Arial, Helvetica, sans-serif"
-							>Declaring a multiple record-type file
-						</font>
-					</h4>
+					<h4>Declaring a multiple record-type file</h4>
 					<p align="center"><img height="44" src="Resources/pics/ProgFrag.gif" width="48" /></p>
 				</td>
 				<td valign="top" width="525">
@@ -357,7 +340,7 @@
 								<pre class="language-cobol"><code class="language-cobol">ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
-   SELECT TransFile 
+   SELECT TransFile
           ASSIGN TO "TRANS.DAT"
           ORGANIZATION IS LINE SEQUENTIAL.
 DATA DIVISION.
@@ -395,17 +378,11 @@ FD TransFile.
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4>
-						<font color="#800000" face="Arial, Helvetica, sans-serif"
-							>Multiple record-types - one record buffer
-						</font>
-					</h4>
+					<h4>Multiple record-types - one record buffer</h4>
 					<p align="center">
 						<img height="62" src="Resources/pics/i-Animation.gif" width="62" />
 					</p>
-					<p align="left">
-						<font size="-1">Click on the diagram opposite to see how the records map on to the buffer</font>
-					</p>
+					<p align="left">Click on the diagram opposite to see how the records map on to the buffer</p>
 				</td>
 				<td valign="top" width="525">
 					<div align="center">
@@ -432,17 +409,13 @@ FD TransFile.
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4>
-						<font color="#800000" face="Arial, Helvetica, sans-serif">Implications of record mappings</font>
-					</h4>
+					<h4>Implications of record mappings</h4>
 					<aside>
 						<p align="center">
 							<img height="37" src="Resources/pics/i-Detail.gif" width="30" /><br />
-							<font size="-1"
-								>Actually, in the NetExpress version of COBOL, when a record is smaller than the record
-								buffer the rest of the buffer is filled with spaces. So in the example opposite, the
-								NewCourseCode would display spaces.</font
-							>
+							Actually, in the NetExpress version of COBOL, when a record is smaller than the record
+							buffer the rest of the buffer is filled with spaces. So in the example opposite, the
+							NewCourseCode would display spaces.
 						</p>
 					</aside>
 				</td>
@@ -470,12 +443,8 @@ FD TransFile.
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4>
-						<font color="#800000" face="Arial, Helvetica, sans-serif">The type-code.</font>
-					</h4>
-					<h4>
-						<font color="#800000" face="Arial, Helvetica, sans-serif"></font>
-					</h4>
+					<h4>The type-code.</h4>
+					<h4></h4>
 				</td>
 				<td valign="top" width="525">
 					<div align="center">
@@ -501,14 +470,9 @@ FD TransFile.
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4>
-						<font color="#800000" face="Arial, Helvetica, sans-serif"
-							>The revised record descriptions.</font
-						>
-					</h4>
+					<h4>The revised record descriptions.</h4>
 					<h4 align="center">
 						<img height="44" src="Resources/pics/ProgFrag.gif" width="48" />
-						<font color="#800000" face="Arial, Helvetica, sans-serif"></font>
 					</h4>
 				</td>
 				<td valign="top" width="525">
@@ -517,8 +481,7 @@ FD TransFile.
 							In the program fragment below, the revised record descriptions are shown. These record
 							descriptions now include a one character field, which stores the type-code inserted into
 							each transaction record to indicate the transaction type. Obviously the transaction file
-							(<font size="-1">TRANS.DAT</font>) must must also be altered so that its actual records
-							contain the type-code.
+							(TRANS.DAT) must must also be altered so that its actual records contain the type-code.
 						</p>
 						<table
 							align="center"
@@ -532,7 +495,7 @@ FD TransFile.
 									<pre class="language-cobol"><code class="language-cobol">ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
-   SELECT TransFile 
+   SELECT TransFile
           ASSIGN TO "TRANS.DAT"
           ORGANIZATION IS LINE SEQUENTIAL.
 DATA DIVISION.
@@ -600,14 +563,9 @@ FD TransFile.
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4>
-						<font color="#800000" face="Arial, Helvetica, sans-serif"
-							>Using FILLER in the transaction records.
-						</font>
-					</h4>
+					<h4>Using FILLER in the transaction records.</h4>
 					<h4 align="center">
 						<img height="44" src="Resources/pics/ProgFrag.gif" width="48" />
-						<font color="#800000" face="Arial, Helvetica, sans-serif"></font>
 					</h4>
 				</td>
 				<td valign="top" width="525">
@@ -625,7 +583,7 @@ FD TransFile.
 								<pre class="language-cobol"><code class="language-cobol">ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
-   SELECT TransFile 
+   SELECT TransFile
           ASSIGN TO "TRANS.DAT"
           ORGANIZATION IS LINE SEQUENTIAL.
 
@@ -677,16 +635,12 @@ FD TransFile.
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
-					<h2 align="center" id="part2">
-						<font color="#FFFF00">COBOL print files</font>
-					</h2>
+					<h2 align="center" id="part2">COBOL print files</h2>
 				</td>
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4 align="left">
-						<font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font>
-					</h4>
+					<h4 align="left">Introduction</h4>
 				</td>
 				<td valign="top" width="525">
 					<p>
@@ -701,9 +655,7 @@ FD TransFile.
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4 align="left">
-						<font color="#800000" face="Arial, Helvetica, sans-serif">Setting up a print file</font>
-					</h4>
+					<h4 align="left">Setting up a print file</h4>
 				</td>
 				<td valign="top" width="525">
 					<p align="left">
@@ -720,9 +672,7 @@ FD TransFile.
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4 align="left">
-						<font color="#800000" face="Arial, Helvetica, sans-serif">Declaring print lines</font>
-					</h4>
+					<h4 align="left">Declaring print lines</h4>
 				</td>
 				<td valign="top" width="525">
 					<p>
@@ -785,11 +735,7 @@ FD TransFile.
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4 align="left">
-						<font color="#800000" face="Arial, Helvetica, sans-serif"
-							>Problems multiple print records.</font
-						>
-					</h4>
+					<h4 align="left">Problems multiple print records.</h4>
 				</td>
 				<td valign="top" width="525">
 					<p>
@@ -814,9 +760,7 @@ FD TransFile.
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4 align="left">
-						<font color="#800000" face="Arial, Helvetica, sans-serif">Setting up a print file</font>
-					</h4>
+					<h4 align="left">Setting up a print file</h4>
 				</td>
 				<td valign="top" width="525">
 					<p>
@@ -836,9 +780,7 @@ FD TransFile.
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4>
-						<font color="#800000" face="Arial, Helvetica, sans-serif">The WRITE format revisited.</font>
-					</h4>
+					<h4>The WRITE format revisited.</h4>
 				</td>
 				<td valign="top" width="525">
 					<div align="center">
@@ -881,9 +823,7 @@ FD TransFile.
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4 align="left">
-						<font color="#800000" face="Arial, Helvetica, sans-serif">Bringing it all together.</font>
-					</h4>
+					<h4 align="left">Bringing it all together.</h4>
 					<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
 				</td>
 				<td valign="top" width="525">
@@ -904,11 +844,11 @@ AUTHOR.  Michael Coughlan.
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
-   SELECT StudentDetailsReport 
+   SELECT StudentDetailsReport
           ASSIGN TO "StudRpt.Lpt"
           ORGANIZATION IS LINE SEQUENTIAL.
 
-   SELECT StudentFile 
+   SELECT StudentFile
           ASSIGN TO "STUDENTS.DAT"
           ORGANIZATION IS LINE SEQUENTIAL.
 
@@ -934,13 +874,13 @@ FD StudentDetailsReport.
 WORKING-STORAGE SECTION.
 01 Heading1.
    02 FILLER          PIC X(7)  VALUE SPACES.
-   02 FILLER          PIC X(25) 
+   02 FILLER          PIC X(25)
                       VALUE "UL Student Details Report".
 
-01 Heading2. 
-   02 FILLER          PIC X(21) 
+01 Heading2.
+   02 FILLER          PIC X(21)
                       VALUE "StudentId StudentName".
-   02 FILLER          PIC X(14) 
+   02 FILLER          PIC X(14)
                       VALUE " Gender Course".
 
 01 StudentDetailLine.
@@ -971,16 +911,16 @@ PrintStudentReport.
         AT END SET EndOfStudentFile TO TRUE
    END-READ
    PERFORM PrintReportBody UNTIL EndOfStudentFile
-   WRITE PrintLine FROM ReportFooting 
+   WRITE PrintLine FROM ReportFooting
          AFTER ADVANCING 3 LINES
    CLOSE StudentFile, StudentDetailsReport
    STOP RUN.
 
 PrintReportBody.
-   IF NewPageRequired 
+   IF NewPageRequired
       ADD 1 TO PageNum
       MOVE PageNum TO PrnPageNum
-      WRITE PrintLine FROM PageFooting 
+      WRITE PrintLine FROM PageFooting
             AFTER ADVANCING 3 LINES
       PERFORM PrintPageHeadings
    END-IF
@@ -996,12 +936,12 @@ PrintReportBody.
    END-READ.
 
 PrintPageHeadings.
-   WRITE PrintLine FROM Heading1 
+   WRITE PrintLine FROM Heading1
          AFTER ADVANCING PAGE
    WRITE PrintLine FROM Heading2
          AFTER ADVANCING 2 LINES
    MOVE 3 TO LineCount.
-    
+
 </code></pre>
 							</td>
 						</tr>
@@ -1022,18 +962,12 @@ PrintPageHeadings.
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
-					<h2 align="center" id="part3">
-						<font color="#FFFF00">
-							<font face="Arial, Helvetica, sans-serif">Variable length records</font>
-						</font>
-					</h2>
+					<h2 align="center" id="part3">Variable length records</h2>
 				</td>
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4 align="left">
-						<font color="#800000" face="Arial, Helvetica, sans-serif">Introduction</font>
-					</h4>
+					<h4 align="left">Introduction</h4>
 				</td>
 				<td valign="top" width="525">
 					<p>
@@ -1051,20 +985,14 @@ PrintPageHeadings.
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4 align="left">
-						<font color="#800000" face="Arial, Helvetica, sans-serif"
-							>FD entries for variable length records
-						</font>
-					</h4>
+					<h4 align="left">FD entries for variable length records</h4>
 					<aside>
 						<p align="center">
 							<img height="37" src="Resources/pics/i-Detail.gif" width="30" /><br />
-							<font size="-1"
-								>The <code class="language-cobol">RECORD CONTAINS</code> clause does much the same as
-								the <code class="language-cobol">RECORD..VARYING</code> clause without the
-								<code class="language-cobol">DEPENDING ON</code> phrase, but the
-								<code class="language-cobol">RECORD..VARYING</code> clause is the more versatile.
-							</font>
+							The <code class="language-cobol">RECORD CONTAINS</code> clause does much the same as the
+							<code class="language-cobol">RECORD..VARYING</code> clause without the
+							<code class="language-cobol">DEPENDING ON</code> phrase, but the
+							<code class="language-cobol">RECORD..VARYING</code> clause is the more versatile.
 						</p>
 					</aside>
 				</td>
@@ -1095,7 +1023,7 @@ PrintPageHeadings.
 					</p>
 					<p align="left"><b>Examples</b></p>
 					<pre class="language-cobol" align="left"><code class="language-cobol">FD TransFile
-   RECORD IS VARYING IN SIZE 
+   RECORD IS VARYING IN SIZE
    FROM 8 TO 31 CHARACTERS.
 
 FD Stringfile
@@ -1107,11 +1035,7 @@ FD Stringfile
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4 align="left">
-						<font color="#800000" face="Arial, Helvetica, sans-serif"
-							>How variable-length records, declared with the DEPENDING ON phrase, work.</font
-						>
-					</h4>
+					<h4 align="left">How variable-length records, declared with the DEPENDING ON phrase, work.</h4>
 				</td>
 				<td valign="top" width="525">
 					<p>
@@ -1131,9 +1055,7 @@ FD Stringfile
 			</tr>
 			<tr>
 				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-					<h4 align="left">
-						<font color="#800000" face="Arial, Helvetica, sans-serif">Example program</font>
-					</h4>
+					<h4 align="left">Example program</h4>
 				</td>
 				<td valign="top" width="525">
 					<p>The example program below introduces and number of new techniques and concepts;</p>
@@ -1168,8 +1090,8 @@ FD Stringfile
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  VarLenRecs.
 AUTHOR.  Michael Coughlan.
-*&gt; This program uses variable length records. 
-*&gt; It demonstrates how condition names may be used to 
+*&gt; This program uses variable length records.
+*&gt; It demonstrates how condition names may be used to
 *&gt; discover which type of record is in the record buffer.
 *&gt; It shows how a file name may be assigned to a file
 *&gt; at run time rather than compile time.
@@ -1183,7 +1105,7 @@ FILE-CONTROL.
           ASSIGN TO StringFileName
           ORGANIZATION IS LINE SEQUENTIAL.
 
-   SELECT TransFile 
+   SELECT TransFile
           ASSIGN TO "TRANS.DAT"
           ORGANIZATION IS LINE SEQUENTIAL.
 
@@ -1222,7 +1144,7 @@ FD Stringfile
    DEPENDING ON StringSize.
 01 StringRec            PIC X(80).
    88 EndOfStrings      VALUE HIGH-VALUES.
-   
+
 
 WORKING-STORAGE SECTION.
 01 StringSize           PIC 99.
@@ -1286,17 +1208,12 @@ DisplayTransactions.
 							These COBOL course materials are the copyright property of Michael Coughlan.
 						</p>
 						<p align="left">
-							<font size="2"
-								>All rights reserved. No part of these course materials may be reproduced in any form or
-								by any means - graphic, electronic, mechanical, photocopying, printing, recording,
-								taping or stored in an information storage and retrieval system - without the written
-								permission of</font
-							>
-							<font size="2">the author.</font>
+							All rights reserved. No part of these course materials may be reproduced in any form or by
+							any means - graphic, electronic, mechanical, photocopying, printing, recording, taping or
+							stored in an information storage and retrieval system - without the written permission of
+							the author.
 						</p>
-						<p align="center">
-							<font size="2">(c) Michael Coughlan</font>
-						</p>
+						<p align="center">(c) Michael Coughlan</p>
 					</div>
 				</td>
 			</tr>

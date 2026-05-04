@@ -16,10 +16,12 @@
 			ul.toc > li {
 				padding-left: 0.4em;
 				margin-bottom: 0.6em;
+				font-size: smaller;
 			}
 
 			ul.toc a {
 				font-weight: bold;
+				font-size: larger;
 			}
 		</style>
 		<meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -173,6 +175,17 @@
 					margin: 0.2em 0;
 				}
 			}
+
+			td[bgcolor="#993300"] h2 {
+				color: #ffff00;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			td[bgcolor="#FFFFCC"] h3,
+			td[bgcolor="#FFFFCC"] h4 {
+				color: #800000;
+				font-family: Arial, Helvetica, sans-serif;
+			}
 		</style>
 	</head>
 	<body alink="#009B00" bgcolor="#FFFFFF" link="#0000FF" text="#000000" vlink="#FF0000">
@@ -208,48 +221,39 @@
 							<ul class="toc">
 								<li>
 									<a href="#intro">Introduction</a><br />
-									<font size="-1">Unit aims, objectives and prerequisites.</font>
+									Unit aims, objectives and prerequisites.
 								</li>
 								<li>
 									<a href="#seq">Organization of Sequential files</a><br />
-									<font size="-1"
-										>Provides a recap of Sequential file organization and the difficulties of
-										adding, removing and updating records in an ordered Sequential file.</font
-									>
+									Provides a recap of Sequential file organization and the difficulties of adding,
+									removing and updating records in an ordered Sequential file.
 								</li>
 								<li>
 									<a href="#rel">Organization of Relative files</a><br />
-									<font size="-1"
-										>Describes how Relative files are organized and shows how records may be added,
-										deleted or updated.</font
-									>
+									Describes how Relative files are organized and shows how records may be added,
+									deleted or updated.
 								</li>
 								<li>
 									<a href="#idx">Organization of Indexed files</a><br />
-									<font size="-1"
-										>Describes the organization of Indexed files. Shows how records may be added,
-										deleted or updated and describes how records in an Indexed file may be processed
-										directly or sequentially on any key.</font
-									>
+									Describes the organization of Indexed files. Shows how records may be added, deleted
+									or updated and describes how records in an Indexed file may be processed directly or
+									sequentially on any key.
 								</li>
 								<li>
 									<a href="#comp">Comparison of COBOL file organizations</a><br />
-									<font size="-1"
-										>Summarizes the advantages and disadvantages of each of the file organizations
-										above.</font
-									>
+									Summarizes the advantages and disadvantages of each of the file organizations above.
 								</li>
 							</ul>
 						</div>
 						<table border="0" cellpadding="4" cellspacing="0" width="710">
 							<tr>
 								<td align="left" bgcolor="#993300" colspan="2" valign="top" width="175">
-									<h2 align="center" id="intro"><font color="#FFFF00">Introduction</font></h2>
+									<h2 align="center" id="intro">Introduction</h2>
 								</td>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#993300">Aims</font></h3>
+									<h3>Aims</h3>
 								</td>
 								<td width="525">
 									<p>
@@ -262,7 +266,7 @@
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Objectives</font></h3>
+									<h3>Objectives</h3>
 								</td>
 								<td width="525">
 									<p>By the end of this unit you should:</p>
@@ -290,7 +294,7 @@
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Prerequisites</font></h3>
+									<h3>Prerequisites</h3>
 								</td>
 								<td width="525">
 									<p>You should be familiar with the material covered in the unit;</p>
@@ -315,12 +319,12 @@
 						<table border="0" cellpadding="4" cellspacing="0" width="710">
 							<tr>
 								<td align="left" bgcolor="#993300" colspan="2" valign="top" width="175">
-									<h2 align="center" id="seq"><font color="#FFFF00">Sequential files</font></h2>
+									<h2 align="center" id="seq">Sequential files</h2>
 								</td>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Introduction</font></h3>
+									<h3>Introduction</h3>
 								</td>
 								<td width="525">
 									<p>
@@ -343,16 +347,15 @@
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Problems accessing ordered Sequential files.</font></h3>
+									<h3>Problems accessing ordered Sequential files.</h3>
 								</td>
 								<td width="525">
 									<p>
-										Records in <font color="#000000">an order</font>ed Sequential file are arranged,
-										in order, on some key field or fields. When we want to insert,delete or amend a
-										record we must preserve the ordering. The only way to do this is to create a new
-										file. In the case of an insertion or update, the new file will contain the
-										inserted or updated record. In the case of a deletion, the deleted record will
-										be missing from the new file.
+										Records in an ordered Sequential file are arranged, in order, on some key field
+										or fields. When we want to insert,delete or amend a record we must preserve the
+										ordering. The only way to do this is to create a new file. In the case of an
+										insertion or update, the new file will contain the inserted or updated record.
+										In the case of a deletion, the deleted record will be missing from the new file.
 									</p>
 									<p>
 										The main drawback to inserting, deleting or amending records in an ordered
@@ -371,7 +374,7 @@
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Contrast with direct access files</font></h3>
+									<h3>Contrast with direct access files</h3>
 								</td>
 								<td width="525">
 									<p>
@@ -388,9 +391,7 @@
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3>
-										<font color="#800000">Inserting records in an ordered Sequential file</font>
-									</h3>
+									<h3>Inserting records in an ordered Sequential file</h3>
 								</td>
 								<td width="525">
 									<p>To insert a record in an ordered Sequential file:</p>
@@ -411,13 +412,7 @@
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3>
-										<font color="#808080"
-											><font color="#800000"
-												>Deleting records from an ordered Sequential file</font
-											></font
-										>
-									</h3>
+									<h3>Deleting records from an ordered Sequential file</h3>
 								</td>
 								<td width="525">
 									<p>To delete a record in an ordered Sequential file:</p>
@@ -439,7 +434,7 @@
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Amending records in an ordered Sequential file</font></h3>
+									<h3>Amending records in an ordered Sequential file</h3>
 								</td>
 								<td width="525">
 									<p>To amend a record in an ordered Sequential file:</p>
@@ -461,7 +456,7 @@
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Sequential files - animation</font></h3>
+									<h3>Sequential files - animation</h3>
 								</td>
 								<td width="525">
 									<p>
@@ -481,7 +476,7 @@
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Summary</font></h3>
+									<h3>Summary</h3>
 								</td>
 								<td width="525">
 									<p>
@@ -511,12 +506,12 @@
 						<table border="0" cellpadding="4" cellspacing="0" width="710">
 							<tr>
 								<td align="left" bgcolor="#993300" colspan="2" valign="top" width="175">
-									<h2 align="center" id="rel"><font color="#FFFF00">Relative Files</font></h2>
+									<h2 align="center" id="rel">Relative Files</h2>
 								</td>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Introduction</font></h3>
+									<h3>Introduction</h3>
 								</td>
 								<td width="525">
 									<p>
@@ -538,7 +533,7 @@
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Organization of Relative files</font></h3>
+									<h3>Organization of Relative files</h3>
 								</td>
 								<td width="525">
 									<p>
@@ -590,7 +585,7 @@
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Accessing records in a Relative file</font></h3>
+									<h3>Accessing records in a Relative file</h3>
 								</td>
 								<td width="525">
 									<div align="center">
@@ -621,10 +616,7 @@
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3>
-										<font color="#800000">Animation - Organization and use of</font>
-										<font color="#800000">Relative files</font>
-									</h3>
+									<h3>Animation - Organization and use of Relative files</h3>
 								</td>
 								<td width="525">
 									<table border="0" width="525">
@@ -658,7 +650,7 @@
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Summary</font></h3>
+									<h3>Summary</h3>
 								</td>
 								<td width="525">
 									<p>
@@ -684,12 +676,12 @@
 						<table border="0" cellpadding="4" cellspacing="0" width="710">
 							<tr>
 								<td align="left" bgcolor="#993300" colspan="2" valign="top" width="175">
-									<h2 align="center" id="idx"><font color="#FFFF00">Indexed Files</font></h2>
+									<h2 align="center" id="idx">Indexed Files</h2>
 								</td>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Introduction</font></h3>
+									<h3>Introduction</h3>
 								</td>
 								<td width="525">
 									<p>
@@ -709,7 +701,7 @@
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Organization of Indexed files</font></h3>
+									<h3>Organization of Indexed files</h3>
 								</td>
 								<td width="525">
 									<p>
@@ -747,10 +739,7 @@
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3>
-										<font color="#800000">Animation - O</font>
-										<font color="#800000">rganization and use of Indexed files</font>
-									</h3>
+									<h3>Animation - Organization and use of Indexed files</h3>
 								</td>
 								<td width="525">
 									<div align="center">
@@ -804,7 +793,7 @@ END-IF</code></pre>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Summary</font></h3>
+									<h3>Summary</h3>
 								</td>
 								<td width="525">
 									<p>An Indexed file may have multiple, alphanumeric, keys.</p>
@@ -828,14 +817,12 @@ END-IF</code></pre>
 						<table border="0" cellpadding="4" cellspacing="0" width="710">
 							<tr>
 								<td align="left" bgcolor="#993300" colspan="2" valign="top" width="175">
-									<h2 align="center" id="comp">
-										<font color="#FFFF00">Comparison of COBOL file organizations</font>
-									</h2>
+									<h2 align="center" id="comp">Comparison of COBOL file organizations</h2>
 								</td>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Introduction</font></h3>
+									<h3>Introduction</h3>
 								</td>
 								<td width="525">
 									<p>
@@ -847,7 +834,7 @@ END-IF</code></pre>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Sequential files</font></h3>
+									<h3>Sequential files</h3>
 								</td>
 								<td width="525">
 									<h3 align="center">Disadvantages</h3>
@@ -945,7 +932,7 @@ END-IF</code></pre>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Relative files</font></h3>
+									<h3>Relative files</h3>
 								</td>
 								<td width="525">
 									<h3 align="center">Disadvantages</h3>
@@ -1133,7 +1120,7 @@ END-IF</code></pre>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Indexed files</font></h3>
+									<h3>Indexed files</h3>
 								</td>
 								<td width="525">
 									<h3 align="center">Disadvantages</h3>
@@ -1227,7 +1214,7 @@ END-IF</code></pre>
 							</tr>
 							<tr>
 								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3><font color="#800000">Summary</font></h3>
+									<h3>Summary</h3>
 								</td>
 								<td width="525">
 									<p>
@@ -1271,16 +1258,12 @@ END-IF</code></pre>
 											These COBOL course materials are the copyright property of Michael Coughlan.
 										</p>
 										<p>
-											<font size="2"
-												>All rights reserved. No part of these course materials may be
-												reproduced in any form or by any means - graphic, electronic,
-												mechanical, photocopying, printing, recording, taping or stored in an
-												information storage and retrieval system - without the written
-												permission of</font
-											>
-											<font size="2">the author.</font>
+											All rights reserved. No part of these course materials may be reproduced in
+											any form or by any means - graphic, electronic, mechanical, photocopying,
+											printing, recording, taping or stored in an information storage and
+											retrieval system - without the written permission of the author.
 										</p>
-										<p align="center"><font size="2">(c) Michael Coughlan</font></p>
+										<p align="center">(c) Michael Coughlan</p>
 									</td>
 								</tr>
 							</table>
