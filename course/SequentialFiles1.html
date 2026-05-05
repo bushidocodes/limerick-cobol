@@ -5,7 +5,96 @@
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<title>Introduction to Sequential Files</title>
 		<link href="Resources/css/course.css" rel="stylesheet" />
-		<style>table{max-width:100%}body>table,body>hr{margin-left:auto;margin-right:auto}img{max-width:100%;height:auto}pre{overflow-x:auto;max-width:100%}</style>
+		<style>
+			.section-header h2 {
+				color: #ffff00;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			.section-sidebar h3,
+			.section-sidebar h4 {
+				color: #800000;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			.page-wrapper {
+				max-width: 715px;
+				margin: 0 auto;
+				border: 1px solid;
+				box-sizing: border-box;
+			}
+
+			.page-content {
+				padding: 2px;
+			}
+
+			.page-footer {
+				padding: 2px;
+			}
+
+			.section-grid {
+				display: grid;
+				grid-template-columns: 175px 1fr;
+				align-items: stretch;
+			}
+
+			.section-header {
+				grid-column: 1 / -1;
+				background-color: #993300;
+				padding: 4px;
+			}
+
+			.section-sidebar {
+				background-color: #FFFFCC;
+				padding: 4px;
+			}
+
+			.section-content {
+				padding: 4px;
+				min-width: 0;
+			}
+
+			.section-full {
+				grid-column: 1 / -1;
+				padding: 4px;
+			}
+
+			.section-code-bg {
+				background-image: url(Resources/pics/code.gif);
+			}
+
+			.code-block {
+				border: 1px solid;
+				padding: 5px;
+				width: 58%;
+				margin: 0 auto;
+				display: block;
+			}
+
+			.code-block-green {
+				background-color: #E1FFE1;
+			}
+
+			.code-block-wide {
+				width: 90%;
+			}
+
+			@media (max-width: 600px) {
+				.section-grid {
+					display: block;
+				}
+
+				.section-sidebar h3,
+				.section-sidebar h4,
+				.section-sidebar p {
+					margin: 0.2em 0;
+				}
+
+				.code-block {
+					width: 100%;
+				}
+			}
+		</style>
 		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
 		<script src="Resources/vendor/prism/prism.min.js" defer></script>
 		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
@@ -13,49 +102,46 @@
 	</head>
 
 	<body alink="#009B00" bgcolor="#FFFFFF" link="#0000FF" text="#000000" vlink="#FF0000">
-		<table id="layout-table" border="1" width="715" cellpadding="4" cellspacing="0">
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
-					<center>
-						<p><img height="59" src="Resources/pics/t-CobolTut.gif" width="173" /></p>
-						<h1>Introduction to Sequential Files</h1>
-					</center>
-					<hr />
-					<ul class="toc">
-						<li>
-							<a href="#intro">Introduction</a><br />
-							Unit aims, objectives, prerequisites.
-						</li>
-						<li>
-							<a href="#part1">Introduction to record-based files</a><br />
-							This section introduces record-based files, the concept of the record buffer and defines
-							terminology such as file, record and field.
-						</li>
-						<li>
-							<a href="#part2">Declaring records and files</a><br />
-							This section demonstrates how the FD entry is used to describe a files record buffer and
-							show how to use the SELECT and ASSIGN clause to connect an internal file name to an external
-							data repository.
-						</li>
-						<li>
-							<a href="#part3">COBOL file handling verbs</a><br />
-							The COBOL verbs for processing Sequential Files are introduced in this section. The section
-							ends with a full example program.
-						</li>
-					</ul>
-					<hr />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+		<div class="page-wrapper">
+			<div class="page-content">
+				<center>
+					<p id="top"><img height="59" src="Resources/pics/t-CobolTut.gif" width="173" /></p>
+					<h1>Introduction to Sequential Files</h1>
+				</center>
+				<hr />
+				<ul class="toc">
+					<li>
+						<a href="#intro">Introduction</a><br />
+						Unit aims, objectives, prerequisites.
+					</li>
+					<li>
+						<a href="#part1">Introduction to record-based files</a><br />
+						This section introduces record-based files, the concept of the record buffer and defines
+						terminology such as file, record and field.
+					</li>
+					<li>
+						<a href="#part2">Declaring records and files</a><br />
+						This section demonstrates how the FD entry is used to describe a files record buffer and
+						show how to use the SELECT and ASSIGN clause to connect an internal file name to an external
+						data repository.
+					</li>
+					<li>
+						<a href="#part3">COBOL file handling verbs</a><br />
+						The COBOL verbs for processing Sequential Files are introduced in this section. The section
+						ends with a full example program.
+					</li>
+				</ul>
+				<hr />
+			</div>
+			<!-- Introduction -->
+			<div class="section-grid">
+				<div class="section-header">
 					<h2 align="center" id="intro">Introduction</h2>
-				</td>
-			</tr>
-			<tr>
-				<td bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Aims</h4>
-				</td>
-				<td valign="top" width="540">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							Files are repositories of data that reside on backing storage (hard disk, magnetic tape or
@@ -93,13 +179,11 @@
 					<div align="center">
 						<hr width="50%" />
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Objectives</h4>
-				</td>
-				<td valign="top" width="540">
+				</div>
+				<div class="section-content">
 					<p>By the end of this unit you should -</p>
 					<ol>
 						<li>Understand concepts and terminology like file, record, field and record buffer.</li>
@@ -112,13 +196,11 @@
 						</li>
 					</ol>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="77" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Prerequisites</h4>
-				</td>
-				<td height="77" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<ul>
 						<li>Introduction to COBOL</li>
 						<li>Declaring data in COBOL</li>
@@ -126,10 +208,8 @@
 						<li>Selection Constructs</li>
 						<li>Iteration Constructs</li>
 					</ul>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
+				</div>
+				<div class="section-full">
 					<div align="center">
 						<hr />
 						<p>
@@ -138,18 +218,17 @@
 							/></a>
 						</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+				</div>
+			</div>
+			<!-- Introduction to record-based files -->
+			<div class="section-grid">
+				<div class="section-header">
 					<h2 align="center" id="part1">Introduction to record-based files</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Introduction</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							COBOL is generally used in situations where the volume of data to be processed is large.
@@ -162,13 +241,11 @@
 					<div align="center">
 						<hr width="50%" />
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Files, Records, Fields</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">In record-based files;</p>
 					</div>
@@ -195,13 +272,11 @@
 					<div align="left">
 						<hr width="50%" />
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Record instance vs Record type</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<div align="left">
 							It is important to distinguish between a record occurrence (i.e. the values of a record) and
@@ -223,13 +298,11 @@
 					<div align="center">
 						<hr width="50%" />
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">The record buffer</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						Before a computer can do any processing on a piece of data, the data must be loaded into main
 						memory (RAM). The CPU can only address data that is in RAM.
@@ -254,14 +327,12 @@
 					</p>
 					<p align="center"><img height="248" src="Resources/pics/FileSeq2.gif" width="471" /></p>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Some implications of "buffers"</h4>
 					<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>If a program processes more than one file, a record buffer must be defined for each file.</p>
 					<p>
 						To process all the records in an <code class="language-cobol">INPUT</code> file, we must ensure
@@ -278,10 +349,8 @@
 						file from the output record buffer. This type of data transfer between 'buffers' is quite common
 						in COBOL programs.
 					</p>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
+				</div>
+				<div class="section-full">
 					<div align="center">
 						<hr />
 						<p>
@@ -290,15 +359,14 @@
 							/></a>
 						</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+				</div>
+			</div>
+			<!-- Declaring Records and Files -->
+			<div class="section-grid">
+				<div class="section-header">
 					<h2 align="center" id="part2">Declaring Records and Files</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">Introduction</h4>
 					<aside>
 						<p align="center">
@@ -307,8 +375,8 @@
 							of the fields would have to be considerably larger.
 						</p>
 					</aside>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						Suppose we want to create a file to hold information about the students in the University. What
 						kind of information do we need to store about each student?
@@ -327,13 +395,11 @@
 						<li>Gender</li>
 					</ul>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="355" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">Creating a record</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						To create a record buffer large enough to store one instance of a record, containing the
 						information described above, we must decide on the type and size of each of the fields.
@@ -355,18 +421,14 @@
 						The fields described above are individual data items but we must collect them together into a
 						record structure as follows;
 					</p>
-					<table align="center" bgcolor="#E1FFE1" border="1" cellpadding="5" width="58%">
-						<tr>
-							<td>
-								<pre class="language-cobol"><code class="language-cobol">01 StudentRec.
+					<div class="code-block code-block-green">
+						<pre class="language-cobol"><code class="language-cobol">01 StudentRec.
    02 StudentId         PIC 9(7).
    02 StudentName       PIC X(10).
    02 DateOfBirth       PIC 9(8).
    02 CourseCode        PIC X(4).
    02 Gender            PIC X.</code></pre>
-							</td>
-						</tr>
-					</table>
+					</div>
 					<p>
 						The record description above is correct as far as it goes. It reserves the correct amount of
 						storage for the record buffer. But it does not allow us to access all the individual parts of
@@ -377,10 +439,8 @@
 						consists of 4 digits for the year, 2 digits for the month and 2 digits for the day .
 					</p>
 					<p>To allow us to access these fields individually we need to declare the record as follows;</p>
-					<table align="center" bgcolor="#E1FFE1" border="1" cellpadding="5" width="58%">
-						<tr>
-							<td>
-								<pre class="language-cobol"><code class="language-cobol">01 StudentRec.
+					<div class="code-block code-block-green">
+						<pre class="language-cobol"><code class="language-cobol">01 StudentRec.
    02 StudentId         PIC 9(7).
    02 StudentName.
       03 Surname        PIC X(8).
@@ -391,22 +451,18 @@
       03 DOBirth        PIC 99.
    02 CourseCode        PIC X(4).
    02 Gender            PIC X.</code></pre>
-							</td>
-						</tr>
-					</table>
+					</div>
 					<p>
 						In this description, StudentName is a group item consisting of Surname and Initials, and
 						DateOfBirth consists of YOBirth, MOBirth and DOBirth.
 					</p>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="355" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">Declaring a record buffer in your program</h4>
 					<p align="center"><img height="44" src="Resources/pics/ProgFrag.gif" width="48" /></p>
-				</td>
-				<td height="355" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						The record type/template/buffer of every file used in a program must be described in the
 						<code class="language-cobol">FILE SECTION</code> by means of an
@@ -416,10 +472,8 @@
 						file.
 					</p>
 					<p>So the full file description for the students file might be;.</p>
-					<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="58%">
-						<tr>
-							<td>
-								<pre class="language-cobol"><code class="language-cobol">DATA DIVISION.
+					<div class="code-block section-code-bg">
+						<pre class="language-cobol"><code class="language-cobol">DATA DIVISION.
 FILE SECTION.
 FD StudentFile.
 01 StudentRec.
@@ -433,22 +487,18 @@ FD StudentFile.
       03 DOBirth        PIC 99.
    02 CourseCode        PIC X(4).
    02 Gender            PIC X.</code></pre>
-							</td>
-						</tr>
-					</table>
+					</div>
 					<p>
 						Note that we have assigned the name StudentFile as the internal file name. The actual name of
 						the file on disk is <i>Students.Dat</i>.
 					</p>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">The SELECT and ASSIGN clause</h4>
 					<p align="center"><img height="44" src="Resources/pics/ProgFrag.gif" width="48" /></p>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						Although the name of the students file on disk is <i>Students.Dat</i> we are going to refer to
 						it in our program as StudentFile. How can we connect the name we are going to use internally
@@ -464,10 +514,8 @@ FD StudentFile.
 						<code class="language-cobol">INPUT-OUTPUT SECTION</code> in the
 						<code class="language-cobol">ENVIRONMENT DIVISION</code>.
 					</p>
-					<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="58%">
-						<tr>
-							<td>
-								<pre class="language-cobol"><code class="language-cobol">ENVIRONMENT DIVISION.
+					<div class="code-block section-code-bg">
+						<pre class="language-cobol"><code class="language-cobol">ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
    SELECT StudentFile
@@ -486,13 +534,9 @@ FD StudentFile.
       03 DOBirth        PIC 99.
    02 CourseCode        PIC X(4).
    02 Gender            PIC X.</code></pre>
-							</td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="551" valign="top" width="175">
+					</div>
+				</div>
+				<div class="section-sidebar">
 					<h4>SELECT and ASSIGN syntax for Sequential files</h4>
 					<aside>
 						<p align="center">
@@ -508,8 +552,8 @@ FD StudentFile.
 							possible to assign a file name to a file at run-time.
 						</p>
 					</aside>
-				</td>
-				<td height="551" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							<img height="72" src="Resources/pics/FileSeq3.gif" width="375" />
@@ -549,13 +593,11 @@ SELECT StudentFile
 					<div align="center">
 						<hr width="50%" />
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>What is the purpose of the SELECT and ASSIGN clause?</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							The <code class="language-cobol">SELECT</code> and
@@ -567,10 +609,8 @@ SELECT StudentFile
 							<code class="language-cobol">ASSIGN</code> clause.
 						</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
+				</div>
+				<div class="section-full">
 					<div align="center">
 						<hr />
 						<p>
@@ -579,18 +619,17 @@ SELECT StudentFile
 							/></a>
 						</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+				</div>
+			</div>
+			<!-- COBOL file handling verbs -->
+			<div class="section-grid">
+				<div class="section-header">
 					<h2 align="center" id="part3">COBOL file handling verbs</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">Introduction</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						Sequential files are uncomplicated. To write programs that process Sequential Files you only
 						need to know four new verbs - the <code class="language-cobol">OPEN</code>,
@@ -603,10 +642,8 @@ SELECT StudentFile
 						accessing the file.
 					</p>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">The OPEN verb</h4>
 					<aside>
 						<p align="center">
@@ -618,8 +655,8 @@ SELECT StudentFile
 							all the files separately, it will.
 						</p>
 					</aside>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p align="left"><img height="78" src="Resources/pics/FileSeq4.gif" width="277" /></p>
 					<p align="left">
 						Before your program can access the data in an input file or place data in an output file, you
@@ -652,13 +689,11 @@ SELECT StudentFile
 						not exist, and is overwritten, if it already exists.
 					</p>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">The CLOSE verb</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p><u>CLOSE</u> InternalFileName...</p>
 					<p>
 						You must ensure that, before terminating, your program closes all the files it has opened.
@@ -666,13 +701,11 @@ SELECT StudentFile
 						from accessing the file.
 					</p>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="355" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">The READ verb</h4>
-				</td>
-				<td height="355" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p><img height="101" src="Resources/pics/FileSeq5.gif" width="288" /></p>
 					<p>
 						Once the system has opened a file and made it available to the program it is the programmers
@@ -697,13 +730,11 @@ SELECT StudentFile
 						<code class="language-cobol">READ</code> and then moving the contents of the record buffer to
 						the <i>Identifier</i>.
 					</p>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">How the READ works</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						The animation below demonstrates how the <code class="language-cobol">READ</code> works. When a
 						record is read it is copied from the backing storage file into the record buffer in
@@ -713,29 +744,23 @@ SELECT StudentFile
 						to true. Since the condition name is set up as shown below, setting it to true fills the whole
 						record with <code class="language-cobol">HIGH</code>-<code class="language-cobol">VALUES</code>.
 					</p>
-					<table align="center" bgcolor="#E1FFE1" border="1" cellpadding="5" width="58%">
-						<tr>
-							<td>
-								<pre class="language-cobol"><code class="language-cobol">FD StudentFile.
+					<div class="code-block code-block-green">
+						<pre class="language-cobol"><code class="language-cobol">FD StudentFile.
 01 StudentRec.
    88 EndOfFile     VALUE HIGH-VALUES.
 
    02 StudentId     PIC 9(7).
        etc
 </code></pre>
-							</td>
-						</tr>
-					</table>
+					</div>
 					<p align="center">
 						<a href="Resources/ppz/TC-SeqFile1.html"
 							><img border="0" height="62" src="Resources/pics/i-Animation.gif" width="62"
 						/></a>
 					</p>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">The WRITE verb</h4>
 					<aside>
 						<p align="center">
@@ -745,8 +770,8 @@ SELECT StudentFile
 							tutorials.
 						</p>
 					</aside>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p><u>WRITE</u> RecordName [<u>FROM</u> Identifier]</p>
 					<p>
 						The <code class="language-cobol">WRITE</code> verb is used to copy data from the record buffer
@@ -766,13 +791,11 @@ SELECT StudentFile
 						<i> <code class="language-cobol">WRITE</code> RecordBuffer </i> statement.
 					</p>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">Read a file, Write a record</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						If you were paying close attention to the syntax diagrams above you probably noticed that while
 						we <code class="language-cobol">READ</code> a file, we must
@@ -794,24 +817,20 @@ SELECT StudentFile
 						write; so we must - <i> <code class="language-cobol">WRITE</code> RecordName </i> .
 					</p>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">Example Program</h4>
 					<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						The example program below demonstrates the items discussed above. The program gets records from
 						the user and writes them to a file. It then reads the file and displays part of each record.
 					</p>
-					<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="486">
-						<tr valign="top">
-							<td>
-								<pre
-									class="language-cobol"
-								><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+					<div class="code-block code-block-wide section-code-bg">
+						<pre
+							class="language-cobol"
+						><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  SeqWriteRead.
 AUTHOR.  Michael Coughlan.
@@ -875,20 +894,18 @@ GetStudentRecord.
     ACCEPT  StudentRec.
 
  </code></pre>
-							</td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<hr />
-					<div align="center">
-						<a href="#top"><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132" /></a>
 					</div>
-					<copyright-notice></copyright-notice>
-				</td>
-			</tr>
-		</table>
+				</div>
+			</div>
+			<div class="page-footer">
+				<hr />
+				<div align="center">
+					<a href="#top"
+						><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+					/></a>
+				</div>
+				<copyright-notice></copyright-notice>
+			</div>
+		</div>
 	</body>
 </html>
