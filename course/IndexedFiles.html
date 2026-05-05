@@ -24,15 +24,61 @@
 				font-size: larger;
 			}
 
-			td[bgcolor="#993300"] h2 {
+			.section-header h2 {
 				color: #ffff00;
 				font-family: Arial, Helvetica, sans-serif;
 			}
 
-			td[bgcolor="#FFFFCC"] h3,
-			td[bgcolor="#FFFFCC"] h4 {
+			.section-sidebar h3,
+			.section-sidebar h4 {
 				color: #800000;
 				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			.page-wrapper {
+				max-width: 715px;
+				margin: 0 auto;
+				border: 1px solid;
+				box-sizing: border-box;
+			}
+
+			.page-content {
+				padding: 2px;
+			}
+
+			.page-footer {
+				padding: 2px;
+			}
+
+			.section-grid {
+				display: grid;
+				grid-template-columns: 175px 1fr;
+			}
+
+			.section-header {
+				grid-column: 1 / -1;
+				background-color: #993300;
+				padding: 4px;
+			}
+
+			.section-sidebar {
+				background-color: #FFFFCC;
+				padding: 4px;
+				align-self: start;
+			}
+
+			.section-content {
+				padding: 4px;
+				align-self: start;
+			}
+
+			.section-full {
+				grid-column: 1 / -1;
+				padding: 4px;
+			}
+
+			.section-code-bg {
+				background-image: url(Resources/pics/code.gif);
 			}
 		</style>
 		<meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -44,12 +90,6 @@
 
 			table {
 				max-width: 100%;
-			}
-
-			body > table,
-			body > hr {
-				margin-left: auto;
-				margin-right: auto;
 			}
 
 			pre {
@@ -82,8 +122,8 @@
 					height: auto !important;
 				}
 
-				td[bgcolor="#993300"] > h2,
-				td[bgcolor="#993300"] > h3 {
+				.section-header h2,
+				.section-header h3 {
 					margin: 0.3em 0;
 				}
 
@@ -125,65 +165,13 @@
 					overflow-x: auto;
 				}
 
-				table[width="715"],
-				table[width="725"],
-				table[width="715"] > tbody,
-				table[width="725"] > tbody,
-				table[width="715"] > tbody > tr,
-				table[width="725"] > tbody > tr,
-				table[width="715"] > tbody > tr > td,
-				table[width="725"] > tbody > tr > td,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])),
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr > td {
+				.section-grid {
 					display: block;
-					width: auto !important;
 				}
 
-				table[width="710"]:has(> tbody > tr > td[width="93%"]),
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody {
-					display: block;
-					width: 100% !important;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr {
-					display: flex;
-					align-items: baseline;
-					gap: 0.4em;
-					margin: 0.4em 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="3%"] {
-					display: none;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="4%"] {
-					display: block;
-					flex: 0 0 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="93%"] {
-					display: block;
-					flex: 1 1 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
-				td[width="175"] > h4:not(:first-child):not(:has(img)),
-				td[width="160"] > h4:not(:first-child):not(:has(img)),
-				h4:has(> img[src*="PanelLine"]) {
-					display: none;
-				}
-
-				td[width="175"] > h3,
-				td[width="175"] > h4,
-				td[width="175"] > p,
-				td[width="160"] > h3,
-				td[width="160"] > h4,
-				td[width="160"] > p {
+				.section-sidebar h3,
+				.section-sidebar h4,
+				.section-sidebar p {
 					margin: 0.2em 0;
 				}
 			}
@@ -191,241 +179,195 @@
 		<script src="../components/copyright-notice.js" defer></script>
 	</head>
 	<body alink="#009B00" bgcolor="#FFFFFF" link="#0000FF" text="#000000" vlink="#FF0000">
-		<table border="1" width="715">
-			<tbody>
-				<tr>
-					<td>
-						<center>
-							<div align="left">
-								<table border="0" width="710">
-									<tr>
-										<td>
-											<center>
-												<p id="top">
-													<img
-														alt=""
-														height="59"
-														src="Resources/pics/t-CobolTut.gif"
-														width="173"
-													/>
-												</p>
-											</center>
-											<center>
-												<h1>Indexed Files</h1>
-												<hr align="left" />
-											</center>
-										</td>
-									</tr>
-								</table>
-							</div>
-						</center>
-						<ul class="toc">
+		<div class="page-wrapper">
+			<div class="page-content">
+				<div>
+					<center>
+						<p id="top">
+							<img
+								alt=""
+								height="59"
+								src="Resources/pics/t-CobolTut.gif"
+								width="173"
+							/>
+						</p>
+					</center>
+					<center>
+						<h1>Indexed Files</h1>
+						<hr align="left" />
+					</center>
+				</div>
+				<ul class="toc">
+					<li>
+						<a href="#intro">Introduction</a><br />
+						Unit aims, objectives and prerequisites.
+					</li>
+					<li>
+						<a href="#progs">A look at some programs that use Indexed files</a><br />
+						We begin with three example programs. The first creates an Indexed file from a
+						Sequential file, the second reads the Indexed file sequentially or either the primary or
+						the alternate key, and the third reads the file directly on either key.
+					</li>
+					<li>
+						<a href="#org">Indexed file organization</a><br />
+						Explains by means of an animated diagram how the index of the primary key is organized
+						and shows how it is used to read a record directly. Explains how the alternate key index
+						is organized and shows how it is used to read a record directly.
+					</li>
+					<li>
+						<a href="#declar">Indexed file - declarations</a><br />
+						Examines the <code class="language-cobol">SELECT</code> and
+						<code class="language-cobol">ASSIGN</code> clause declarations required for an Indexed
+						file.
+					</li>
+					<li>
+						<a href="#verbs">Indexed file - file processing verbs</a><br />
+						Examines the Procedure Division verbs used to process Indexed files -
+						<code class="language-cobol">OPEN</code>, <code class="language-cobol">CLOSE</code>,
+						<code class="language-cobol">READ</code>, <code class="language-cobol">WRITE</code>,
+						<code class="language-cobol">REWRITE</code>, <code class="language-cobol">DELETE</code>,
+						<code class="language-cobol">START</code>
+					</li>
+					<li>
+						<a href="#example">A comprehensive example</a><br />
+						We end with a comprehensive problem specification and solution.
+					</li>
+				</ul>
+				<!-- Introduction -->
+				<div class="section-grid">
+					<div class="section-header">
+						<h2 align="center" id="intro">Introduction</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Aims</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							The aim of this unit is to provide you with a solid understanding of; the
+							organization of Indexed files, the declarations required for them and the
+							Procedure Division verbs used to process them.
+						</p>
+						<hr />
+					</div>
+					<div class="section-sidebar">
+						<h3>Objectives</h3>
+					</div>
+					<div class="section-content">
+						<p>By the end of this unit you should:</p>
+						<ol>
 							<li>
-								<a href="#intro">Introduction</a><br />
-								Unit aims, objectives and prerequisites.
+								Be able to write the
+								<code class="language-cobol">ENVIRONMENT DIVISION</code> and Data Division
+								declarations required for a Indexed file.<br />
+								<br />
 							</li>
 							<li>
-								<a href="#progs">A look at some programs that use Indexed files</a><br />
-								We begin with three example programs. The first creates an Indexed file from a
-								Sequential file, the second reads the Indexed file sequentially or either the primary or
-								the alternate key, and the third reads the file directly on either key.
+								Understand how the primary key and alternate key indexes are organized.<br />
+								<br />
 							</li>
 							<li>
-								<a href="#org">Indexed file organization</a><br />
-								Explains by means of an animated diagram how the index of the primary key is organized
-								and shows how it is used to read a record directly. Explains how the alternate key index
-								is organized and shows how it is used to read a record directly.
+								Be able to used the use the
+								<code class="language-cobol">START</code>,
+								<code class="language-cobol">OPEN</code>,
+								<code class="language-cobol">CLOSE</code>,
+								<code class="language-cobol">READ</code>,
+								<code class="language-cobol">WRITE</code>,
+								<code class="language-cobol">REWRITE</code> and
+								<code class="language-cobol">DELETE</code>
+								Procedure Division verbs required to process Indexed files.<br />
+								<br />
 							</li>
-							<li>
-								<a href="#declar">Indexed file - declarations</a><br />
-								Examines the <code class="language-cobol">SELECT</code> and
-								<code class="language-cobol">ASSIGN</code> clause declarations required for an Indexed
-								file.
-							</li>
-							<li>
-								<a href="#verbs">Indexed file - file processing verbs</a><br />
-								Examines the Procedure Division verbs used to process Indexed files -
-								<code class="language-cobol">OPEN</code>, <code class="language-cobol">CLOSE</code>,
-								<code class="language-cobol">READ</code>, <code class="language-cobol">WRITE</code>,
-								<code class="language-cobol">REWRITE</code>, <code class="language-cobol">DELETE</code>,
-								<code class="language-cobol">START</code>
-							</li>
-							<li>
-								<a href="#example">A comprehensive example</a><br />
-								We end with a comprehensive problem specification and solution.
-							</li>
+							<li>Be able to process an Indexed file directly or sequentially.<br /></li>
+						</ol>
+					</div>
+					<div class="section-sidebar">
+						<h3>Prerequisites</h3>
+					</div>
+					<div class="section-content">
+						<p>You should be familiar with the material covered in the unit;</p>
+						<ul>
+							<li>Introduction to direct access files</li>
 						</ul>
-						<table border="0" cellpadding="4" cellspacing="0" width="710">
-							<tr>
-								<td align="left" bgcolor="#993300" colspan="2" valign="top" width="175">
-									<h2 align="center" id="intro">Introduction</h2>
-								</td>
-							</tr>
-							<tr>
-								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3>Aims</h3>
-								</td>
-								<td width="525">
-									<p>
-										The aim of this unit is to provide you with a solid understanding of; the
-										organization of Indexed files, the declarations required for them and the
-										Procedure Division verbs used to process them.
-									</p>
-									<hr />
-								</td>
-							</tr>
-							<tr>
-								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3>Objectives</h3>
-								</td>
-								<td width="525">
-									<p>By the end of this unit you should:</p>
-									<ol>
-										<li>
-											Be able to write the
-											<code class="language-cobol">ENVIRONMENT DIVISION</code> and Data Division
-											declarations required for a Indexed file.<br />
-											<br />
-										</li>
-										<li>
-											Understand how the primary key and alternate key indexes are organized.<br />
-											<br />
-										</li>
-										<li>
-											Be able to used the use the
-											<code class="language-cobol">START</code>,
-											<code class="language-cobol">OPEN</code>,
-											<code class="language-cobol">CLOSE</code>,
-											<code class="language-cobol">READ</code>,
-											<code class="language-cobol">WRITE</code>,
-											<code class="language-cobol">REWRITE</code> and
-											<code class="language-cobol">DELETE</code>
-											Procedure Division verbs required to process Indexed files.<br />
-											<br />
-										</li>
-										<li>Be able to process an Indexed file directly or sequentially.<br /></li>
-									</ol>
-								</td>
-							</tr>
-							<tr>
-								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3>Prerequisites</h3>
-								</td>
-								<td width="525">
-									<p>You should be familiar with the material covered in the unit;</p>
-									<ul>
-										<li>Introduction to direct access files</li>
-									</ul>
-								</td>
-							</tr>
-						</table>
-						<table border="0" width="710">
-							<tr>
-								<td>
-									<hr />
-									<p align="center">
-										<a href="#top"
-											><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
-										/></a>
-									</p>
-								</td>
-							</tr>
-						</table>
-						<table border="0" cellpadding="4" cellspacing="0" width="710">
-							<tr>
-								<td align="left" bgcolor="#993300" colspan="2" valign="top" width="100%">
-									<h2 align="center" id="progs">A look at some programs that use Indexed files</h2>
-								</td>
-							</tr>
-							<tr>
-								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3 align="left">Example program - Creating an Indexed file</h3>
-								</td>
-								<td width="525">
-									<table border="0" width="100%">
-										<tr>
-											<td height="43" width="525">
-												<p>
-													We'll start by looking at some example programs that use Indexed
-													file. In the first program, an Indexed file is created by reading
-													records from a Sequential file and writing them to the Indexed file.
-													The second program shows how to read an Indexed file sequentially on
-													either the primary or the alternate key. In the third program we
-													demonstrate how to read an Indexed file directly on either key.
-												</p>
-											</td>
-										</tr>
-										<tr>
-											<td width="525">
-												<p>
-													<iframe
-														height="541"
-														src="Resources/pdf-viewer.html?src=ppz/IdxFile1.pdf"
-														style="
-															border: 1px solid #ccc;
-															width: 100%;
-															aspect-ratio: 520/541;
-														"
-														width="520"
-													></iframe>
-												</p>
-											</td>
-										</tr>
-										<tr>
-											<td width="525">
-												<p>
-													You can download both the program and the sequential data file it
-													uses.
-												</p>
-												<p>
-													<a href="Resources/progs/INX-EG1.CBL"
-														>Download the Indexed file example program 1</a
-													>
-												</p>
-												<p>
-													<a href="Resources/progs/INVIDEO.DAT"
-														>Download the Sequential data file</a
-													>
-												</p>
-											</td>
-										</tr>
-									</table>
-									<hr />
-								</td>
-							</tr>
-							<tr>
-								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3>Example program - Reading an Indexed file sequentially</h3>
-								</td>
-								<td width="525">
-									<table border="0" width="100%">
-										<tr>
-											<td height="43">
-												<p>
-													This example program demonstrates how to read an Indexed file
-													sequentially on either the primary key (VideoCode) or the alternate
-													key (VideoTitle).
-												</p>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<p>
-													<iframe
-														height="541"
-														src="Resources/pdf-viewer.html?src=ppz/IdxFile2.pdf"
-														style="
-															border: 1px solid #ccc;
-															width: 100%;
-															aspect-ratio: 520/541;
-														"
-														width="520"
-													></iframe>
-												</p>
-												<p>Below we see the results produced by two runs of the program.</p>
-												<pre
-													class="language-cobol"
-												><code class="language-cobol">RUN OF INDEX-EG2.EXE USING VIDEOCODE KEY
+					</div>
+				</div>
+				<div>
+					<hr />
+					<p align="center">
+						<a href="#top"
+							><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+						/></a>
+					</p>
+				</div>
+				<!-- Programs -->
+				<div class="section-grid">
+					<div class="section-header">
+						<h2 align="center" id="progs">A look at some programs that use Indexed files</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3 align="left">Example program - Creating an Indexed file</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							We'll start by looking at some example programs that use Indexed
+							file. In the first program, an Indexed file is created by reading
+							records from a Sequential file and writing them to the Indexed file.
+							The second program shows how to read an Indexed file sequentially on
+							either the primary or the alternate key. In the third program we
+							demonstrate how to read an Indexed file directly on either key.
+						</p>
+						<p>
+							<iframe
+								height="541"
+								src="Resources/pdf-viewer.html?src=ppz/IdxFile1.pdf"
+								style="
+									border: 1px solid #ccc;
+									width: 100%;
+									aspect-ratio: 520/541;
+								"
+								width="520"
+							></iframe>
+						</p>
+						<p>
+							You can download both the program and the sequential data file it
+							uses.
+						</p>
+						<p>
+							<a href="Resources/progs/INX-EG1.CBL"
+								>Download the Indexed file example program 1</a
+							>
+						</p>
+						<p>
+							<a href="Resources/progs/INVIDEO.DAT"
+								>Download the Sequential data file</a
+							>
+						</p>
+						<hr />
+					</div>
+					<div class="section-sidebar">
+						<h3>Example program - Reading an Indexed file sequentially</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							This example program demonstrates how to read an Indexed file
+							sequentially on either the primary key (VideoCode) or the alternate
+							key (VideoTitle).
+						</p>
+						<p>
+							<iframe
+								height="541"
+								src="Resources/pdf-viewer.html?src=ppz/IdxFile2.pdf"
+								style="
+									border: 1px solid #ccc;
+									width: 100%;
+									aspect-ratio: 520/541;
+								"
+								width="520"
+							></iframe>
+						</p>
+						<p>Below we see the results produced by two runs of the program.</p>
+						<pre
+							class="language-cobol"
+						><code class="language-cobol">RUN OF INDEX-EG2.EXE USING VIDEOCODE KEY
 Enter key : 1=VideoCode, 2=VideoTitle -&gt;1
 00121  FLIGHT OF THE CONDOR, THE     03
 00333  PREDATOR                      02
@@ -457,7 +399,7 @@ Enter key : 1=VideoCode, 2=VideoTitle -&gt;1
 
 
 RUN OF INDEX-EG2 USING VIDEOTITLE KEY
-Enter key : 1=VideoCode, 2=VideoTitle -&gt;2 
+Enter key : 1=VideoCode, 2=VideoTitle -&gt;2
 17001  ALIEN                         07
 17002  ALIENS                        07
 07071  AMONG THE WILD CHIMPANZEES    03
@@ -484,64 +426,48 @@ Enter key : 1=VideoCode, 2=VideoTitle -&gt;2
 08081  WHALE NATION                  03
 10001  WICKED WALTZING               04
 03032  YACHT MASTER                  05</code></pre>
-												<hr />
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<p>
-													If you downloaded the first example program and its data file you
-													should already have the Indexed file (it was produced when you ran
-													the first example program). You can use this file with the second
-													Indexed file example program.&nbsp;
-												</p>
-												<p>
-													<a href="Resources/progs/INX-EG2.CBL"
-														>Download Indexed file example program 2</a
-													>
-												</p>
-											</td>
-										</tr>
-									</table>
-									<hr />
-								</td>
-							</tr>
-							<tr>
-								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3>Example program - Reading an Indexed file directly</h3>
-								</td>
-								<td width="525">
-									<table border="0" width="100%">
-										<tr>
-											<td height="43">
-												<p>
-													This example program demonstrates how to read an Indexed file
-													directly using either the primary key (VideoCode) or the alternate
-													key (VideoTitle).
-												</p>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<p>
-													<iframe
-														height="541"
-														src="Resources/pdf-viewer.html?src=ppz/IdxFile3.pdf"
-														style="
-															border: 1px solid #ccc;
-															width: 100%;
-															aspect-ratio: 520/541;
-														"
-														width="520"
-													></iframe>
-												</p>
-												<p>
-													Below we see the results produced by a number of runs of the
-													program.
-												</p>
-												<pre
-													class="language-cobol"
-												><code class="language-cobol">RUN OF INDEX-EG3.EXE USING VIDEOCODE
+						<hr />
+						<p>
+							If you downloaded the first example program and its data file you
+							should already have the Indexed file (it was produced when you ran
+							the first example program). You can use this file with the second
+							Indexed file example program.&nbsp;
+						</p>
+						<p>
+							<a href="Resources/progs/INX-EG2.CBL"
+								>Download Indexed file example program 2</a
+							>
+						</p>
+						<hr />
+					</div>
+					<div class="section-sidebar">
+						<h3>Example program - Reading an Indexed file directly</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							This example program demonstrates how to read an Indexed file
+							directly using either the primary key (VideoCode) or the alternate
+							key (VideoTitle).
+						</p>
+						<p>
+							<iframe
+								height="541"
+								src="Resources/pdf-viewer.html?src=ppz/IdxFile3.pdf"
+								style="
+									border: 1px solid #ccc;
+									width: 100%;
+									aspect-ratio: 520/541;
+								"
+								width="520"
+							></iframe>
+						</p>
+						<p>
+							Below we see the results produced by a number of runs of the
+							program.
+						</p>
+						<pre
+							class="language-cobol"
+						><code class="language-cobol">RUN OF INDEX-EG3.EXE USING VIDEOCODE
 Chose key VideoCode = 1,  VideoTitle = 2 -&gt;  1
 Enter Video Code (5 digits) -&gt; 02121
 02121    DIRTY DANCING                               04
@@ -565,703 +491,630 @@ RUN OF INDEX-EG3.EXE USING NON EXISTANT VIDEOCODE
 Chose key VideoCode = 1,  VideoTitle = 2 -&gt;  1
 Enter Video Code (5 digits) -&gt; 44444
 VIDEO STATUS :- 23</code></pre>
-												<hr />
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<p>
-													You can use the Indexed file that is created when you run the first
-													sexample program with this third Indexed example program.&nbsp;
-												</p>
-												<p>
-													<a href="Resources/progs/INX-EG3.CBL"
-														>Download Indexed file example program 3</a
-													>
-												</p>
-											</td>
-										</tr>
-									</table>
-								</td>
-							</tr>
-						</table>
-						<table border="0" width="710">
-							<tr>
-								<td>
-									<hr />
-									<p align="center">
-										<a href="#top"
-											><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
-										/></a>
-									</p>
-								</td>
-							</tr>
-						</table>
-						<table border="0" cellpadding="4" cellspacing="0" width="710">
-							<tr>
-								<td align="left" bgcolor="#993300" colspan="2" valign="top" width="175">
-									<h2 align="center" id="org">Indexed file organization</h2>
-								</td>
-							</tr>
-							<tr>
-								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3>Introduction</h3>
-								</td>
-								<td width="525">
-									<p>
-										In the unit "Introduction to direct access files", we showed how an Indexed file
-										is organized and we noted;
-									</p>
-									<ul>
-										<li>
-											that the records in the Indexed file are held sequenced on ascending primary
-											key and that this allows us to access the file sequentially on that key.
-										</li>
-										<li>
-											that over these records the file system builds an index which allows direct
-											access to record using the primary key.
-										</li>
-										<li>
-											that an Indexed file may be read sequentially on any of its alternate keys.
-										</li>
-									</ul>
-									<p>
-										While we explained how primary key index of an Indexed file was organized, and
-										how sequential access on the primary key is achieved, we did not explain how the
-										alternate indexes are organized or how the file can be accessed sequentially on
-										any of its alternate keys.
-									</p>
-									<p>
-										In this section we revisit, and expand on, the explanation of how the primary
-										key index is organized and how it is used to read a record directly. In
-										addition, we show an alternate key index is arranged and we show how this index
-										is used to read the file directly. We also describe how sequential access on the
-										alternate key is achieved.
-									</p>
-									<hr />
-								</td>
-							</tr>
-							<tr>
-								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3>Primary Key Index</h3>
-								</td>
-								<td width="525">
-									<p>
-										Records in an Indexed file are sequenced on ascending primary key. Over the
-										actual data records, the file system builds the primary key index.
-									</p>
-									<p>
-										When direct access is required on the primary, the file system uses this index
-										to find, read, insert, update or delete, the required record.
-									</p>
-									<p>
-										Because the actual data records are arranged on ascending primary key,
-										sequential access on the primary key is achieved by simply reading these data
-										records in sequence.
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3>Alternate Key Index</h3>
-								</td>
-								<td width="525">
-									<p>
-										For each alternate key specified in an Indexed file, an alternate index is
-										built. However, the lowest level of an alternate index does not contain actual
-										data records. Instead, this level made up of base records that contain only the
-										alternate key value and a pointer to where the actual record is. These base
-										records are organized in ascending alternate key order.
-									</p>
-									<p>
-										Sequential access on an alternate key is achieved by reading the base records
-										one after another in sequence. As each base record is read, its pointer is used
-										to access the actual data record.
-									</p>
-									<p>
-										While this arrangement means that an Indexed file can be processed sequentially
-										on its alternate keys, reading the file sequentially on an alternate key is
-										slower than on the primary key. This is because alternate key access requires
-										two I-O operations to get the data. The first gets the alternate key base record
-										and the second gets the actual data record.
-									</p>
-									<hr />
-								</td>
-							</tr>
-							<tr>
-								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3 align="left">Animation of the primary and alternate key indexes</h3>
-								</td>
-								<td width="525">
-									<table border="0" width="100%">
-										<tr>
-											<td>
-												<p>
-													The animation below shows how the data records of an Indexed file
-													and the overlying primary key index are organized and how the index
-													is used to read a record directly.
-												</p>
-												<p>
-													The animation also shows how an alternate key index is organized and
-													how this index is used to read a record directly.
-												</p>
-												<p>The algorithm used for traversing both indexes is -</p>
-												<pre
-													class="language-cobol"
-												><code class="language-cobol">IF RecordKeyValue &gt; RequiredKeyValue 
+						<hr />
+						<p>
+							You can use the Indexed file that is created when you run the first
+							sexample program with this third Indexed example program.&nbsp;
+						</p>
+						<p>
+							<a href="Resources/progs/INX-EG3.CBL"
+								>Download Indexed file example program 3</a
+							>
+						</p>
+					</div>
+				</div>
+				<div>
+					<hr />
+					<p align="center">
+						<a href="#top"
+							><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+						/></a>
+					</p>
+				</div>
+				<!-- Organization -->
+				<div class="section-grid">
+					<div class="section-header">
+						<h2 align="center" id="org">Indexed file organization</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Introduction</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							In the unit "Introduction to direct access files", we showed how an Indexed file
+							is organized and we noted;
+						</p>
+						<ul>
+							<li>
+								that the records in the Indexed file are held sequenced on ascending primary
+								key and that this allows us to access the file sequentially on that key.
+							</li>
+							<li>
+								that over these records the file system builds an index which allows direct
+								access to record using the primary key.
+							</li>
+							<li>
+								that an Indexed file may be read sequentially on any of its alternate keys.
+							</li>
+						</ul>
+						<p>
+							While we explained how primary key index of an Indexed file was organized, and
+							how sequential access on the primary key is achieved, we did not explain how the
+							alternate indexes are organized or how the file can be accessed sequentially on
+							any of its alternate keys.
+						</p>
+						<p>
+							In this section we revisit, and expand on, the explanation of how the primary
+							key index is organized and how it is used to read a record directly. In
+							addition, we show an alternate key index is arranged and we show how this index
+							is used to read the file directly. We also describe how sequential access on the
+							alternate key is achieved.
+						</p>
+						<hr />
+					</div>
+					<div class="section-sidebar">
+						<h3>Primary Key Index</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							Records in an Indexed file are sequenced on ascending primary key. Over the
+							actual data records, the file system builds the primary key index.
+						</p>
+						<p>
+							When direct access is required on the primary, the file system uses this index
+							to find, read, insert, update or delete, the required record.
+						</p>
+						<p>
+							Because the actual data records are arranged on ascending primary key,
+							sequential access on the primary key is achieved by simply reading these data
+							records in sequence.
+						</p>
+					</div>
+					<div class="section-sidebar">
+						<h3>Alternate Key Index</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							For each alternate key specified in an Indexed file, an alternate index is
+							built. However, the lowest level of an alternate index does not contain actual
+							data records. Instead, this level made up of base records that contain only the
+							alternate key value and a pointer to where the actual record is. These base
+							records are organized in ascending alternate key order.
+						</p>
+						<p>
+							Sequential access on an alternate key is achieved by reading the base records
+							one after another in sequence. As each base record is read, its pointer is used
+							to access the actual data record.
+						</p>
+						<p>
+							While this arrangement means that an Indexed file can be processed sequentially
+							on its alternate keys, reading the file sequentially on an alternate key is
+							slower than on the primary key. This is because alternate key access requires
+							two I-O operations to get the data. The first gets the alternate key base record
+							and the second gets the actual data record.
+						</p>
+						<hr />
+					</div>
+					<div class="section-sidebar">
+						<h3 align="left">Animation of the primary and alternate key indexes</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							The animation below shows how the data records of an Indexed file
+							and the overlying primary key index are organized and how the index
+							is used to read a record directly.
+						</p>
+						<p>
+							The animation also shows how an alternate key index is organized and
+							how this index is used to read a record directly.
+						</p>
+						<p>The algorithm used for traversing both indexes is -</p>
+						<pre
+							class="language-cobol"
+						><code class="language-cobol">IF RecordKeyValue &gt; RequiredKeyValue
    take this branch
 ELSE
    go to next index record
 END-IF</code></pre>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div align="center">
-													<iframe
-														height="325"
-														src="Resources/pdf-viewer.html?src=ppz/IdxFile4.pdf"
-														style="
-															border: 1px solid #ccc;
-															width: 100%;
-															aspect-ratio: 486/325;
-														"
-														width="486"
-													></iframe>
-												</div>
-											</td>
-										</tr>
-									</table>
-								</td>
-							</tr>
-						</table>
-						<table border="0" width="710">
-							<tr>
-								<td>
-									<hr />
-									<p align="center">
-										<a href="#top"
-											><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
-										/></a>
-									</p>
-								</td>
-							</tr>
-						</table>
-						<table border="0" cellpadding="4" cellspacing="0" width="710">
-							<tr>
-								<td align="left" bgcolor="#993300" colspan="2" valign="top" width="175">
-									<h2 align="center" id="declar">Indexed file - Declarations</h2>
-								</td>
-							</tr>
-							<tr>
-								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3>Introduction</h3>
-								</td>
-								<td width="525">
-									<p>
-										As we have seen in the example programs, when Indexed files are used a number of
-										new entries for the <code class="language-cobol">SELECT</code> and
-										<code class="language-cobol">ASSIGN</code> clause are required.
-									</p>
-									<hr />
-								</td>
-							</tr>
-							<tr>
-								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3>Select and Assign clause syntax</h3>
-								</td>
-								<td width="525">
-									<p><img height="245" src="Resources/pics/I-DFidx1.gif" width="474" /></p>
-								</td>
-							</tr>
-							<tr>
-								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3>The Record Key phrase</h3>
-								</td>
-								<td width="525">
-									<p>The RECORD KEY phrase defines the Indexed file's primary key.</p>
-									<p>
-										Every Indexed file must have a primary key. The key <b>must</b> be a field in
-										the record description that contains a unique value for each record.
-									</p>
-									<p>
-										Contrast this with Relative Files where the key must not be part of the file's
-										record description.
-									</p>
-									<p>The key field must be a numeric or alphanumeric data item.</p>
-								</td>
-							</tr>
-							<tr>
-								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3>The Alternate Record Key phrase</h3>
-								</td>
-								<td width="525">
-									<div align="center">
-										<div align="left">
-											<p>
-												In addition to the primary key, up to 254 alternate keys may be defined
-												for the file.
-											</p>
-											<p>
-												Just as with the primary key, these alternate keys must be fields in the
-												file's record description.
-											</p>
-											<p>
-												Each alternate key may be unique or may have duplicate values (for this
-												the WITH DUPLICATES clause is required).
-											</p>
-										</div>
-									</div>
-								</td>
-							</tr>
-						</table>
-						<table border="0" width="710">
-							<tr>
-								<td>
-									<hr />
-									<p align="center">
-										<a href="#top"
-											><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
-										/></a>
-									</p>
-								</td>
-							</tr>
-						</table>
+						<div align="center">
+							<iframe
+								height="325"
+								src="Resources/pdf-viewer.html?src=ppz/IdxFile4.pdf"
+								style="
+									border: 1px solid #ccc;
+									width: 100%;
+									aspect-ratio: 486/325;
+								"
+								width="486"
+							></iframe>
+						</div>
+					</div>
+				</div>
+				<div>
+					<hr />
+					<p align="center">
+						<a href="#top"
+							><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+						/></a>
+					</p>
+				</div>
+				<!-- Declarations -->
+				<div class="section-grid">
+					<div class="section-header">
+						<h2 align="center" id="declar">Indexed file - Declarations</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Introduction</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							As we have seen in the example programs, when Indexed files are used a number of
+							new entries for the <code class="language-cobol">SELECT</code> and
+							<code class="language-cobol">ASSIGN</code> clause are required.
+						</p>
 						<hr />
-						<table border="0" cellpadding="4" cellspacing="0" width="710">
+					</div>
+					<div class="section-sidebar">
+						<h3>Select and Assign clause syntax</h3>
+					</div>
+					<div class="section-content">
+						<p><img height="245" src="Resources/pics/I-DFidx1.gif" width="474" /></p>
+					</div>
+					<div class="section-sidebar">
+						<h3>The Record Key phrase</h3>
+					</div>
+					<div class="section-content">
+						<p>The RECORD KEY phrase defines the Indexed file's primary key.</p>
+						<p>
+							Every Indexed file must have a primary key. The key <b>must</b> be a field in
+							the record description that contains a unique value for each record.
+						</p>
+						<p>
+							Contrast this with Relative Files where the key must not be part of the file's
+							record description.
+						</p>
+						<p>The key field must be a numeric or alphanumeric data item.</p>
+					</div>
+					<div class="section-sidebar">
+						<h3>The Alternate Record Key phrase</h3>
+					</div>
+					<div class="section-content">
+						<div align="center">
+							<div align="left">
+								<p>
+									In addition to the primary key, up to 254 alternate keys may be defined
+									for the file.
+								</p>
+								<p>
+									Just as with the primary key, these alternate keys must be fields in the
+									file's record description.
+								</p>
+								<p>
+									Each alternate key may be unique or may have duplicate values (for this
+									the WITH DUPLICATES clause is required).
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<hr />
+					<p align="center">
+						<a href="#top"
+							><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+						/></a>
+					</p>
+				</div>
+				<hr />
+				<!-- File processing verbs -->
+				<div class="section-grid">
+					<div class="section-header">
+						<h2 align="center" id="verbs">Indexed file - file processing verbs</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Introduction</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							The file processing verb used with Indexed files are the same as those used with
+							Relative files.
+						</p>
+						<p>
+							Indexed files use the same file processing verbs as Relative files (OPEN, CLOSE,
+							READ, WRITE, REWRITE, DELETE and START) but there are some syntactic and
+							semantic differences.
+						</p>
+						<p>
+							In this section we will only examine those verbs which differ in syntax or
+							semantics from those used with Relative files.
+						</p>
+						<hr />
+					</div>
+					<div class="section-sidebar">
+						<h3>The READ verb</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							When an Indexed file has an ACCESS MODE of SEQUENTIAL , the format of the READ
+							is the same as for Sequential files, but when the ACCESS MODE is DYNAMIC
+							Sequential processing of the file is complicated by the presence of a number of
+							indexes. The order in which the data records will be read, will depend on which
+							index is being processed sequentially.
+						</p>
+					</div>
+					<div class="section-sidebar">
+						<h3>Key Of Reference</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							When an Indexed file has an ACCESS MODE of SEQUENTIAL , the file is always
+							processed in ascending primary key order.
+						</p>
+						<p>
+							But, if an Indexed file has an ACCESS MODE of DYNAMIC and is processed
+							sequentially, the file system must be able to tell which of the keys to use as
+							the basis for processing the file.
+						</p>
+						<p>
+							Since the format of the sequential READ does not have a key phrase, the file
+							system refers to a special item called the Key Of Reference to discover which
+							key to use for processing the file.
+						</p>
+						<p>
+							Before reading a file that has an ACCESS MODE of DYNAMIC sequentially, the
+							programmer must establish one of the file's keys as the Key Of Reference.
+						</p>
+						<p>
+							A Key Of Reference is established by using the key in a START or a direct READ.
+						</p>
+						<p>When the file is opened the primary key is, by default, the Key Of Reference.</p>
+					</div>
+					<div class="section-sidebar">
+						<h3>Reading Sequentially</h3>
+					</div>
+					<div class="section-content">
+						<p><img src="Resources/pics/I-DFrel4.gif" /></p>
+						<p>
+							<b>Notes</b><b><br /></b> This format is used when the ACCESS MODE is DYNAMIC
+							and we wish to read the file sequentially.
+						</p>
+						<p>
+							This format will read the file in ascending sequence on the key that has been
+							established as the key of reference.
+						</p>
+						<p>
+							The READ NEXT will read the logical record pointed to by the next record pointer
+							(This will be the current record if positioned by the START and the next record
+							if positioned by a direct READ).
+						</p>
+						<p>
+							<b>Operation<br /></b> To read a record sequentially from an Indexed file that
+							has an ACCESS MODE of DYNAMIC
+						</p>
+						<ol>
+							<li>
+								First, if the default is not satisfactory, one of the keys must be
+								established as the Key Of Reference by doing a START or a direct READ using
+								that key.
+							</li>
+							<li>Then the READ must be executed.</li>
+						</ol>
+					</div>
+					<div class="section-sidebar">
+						<h3>Reading using a key</h3>
+					</div>
+					<div class="section-content">
+						<p><img src="Resources/pics/I-DFrel3.gif" /></p>
+						<p>
+							The syntax of the direct READ is the same as that for Relative files but the
+							semantics are somewhat different
+						</p>
+						<p>
+							<b>Operation<br /></b> To read a record directly from an Indexed file
+						</p>
+						<ol>
+							<li>
+								The key value must be placed in the <i>KeyName</i> data item (the
+								<i>KeyName</i> data item is the area of storage identified as the primary
+								key or one of the alternate keys in the the SELECT and ASSIGN clause).
+							</li>
+							<li>Then the READ must be executed.</li>
+						</ol>
+						<p>
+							When the READ is executed the record with the key value equal to the present
+							value of <i>KeyName</i> will be read.
+						</p>
+						<p>
+							<b>Notes<br /></b> If the record does not exist the INVALID KEY clause will
+							activate and the statement block following the clause will be executed.
+						</p>
+						<p>If the KEY IS clause is omitted, the key used will be the primary key.</p>
+						<p>
+							When the READ is executed, the key mentioned in the KEY IS phrase will be
+							established as the Key Of Reference.
+						</p>
+						<p>
+							If there is no KEY IS phrase, the primary key will be established as the Key Of
+							Reference.
+						</p>
+						<p>
+							If duplicates are allowed, only the first record in a group with duplicates can
+							be read directly. The rest of the duplicates must be read sequentially using the
+							READ NEXT format.
+						</p>
+						<p>
+							The KEY IS phrase can only be used with Indexed files and it is used because
+							Indexed files may have more than one key.
+						</p>
+						<p>
+							After the record has been read, the next record pointer points to the next
+							logical record in the file. If the Key Of Reference is the primary key then this
+							record will be an actual data record but if the Key Of Reference is one of the
+							alternate keys then the pointer will point to the next alternate index base
+							record.
+						</p>
+						<p>The file must have an ACCESS MODE of DYNAMIC or RANDOM.</p>
+						<p>The file must be opened for I-O or INPUT.&nbsp;</p>
+						<hr />
+					</div>
+					<div class="section-sidebar">
+						<h3 align="left">The WRITE, REWRITE and DELETE verbs.</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							The syntax and semantics of the WRITE , REWRITE and DELETE verbs is the same as
+							that for Relative files with the following exceptions;
+						</p>
+						<ul>
+							<li>
+								Direct access on an Indexed file for all these verbs is based on the primary
+								key only.
+							</li>
+							<li>
+								The REWRITE may not change the value of the primary key but it may change
+								the values of any of the alternate keys.
+							</li>
+						</ul>
+						<hr />
+					</div>
+					<div class="section-sidebar">
+						<h3>The START verb</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							In Indexed files, the the START verb is used to control the position of the next
+							record pointer and to establish a key as the Key Of Reference.
+						</p>
+						<p>
+							Where the START verb appears in a program it is usually followed by a sequential
+							READ or WRITE .
+						</p>
+						<p><img src="Resources/pics/I-DFrel8.gif" /></p>
+						<p>
+							<b>Operation<br /></b> To establish a key as the Key of Reference and position
+							the Next Record Pointer at a particular record
+						</p>
+						<ol>
+							<li>
+								Move the key value to the appropriate key data item. For instance, referring
+								back to the example programs, we might move "Hope and glory" to the
+								VideoTitle if we wanted to establish VideoTitle as the Key Of Reference.
+							</li>
+							<li>Execute the START..KEY IS EQUAL TO</li>
+						</ol>
+						<p>
+							To establish a key as the Key of Reference and position the Next Record Pointer
+							at the first record in that key sequence
+						</p>
+						<ol>
+							<li>
+								Move zeros to the the appropriate key data item. For instance we might move
+								spaces to VideoTitle to position the pointer at the first logical record in
+								VideoTitle sequence.
+							</li>
+							<li>Execute the START..KEY IS GREATER THAN</li>
+						</ol>
+						<p>
+							<b>Notes<br /></b> <i>KeyName</i> is the primary key or one of the alternate
+							keys. It is the key of comparison.
+						</p>
+						<p>Before the START is executed some value must be moved to the <i>KeyName</i>.</p>
+						<p>Using the START with some key establishes that key as the Key Of Reference.</p>
+						<p>The file must be opened for INPUT or I-O when the START is executed.</p>
+						<p>
+							Execution of the START statement does not change the contents of the record area
+							(i.e. the START does not actually read the record it merely positions the Next
+							Record Pointer).
+						</p>
+						<p>
+							When the START is executed the Next Record Pointer is set to the first logical
+							record in the file whose key satisfies the condition. If no record satisfies the
+							condition then the INVALID key clause is activated.
+						</p>
+					</div>
+				</div>
+				<div>
+					<hr />
+					<p align="center">
+						<a href="#top"
+							><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+						/></a>
+					</p>
+				</div>
+				<!-- Comprehensive Example -->
+				<div class="section-grid">
+					<div class="section-header">
+						<h2 align="center" id="example">An Comprehensive Example Program</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3 align="left">Program Specification</h3>
+					</div>
+					<div class="section-content">
+						<p align="center">ROYALTY PAYMENT REPORT PROGRAM.</p>
+						<p>
+							<b>Introduction</b><br />
+							Each time a book is borrowed, the Niklaus Wirth Memorial Library pays the author
+							a small sum of money as royalty. Because the sum owed for each "borrowing" is
+							very small, royalties are only paid once every quarter. Royalties are paid to
+							authors through their agents. Only one cheque per quarter is sent to each agent
+							but to allow him to pay his authors the correct amount, a breakdown of the
+							royalties owed to each author is included with the cheque. A report is required
+							which;
+						</p>
+						<ul>
+							<li>Shows the amount to be sent to each agent.</li>
+							<li>Shows the breakdown of the agent payment into author payments.</li>
+							<li>
+								Shows the breakdown of each author payment into royalty payments per book.
+							</li>
+						</ul>
+						<p>
+							The report must be printed in agent name sequence. The sequence of authors
+							within each agent and of books within each author does not matter. The print
+							specification for the report is on the next page.
+						</p>
+						<p>
+							All the data required to produce the ROYALTY PAYMENT REPORT is contained in two
+							indexed files. The indexed file BOOKS.DAT has the following record description;-
+						</p>
+						<table border="1" width="100%">
 							<tr>
-								<td align="left" bgcolor="#993300" colspan="2" valign="top" width="100%">
-									<h2 align="center" id="verbs">Indexed file - file processing verbs</h2>
+								<td width="26%">
+									<div align="center"><b>Field</b></div>
+								</td>
+								<td align="center" width="25%">
+									<div align="center"><b>Key Type</b></div>
+								</td>
+								<td align="center" width="17%">
+									<div align="center"><b>Type</b></div>
+								</td>
+								<td align="center" width="14%">
+									<div align="center"><b>Length</b></div>
+								</td>
+								<td align="center" width="18%">
+									<div align="center"><b>Value</b></div>
 								</td>
 							</tr>
 							<tr>
-								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3>Introduction</h3>
-								</td>
-								<td width="525">
-									<p>
-										The file processing verb used with Indexed files are the same as those used with
-										Relative files.
-									</p>
-									<p>
-										Indexed files use the same file processing verbs as Relative files (OPEN, CLOSE,
-										READ, WRITE, REWRITE, DELETE and START) but there are some syntactic and
-										semantic differences.
-									</p>
-									<p>
-										In this section we will only examine those verbs which differ in syntax or
-										semantics from those used with Relative files.
-									</p>
-									<hr />
-								</td>
+								<td width="26%">BookNumber</td>
+								<td align="center" width="25%">primary</td>
+								<td align="center" width="17%">N</td>
+								<td align="center" width="14%">7</td>
+								<td align="center" width="18%">1-9999999</td>
 							</tr>
 							<tr>
-								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3>The READ verb</h3>
-								</td>
-								<td width="525">
-									<p>
-										When an Indexed file has an ACCESS MODE of SEQUENTIAL , the format of the READ
-										is the same as for Sequential files, but when the ACCESS MODE is DYNAMIC
-										Sequential processing of the file is complicated by the presence of a number of
-										indexes. The order in which the data records will be read, will depend on which
-										index is being processed sequentially.
-									</p>
-								</td>
+								<td width="26%">BookName</td>
+								<td align="center" width="25%">-</td>
+								<td align="center" width="17%">X</td>
+								<td align="center" width="14%">25</td>
+								<td align="center" width="18%">-</td>
 							</tr>
 							<tr>
-								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3>Key Of Reference</h3>
-								</td>
-								<td width="525">
-									<p>
-										When an Indexed file has an ACCESS MODE of SEQUENTIAL , the file is always
-										processed in ascending primary key order.
-									</p>
-									<p>
-										But, if an Indexed file has an ACCESS MODE of DYNAMIC and is processed
-										sequentially, the file system must be able to tell which of the keys to use as
-										the basis for processing the file.
-									</p>
-									<p>
-										Since the format of the sequential READ does not have a key phrase, the file
-										system refers to a special item called the Key Of Reference to discover which
-										key to use for processing the file.
-									</p>
-									<p>
-										Before reading a file that has an ACCESS MODE of DYNAMIC sequentially, the
-										programmer must establish one of the file's keys as the Key Of Reference.
-									</p>
-									<p>
-										A Key Of Reference is established by using the key in a START or a direct READ.
-									</p>
-									<p>When the file is opened the primary key is, by default, the Key Of Reference.</p>
-								</td>
+								<td width="26%">AuthorNumber</td>
+								<td align="center" width="25%">alt with duplicates</td>
+								<td align="center" width="17%">N</td>
+								<td align="center" width="14%">7</td>
+								<td align="center" width="18%">1-9999999</td>
 							</tr>
 							<tr>
-								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3>Reading Sequentially</h3>
-								</td>
-								<td width="525">
-									<p><img src="Resources/pics/I-DFrel4.gif" /></p>
-									<p>
-										<b>Notes</b><b><br /></b> This format is used when the ACCESS MODE is DYNAMIC
-										and we wish to read the file sequentially.
-									</p>
-									<p>
-										This format will read the file in ascending sequence on the key that has been
-										established as the key of reference.
-									</p>
-									<p>
-										The READ NEXT will read the logical record pointed to by the next record pointer
-										(This will be the current record if positioned by the START and the next record
-										if positioned by a direct READ).
-									</p>
-									<p>
-										<b>Operation<br /></b> To read a record sequentially from an Indexed file that
-										has an ACCESS MODE of DYNAMIC
-									</p>
-									<ol>
-										<li>
-											First, if the default is not satisfactory, one of the keys must be
-											established as the Key Of Reference by doing a START or a direct READ using
-											that key.
-										</li>
-										<li>Then the READ must be executed.</li>
-									</ol>
-								</td>
+								<td width="26%">RoyaltyRate</td>
+								<td align="center" width="25%">-</td>
+								<td align="center" width="17%">N</td>
+								<td align="center" width="14%">3</td>
+								<td align="center" width="18%">.001-.999</td>
 							</tr>
 							<tr>
-								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3>Reading using a key</h3>
-								</td>
-								<td width="525">
-									<p><img src="Resources/pics/I-DFrel3.gif" /></p>
-									<p>
-										The syntax of the direct READ is the same as that for Relative files but the
-										semantics are somewhat different
-									</p>
-									<p>
-										<b>Operation<br /></b> To read a record directly from an Indexed file
-									</p>
-									<ol>
-										<li>
-											The key value must be placed in the <i>KeyName</i> data item (the
-											<i>KeyName</i> data item is the area of storage identified as the primary
-											key or one of the alternate keys in the the SELECT and ASSIGN clause).
-										</li>
-										<li>Then the READ must be executed.</li>
-									</ol>
-									<p>
-										When the READ is executed the record with the key value equal to the present
-										value of <i>KeyName</i> will be read.
-									</p>
-									<p>
-										<b>Notes<br /></b> If the record does not exist the INVALID KEY clause will
-										activate and the statement block following the clause will be executed.
-									</p>
-									<p>If the KEY IS clause is omitted, the key used will be the primary key.</p>
-									<p>
-										When the READ is executed, the key mentioned in the KEY IS phrase will be
-										established as the Key Of Reference.
-									</p>
-									<p>
-										If there is no KEY IS phrase, the primary key will be established as the Key Of
-										Reference.
-									</p>
-									<p>
-										If duplicates are allowed, only the first record in a group with duplicates can
-										be read directly. The rest of the duplicates must be read sequentially using the
-										READ NEXT format.
-									</p>
-									<p>
-										The KEY IS phrase can only be used with Indexed files and it is used because
-										Indexed files may have more than one key.
-									</p>
-									<p>
-										After the record has been read, the next record pointer points to the next
-										logical record in the file. If the Key Of Reference is the primary key then this
-										record will be an actual data record but if the Key Of Reference is one of the
-										alternate keys then the pointer will point to the next alternate index base
-										record.
-									</p>
-									<p>The file must have an ACCESS MODE of DYNAMIC or RANDOM.</p>
-									<p>The file must be opened for I-O or INPUT.&nbsp;</p>
-									<hr />
-								</td>
-							</tr>
-							<tr>
-								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3 align="left">The WRITE, REWRITE and DELETE verbs.</h3>
-								</td>
-								<td width="525">
-									<p>
-										The syntax and semantics of the WRITE , REWRITE and DELETE verbs is the same as
-										that for Relative files with the following exceptions;
-									</p>
-									<ul>
-										<li>
-											Direct access on an Indexed file for all these verbs is based on the primary
-											key only.
-										</li>
-										<li>
-											The REWRITE may not change the value of the primary key but it may change
-											the values of any of the alternate keys.
-										</li>
-									</ul>
-									<hr />
-								</td>
-							</tr>
-							<tr>
-								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3>The START verb</h3>
-								</td>
-								<td width="525">
-									<p>
-										In Indexed files, the the START verb is used to control the position of the next
-										record pointer and to establish a key as the Key Of Reference.
-									</p>
-									<p>
-										Where the START verb appears in a program it is usually followed by a sequential
-										READ or WRITE .
-									</p>
-									<p><img src="Resources/pics/I-DFrel8.gif" /></p>
-									<p>
-										<b>Operation<br /></b> To establish a key as the Key of Reference and position
-										the Next Record Pointer at a particular record
-									</p>
-									<ol>
-										<li>
-											Move the key value to the appropriate key data item. For instance, referring
-											back to the example programs, we might move "Hope and glory" to the
-											VideoTitle if we wanted to establish VideoTitle as the Key Of Reference.
-										</li>
-										<li>Execute the START..KEY IS EQUAL TO</li>
-									</ol>
-									<p>
-										To establish a key as the Key of Reference and position the Next Record Pointer
-										at the first record in that key sequence
-									</p>
-									<ol>
-										<li>
-											Move zeros to the the appropriate key data item. For instance we might move
-											spaces to VideoTitle to position the pointer at the first logical record in
-											VideoTitle sequence.
-										</li>
-										<li>Execute the START..KEY IS GREATER THAN</li>
-									</ol>
-									<p>
-										<b>Notes<br /></b> <i>KeyName</i> is the primary key or one of the alternate
-										keys. It is the key of comparison.
-									</p>
-									<p>Before the START is executed some value must be moved to the <i>KeyName</i>.</p>
-									<p>Using the START with some key establishes that key as the Key Of Reference.</p>
-									<p>The file must be opened for INPUT or I-O when the START is executed.</p>
-									<p>
-										Execution of the START statement does not change the contents of the record area
-										(i.e. the START does not actually read the record it merely positions the Next
-										Record Pointer).
-									</p>
-									<p>
-										When the START is executed the Next Record Pointer is set to the first logical
-										record in the file whose key satisfies the condition. If no record satisfies the
-										condition then the INVALID key clause is activated.
-									</p>
-								</td>
+								<td width="26%">QuarterBorrowings</td>
+								<td align="center" width="25%">-</td>
+								<td align="center" width="17%">N</td>
+								<td align="center" width="14%">3</td>
+								<td align="center" width="18%">0-999</td>
 							</tr>
 						</table>
-						<table border="0" width="710">
+						<p>The indexed file AUTHOR.DAT has the following record description;-</p>
+						<table border="1" width="100%">
 							<tr>
-								<td>
-									<hr />
-									<p align="center">
-										<a href="#top"
-											><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
-										/></a>
-									</p>
+								<td width="26%">
+									<div align="center"><b>Field</b></div>
 								</td>
+								<td align="center" width="25%">
+									<div align="center"><b>Key Type</b></div>
+								</td>
+								<td align="center" width="17%">
+									<div align="center"><b>Type</b></div>
+								</td>
+								<td align="center" width="14%">
+									<div align="center"><b>Length</b></div>
+								</td>
+								<td align="center" width="18%">
+									<div align="center"><b>Value</b></div>
+								</td>
+							</tr>
+							<tr>
+								<td width="26%">AuthorNumber</td>
+								<td align="center" width="25%">primary</td>
+								<td align="center" width="17%">N</td>
+								<td align="center" width="14%">7</td>
+								<td align="center" width="18%">1-9999999</td>
+							</tr>
+							<tr>
+								<td width="26%">AuthorName</td>
+								<td align="center" width="25%">-</td>
+								<td align="center" width="17%">X</td>
+								<td align="center" width="14%">25</td>
+								<td align="center" width="18%">-</td>
+							</tr>
+							<tr>
+								<td width="26%">AgentName</td>
+								<td align="center" width="25%">alt with duplicates</td>
+								<td align="center" width="17%">X</td>
+								<td align="center" width="14%">25</td>
+								<td align="center" width="18%">-</td>
 							</tr>
 						</table>
-						<table border="0" cellpadding="4" cellspacing="0" width="710">
-							<tr>
-								<td align="left" bgcolor="#993300" colspan="2" valign="top" width="100%">
-									<h2 align="center" id="example">An Comprehensive Example Program</h2>
-								</td>
-							</tr>
-							<tr>
-								<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
-									<h3 align="left">Program Specification</h3>
-								</td>
-								<td width="525">
-									<p align="center">ROYALTY PAYMENT REPORT PROGRAM.</p>
-									<p>
-										<b>Introduction</b><br />
-										Each time a book is borrowed, the Niklaus Wirth Memorial Library pays the author
-										a small sum of money as royalty. Because the sum owed for each "borrowing" is
-										very small, royalties are only paid once every quarter. Royalties are paid to
-										authors through their agents. Only one cheque per quarter is sent to each agent
-										but to allow him to pay his authors the correct amount, a breakdown of the
-										royalties owed to each author is included with the cheque. A report is required
-										which;
-									</p>
-									<ul>
-										<li>Shows the amount to be sent to each agent.</li>
-										<li>Shows the breakdown of the agent payment into author payments.</li>
-										<li>
-											Shows the breakdown of each author payment into royalty payments per book.
-										</li>
-									</ul>
-									<p>
-										The report must be printed in agent name sequence. The sequence of authors
-										within each agent and of books within each author does not matter. The print
-										specification for the report is on the next page.
-									</p>
-									<p>
-										All the data required to produce the ROYALTY PAYMENT REPORT is contained in two
-										indexed files. The indexed file BOOKS.DAT has the following record description;-
-									</p>
-									<table border="1" width="100%">
-										<tr>
-											<td width="26%">
-												<div align="center"><b>Field</b></div>
-											</td>
-											<td align="center" width="25%">
-												<div align="center"><b>Key Type</b></div>
-											</td>
-											<td align="center" width="17%">
-												<div align="center"><b>Type</b></div>
-											</td>
-											<td align="center" width="14%">
-												<div align="center"><b>Length</b></div>
-											</td>
-											<td align="center" width="18%">
-												<div align="center"><b>Value</b></div>
-											</td>
-										</tr>
-										<tr>
-											<td width="26%">BookNumber</td>
-											<td align="center" width="25%">primary</td>
-											<td align="center" width="17%">N</td>
-											<td align="center" width="14%">7</td>
-											<td align="center" width="18%">1-9999999</td>
-										</tr>
-										<tr>
-											<td width="26%">BookName</td>
-											<td align="center" width="25%">-</td>
-											<td align="center" width="17%">X</td>
-											<td align="center" width="14%">25</td>
-											<td align="center" width="18%">-</td>
-										</tr>
-										<tr>
-											<td width="26%">AuthorNumber</td>
-											<td align="center" width="25%">alt with duplicates</td>
-											<td align="center" width="17%">N</td>
-											<td align="center" width="14%">7</td>
-											<td align="center" width="18%">1-9999999</td>
-										</tr>
-										<tr>
-											<td width="26%">RoyaltyRate</td>
-											<td align="center" width="25%">-</td>
-											<td align="center" width="17%">N</td>
-											<td align="center" width="14%">3</td>
-											<td align="center" width="18%">.001-.999</td>
-										</tr>
-										<tr>
-											<td width="26%">QuarterBorrowings</td>
-											<td align="center" width="25%">-</td>
-											<td align="center" width="17%">N</td>
-											<td align="center" width="14%">3</td>
-											<td align="center" width="18%">0-999</td>
-										</tr>
-									</table>
-									<p>The indexed file AUTHOR.DAT has the following record description;-</p>
-									<table border="1" width="100%">
-										<tr>
-											<td width="26%">
-												<div align="center"><b>Field</b></div>
-											</td>
-											<td align="center" width="25%">
-												<div align="center"><b>Key Type</b></div>
-											</td>
-											<td align="center" width="17%">
-												<div align="center"><b>Type</b></div>
-											</td>
-											<td align="center" width="14%">
-												<div align="center"><b>Length</b></div>
-											</td>
-											<td align="center" width="18%">
-												<div align="center"><b>Value</b></div>
-											</td>
-										</tr>
-										<tr>
-											<td width="26%">AuthorNumber</td>
-											<td align="center" width="25%">primary</td>
-											<td align="center" width="17%">N</td>
-											<td align="center" width="14%">7</td>
-											<td align="center" width="18%">1-9999999</td>
-										</tr>
-										<tr>
-											<td width="26%">AuthorName</td>
-											<td align="center" width="25%">-</td>
-											<td align="center" width="17%">X</td>
-											<td align="center" width="14%">25</td>
-											<td align="center" width="18%">-</td>
-										</tr>
-										<tr>
-											<td width="26%">AgentName</td>
-											<td align="center" width="25%">alt with duplicates</td>
-											<td align="center" width="17%">X</td>
-											<td align="center" width="14%">25</td>
-											<td align="center" width="18%">-</td>
-										</tr>
-									</table>
-									<p>
-										<b>Program Procedure</b><br />
-										Some fields required in the report do not appear in either of the Indexed files
-										and must be calculated. The following describes these fields and how to
-										calculate them;
-									</p>
-									<blockquote>
-										<p>
-											<b>BookRoyalty</b> contains the royalty to be paid for a book for the
-											quarter. It is obtained by multiplying QuarterBorrowings by RoyaltyRate. It
-											is a numeric field with up to three places before the decimal point and two
-											places after.
-										</p>
-										<p>
-											<b>QuarterAuthorBorrows</b> contains the sum of QuarterBorrowings for all of
-											an authors books on loan in the library. It is a numeric field up to four
-											digits long.
-										</p>
-										<p>
-											<b>AuthorRoyalties</b> is the sum of an author's BookRoyaltys. It is a
-											numeric field with up to four places before the decimal point and two after.
-										</p>
-										<p>
-											<b>AgentPayment</b> is the sum of an agent's AuthorRoyalties. It is a
-											numeric field with up to six places before the decimal point and two after
-											it.
-										</p>
-									</blockquote>
-									<p>
-										In addition to producing the report the program must perform a small update on
-										the QuarterBorrowings field of the BOOKS file. When all the calculations
-										involving the QuarterBorrowings field have been done, it must be set to zero so
-										that the borrowings for the new quarter may be accumulated.
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td align="left" colspan="2" valign="top" width="100%">
-									<hr />
-									<h2 align="center">Example program</h2>
-								</td>
-							</tr>
-							<tr>
-								<td background="Resources/pics/code.gif" colspan="2" width="100%">
-									<pre
-										class="language-cobol"
-									><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+						<p>
+							<b>Program Procedure</b><br />
+							Some fields required in the report do not appear in either of the Indexed files
+							and must be calculated. The following describes these fields and how to
+							calculate them;
+						</p>
+						<blockquote>
+							<p>
+								<b>BookRoyalty</b> contains the royalty to be paid for a book for the
+								quarter. It is obtained by multiplying QuarterBorrowings by RoyaltyRate. It
+								is a numeric field with up to three places before the decimal point and two
+								places after.
+							</p>
+							<p>
+								<b>QuarterAuthorBorrows</b> contains the sum of QuarterBorrowings for all of
+								an authors books on loan in the library. It is a numeric field up to four
+								digits long.
+							</p>
+							<p>
+								<b>AuthorRoyalties</b> is the sum of an author's BookRoyaltys. It is a
+								numeric field with up to four places before the decimal point and two after.
+							</p>
+							<p>
+								<b>AgentPayment</b> is the sum of an agent's AuthorRoyalties. It is a
+								numeric field with up to six places before the decimal point and two after
+								it.
+							</p>
+						</blockquote>
+						<p>
+							In addition to producing the report the program must perform a small update on
+							the QuarterBorrowings field of the BOOKS file. When all the calculations
+							involving the QuarterBorrowings field have been done, it must be set to zero so
+							that the borrowings for the new quarter may be accumulated.
+						</p>
+					</div>
+					<div class="section-full">
+						<hr />
+						<h2 align="center">Example program</h2>
+					</div>
+					<div class="section-full section-code-bg">
+						<pre
+							class="language-cobol"
+						><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.   WirthMemLib.
 AUTHOR.  Michael Coughlan.
@@ -1273,13 +1126,13 @@ FILE-CONTROL.
         ORGANIZATION IS INDEXED
         ACCESS MODE IS DYNAMIC
         RECORD KEY IS BookNumber
-        ALTERNATE RECORD KEY IS AuthorNumber 
-                            WITH DUPLICATES    
+        ALTERNATE RECORD KEY IS AuthorNumber
+                            WITH DUPLICATES
         FILE STATUS IS BookErrorStatus.
 
     SELECT AuthorFile ASSIGN TO "AUTHOR.DAT"
         ORGANIZATION IS INDEXED
-        
+
         ACCESS MODE IS DYNAMIC
         RECORD KEY IS AuthorNum
         ALTERNATE RECORD KEY IS AgentName
@@ -1290,7 +1143,7 @@ FILE-CONTROL.
 
 
 DATA DIVISION.
-FILE SECTION.    
+FILE SECTION.
 FD  BookFile.
 01  BookRec.
     88 EndOfBookFile     VALUE HIGH-VALUES.
@@ -1302,7 +1155,7 @@ FD  BookFile.
     02 QtrBorrowings         PIC 999.
 
 FD  AuthorFile.
-01  AuthorRec.    
+01  AuthorRec.
     88 EndOfAuthorFile   VALUE HIGH-VALUES.
     02 AuthorNum             PIC X(7).
     02 AuthorName            PIC X(25).
@@ -1386,7 +1239,7 @@ Begin.
     START AuthorFile KEY IS GREATER THAN AgentName
         INVALID KEY DISPLAY "OH DEAR SOMETHING WRONG IN BEGIN PARA"
     END-START.
-    READ AuthorFile NEXT RECORD 
+    READ AuthorFile NEXT RECORD
         AT END SET EndOfAuthorFile TO TRUE
     END-READ.
     PERFORM ProcessAgents UNTIL EndOfAuthorFile.
@@ -1394,13 +1247,13 @@ Begin.
     CLOSE BookFile.
     CLOSE AuthorFile.
     CLOSE PrintFile.
-    STOP RUN.    
+    STOP RUN.
 
 ProcessAgents.
     MOVE AgentName TO AgentNamePrn, PrevAgent.
     MOVE ZEROS TO AgentPayment.
 
-    PERFORM ProcessAuthors 
+    PERFORM ProcessAuthors
         UNTIL EndOfAuthorFile
             OR AgentName NOT EQUAL TO PrevAgent.
 
@@ -1413,13 +1266,13 @@ ProcessAuthors.
     MOVE ZEROS TO QtrAuthorBorrows, AuthorRoyalties.
     MOVE AuthorNum TO AuthorNumber, PrevAuthor.
     MOVE AuthorName TO AuthorNamePrn.
-    READ BookFile 
+    READ BookFile
         KEY IS AuthorNumber
         INVALID KEY
          DISPLAY "ERROR IN ProcessAgents = " BookErrorStatus
     END-READ.
-    PERFORM ProcessBooks 
-        UNTIL EndOfBookFile 
+    PERFORM ProcessBooks
+        UNTIL EndOfBookFile
             OR AuthorNumber NOT EQUAL TO PrevAuthor.
     SET NotEndOfBookFile TO TRUE.
 
@@ -1430,7 +1283,7 @@ ProcessAuthors.
     MOVE SPACES TO PrintLine.
     WRITE PrintLine AFTER ADVANCING 2 LINES.
 
-    READ AuthorFile NEXT RECORD 
+    READ AuthorFile NEXT RECORD
         AT END SET EndOfAuthorFile TO TRUE
     END-READ.
 
@@ -1443,7 +1296,7 @@ ProcessBooks.
     MOVE SPACES TO AuthorNamePrn, AgentNamePrn.
 
 ProcessOneBook.
-    MULTIPLY QtrBorrowings BY RoyaltyRate 
+    MULTIPLY QtrBorrowings BY RoyaltyRate
         GIVING BookRoyalty ROUNDED.
     ADD QtrBorrowings  TO QtrAuthorBorrows.
     ADD BookRoyalty  TO AuthorRoyalties, AgentPayment.
@@ -1461,33 +1314,26 @@ ProcessOneBook.
 
 
 </code></pre>
-									<hr />
-								</td>
-							</tr>
-							<tr>
-								<td colspan="2" width="100%">
-									<div align="center">
-										<p>
-											<a href="Resources/progs/wirthmemlib.cbl">Download this example program</a>
-										</p>
-									</div>
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<td>
 						<hr />
+					</div>
+					<div class="section-full">
 						<div align="center">
-							<a href="#top"
-								><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
-							/></a>
+							<p>
+								<a href="Resources/progs/wirthmemlib.cbl">Download this example program</a>
+							</p>
 						</div>
-						<copyright-notice></copyright-notice>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+					</div>
+				</div>
+			</div>
+			<div class="page-footer">
+				<hr />
+				<div align="center">
+					<a href="#top"
+						><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+					/></a>
+				</div>
+				<copyright-notice></copyright-notice>
+			</div>
+		</div>
 	</body>
 </html>
