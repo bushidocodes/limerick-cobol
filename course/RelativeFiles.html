@@ -24,6 +24,47 @@
 				font-size: larger;
 			}
 
+			.declaratives-layout {
+				display: flex;
+				gap: 1em;
+				align-items: flex-start;
+			}
+
+			.declaratives-text {
+				flex: 1;
+			}
+
+			.declaratives-code {
+				flex: 1;
+				display: flex;
+				justify-content: center;
+			}
+
+			.code-display-box {
+				border: 5px solid;
+				padding: 10px;
+				width: 89%;
+				background-image: url(Resources/pics/code.gif);
+				min-height: 365px;
+				vertical-align: top;
+				box-sizing: border-box;
+			}
+
+			@media (max-width: 760px) {
+				.declaratives-layout {
+					flex-direction: column;
+				}
+
+				.declaratives-code {
+					justify-content: flex-start;
+					width: 100%;
+				}
+
+				.code-display-box {
+					width: 100%;
+				}
+			}
+
 			td[bgcolor="#993300"] h2 {
 				color: #ffff00;
 				font-family: Arial, Helvetica, sans-serif;
@@ -61,7 +102,7 @@
 				-webkit-text-size-adjust: 100%;
 			}
 
-			@media (max-width: 600px) {
+			@media (max-width: 760px) {
 				body {
 					margin: 4px;
 					overflow-wrap: break-word;
@@ -328,54 +369,40 @@
 									<h3 align="left">Example program - Creating a Relative file</h3>
 								</td>
 								<td width="525">
-									<table border="0" width="100%">
-										<tr>
-											<td height="43" width="525">
-												<p>
-													We'll start by looking at some example programs. In the first
-													program, a Relative file is created by reading records from a
-													Sequential file and writing them to the Relative file. The second
-													program demonstrates how a Relative file may be read directly and
-													sequentially.
-												</p>
-											</td>
-										</tr>
-										<tr>
-											<td width="525">
-												<p>
-													<iframe
-														height="541"
-														src="Resources/pdf-viewer.html?src=ppz/RelFile1.pdf"
-														style="
-															border: 1px solid #ccc;
-															width: 100%;
-															aspect-ratio: 520/541;
-														"
-														width="520"
-													></iframe>
-												</p>
-											</td>
-										</tr>
-										<tr>
-											<td width="525">
-												<p>
-													It is a good idea to download the program and use the animator to
-													watch how the Relative file is created. You can download both the
-													program and the sequential data file it uses.
-												</p>
-												<p>
-													<a href="Resources/progs/REL-EG1.CBL"
-														>Download Relative file example program 1</a
-													>
-												</p>
-												<p>
-													<a href="Resources/progs/INSUPP.DAT"
-														>Download the Sequential data file</a
-													>
-												</p>
-											</td>
-										</tr>
-									</table>
+									<p>
+												We'll start by looking at some example programs. In the first
+												program, a Relative file is created by reading records from a
+												Sequential file and writing them to the Relative file. The second
+												program demonstrates how a Relative file may be read directly and
+												sequentially.
+											</p>
+									<p>
+										<iframe
+											height="541"
+											src="Resources/pdf-viewer.html?src=ppz/RelFile1.pdf"
+											style="
+												border: 1px solid #ccc;
+												width: 100%;
+												aspect-ratio: 520/541;
+											"
+											width="520"
+										></iframe>
+									</p>
+									<p>
+										It is a good idea to download the program and use the animator to
+										watch how the Relative file is created. You can download both the
+										program and the sequential data file it uses.
+									</p>
+									<p>
+										<a href="Resources/progs/REL-EG1.CBL"
+											>Download Relative file example program 1</a
+										>
+									</p>
+									<p>
+										<a href="Resources/progs/INSUPP.DAT"
+											>Download the Sequential data file</a
+										>
+									</p>
 									<hr />
 								</td>
 							</tr>
@@ -384,37 +411,30 @@
 									<h3>Example program - Reading a Relative file</h3>
 								</td>
 								<td width="525">
-									<table border="0" width="100%">
-										<tr>
-											<td height="43">
-												<p>
-													In this example we see how a Relative file may be read. The program
-													allows the file to be read either directly, using a key, or
-													sequentially.
-												</p>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<p>
-													<iframe
-														height="541"
-														src="Resources/pdf-viewer.html?src=ppz/RelFile2.pdf"
-														style="
-															border: 1px solid #ccc;
-															width: 100%;
-															aspect-ratio: 520/541;
-														"
-														width="520"
-													></iframe>
-												</p>
-												<p>Below we see the results produced by two runs of the program.</p>
-												<pre
-													class="language-none"
-												><code class="language-none">RUN USING SEQUENTIAL READING
+									<p>
+										In this example we see how a Relative file may be read. The program
+										allows the file to be read either directly, using a key, or
+										sequentially.
+									</p>
+									<p>
+										<iframe
+											height="541"
+											src="Resources/pdf-viewer.html?src=ppz/RelFile2.pdf"
+											style="
+												border: 1px solid #ccc;
+												width: 100%;
+												aspect-ratio: 520/541;
+											"
+											width="520"
+										></iframe>
+									</p>
+									<p>Below we see the results produced by two runs of the program.</p>
+									<pre
+										class="language-none"
+									><code class="language-none">RUN USING SEQUENTIAL READING
 Enter Read type (Direct=1, Seq=2)-&gt; 2
   01  VESTRON VIDEOS        OVER THE SEA SOMEWHERE IN LONDON
-  02  EMI STUDIOS           HOLLYWOOD, CALIFORNIA, USA 
+  02  EMI STUDIOS           HOLLYWOOD, CALIFORNIA, USA
   03  BBC WILDLIFE          BUSH HOUSE, LONDON, ENGLAND
   04  CBS STUDIOS           HOLLYWOOD, CALIFORNIA, USA
   05  YACHTING MONTHLY      TREE HOUSE, LONDON, ENGLAND
@@ -425,25 +445,18 @@ RUN USING DIRECT READ
 Enter Read type (Direct=1, Seq=2)-&gt; 1
 Enter supplier key (2 digits)-&gt; 05
   05  YACHTING MONTHLY      TREE HOUSE, LONDON, ENGLAND</code></pre>
-												<hr />
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<p>
-													If you downloaded the first example program and its data file you
-													should already have the Relative file (it was produced when you ran
-													the first example program). You can use this file with the second
-													Relative file example program.&nbsp;
-												</p>
-												<p>
-													<a href="Resources/progs/REL-EG2.CBL"
-														>Download Relative file example program 2</a
-													>
-												</p>
-											</td>
-										</tr>
-									</table>
+									<hr />
+									<p>
+										If you downloaded the first example program and its data file you
+										should already have the Relative file (it was produced when you ran
+										the first example program). You can use this file with the second
+										Relative file example program.&nbsp;
+									</p>
+									<p>
+										<a href="Resources/progs/REL-EG2.CBL"
+											>Download Relative file example program 2</a
+										>
+									</p>
 								</td>
 							</tr>
 						</table>
@@ -939,69 +952,58 @@ Enter supplier key (2 digits)-&gt; 05
 									<h3 align="left">The Declaratives template</h3>
 								</td>
 								<td width="525">
-									<table border="0" width="100%">
-										<tr>
-											<td width="50%">
-												<p>The template opposite shows how declaratives are set up.</p>
-												<p>
-													Declaratives must be defined at the start of the PROCEDURE DIVISION.
-												</p>
-												<p>
-													They must start with the DECLARATIVES keyword and end with the
-													keyword END-DECLARATIVES .
-												</p>
-												<p>
-													Declaratives are divided into sections and each section is
-													associated with a particular USE phrase.
-												</p>
-												<p>
-													The sections and USE phrases allow us to specify a separate
-													exception procedure for each file.
-												</p>
-												<p>
-													We can also specify general exception procedures for all INPUT,
-													OUTPUT, I-O and EXTEND errors.
-												</p>
-											</td>
-											<td align="center" width="50%">
-												<table border="5" cellpadding="10" width="89%">
-													<tr>
-														<td
-															background="Resources/pics/code.gif"
-															height="365"
-															valign="top"
-															width="44%"
-														>
-															<pre
-																class="language-cobol"
-															><code class="language-cobol">PROCEDURE DIVISION.
-DECLARATIVES. 
-SectionOne SECTION. 
+									<div class="declaratives-layout">
+										<div class="declaratives-text">
+											<p>The template opposite shows how declaratives are set up.</p>
+											<p>
+												Declaratives must be defined at the start of the PROCEDURE DIVISION.
+											</p>
+											<p>
+												They must start with the DECLARATIVES keyword and end with the
+												keyword END-DECLARATIVES .
+											</p>
+											<p>
+												Declaratives are divided into sections and each section is
+												associated with a particular USE phrase.
+											</p>
+											<p>
+												The sections and USE phrases allow us to specify a separate
+												exception procedure for each file.
+											</p>
+											<p>
+												We can also specify general exception procedures for all INPUT,
+												OUTPUT, I-O and EXTEND errors.
+											</p>
+										</div>
+										<div class="declaratives-code">
+											<div class="code-display-box">
+												<pre
+													class="language-cobol"
+												><code class="language-cobol">PROCEDURE DIVISION.
+DECLARATIVES.
+SectionOne SECTION.
     USE clause for file1.
-ParSectOne1. 
+ParSectOne1.
    ????????????????
-   ???????????????? 
-ParSectOne2. 
    ????????????????
-   ???????????????? 
+ParSectOne2.
+   ????????????????
+   ????????????????
 
-SectionTwo SECTION. 
+SectionTwo SECTION.
     USE clause for file2.
 ParSectTwo1.
-   ???????????????? 
-   ???????????????? 
-ParSectTwo2. 
-   ???????????????? 
-   ????????????????  
-END-DECLARATIVES. 
-Main SECTION. 
+   ????????????????
+   ????????????????
+ParSectTwo2.
+   ????????????????
+   ????????????????
+END-DECLARATIVES.
+Main SECTION.
 Begin.</code></pre>
-														</td>
-													</tr>
-												</table>
-											</td>
-										</tr>
-									</table>
+											</div>
+										</div>
+									</div>
 									<hr />
 								</td>
 							</tr>
