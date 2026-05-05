@@ -5,7 +5,134 @@
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<title>Contained and external sub-programs</title>
 		<link href="Resources/css/course.css" rel="stylesheet" />
-		<style>table{max-width:100%}body>table,body>hr{margin-left:auto;margin-right:auto}img{max-width:100%;height:auto}pre{overflow-x:auto;max-width:100%}</style>
+		<style>
+			img { max-width: 100%; height: auto; }
+			pre { overflow-x: auto; max-width: 100%; }
+			body { -webkit-text-size-adjust: 100%; }
+
+			.page-wrapper {
+				max-width: 715px;
+				margin: 0 auto;
+				border: 1px solid;
+				box-sizing: border-box;
+			}
+
+			.page-content { padding: 2px; }
+			.page-footer { padding: 2px; }
+
+			.section-grid {
+				display: grid;
+				grid-template-columns: 175px 1fr;
+			}
+
+			.section-header {
+				grid-column: 1 / -1;
+				background-color: #993300;
+				padding: 4px;
+			}
+
+			.section-header h2 {
+				color: #ffff00;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			.section-sidebar {
+				background-color: #FFFFCC;
+				padding: 4px;
+			}
+
+			.section-sidebar h3,
+			.section-sidebar h4 {
+				color: #800000;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			.section-content {
+				padding: 4px;
+			}
+
+			.code-block {
+				background-image: url(Resources/pics/code.gif);
+				border: 1px solid;
+				padding: 5px;
+				box-sizing: border-box;
+				max-width: 100%;
+			}
+
+			.code-run-pair {
+				display: flex;
+				border: 1px solid;
+				box-sizing: border-box;
+			}
+
+			.code-run-pair .code-part {
+				background-image: url(Resources/pics/code.gif);
+				padding: 5px;
+				flex: 1;
+			}
+
+			.code-run-pair .run-part {
+				background-color: #FFFFFF;
+				padding: 5px;
+				border-left: 1px solid;
+			}
+
+			@media (max-width: 600px) {
+				body {
+					margin: 4px;
+					overflow-wrap: break-word;
+					word-wrap: break-word;
+				}
+
+				.section-header h2,
+				.section-header h3 {
+					margin: 0.3em 0;
+				}
+
+				blockquote {
+					margin-left: 12px;
+					margin-right: 12px;
+				}
+
+				hr[width] { width: 100% !important; }
+
+				img, iframe, video, embed, object {
+					max-width: min(100%, calc(100vw - 16px)) !important;
+					height: auto;
+				}
+
+				pre {
+					max-width: min(100%, calc(100vw - 16px)) !important;
+					white-space: pre-wrap;
+					word-wrap: break-word;
+					overflow-wrap: break-word;
+				}
+
+				pre[class*="language-"],
+				code[class*="language-"] {
+					white-space: pre-wrap !important;
+					overflow-wrap: break-word;
+				}
+
+				pre[class*="language-"] {
+					font-size: 0.8em;
+					line-height: 1.35;
+					padding: 0.6em;
+					overflow-x: auto;
+				}
+
+				.section-grid { display: block; }
+
+				.section-sidebar h3,
+				.section-sidebar h4,
+				.section-sidebar p {
+					margin: 0.2em 0;
+				}
+
+				.code-run-pair { flex-direction: column; }
+				.code-run-pair .run-part { border-left: none; border-top: 1px solid; }
+			}
+		</style>
 		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
 		<script src="Resources/vendor/prism/prism.min.js" defer></script>
 		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
@@ -13,46 +140,43 @@
 	</head>
 
 	<body alink="#009B00" bgcolor="#FFFFFF" link="#0000FF" text="#000000" vlink="#FF0000">
-		<table id="layout-table" border="1" width="715" cellpadding="4" cellspacing="0">
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top">
-					<center>
-						<p><img height="59" src="Resources/pics/t-CobolTut.gif" width="173" /></p>
-					</center>
-					<center>
-						<h1>Subprograms</h1>
-						<hr />
-					</center>
-					<ul class="toc">
-						<li>
-							<a href="#intro">Introduction</a><br />
-							Unit aims, objectives, prerequisites.
-						</li>
-						<li>
-							<a href="#part1">The CALL verb</a><br />
-							Subprograms, the syntax and semantics of the CALL verb and parameter passing mechanisms.
-							State memory, the IS INITIAL clause and the CANCEL command.
-						</li>
-						<li>
-							<a href="#part2">Contained Subprograms</a><br />
-							Contained subprogram defined. Sharing data with the IS GLOBAL and IS EXTERNAL clause. Using
-							the IS COMMON PROGRAM clause. Measuring the quality of subprograms.
-						</li>
-					</ul>
+		<div class="page-wrapper">
+			<div class="page-content">
+				<center>
+					<p><img height="59" src="Resources/pics/t-CobolTut.gif" width="173" /></p>
+				</center>
+				<center>
+					<h1>Subprograms</h1>
 					<hr />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top">
+				</center>
+				<ul class="toc">
+					<li>
+						<a href="#intro">Introduction</a><br />
+						Unit aims, objectives, prerequisites.
+					</li>
+					<li>
+						<a href="#part1">The CALL verb</a><br />
+						Subprograms, the syntax and semantics of the CALL verb and parameter passing mechanisms.
+						State memory, the IS INITIAL clause and the CANCEL command.
+					</li>
+					<li>
+						<a href="#part2">Contained Subprograms</a><br />
+						Contained subprogram defined. Sharing data with the IS GLOBAL and IS EXTERNAL clause. Using
+						the IS COMMON PROGRAM clause. Measuring the quality of subprograms.
+					</li>
+				</ul>
+				<hr />
+			</div>
+			<!-- Introduction -->
+			<div class="section-grid">
+				<div class="section-header">
 					<h2 align="center" id="intro">Introduction</h2>
-				</td>
-			</tr>
-			<tr>
-				<td bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Aims</h4>
 					<h4><img height="1" src="Resources/pics/PanelLine.gif" width="175" /></h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							To provide a brief introduction to building modular systems using separately compiled and/or
@@ -82,13 +206,11 @@
 						</p>
 						<hr align="center" size="1" width="100%" />
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Objectives</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>By the end of this unit you should -</p>
 					<ol>
 						<li>
@@ -119,13 +241,11 @@
 						<li>Be able to create subprograms of good quality.</li>
 					</ol>
 					<hr align="center" size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Prerequisites</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<ul>
 						<li>Introduction to COBOL</li>
 						<li>Declaring data in COBOL</li>
@@ -146,27 +266,22 @@
 						<li>Creating tables - syntax and semantics</li>
 						<li>Searching tables</li>
 					</ul>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top">
-					<div align="center">
-						<hr />
-						<p>
-							<a href="#top"
-								><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
-							/></a>
-						</p>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top">
+				</div>
+			</div>
+			<div>
+				<hr />
+				<p align="center">
+					<a href="#top"
+						><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+					/></a>
+				</p>
+			</div>
+			<!-- The CALL verb -->
+			<div class="section-grid">
+				<div class="section-header">
 					<h2 align="center" id="part1">The CALL verb</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>
 						<b>Introduction</b>
 					</h4>
@@ -177,8 +292,8 @@
 							read the vendor manual for the specifics of how it works.
 						</p>
 					</aside>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						A large software system is not usually written as a single monolithic program. Instead, it
 						consists of a main program and many independently compiled subprograms, linked together to form
@@ -204,15 +319,13 @@
 						another.
 					</p>
 					<hr align="center" size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>
 						<b>CALL verb semantics</b>
 					</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						The <code class="language-cobol">CALL</code> verb transfers control to a subprogram. When the
 						subprogram has finished, control returns to the statement that follows the
@@ -223,10 +336,8 @@
 						text of the calling program (i.e. it may be a contained subprogram).
 					</p>
 					<hr align="center" size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<p>
 						<b>CALL syntax and notes</b>
 					</p>
@@ -241,8 +352,8 @@
 							program are in agreement with those declared in the LINKAGE SECTION of the called program.
 						</p>
 					</aside>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p align="center"><img height="208" src="Resources/pics/Call1.gif" width="480" /></p>
 					<p align="left"><b>CALL notes</b></p>
 					<ol>
@@ -301,13 +412,11 @@
 						</li>
 					</ol>
 					<hr align="center" size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<b>Parameter passing mechanisms</b>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						In standard COBOL, the <code class="language-cobol">CALL</code> verb has two parameter passing
 						mechanisms -<br />
@@ -344,57 +453,47 @@
 					</p>
 					<p align="center"><img height="193" src="Resources/pics/call4.gif" width="489" /></p>
 					<hr align="center" size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<p>
 						<b>CALL example</b>
 					</p>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						The example fragments below show how a <code class="language-cobol">CALL</code> statement is
 						made in a calling program to invoke and pass parameters to a subprogram (shown in outline).
 					</p>
-					<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="399">
-						<tr>
-							<td>
-								<pre class="language-cobol"><code class="language-cobol">
+					<div class="code-block" style="max-width: 399px; margin: 0 auto;">
+						<pre class="language-cobol"><code class="language-cobol">
 CALL "DateValidate"
      USING BY CONTENT TempDate
      USING BY REFERENCE DateCheckResult.
 </code></pre>
-							</td>
-						</tr>
-					</table>
+					</div>
 					<div align="center">
 						The <code class="language-cobol">CALL</code> statement in the calling program.<br />
 					</div>
-					<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="374">
-						<tr>
-							<td>
-								<pre class="language-cobol"><code class="language-cobol">
+					<div class="code-block" style="max-width: 374px; margin: 0 auto;">
+						<pre class="language-cobol"><code class="language-cobol">
 IDENTIFICATION DIVISION.
 PROGRAM-ID DateValidate IS INITIAL.
 DATA DIVISION.
 WORKING-STORAGE SECTION.
-          ? ? ? ? ? ? ? ? ? ? ? ? 
+          ? ? ? ? ? ? ? ? ? ? ? ?
 LINKAGE SECTION.
 01  DateParam            PIC X(8).
 01  DateResult           PIC 9.
 PROCEDURE DIVISION USING DateParam, DateResult.
-Begin. 
-       ? ? ? ? ? ? ? ? ? ? ? ? 
+Begin.
+       ? ? ? ? ? ? ? ? ? ? ? ?
        ? ? ? ? ? ? ? ? ? ? ? ?
        EXIT PROGRAM.
 ??????.
        ? ? ? ? ? ? ? ? ? ? ? ?
 
 </code></pre>
-							</td>
-						</tr>
-					</table>
+					</div>
 					<div align="center">
 						<p>Outline of the called program</p>
 						<p align="left">
@@ -449,13 +548,11 @@ Begin.
 						possible.
 					</p>
 					<hr align="center" size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<b>State memory and the IS INITIAL clause</b>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						<b>The IS INITIAL phrase</b><br />
 						The first time a subprogram is called, it is in its initial state: all files are closed and the
@@ -482,11 +579,9 @@ Begin.
 						previous call, will produce different results when called with the same value.
 					</p>
 					<div align="center">
-						<table background="Resources/pics/code.gif" border="1" cellpadding="5" width="412">
-							<tr>
-								<td valign="top" width="0">
-									<pre class="language-cobol"><code class="language-cobol">
-? ? ? ? ? ? ? ? ? ? 
+						<div class="code-block" style="max-width: 412px; margin: 0 auto;">
+							<pre class="language-cobol"><code class="language-cobol">
+? ? ? ? ? ? ? ? ? ?
 MOVE 12 TO IncrementVal.
 CALL "Steadfast" USING BY CONTENT IncrementVal.
 
@@ -496,7 +591,7 @@ CALL "Steadfast" USING BY CONTENT IncrementVal.
 MOVE 12 TO IncrementVal.
 CALL "Steadfast" USING BY CONTENT IncrementVal.
 
-? ? ? ? ? ? ? ? ? ? 
+? ? ? ? ? ? ? ? ? ?
 MOVE 12 TO IncrementVal.
 CALL "Fickle" USING BY CONTENT IncrementVal.
 
@@ -504,84 +599,79 @@ MOVE 5 TO IncrementVal.
 CALL "Fickle" USING BY CONTENT IncrementVal.
 MOVE 12 TO IncrementVal.
 CALL "Fickle" USING BY CONTENT IncrementVal.
-? ? ? ? ? ? ? ? ? ? 
+? ? ? ? ? ? ? ? ? ?
 </code></pre>
-								</td>
-							</tr>
-						</table>
+						</div>
 						Statements in the calling program<br />
 					</div>
-					<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="439">
-						<tr>
-							<td valign="top">
-								<pre
-									class="language-cobol"
-								><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+					<div class="code-run-pair" style="max-width: 439px; margin: 0 auto;">
+						<div class="code-part">
+							<pre
+								class="language-cobol"
+							><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. Steadfast IS INITIAL.</code></pre>
-								<pre class="language-cobol"><code class="language-cobol">DATA DIVISION.
+							<pre class="language-cobol"><code class="language-cobol">DATA DIVISION.
 WORKING-STORAGE SECTION.
 01 RunningTotal PIC 9(5) VALUE 50.</code></pre>
-								<pre class="language-cobol"><code class="language-cobol">LINKAGE SECTION.
+							<pre class="language-cobol"><code class="language-cobol">LINKAGE SECTION.
 01 ParamValue PIC 99.</code></pre>
-								<pre
-									class="language-cobol"
-								><code class="language-cobol">PROCEDURE DIVISION USING ParamValue.
+							<pre
+								class="language-cobol"
+							><code class="language-cobol">PROCEDURE DIVISION USING ParamValue.
 Begin.
    ADD ParamValue TO RunningTotal.
    DISPLAY "Total = ", RunningTotal.
    EXIT PROGRAM.
 </code></pre>
-							</td>
-							<td bgcolor="#FFFFFF" valign="top">
-								<div align="left">
-									<div align="center">
-										<b>Example Runs<br /></b>
-										The parameter value is shown in <span style="color: #0000ff">blue</span> and the
-										result displayed is shown in <span style="color: #ff0000">red</span>.<br />
-									</div>
-									<hr />
-									<div align="center">First Run<br /></div>
-									<div align="center">
-										<span style="color: #0000ff"><b>12</b></span>
-										<b
-											><br />
-											<span style="color: #ff0000">Total = 62</span>
-										</b>
-									</div>
-									<hr align="center" />
-									<div align="center">Second Run<br /></div>
-									<div align="center">
-										<span style="color: #0000ff"><b>5</b></span>
-										<b
-											><br />
-											<span style="color: #ff0000">Total = 55</span>
-										</b>
-									</div>
-									<hr align="center" />
-									<div align="center">Third Run<br /></div>
-									<div align="center">
-										<span style="color: #0000ff"><b>12</b></span>
-										<b
-											><br />
-											<span style="color: #ff0000">Total = 62</span>
-										</b>
-									</div>
+						</div>
+						<div class="run-part">
+							<div align="left">
+								<div align="center">
+									<b>Example Runs<br /></b>
+									The parameter value is shown in <span style="color: #0000ff">blue</span> and the
+									result displayed is shown in <span style="color: #ff0000">red</span>.<br />
 								</div>
-							</td>
-						</tr>
-					</table>
+								<hr />
+								<div align="center">First Run<br /></div>
+								<div align="center">
+									<span style="color: #0000ff"><b>12</b></span>
+									<b
+										><br />
+										<span style="color: #ff0000">Total = 62</span>
+									</b>
+								</div>
+								<hr align="center" />
+								<div align="center">Second Run<br /></div>
+								<div align="center">
+									<span style="color: #0000ff"><b>5</b></span>
+									<b
+										><br />
+										<span style="color: #ff0000">Total = 55</span>
+									</b>
+								</div>
+								<hr align="center" />
+								<div align="center">Third Run<br /></div>
+								<div align="center">
+									<span style="color: #0000ff"><b>12</b></span>
+									<b
+										><br />
+										<span style="color: #ff0000">Total = 62</span>
+									</b>
+								</div>
+							</div>
+						</div>
+					</div>
 					<p>
 						In "Steadfast", no matter how many times we run the program, when the parameter value is the
 						same - the result is the same. For instance, on the first and third runs of the program the
 						parameter has the value 12 and each time the result is 62 (12+50).
 					</p>
-					<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="439">
-						<tr>
-							<td valign="top">
-								<pre
-									class="language-cobol"
-								><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+					<div class="code-run-pair" style="max-width: 439px; margin: 0 auto;">
+						<div class="code-part">
+							<pre
+								class="language-cobol"
+							><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. Fickle.
 
@@ -598,47 +688,46 @@ Begin.
    DISPLAY "Total = ", RunningTotal.
    EXIT PROGRAM.
 </code></pre>
-							</td>
-							<td bgcolor="#FFFFFF" valign="top">
-								<div align="left">
-									<div align="center">
-										<b>Example Runs<br /></b>
-										The parameter value is shown in <span style="color: #0000ff">blue</span> and the
-										result displayed is shown in <span style="color: #ff0000">red</span>.<br />
+						</div>
+						<div class="run-part">
+							<div align="left">
+								<div align="center">
+									<b>Example Runs<br /></b>
+									The parameter value is shown in <span style="color: #0000ff">blue</span> and the
+									result displayed is shown in <span style="color: #ff0000">red</span>.<br />
+								</div>
+								<hr />
+								<div align="center">First Run<br /></div>
+								<div align="center">
+									<span style="color: #0000ff"><b>12</b></span>
+									<b
+										><br />
+										<span style="color: #ff0000">Total = 62</span>
+									</b>
+								</div>
+								<hr align="center" />
+								<div align="center">Second Run<br /></div>
+								<div align="center">
+									<div>
+										<span style="color: #0000ff"><b>5</b></span>
+										<b
+											><br />
+											<span style="color: #ff0000">Total = 67</span>
+										</b>
 									</div>
 									<hr />
-									<div align="center">First Run<br /></div>
+									Third Run<br />
 									<div align="center">
 										<span style="color: #0000ff"><b>12</b></span>
 										<b
 											><br />
-											<span style="color: #ff0000">Total = 62</span>
+											<span style="color: #ff0000">Total = 79</span>
 										</b>
 									</div>
-									<hr align="center" />
-									<div align="center">Second Run<br /></div>
-									<div align="center">
-										<div>
-											<span style="color: #0000ff"><b>5</b></span>
-											<b
-												><br />
-												<span style="color: #ff0000">Total = 67</span>
-											</b>
-										</div>
-										<hr />
-										Third Run<br />
-										<div align="center">
-											<span style="color: #0000ff"><b>12</b></span>
-											<b
-												><br />
-												<span style="color: #ff0000">Total = 79</span>
-											</b>
-										</div>
-									</div>
 								</div>
-							</td>
-						</tr>
-					</table>
+							</div>
+						</div>
+					</div>
 					<p>
 						In "Fickle" the result produced by running the program depends on what the program "remembers"
 						from the last time it was run. In the example runs, even though the parameter value is the same
@@ -648,15 +737,13 @@ Begin.
 						<i>RunningTotal</i> from the previous run and produces a result of 79 (12+67).
 					</p>
 					<hr align="center" size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>
 						<b>State memory and the CANCEL verb</b>
 					</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						Sometimes a program only needs "state memory" part of the time. That is, it needs to be reset to
 						its initial state periodically.
@@ -679,15 +766,13 @@ CANCEL "Fickle"
 CALL "Fickle" USING BY CONTENT IncValue.</code></pre>
 					<p>we can force "Fickle" to act like "Steadfast".<br /></p>
 					<hr align="center" size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>
 						<b>Subprogram clauses and verbs</b>
 					</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>COBOL subprograms. are identical to standard COBOL programs with the following exceptions:</p>
 					<ol>
 						<li>
@@ -725,30 +810,25 @@ CALL "Fickle" USING BY CONTENT IncValue.</code></pre>
 							delimits the scope of a contained subprogram<br />
 						</li>
 					</ol>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top">
-					<div align="center">
-						<hr />
-						<p>
-							<a href="#top"
-								><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
-							/></a>
-						</p>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top">
+				</div>
+			</div>
+			<div>
+				<hr />
+				<p align="center">
+					<a href="#top"
+						><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+					/></a>
+				</p>
+			</div>
+			<!-- Contained Subprograms -->
+			<div class="section-grid">
+				<div class="section-header">
 					<h2 align="center" id="part2">Contained Subprograms</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Introduction</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p align="left">
 						COBOL subprograms can be independently compiled separate programs (linked into a single
 						executable run-unit) or they can be contained within the text of a containing program.
@@ -772,13 +852,11 @@ CALL "Fickle" USING BY CONTENT IncValue.</code></pre>
 						</li>
 					</ol>
 					<hr size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<b>Defining a contained subprogram</b>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p align="left">
 						When contained subprograms are used, the end of the main program, and each subprogram, is
 						signalled by means of the
@@ -803,15 +881,13 @@ CALL "Fickle" USING BY CONTENT IncValue.</code></pre>
 						</li>
 					</ol>
 					<hr size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>
 						<b>The IS GLOBAL clause</b>
 					</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p align="left">
 						As noted above, data-items declared outside the scope of a contained subprogram cannot be seen
 						within the subprogram.
@@ -832,31 +908,29 @@ CALL "Fickle" USING BY CONTENT IncValue.</code></pre>
 						The <code class="language-cobol">IS GLOBAL</code> clause specifies that the data item is to be
 						visible within any subordinate contained subprograms.
 					</p>
-					<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="383">
-						<tr>
-							<td width="0">
-								<pre
-									class="language-cobol"
-								><code class="language-cobol">      &gt;&gt;SOURCE FORMAT IS FREE
+					<div class="code-block" style="max-width: 383px; margin: 0 auto;">
+						<pre
+							class="language-cobol"
+						><code class="language-cobol">      &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. ContainerProgram.
    ? ? ? ? ? ? ? ? ?
 01 NameTable IS GLOBAL.
    02 SName OCCURS 200 TIMES PIC X(20).
-   ? ? ? ? ? ? ? ? ? 
+   ? ? ? ? ? ? ? ? ?
 PROCEDURE DIVISION.
    ? ? ? ? ? ? ? ? ?
    CALL "PutToTable" USING ???
    ? ? ? ? ? ? ? ? ?
    CALL "ReportFromTable"
-   ? ? ? ? ? ? ? ? ? 
+   ? ? ? ? ? ? ? ? ?
    EXIT PROGRAM.
 
 IDENTIFICATION DIVISION.
 PROGRAM-ID. PutToTable.
    ? ? ? ? ? ? ? ? ?
    MOVE StudName TO SName(SNum).
-   ? ? ? ? ? ? ? ? ? 
+   ? ? ? ? ? ? ? ? ?
    EXIT PROGRAM
 END-PROGRAM PutToTable.
 
@@ -864,21 +938,17 @@ IDENTIFICATION DIVISION.
 PROGRAM-ID. ReportFromTable.
    ? ? ? ? ? ? ? ? ?
    DISPLAY "Student " SNum " = " SName(SNum).
-   ? ? ? ? ? ? ? ? ? 
+   ? ? ? ? ? ? ? ? ?
    EXIT PROGRAM
 END-PROGRAM ReportFromTable.
 END-PROGRAM ContainerProgram.</code></pre>
-							</td>
-						</tr>
-					</table>
+					</div>
 					<hr size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Information Hiding using the IS GLOBAL clause and contained subprograms</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p align="left">
 						Contained subprograms. seem to offer us the opportunity to create some form of Information
 						Hiding. For instance, it looks as though we could create an Informational Strength module as
@@ -913,13 +983,11 @@ END-PROGRAM ContainerProgram.</code></pre>
 					</p>
 					<p align="center"><img height="286" src="Resources/pics/call7.gif" width="406" /></p>
 					<hr size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<b>The IS COMMON PROGRAM clause</b>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						A programmer pondering the problem outlined above - how to get an external program to make
 						direct calls to the subprograms contained within a container might be excited to come across the
@@ -948,18 +1016,16 @@ END-PROGRAM ContainerProgram.</code></pre>
 					</p>
 					<p align="center"><img height="23" src="Resources/pics/call8.gif" width="495" /></p>
 					<hr size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>
 						<b
 							>Example program using contained subprograms. and the IS COMMON PROGRAM and IS GLOBAL
 							clauses</b
 						>
 					</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						In this example, <i>SharedItem</i> can be accessed in the main program and in each of the
 						subprograms because this has been explicitly specified in the data declaration by using the
@@ -970,12 +1036,10 @@ END-PROGRAM ContainerProgram.</code></pre>
 						Microfocus NetExpress telling the compiler to expect contained subprograms. It is not standard
 						COBOL.
 					</p>
-					<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="374">
-						<tr>
-							<td valign="top" width="0">
-								<pre
-									class="language-cobol"
-								><code class="language-cobol">      &gt;&gt;SOURCE FORMAT IS FREE
+					<div class="code-block" style="max-width: 374px; margin: 0 auto;">
+						<pre
+							class="language-cobol"
+						><code class="language-cobol">      &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. MainProgram.
 DATA DIVISION.
@@ -1007,17 +1071,13 @@ END PROGRAM DisplayData.
 
 END PROGRAM MainProgram.
 </code></pre>
-							</td>
-						</tr>
-					</table>
+					</div>
 					<hr size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Example program using the IS INITIAL and IS COMMON clauses and the CANCEL command.</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						In the example below the "Fickle" and "Steadfast" subprograms are revisited. This time they have
 						been incorporated into the text of a main, containing program.
@@ -1033,12 +1093,11 @@ END PROGRAM MainProgram.
 						<code class="language-cobol">CANCEL</code> command is used to initialize "Fickle" so that the
 						next number may be computed.
 					</p>
-					<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="374">
-						<tr>
-							<td valign="top" width="0">
-								<pre
-									class="language-cobol"
-								><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+					<div style="max-width: 374px; margin: 0 auto; border: 1px solid; box-sizing: border-box;">
+						<div style="background-image: url(Resources/pics/code.gif); padding: 5px;">
+							<pre
+								class="language-cobol"
+							><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. Counter.
 DATA DIVISION.
@@ -1118,19 +1177,17 @@ Begin.
   EXIT PROGRAM.
 END PROGRAM DisplayTotal.
 END PROGRAM Counter.</code></pre>
-							</td>
-						</tr>
-						<tr>
-							<td bgcolor="#FFFFFF" valign="top" width="0">
-								<div align="center">
-									<h3><b>Example Run</b></h3>
-									<p>
-										Numeric values entered by the user are shown in
-										<span style="color: #0000ff">blue</span> and values output by the computer are
-										shown in <span style="color: #ff0000">red</span>.
-									</p>
-								</div>
-								<pre class="language-cobol" align="left"><code class="language-cobol">Enter value - 13
+						</div>
+						<div style="background-color: #FFFFFF; padding: 5px; border-top: 1px solid;">
+							<div align="center">
+								<h3><b>Example Run</b></h3>
+								<p>
+									Numeric values entered by the user are shown in
+									<span style="color: #0000ff">blue</span> and values output by the computer are
+									shown in <span style="color: #ff0000">red</span>.
+								</p>
+							</div>
+							<pre class="language-cobol" align="left"><code class="language-cobol">Enter value - 13
 Fickle total    = 13
 Steadfast total = 13
 Enter value - 3
@@ -1140,7 +1197,7 @@ Enter value - 13
 Fickle total    = 29
 Steadfast total = 13
 Enter value - 0
-                       
+
 Enter the value to be squared
 Value - 8
 Fickle total =  8
@@ -1151,23 +1208,20 @@ Fickle total = 40
 Fickle total = 48
 Fickle total = 56
 Fickle total = 64
-                       
+
 Value - 3
 Fickle total =  3
 Fickle total =  6
 Fickle total =  9
 Value - 0</code></pre>
-							</td>
-						</tr>
-					</table>
+						</div>
+					</div>
 					<hr size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>The IS EXTERNAL clause</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						The <code class="language-cobol">IS GLOBAL</code> clause allows a program and its contained
 						subprograms to share access to a data-item.
@@ -1195,7 +1249,7 @@ Value - 0</code></pre>
      01 SharedRec IS EXTERNAL.
         02 PartA     PIC X(4).
         02 PartB     PIC 9(5).
-               
+
              </code></pre>
 					<p align="center">
 						SharedRecord<br />
@@ -1211,13 +1265,11 @@ Value - 0</code></pre>
 						that this "Common Coupling" is nearly the worst kind of module coupling possible.
 					</p>
 					<hr size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Designing a modular system</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						Anyone who considers creating a system that consists of subprograms and contained subprograms
 						should not embark on such an undertaking without an sound understanding how such a system is
@@ -1239,15 +1291,13 @@ Value - 0</code></pre>
 					</p>
 					<p>Myers, Glenford, <i>Composite/Structured Design</i>, Von Nostrand Reinhold 19</p>
 					<hr size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>
 						<b>Criteria for module goodness</b>
 					</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						Although this course cannot provide instruction in Structured Design we can observe that the
 						criteria for module goodness specified in that approach boils down to three things:
@@ -1269,17 +1319,15 @@ Value - 0</code></pre>
 							transparent a manner as possible - there should be no hidden method of data transfer.<br />
 						</li>
 					</ul>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<hr />
-					<div align="center">
-						<a href="#top"><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132" /></a>
-					</div>
-					<copyright-notice></copyright-notice>
-				</td>
-			</tr>
-		</table>
+				</div>
+			</div>
+			<div class="page-footer">
+				<hr />
+				<div align="center">
+					<a href="#top"><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132" /></a>
+				</div>
+				<copyright-notice></copyright-notice>
+			</div>
+		</div>
 	</body>
 </html>
