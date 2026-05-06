@@ -5,7 +5,72 @@
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<title>Print files and variable-length records</title>
 		<link href="Resources/css/course.css" rel="stylesheet" />
-		<style>table{max-width:100%}body>table,body>hr{margin-left:auto;margin-right:auto}img{max-width:100%;height:auto}pre{overflow-x:auto;max-width:100%}</style>
+		<style>
+			.section-header h2 {
+				color: #ffff00;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			.section-sidebar h3,
+			.section-sidebar h4 {
+				color: #800000;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			.page-wrapper {
+				max-width: 715px;
+				margin: 0 auto;
+				border: 1px solid;
+				box-sizing: border-box;
+			}
+
+			.page-content {
+				padding: 2px;
+			}
+
+			.page-footer {
+				padding: 2px;
+			}
+
+			.section-grid {
+				display: grid;
+				grid-template-columns: 175px 1fr;
+				align-items: stretch;
+			}
+
+			.section-header {
+				grid-column: 1 / -1;
+				background-color: #993300;
+				padding: 4px;
+			}
+
+			.section-sidebar {
+				background-color: #FFFFCC;
+				padding: 4px;
+			}
+
+			.section-content {
+				padding: 4px;
+				min-width: 0;
+			}
+
+			.section-full {
+				grid-column: 1 / -1;
+				padding: 4px;
+			}
+
+			@media (max-width: 600px) {
+				.section-grid {
+					display: block;
+				}
+
+				.section-sidebar h3,
+				.section-sidebar h4,
+				.section-sidebar p {
+					margin: 0.2em 0;
+				}
+			}
+		</style>
 		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
 		<script src="Resources/vendor/prism/prism.min.js" defer></script>
 		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
@@ -13,51 +78,48 @@
 	</head>
 
 	<body alink="#009B00" bgcolor="#FFFFFF" link="#0000FF" text="#000000" vlink="#FF0000">
-		<table id="layout-table" border="1" width="715" cellpadding="4" cellspacing="0">
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
-					<center>
-						<p><img height="59" src="Resources/pics/t-CobolTut.gif" width="173" /></p>
-						<h1>Print files and variable-length records</h1>
-					</center>
-					<hr />
-					<ul class="toc">
-						<li>
-							<a href="#intro">Introduction</a><br />
-							Unit aims, objectives, prerequisites.
-						</li>
-						<li>
-							<a href="#part1">Multiple record-type files</a><br />
-							This section demonstrates how to declare and use files that contain multiple types of
-							record.
-						</li>
-						<li>
-							<a href="#part2">COBOL print files</a><br />
-							This section introduces COBOL print files, demonstrates how a print file may be set up and
-							shows how a print file is used to print a report.
-						</li>
-						<li>
-							<a href="#part3">Variable length records</a><br />
-							This section introduces variable length records, demonstrates how variable length records
-							may be declared and shows how variable length records with the
-							<code class="language-cobol">DEPENDING ON</code> phrase may be processed. In addition, this
-							section demonstrates how a file name may be assigned to a file at run-time rather than at
-							compile-time.
-						</li>
-					</ul>
-					<hr />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+		<div class="page-wrapper">
+			<div class="page-content">
+				<center>
+					<p id="top"><img height="59" src="Resources/pics/t-CobolTut.gif" width="173" /></p>
+					<h1>Print files and variable-length records</h1>
+				</center>
+				<hr />
+				<ul class="toc">
+					<li>
+						<a href="#intro">Introduction</a><br />
+						Unit aims, objectives, prerequisites.
+					</li>
+					<li>
+						<a href="#part1">Multiple record-type files</a><br />
+						This section demonstrates how to declare and use files that contain multiple types of
+						record.
+					</li>
+					<li>
+						<a href="#part2">COBOL print files</a><br />
+						This section introduces COBOL print files, demonstrates how a print file may be set up and
+						shows how a print file is used to print a report.
+					</li>
+					<li>
+						<a href="#part3">Variable length records</a><br />
+						This section introduces variable length records, demonstrates how variable length records
+						may be declared and shows how variable length records with the
+						<code class="language-cobol">DEPENDING ON</code> phrase may be processed. In addition, this
+						section demonstrates how a file name may be assigned to a file at run-time rather than at
+						compile-time.
+					</li>
+				</ul>
+				<hr />
+			</div>
+			<!-- Introduction -->
+			<div class="section-grid">
+				<div class="section-header">
 					<h2 align="center" id="intro">Introduction</h2>
-				</td>
-			</tr>
-			<tr>
-				<td bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Aims</h4>
-				</td>
-				<td valign="top" width="540">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							This tutorial covers a number of topics including; COBOL print files, multiple record-type
@@ -67,13 +129,11 @@
 					<div align="center">
 						<hr align="center" width="50%" />
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Objectives</h4>
-				</td>
-				<td valign="top" width="540">
+				</div>
+				<div class="section-content">
 					<p>By the end of this unit you should -</p>
 					<ol>
 						<li>
@@ -97,13 +157,11 @@
 						</li>
 					</ol>
 					<hr align="center" width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Prerequisites</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<ul>
 						<li>Introduction to COBOL</li>
 						<li>Declaring data in COBOL</li>
@@ -113,10 +171,8 @@
 						<li>Introduction to Sequential files</li>
 						<li>Processing Sequential files</li>
 					</ul>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
+				</div>
+				<div class="section-full">
 					<div align="center">
 						<hr />
 						<p>
@@ -125,18 +181,17 @@
 							/></a>
 						</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+				</div>
+			</div>
+			<!-- Multiple record-type files -->
+			<div class="section-grid">
+				<div class="section-header">
 					<h2 align="center" id="part1">Multiple record-type files</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Introduction</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							In the tutorial - Processing Sequential Files - the transaction files used as examples only
@@ -153,13 +208,11 @@
 					<div align="center">
 						<hr align="center" width="50%" />
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Implications of multiple record types</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							A transaction file which contains insertion, deletion and update records, raises some
@@ -174,14 +227,12 @@
 					<div align="left">
 						<hr align="center" width="50%" />
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Declaring a multiple record-type file</h4>
 					<p align="center"><img height="44" src="Resources/pics/ProgFrag.gif" width="48" /></p>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							To describe these different record types we have to use more than one record description in
@@ -197,10 +248,7 @@
 							to update the course code, with a new course code.
 						</p>
 					</div>
-					<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="58%">
-						<tr>
-							<td>
-								<pre class="language-cobol"><code class="language-cobol">ENVIRONMENT DIVISION.
+					<pre class="language-cobol"><code class="language-cobol">ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
    SELECT TransFile
@@ -228,26 +276,21 @@ FD TransFile.
    02 StudentId         PIC 9(7).
    02 NewCourseCode     PIC X(4).
 </code></pre>
-							</td>
-						</tr>
-					</table>
 					<p>
 						What is not obvious from this description is that COBOL still continues to create just a single
 						'record buffer' for the file! And this 'record buffer' is only able to store a single record at
 						a time!
 					</p>
 					<hr align="center" width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Multiple record-types - one record buffer</h4>
 					<p align="center">
 						<img height="62" src="Resources/pics/i-Animation.gif" width="62" />
 					</p>
 					<p align="left">Click on the diagram opposite to see how the records map on to the buffer</p>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							When a file contains multiple record types, a record declaration (starting with a 01 level
@@ -268,10 +311,8 @@ FD TransFile.
 							/></a>
 						</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Implications of record mappings</h4>
 					<aside>
 						<p align="center">
@@ -281,8 +322,8 @@ FD TransFile.
 							NewCourseCode would display spaces.
 						</p>
 					</aside>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							The buffer, in the illustration above, currently contains an insert record. But even though
@@ -302,14 +343,12 @@ FD TransFile.
 						</p>
 						<hr align="center" width="50%" />
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>The type-code.</h4>
 					<h4></h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							Looking at the record above, you might wonder how the programmer can discover what type of
@@ -329,16 +368,14 @@ FD TransFile.
 					<div align="center">
 						<hr align="center" width="50%" />
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>The revised record descriptions.</h4>
 					<h4 align="center">
 						<img height="44" src="Resources/pics/ProgFrag.gif" width="48" />
 					</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							In the program fragment below, the revised record descriptions are shown. These record
@@ -346,16 +383,7 @@ FD TransFile.
 							each transaction record to indicate the transaction type. Obviously the transaction file
 							(TRANS.DAT) must must also be altered so that its actual records contain the type-code.
 						</p>
-						<table
-							align="center"
-							background="Resources/pics/code.gif"
-							border="1"
-							cellpadding="5"
-							width="58%"
-						>
-							<tr>
-								<td>
-									<pre class="language-cobol"><code class="language-cobol">ENVIRONMENT DIVISION.
+						<pre class="language-cobol"><code class="language-cobol">ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
    SELECT TransFile
@@ -386,9 +414,6 @@ FD TransFile.
    02 StudentId         PIC 9(7).
    02 NewCourseCode     PIC X(4).
 </code></pre>
-								</td>
-							</tr>
-						</table>
 						<p align="left">
 							When you examine the record descriptions above a question may occur to you. TransCode occurs
 							in all the record descriptions - is this legal and how can I refer to the one in DeleteRec?
@@ -422,16 +447,14 @@ FD TransFile.
 					<div align="center">
 						<hr align="center" width="50%" />
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Using FILLER in the transaction records.</h4>
 					<h4 align="center">
 						<img height="44" src="Resources/pics/ProgFrag.gif" width="48" />
 					</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="left">
 						<p>
 							In the program fragment below, the final record descriptions are shown. TransCode and
@@ -440,10 +463,7 @@ FD TransFile.
 							occupied by the two items is named - <code class="language-cobol">FILLER</code>.
 						</p>
 					</div>
-					<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="58%">
-						<tr>
-							<td>
-								<pre class="language-cobol"><code class="language-cobol">ENVIRONMENT DIVISION.
+					<pre class="language-cobol"><code class="language-cobol">ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
    SELECT TransFile
@@ -473,19 +493,14 @@ FD TransFile.
    02 FILLER            PIC X(8).
    02 NewCourseCode     PIC X(4).
 </code></pre>
-							</td>
-						</tr>
-					</table>
 					<p align="left">
 						The record schematic for this new record is shown below. Notice how the TransCode and StudentId
 						in the InsertRec map on to the same area of storage as the FILLERs in the other two record
 						types.
 					</p>
 					<p align="center"><img height="253" src="Resources/pics/SeqFile2.gif" width="480" /></p>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
+				</div>
+				<div class="section-full">
 					<div align="center">
 						<hr />
 						<p>
@@ -494,18 +509,17 @@ FD TransFile.
 							/></a>
 						</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+				</div>
+			</div>
+			<!-- COBOL print files -->
+			<div class="section-grid">
+				<div class="section-header">
 					<h2 align="center" id="part2">COBOL print files</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">Introduction</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						In a business-programming environment, the ability to print reports is an important property for
 						a programming language. COBOL allows programmers to write to the printer, either directly or
@@ -514,13 +528,11 @@ FD TransFile.
 						<code class="language-cobol">WRITE</code> verb to control the placement of lines on the page.
 					</p>
 					<hr align="center" width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">Setting up a print file</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p align="left">
 						All data coming from, or going to, the peripherals must pass through a file buffer declared in
 						the File Section. The file buffer is associated with the physical device by means of a Select
@@ -531,13 +543,11 @@ FD TransFile.
 					</p>
 					<p align="left"><img height="256" src="Resources/pics/Printfile.gif" width="475" /></p>
 					<hr align="center" width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">Declaring print lines</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						A report is made up of groups of printed lines of different types. There may be heading lines at
 						the beginning of the report, and at the top of each page; there will be detail lines, where the
@@ -594,13 +604,11 @@ FD TransFile.
 						</li>
 					</ul>
 					<hr align="center" width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">Problems multiple print records.</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						There is a problem with the different kinds of print record we must have in a print file. As we
 						have seen in the previous section, if a file is declared as having multiple record types, all
@@ -619,13 +627,11 @@ FD TransFile.
 						<code class="language-cobol">FILE SECTION</code>. How do we set up a print file?
 					</p>
 					<hr align="center" width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">Setting up a print file</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						To set up a print file, the print line records are declared in the
 						<code class="language-cobol">WORKING-STORAGE SECTION</code>; and in the
@@ -639,13 +645,11 @@ FD TransFile.
 						<img height="425" src="Resources/pics/Printfile2.gif" width="430" />
 					</p>
 					<hr align="center" width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>The WRITE format revisited.</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							The WRITE syntax for writing to print files is more complicated than that used for writing
@@ -682,21 +686,14 @@ FD TransFile.
 					<div align="center">
 						<hr align="center" width="50%" />
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">Bringing it all together.</h4>
 					<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>The example program below implements the Student Details Report specified above;</p>
-					<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="58%">
-						<tr>
-							<td>
-								<pre
-									class="language-cobol"
-								><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+					<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  StudDetailsRpt.
 AUTHOR.  Michael Coughlan.
@@ -806,13 +803,8 @@ PrintPageHeadings.
    MOVE 3 TO LineCount.
 
 </code></pre>
-							</td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
+				</div>
+				<div class="section-full">
 					<div align="center">
 						<hr />
 						<p>
@@ -821,18 +813,17 @@ PrintPageHeadings.
 							/></a>
 						</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+				</div>
+			</div>
+			<!-- Variable length records -->
+			<div class="section-grid">
+				<div class="section-header">
 					<h2 align="center" id="part3">Variable length records</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">Introduction</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						COBOL programs normally process fixed-length records but sometimes files contain records of
 						different lengths. For instance, the transaction file introduced in the first section, contains
@@ -844,10 +835,8 @@ PrintPageHeadings.
 						processed.
 					</p>
 					<hr align="center" width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">FD entries for variable length records</h4>
 					<aside>
 						<p align="center">
@@ -858,8 +847,8 @@ PrintPageHeadings.
 							<code class="language-cobol">RECORD..VARYING</code> clause is the more versatile.
 						</p>
 					</aside>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p align="left">
 						The File Description (FD) entry was introduced in the first tutorial on Sequential files. But
 						the entry shown in that tutorial was very simple; it consisted of the letters FD followed by the
@@ -894,13 +883,11 @@ FD Stringfile
    FROM 1 TO 80 CHARACTERS
    DEPENDING ON StringSize.</code></pre>
 					<hr align="center" width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">How variable-length records, declared with the DEPENDING ON phrase, work.</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						When a record is read from a file, defined with the
 						<code class="language-cobol">RECORD IS VARYING IN SIZE.. DEPENDING ON</code> phrase, the size of
@@ -914,13 +901,11 @@ FD Stringfile
 						<code class="language-cobol">WRITE</code> statement must be executed.
 					</p>
 					<hr align="center" width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">Example program</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>The example program below introduces and number of new techniques and concepts;</p>
 					<ul>
 						<li>
@@ -944,12 +929,7 @@ FD Stringfile
 							position 1, to the character at position StringSize.
 						</li>
 					</ul>
-					<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="370">
-						<tr valign="top">
-							<td>
-								<pre
-									class="language-cobol"
-								><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+					<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  VarLenRecs.
 AUTHOR.  Michael Coughlan.
@@ -1051,20 +1031,15 @@ DisplayTransactions.
    END-READ.
 
 </code></pre>
-							</td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
+				</div>
+				<div class="section-full">
 					<hr />
 					<div align="center">
 						<a href="#top"><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132" /></a>
 					</div>
 					<copyright-notice></copyright-notice>
-				</td>
-			</tr>
-		</table>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>
