@@ -5,12 +5,77 @@
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<title>Creating tables - syntax and semantics</title>
 		<link href="Resources/css/course.css" rel="stylesheet" />
-		<style>table{max-width:100%}body>table,body>hr{margin-left:auto;margin-right:auto}img{max-width:100%;height:auto}pre{overflow-x:auto;max-width:100%}</style>
-		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
-		<script src="Resources/vendor/prism/prism.min.js" defer></script>
-		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
-		<style type="text/css">
+		<style>
+			table { max-width: 100%; }
+			img { max-width: 100%; height: auto; }
+
+			.section-header h2 {
+				color: #ffff00;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			.section-sidebar h3,
+			.section-sidebar h4 {
+				color: #800000;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			.page-wrapper {
+				max-width: 715px;
+				margin: 0 auto;
+				border: 1px solid;
+				box-sizing: border-box;
+			}
+
+			.section-grid {
+				display: grid;
+				grid-template-columns: 175px 1fr;
+				align-items: stretch;
+			}
+
+			.section-header {
+				grid-column: 1 / -1;
+				background-color: #993300;
+				padding: 4px;
+			}
+
+			.section-sidebar {
+				background-color: #FFFFCC;
+				padding: 4px;
+			}
+
+			.section-content {
+				padding: 4px;
+				min-width: 0;
+			}
+
+			.section-full {
+				grid-column: 1 / -1;
+				padding: 4px;
+			}
+
+			form select {
+				max-width: 100%;
+				box-sizing: border-box;
+			}
+
 			@media (max-width: 600px) {
+				.section-grid {
+					display: block;
+				}
+
+				.section-sidebar h3,
+				.section-sidebar h4,
+				.section-sidebar p {
+					margin: 0.2em 0;
+				}
+
+				form select {
+					max-width: 100%;
+					width: 100%;
+					box-sizing: border-box;
+				}
+
 				form table:has(select) select {
 					max-width: 100%;
 					width: 100%;
@@ -34,13 +99,20 @@
 				}
 			}
 		</style>
+		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
+		<style>
+			pre[class*="language-"],
+			code[class*="language-"] { white-space: pre-wrap; overflow: visible; overflow-wrap: break-word; }
+		</style>
+		<script src="Resources/vendor/prism/prism.min.js" defer></script>
+		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
 		<script src="../components/copyright-notice.js" defer></script>
 	</head>
 
 	<body alink="#009B00" bgcolor="#FFFFFF" link="#0000FF" text="#000000" vlink="#FF0000">
-		<table id="layout-table" border="1" width="715" cellpadding="4" cellspacing="0">
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top">
+		<div class="page-wrapper">
+			<div class="section-grid">
+				<div class="section-full">
 					<center>
 						<p><img height="59" src="Resources/pics/t-CobolTut.gif" width="173" /></p>
 					</center>
@@ -77,18 +149,15 @@
 						</li>
 					</ul>
 					<hr />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top">
+				</div>
+
+				<div class="section-header">
 					<h2 align="center" id="intro">Introduction</h2>
-				</td>
-			</tr>
-			<tr>
-				<td bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Aims</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							In the "Using Tables" tutorial we examined why we might want to use tables as part of the
@@ -101,13 +170,11 @@
 						</p>
 					</div>
 					<hr align="center" size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Objectives</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>By the end of this unit you should -</p>
 					<ol>
 						<li>
@@ -130,13 +197,11 @@
 						</li>
 					</ol>
 					<hr align="center" size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Prerequisites</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<ul>
 						<li>Introduction to COBOL</li>
 						<li>Declaring data in COBOL</li>
@@ -149,10 +214,8 @@
 						<li>Sorting and Merging files</li>
 						<li>Using Tables</li>
 					</ul>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top">
+				</div>
+				<div class="section-full">
 					<div align="center">
 						<hr />
 						<p>
@@ -161,18 +224,15 @@
 							/></a>
 						</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top">
+				</div>
+
+				<div class="section-header">
 					<h2 align="center" id="part1">Declaring a single dimension table</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Introduction</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p align="left">
 						In the "Using Tables" tutorial we saw how would could use a table to hold county tax totals. We
 						even had a brief look at how that table might be created.
@@ -182,13 +242,11 @@
 						CountyTaxTable, may be created.
 					</p>
 					<hr size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Tables - general notes</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p align="left">
 						Most programming languages use the term "array" to describe repeated, or multiple- occurrence,
 						data-items. COBOL uses the term "table".
@@ -217,13 +275,11 @@
 					</ul>
 					<p align="left">A table is stored in memory as a contiguous block of bytes.</p>
 					<hr size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Using the <code class="language-cobol">OCCURS</code> clause to declare a table</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						Tables are declared using an extension to the
 						<code class="language-cobol">PICTURE</code> clause, called the
@@ -268,13 +324,11 @@
 						</p>
 						<hr size="1" width="100%" />
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>OCCURS clause syntax and rules</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						This section of the tutorial introduces simple version of the
 						<code class="language-cobol">OCCURS</code> clause but keep in mind that the
@@ -328,29 +382,17 @@
 						<li>Subscripts must be enclosed in parentheses/brackets.</li>
 					</ol>
 					<hr size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Table examples and some SAQ's</h4>
 					<p align="center"><img height="46" src="Resources/pics/i-SAQ2.gif" width="32" /></p>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						Examine the example table declarations below and then attempt to answer the self assessment
 						questions.
 					</p>
-					<table
-						align="center"
-						background="Resources/pics/code.gif"
-						border="1"
-						cellpadding="5"
-						height="171"
-						width="475"
-					>
-						<tr>
-							<td>
-								<pre class="language-cobol"><code class="language-cobol">WORKING-STORAGE SECTION.
+					<pre class="language-cobol"><code class="language-cobol">WORKING-STORAGE SECTION.
 01 DeptTotalsTable.
    02 DeptTotal PIC 9(6) OCCURS 7.
 
@@ -358,13 +400,10 @@
    02 VATRate   PIC 99V99 OCCURS 3.
 
 01 RatesTable VALUE ZEROES.
-   88 TableNotPrimed  VALUE ZEROS.     
+   88 TableNotPrimed  VALUE ZEROS.
    02 ExchangeRate OCCURS 50 TIMES PIC 9(5)V99.
 
 01 MonthName   PIC X(3)OCCURS 12 TIMES. </code></pre>
-							</td>
-						</tr>
-					</table>
 					<form action="Tables2.html" method="post">
 						<div align="center">
 							<table bgcolor="#E1FFE1" border="1" width="96%">
@@ -440,13 +479,11 @@
 						</div>
 					</form>
 					<hr size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Declaring a variable length table.</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						A variable-length table may be declared using the
 						<code class="language-cobol">OCCURS</code> clause syntax below.
@@ -472,13 +509,11 @@
 						</li>
 					</ol>
 					<p><b>Example</b></p>
-					<pre class="language-cobol"><code class="language-cobol">01 BooksReservedTable. 
-   02 BookId PIC 9(7) OCCURS 1 TO 10 
+					<pre class="language-cobol"><code class="language-cobol">01 BooksReservedTable.
+   02 BookId PIC 9(7) OCCURS 1 TO 10
                       DEPENDING ON NumOfReservations. </code></pre>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top">
+				</div>
+				<div class="section-full">
 					<div align="center">
 						<hr />
 						<p>
@@ -487,29 +522,24 @@
 							/></a>
 						</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top">
+				</div>
+
+				<div class="section-header">
 					<h2 align="center" id="part2">Group items as elements</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Introduction</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						The elements of a table do not have to be elementary items. An element can be a group item. In
 						other words each element can be subdivided into two, or more, subordinate items.
 					</p>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Setting up a combined table</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						Let's illustrate this with an example. Suppose the specification of the County Tax Report
 						program were changed to say that, as well as the amount of tax paid in each county, the report
@@ -532,7 +562,7 @@
 					<p>For example -</p>
 					<pre class="language-cobol"><code class="language-cobol">01 CountyTaxTable.
    02 CountyTaxDetails OCCURS 26 TIMES.
-      03 CountyTax   PIC 9(8)V99.  
+      03 CountyTax   PIC 9(8)V99.
       03 PayerCount  PIC 9(7). </code></pre>
 					<p>
 						In this example, <i>CountyTaxTable</i> is the name for the whole table and each element is
@@ -548,14 +578,12 @@
 						CountyTaxDetails(sub), CountyTax(sub) and PayerCount(sub) must be used.
 					</p>
 					<hr size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Self Assessment Questions and animated example</h4>
 					<p align="center"><img height="46" src="Resources/pics/i-SAQ2.gif" width="32" /></p>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						Q1. Examine the CountyTaxTable described above. Suppose that in our program we have the
 						following statements;
@@ -575,13 +603,13 @@ MOVE ZEROS TO CountyTaxTable</code></pre>
 					<p>Q2. What is the difference between the following data descriptions;</p>
 					<pre class="language-cobol"><code class="language-cobol">01 CountyTaxTable1.
    02 CountyTaxDetails OCCURS 26 TIMES.
-      03 CountyTax   PIC 9(8)V99.  
-      03 PayerCount  PIC 9(7). 
+      03 CountyTax   PIC 9(8)V99.
+      03 PayerCount  PIC 9(7).
 
 01 CountyTaxTable2.
-   02 CountyTaxDetails 
-      03 CountyTax   PIC 9(8)V99 OCCURS 26 TIMES.  
-      03 PayerCount  PIC 9(7)OCCURS 26 TIMES. 
+   02 CountyTaxDetails
+      03 CountyTax   PIC 9(8)V99 OCCURS 26 TIMES.
+      03 PayerCount  PIC 9(7)OCCURS 26 TIMES.
 </code></pre>
 					<form action="Tables2.html" method="post">
 						<div align="center">
@@ -599,14 +627,12 @@ MOVE ZEROS TO CountyTaxTable</code></pre>
 						</div>
 					</form>
 					<hr size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Example program</h4>
 					<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						This example program implements the County Tax Report program. It has some interesting features;
 					</p>
@@ -627,12 +653,9 @@ MOVE ZEROS TO CountyTaxTable</code></pre>
 							second element or to the third element and so on.
 						</li>
 					</ul>
-					<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="475">
-						<tr>
-							<td>
-								<pre
-									class="language-cobol"
-								><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+					<pre
+							class="language-cobol"
+						><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. CountyTaxTable.
 AUTHOR. Michael Coughlan.
@@ -654,7 +677,7 @@ FD TaxFile.
 WORKING-STORAGE SECTION.
 01 CountyTaxTable.
    02 CountyTaxDetails OCCURS 26 TIMES.
-      03 CountyTax   PIC 9(8)V99.  
+      03 CountyTax   PIC 9(8)V99.
       03 PayerCount  PIC 9(7).
          88 NoOnePaidTax VALUE ZEROS.
 
@@ -694,13 +717,8 @@ DisplayCountyTaxes.
       MOVE PayerCount(Idx) TO PrnPayers
       DISPLAY CountyTaxLine
    END-IF.</code></pre>
-							</td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top">
+				</div>
+				<div class="section-full">
 					<div align="center">
 						<hr />
 						<p>
@@ -709,18 +727,15 @@ DisplayCountyTaxes.
 							/></a>
 						</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top">
+				</div>
+
+				<div class="section-header">
 					<h2 align="center" id="part3">Declaring multi-dimension tables</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Introduction</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p align="left">
 						The Census Office has provided us with a file containing the AgeCategory, Gender, CountyCode and
 						car ownership information of every person in the country. The CensusFile is an unordered
@@ -782,13 +797,11 @@ DisplayCountyTaxes.
 						Suppose we were asked to write a program to produce a report displaying the number of males, and
 						the number of females, in each AgeCategory - Child, Teen and Adult. How would we go about it?
 					</p>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Problem discussion</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p align="left">
 						One way to solve this problem, would be to sort the file on AgeCategory and Gender, and then
 						treat it as a control break problem.
@@ -842,13 +855,11 @@ END-EVALUATE.
 						hold the totals. Since the elements of a two dimension table require two subscripts, we can use
 						the AgeCategory and the Gender to identify the particular element we need to access.
 					</p>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>A two dimension table</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p align="left">
 						A multi-dimension table is declared by nesting
 						<code class="language-cobol">OCCURS</code> clauses. So we can define the two dimension
@@ -866,7 +877,7 @@ END-EVALUATE.
 					<pre class="language-cobol" align="left"><code class="language-cobol">01 PopulationTable.
    02 Age OCCURS 3 TIMES.
       03 Gender OCCURS 2 TIMES.
-         04 PopTotal   PIC 9(6). 
+         04 PopTotal   PIC 9(6).
 </code></pre>
 					<p align="left">We can represent this table diagrammatically as -</p>
 					<p align="center"><img height="170" src="Resources/pics/Tables4.gif" width="470" /></p>
@@ -880,14 +891,12 @@ END-EVALUATE.
 						<code class="language-cobol">OCCURS</code> clause is subordinate to the another.
 					</p>
 					<hr size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Self Assessment Questions and examples</h4>
 					<p align="center"><img height="46" src="Resources/pics/i-SAQ2.gif" width="32" /></p>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						Sketch the diagram above on a piece of paper and then show how the contents of the table are
 						effected when the following statements are executed.
@@ -904,13 +913,11 @@ MOVE ZEROS TO Age(3)</code></pre>
 						/></a>
 					</p>
 					<hr size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Displaying the population report for each county</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						Let's suppose that the specification for the Population Report problem changes so that instead
 						of just producing the Age/Gender totals for the country we are asked to display these totals for
@@ -940,13 +947,11 @@ MOVE ZEROS TO Age(3)</code></pre>
 						dimension table defined above. Two dimensions plus one dimension equals three dimensions. What
 						we need is a three dimension table.
 					</p>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Creating a three dimension table</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						Creating a three dimension table from the existing two dimension table is as simple as inserting
 						another occurs clause. The three dimension <i>PopulationTable</i> may be defined as shown below.
@@ -957,18 +962,16 @@ MOVE ZEROS TO Age(3)</code></pre>
    02 County OCCURS 26 TIMES.
       03 Age OCCURS 3 TIMES.
          04 Gender OCCURS 2 TIMES.
-            05 PopTotal   PIC 9(6).  
+            05 PopTotal   PIC 9(6).
 </code></pre>
 					<p>This table may be represented diagrammatically as follows -</p>
 					<p align="center"><img height="145" src="Resources/pics/Tables5.gif" width="480" /></p>
 					<hr size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Self Assessment Questions and examples</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						Sketch the diagram above on a piece of paper and then show how the contents of the table are
 						effected when the following statements are executed.
@@ -977,7 +980,7 @@ MOVE ZEROS TO Age(3)</code></pre>
 MOVE ZEROS TO Age(2,3)
 MOVE ZEROS TO PopTotal(2,1,2)
 MOVE 56 TO PopTotal(1,3,2)
-MOVE 12 TO PopTotal(2,1,1) 
+MOVE 12 TO PopTotal(2,1,1)
 MOVE ZEROS TO PopulationTable</code></pre>
 					<p>Click on the animation icon below to see an animated answer.</p>
 					<p align="center">
@@ -986,13 +989,11 @@ MOVE ZEROS TO PopulationTable</code></pre>
 						/></a>
 					</p>
 					<hr size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>One last tweak to the problem specification.</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						As well as the AgeCategory, Gender and CountyCode fields, the Census File provides information
 						on the car ownership of every person in the country.
@@ -1065,10 +1066,8 @@ ADD 1643 TO CarOwnersTotal(15)
 MOVE ZEROS TO Age(17,3)
 MOVE ZEROS TO Gender(18,3,2)
 ADD 56 TO PopTotal(12,3,2)</code></pre>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top">
+				</div>
+				<div class="section-full">
 					<div align="center">
 						<hr />
 						<p>
@@ -1077,18 +1076,15 @@ ADD 56 TO PopTotal(12,3,2)</code></pre>
 							/></a>
 						</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top">
+				</div>
+
+				<div class="section-header">
 					<h2 align="center" id="part4">Creating pre-filled tables with the REDEFINES clause</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">Introduction</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						When a file that contains different types of record is declared in the
 						<code class="language-cobol">FILE SECTION</code>, a record description is created for each
@@ -1110,13 +1106,11 @@ ADD 56 TO PopTotal(12,3,2)</code></pre>
 						is to use the <code class="language-cobol">REDEFINES</code> clause.
 					</p>
 					<hr size="1" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Non-tables uses for the REDEFINES clause - some examples</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p align="left">
 						<b>Example 1<br /></b> Some COBOL statements, like the UNSTRING, require their receiving fields
 						to be alphanumeric (PIC X) data-items. This is inconvenient if the value of the data-item is
@@ -1191,7 +1185,7 @@ ADD 56 TO PopTotal(12,3,2)</code></pre>
     WHEN DateIsEuro
            DISPLAY "EuroDate format is dd-mm-yyyy "
            DISPLAY  EuroDay "-" EuroMonth "-" EuroYear
-    WHEN DateIsUS 
+    WHEN DateIsUS
            DISPLAY "USDate format is mm-dd-yyyy "
            DISPLAY  USMonth "-" USDay "-" USYear
 END-EVALUATE </code></pre>
@@ -1213,13 +1207,11 @@ END-EVALUATE </code></pre>
 						/></a>
 					</p>
 					<hr size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>REDEFINES syntax and rules</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p><img height="48" src="Resources/pics/Redefines.gif" width="358" /></p>
 					<p><b>REDEFINES</b> <b>rules</b></p>
 					<ol>
@@ -1253,13 +1245,11 @@ END-EVALUATE </code></pre>
 						<li>There can be no intervening entries that define additional character positions.</li>
 					</ol>
 					<hr size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Using the REDEFINES clause to create a pre-filled table.</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						The REDEFINES clause can be used to create a pre-filled table by applying the following
 						procedure -
@@ -1297,14 +1287,12 @@ END-EVALUATE </code></pre>
 						/></a>
 					</p>
 					<hr size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Example program</h4>
 					<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						In this example, we revisit the County Tax Report program. In the previous version we had to
 						indicate the county by displaying the <i>CountyCode</i>. This was not very satisfactory because
@@ -1312,12 +1300,9 @@ END-EVALUATE </code></pre>
 						pre-filled table of county names to allow us to display the name of the county.
 					</p>
 					<p>The new parts of the program are coloured red.</p>
-					<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="475">
-						<tr>
-							<td>
-								<pre
-									class="language-cobol"
-								><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+					<pre
+						class="language-cobol"
+					><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. CountyTaxTable.
 AUTHOR. Michael Coughlan.
@@ -1339,7 +1324,7 @@ FD TaxFile.
 WORKING-STORAGE SECTION.
 01 CountyTaxTable.
    02 CountyTaxDetails OCCURS 26 TIMES.
-      03 CountyTax   PIC 9(8)V99.  
+      03 CountyTax   PIC 9(8)V99.
       03 PayerCount  PIC 9(7).
          88 NoOnePaidTax VALUE ZEROS.
 
@@ -1415,17 +1400,12 @@ DisplayCountyTaxes.
       MOVE PayerCount(Idx) TO PrnPayers
       DISPLAY CountyTaxLine
    END-IF.</code></pre>
-							</td>
-						</tr>
-					</table>
 					<hr size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Creating pre-filled tables without using the REDEFINES clause.</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						The 1985 COBOL standard introduced a number of changes to tables. Among these changes was a
 						method that allowed pre-filled tables to be created without using the
@@ -1439,8 +1419,8 @@ DisplayCountyTaxes.
 						table the overall group name <i>- DayTable</i>. Assigning the values to this groupname fills the
 						area of the table with the values.
 					</p>
-					<pre class="language-cobol"><code class="language-cobol">01 DayTable VALUE "MonTueWedThrFriSatSun". 
-   02 Day OCCURS 7 TIMES PIC X(3). 
+					<pre class="language-cobol"><code class="language-cobol">01 DayTable VALUE "MonTueWedThrFriSatSun".
+   02 Day OCCURS 7 TIMES PIC X(3).
 
 </code></pre>
 					<div align="center">
@@ -1451,13 +1431,11 @@ DisplayCountyTaxes.
 							width="369"
 						/>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>COBOL'85 table initialisation changes</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p align="left">
 						The 1985 COBOL standard also introduced some changes to the way tables are initialised.
 					</p>
@@ -1467,8 +1445,8 @@ DisplayCountyTaxes.
 						table's group name. For instance, the statement
 						<i>- MOVE ZEROS TO TaxTable</i> - initialises the table below to zeros.
 					</p>
-					<pre class="language-cobol"><code class="language-cobol">01 TaxTable. 
-   02 CountyTax  PIC 9(5) OCCURS 26 TIMES. 
+					<pre class="language-cobol"><code class="language-cobol">01 TaxTable.
+   02 CountyTax  PIC 9(5) OCCURS 26 TIMES.
 </code></pre>
 					<p>
 						But initialising a table was much more difficult if each element was a group item that contained
@@ -1477,9 +1455,9 @@ DisplayCountyTaxes.
 						to be initialised to spaces. The only way do this is to initialise the items, element by
 						element, using an iteration.
 					</p>
-					<pre class="language-cobol"><code class="language-cobol">01 TaxTable. 
-   02 County OCCURS 26 TIMES. 
-      03 CountyTax  PIC 9(5). 
+					<pre class="language-cobol"><code class="language-cobol">01 TaxTable.
+   02 County OCCURS 26 TIMES.
+      03 CountyTax  PIC 9(5).
       03 CountyName PIC X(12).</code></pre>
 					<p>
 						At least that was the way it had to be done before the 1985 COBOL standard. Now the table can be
@@ -1487,21 +1465,19 @@ DisplayCountyTaxes.
 						<code class="language-cobol">VALUE</code> clause. The description below initialises the
 						CountyTax part of the element to zeros and the CountyName part to spaces.
 					</p>
-					<pre class="language-cobol"><code class="language-cobol">01 TaxTable. 
-   02 County OCCURS 26 TIMES. 
-      03 CountyTax  PIC 9(5) VALUE ZEROS. 
+					<pre class="language-cobol"><code class="language-cobol">01 TaxTable.
+   02 County OCCURS 26 TIMES.
+      03 CountyTax  PIC 9(5) VALUE ZEROS.
       03 CountyName PIC X(12) VALUE SPACES.</code></pre>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
+				</div>
+				<div class="section-full">
 					<hr />
 					<div align="center">
 						<a href="#top"><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132" /></a>
 					</div>
 					<copyright-notice></copyright-notice>
-				</td>
-			</tr>
-		</table>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>
