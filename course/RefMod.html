@@ -5,79 +5,193 @@
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<title>Reference Modification</title>
 		<link href="Resources/css/course.css" rel="stylesheet" />
-		<style>table{max-width:100%}body>table,body>hr{margin-left:auto;margin-right:auto}img{max-width:100%;height:auto}pre{overflow-x:auto;max-width:100%}</style>
+		<style>
+			.section-header h2 {
+				color: #ffff00;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			.section-sidebar h3,
+			.section-sidebar h4 {
+				color: #800000;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			.page-wrapper {
+				max-width: 715px;
+				margin: 0 auto;
+				border: 1px solid;
+				box-sizing: border-box;
+			}
+
+			.page-content {
+				padding: 2px;
+			}
+
+			.page-footer {
+				padding: 2px;
+			}
+
+			.section-grid {
+				display: grid;
+				grid-template-columns: 175px 1fr;
+				align-items: stretch;
+			}
+
+			.section-header {
+				grid-column: 1 / -1;
+				background-color: #993300;
+				padding: 4px;
+			}
+
+			.section-sidebar {
+				background-color: #ffffcc;
+				padding: 4px;
+			}
+
+			.section-content {
+				padding: 4px;
+				min-width: 0;
+			}
+
+			.section-content table {
+				max-width: 100%;
+			}
+
+			.table-scroll {
+				overflow-x: auto;
+			}
+
+			.table-scroll table {
+				width: 100%;
+				table-layout: fixed;
+			}
+
+			.table-scroll table th,
+			.table-scroll table td {
+				width: auto !important;
+				overflow-wrap: break-word;
+			}
+
+			.section-full {
+				grid-column: 1 / -1;
+				padding: 4px;
+			}
+
+			.results-box {
+				background-color: #ddffff;
+				border: 2px solid;
+				padding: 7px;
+				max-width: 366px;
+				margin: 0 auto;
+			}
+
+			.results-box-header {
+				text-align: center;
+				font-weight: bold;
+				margin-bottom: 0.5em;
+			}
+
+			.results-two-col {
+				display: flex;
+				gap: 1em;
+			}
+
+			img {
+				max-width: 100%;
+				height: auto;
+			}
+
+			pre {
+				overflow-x: auto;
+				max-width: 100%;
+			}
+
+			@media (max-width: 600px) {
+				.section-grid {
+					display: block;
+				}
+
+				.section-sidebar h3,
+				.section-sidebar h4,
+				.section-sidebar p {
+					margin: 0.2em 0;
+				}
+
+				.results-two-col {
+					flex-direction: column;
+					gap: 0;
+				}
+			}
+		</style>
 		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
 		<script src="Resources/vendor/prism/prism.min.js" defer></script>
 		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
 		<script src="../components/copyright-notice.js" defer></script>
 	</head>
 	<body alink="#009B00" bgcolor="#FFFFFF" link="#0000FF" text="#000000" vlink="#FF0000">
-		<table id="layout-table" border="1" width="715" cellpadding="4" cellspacing="0">
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
-					<center>
-						<p><img alt="" height="59" src="Resources/pics/t-CobolTut.gif" width="173" /></p>
-						<h1>Reference Modification and Intrinsic Functions</h1>
-					</center>
-					<hr />
-					<ul class="toc">
-						<li>
-							<a href="#intro">Introduction</a><br />
-							Unit aims, objectives and prerequisites.
-						</li>
-						<li>
-							<a href="#part1">Reference Modification</a><br />
-							This section examines the syntax and semantics of Reference Modification. The section ends
-							with some animated examples.
-						</li>
-						<li>
-							<a href="#part2">Intrinsic Functions - Introduction</a><br />
-							This section introduces COBOL's predefined functions - called Intrinsic Functions. It
-							explains how they may be used and introduces the notation used in the Intrinsic Function
-							definitions in the later sections.
-						</li>
-						<li>
-							<a href="#part3">String Functions</a><br />
-							This section presents the definitions of the Intrinsic Functions used for string handling .
-							The section ends with some examples.
-						</li>
-						<li>
-							<a href="#part4">Date Functions</a><br />
-							This section presents the definitions of the Intrinsic Functions used for date manipulations
-							. The section ends with a set of comprehensive examples.
-						</li>
-						<li>
-							<a href="#part5">Miscellaneous Functions</a><br />
-							This section presents the definitions of the other (mainly maths) Intrinsic Functions
-							including used for string handling . The section ends with an example using the RANDOM
-							Intrinsic Function..
-						</li>
-					</ul>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+		<div class="page-wrapper">
+			<div class="page-content">
+				<center>
+					<p><img alt="" height="59" src="Resources/pics/t-CobolTut.gif" width="173" /></p>
+					<h1>Reference Modification and Intrinsic Functions</h1>
+				</center>
+				<hr />
+				<ul class="toc">
+					<li>
+						<a href="#intro">Introduction</a><br />
+						Unit aims, objectives and prerequisites.
+					</li>
+					<li>
+						<a href="#part1">Reference Modification</a><br />
+						This section examines the syntax and semantics of Reference Modification. The section ends
+						with some animated examples.
+					</li>
+					<li>
+						<a href="#part2">Intrinsic Functions - Introduction</a><br />
+						This section introduces COBOL's predefined functions - called Intrinsic Functions. It
+						explains how they may be used and introduces the notation used in the Intrinsic Function
+						definitions in the later sections.
+					</li>
+					<li>
+						<a href="#part3">String Functions</a><br />
+						This section presents the definitions of the Intrinsic Functions used for string handling .
+						The section ends with some examples.
+					</li>
+					<li>
+						<a href="#part4">Date Functions</a><br />
+						This section presents the definitions of the Intrinsic Functions used for date manipulations
+						. The section ends with a set of comprehensive examples.
+					</li>
+					<li>
+						<a href="#part5">Miscellaneous Functions</a><br />
+						This section presents the definitions of the other (mainly maths) Intrinsic Functions
+						including used for string handling . The section ends with an example using the RANDOM
+						Intrinsic Function..
+					</li>
+				</ul>
+				<hr />
+			</div>
+			<!-- Introduction -->
+			<div class="section-grid">
+				<div class="section-header">
 					<h2 align="center" id="intro">Introduction</h2>
-				</td>
-			</tr>
-			<tr>
-				<td bgcolor="#FFFFCC" valign="top" width="160">
+				</div>
+				<div class="section-sidebar">
 					<h4>Aims</h4>
-				</td>
-				<td width="540">
+				</div>
+				<div class="section-content">
 					<p>
 						The aim of this unit is to provide to provide you with a solid understanding of string
 						manipulation using Reference Modification. It will also introduce you to Intrinsic Functions and
 						will show how strings may be manipulated using the the String Intrinsic Functions.
 					</p>
 					<hr />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="160">
+				</div>
+				<div class="section-sidebar">
 					<h4>Objectives</h4>
-				</td>
-				<td width="540">
+				</div>
+				<div class="section-content">
 					<p>By the end of this unit you should:</p>
 					<ol>
 						<li>Understand how Reference Modification works</li>
@@ -86,13 +200,11 @@
 						<li>Be able to using Intrinsic Functions for string and date manipulation.</li>
 					</ol>
 					<hr />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="160">
+				</div>
+				<div class="section-sidebar">
 					<h4>Prerequisites</h4>
-				</td>
-				<td width="525">
+				</div>
+				<div class="section-content">
 					<p>You should be familiar with the material covered in the unit;</p>
 					<ul>
 						<li>Data Declaration</li>
@@ -104,30 +216,27 @@
 						<li>The <code class="language-cobol">STRING</code> verb</li>
 						<li>The <code class="language-cobol">UNSTRING</code> verb</li>
 					</ul>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
+				</div>
+				<div class="section-full">
+					<hr />
 					<div align="center">
-						<hr />
 						<p>
 							<a href="#top"
 								><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
 							/></a>
 						</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+				</div>
+			</div>
+			<!-- Reference Modification -->
+			<div class="section-grid">
+				<div class="section-header">
 					<h2 align="center" id="part1">Reference Modification</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="160">
+				</div>
+				<div class="section-sidebar">
 					<h4>Definition &amp; Syntax</h4>
-				</td>
-				<td valign="top" width="540">
+				</div>
+				<div class="section-content">
 					<p>
 						Reference Modification allows you to treat a numeric (<code class="language-cobol">PIC 9</code>)
 						or alphanumeric (<code class="language-cobol">PIC X</code>) data-item as if it were an array of
@@ -154,13 +263,11 @@
 					</p>
 					<p>Reference Modification may be used almost anywhere an alphanumeric data-item is permitted.</p>
 					<hr />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Examples</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<pre class="language-cobol"><code class="language-cobol">WORKING-STORAGE SECTION.
 01 xString    PIC X(38) VALUE "This is the alphanumeric string".
 01 nString    PIC 9(5)V99 VALUE 34526.56.
@@ -176,18 +283,17 @@
 						></iframe>
 					</p>
 					<hr />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+				</div>
+			</div>
+			<!-- Intrinsic Functions -->
+			<div class="section-grid">
+				<div class="section-header">
 					<h2 align="center" id="part2">Intrinsic Functions</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Introduction</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						Although COBOL does not permit user-defined functions or procedures, it does have a number of
 						Intrinsic (built-in) Functions, which you can use in your programs.
@@ -197,13 +303,11 @@
 						functions.
 					</p>
 					<hr />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Using Intrinsic Functions</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						Like functions in other languages, an Intrinsic Function is replaced in the position where it
 						occurs by the function result.
@@ -217,13 +321,11 @@
 						Function may be referenced.
 					</p>
 					<hr />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Intrinsic Function Notes</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<ul>
 						<li>
 							Where the function result is alphanumeric it has an implicit usage of
@@ -246,13 +348,11 @@
 						</li>
 					</ul>
 					<hr />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Intrinsic Function Template</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>An Intrinsic Function consists of three parts;</p>
 					<ol>
 						<li>The start of the function is signalled by the keyword - FUNCTION.</li>
@@ -278,13 +378,11 @@
 						class="language-cobol"
 					><code class="language-cobol">DISPLAY FUNCTION UPPER-CASE("this will be in upper case").</code></pre>
 					<hr />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Intrinsic Function Notation</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						In the Intrinsic Function definitions in the sections below the functions produce a result of
 						one of the following types;
@@ -318,18 +416,18 @@
                      or
 MOVE FUNCTION ORD-MAX(IntElement(ALL)) TO OrdPos             </code></pre>
 					<hr />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+				</div>
+			</div>
+			<!-- String Functions -->
+			<div class="section-grid">
+				<div class="section-header">
 					<h2 align="center" id="part3">String Functions</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Definitions</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
+					<div class="table-scroll">
 					<div align="center">
 						<table bgcolor="#E1FFE1" border="2" cellpadding="7" cellspacing="0" width="502">
 							<tr>
@@ -440,20 +538,16 @@ MOVE FUNCTION ORD-MAX(IntElement(ALL)) TO OrdPos             </code></pre>
 							</tr>
 						</table>
 					</div>
+					</div>
 					<hr />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Examples</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>The statements in the following examples produce the results shown below.</p>
 					<hr />
-					<table background="Resources/pics/code.gif" border="0" width="100%">
-						<tr>
-							<td>
-								<pre class="language-cobol"><code class="language-cobol">
+					<pre class="language-cobol"><code class="language-cobol">
 WORKING-STORAGE SECTION.
 01 xString PIC X(38) VALUE "This is the alphanumeric string".
 01 OrdPos PIC 99.
@@ -485,21 +579,12 @@ Begin.
   STOP RUN.
 
 </code></pre>
-							</td>
-						</tr>
-					</table>
 					<hr />
 					<div align="center">
-						<table bgcolor="#DDFFFF" border="2" cellpadding="7" cellspacing="0" width="366">
-							<tr>
-								<td colspan="2" height="33" valign="top" width="21%">
-									<div align="center">
-										<b>Results</b>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td height="137" valign="top" width="21%">
+						<div class="results-box">
+							<div class="results-box-header">Results</div>
+							<div class="results-two-col">
+								<div>
 									Display 1 =<br />
 									Display 2 =<br />
 									Display 3 =<br />
@@ -509,8 +594,8 @@ Begin.
 									Display 7 =<br />
 									Display 8 =<br />
 									Display 9 =
-								</td>
-								<td height="137" valign="top" width="79%">
+								</div>
+								<div>
 									Character at pos 39 is = <b>&amp;</b><br />
 									Ord pos of A is = <b>66</b><br />
 									Highest character in sequence is at pos <b>03</b>
@@ -521,23 +606,23 @@ Begin.
 									<b>gnirts ciremunahpla eht si sihT</b><br />
 									<b>THIS IS THE ALPHANUMERIC STRING</b><br />
 									<b>this is the alphanumeric string</b>
-								</td>
-							</tr>
-						</table>
+								</div>
+							</div>
+						</div>
 					</div>
 					<hr />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+				</div>
+			</div>
+			<!-- Date Functions -->
+			<div class="section-grid">
+				<div class="section-header">
 					<h2 align="center" id="part4">Date Functions</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Definitions</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
+					<div class="table-scroll">
 					<div align="center">
 						<table bgcolor="#E1FFE1" border="2" cellpadding="7" cellspacing="0" width="502">
 							<tr>
@@ -635,23 +720,19 @@ Begin.
 							</tr>
 						</table>
 					</div>
+					</div>
 					<hr />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Examples</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						The example program below uses most of the date functions described in the table above. The
 						results from running the program are shown below.
 					</p>
 					<hr />
-					<table background="Resources/pics/code.gif" border="0" width="100%">
-						<tr>
-							<td>
-								<pre class="language-cobol"><code class="language-cobol">IDENTIFICATION DIVISION.
+					<pre class="language-cobol"><code class="language-cobol">IDENTIFICATION DIVISION.
 PROGRAM-ID. DateFunctions.
 AUTHOR. Michael Coughlan.
 DATA DIVISION.
@@ -723,45 +804,34 @@ Begin.
   NumOfDays " days time will be " MonthD "/" DayD "/" YearD
   STOP RUN.
 </code></pre>
-							</td>
-						</tr>
-					</table>
 					<hr />
 					<div align="center">
-						<table bgcolor="#DDFFFF" border="2" cellpadding="7" cellspacing="0" width="366">
-							<tr>
-								<td height="33" valign="top" width="21%">
-									<div align="center">
-										<b>Results</b>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td height="137" valign="top" width="79%">
-									Current Date is 01/26/1998<br />
-									Current Time is 12:20:17<br />
-									The local time is - GMT +00:00<br />
-									Enter the date of the bill (yyyymmdd) 19971227<br />
-									This bill is due today<br />
-									Enter the number of days - 365<br />
-									The date in 365 days time will be 01/27/1999
-								</td>
-							</tr>
-						</table>
+						<div class="results-box">
+							<div class="results-box-header">Results</div>
+							<div>
+								Current Date is 01/26/1998<br />
+								Current Time is 12:20:17<br />
+								The local time is - GMT +00:00<br />
+								Enter the date of the bill (yyyymmdd) 19971227<br />
+								This bill is due today<br />
+								Enter the number of days - 365<br />
+								The date in 365 days time will be 01/27/1999
+							</div>
+						</div>
 					</div>
 					<hr />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+				</div>
+			</div>
+			<!-- Miscellaneous Functions -->
+			<div class="section-grid">
+				<div class="section-header">
 					<h2 align="center" id="part5">Miscellaneous Functions</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Other Functions</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
+					<div class="table-scroll">
 					<div align="center">
 						<table bgcolor="#E1FFE1" border="2" cellpadding="7" cellspacing="0" width="502">
 							<tr>
@@ -1085,23 +1155,19 @@ Begin.
 							</tr>
 						</table>
 					</div>
+					</div>
 					<hr />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>General Examples</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						The example program below uses many of the functions described in the table above. The results
 						from running the program are shown below.
 					</p>
 					<hr />
-					<table background="Resources/pics/code.gif" border="0" width="100%">
-						<tr>
-							<td valign="top">
-								<pre class="language-cobol"><code class="language-cobol">IDENTIFICATION DIVISION.
+					<pre class="language-cobol"><code class="language-cobol">IDENTIFICATION DIVISION.
 PROGRAM-ID.  OtherFunctions.
 AUTHOR.  Michael Coughlan.
 *&gt; An example program using misc Intrinsic Functions
@@ -1145,42 +1211,29 @@ Begin.
   MOVE FUNCTION VARIANCE(Ielement(ALL)) TO IResult
   DISPLAY "The variance of the values is " IResult
   STOP RUN.</code></pre>
-							</td>
-						</tr>
-					</table>
 					<hr />
 					<div align="center">
-						<table bgcolor="#DDFFFF" border="2" cellpadding="7" cellspacing="0" width="366">
-							<tr>
-								<td height="33" valign="top" width="21%">
-									<div align="center">
-										<b>Results</b>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td height="137" valign="top" width="79%">
-									<p>
-										Max value is = 00545<br />
-										Max value is = 00078<br />
-										Median value is = 00023<br />
-										Midrange value is = 00040<br />
-										Min value is = 00003<br />
-										The sum of the values is 00181<br />
-										The variance of the values is 00887
-									</p>
-								</td>
-							</tr>
-						</table>
+						<div class="results-box">
+							<div class="results-box-header">Results</div>
+							<div>
+								<p>
+									Max value is = 00545<br />
+									Max value is = 00078<br />
+									Median value is = 00023<br />
+									Midrange value is = 00040<br />
+									Min value is = 00003<br />
+									The sum of the values is 00181<br />
+									The variance of the values is 00887
+								</p>
+							</div>
+						</div>
 					</div>
 					<hr />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Lotto Example</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						The example program below uses the RANDOM function to get and display 6 unique lotto numbers.
 						Valid lotto numbers fall between 1 and 42.
@@ -1201,10 +1254,7 @@ Begin.
 						</p>
 					</blockquote>
 					<hr />
-					<table background="Resources/pics/code.gif" border="0" width="100%">
-						<tr>
-							<td valign="top">
-								<pre class="language-cobol"><code class="language-cobol">IDENTIFICATION DIVISION.
+					<pre class="language-cobol"><code class="language-cobol">IDENTIFICATION DIVISION.
 PROGRAM-ID.  Lotto.
 AUTHOR.  Michael Coughlan.
 *&gt; This program displays six unique random lotto numbers.
@@ -1240,20 +1290,15 @@ Begin.
    STOP RUN.
 
 </code></pre>
-							</td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<hr />
-					<div align="center">
-						<a href="#top"><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132" /></a>
-					</div>
-					<copyright-notice></copyright-notice>
-				</td>
-			</tr>
-		</table>
+				</div>
+			</div>
+			<div class="page-footer">
+				<hr />
+				<div align="center">
+					<a href="#top"><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132" /></a>
+				</div>
+				<copyright-notice></copyright-notice>
+			</div>
+		</div>
 	</body>
 </html>
