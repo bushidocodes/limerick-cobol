@@ -5,93 +5,306 @@
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<title>COBOL Interation Constructs</title>
 		<link href="Resources/css/course.css" rel="stylesheet" />
-		<style>table{max-width:100%}body>table,body>hr{margin-left:auto;margin-right:auto}img{max-width:100%;height:auto}pre{overflow-x:auto;max-width:100%}</style>
-		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
-		<script src="Resources/vendor/prism/prism.min.js" defer></script>
-		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
 		<style type="text/css">
+			ul.toc {
+				list-style-image: url(Resources/pics/BallGreenG.gif);
+				padding-left: 2.5em;
+				margin: 1em 0;
+			}
+
+			ul.toc > li {
+				padding-left: 0.4em;
+				margin-bottom: 0.6em;
+				font-size: smaller;
+			}
+
+			ul.toc a {
+				font-weight: bold;
+				font-size: larger;
+			}
+
+			.section-header h2 {
+				color: #ffff00;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			.section-sidebar h3,
+			.section-sidebar h4 {
+				color: #800000;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			.page-wrapper {
+				max-width: 715px;
+				margin: 0 auto;
+				border: 1px solid;
+				box-sizing: border-box;
+			}
+
+			.page-content {
+				padding: 2px;
+			}
+
+			.section-grid {
+				display: grid;
+				grid-template-columns: 175px 1fr;
+			}
+
+			.section-header {
+				grid-column: 1 / -1;
+				background-color: #993300;
+				padding: 4px;
+				min-width: 0;
+				border-bottom: 1px solid;
+			}
+
+			.section-sidebar {
+				background-color: #FFFFCC;
+				padding: 4px;
+				align-self: stretch;
+				min-width: 0;
+				border-right: 1px solid;
+				border-bottom: 1px solid;
+			}
+
+			.section-content {
+				padding: 4px;
+				align-self: start;
+				min-width: 0;
+				border-bottom: 1px solid;
+			}
+
+			.section-full {
+				grid-column: 1 / -1;
+				padding: 4px;
+				min-width: 0;
+				border-bottom: 1px solid;
+			}
+
+			.section-full:last-child {
+				border-bottom: none;
+			}
+
+			.section-code-bg {
+				background-image: url(Resources/pics/code.gif);
+			}
+
+
+			.processing-template {
+				background-color: #E1FFE1;
+				border: 1px solid;
+				padding: 0;
+				width: 75%;
+				margin: 0.5em auto;
+				overflow: hidden;
+			}
+
+			.processing-template-header {
+				background-color: #FFFFCC;
+				text-align: center;
+				padding: 5px;
+				border-bottom: 1px solid;
+				font-weight: bold;
+			}
+
+			.processing-template-body {
+				padding: 5px;
+			}
+
+			.saq-table {
+				background-color: #E1FFE1;
+				border: 1px solid;
+				margin: 0 auto;
+				overflow: hidden;
+			}
+
+			.saq-row {
+				display: grid;
+				grid-template-columns: 8% 62% 30%;
+				border-bottom: 1px solid;
+			}
+
+			.saq-row:last-child {
+				border-bottom: none;
+			}
+
+			.saq-label {
+				background-color: #FFFFCC;
+				padding: 4px 8px;
+				font-weight: bold;
+				border-right: 1px solid;
+			}
+
+			.saq-question {
+				padding: 4px 8px;
+				border-right: 1px solid;
+			}
+
+			.saq-answer {
+				padding: 4px 8px;
+				vertical-align: top;
+			}
+
+			img {
+				max-width: 100%;
+				height: auto;
+			}
+
+			pre {
+				max-width: 100%;
+				white-space: pre-wrap;
+				word-wrap: break-word;
+				overflow-wrap: break-word;
+			}
+
+			pre[class*="language-"],
+			code[class*="language-"] {
+				white-space: pre-wrap !important;
+				overflow-wrap: break-word;
+			}
+
+			body {
+				-webkit-text-size-adjust: 100%;
+			}
+
 			@media (max-width: 600px) {
-				form table:has(select) select {
+				body {
+					margin: 4px;
+					overflow-wrap: break-word;
+					word-wrap: break-word;
+				}
+
+				.section-header h2,
+				.section-header h3 {
+					margin: 0.3em 0;
+				}
+
+				blockquote {
+					margin-left: 12px;
+					margin-right: 12px;
+				}
+
+				img,
+				iframe,
+				video,
+				embed,
+				object {
+					max-width: min(100%, calc(100vw - 16px)) !important;
+					height: auto;
+				}
+
+				pre {
+					max-width: min(100%, calc(100vw - 16px)) !important;
+					white-space: pre-wrap;
+					word-wrap: break-word;
+					overflow-wrap: break-word;
+				}
+
+				pre[class*="language-"],
+				code[class*="language-"] {
+					white-space: pre-wrap !important;
+					overflow-wrap: break-word;
+				}
+
+				pre[class*="language-"] {
+					font-size: 0.8em;
+					line-height: 1.35;
+					padding: 0.6em;
+					overflow-x: auto;
+				}
+
+				.section-grid {
+					display: block;
+				}
+
+				.section-sidebar h3,
+				.section-sidebar h4,
+				.section-sidebar p {
+					margin: 0.2em 0;
+				}
+
+				.saq-row {
+					display: block;
+					border-bottom: 2px solid #999;
+				}
+
+				.saq-label {
+					border-right: none;
+					padding-bottom: 2px;
+				}
+
+				.saq-question {
+					border-right: none;
+				}
+
+				.saq-answer select {
 					max-width: 100%;
 					width: 100%;
 					box-sizing: border-box;
 				}
 
-				form table:has(select) > tbody > tr {
-					display: block;
-					border-bottom: 2px solid #999;
-				}
-
-				form table:has(select) > tbody > tr > td {
-					display: block;
-					width: auto !important;
-					padding: 6px 8px;
-				}
-
-				form table:has(select) > tbody > tr > td[bgcolor="#FFFFCC"] {
-					font-weight: bold;
-					padding-bottom: 2px;
+				.processing-template {
+					width: 100%;
 				}
 			}
 		</style>
+		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
+		<script src="Resources/vendor/prism/prism.min.js" defer></script>
+		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
 		<script src="../components/copyright-notice.js" defer></script>
 	</head>
 
 	<body alink="#009B00" bgcolor="#FFFFFF" link="#0000FF" text="#000000" vlink="#FF0000">
-		<table id="layout-table" border="1" width="715" cellpadding="4" cellspacing="0">
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
-					<center>
-						<p><img height="59" src="Resources/pics/t-CobolTut.gif" width="173" /></p>
-						<h1>COBOL Iteration Constructs</h1>
-					</center>
-					<hr />
-					<ul class="toc">
-						<li>
-							<a href="#intro">Introduction</a><br />
-							Unit aims, objectives, prerequisites.
-						</li>
-						<li>
-							<a href="#part1">PERFORM..Proc</a><br />
-							This section introduces the format of the
-							<code class="language-cobol">PERFORM</code> that is used to transfer control to a paragraph
-							or section.
-						</li>
-						<li>
-							<a href="#part2">Using the PERFORM..THRU</a><br />
-							This section demonstrates how the <code class="language-cobol">PERFORM..THRU</code> can be
-							used to implement an emergency exit from a paragraph.
-						</li>
-						<li>
-							<a href="#part3">PERFORM..TIMES</a><br />
-							This section introduces the <code class="language-cobol">PERFORM..TIMES</code> which allow
-							us to create an iteration that executes x number of times. Also discusses the use of in-line
-							versus out-of-line <code class="language-cobol">PERFORM</code>s
-						</li>
-						<li>
-							<a href="#part4">PERFORM..UNTIL</a><br />
-							In this section <code class="language-cobol">PERFORM..UNTIL</code>, COBOL's version of the
-							while and do/repeat loops, is introduced.
-						</li>
-						<li>
-							<a href="#part5">PERFORM..VARYING</a><br />
-							This section demonstrates <code class="language-cobol">PERFORM..VARYING</code>, COBOL's
-							version of the for loop.
-						</li>
-					</ul>
-					<hr />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+		<div class="page-wrapper">
+			<div class="page-content">
+				<center>
+					<p id="top"><img height="59" src="Resources/pics/t-CobolTut.gif" width="173" /></p>
+					<h1>COBOL Iteration Constructs</h1>
+				</center>
+				<hr />
+				<ul class="toc">
+					<li>
+						<a href="#intro">Introduction</a><br />
+						Unit aims, objectives, prerequisites.
+					</li>
+					<li>
+						<a href="#part1">PERFORM..Proc</a><br />
+						This section introduces the format of the
+						<code class="language-cobol">PERFORM</code> that is used to transfer control to a paragraph
+						or section.
+					</li>
+					<li>
+						<a href="#part2">Using the PERFORM..THRU</a><br />
+						This section demonstrates how the <code class="language-cobol">PERFORM..THRU</code> can be
+						used to implement an emergency exit from a paragraph.
+					</li>
+					<li>
+						<a href="#part3">PERFORM..TIMES</a><br />
+						This section introduces the <code class="language-cobol">PERFORM..TIMES</code> which allow
+						us to create an iteration that executes x number of times. Also discusses the use of in-line
+						versus out-of-line <code class="language-cobol">PERFORM</code>s
+					</li>
+					<li>
+						<a href="#part4">PERFORM..UNTIL</a><br />
+						In this section <code class="language-cobol">PERFORM..UNTIL</code>, COBOL's version of the
+						while and do/repeat loops, is introduced.
+					</li>
+					<li>
+						<a href="#part5">PERFORM..VARYING</a><br />
+						This section demonstrates <code class="language-cobol">PERFORM..VARYING</code>, COBOL's
+						version of the for loop.
+					</li>
+				</ul>
+				<hr />
+			</div>
+			<div class="section-grid">
+				<div class="section-header">
 					<h2 align="center" id="intro">Introduction</h2>
-				</td>
-			</tr>
-			<tr>
-				<td bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Aims</h4>
-				</td>
-				<td width="540">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							In almost every programming job, there is some task that needs to be done over and over
@@ -160,13 +373,11 @@
 						</center>
 						<hr width="50%" />
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Objectives</h4>
-				</td>
-				<td valign="top" width="540">
+				</div>
+				<div class="section-content">
 					<p>By the end of this unit you should -</p>
 					<ol>
 						<li>
@@ -190,23 +401,19 @@
 						<li>Understand the significance of the order of execution in the PERFORM..VARYING flowchart</li>
 					</ol>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="77" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Prerequisites</h4>
-				</td>
-				<td height="77" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<ul>
 						<li>Introduction to COBOL</li>
 						<li>Declaring data in COBOL</li>
 						<li>Basic Procedure Division Commands</li>
 						<li>Selection Constructs</li>
 					</ul>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
+				</div>
+				<div class="section-full">
 					<div align="center">
 						<hr />
 						<p>
@@ -215,18 +422,14 @@
 							/></a>
 						</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+				</div>
+				<div class="section-header">
 					<h2 align="center" id="part1">PERFORM..Proc</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Introduction</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							If you have written programs in another language, you will probably have come across the
@@ -273,10 +476,8 @@
 					<div align="center">
 						<hr width="50%" />
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>PERFORM format 1 syntax</h4>
 					<aside>
 						<p align="center">
@@ -291,8 +492,8 @@
 							name or the end of the program text. A section must contain at least one paragraph.
 						</p>
 					</aside>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							<img height="74" src="Resources/pics/Perform1.gif" width="317" />
@@ -319,10 +520,8 @@
 						<p align="left">The block of code may be one or more paragraphs, or one or more sections.</p>
 						<hr width="50%" />
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>How this format works</h4>
 					<aside>
 						<p align="center">
@@ -351,8 +550,8 @@
 							do not take advantage of it..
 						</p>
 					</aside>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							This format of the <code class="language-cobol">PERFORM</code> verb, transfers control an
@@ -411,13 +610,11 @@
 					<div align="center">
 						<hr width="50%" />
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">Why use this format?</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						This format of the <code class="language-cobol">PERFORM</code> verb is used to make programs
 						more readable and maintainable.
@@ -433,20 +630,15 @@
 						programs into a hierarchy of tasks and sub-tasks.
 					</p>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>PERFORM..PROC example</h4>
 					<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
-				</td>
-				<td valign="top" width="525">
-					<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="83%">
-						<tr>
-							<td>
-								<pre
-									class="language-cobol"
-								><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+				</div>
+				<div class="section-content">
+						<pre
+							class="language-cobol"
+						><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  PerformFormat1.
 AUTHOR.  Michael Coughlan.
@@ -472,134 +664,125 @@ OneLevelDown.
 ThreeLevelsDown.
     DISPLAY "&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Now in ThreeLevelsDown".
 </code></pre>
-							</td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">Self Assessment Questions</h4>
 					<p align="center"><img height="46" src="Resources/pics/i-SAQ2.gif" width="32" /></p>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
-						<div align="center">
-							<p align="left">
-								Now that you understand how this version of the
-								<code class="language-cobol">PERFORM</code> works, test your understanding by referring
-								to the example program above and answering the following questions.
-							</p>
-							<form action="Iteration.html" method="post">
-								<table bgcolor="#E1FFE1" border="1" width="96%">
-									<tr>
-										<td bgcolor="#FFFFCC" width="8%">Q1</td>
-										<td width="62%">
-											Write out what the example program above will display on the screen.
-										</td>
-										<td valign="top" width="30%">
-											<select name="select5" size="1">
-												<option selected>Click the arrow for the answer</option>
-												<option>In TopLevel. Starting to run program</option>
-												<option>&gt;&gt;&gt;&gt; Now in OneLevelDown</option>
-												<option>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Now in TwoLevelsDown.</option>
-												<option>
-													&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Now in
-													ThreeLevelsDown
-												</option>
-												<option>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Back in TwoLevelsDown.</option>
-												<option>&gt;&gt;&gt;&gt; Back in OneLevelDown</option>
-												<option>Back in TopLevel.</option>
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<td bgcolor="#FFFFCC" width="8%">Q2</td>
-										<td width="62%">
-											Taking your pen in hand once more, write out what the program will display
-											if the <code class="language-cobol">STOP RUN</code> is missing.
-										</td>
-										<td valign="top" width="30%">
-											<select name="select6" size="1">
-												<option selected>Click the arrow for the answer</option>
-												<option>With the STOP RUN missing control falls</option>
-												<option>through the paragraphs</option>
-												<option>-------------------------------------------</option>
-												<option>In TopLevel. Starting to run program</option>
-												<option>&gt;&gt;&gt;&gt; Now in OneLevelDown</option>
-												<option>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Now in TwoLevelsDown.</option>
-												<option>
-													&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Now in
-													ThreeLevelsDown
-												</option>
-												<option>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Back in TwoLevelsDown.</option>
-												<option>&gt;&gt;&gt;&gt; Back in OneLevelDown</option>
-												<option>Back in TopLevel.</option>
-												<option>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Now in TwoLevelsDown.</option>
-												<option>
-													&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Now in
-													ThreeLevelsDown
-												</option>
-												<option>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Back in TwoLevelsDown.</option>
-												<option>&gt;&gt;&gt;&gt; Now in OneLevelDown</option>
-												<option>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Now in TwoLevelsDown.</option>
-												<option>
-													&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Now in
-													ThreeLevelsDown
-												</option>
-												<option>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Back in TwoLevelsDown.</option>
-												<option>&gt;&gt;&gt;&gt; Back in OneLevelDown</option>
-												<option>
-													&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Now in
-													ThreeLevelsDown
-												</option>
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<td bgcolor="#FFFFCC" width="8%">Q3</td>
-										<td width="62%">
-											Is it valid to insert the statement
-											<code class="language-cobol">PERFORM</code>
-											<i>ThreeLevelsDown</i> into the paragraph ThreeLevelsDown?
-										</td>
-										<td valign="top" width="30%">
-											<select name="select7" size="1">
-												<option selected>Click the arrow for the answer</option>
-												<option>No! This is not valid in standard COBOL.</option>
-												<option>This is recursion.</option>
-												<option>In standard COBOL, if ThreeLevelsDown</option>
-												<option>is performed from another paragraph</option>
-												<option>the recursive perform will cause it to lose</option>
-												<option>the return address that paragraph</option>
-												<option>and control will not be able to return to it.</option>
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<td bgcolor="#FFFFCC" width="8%">Q4</td>
-										<td width="62%">
-											Is it valid to have the statement
-											<code class="language-cobol">PERFORM</code> <i>TwoLevelsDown</i> in the
-											paragraph ThreeLevelsDown?
-										</td>
-										<td valign="top" width="30%">
-											<select name="select8" size="1">
-												<option selected>Click the arrow for the answer</option>
-												<option>No. This is indirect recursion since</option>
-												<option>TwoLevelsDown contains the statement</option>
-												<option>PERFORM ThreeLevelsDown.</option>
-											</select>
-										</td>
-									</tr>
-								</table>
-							</form>
-						</div>
+						<p align="left">
+							Now that you understand how this version of the
+							<code class="language-cobol">PERFORM</code> works, test your understanding by referring
+							to the example program above and answering the following questions.
+						</p>
+						<form action="Iteration.html" method="post">
+							<div class="saq-table" style="width: 96%">
+								<div class="saq-row">
+									<div class="saq-label">Q1</div>
+									<div class="saq-question">
+										Write out what the example program above will display on the screen.
+									</div>
+									<div class="saq-answer">
+										<select name="select5" size="1">
+											<option selected>Click the arrow for the answer</option>
+											<option>In TopLevel. Starting to run program</option>
+											<option>&gt;&gt;&gt;&gt; Now in OneLevelDown</option>
+											<option>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Now in TwoLevelsDown.</option>
+											<option>
+												&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Now in
+												ThreeLevelsDown
+											</option>
+											<option>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Back in TwoLevelsDown.</option>
+											<option>&gt;&gt;&gt;&gt; Back in OneLevelDown</option>
+											<option>Back in TopLevel.</option>
+										</select>
+									</div>
+								</div>
+								<div class="saq-row">
+									<div class="saq-label">Q2</div>
+									<div class="saq-question">
+										Taking your pen in hand once more, write out what the program will display
+										if the <code class="language-cobol">STOP RUN</code> is missing.
+									</div>
+									<div class="saq-answer">
+										<select name="select6" size="1">
+											<option selected>Click the arrow for the answer</option>
+											<option>With the STOP RUN missing control falls</option>
+											<option>through the paragraphs</option>
+											<option>-------------------------------------------</option>
+											<option>In TopLevel. Starting to run program</option>
+											<option>&gt;&gt;&gt;&gt; Now in OneLevelDown</option>
+											<option>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Now in TwoLevelsDown.</option>
+											<option>
+												&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Now in
+												ThreeLevelsDown
+											</option>
+											<option>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Back in TwoLevelsDown.</option>
+											<option>&gt;&gt;&gt;&gt; Back in OneLevelDown</option>
+											<option>Back in TopLevel.</option>
+											<option>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Now in TwoLevelsDown.</option>
+											<option>
+												&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Now in
+												ThreeLevelsDown
+											</option>
+											<option>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Back in TwoLevelsDown.</option>
+											<option>&gt;&gt;&gt;&gt; Now in OneLevelDown</option>
+											<option>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Now in TwoLevelsDown.</option>
+											<option>
+												&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Now in
+												ThreeLevelsDown
+											</option>
+											<option>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Back in TwoLevelsDown.</option>
+											<option>&gt;&gt;&gt;&gt; Back in OneLevelDown</option>
+											<option>
+												&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Now in
+												ThreeLevelsDown
+											</option>
+										</select>
+									</div>
+								</div>
+								<div class="saq-row">
+									<div class="saq-label">Q3</div>
+									<div class="saq-question">
+										Is it valid to insert the statement
+										<code class="language-cobol">PERFORM</code>
+										<i>ThreeLevelsDown</i> into the paragraph ThreeLevelsDown?
+									</div>
+									<div class="saq-answer">
+										<select name="select7" size="1">
+											<option selected>Click the arrow for the answer</option>
+											<option>No! This is not valid in standard COBOL.</option>
+											<option>This is recursion.</option>
+											<option>In standard COBOL, if ThreeLevelsDown</option>
+											<option>is performed from another paragraph</option>
+											<option>the recursive perform will cause it to lose</option>
+											<option>the return address that paragraph</option>
+											<option>and control will not be able to return to it.</option>
+										</select>
+									</div>
+								</div>
+								<div class="saq-row">
+									<div class="saq-label">Q4</div>
+									<div class="saq-question">
+										Is it valid to have the statement
+										<code class="language-cobol">PERFORM</code> <i>TwoLevelsDown</i> in the
+										paragraph ThreeLevelsDown?
+									</div>
+									<div class="saq-answer">
+										<select name="select8" size="1">
+											<option selected>Click the arrow for the answer</option>
+											<option>No. This is indirect recursion since</option>
+											<option>TwoLevelsDown contains the statement</option>
+											<option>PERFORM ThreeLevelsDown.</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</form>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
+				</div>
+				<div class="section-full">
 					<div align="center">
 						<hr />
 						<p>
@@ -608,18 +791,14 @@ ThreeLevelsDown.
 							/></a>
 						</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+				</div>
+				<div class="section-header">
 					<h2 align="center" id="part2">Using the PERFORM..THRU</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">Introduction</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						Although the <code class="language-cobol">PERFORM..THRU</code> has dangers, as outlined above,
 						it can be a useful construct for dealing with errors. Sometimes we need to stop executing a
@@ -628,23 +807,18 @@ ThreeLevelsDown.
 						this.
 					</p>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="355" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">Coping with errors</h4>
 					<p align="center"><img height="44" src="Resources/pics/ProgFrag.gif" width="48" /></p>
-				</td>
-				<td height="355" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						In the program fragment below, the programmer does not want to execute the remaining statements
 						in the paragraph if an error is detected. The solution he has adopted, based on nested
 						<code class="language-cobol">IF</code> statements, is somewhat cumbersome.
 					</p>
-					<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="49%">
-						<tr valign="top">
-							<td>
-								<pre class="language-cobol"><code class="language-cobol">PROCEDURE DIVISION.
+						<pre class="language-cobol"><code class="language-cobol">PROCEDURE DIVISION.
 Begin.
    PERFORM SumSales
    STOP RUN.
@@ -665,16 +839,11 @@ SumSales.
             Statements
             Statements
          END-IF
-      END-IF       
+      END-IF
    END-IF.</code></pre>
-							</td>
-						</tr>
-					</table>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="355" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">Using the PERFORM..THRU</h4>
 					<aside>
 						<p align="center">
@@ -686,8 +855,8 @@ SumSales.
 						</p>
 					</aside>
 					<p align="center"><img height="44" src="Resources/pics/ProgFrag.gif" width="48" /></p>
-				</td>
-				<td height="355" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						In the program fragment below, the <code class="language-cobol">PERFORM..THRU</code> is used to
 						deal with detected errors in a more elegant manner.
@@ -706,10 +875,7 @@ SumSales.
 						conform to the rule that every paragraph must contain at least one sentence and in fact it must
 						be the only sentence in the paragraph. It may be regarded as a comment.
 					</p>
-					<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="49%">
-						<tr valign="top">
-							<td>
-								<pre class="language-cobol"><code class="language-cobol">PROCEDURE DIVISION
+						<pre class="language-cobol"><code class="language-cobol">PROCEDURE DIVISION
 Begin.
    PERFORM SumSales THRU SumSalesExit
    STOP RUN.
@@ -735,17 +901,12 @@ SumSales.
 
 SumSalesExit.
    EXIT.</code></pre>
-							</td>
-						</tr>
-					</table>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">PERFORM..THRU restrictions</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						The <code class="language-cobol">PERFORM..THRU</code> and
 						<code class="language-cobol">GO TO</code> are dangerous constructs which, if used unwisely, will
@@ -755,10 +916,8 @@ SumSalesExit.
 						<code class="language-cobol">PERFORM..THRU</code> is acceptable.
 					</p>
 					<p>This is also the only time the <code class="language-cobol">GO TO</code> should be used.</p>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
+				</div>
+				<div class="section-full">
 					<div align="center">
 						<hr />
 						<p>
@@ -767,31 +926,25 @@ SumSalesExit.
 							/></a>
 						</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+				</div>
+				<div class="section-header">
 					<h2 align="center" id="part3">PERFORM..TIMES</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">Introduction</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						The <code class="language-cobol">PERFORM..TIMES</code> format has no real equivalent in most
 						programming languages. This format allows a block of code to be executed a specified number of
 						times.
 					</p>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">PERFORM..TIMES Syntax</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p align="left"><img height="105" src="Resources/pics/Perform2.gif" width="406" /></p>
 					<p>
 						This format of the PERFORM executes a block of code RepeatCount number of times before returning
@@ -803,13 +956,11 @@ SumSalesExit.
 						<li>In-line execution of a block of code.</li>
 					</ul>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">In-line vs Out-of-line</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						<b>In-line execution</b><br />
 						In-line execution will be familiar to programmers who have used the iteration constructs
@@ -847,23 +998,18 @@ SumSalesExit.
 						should not be too fragmented, nor too monolithic.
 					</p>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="355" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">Example</h4>
-				</td>
-				<td height="355" valign="top" width="525">
-					<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="49%">
-						<tr valign="top">
-							<td>
-								<pre
-									class="language-cobol"
-								><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+				</div>
+				<div class="section-content">
+						<pre
+							class="language-cobol"
+						><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  InLineVsOutOfLine.
 AUTHOR.  Michael Coughlan.
-*&gt; An example program demonstrating 
+*&gt; An example program demonstrating
 *&gt; in-line and out-of-line Performs.
 
 DATA DIVISION.
@@ -885,17 +1031,12 @@ OutOfLineEG.
     DISPLAY "&gt;&gt;&gt;&gt; This is an out of line Perform".
 
 </code></pre>
-							</td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">Self Assessment Questions</h4>
 					<p align="center"><img height="46" src="Resources/pics/i-SAQ2.gif" width="32" /></p>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>Examine the program above and write out what it will display on the screen.</p>
 					<form>
 						<div align="center">
@@ -916,10 +1057,8 @@ OutOfLineEG.
 							</select>
 						</div>
 					</form>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
+				</div>
+				<div class="section-full">
 					<div align="center">
 						<hr />
 						<p>
@@ -928,31 +1067,25 @@ OutOfLineEG.
 							/></a>
 						</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+				</div>
+				<div class="section-header">
 					<h2 align="center" id="part4">PERFORM..UNTIL</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="188" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">Introduction</h4>
-				</td>
-				<td height="188" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						This format of the <code class="language-cobol">PERFORM</code> is used where the
 						<i>while</i> and <i>do/repeat</i> constructs are used in other languages. It causes a block of
 						code to be iteratively executed until some terminating condition is reached.
 					</p>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">PERFORM..UNTIL syntax</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p><img height="126" src="Resources/pics/Perform3.gif" width="502" /></p>
 					<p>
 						<b>Notes<br /></b> If the <code class="language-cobol">WITH TEST BEFORE</code> phrase is used,
@@ -969,13 +1102,11 @@ OutOfLineEG.
 						explicitly stated.
 					</p>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="355" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">How the PERFORM..UNTIL works</h4>
-				</td>
-				<td height="355" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						The flowcharts below show how the <code class="language-cobol">PERFORM..UNTIL</code> works. As
 						you can see the terminating condition is only checked at the beginning of each iteration (<code
@@ -1003,13 +1134,11 @@ OutOfLineEG.
 					</p>
 					<p><img height="414" src="Resources/pics/PerfUntil.gif" width="500" /></p>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">TEST BEFORE Vs TEST AFTER</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						Beginning programmers often ask; when should they use the
 						<code class="language-cobol">WITH TEST BEFORE</code> loop, and when should they use the
@@ -1029,13 +1158,11 @@ OutOfLineEG.
 						If the end of the stream can be detected when the last item is retrieved, then the appropriate
 						construct is probably a <i>test after loop</i>.
 					</p>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="188" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">The "read ahead" technique</h4>
-				</td>
-				<td height="188" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						Processing a stream of data items of undetermined length, is a common operation in COBOL,
 						because sequential files fall into this category. A useful strategy known as the "read ahead"
@@ -1053,15 +1180,10 @@ OutOfLineEG.
 						the next, and all the succeeding records. When the inside Read detects the end of file, it sets
 						a Condition Name that immediately causes the loop to halt.
 					</p>
-					<table align="center" bgcolor="#E1FFE1" border="1" cellpadding="5" width="75%">
-						<tr bgcolor="#FFFFCC">
-							<td>
-								<div align="center"><b>Processing Template</b></div>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<pre class="language-cobol"><code class="language-cobol">READ StudentRecords
+					<div class="processing-template">
+						<div class="processing-template-header">Processing Template</div>
+						<div class="processing-template-body">
+							<pre class="language-cobol"><code class="language-cobol">READ StudentRecords
    AT END SET EndOfStudentFile TO TRUE
 END-READ
 PERFORM WITH TEST BEFORE UNTIL EndOfStudentFile
@@ -1072,9 +1194,8 @@ PERFORM WITH TEST BEFORE UNTIL EndOfStudentFile
      AT END SET EndOfStudentFile TO TRUE
    END-READ
 END-PERFORM</code></pre>
-							</td>
-						</tr>
-					</table>
+						</div>
+					</div>
 					<p>This approach to processing a sequential file has two main advantages.</p>
 					<ol>
 						<li>
@@ -1087,13 +1208,11 @@ END-PERFORM</code></pre>
 						</li>
 					</ol>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="122" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">PERFORM..UNTIL comment</h4>
-				</td>
-				<td height="122" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						The primary concern of a programmer who creates a loop should be - will the loop terminate. Much
 						of the work of proofs of program correctness goes into proving that the loops in a program are
@@ -1102,10 +1221,8 @@ END-PERFORM</code></pre>
 						is one of the few languages that gets this right. In COBOL, the loop body is executed
 						<b>until</b> the terminating condition is reached.
 					</p>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
+				</div>
+				<div class="section-full">
 					<div align="center">
 						<hr />
 						<p>
@@ -1114,18 +1231,14 @@ END-PERFORM</code></pre>
 							/></a>
 						</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+				</div>
+				<div class="section-header">
 					<h2 align="center" id="part5">PERFORM..VARYING</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">Introduction</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						The PERFORM..VARYING is used to implement counting iteration. It is similar to the For construct
 						in languages like Modula-2, Pascal and C. However, these languages permit only one counting
@@ -1136,13 +1249,11 @@ END-PERFORM</code></pre>
 						the PERFORM..VARYING was a mechanism for processing them.
 					</p>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="355" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">PERFORM..VARYING syntax</h4>
-				</td>
-				<td height="355" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p><img height="234" src="Resources/pics/Perform4.gif" width="502" /></p>
 					<p>
 						N<b>otes</b><br />
@@ -1176,13 +1287,11 @@ END-PERFORM</code></pre>
 					<pre class="language-cobol"><code class="language-cobol">PERFORM CountRecords
         VARYING RecCount FROM 1 BY 1 UNTIL EndOfFile </code></pre>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">PERFORM..VARYING using one counter Example</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						The example animation below demonstrates how a simple PERFORM..VARYING, using only one counter,
 						work. Pay particular attention to when the counter is incremented. In the example note that the
@@ -1195,13 +1304,11 @@ END-PERFORM</code></pre>
 						/></a>
 					</p>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="372" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">PERFORM..VARYING using two counter Example</h4>
-				</td>
-				<td height="372" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>This example animation demonstrates how a PERFORM..VARYING, with two counters, works.</p>
 					<p>
 						Note how the counter Idx2 must go through all its values and reach its terminating value before
@@ -1220,25 +1327,20 @@ END-PERFORM</code></pre>
 						/></a>
 					</p>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">PERFORM..VARYING Example Program</h4>
 					<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
 					<p align="center"><img height="46" src="Resources/pics/i-SAQ2.gif" width="32" /></p>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						In the example program simulates the mileage counter mentioned above. Examine this program an
 						then attempt to answer the Self Assessment Question which follow.
 					</p>
-					<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="486">
-						<tr valign="top">
-							<td>
-								<pre
-									class="language-cobol"
-								><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+						<pre
+							class="language-cobol"
+						><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  MileageCounter.
 AUTHOR.  Michael Coughlan.
@@ -1288,15 +1390,12 @@ CountMileage.
    DISPLAY PrnHunds "-" PrnTens "-" PrnUnits.
 
  </code></pre>
-							</td>
-						</tr>
-					</table>
 					<form action="Iteration.html" method="post">
-						<table align="center" bgcolor="#E1FFE1" border="1" width="86%">
-							<tr>
-								<td bgcolor="#FFFFCC" width="8%">Q1</td>
-								<td width="62%">Why is &gt; 9 used in all the terminating conditions?.</td>
-								<td valign="top" width="30%">
+						<div class="saq-table" style="width: 86%">
+							<div class="saq-row">
+								<div class="saq-label">Q1</div>
+								<div class="saq-question">Why is &gt; 9 used in all the terminating conditions?.</div>
+								<div class="saq-answer">
 									<select name="select2" size="1">
 										<option selected>Click the arrow for the answer</option>
 										<option>--------------------------------------------------------</option>
@@ -1306,15 +1405,15 @@ CountMileage.
 										<option>condition is tested before the</option>
 										<option>loop body is entered.</option>
 									</select>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" width="8%">Q2</td>
-								<td width="62%">
+								</div>
+							</div>
+							<div class="saq-row">
+								<div class="saq-label">Q2</div>
+								<div class="saq-question">
 									Why are the counters all declared as <code class="language-cobol">PIC 99</code>.
 									Surely the size of each counter should only be one digit?
-								</td>
-								<td valign="top" width="30%">
+								</div>
+								<div class="saq-answer">
 									<select name="select2" size="1">
 										<option selected>Click the arrow for the answer</option>
 										<option>--------------------------------------------------------</option>
@@ -1332,15 +1431,15 @@ CountMileage.
 										<option>contain a 0 and the program</option>
 										<option>would continue to loop interminably.</option>
 									</select>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" width="8%">Q3</td>
-								<td width="62%">
+								</div>
+							</div>
+							<div class="saq-row">
+								<div class="saq-label">Q3</div>
+								<div class="saq-question">
 									In the in-line <code class="language-cobol">PERFORM</code> why are there three
 									separate Performs?
-								</td>
-								<td valign="top" width="30%">
+								</div>
+								<div class="saq-answer">
 									<select name="select2" size="1">
 										<option selected>Click the arrow for the answer</option>
 										<option>--------------------------------------------------------</option>
@@ -1350,22 +1449,20 @@ CountMileage.
 										<option>to increment the other counters just</option>
 										<option>as you would in C or Modula-2.</option>
 									</select>
-								</td>
-							</tr>
-						</table>
+								</div>
+							</div>
+						</div>
 					</form>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
+				</div>
+				<div class="section-full">
 					<hr />
 					<div align="center">
 						<a href="#top"><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132" /></a>
 					</div>
 					<copyright-notice></copyright-notice>
-				</td>
-			</tr>
-		</table>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>
