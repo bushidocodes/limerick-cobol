@@ -5,7 +5,153 @@
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<title>Edited Pictures</title>
 		<link href="Resources/css/course.css" rel="stylesheet" />
-		<style>table{max-width:100%}body>table,body>hr{margin-left:auto;margin-right:auto}img{max-width:100%;height:auto}pre{overflow-x:auto;max-width:100%}</style>
+		<style type="text/css">
+			ul.toc {
+				list-style-type: disc;
+				padding-left: 2.5em;
+				margin: 1em 0;
+			}
+
+			ul.toc > li {
+				margin-bottom: 0.6em;
+			}
+
+			.section-header h2 {
+				color: #ffff00;
+				font-family: Arial, Helvetica, sans-serif;
+				text-align: center;
+				margin: 0.3em 0;
+			}
+
+			.page-wrapper {
+				max-width: 715px;
+				margin: 0 auto;
+				border: 1px solid;
+				box-sizing: border-box;
+			}
+
+			.page-content {
+				padding: 4px;
+			}
+
+			.page-footer {
+				padding: 4px;
+			}
+
+			.section-grid {
+				display: grid;
+				grid-template-columns: 175px 1fr;
+			}
+
+			.section-header {
+				grid-column: 1 / -1;
+				background-color: #993300;
+				padding: 4px;
+				min-width: 0;
+				border-bottom: 1px solid;
+			}
+
+			.section-sidebar {
+				background-color: #ffffcc;
+				padding: 4px;
+				align-self: stretch;
+				min-width: 0;
+				border-right: 1px solid;
+				border-bottom: 1px solid;
+			}
+
+			.section-content {
+				padding: 4px;
+				align-self: start;
+				min-width: 0;
+				overflow: hidden;
+				border-bottom: 1px solid;
+			}
+
+			.section-full {
+				grid-column: 1 / -1;
+				padding: 4px;
+				min-width: 0;
+				border-bottom: 1px solid;
+			}
+
+			.section-full:last-child {
+				border-bottom: none;
+			}
+
+			img {
+				max-width: 100%;
+				height: auto;
+			}
+
+			pre {
+				overflow-x: auto;
+				max-width: 100%;
+			}
+
+			table {
+				max-width: 100%;
+			}
+
+			body {
+				-webkit-text-size-adjust: 100%;
+			}
+
+			@media (max-width: 600px) {
+				body {
+					margin: 4px;
+					overflow-wrap: break-word;
+					word-wrap: break-word;
+				}
+
+				.section-header h2 {
+					margin: 0.3em 0;
+				}
+
+				blockquote {
+					margin-left: 12px;
+					margin-right: 12px;
+				}
+
+				img,
+				iframe,
+				video,
+				embed,
+				object {
+					max-width: min(100%, calc(100vw - 16px)) !important;
+					height: auto;
+				}
+
+				pre {
+					max-width: min(100%, calc(100vw - 16px)) !important;
+					white-space: pre-wrap;
+					word-wrap: break-word;
+					overflow-wrap: break-word;
+				}
+
+				pre[class*="language-"],
+				code[class*="language-"] {
+					white-space: pre-wrap !important;
+					overflow-wrap: break-word;
+				}
+
+				pre[class*="language-"] {
+					font-size: 0.8em;
+					line-height: 1.35;
+					padding: 0.6em;
+					overflow-x: auto;
+				}
+
+				.section-grid {
+					display: block;
+				}
+
+				.section-sidebar h4,
+				.section-sidebar p {
+					margin: 0.2em 0;
+				}
+			}
+		</style>
 		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
 		<script src="Resources/vendor/prism/prism.min.js" defer></script>
 		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
@@ -13,48 +159,46 @@
 	</head>
 
 	<body alink="#009B00" bgcolor="#FFFFFF" link="#0000FF" text="#000000" vlink="#FF0000">
-		<table id="layout-table" border="1" width="715" cellpadding="4" cellspacing="0">
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
-					<center>
-						<p><img height="59" src="Resources/pics/t-CobolTut.gif" width="173" /></p>
-						<h1>Edited Pictures</h1>
-					</center>
-					<hr />
-					<ul class="toc">
-						<li>
-							<a href="#intro">Introduction</a><br />
-							Unit aims, objectives, prerequisites.
-						</li>
-						<li>
-							<a href="#part1">What is an Edited Picture?</a><br />
-							This section introduces Edited Pictures, the types of edited pictures, and the edit symbols
-							used.
-						</li>
-						<li>
-							<a href="#part2">Insertion Editing</a><br />
-							This section introduces the four types of Insertion Editing - Simple Insertion, Special
-							Insertion, Fixed Insertion, and Floating Insertion
-						</li>
-						<li>
-							<a href="#part3">Suppression and Replacement Editing</a><br />
-							This section introduces the two types Suppresion and Replacement Editng - suppression of
-							leading zeros and replacement with spaces, and suppresion and replacement with asterisks.
-						</li>
-					</ul>
-					<hr />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
-					<h2 align="center" id="intro">Introduction</h2>
-				</td>
-			</tr>
-			<tr>
-				<td bgcolor="#FFFFCC" height="172" valign="top" width="175">
+		<div class="page-wrapper">
+			<div class="page-content">
+				<center>
+					<p id="top"><img height="59" src="Resources/pics/t-CobolTut.gif" width="173" /></p>
+					<h1>Edited Pictures</h1>
+				</center>
+				<hr />
+				<ul class="toc">
+					<li>
+						<a href="#intro">Introduction</a><br />
+						Unit aims, objectives, prerequisites.
+					</li>
+					<li>
+						<a href="#part1">What is an Edited Picture?</a><br />
+						This section introduces Edited Pictures, the types of edited pictures, and the edit symbols
+						used.
+					</li>
+					<li>
+						<a href="#part2">Insertion Editing</a><br />
+						This section introduces the four types of Insertion Editing - Simple Insertion, Special
+						Insertion, Fixed Insertion, and Floating Insertion
+					</li>
+					<li>
+						<a href="#part3">Suppression and Replacement Editing</a><br />
+						This section introduces the two types Suppresion and Replacement Editng - suppression of
+						leading zeros and replacement with spaces, and suppresion and replacement with asterisks.
+					</li>
+				</ul>
+				<hr />
+			</div>
+
+			<div class="section-grid">
+				<div class="section-header">
+					<h2 id="intro">Introduction</h2>
+				</div>
+
+				<div class="section-sidebar">
 					<h4>Aims</h4>
-				</td>
-				<td height="172" valign="top" width="540">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							In a business-programming environment, the ability to print reports is an important property
@@ -74,26 +218,24 @@
 					<div align="center">
 						<hr width="50%" />
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="135" valign="top" width="175">
+				</div>
+
+				<div class="section-sidebar">
 					<h4>Objectives</h4>
-				</td>
-				<td height="135" valign="top" width="540">
+				</div>
+				<div class="section-content">
 					<p>By the end of this unit you should -</p>
 					<ol>
 						<li>Know what an Edited Picture is.</li>
 						<li>Know and be able to use the different kinds of Edited Picture.</li>
 					</ol>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="77" valign="top" width="175">
+				</div>
+
+				<div class="section-sidebar">
 					<h4>Prerequisites</h4>
-				</td>
-				<td height="77" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<ul>
 						<li>Introduction to COBOL</li>
 						<li>Declaring data in COBOL</li>
@@ -103,10 +245,9 @@
 						<li>Introduction to Sequential files</li>
 						<li>Processing Sequential files</li>
 					</ul>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
+				</div>
+
+				<div class="section-full">
 					<div align="center">
 						<hr />
 						<p>
@@ -115,18 +256,18 @@
 							/></a>
 						</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
-					<h2 align="center" id="part1">What is an Edited Picture?</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="321" valign="top" width="175">
+				</div>
+			</div>
+
+			<div class="section-grid">
+				<div class="section-header">
+					<h2 id="part1">What is an Edited Picture?</h2>
+				</div>
+
+				<div class="section-sidebar">
 					<h4>Introduction</h4>
-				</td>
-				<td height="321" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p align="left">
 						Most users of the data produced by COBOL programs are not content with the simple raw data. They
 						often want it presented in a particular way. Some people like to have the thousands, in numeric
@@ -173,13 +314,12 @@
 						</tr>
 					</table>
 					<hr align="center" width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+
+				<div class="section-sidebar">
 					<h4>Edit Symbols</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							Edited Pictures, are <code class="language-cobol">PICTURE</code> clauses that format data
@@ -204,13 +344,12 @@
 					<div align="left">
 						<hr align="center" width="50%" />
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="97" valign="top" width="175">
+				</div>
+
+				<div class="section-sidebar">
 					<h4 align="left">Types of editing picture</h4>
-				</td>
-				<td height="97" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>COBOL permits two basic types of editing picture:</p>
 					<ol>
 						<li>
@@ -235,13 +374,12 @@
 						</li>
 					</ol>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="97" valign="top" width="175">
+				</div>
+
+				<div class="section-sidebar">
 					<h4 align="left">Editing symbols</h4>
-				</td>
-				<td height="97" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>COBOL permits two basic types of editing picture:&gt;</p>
 					<table align="center" bgcolor="#E1FFE1" border cellpadding="7" cellspacing="1" width="338">
 						<tr bgcolor="#FFFFCC">
@@ -294,10 +432,9 @@
 						</tr>
 					</table>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
+				</div>
+
+				<div class="section-full">
 					<div align="center">
 						<hr />
 						<p>
@@ -306,18 +443,18 @@
 							/></a>
 						</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
-					<h2 align="center" id="part2">Insertion Editing</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="97" valign="top" width="175">
+				</div>
+			</div>
+
+			<div class="section-grid">
+				<div class="section-header">
+					<h2 id="part2">Insertion Editing</h2>
+				</div>
+
+				<div class="section-sidebar">
 					<h4 align="left">Introduction</h4>
-				</td>
-				<td height="97" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>There are four types of Insertion Editing:-</p>
 					<ul>
 						<li>Simple Insertion</li>
@@ -330,13 +467,12 @@
 						same position it occupies in the picture clause.
 					</p>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="420" valign="top" width="175">
+				</div>
+
+				<div class="section-sidebar">
 					<h4 align="left">Simple Insertion editing</h4>
-				</td>
-				<td height="420" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						Simple Insertion editing consists of specifying the relevant insertion character(s) in the
 						<code class="language-cobol">PICTURE</code> string. When a value is moved into the edited item,
@@ -368,14 +504,13 @@
 						A slash is inserted where the slash symbol (/) occurs, and a 0 is inserted where the zero symbol
 						(0) occurs.
 					</p>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="413" valign="top" width="175">
+				</div>
+
+				<div class="section-sidebar">
 					<h4 align="left">Simple Insertion examples</h4>
 					<p align="center"><img height="46" src="Resources/pics/i-SAQ2.gif" width="32" /></p>
-				</td>
-				<td height="413" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						In the examples/questions below, see if you can figure out what result will be produced when we
 						move the value in the Sending item to the editied picture in the Receiving item. The description
@@ -560,13 +695,12 @@
 						</table>
 					</form>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="135" valign="top" width="175">
+				</div>
+
+				<div class="section-sidebar">
 					<h4 align="left">Special Insertion</h4>
-				</td>
-				<td height="135" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						The decimal point is the only Special Insertion symbol. A decimal point is inserted in the
 						character position where the symbol occurs.
@@ -582,14 +716,13 @@
 						The decimal point symbol cannot be mixed with either the V (assumed decimal point) or the P
 						(scaling position) symbol.
 					</p>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="177" valign="top" width="175">
+				</div>
+
+				<div class="section-sidebar">
 					<h4>Special Insertion examples</h4>
 					<p align="center"><img height="46" src="Resources/pics/i-SAQ2.gif" width="32" /></p>
-				</td>
-				<td height="177" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							In the examples/questions below, see if you can figure out what result will be produced when
@@ -712,10 +845,9 @@
 					<div align="center">
 						<hr width="50%" />
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="135" valign="top" width="175">
+				</div>
+
+				<div class="section-sidebar">
 					<h4 align="left">Fixed Insertion</h4>
 					<aside>
 						<p align="center">
@@ -729,8 +861,8 @@
 							<code class="language-cobol">ENVIRONMENT DIVISION</code>.
 						</p>
 					</aside>
-				</td>
-				<td height="135" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>Fixed Insertion editing inserts the symbol at the beginning or end of the edited item.</p>
 					<p>The Fixed Insertion editing symbols are:</p>
 					<ul>
@@ -767,14 +899,13 @@
 						The currency symbol must be the leftmost character and it counts towards the size of the item.
 						It may be preceded by a plus or a minus sign.
 					</p>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="135" valign="top" width="175">
+				</div>
+
+				<div class="section-sidebar">
 					<h4 align="left">Fixed Insertion examples</h4>
 					<p align="center"><img height="46" src="Resources/pics/i-SAQ2.gif" width="32" /></p>
-				</td>
-				<td height="135" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						Like the previous examples/questions above, see if you can figure out what result will be
 						produced when the value in the Sending item is moved to the editied picture in the Receiving
@@ -1001,13 +1132,12 @@
 						</table>
 					</form>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="135" valign="top" width="175">
+				</div>
+
+				<div class="section-sidebar">
 					<h4 align="left">Floating Insertion</h4>
-				</td>
-				<td height="135" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						The problem with using the fixed insertion symbols is that they can be somewhat unsightly.
 						Values like $0045,345.56 or -0012 are more acceptablely presented as $45,345.56 and -12.
@@ -1033,13 +1163,12 @@
 						symbol printed, even though this may be at the cost of truncating the number (see the fourth row
 						in the example below.)
 					</p>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="135" valign="top" width="175">
+				</div>
+
+				<div class="section-sidebar">
 					<h4 align="left">Floating Insertion examples</h4>
-				</td>
-				<td height="135" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						Like the previous examples/questions above, see if you can figure out what result will be
 						produced when the value in the Sending item is moved to the editied picture in the Receiving
@@ -1211,10 +1340,9 @@
 							</tr>
 						</table>
 					</form>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
+				</div>
+
+				<div class="section-full">
 					<div align="center">
 						<hr />
 						<p>
@@ -1223,18 +1351,18 @@
 							/></a>
 						</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
-					<h2 align="center" id="part3">Suppression and Replacement Editing</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+			</div>
+
+			<div class="section-grid">
+				<div class="section-header">
+					<h2 id="part3">Suppression and Replacement Editing</h2>
+				</div>
+
+				<div class="section-sidebar">
 					<h4 align="left">Introduction</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						Suppression and replacement editing is used to remove leading zeroes from the value to be
 						edited. There are two varieties of suppression and replacement editing-
@@ -1259,14 +1387,13 @@
 						then only spaces will be printed.
 					</p>
 					<p>If a Z or * is used, the picture clause symbol 9, cannot appear to the left of it.</p>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="389" valign="top" width="175">
+				</div>
+
+				<div class="section-sidebar">
 					<h4 align="left">Suppression and Replacement editing examples</h4>
 					<p align="center"><img height="46" src="Resources/pics/i-SAQ2.gif" width="32" /></p>
-				</td>
-				<td height="389" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<form>
 						<table align="center" bgcolor="#FFFFCC" border="1" cellpadding="0" cellspacing="0" width="93%">
 							<tr bgcolor="#FFFFCC">
@@ -1423,13 +1550,12 @@
 						</table>
 					</form>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="293" valign="top" width="175">
+				</div>
+
+				<div class="section-sidebar">
 					<h4 align="left">Picture string restrictions</h4>
-				</td>
-				<td height="293" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						Some combinations of picture symbols are not permitted. The table below shows the combination of
 						symbols that is allowed.
@@ -1462,7 +1588,7 @@ P B 0 / , . + - CR DB 9 V
 P B 0 / , . + - CR DB 9 V
 P B 0 / , . + - CR DB 9 V
 P B 0 / , . + - CR DB 9 V
-B 0 / , . + - CR DB 9 
+B 0 / , . + - CR DB 9
 P B 0 / , . + $ 9 V
 P B 0 / , . - $ 9 V
 Nothing at all
@@ -1472,17 +1598,16 @@ B 0 / , + - CR DB 9</code></pre>
 							</td>
 						</tr>
 					</table>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<hr />
-					<div align="center">
-						<a href="#top"><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132" /></a>
-					</div>
-					<copyright-notice></copyright-notice>
-				</td>
-			</tr>
-		</table>
+				</div>
+			</div>
+
+			<div class="page-footer">
+				<hr />
+				<div align="center">
+					<a href="#top"><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132" /></a>
+				</div>
+				<copyright-notice></copyright-notice>
+			</div>
+		</div>
 	</body>
 </html>
