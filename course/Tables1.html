@@ -5,7 +5,86 @@
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<title>Using Tables</title>
 		<link href="Resources/css/course.css" rel="stylesheet" />
-		<style>table{max-width:100%}body>table,body>hr{margin-left:auto;margin-right:auto}img{max-width:100%;height:auto}pre{overflow-x:auto;max-width:100%}</style>
+		<style>
+			.section-header h2 {
+				color: #ffff00;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			.section-sidebar h3,
+			.section-sidebar h4 {
+				color: #800000;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			.page-wrapper {
+				max-width: 715px;
+				margin: 0 auto;
+				border: 1px solid;
+				box-sizing: border-box;
+			}
+
+			.page-content {
+				padding: 2px;
+			}
+
+			.page-footer {
+				padding: 2px;
+			}
+
+			.section-grid {
+				display: grid;
+				grid-template-columns: 175px 1fr;
+				align-items: stretch;
+			}
+
+			.section-header {
+				grid-column: 1 / -1;
+				background-color: #993300;
+				padding: 4px;
+			}
+
+			.section-sidebar {
+				background-color: #FFFFCC;
+				padding: 4px;
+			}
+
+			.section-content {
+				padding: 4px;
+				min-width: 0;
+			}
+
+			.section-full {
+				grid-column: 1 / -1;
+				padding: 4px;
+			}
+
+			table {
+				max-width: 100%;
+			}
+
+			img {
+				max-width: 100%;
+				height: auto;
+			}
+
+			pre {
+				overflow-x: auto;
+				max-width: 100%;
+			}
+
+			@media (max-width: 600px) {
+				.section-grid {
+					display: block;
+				}
+
+				.section-sidebar h3,
+				.section-sidebar h4,
+				.section-sidebar p {
+					margin: 0.2em 0;
+				}
+			}
+		</style>
 		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
 		<script src="Resources/vendor/prism/prism.min.js" defer></script>
 		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
@@ -13,53 +92,51 @@
 	</head>
 
 	<body alink="#009B00" bgcolor="#FFFFFF" link="#0000FF" text="#000000" vlink="#FF0000">
-		<table id="layout-table" border="1" width="715" cellpadding="4" cellspacing="0">
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top">
-					<center>
-						<p><img height="59" src="Resources/pics/t-CobolTut.gif" width="173" /></p>
-					</center>
-					<center>
-						<h1>Using Tables</h1>
-						<hr />
-					</center>
-					<ul class="toc">
-						<li>
-							<a href="#intro">Introduction</a><br />
-							Unit aims, objectives, prerequisites.
-						</li>
-						<li>
-							<a href="#part1">Why use tables?</a><br />
-							This section starts with a problem specification, explores possible solutions and ends with
-							the realisation that a table-based solution is probably best.
-						</li>
-						<li>
-							<a href="#part2">Using a CountyTax table</a><br />
-							This section explores how the table-based solution may be implemented.
-						</li>
-						<li>
-							<a href="#part3">Displaying the CountyName</a><br />
-							In this section we explore how we might deal with an extension to the problem specification
-							that requires us to display a county name instead of a county code.
-						</li>
-						<li>
-							<a href="#part4">Using one table to index into another</a><br />
-							In this section we show how the subscript of one table may be used to index into another.
-						</li>
-					</ul>
+		<div class="page-wrapper">
+			<div class="page-content" id="top">
+				<center>
+					<p><img height="59" src="Resources/pics/t-CobolTut.gif" width="173" /></p>
+				</center>
+				<center>
+					<h1>Using Tables</h1>
 					<hr />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" height="27" valign="top">
+				</center>
+				<ul class="toc">
+					<li>
+						<a href="#intro">Introduction</a><br />
+						Unit aims, objectives, prerequisites.
+					</li>
+					<li>
+						<a href="#part1">Why use tables?</a><br />
+						This section starts with a problem specification, explores possible solutions and ends with
+						the realisation that a table-based solution is probably best.
+					</li>
+					<li>
+						<a href="#part2">Using a CountyTax table</a><br />
+						This section explores how the table-based solution may be implemented.
+					</li>
+					<li>
+						<a href="#part3">Displaying the CountyName</a><br />
+						In this section we explore how we might deal with an extension to the problem specification
+						that requires us to display a county name instead of a county code.
+					</li>
+					<li>
+						<a href="#part4">Using one table to index into another</a><br />
+						In this section we show how the subscript of one table may be used to index into another.
+					</li>
+				</ul>
+				<hr />
+			</div>
+
+			<!-- Introduction -->
+			<div class="section-grid">
+				<div class="section-header">
 					<h2 align="center" id="intro">Introduction</h2>
-				</td>
-			</tr>
-			<tr>
-				<td bgcolor="#FFFFCC" height="138" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Aims</h4>
-				</td>
-				<td height="138" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							In most programming languages the term "array" is used to describe repeated, or multiple-
@@ -71,13 +148,11 @@
 						</p>
 					</div>
 					<hr align="center" size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="156" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Objectives</h4>
-				</td>
-				<td height="156" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>By the end of this unit you should -</p>
 					<ol>
 						<li>
@@ -91,13 +166,11 @@
 						<li>Understand how the subscript of one table can be used an index into another.</li>
 					</ol>
 					<hr align="center" size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="77" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Prerequisites</h4>
-				</td>
-				<td height="77" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<ul>
 						<li>Introduction to COBOL</li>
 						<li>Declaring data in COBOL</li>
@@ -109,10 +182,8 @@
 						<li>Print files and variable length records</li>
 						<li>Sorting and Merging files</li>
 					</ul>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top">
+				</div>
+				<div class="section-full">
 					<div align="center">
 						<hr />
 						<p>
@@ -121,19 +192,19 @@
 							/></a>
 						</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top">
+				</div>
+			</div>
+
+			<!-- Why use tables? -->
+			<div class="section-grid">
+				<div class="section-header">
 					<h2 align="center" id="part1">Why use tables?</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="195" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Introduction</h4>
 					<p align="center"><img height="44" src="Resources/pics/ProgFrag.gif" width="48" /></p>
-				</td>
-				<td height="195" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							Let's start our discussion of tables and table handling, by looking at a programming
@@ -145,33 +216,18 @@
 							workers all over the country. The TaxFile is a sequential file sequenced on ascending
 							PAYENum and its records have the following description.
 						</p>
-						<table bgcolor="#E1FFE1" border="1" cellpadding="5" width="40%">
-							<tr>
-								<td height="71">
-									<pre class="language-cobol"><code class="language-cobol">01 TaxRec.
+						<pre class="language-cobol"><code class="language-cobol">01 TaxRec.
    88 EndOfTaxFile  VALUE HIGH-VALUES.
    02 PAYENum    PIC 9(8)
    02 CountyCode PIC 99.
    02 TaxPaid    PIC 9(7)V99.
 </code></pre>
-								</td>
-							</tr>
-						</table>
 						<p align="left">
 							The program to perform this task is very simple. All we have to do is to set up a variable
 							to hold the tax total and then add the TaxPaid from each record to the TaxTotal. The program
 							to do this is shown below;
 						</p>
-						<table
-							align="center"
-							background="Resources/pics/code.gif"
-							border="1"
-							cellpadding="5"
-							width="475"
-						>
-							<tr>
-								<td>
-									<pre class="language-cobol"><code class="language-cobol">PROCEDURE DIVISION.
+						<pre class="language-cobol"><code class="language-cobol">PROCEDURE DIVISION.
 Begin.
    OPEN INPUT TaxFile
    READ TaxFile
@@ -185,23 +241,18 @@ Begin.
    END-PERFORM.
    DISPLAY "Total taxes are ", TaxTotal
    CLOSE TaxFile
-   STOP RUN. 
+   STOP RUN.
 </code></pre>
-								</td>
-							</tr>
-						</table>
 						<p align="left">
 							But what if, instead of just calculating the tax total for the whole country, we were asked
 							to produce a breakdown of the tax totals by county. How could we solve that problem?
 						</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="749" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Exploring the problem</h4>
-				</td>
-				<td height="749" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							One approach to the problem of producing the County Tax Report would be to sort the file on
@@ -278,10 +329,8 @@ DISPLAY "County 3 total is ", County3TaxTotal
 							</p>
 						</div>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top">
+				</div>
+				<div class="section-full">
 					<div align="center">
 						<hr />
 						<p>
@@ -290,18 +339,18 @@ DISPLAY "County 3 total is ", County3TaxTotal
 							/></a>
 						</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top">
+				</div>
+			</div>
+
+			<!-- Using a CountyTax table -->
+			<div class="section-grid">
+				<div class="section-header">
 					<h2 align="center" id="part2">Using a CountyTax table</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="294" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Introduction</h4>
-				</td>
-				<td height="294" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						A table may be defined as a contiguous sequence of memory locations which all have the same
 						name, and which are uniquely identified by that name and by their position in the sequence. The
@@ -323,10 +372,8 @@ DISPLAY "County 3 total is ", County3TaxTotal
 						</li>
 					</ul>
 					<hr size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="483" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Declaring the CountyTax table</h4>
 					<h4 align="center">
 						<a href="Resources/ppz/TC-Tables1.html"
@@ -335,8 +382,8 @@ DISPLAY "County 3 total is ", County3TaxTotal
 					</h4>
 					If TaxPaid has a value of 74.75 what do you think each of the program statements opposite will do
 					when they execute. Click on the diagram or the icon to see an animated answer.
-				</td>
-				<td height="483" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p align="left">
 						In COBOL, a table is declared by specifying the type (or structure) of a single item (element)
 						of the table and then specifying that the data-item is to be repeated
@@ -365,14 +412,12 @@ ADD TaxPaid TO CountyTax(CountyCode)
 ADD TaxPaid TO CountyTax(CountyCode + 1)
 ADD TaxPaid TO CountyTax(CountyCode - 2)</code></pre>
 					<hr align="center" size="1" width="100%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="551" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>The County Tax Report program</h4>
 					<p align="center"><img height="44" src="Resources/pics/ProgFrag.gif" width="48" /></p>
-				</td>
-				<td height="551" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						The solution to the problem of producing the County Tax Report, is to use a table to hold the
 						tax totals for each county and to use the CountyCode to allow us to access the correct element
@@ -386,10 +431,7 @@ ADD TaxPaid TO CountyTax(CountyCode - 2)</code></pre>
 						The entire Procedure Division of a program that reads the Tax file, accumulates the tax totals
 						for each county and then displays the tax totals, is given below.
 					</p>
-					<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="475">
-						<tr>
-							<td>
-								<pre class="language-cobol"><code class="language-cobol">PROCEDURE DIVISION.
+					<pre class="language-cobol"><code class="language-cobol">PROCEDURE DIVISION.
 Begin.
    OPEN INPUT TaxFile
    READ TaxFile
@@ -401,20 +443,15 @@ Begin.
          AT END SET EndOfTaxFile TO TRUE
       END-READ
    END-PERFORM
-   PERFORM VARYING Idx FROM 1 BY 1 
+   PERFORM VARYING Idx FROM 1 BY 1
            UNTIL Idx GREATER THAN 26
-      DISPLAY "County ", CountyCode 
+      DISPLAY "County ", CountyCode
               " tax total is " CountyTax(Idx)
    END-PERFORM
    CLOSE TaxFile
    STOP RUN.</code></pre>
-							</td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top">
+				</div>
+				<div class="section-full">
 					<div align="center">
 						<hr />
 						<p>
@@ -423,18 +460,18 @@ Begin.
 							/></a>
 						</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top">
+				</div>
+			</div>
+
+			<!-- Displaying the County Name -->
+			<div class="section-grid">
+				<div class="section-header">
 					<h2 align="center" id="part3">Displaying the County Name</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="150" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Introduction</h4>
-				</td>
-				<td height="150" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							When the program above displays the accumulated tax totals, instead of displaying a county
@@ -445,14 +482,12 @@ Begin.
 						</p>
 						<p align="left">So how would we go about displaying the county name?</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="679" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>A table-based solution</h4>
 					<p align="center"><img height="44" src="Resources/pics/ProgFrag.gif" width="48" /></p>
-				</td>
-				<td height="679" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						One solution might be to use an <code class="language-cobol">EVALUATE</code> to examine the
 						CountyCode and then display the appropriate message. For example -
@@ -477,10 +512,7 @@ END-EVALUATE.</code></pre>
 					><code class="language-cobol">DISPLAY CountyName(Idx) " tax total is " CountyTax(Idx).
 </code></pre>
 					<p>We can incorporate this statement into the County Tax Report program as follows -</p>
-					<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="475">
-						<tr>
-							<td>
-								<pre class="language-cobol"><code class="language-cobol">PROCEDURE DIVISION.
+					<pre class="language-cobol"><code class="language-cobol">PROCEDURE DIVISION.
 Begin.
    OPEN INPUT TaxFile
    READ TaxFile
@@ -492,22 +524,17 @@ Begin.
          AT END SET EndOfTaxFile TO TRUE
       END-READ
    END-PERFORM
-   PERFORM VARYING Idx FROM 1 BY 1 
+   PERFORM VARYING Idx FROM 1 BY 1
            UNTIL Idx GREATER THAN 26
       DISPLAY CountyName(Idx) " tax total is " CountyTax(Idx)
    END-PERFORM
    CLOSE TaxFile
    STOP RUN.</code></pre>
-							</td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="206" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>A diagrammatic representation of the CountyName table</h4>
-				</td>
-				<td height="206" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							In the next tutorial we will examine how we can use the
@@ -524,10 +551,8 @@ Begin.
 							<code class="language-cobol">DISPLAY</code> CountyName(5) will display "Dublin".
 						</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top">
+				</div>
+				<div class="section-full">
 					<div align="center">
 						<hr />
 						<p>
@@ -536,18 +561,18 @@ Begin.
 							/></a>
 						</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top">
+				</div>
+			</div>
+
+			<!-- Using one table to index into another -->
+			<div class="section-grid">
+				<div class="section-header">
 					<h2 align="center" id="part4">Using one table to index into another</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="381" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">Introduction</h4>
-				</td>
-				<td height="381" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						In the County Tax Report program, it proved very convenient that the tax records used a code to
 						represent the county instead of using the actual county name. By using the CountyCode as a
@@ -558,32 +583,22 @@ Begin.
 						Sometimes, however, things are not arranged so conveniently. Suppose that instead of a
 						CountyCode, the tax record contained the actual CountyName. For instance -
 					</p>
-					<div align="center">
-						<table bgcolor="#E1FFE1" border="1" cellpadding="5" width="40%">
-							<tr>
-								<td height="71">
-									<pre class="language-cobol"><code class="language-cobol">01 TaxRec.
+					<pre class="language-cobol"><code class="language-cobol">01 TaxRec.
    88 EndOfTaxFile  VALUE HIGH-VALUES.
    02 PAYENum    PIC 9(8)
    02 County     PIC X(9).
    02 TaxPaid    PIC 9(7)V99.
 </code></pre>
-								</td>
-							</tr>
-						</table>
-					</div>
 					<p>
 						How could we get the program to work then? How would we know, which element of the CountyTax
 						table to add the TaxPaid to?
 					</p>
 					<hr size="1" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="206" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>An EVALUATE based solution</h4>
-				</td>
-				<td height="206" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p align="left">
 						If the tax record contains a county name instead of a county code then we must devise some way
 						to convert the county name into a numeric value that we can use as a table index. What we need
@@ -603,14 +618,12 @@ ADD TaxPaid TO CountyTax(CountyNum)</code></pre>
 					<p align="left">
 						But by now we realise that there must be a more elegant solution. The question is - what is it?
 					</p>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="206" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Using the subscript from one table as the index into another</h4>
 					<p align="center"><img height="44" src="Resources/pics/ProgFrag.gif" width="48" /></p>
-				</td>
-				<td height="206" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p align="left">
 						To convert the county name to a numeric value, we can use the table of CountyNames that we
 						created in the previous section. We will compare the county name in the record with the contents
@@ -640,10 +653,7 @@ ADD TaxPaid TO CountyTax(CountyNum)</code></pre>
 					<p align="left">
 						and you can see where it fits into the County Tax Report program, in the example below.
 					</p>
-					<table align="center" background="Resources/pics/code.gif" border="1" cellpadding="5" width="475">
-						<tr>
-							<td>
-								<pre class="language-cobol"><code class="language-cobol">PROCEDURE DIVISION.
+					<pre class="language-cobol"><code class="language-cobol">PROCEDURE DIVISION.
 Begin.
    OPEN INPUT TaxFile
    READ TaxFile
@@ -659,27 +669,23 @@ Begin.
          AT END SET EndOfTaxFile TO TRUE
       END-READ
    END-PERFORM
-   PERFORM VARYING Idx FROM 1 BY 1 
+   PERFORM VARYING Idx FROM 1 BY 1
            UNTIL Idx GREATER THAN 26
       DISPLAY CountyName(Idx)
               " tax total is " CountyTax(Idx)
    END-PERFORM
    CLOSE TaxFile
    STOP RUN.</code></pre>
-							</td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<hr />
-					<div align="center">
-						<a href="#top"><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132" /></a>
-					</div>
-					<copyright-notice></copyright-notice>
-				</td>
-			</tr>
-		</table>
+				</div>
+			</div>
+
+			<div class="page-footer">
+				<hr />
+				<div align="center">
+					<a href="#top"><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132" /></a>
+				</div>
+				<copyright-notice></copyright-notice>
+			</div>
+		</div>
 	</body>
 </html>
