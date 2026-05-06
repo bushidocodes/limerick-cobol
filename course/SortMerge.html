@@ -46,15 +46,7 @@
 
 			.section-content {
 				padding: 4px;
-			}
-
-			.code-block {
-				background-image: url(Resources/pics/code.gif);
-				border: 1px solid;
-				padding: 5px;
-				max-width: 475px;
-				margin: 0 auto;
-				box-sizing: border-box;
+				min-width: 0;
 			}
 
 			.spec-block {
@@ -63,14 +55,6 @@
 				padding: 10px;
 				max-width: 500px;
 				margin: 0 auto;
-				box-sizing: border-box;
-			}
-
-			.template-block {
-				background-color: #e1ffe1;
-				border: 1px solid;
-				padding: 10px;
-				display: inline-block;
 				box-sizing: border-box;
 			}
 
@@ -90,9 +74,7 @@
 					margin: 0.2em 0;
 				}
 
-				.code-block,
-				.spec-block,
-				.template-block {
+				.spec-block {
 					max-width: 100%;
 				}
 			}
@@ -500,7 +482,6 @@ SORT WorkFile ON ASCENDING ProvinceCode
 								<b> <code class="language-cobol">SORT</code> example </b>
 							</p>
 						</div>
-						<div class="code-block">
 							<pre class="language-cobol"><code class="language-cobol">ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
@@ -543,7 +524,6 @@ Begin.
         etc.
 
 </code></pre>
-						</div>
 					</div>
 					<div class="section-sidebar">
 						<h4>How a simple SORT works</h4>
@@ -873,7 +853,6 @@ SORT WorkFile ON ASCENDING CountryNameWF, CustomerNameWF
 							file, is shown in the table below.
 						</p>
 						<div align="center">
-							<div class="template-block">
 								<pre class="language-cobol"><code class="language-cobol">OPEN INPUT InFileName
 READ InFileName
 PERFORM UNTIL TerminatingCondition
@@ -882,7 +861,6 @@ PERFORM UNTIL TerminatingCondition
    READ InFileName
 END-PERFORM
 CLOSE InFileName</code></pre>
-							</div>
 						</div>
 						<hr align="center" size="1" width="100%" />
 					</div>
@@ -921,7 +899,6 @@ CLOSE InFileName</code></pre>
 							records supplied to the sort process. Since the new records are only 20 characters in size,
 							rather than 80 characters, the amount of data that has to be sorted is substantially reduced.
 						</p>
-						<div class="code-block">
 							<pre
 								class="language-cobol"
 							><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
@@ -1042,7 +1019,6 @@ PrintReportBody.
    WRITE PrintLine FROM CountryLine
          AFTER ADVANCING 1 LINE.
 </code></pre>
-						</div>
 						<hr align="center" size="1" width="100%" />
 					</div>
 					<div class="section-sidebar">
@@ -1065,7 +1041,6 @@ PrintReportBody.
 							<p align="center">
 								<img height="295" src="Resources/pics/Sort6.gif" width="515" />
 							</p>
-							<div class="code-block">
 								<pre
 									class="language-cobol"
 								><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
@@ -1129,7 +1104,6 @@ GetStudentDetails.
        RELEASE WorkRec
        ACCEPT WorkRec
     END-PERFORM.</code></pre>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -1284,7 +1258,6 @@ SORT WorkFile ON ASCENDING KEY SalespersonNumWF
 							the <code class="language-cobol">SORT</code>.
 						</p>
 						<div align="center">
-							<div class="template-block">
 								<pre class="language-cobol"><code class="language-cobol">OPEN OUTPUT OutFile
 RETURN SDWorkFile RECORD
 PERFORM UNTIL TerminatingCondition
@@ -1294,7 +1267,6 @@ PERFORM UNTIL TerminatingCondition
 END-PERFORM
 CLOSE OutFile
 </code></pre>
-							</div>
 						</div>
 						<hr align="center" size="1" width="100%" />
 					</div>
@@ -1310,7 +1282,6 @@ CLOSE OutFile
 							<code class="language-cobol">OUTPUT PROCEDURE</code> is used, because until the records have
 							been sorted into salesperson number order, the salesperson records cannot be summarized.
 						</p>
-						<div class="code-block">
 							<pre
 								class="language-cobol"
 							><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
@@ -1371,7 +1342,6 @@ SummariseSales.
     END-PERFORM
     CLOSE SalesSummaryFile.
 </code></pre>
-						</div>
 						<hr align="center" size="1" width="100%" />
 					</div>
 					<div class="section-sidebar">
@@ -1386,7 +1356,6 @@ SummariseSales.
 							making the program simpler and shorter, since we no longer need all the sorted file
 							declarations.
 						</p>
-						<div class="code-block">
 							<pre
 								class="language-cobol"
 							><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
@@ -1499,7 +1468,6 @@ PrintReportBody.
    WRITE PrintLine FROM CountryLine
          AFTER ADVANCING 1 LINE.
 </code></pre>
-						</div>
 					</div>
 				</div>
 				<div align="center">
@@ -1607,7 +1575,6 @@ PrintReportBody.
 							an ordered master file, we have used the
 							<code class="language-cobol">MERGE</code> verb to merge the files.
 						</p>
-						<div class="code-block">
 							<pre
 								class="language-cobol"
 							><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
@@ -1656,7 +1623,6 @@ Begin.
        GIVING NewStudentFile.
     STOP RUN.
 </code></pre>
-						</div>
 					</div>
 				</div>
 				<div>
