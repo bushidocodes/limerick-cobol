@@ -103,6 +103,24 @@
 				overflow-wrap: break-word;
 			}
 
+			.eval-row {
+				display: grid;
+				font-family: monospace;
+				align-items: center;
+				justify-items: center;
+				padding: 4px 0;
+			}
+
+			.eval-row-3col {
+				grid-template-columns: 2fr 1fr 2fr;
+			}
+
+			.eval-row-4col {
+				grid-template-columns: auto auto auto auto;
+				justify-content: center;
+				column-gap: 1.5em;
+			}
+
 			pre[class*="language-"],
 			code[class*="language-"] {
 				white-space: pre-wrap !important;
@@ -594,62 +612,31 @@ END-IF
 						unless the order of evaluation is changed by the precedence rules (shown below) or by
 						bracketing.
 					</p>
-					<table align="center" bgcolor="#E1FFE1" border cellpadding="7" cellspacing="1" width="275">
+					<table bgcolor="#E1FFE1" border cellpadding="7" cellspacing="1" width="100%" style="display: table; table-layout: fixed;">
+						<colgroup>
+							<col style="width: 23%">
+							<col style="width: 35%">
+							<col style="width: 42%">
+						</colgroup>
 						<tr bgcolor="#FFFFCC">
-							<th valign="top" width="23%">
-								<p align="center">
-									<span style="color: #ff0000"><b>Precedence</b></span>
-								</p>
-							</th>
-							<th valign="top" width="35%">
-								<p align="center">
-									<span style="color: #ff0000"><b>Condition Value</b></span>
-								</p>
-							</th>
-							<th valign="top" width="42%">
-								<p align="center">
-									<span style="color: #ff0000"><b>Arithmetic Equivalent</b></span>
-								</p>
-							</th>
+							<th align="center"><span style="color: #ff0000"><b>Precedence</b></span></th>
+							<th align="center"><span style="color: #ff0000"><b>Condition Value</b></span></th>
+							<th align="center"><span style="color: #ff0000"><b>Arithmetic Equivalent</b></span></th>
 						</tr>
 						<tr>
-							<td valign="top" width="23%">
-								<p align="center"><b>1.</b></p>
-							</td>
-							<td valign="top" width="35%">
-								<p align="center">
-									<code class="language-cobol">NOT</code>
-								</p>
-							</td>
-							<td valign="top" width="42%">
-								<p align="center"><b>**</b></p>
-							</td>
+							<td align="center"><b>1.</b></td>
+							<td align="center"><code class="language-cobol">NOT</code></td>
+							<td align="center"><b>**</b></td>
 						</tr>
 						<tr>
-							<td valign="top" width="23%">
-								<p align="center"><b>2.</b></p>
-							</td>
-							<td valign="top" width="35%">
-								<p align="center">
-									<code class="language-cobol">AND</code>
-								</p>
-							</td>
-							<td valign="top" width="42%">
-								<p align="center"><b>*</b> or <b>/</b></p>
-							</td>
+							<td align="center"><b>2.</b></td>
+							<td align="center"><code class="language-cobol">AND</code></td>
+							<td align="center"><b>*</b> or <b>/</b></td>
 						</tr>
 						<tr>
-							<td valign="top" width="23%">
-								<p align="center"><b>3.</b></p>
-							</td>
-							<td valign="top" width="35%">
-								<p align="center">
-									<code class="language-cobol">OR</code>
-								</p>
-							</td>
-							<td valign="top" width="42%">
-								<p align="center"><b>+</b> or <b>-</b></p>
-							</td>
+							<td align="center"><b>3.</b></td>
+							<td align="center"><code class="language-cobol">OR</code></td>
+							<td align="center"><b>+</b> or <b>-</b></td>
 						</tr>
 					</table>
 					<p><b>Example</b></p>
@@ -684,47 +671,39 @@ END-IF
 						</p>
 					</blockquote>
 					<p>If all the simple conditions are true; will the Complex Condition be true? Let's check.</p>
-					<table align="center" border="1" width="94%">
+					<table align="center" border="1" width="94%" style="display: table;">
 						<tr>
-							<th scope="row" bgcolor="#FFFFCC" width="16%">
-								<p align="center">Condition</p>
-							</th>
+							<th scope="row" bgcolor="#FFFFCC" width="16%" align="center">Condition</th>
 							<td bgcolor="#E1FFE1" width="84%">
-								<p align="center">
-									&nbsp;(<code class="language-cobol">NOT</code> (Amnt1 &lt; 10))
+							<p style="text-align:center; margin:0.3em 0;">&nbsp;(<code class="language-cobol">NOT</code> (Amnt1 &lt; 10))
 									<code class="language-cobol">OR</code> ((Amnt2 = 50)
-									<code class="language-cobol">AND</code> (Amnt3 &gt; 150))
-								</p>
-							</td>
+									<code class="language-cobol">AND</code> (Amnt3 &gt; 150))</p>
+						</td>
 						</tr>
 						<tr>
-							<th scope="row" bgcolor="#FFFFCC" width="16%">
-								<p align="center">Expressed as</p>
-							</th>
+							<th scope="row" bgcolor="#FFFFCC" width="16%" align="center">Expressed as</th>
 							<td bgcolor="#E1FFE1" width="84%">
-								<pre
-									class="language-cobol"
-								><code class="language-cobol">   (NOT    (T))   OR      ((T)   AND      (T)) </code></pre>
+								<div class="eval-row eval-row-3col">
+									<span>(<code class="language-cobol">NOT</code>&nbsp;(T))</span>
+									<code class="language-cobol">OR</code>
+									<span>((T)&nbsp;<code class="language-cobol">AND</code>&nbsp;(T))</span>
+								</div>
 							</td>
 						</tr>
 						<tr>
-							<th scope="row" bgcolor="#FFFFCC" height="17" width="16%">
-								<div align="center">Evaluates to</div>
-							</th>
+							<th scope="row" bgcolor="#FFFFCC" height="17" width="16%" align="center">Evaluates to</th>
 							<td bgcolor="#E1FFE1" height="17" width="84%">
-								<pre
-									class="language-cobol"
-								><code class="language-cobol">      (F)         OR             (T) </code></pre>
+								<div class="eval-row eval-row-3col">
+									<span>(F)</span>
+									<code class="language-cobol">OR</code>
+									<span>(T)</span>
+								</div>
 							</td>
 						</tr>
 						<tr>
-							<th scope="row" bgcolor="#FFFFCC" width="16%">
-								<div align="center">Evaluates to</div>
-							</th>
+							<th scope="row" bgcolor="#FFFFCC" width="16%" align="center">Evaluates to</th>
 							<td bgcolor="#E1FFE1" width="84%">
-								<pre
-									class="language-cobol"
-								><code class="language-cobol">                 True </code></pre>
+								<p style="text-align: center; margin: 0.3em 0;"><code class="language-cobol">True</code></p>
 							</td>
 						</tr>
 					</table>
@@ -732,57 +711,51 @@ END-IF
 						Consider the condition in the table below and ask the same question. Is the Complex Condition
 						true if all the Simple Conditions are true? &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					</p>
-					<table align="center" border="1" width="93%">
+					<table align="center" border="1" width="93%" style="display: table;">
 						<tr>
-							<th scope="row" bgcolor="#FFFFCC" width="16%">
-								<p align="center">Condition</p>
-							</th>
+							<th scope="row" bgcolor="#FFFFCC" width="16%" align="center">Condition</th>
 							<td bgcolor="#E1FFE1" width="84%">
-								<p align="center">
-									<code class="language-cobol">NOT</code> ((Amnt1 &lt; 10)
+							<p style="text-align:center; margin:0.3em 0;"><code class="language-cobol">NOT</code> ((Amnt1 &lt; 10)
 									<code class="language-cobol">OR</code> (Amnt2 = 50))
-									<code class="language-cobol">AND</code> (Amnt3 &gt; 150)
-								</p>
-							</td>
+									<code class="language-cobol">AND</code> (Amnt3 &gt; 150)</p>
+						</td>
 						</tr>
 						<tr>
-							<th scope="row" bgcolor="#FFFFCC" width="16%">
-								<p align="center">Expressed as</p>
-							</th>
+							<th scope="row" bgcolor="#FFFFCC" width="16%" align="center">Expressed as</th>
 							<td bgcolor="#E1FFE1" width="84%">
-								<pre
-									class="language-cobol"
-								><code class="language-cobol">   NOT     ((T)   OR      (T))   AND      (T)</code></pre>
+								<div class="eval-row eval-row-4col">
+									<code class="language-cobol">NOT</code>
+									<span>((T)&nbsp;<code class="language-cobol">OR</code>&nbsp;(T))</span>
+									<code class="language-cobol">AND</code>
+									<span>(T)</span>
+								</div>
 							</td>
 						</tr>
 						<tr>
-							<th scope="row" bgcolor="#FFFFCC" height="17" width="16%">
-								<div align="center">Evaluates to</div>
-							</th>
+							<th scope="row" bgcolor="#FFFFCC" height="17" width="16%" align="center">Evaluates to</th>
 							<td bgcolor="#E1FFE1" height="17" width="84%">
-								<pre
-									class="language-cobol"
-								><code class="language-cobol">   NOT            (T)            AND      (T)</code></pre>
+								<div class="eval-row eval-row-4col">
+									<code class="language-cobol">NOT</code>
+									<span>(T)</span>
+									<code class="language-cobol">AND</code>
+									<span>(T)</span>
+								</div>
 							</td>
 						</tr>
 						<tr>
-							<th scope="row" bgcolor="#FFFFCC" width="16%">
-								<div align="center">Evaluates to</div>
-							</th>
+							<th scope="row" bgcolor="#FFFFCC" width="16%" align="center">Evaluates to</th>
 							<td bgcolor="#E1FFE1" width="84%">
-								<pre
-									class="language-cobol"
-								><code class="language-cobol">          (F)                    AND      (T)</code></pre>
+								<div class="eval-row eval-row-4col">
+									<span style="grid-column: 1 / 3;">(F)</span>
+									<code class="language-cobol">AND</code>
+									<span>(T)</span>
+								</div>
 							</td>
 						</tr>
 						<tr>
-							<th scope="row" bgcolor="#FFFFCC" width="16%">
-								<div align="center">Evaluates to</div>
-							</th>
+							<th scope="row" bgcolor="#FFFFCC" width="16%" align="center">Evaluates to</th>
 							<td bgcolor="#E1FFE1" width="84%">
-								<pre
-									class="language-cobol"
-								><code class="language-cobol">                 False</code></pre>
+								<p style="text-align: center; margin: 0.3em 0;"><code class="language-cobol">False</code></p>
 							</td>
 						</tr>
 					</table>
@@ -872,125 +845,57 @@ END-IF
 						move your cursor over the text "Answer" and the correct answer should be shown.
 					</p>
 					<form action="Selection.html" method="post">
-						<table align="center" bgcolor="#E1FFE1" border="1" width="50%">
+						<table align="center" bgcolor="#E1FFE1" border="1" width="50%" style="display: table;">
 							<tr bgcolor="#FFFFCC">
-								<th width="13%">
-									<div align="center">
-										<span style="color: #ff0000"><b>VarA</b></span>
-									</div>
-								</th>
-								<th width="13%">
-									<div align="center">
-										<span style="color: #ff0000"><b>VarB</b></span>
-									</div>
-								</th>
-								<th width="13%">
-									<div align="center">
-										<span style="color: #ff0000"><b>VarC</b></span>
-									</div>
-								</th>
-								<th width="12%">
-									<div align="center">
-										<span style="color: #ff0000"><b>VarG</b></span>
-									</div>
-								</th>
-								<th bgcolor="#FFFFCC" width="49%">
-									<div align="center">
-										<span style="color: #ff0000"
+								<th width="13%" align="center"><span style="color: #ff0000"><b>VarA</b></span></th>
+								<th width="13%" align="center"><span style="color: #ff0000"><b>VarB</b></span></th>
+								<th width="13%" align="center"><span style="color: #ff0000"><b>VarC</b></span></th>
+								<th width="12%" align="center"><span style="color: #ff0000"><b>VarG</b></span></th>
+								<th bgcolor="#FFFFCC" width="49%" align="center"><span style="color: #ff0000"
 											><b>
 												<code class="language-cobol">DISPLAY</code>
 											</b></span
-										>
-									</div>
-								</th>
+										></th>
 							</tr>
 							<tr>
-								<td width="13%">
-									<div align="center">3</div>
-								</td>
-								<td width="13%">
-									<div align="center">4</div>
-								</td>
-								<td width="13%">
-									<div align="center">15</div>
-								</td>
-								<td width="12%">
-									<div align="center">14</div>
-								</td>
-								<td bgcolor="#FFFFFF" width="49%">
-									<div align="center">
-										<select name="select">
+								<td width="13%" align="center">3</td>
+								<td width="13%" align="center">4</td>
+								<td width="13%" align="center">15</td>
+								<td width="12%" align="center">14</td>
+								<td bgcolor="#E1FFE1" width="49%" align="center"><select name="select">
 											<option selected>Click arrow for answer</option>
 											<option>First is displayed</option>
-										</select>
-									</div>
-								</td>
+										</select></td>
 							</tr>
 							<tr>
-								<td width="13%">
-									<div align="center">3</div>
-								</td>
-								<td width="13%">
-									<div align="center">4</div>
-								</td>
-								<td width="13%">
-									<div align="center">15</div>
-								</td>
-								<td width="12%">
-									<div align="center">15</div>
-								</td>
-								<td bgcolor="#FFFFFF" width="49%">
-									<div align="center">
-										<select name="select2">
+								<td width="13%" align="center">3</td>
+								<td width="13%" align="center">4</td>
+								<td width="13%" align="center">15</td>
+								<td width="12%" align="center">15</td>
+								<td bgcolor="#E1FFE1" width="49%" align="center"><select name="select2">
 											<option selected>Click arrow for answer</option>
 											<option>Second is displayed</option>
-										</select>
-									</div>
-								</td>
+										</select></td>
 							</tr>
 							<tr>
-								<td width="13%">
-									<div align="center">3</div>
-								</td>
-								<td width="13%">
-									<div align="center">4</div>
-								</td>
-								<td width="13%">
-									<div align="center">3</div>
-								</td>
-								<td width="12%">
-									<div align="center">14</div>
-								</td>
-								<td bgcolor="#FFFFFF" width="49%">
-									<div align="center">
-										<select name="select3">
+								<td width="13%" align="center">3</td>
+								<td width="13%" align="center">4</td>
+								<td width="13%" align="center">3</td>
+								<td width="12%" align="center">14</td>
+								<td bgcolor="#E1FFE1" width="49%" align="center"><select name="select3">
 											<option selected>Click arrow for answer</option>
 											<option>Third is displayed</option>
-										</select>
-									</div>
-								</td>
+										</select></td>
 							</tr>
 							<tr>
-								<td width="13%">
-									<div align="center">13</div>
-								</td>
-								<td width="13%">
-									<div align="center">4</div>
-								</td>
-								<td width="13%">
-									<div align="center">15</div>
-								</td>
-								<td width="12%">
-									<div align="center">14</div>
-								</td>
-								<td bgcolor="#FFFFFF" width="49%">
-									<div align="center">
-										<select name="select4">
+								<td width="13%" align="center">13</td>
+								<td width="13%" align="center">4</td>
+								<td width="13%" align="center">15</td>
+								<td width="12%" align="center">14</td>
+								<td bgcolor="#E1FFE1" width="49%" align="center"><select name="select4">
 											<option selected>Click arrow for answer</option>
 											<option>Third is displayed</option>
-										</select>
-									</div>
-								</td>
+										</select></td>
 							</tr>
 						</table>
 					</form>
@@ -1493,272 +1398,118 @@ END-EVALUATE
 					</p>
 					<table align="center" bgcolor="#E1FFE1" border="1" width="83%">
 						<tr bgcolor="#FFFFCC" valign="top">
-							<th height="10" width="20%">
-								<div align="center">
-									<p>QtyOfBooks</p>
-								</div>
-							</th>
-							<th bgcolor="#FFFFCC" height="10" width="43%">
-								<div align="center">ValueOfPurchases (VOP)</div>
-							</th>
-							<th height="10" width="14%">
-								<div align="center">ClubMember</div>
-							</th>
-							<th height="10" width="23%">
-								<div align="center">% Discount</div>
-							</th>
+							<th height="10" width="20%" align="center">QtyOfBooks</th>
+							<th bgcolor="#FFFFCC" height="10" width="43%" align="center">ValueOfPurchases (VOP)</th>
+							<th height="10" width="14%" align="center">ClubMember</th>
+							<th height="10" width="23%" align="center">% Discount</th>
 						</tr>
 						<tr>
-							<td width="20%">
-								<div align="center">1-5</div>
-							</td>
-							<td width="43%">
-								<div align="center">$0-500</div>
-							</td>
-							<td width="14%">
-								<div align="center">Y</div>
-							</td>
-							<td width="23%">
-								<div align="center">2%</div>
-							</td>
+							<td width="20%" align="center">1-5</td>
+							<td width="43%" align="center">$0-500</td>
+							<td width="14%" align="center">Y</td>
+							<td width="23%" align="center">2%</td>
 						</tr>
 						<tr>
-							<td width="20%">
-								<div align="center">6-16</div>
-							</td>
-							<td width="43%">
-								<div align="center">$0-500</div>
-							</td>
-							<td width="14%">
-								<div align="center">Y</div>
-							</td>
-							<td width="23%">
-								<div align="center">3%</div>
-							</td>
+							<td width="20%" align="center">6-16</td>
+							<td width="43%" align="center">$0-500</td>
+							<td width="14%" align="center">Y</td>
+							<td width="23%" align="center">3%</td>
 						</tr>
 						<tr>
-							<td width="20%">
-								<div align="center">&gt;16</div>
-							</td>
-							<td width="43%">
-								<div align="center">$0-500</div>
-							</td>
-							<td width="14%">
-								<div align="center">Y</div>
-							</td>
-							<td width="23%">
-								<div align="center">5%</div>
-							</td>
+							<td width="20%" align="center">&gt;16</td>
+							<td width="43%" align="center">$0-500</td>
+							<td width="14%" align="center">Y</td>
+							<td width="23%" align="center">5%</td>
 						</tr>
 						<tr>
-							<td width="20%">
-								<div align="center">1-5</div>
-							</td>
-							<td width="43%">
-								<div align="center">$501-2000</div>
-							</td>
-							<td width="14%">
-								<div align="center">Y</div>
-							</td>
-							<td width="23%">
-								<div align="center">7%</div>
-							</td>
+							<td width="20%" align="center">1-5</td>
+							<td width="43%" align="center">$501-2000</td>
+							<td width="14%" align="center">Y</td>
+							<td width="23%" align="center">7%</td>
 						</tr>
 						<tr>
-							<td width="20%">
-								<div align="center">6-16</div>
-							</td>
-							<td width="43%">
-								<div align="center">$501-2000</div>
-							</td>
-							<td width="14%">
-								<div align="center">Y</div>
-							</td>
-							<td width="23%">
-								<div align="center">12%</div>
-							</td>
+							<td width="20%" align="center">6-16</td>
+							<td width="43%" align="center">$501-2000</td>
+							<td width="14%" align="center">Y</td>
+							<td width="23%" align="center">12%</td>
 						</tr>
 						<tr>
-							<td width="20%">
-								<div align="center">&gt;16</div>
-							</td>
-							<td width="43%">
-								<div align="center">$501-2000</div>
-							</td>
-							<td width="14%">
-								<div align="center">Y</div>
-							</td>
-							<td width="23%">
-								<div align="center">18%</div>
-							</td>
+							<td width="20%" align="center">&gt;16</td>
+							<td width="43%" align="center">$501-2000</td>
+							<td width="14%" align="center">Y</td>
+							<td width="23%" align="center">18%</td>
 						</tr>
 						<tr>
-							<td width="20%">
-								<div align="center">1-5</div>
-							</td>
-							<td width="43%">
-								<div align="center">&gt; $2000</div>
-							</td>
-							<td width="14%">
-								<div align="center">Y</div>
-							</td>
-							<td width="23%">
-								<div align="center">10%</div>
-							</td>
+							<td width="20%" align="center">1-5</td>
+							<td width="43%" align="center">&gt; $2000</td>
+							<td width="14%" align="center">Y</td>
+							<td width="23%" align="center">10%</td>
 						</tr>
 						<tr>
-							<td width="20%">
-								<div align="center">6-16</div>
-							</td>
-							<td width="43%">
-								<div align="center">&gt; $2000</div>
-							</td>
-							<td width="14%">
-								<div align="center">Y</div>
-							</td>
-							<td width="23%">
-								<div align="center">23%</div>
-							</td>
+							<td width="20%" align="center">6-16</td>
+							<td width="43%" align="center">&gt; $2000</td>
+							<td width="14%" align="center">Y</td>
+							<td width="23%" align="center">23%</td>
 						</tr>
 						<tr>
-							<td width="20%">
-								<div align="center">&gt;16</div>
-							</td>
-							<td width="43%">
-								<div align="center">&gt; $2000</div>
-							</td>
-							<td width="14%">
-								<div align="center">Y</div>
-							</td>
-							<td width="23%">
-								<div align="center">35%</div>
-							</td>
+							<td width="20%" align="center">&gt;16</td>
+							<td width="43%" align="center">&gt; $2000</td>
+							<td width="14%" align="center">Y</td>
+							<td width="23%" align="center">35%</td>
 						</tr>
 						<tr>
-							<td width="20%">
-								<div align="center">1-5</div>
-							</td>
-							<td width="43%">
-								<div align="center">$0-500</div>
-							</td>
-							<td width="14%">
-								<div align="center">N</div>
-							</td>
-							<td width="23%">
-								<div align="center">1%</div>
-							</td>
+							<td width="20%" align="center">1-5</td>
+							<td width="43%" align="center">$0-500</td>
+							<td width="14%" align="center">N</td>
+							<td width="23%" align="center">1%</td>
 						</tr>
 						<tr>
-							<td width="20%">
-								<div align="center">6-16</div>
-							</td>
-							<td width="43%">
-								<div align="center">$0-500</div>
-							</td>
-							<td width="14%">
-								<div align="center">N</div>
-							</td>
-							<td width="23%">
-								<div align="center">2%</div>
-							</td>
+							<td width="20%" align="center">6-16</td>
+							<td width="43%" align="center">$0-500</td>
+							<td width="14%" align="center">N</td>
+							<td width="23%" align="center">2%</td>
 						</tr>
 						<tr>
-							<td width="20%">
-								<div align="center">&gt;16</div>
-							</td>
-							<td width="43%">
-								<div align="center">$0-500</div>
-							</td>
-							<td width="14%">
-								<div align="center">N</div>
-							</td>
-							<td width="23%">
-								<div align="center">3%</div>
-							</td>
+							<td width="20%" align="center">&gt;16</td>
+							<td width="43%" align="center">$0-500</td>
+							<td width="14%" align="center">N</td>
+							<td width="23%" align="center">3%</td>
 						</tr>
 						<tr>
-							<td width="20%">
-								<div align="center">1-5</div>
-							</td>
-							<td width="43%">
-								<div align="center">$501-2000</div>
-							</td>
-							<td width="14%">
-								<div align="center">N</div>
-							</td>
-							<td width="23%">
-								<div align="center">5%</div>
-							</td>
+							<td width="20%" align="center">1-5</td>
+							<td width="43%" align="center">$501-2000</td>
+							<td width="14%" align="center">N</td>
+							<td width="23%" align="center">5%</td>
 						</tr>
 						<tr>
-							<td width="20%">
-								<div align="center">6-16</div>
-							</td>
-							<td width="43%">
-								<div align="center">$501-2000</div>
-							</td>
-							<td width="14%">
-								<div align="center">N</div>
-							</td>
-							<td width="23%">
-								<div align="center">10%</div>
-							</td>
+							<td width="20%" align="center">6-16</td>
+							<td width="43%" align="center">$501-2000</td>
+							<td width="14%" align="center">N</td>
+							<td width="23%" align="center">10%</td>
 						</tr>
 						<tr>
-							<td width="20%">
-								<div align="center">&gt;16</div>
-							</td>
-							<td width="43%">
-								<div align="center">$501-2000</div>
-							</td>
-							<td width="14%">
-								<div align="center">N</div>
-							</td>
-							<td width="23%">
-								<div align="center">15%</div>
-							</td>
+							<td width="20%" align="center">&gt;16</td>
+							<td width="43%" align="center">$501-2000</td>
+							<td width="14%" align="center">N</td>
+							<td width="23%" align="center">15%</td>
 						</tr>
 						<tr>
-							<td width="20%">
-								<div align="center">1-5</div>
-							</td>
-							<td width="43%">
-								<div align="center">&gt; $2000</div>
-							</td>
-							<td width="14%">
-								<div align="center">N</div>
-							</td>
-							<td width="23%">
-								<div align="center">8%</div>
-							</td>
+							<td width="20%" align="center">1-5</td>
+							<td width="43%" align="center">&gt; $2000</td>
+							<td width="14%" align="center">N</td>
+							<td width="23%" align="center">8%</td>
 						</tr>
 						<tr>
-							<td width="20%">
-								<div align="center">6-16</div>
-							</td>
-							<td width="43%">
-								<div align="center">&gt; $2000</div>
-							</td>
-							<td width="14%">
-								<div align="center">N</div>
-							</td>
-							<td width="23%">
-								<div align="center">23%</div>
-							</td>
+							<td width="20%" align="center">6-16</td>
+							<td width="43%" align="center">&gt; $2000</td>
+							<td width="14%" align="center">N</td>
+							<td width="23%" align="center">23%</td>
 						</tr>
 						<tr>
-							<td width="20%">
-								<div align="center">&gt;16</div>
-							</td>
-							<td width="43%">
-								<div align="center">&gt; $2000</div>
-							</td>
-							<td width="14%">
-								<div align="center">N</div>
-							</td>
-							<td width="23%">
-								<div align="center">28%</div>
-							</td>
+							<td width="20%" align="center">&gt;16</td>
+							<td width="43%" align="center">&gt; $2000</td>
+							<td width="14%" align="center">N</td>
+							<td width="23%" align="center">28%</td>
 						</tr>
 					</table>
 					<pre
