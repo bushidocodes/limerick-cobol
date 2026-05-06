@@ -1,195 +1,140 @@
 <!doctype html>
 <html>
 	<head>
+		<meta content="width=device-width, initial-scale=1" name="viewport" />
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<title>Basic Procedure Division commands</title>
-		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
-		<script src="Resources/vendor/prism/prism.min.js" defer></script>
-		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
-		<meta content="width=device-width, initial-scale=1" name="viewport" />
+		<link href="Resources/css/course.css" rel="stylesheet" />
 		<style type="text/css">
-			img {
-				max-width: 100%;
-				height: auto;
-			}
-
-			table {
-				max-width: 100%;
-			}
-
-			body > table,
-			body > hr {
-				margin-left: auto;
-				margin-right: auto;
-			}
-
-			pre {
-				overflow-x: auto;
-				max-width: 100%;
-			}
-
-			body {
-				-webkit-text-size-adjust: 100%;
-			}
-
-			@media (max-width: 600px) {
-				body {
-					margin: 4px;
-					overflow-wrap: break-word;
-					word-wrap: break-word;
-				}
-
-				table[width] {
-					width: 100% !important;
-					height: auto !important;
-				}
-
-				td[width],
-				th[width],
-				td[height],
-				th[height] {
-					width: auto !important;
-					height: auto !important;
-				}
-
-				td[bgcolor="#993300"] > h2,
-				td[bgcolor="#993300"] > h3 {
-					margin: 0.3em 0;
-				}
-
-				blockquote {
-					margin-left: 12px;
-					margin-right: 12px;
-				}
-
-				hr[width] {
-					width: 100% !important;
-				}
-
-				img,
-				iframe,
-				video,
-				embed,
-				object {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					height: auto;
-				}
-
-				pre {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					white-space: pre-wrap;
-					word-wrap: break-word;
-					overflow-wrap: break-word;
-				}
-
-				pre[class*="language-"],
-				code[class*="language-"] {
-					white-space: pre-wrap !important;
-					overflow-wrap: break-word;
-				}
-
-				pre[class*="language-"] {
-					font-size: 0.8em;
-					line-height: 1.35;
-					padding: 0.6em;
-					overflow-x: auto;
-				}
-
-				#layout-table,
-				#layout-table > tbody,
-				#layout-table > tbody > tr,
-				#layout-table > tbody > tr > td {
-					display: block;
-					width: auto !important;
-				}
-
-				td[width="175"] > h4:not(:first-child):not(:has(img)),
-				td[width="160"] > h4:not(:first-child):not(:has(img)),
-				h4:has(> img[src*="PanelLine"]) {
-					display: none;
-				}
-
-				td[width="175"] > h3,
-				td[width="175"] > h4,
-				td[width="175"] > p,
-				td[width="160"] > h3,
-				td[width="160"] > h4,
-				td[width="160"] > p {
-					margin: 0.2em 0;
-				}
-			}
-
-			ul.toc {
-				list-style-image: url(Resources/pics/BallGreenG.gif);
-				padding-left: 2.5em;
-				margin: 1em 0;
-			}
-
-			ul.toc > li {
-				padding-left: 0.4em;
-				margin-bottom: 0.6em;
-				font-size: smaller;
-			}
-
-			ul.toc a {
-				font-weight: bold;
-				font-size: larger;
-			}
-
-			td[bgcolor="#993300"] h2 {
+			.section-header h2 {
 				color: #ffff00;
 				font-family: Arial, Helvetica, sans-serif;
 			}
 
-			td[bgcolor="#FFFFCC"] h4 {
+			.section-sidebar h4 {
 				color: #800000;
 				font-family: Arial, Helvetica, sans-serif;
 			}
+
+			.page-wrapper {
+				max-width: 715px;
+				margin: 0 auto;
+				border: 1px solid;
+				box-sizing: border-box;
+			}
+
+			.page-content {
+				padding: 2px;
+			}
+
+			.section-grid {
+				display: grid;
+				grid-template-columns: 175px 1fr;
+			}
+
+			.section-header {
+				grid-column: 1 / -1;
+				background-color: #993300;
+				padding: 4px;
+				min-width: 0;
+				border-bottom: 1px solid;
+			}
+
+			.section-sidebar {
+				background-color: #FFFFCC;
+				padding: 4px;
+				align-self: stretch;
+				min-width: 0;
+				border-right: 1px solid;
+				border-bottom: 1px solid;
+			}
+
+			.section-content {
+				padding: 4px;
+				align-self: start;
+				min-width: 0;
+				overflow: hidden;
+				border-bottom: 1px solid;
+			}
+
+			.section-full {
+				grid-column: 1 / -1;
+				padding: 4px;
+				min-width: 0;
+				border-bottom: 1px solid;
+			}
+
+			.section-full:last-child {
+				border-bottom: none;
+			}
+
+			.section-content pre[class*="language-"],
+			.section-content code[class*="language-"] {
+				white-space: pre-wrap;
+				overflow-wrap: break-word;
+			}
+
+			@media (max-width: 600px) {
+				.section-header h2,
+				.section-header h3 {
+					margin: 0.3em 0;
+				}
+
+				.section-grid {
+					display: block;
+				}
+
+				.section-sidebar h4,
+				.section-sidebar p {
+					margin: 0.2em 0;
+				}
+			}
 		</style>
+		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
+		<script src="Resources/vendor/prism/prism.min.js" defer></script>
+		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
 		<script src="../components/copyright-notice.js" defer></script>
 	</head>
 
 	<body alink="#009B00" bgcolor="#FFFFFF" link="#0000FF" text="#000000" vlink="#FF0000">
-		<table id="layout-table" border="1" width="715" cellpadding="4" cellspacing="0">
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
-					<center>
-						<p><img height="59" src="Resources/pics/t-CobolTut.gif" width="173" /></p>
-						<h1>Basic Procedure Division Commands</h1>
-					</center>
-					<hr />
-					<ul class="toc">
-						<li>
-							<a href="#intro">Introduction</a><br />
-							Unit aims, objectives, prerequisites.
-						</li>
-						<li>
-							<a href="#part1">Basic User Input and Output</a><br />
-							This section introduces the ACCEPT and DISPLAY verbs and shows how the ACCEPT may be used to
-							get the system date and time.
-						</li>
-						<li>
-							<a href="#part2">Assignment using the MOVE verb</a><br />
-							This section demonstrates how assignment is achieved in COBOL.
-						</li>
-						<li>
-							<a href="#part3">Arithmetic in COBOL</a><br />
-							This section introduces the ADD, SUBTRACT, MULTIPLY, DIVIDE and COMPUTE verbs.
-						</li>
-					</ul>
-					<hr />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+		<div class="page-wrapper">
+			<div class="page-content">
+				<center>
+					<p id="top"><img height="59" src="Resources/pics/t-CobolTut.gif" width="173" /></p>
+					<h1>Basic Procedure Division Commands</h1>
+				</center>
+				<hr />
+				<ul class="toc">
+					<li>
+						<a href="#intro">Introduction</a><br />
+						Unit aims, objectives, prerequisites.
+					</li>
+					<li>
+						<a href="#part1">Basic User Input and Output</a><br />
+						This section introduces the ACCEPT and DISPLAY verbs and shows how the ACCEPT may be used to
+						get the system date and time.
+					</li>
+					<li>
+						<a href="#part2">Assignment using the MOVE verb</a><br />
+						This section demonstrates how assignment is achieved in COBOL.
+					</li>
+					<li>
+						<a href="#part3">Arithmetic in COBOL</a><br />
+						This section introduces the ADD, SUBTRACT, MULTIPLY, DIVIDE and COMPUTE verbs.
+					</li>
+				</ul>
+				<hr />
+			</div>
+
+			<!-- Introduction -->
+			<div class="section-grid">
+				<div class="section-header">
 					<h2 align="center" id="intro">Introduction</h2>
-				</td>
-			</tr>
-			<tr>
-				<td bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Aims</h4>
-				</td>
-				<td width="540">
+				</div>
+				<div class="section-content">
 					<p>
 						The <code class="language-cobol">PROCEDURE DIVISION</code> contains the code used to manipulate
 						the data described in the <code class="language-cobol">DATA DIVISION</code>. This tutorial
@@ -201,13 +146,11 @@
 						and time can be obtained from the computer and how arithmetic statements are written.
 					</p>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Objectives</h4>
-				</td>
-				<td width="540">
+				</div>
+				<div class="section-content">
 					<p>By the end of this unit you should -</p>
 					<ol>
 						<li>Know how to get data from the keyboard and write it to the screen.</li>
@@ -217,41 +160,38 @@
 						<li>Be able to use the arithmetic verbs to perform calculations.</li>
 					</ol>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" height="77" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Prerequisites</h4>
-				</td>
-				<td height="77" valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<ul>
 						<li>Introduction to COBOL</li>
 						<li>Declaring data in COBOL</li>
 					</ul>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
-					<div align="center">
-						<hr />
-						<p>
-							<a href="#top"
-								><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
-							/></a>
-						</p>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+				</div>
+			</div>
+
+			<div class="page-content">
+				<div align="center">
+					<hr />
+					<p>
+						<a href="#top"
+							><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+						/></a>
+					</p>
+				</div>
+			</div>
+
+			<!-- Part 1: Basic User Input and Output -->
+			<div class="section-grid">
+				<div class="section-header">
 					<h2 align="center" id="part1">Basic User Input and Output</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Introduction</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							In COBOL, the <code class="language-cobol">ACCEPT</code> and
@@ -274,10 +214,8 @@
 						</p>
 						<hr width="50%" />
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>The DISPLAY verb</h4>
 					<aside>
 						<p align="center">
@@ -298,8 +236,8 @@
 							<b>l</b> indicates that the item can be a literal.
 						</p>
 					</aside>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left"><img height="54" src="Resources/pics/Display.gif" width="440" /></p>
 						<p align="left">
@@ -339,17 +277,15 @@
 						class="language-cobol"
 						align="left"
 					><code class="language-cobol">DISPLAY "My name is " ProgrammerName.
-DISPLAY "The vat rate is " VatRate. 
+DISPLAY "The vat rate is " VatRate.
 DISPLAY PrinterSetupCodes UPON PrinterPort1.
 </code></pre>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>The ACCEPT verb</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left"><img height="120" src="Resources/pics/ACCEPT.gif" width="390" /></p>
 						<p align="left">
@@ -366,13 +302,11 @@ DISPLAY PrinterSetupCodes UPON PrinterPort1.
 							data obtained from one of the system variables, into the receiving data-item.
 						</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Using the ACCEPT to get the system date and time</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<div align="center">
 							<p align="left">
@@ -412,13 +346,11 @@ DISPLAY PrinterSetupCodes UPON PrinterPort1.
 </code></pre>
 						</div>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>New formats for the ACCEPT</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						The problem with <code class="language-cobol">ACCEPT ..FROM DATE</code> and
 						<code class="language-cobol">ACCEPT..FROM DAY</code> is that since they hold only the year in
@@ -440,22 +372,19 @@ DISPLAY PrinterSetupCodes UPON PrinterPort1.
 *&gt; Y2KDayOfYear is current day in YYYYDDD format
 01 Y2KDayOfYear PIC 9(7).</code></pre>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">ACCEPT and DISPLAY example program</h4>
 					<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						This example program uses the <code class="language-cobol">ACCEPT</code> and
 						<code class="language-cobol">DISPLAY</code> to get a student record from the user and display
 						some of its fields. It also demonstrates how the <code class="language-cobol">ACCEPT</code> can
 						be used to get the system date and time.
 					</p>
-					<div align="left" border="1" height="333" width="100%">
-						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+					<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  AcceptAndDisplay.
 AUTHOR.  Michael Coughlan.
@@ -499,7 +428,7 @@ WORKING-STORAGE SECTION.
 PROCEDURE DIVISION.
 Begin.
     DISPLAY "Enter student details using template below".
-    DISPLAY "Enter - ID,Surname,Initials,CourseCode,Gender"
+    DISPLAY "Enter - ID, Surname, Initials, CourseCode, Gender"
     DISPLAY "SSSSSSSNNNNNNNNIICCCCG".
     ACCEPT  StudentDetails.
     ACCEPT  CurrentDate FROM DATE YYYYMMDD.
@@ -512,7 +441,6 @@ Begin.
     DISPLAY "The time is " CurrentHour ":" CurrentMinute.
     STOP RUN.
 </code></pre>
-					</div>
 					<div
 						style="
 							background-color: #e1ffe1;
@@ -527,7 +455,7 @@ Begin.
 						</p>
 						<pre>
 Enter student details using template below
-Enter - ID,Surname,Initials,CourseCode,Gender
+Enter - ID, Surname, Initials, CourseCode, Gender
 SSSSSSSNNNNNNNNIICCCCG
 9923453Power   NSLM51F
 Name is NS Power
@@ -537,30 +465,29 @@ The time is 14:41
 </pre
 						>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
-					<div align="center">
-						<hr />
-						<p>
-							<a href="#top"
-								><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
-							/></a>
-						</p>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+				</div>
+			</div>
+
+			<div class="page-content">
+				<div align="center">
+					<hr />
+					<p>
+						<a href="#top"
+							><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+						/></a>
+					</p>
+				</div>
+			</div>
+
+			<!-- Part 2: Assignment using the MOVE verb -->
+			<div class="section-grid">
+				<div class="section-header">
 					<h2 align="center" id="part2">Assignment using the MOVE verb</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="160">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">Introduction</h4>
-				</td>
-				<td valign="top" width="540">
+				</div>
+				<div class="section-content">
 					<p>
 						In "strongly typed" languages like Modula-2, Pascal or ADA the assignment operation is simple
 						because assignment is only allowed between data items with compatible types. The simplicity of
@@ -577,13 +504,11 @@ The time is 14:41
 					</p>
 					<p>In COBOL, assignment is achieved using the <code class="language-cobol">MOVE</code> verb.</p>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">The MOVE verb</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p align="left"><u>MOVE</u> Source$#il <u>TO</u> Destination$#i ...</p>
 					<p>
 						As we can see from the syntax metalanguage above, the
@@ -632,13 +557,11 @@ The time is 14:41
 						invalid <code class="language-cobol">MOVE</code> combinations are shown in the diagram below:
 					</p>
 					<p align="center"><img height="232" src="Resources/pics/Move2.gif" width="520" /></p>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">MOVE examples</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p id="com1">
 						Examine the examples in the animation below in combination with the MOVE rules above. Make sure
 						you understand the why the moves produce the results shown.
@@ -653,30 +576,29 @@ The time is 14:41
 								width="62"
 						/></a>
 					</p>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFFF" colspan="2" valign="top" width="700">
-					<div align="center">
-						<hr />
-						<p>
-							<a href="#top"
-								><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
-							/></a>
-						</p>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#993300" colspan="2" valign="top" width="700">
+				</div>
+			</div>
+
+			<div class="page-content">
+				<div align="center">
+					<hr />
+					<p>
+						<a href="#top"
+							><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+						/></a>
+					</p>
+				</div>
+			</div>
+
+			<!-- Part 3: Arithmetic in COBOL -->
+			<div class="section-grid">
+				<div class="section-header">
 					<h2 align="center" id="part3">Arithmetic in COBOL</h2>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Introduction</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							Most procedural programming languages perform computations by assigning the result of an
@@ -685,13 +607,11 @@ The time is 14:41
 							but there are also specific commands for adding, subtracting, multiplying and dividing.
 						</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">Data Movement</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>
 						In a <code class="language-cobol">MOVE</code> operation data is moved from a source item on the
 						left to the destination item(s) on the right. Data movement is from left to right. The same
@@ -702,13 +622,11 @@ The time is 14:41
 						result of the calculation to the rightmost data-items.
 					</p>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>General Rules</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							All the arithmetic verbs move the result of a calculation into a receiving data-item
@@ -736,13 +654,11 @@ The time is 14:41
 						</p>
 						<p align="left">The maximum size of each operand is 18 digits.</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>The ROUNDED option</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p align="left">
 						All the arithmetic verbs allow the <code class="language-cobol">ROUNDED</code> phrase.
 					</p>
@@ -793,13 +709,11 @@ The time is 14:41
 						</tr>
 					</table>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>ON SIZE ERROR</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left">
 							When a computation is performed it is possible for the result to be too large or too small
@@ -978,13 +892,11 @@ The time is 14:41
 						</table>
 						<hr width="50%" />
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">ADD verb</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p><img height="74" src="Resources/pics/Add.gif" width="499" /></p>
 					<p>
 						If the <code class="language-cobol">GIVING</code> phrase is used, everything before the word
@@ -997,13 +909,11 @@ The time is 14:41
 						added to <b>each</b> of the ValueResult#i items in turn.
 					</p>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4 align="left">SUBTRACT verb</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<div align="center">
 						<p align="left"><img height="96" src="Resources/pics/Sub.gif" width="481" /></p>
 						<p align="left">
@@ -1021,13 +931,11 @@ The time is 14:41
 						</p>
 					</div>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>MULTIPLY verb</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p><img height="72" src="Resources/pics/Mult.gif" width="498" /></p>
 					<p>
 						If the <code class="language-cobol">GIVING</code> phrase is used, then the item to the left of
@@ -1042,13 +950,11 @@ The time is 14:41
 						the calculation.
 					</p>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>DIVIDE verb</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p>The Divide has two main formats. One produces a remainder and the other does not.</p>
 					<p><b>Format1</b></p>
 					<p><img height="101" src="Resources/pics/Div1.gif" width="525" /></p>
@@ -1074,13 +980,11 @@ The time is 14:41
 						part of the computation is assigned to Quot#i and the remainder is assigned to Rem#i.
 					</p>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>COMPUTE verb</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p><img height="77" src="Resources/pics/Compute.gif" width="509" /></p>
 					<p>
 						The <code class="language-cobol">COMPUTE</code> assigns the result of an arithmetic expression
@@ -1155,13 +1059,11 @@ The time is 14:41
 						represent raising to a power.
 					</p>
 					<hr width="50%" />
-				</td>
-			</tr>
-			<tr>
-				<td align="left" bgcolor="#FFFFCC" valign="top" width="175">
+				</div>
+				<div class="section-sidebar">
 					<h4>Arithmetic examples</h4>
-				</td>
-				<td valign="top" width="525">
+				</div>
+				<div class="section-content">
 					<p id="com2">
 						The animation below contains examples of each of the arithmetic verbs. The arithmetic statement
 						shows the contents of the variables before the statement executes. Initially the contents of the
@@ -1182,17 +1084,17 @@ The time is 14:41
 								width="62"
 						/></a>
 					</p>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
+				</div>
+				<div class="section-full">
 					<hr />
 					<div align="center">
-						<a href="#top"><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132" /></a>
+						<a href="#top"
+							><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
+						/></a>
 					</div>
 					<copyright-notice></copyright-notice>
-				</td>
-			</tr>
-		</table>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>
