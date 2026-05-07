@@ -9,36 +9,7 @@
 		<script src="Resources/vendor/prism/prism.min.js" defer></script>
 		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
 		<style type="text/css">
-			.page-frame {
-				border: 1px solid black;
-				max-width: 715px;
-				margin-left: auto;
-				margin-right: auto;
-			}
-
-			.layout-grid {
-				display: grid;
-				grid-template-columns: 175px 1fr;
-			}
-
-			.layout-grid > * {
-				padding: 4px;
-				min-width: 0;
-			}
-
-			.layout-full {
-				grid-column: 1 / -1;
-			}
-
-			.section-header {
-				background-color: #993300;
-			}
-
-			.sidebar {
-				background-color: #FFFFCC;
-			}
-
-			.page-footer {
+			.section-grid > * {
 				padding: 4px;
 			}
 
@@ -55,28 +26,19 @@
 				background-color: #FFFFFF;
 			}
 
-			.sidebar h4 {
-				color: #800000;
-				font-family: Arial, Helvetica, sans-serif;
-			}
-
 			@media (max-width: 600px) {
-				.page-frame {
+				.page-wrapper {
 					border: none;
 				}
 
-				.layout-grid {
-					grid-template-columns: 1fr;
-				}
-
-				.sidebar > h4:not(:first-child):not(:has(img)),
+				.section-sidebar > h4:not(:first-child):not(:has(img)),
 				h4:has(> img[src*="PanelLine"]) {
 					display: none;
 				}
 
-				.sidebar > h3,
-				.sidebar > h4,
-				.sidebar > p {
+				.section-sidebar > h3,
+				.section-sidebar > h4,
+				.section-sidebar > p {
 					margin: 0.2em 0;
 				}
 			}
@@ -85,10 +47,10 @@
 	</head>
 
 	<body alink="#009B00" bgcolor="#FFFFFF" link="#0000FF" text="#000000" vlink="#FF0000">
-		<div class="page-frame">
-			<div class="layout-grid">
+		<div class="page-wrapper">
+			<div class="section-grid">
 				<!-- Header -->
-				<div class="layout-full">
+				<div class="section-full">
 					<center>
 						<p><img height="59" src="Resources/pics/t-CobolTut.gif" width="173" /></p>
 						<h1>The COPY verb</h1>
@@ -123,10 +85,10 @@
 					<hr />
 				</div>
 				<!-- Section: Introduction -->
-				<div class="layout-full section-header">
+				<div class="section-full section-header">
 					<h2 align="center" id="intro">Introduction</h2>
 				</div>
-				<div class="sidebar">
+				<div class="section-sidebar">
 					<h4>Aims</h4>
 					<h4><img height="1" src="Resources/pics/PanelLine.gif" width="175" /></h4>
 				</div>
@@ -159,7 +121,7 @@
 					</div>
 					<hr align="center" size="1" width="100%" />
 				</div>
-				<div class="sidebar">
+				<div class="section-sidebar">
 					<h4>Objectives</h4>
 				</div>
 				<div>
@@ -181,7 +143,7 @@
 					</ol>
 					<hr align="center" size="1" width="100%" />
 				</div>
-				<div class="sidebar">
+				<div class="section-sidebar">
 					<h4>Prerequisites</h4>
 				</div>
 				<div>
@@ -207,7 +169,7 @@
 					</ul>
 				</div>
 				<!-- Navigation -->
-				<div class="layout-full">
+				<div class="section-full">
 					<div align="center">
 						<hr />
 						<p>
@@ -218,10 +180,10 @@
 					</div>
 				</div>
 				<!-- Section: Using the COPY verb -->
-				<div class="layout-full section-header">
+				<div class="section-full section-header">
 					<h2 align="center" id="part1">Using the COPY verb</h2>
 				</div>
-				<div class="sidebar">
+				<div class="section-sidebar">
 					<h4>Introduction</h4>
 					<h4><img height="1" src="Resources/pics/PanelLine.gif" width="175" /></h4>
 				</div>
@@ -260,7 +222,7 @@
 					</div>
 					<hr align="center" size="1" width="100%" />
 				</div>
-				<div class="sidebar">
+				<div class="section-sidebar">
 					<h4>
 						<b>Using the COPY verb in large software systems</b>
 					</h4>
@@ -305,7 +267,7 @@
 					<hr align="center" size="1" width="100%" />
 				</div>
 				<!-- Navigation -->
-				<div class="layout-full">
+				<div class="section-full">
 					<div align="center">
 						<hr />
 						<p>
@@ -316,7 +278,7 @@
 					</div>
 				</div>
 				<!-- Section: COPY Syntax and Semantics -->
-				<div class="layout-full section-header">
+				<div class="section-full section-header">
 					<h2 align="center" id="part2">
 						<b
 							>The COPY verb<br />
@@ -324,7 +286,7 @@
 						>
 					</h2>
 				</div>
-				<div class="sidebar">
+				<div class="section-sidebar">
 					<h4>COPY Syntax</h4>
 					<aside>
 						<p align="center">
@@ -427,7 +389,7 @@
 					</div>
 					<hr align="center" size="1" width="100%" />
 				</div>
-				<div class="sidebar">
+				<div class="section-sidebar">
 					<h4>
 						<b>How the COPY works</b>
 					</h4>
@@ -453,7 +415,7 @@ COPY CopyFile5 REPLACING ==X(3)== BY ==X(19)==.
 COPY CopyFile4 IN EGLIB.</code></pre>
 					<hr align="center" size="1" width="100%" />
 				</div>
-				<div class="sidebar">
+				<div class="section-sidebar">
 					<h4>How the REPLACING phrase works</h4>
 				</div>
 				<div>
@@ -477,7 +439,7 @@ COPY CopyFile4 IN EGLIB.</code></pre>
 					</p>
 					<hr align="center" size="1" width="100%" />
 				</div>
-				<div class="sidebar">
+				<div class="section-sidebar">
 					<h4>COPY Rules</h4>
 				</div>
 				<div>
@@ -526,7 +488,7 @@ COPY CopyFile4 IN EGLIB.</code></pre>
 					<hr align="center" size="1" width="100%" />
 				</div>
 				<!-- Navigation -->
-				<div class="layout-full">
+				<div class="section-full">
 					<div align="center">
 						<hr />
 						<p>
@@ -537,11 +499,11 @@ COPY CopyFile4 IN EGLIB.</code></pre>
 					</div>
 				</div>
 				<!-- Section: COPY examples -->
-				<div class="layout-full section-header">
+				<div class="section-full section-header">
 					<h2 align="center" id="part3">COPY examples</h2>
 				</div>
 				<!-- Example 1 -->
-				<div class="sidebar">
+				<div class="section-sidebar">
 					<p>
 						<b>COPY Example1</b>
 					</p>
@@ -669,7 +631,7 @@ BeginProg.
 					<hr align="center" size="1" width="100%" />
 				</div>
 				<!-- Example 2 -->
-				<div class="sidebar">
+				<div class="section-sidebar">
 					<p>
 						<b>COPY Example2</b>
 					</p>
@@ -855,7 +817,7 @@ STOP RUN.
 					<hr align="center" size="1" width="100%" />
 				</div>
 				<!-- Example 3 -->
-				<div class="sidebar">
+				<div class="section-sidebar">
 					<p>
 						<b>COPY Example3</b>
 					</p>
@@ -1022,7 +984,7 @@ BeginProg.
 					<hr align="center" size="1" width="100%" />
 				</div>
 				<!-- Example 4 -->
-				<div class="sidebar">
+				<div class="section-sidebar">
 					<p>
 						<b>COPY Example4</b>
 					</p>

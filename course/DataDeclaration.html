@@ -9,9 +9,7 @@
 		<script src="Resources/vendor/prism/prism.min.js" defer></script>
 		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
 		<style type="text/css">
-			.page-layout {
-				display: grid;
-				grid-template-columns: 175px 1fr;
+			.section-grid {
 				max-width: 715px;
 				margin: 0 auto;
 				border: 1px solid black;
@@ -19,7 +17,7 @@
 				border-bottom: none;
 			}
 
-			.page-layout > div {
+			.section-grid > div {
 				padding: 4px;
 				border-right: 1px solid black;
 				border-bottom: 1px solid black;
@@ -27,27 +25,8 @@
 				box-sizing: border-box;
 			}
 
-			.full-width {
-				grid-column: 1 / -1;
-			}
-
-			.section-header {
-				background-color: #993300;
-			}
-
-			.section-header h2 {
-				color: #ffff00;
-				font-family: Arial, Helvetica, sans-serif;
-			}
-
-			.sidebar {
-				background-color: #FFFFCC;
+			.section-sidebar {
 				align-self: stretch;
-			}
-
-			.sidebar h4 {
-				color: #800000;
-				font-family: Arial, Helvetica, sans-serif;
 			}
 
 			.code-record {
@@ -86,19 +65,12 @@
 			}
 
 			@media (max-width: 600px) {
-				.page-layout {
-					grid-template-columns: 1fr;
+				.section-grid {
 					border-right: 1px solid black;
 				}
 
-				.sidebar h4:not(:first-child):not(:has(img)) {
+				.section-sidebar h4:not(:first-child):not(:has(img)) {
 					display: none;
-				}
-
-				.sidebar h3,
-				.sidebar h4,
-				.sidebar p {
-					margin: 0.2em 0;
 				}
 
 				.code-record {
@@ -114,8 +86,8 @@
 		<script src="../components/copyright-notice.js" defer></script>
 	</head>
 	<body alink="#009B00" bgcolor="#FFFFFF" link="#0000FF" text="#000000" vlink="#FF0000">
-		<div class="page-layout">
-			<div class="full-width">
+		<div class="section-grid">
+			<div class="section-full">
 				<center>
 					<p><img height="59" src="Resources/pics/t-CobolTut.gif" width="173" /></p>
 					<h1>Declaring Data in COBOL</h1>
@@ -143,10 +115,10 @@
 					</li>
 				</ul>
 			</div>
-			<div class="full-width section-header">
+			<div class="section-full section-header">
 				<h2 align="center" id="intro">Introduction</h2>
 			</div>
-			<div class="sidebar">
+			<div class="section-sidebar">
 				<h4>Aims</h4>
 			</div>
 			<div>
@@ -156,7 +128,7 @@
 				</p>
 				<hr width="50%" />
 			</div>
-			<div class="sidebar">
+			<div class="section-sidebar">
 				<h4>Objectives</h4>
 			</div>
 			<div>
@@ -173,7 +145,7 @@
 				</ol>
 				<hr width="50%" />
 			</div>
-			<div class="sidebar">
+			<div class="section-sidebar">
 				<h4>Prerequisites</h4>
 			</div>
 			<div>
@@ -185,7 +157,7 @@
 					<li>The USAGE clause</li>
 				</ul>
 			</div>
-			<div class="sidebar">
+			<div class="section-sidebar">
 				<h4>Further reading</h4>
 			</div>
 			<div>
@@ -196,7 +168,7 @@
 					<li>The USAGE clause</li>
 				</ul>
 			</div>
-			<div class="full-width">
+			<div class="section-full">
 				<div align="center">
 					<hr />
 					<p>
@@ -206,10 +178,10 @@
 					</p>
 				</div>
 			</div>
-			<div class="full-width section-header">
+			<div class="section-full section-header">
 				<h2 align="center" id="part1">Categories of COBOL data</h2>
 			</div>
-			<div class="sidebar">
+			<div class="section-sidebar">
 				<h4 align="left">Introduction</h4>
 			</div>
 			<div>
@@ -221,7 +193,7 @@
 				</ul>
 				<hr width="50%" />
 			</div>
-			<div class="sidebar">
+			<div class="section-sidebar">
 				<h4 align="left">Variables</h4>
 			</div>
 			<div>
@@ -239,7 +211,7 @@
 					in the variable. This is known as the variable's data type.
 				</p>
 			</div>
-			<div class="sidebar">
+			<div class="section-sidebar">
 				<h4 align="left">Variable Data types</h4>
 				<aside>
 					<p align="center">
@@ -280,7 +252,7 @@
 				</p>
 				<hr width="50%" />
 			</div>
-			<div class="sidebar">
+			<div class="section-sidebar">
 				<h4 align="left">Literals</h4>
 			</div>
 			<div>
@@ -294,14 +266,14 @@
 					<li>Numeric Literals</li>
 				</ul>
 			</div>
-			<div class="sidebar">
+			<div class="section-sidebar">
 				<h4 align="left">String Literals</h4>
 			</div>
 			<div>
 				<p>String/Alphanumeric literals are enclosed in quotes and consist of alphanumeric characters.</p>
 				<p>For example: "Michael Ryan", "-123", "123.45"</p>
 			</div>
-			<div class="sidebar">
+			<div class="section-sidebar">
 				<h4 align="left">Numeric Literals</h4>
 			</div>
 			<div>
@@ -312,7 +284,7 @@
 				<p>For example: 123, 123.45, -256, +2987</p>
 				<hr width="50%" />
 			</div>
-			<div class="sidebar">
+			<div class="section-sidebar">
 				<h4 align="left">Figurative Constants</h4>
 				<aside>
 					<p align="center">
@@ -406,7 +378,7 @@
 				</ul>
 				<hr width="50%" />
 			</div>
-			<div class="sidebar">
+			<div class="section-sidebar">
 				<h4 align="left">Using COBOL data — examples</h4>
 			</div>
 			<div>
@@ -425,7 +397,7 @@
 					/></a>
 				</p>
 			</div>
-			<div class="full-width">
+			<div class="section-full">
 				<div align="center">
 					<hr />
 					<p>
@@ -435,10 +407,10 @@
 					</p>
 				</div>
 			</div>
-			<div class="full-width section-header">
+			<div class="section-full section-header">
 				<h2 align="center" id="part2">Declaring Data-Items in COBOL</h2>
 			</div>
-			<div class="sidebar">
+			<div class="section-sidebar">
 				<h4>Introduction</h4>
 			</div>
 			<div>
@@ -462,7 +434,7 @@
 				</ul>
 				<hr width="50%" />
 			</div>
-			<div class="sidebar">
+			<div class="section-sidebar">
 				<h4 align="left">COBOL picture clauses</h4>
 				<aside>
 					<p align="center">
@@ -548,7 +520,7 @@
 				</table>
 				<hr width="50%" />
 			</div>
-			<div class="sidebar">
+			<div class="section-sidebar">
 				<h4 align="left">Picture clause notes</h4>
 			</div>
 			<div>
@@ -567,7 +539,7 @@ PIC 9(18)      is equivalent to PIC 999999999999999999 </code></pre>
 				<p>Numeric values can have a maximum of 18 (eighteen) digits.</p>
 				<p>The limit on string values is usually system dependent.</p>
 			</div>
-			<div class="full-width">
+			<div class="section-full">
 				<div align="center">
 					<hr />
 					<p>
@@ -577,10 +549,10 @@ PIC 9(18)      is equivalent to PIC 999999999999999999 </code></pre>
 					</p>
 				</div>
 			</div>
-			<div class="full-width section-header">
+			<div class="section-full section-header">
 				<h2 align="center" id="part3">Group and Elementary data-items</h2>
 			</div>
-			<div class="sidebar">
+			<div class="section-sidebar">
 				<h4>Introduction</h4>
 			</div>
 			<div>
@@ -596,7 +568,7 @@ PIC 9(18)      is equivalent to PIC 999999999999999999 </code></pre>
 					</p>
 				</div>
 			</div>
-			<div class="sidebar">
+			<div class="section-sidebar">
 				<h4 align="left">Elementary items</h4>
 				<aside>
 					<p align="center">
@@ -637,7 +609,7 @@ PIC 9(18)      is equivalent to PIC 999999999999999999 </code></pre>
 01 CustDiscount   PIC V99 VALUE .25.</code></pre>
 				<hr width="50%" />
 			</div>
-			<div class="sidebar">
+			<div class="section-sidebar">
 				<h4>Group items</h4>
 			</div>
 			<div>
@@ -681,7 +653,7 @@ PIC 9(18)      is equivalent to PIC 999999999999999999 </code></pre>
 				</p>
 				<hr width="50%" />
 			</div>
-			<div class="sidebar">
+			<div class="section-sidebar">
 				<h4>Level Numbers</h4>
 				<aside>
 					<p align="center">
@@ -736,7 +708,7 @@ PIC 9(18)      is equivalent to PIC 999999999999999999 </code></pre>
 </code></pre>
 				</div>
 			</div>
-			<div class="sidebar">
+			<div class="section-sidebar">
 				<h4 align="left">Some observations on Record-A</h4>
 			</div>
 			<div>
@@ -771,7 +743,7 @@ PIC 9(18)      is equivalent to PIC 999999999999999999 </code></pre>
 					</div>
 				</div>
 			</div>
-			<div class="sidebar">
+			<div class="section-sidebar">
 				<h4 align="left">Level number notes</h4>
 			</div>
 			<div>
@@ -798,7 +770,7 @@ PIC 9(18)      is equivalent to PIC 999999999999999999 </code></pre>
 				</div>
 				<hr width="50%" />
 			</div>
-			<div class="sidebar">
+			<div class="section-sidebar">
 				<h4>Building a record structure</h4>
 			</div>
 			<div>
@@ -819,7 +791,7 @@ PIC 9(18)      is equivalent to PIC 999999999999999999 </code></pre>
 					</p>
 				</div>
 			</div>
-			<div class="full-width">
+			<div class="section-full">
 				<hr />
 				<div align="center">
 					<a href="#top"><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132" /></a>
