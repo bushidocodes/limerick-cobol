@@ -28,6 +28,19 @@ body > hr {
 pre {
 	overflow-x: auto;
 	max-width: 100%;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+}
+
+/* Force Prism-highlighted code to wrap by default rather than scroll. The
+   `body` prefix bumps specificity to (0,1,2) so this rule wins against
+   prism.min.css's `pre[class*="language-"]` (specificity 0,1,1), regardless
+   of stylesheet load order. */
+body pre[class*="language-"],
+body code[class*="language-"] {
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
 }
 
 body {
@@ -79,15 +92,6 @@ body {
 
 	pre {
 		max-width: min(100%, calc(100vw - 16px)) !important;
-		white-space: pre-wrap;
-		word-wrap: break-word;
-		overflow-wrap: break-word;
-	}
-
-	pre[class*="language-"],
-	code[class*="language-"] {
-		white-space: pre-wrap !important;
-		overflow-wrap: break-word;
 	}
 
 	pre[class*="language-"] {
@@ -163,6 +167,12 @@ td[bgcolor="#FFFFCC"] h4 {
 	padding: 2px;
 }
 
+/* When the footer sits inside a section-grid (rather than as a sibling of it),
+   span all columns so it occupies a full row. */
+.section-grid > .page-footer {
+	grid-column: 1 / -1;
+}
+
 .section-grid {
 	display: grid;
 	grid-template-columns: 175px 1fr;
@@ -196,6 +206,7 @@ td[bgcolor="#FFFFCC"] h4 {
 .section-content {
 	padding: 4px;
 	min-width: 0;
+	align-self: start;
 }
 
 .section-full {
@@ -225,44 +236,4 @@ td[bgcolor="#FFFFCC"] h4 {
 	h4:has(> img[src*="PanelLine"]) {
 		display: none;
 	}
-}
-
-/* Bordered grid variant — opt-in via `section-grid section-grid--bordered`.
-   Draws horizontal dividers between sections and a vertical divider between
-   sidebar and content cells. Applied where the page is laid out as a
-   table-like sequence of sidebar/content rows. */
-.section-grid--bordered .section-header {
-	border-bottom: 1px solid;
-}
-
-.section-grid--bordered .section-sidebar {
-	border-right: 1px solid;
-	border-bottom: 1px solid;
-}
-
-.section-grid--bordered .section-content {
-	align-self: start;
-	overflow: hidden;
-	border-bottom: 1px solid;
-}
-
-.section-grid--bordered .section-full {
-	border-bottom: 1px solid;
-}
-
-.section-grid--bordered > .section-full:last-child {
-	border-bottom: none;
-}
-
-@media (max-width: 600px) {
-	.section-grid--bordered .section-sidebar {
-		border-right: none;
-	}
-}
-
-/* Wrap long Prism-highlighted code so it doesn't overflow narrow columns. */
-.section-grid--bordered .section-content pre[class*="language-"],
-.section-grid--bordered .section-content code[class*="language-"] {
-	white-space: pre-wrap;
-	overflow-wrap: break-word;
 }
