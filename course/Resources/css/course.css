@@ -161,6 +161,7 @@ td[bgcolor="#FFFFCC"] h4 {
 	background-color: #993300;
 	padding: 4px;
 	min-width: 0;
+	text-align: center;
 }
 
 .section-header h2 {
@@ -206,4 +207,50 @@ td[bgcolor="#FFFFCC"] h4 {
 	.section-sidebar p {
 		margin: 0.2em 0;
 	}
+
+	/* Hide decorative PanelLine spacer h4s on narrow screens */
+	.section-sidebar h4:not(:first-child):not(:has(img)),
+	h4:has(> img[src*="PanelLine"]) {
+		display: none;
+	}
+}
+
+/* Bordered grid variant — opt-in via `section-grid section-grid--bordered`.
+   Draws horizontal dividers between sections and a vertical divider between
+   sidebar and content cells. Applied where the page is laid out as a
+   table-like sequence of sidebar/content rows. */
+.section-grid--bordered .section-header {
+	border-bottom: 1px solid;
+}
+
+.section-grid--bordered .section-sidebar {
+	border-right: 1px solid;
+	border-bottom: 1px solid;
+}
+
+.section-grid--bordered .section-content {
+	align-self: start;
+	overflow: hidden;
+	border-bottom: 1px solid;
+}
+
+.section-grid--bordered .section-full {
+	border-bottom: 1px solid;
+}
+
+.section-grid--bordered > .section-full:last-child {
+	border-bottom: none;
+}
+
+@media (max-width: 600px) {
+	.section-grid--bordered .section-sidebar {
+		border-right: none;
+	}
+}
+
+/* Wrap long Prism-highlighted code so it doesn't overflow narrow columns. */
+.section-grid--bordered .section-content pre[class*="language-"],
+.section-grid--bordered .section-content code[class*="language-"] {
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
 }
