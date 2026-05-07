@@ -4,25 +4,16 @@
 		<meta content="width=device-width, initial-scale=1" name="viewport" />
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<title>Introduction to Direct Access Files</title>
+		<link href="Resources/css/course.css" rel="stylesheet" />
 		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
 		<script src="Resources/vendor/prism/prism.min.js" defer></script>
 		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
 		<style type="text/css">
-			/* === Page layout === */
-			.page-wrapper {
-				max-width: 715px;
-				margin: 0 auto;
-				border: 1px solid;
-			}
-
 			.page-content {
 				padding: 0;
 			}
 
-			.page-header {
-				padding: 0 8px;
-			}
-
+			.page-header,
 			.toc-container {
 				padding: 0 8px;
 			}
@@ -32,64 +23,16 @@
 				text-align: center;
 			}
 
-			/* === TOC === */
-			ul.toc {
-				list-style-image: url(Resources/pics/BallGreenG.gif);
-				padding-left: 2.5em;
-				margin: 1em 0;
-			}
-
-			ul.toc > li {
-				padding-left: 0.4em;
-				margin-bottom: 0.6em;
-				font-size: smaller;
-			}
-
-			ul.toc a {
-				font-weight: bold;
-				font-size: larger;
-			}
-
-			/* === Section layout === */
-			.section-header {
-				background-color: #993300;
-				padding: 4px;
-			}
-
 			.section-header h2 {
-				color: #ffff00;
-				font-family: Arial, Helvetica, sans-serif;
 				text-align: center;
 				margin: 0.3em 0;
 			}
 
-			.section-row {
-				display: grid;
-				grid-template-columns: 175px 1fr;
-			}
-
-			.section-label {
-				background-color: #FFFFCC;
-				padding: 4px;
-			}
-
-			.section-label h3,
-			.section-label h4 {
-				color: #800000;
-				font-family: Arial, Helvetica, sans-serif;
-			}
-
-			.section-content {
-				padding: 4px;
-			}
-
-			/* === Section divider === */
 			.section-divider {
 				padding: 0 4px;
 				text-align: center;
 			}
 
-			/* === Two-column layout within content === */
 			.two-col {
 				display: flex;
 				gap: 1em;
@@ -106,7 +49,6 @@
 				justify-content: center;
 			}
 
-			/* === Figure (image + caption) === */
 			.img-figure {
 				display: flex;
 				flex-direction: column;
@@ -119,95 +61,9 @@
 				text-align: center;
 			}
 
-			/* === Shared === */
-			img {
-				max-width: 100%;
-				height: auto;
-			}
-
-			table {
-				max-width: 100%;
-			}
-
-			pre {
-				overflow-x: auto;
-				max-width: 100%;
-			}
-
-			body {
-				-webkit-text-size-adjust: 100%;
-			}
-
-			/* === Mobile === */
 			@media (max-width: 600px) {
-				body {
-					margin: 4px;
-					overflow-wrap: break-word;
-					word-wrap: break-word;
-				}
-
-				.section-row {
-					grid-template-columns: 1fr;
-				}
-
-				.section-label h3,
-				.section-label h4 {
-					margin: 0.2em 0;
-				}
-
-				.section-label p {
-					margin: 0.2em 0;
-				}
-
 				.two-col {
 					flex-direction: column;
-				}
-
-				blockquote {
-					margin-left: 12px;
-					margin-right: 12px;
-				}
-
-				img,
-				iframe,
-				video,
-				embed,
-				object {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					height: auto;
-				}
-
-				pre {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					white-space: pre-wrap;
-					word-wrap: break-word;
-					overflow-wrap: break-word;
-				}
-
-				pre[class*="language-"],
-				code[class*="language-"] {
-					white-space: pre-wrap !important;
-					overflow-wrap: break-word;
-				}
-
-				pre[class*="language-"] {
-					font-size: 0.8em;
-					line-height: 1.35;
-					padding: 0.6em;
-					overflow-x: auto;
-				}
-
-				table[width] {
-					width: 100% !important;
-					height: auto !important;
-				}
-
-				td[width],
-				th[width],
-				td[height],
-				th[height] {
-					width: auto !important;
-					height: auto !important;
 				}
 			}
 		</style>
@@ -263,8 +119,8 @@
 				<div class="section-header">
 					<h2 id="intro">Introduction</h2>
 				</div>
-				<div class="section-row">
-					<div class="section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Aims</h3>
 					</div>
 					<div class="section-content">
@@ -276,8 +132,8 @@
 						<hr />
 					</div>
 				</div>
-				<div class="section-row">
-					<div class="section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Objectives</h3>
 					</div>
 					<div class="section-content">
@@ -304,8 +160,8 @@
 						</ol>
 					</div>
 				</div>
-				<div class="section-row">
-					<div class="section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Prerequisites</h3>
 					</div>
 					<div class="section-content">
@@ -329,8 +185,8 @@
 				<div class="section-header">
 					<h2 id="seq">Sequential files</h2>
 				</div>
-				<div class="section-row">
-					<div class="section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Introduction</h3>
 					</div>
 					<div class="section-content">
@@ -352,8 +208,8 @@
 						<hr />
 					</div>
 				</div>
-				<div class="section-row">
-					<div class="section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Problems accessing ordered Sequential files.</h3>
 					</div>
 					<div class="section-content">
@@ -379,8 +235,8 @@
 						<hr />
 					</div>
 				</div>
-				<div class="section-row">
-					<div class="section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Contrast with direct access files</h3>
 					</div>
 					<div class="section-content">
@@ -396,8 +252,8 @@
 						</p>
 					</div>
 				</div>
-				<div class="section-row">
-					<div class="section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Inserting records in an ordered Sequential file</h3>
 					</div>
 					<div class="section-content">
@@ -417,8 +273,8 @@
 						<hr />
 					</div>
 				</div>
-				<div class="section-row">
-					<div class="section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Deleting records from an ordered Sequential file</h3>
 					</div>
 					<div class="section-content">
@@ -439,8 +295,8 @@
 						<hr />
 					</div>
 				</div>
-				<div class="section-row">
-					<div class="section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Amending records in an ordered Sequential file</h3>
 					</div>
 					<div class="section-content">
@@ -461,8 +317,8 @@
 						<hr />
 					</div>
 				</div>
-				<div class="section-row">
-					<div class="section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Sequential files - animation</h3>
 					</div>
 					<div class="section-content">
@@ -481,8 +337,8 @@
 						<hr />
 					</div>
 				</div>
-				<div class="section-row">
-					<div class="section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Summary</h3>
 					</div>
 					<div class="section-content">
@@ -511,8 +367,8 @@
 				<div class="section-header">
 					<h2 id="rel">Relative Files</h2>
 				</div>
-				<div class="section-row">
-					<div class="section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Introduction</h3>
 					</div>
 					<div class="section-content">
@@ -533,8 +389,8 @@
 						<hr />
 					</div>
 				</div>
-				<div class="section-row">
-					<div class="section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Organization of Relative files</h3>
 					</div>
 					<div class="section-content">
@@ -575,8 +431,8 @@
 						<hr />
 					</div>
 				</div>
-				<div class="section-row">
-					<div class="section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Accessing records in a Relative file</h3>
 					</div>
 					<div class="section-content">
@@ -602,8 +458,8 @@
 						<hr />
 					</div>
 				</div>
-				<div class="section-row">
-					<div class="section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Animation - Organization and use of Relative files</h3>
 					</div>
 					<div class="section-content">
@@ -632,8 +488,8 @@
 						<hr />
 					</div>
 				</div>
-				<div class="section-row">
-					<div class="section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Summary</h3>
 					</div>
 					<div class="section-content">
@@ -658,8 +514,8 @@
 				<div class="section-header">
 					<h2 id="idx">Indexed Files</h2>
 				</div>
-				<div class="section-row">
-					<div class="section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Introduction</h3>
 					</div>
 					<div class="section-content">
@@ -678,8 +534,8 @@
 						<hr />
 					</div>
 				</div>
-				<div class="section-row">
-					<div class="section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Organization of Indexed files</h3>
 					</div>
 					<div class="section-content">
@@ -716,8 +572,8 @@
 						<hr />
 					</div>
 				</div>
-				<div class="section-row">
-					<div class="section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Animation - Organization and use of Indexed files</h3>
 					</div>
 					<div class="section-content">
@@ -756,8 +612,8 @@ END-IF</code></pre>
 						<hr />
 					</div>
 				</div>
-				<div class="section-row">
-					<div class="section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Summary</h3>
 					</div>
 					<div class="section-content">
@@ -780,8 +636,8 @@ END-IF</code></pre>
 				<div class="section-header">
 					<h2 id="comp">Comparison of COBOL file organizations</h2>
 				</div>
-				<div class="section-row">
-					<div class="section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Introduction</h3>
 					</div>
 					<div class="section-content">
@@ -792,8 +648,8 @@ END-IF</code></pre>
 						<hr />
 					</div>
 				</div>
-				<div class="section-row">
-					<div class="section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Sequential files</h3>
 					</div>
 					<div class="section-content">
@@ -890,8 +746,8 @@ END-IF</code></pre>
 						<hr />
 					</div>
 				</div>
-				<div class="section-row">
-					<div class="section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Relative files</h3>
 					</div>
 					<div class="section-content">
@@ -1078,8 +934,8 @@ END-IF</code></pre>
 						<hr />
 					</div>
 				</div>
-				<div class="section-row">
-					<div class="section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Indexed files</h3>
 					</div>
 					<div class="section-content">
@@ -1172,8 +1028,8 @@ END-IF</code></pre>
 						<hr />
 					</div>
 				</div>
-				<div class="section-row">
-					<div class="section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Summary</h3>
 					</div>
 					<div class="section-content">

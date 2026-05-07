@@ -4,159 +4,25 @@
 		<meta content="width=device-width, initial-scale=1" name="viewport" />
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<title>The INSPECT verb</title>
+		<link href="Resources/css/course.css" rel="stylesheet" />
 		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
 		<script src="Resources/vendor/prism/prism.min.js" defer></script>
 		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
 		<style type="text/css">
-			ul.toc {
-				list-style-image: url(Resources/pics/BallGreenG.gif);
-				padding-left: 2.5em;
-				margin: 1em 0;
-			}
-			ul.toc > li {
-				padding-left: 0.4em;
-				margin-bottom: 0.6em;
-				font-size: smaller;
-			}
-			ul.toc a {
-				font-weight: bold;
-				font-size: larger;
-			}
 			ol.spaced > li + li {
 				margin-top: 0.6em;
 			}
 
-			.course-section-header h2 {
-				color: #ffff00;
-				font-family: Arial, Helvetica, sans-serif;
-			}
-
-			.course-section-label h3,
-			.course-section-label h4 {
-				color: #800000;
-				font-family: Arial, Helvetica, sans-serif;
-			}
-		</style>
-		<style type="text/css">
-			img {
-				max-width: 100%;
-				height: auto;
-			}
-
-			pre {
-				overflow-x: auto;
-				max-width: 100%;
-			}
-
-			body {
-				-webkit-text-size-adjust: 100%;
-			}
-
-			.page-wrapper {
-				border: 1px solid;
-				max-width: 715px;
-				margin: 0 auto;
-				box-sizing: border-box;
-			}
-
-			.course-section {
-				max-width: 710px;
-				margin: 0 auto;
-			}
-
-			.course-section-header {
-				background-color: #993300;
-				padding: 4px;
+			.section-header {
 				text-align: center;
 			}
 
-			.course-section-header h2 {
+			.section-header h2 {
 				margin: 0;
 			}
 
-			.course-section-full {
-				padding: 4px;
-			}
-
-			.course-section-row {
-				display: grid;
-				grid-template-columns: 175px 1fr;
-			}
-
-			.course-section-label {
-				background-color: #FFFFCC;
-				padding: 4px;
+			.section-sidebar {
 				align-self: stretch;
-			}
-
-			.course-section-content {
-				padding: 4px;
-			}
-
-			.page-top-link {
-				max-width: 710px;
-				margin: 0 auto;
-			}
-
-			.page-top-link p {
-				text-align: center;
-			}
-
-			@media (max-width: 600px) {
-				body {
-					margin: 4px;
-					overflow-wrap: break-word;
-					word-wrap: break-word;
-				}
-
-				.course-section-header h2,
-				.course-section-header h3 {
-					margin: 0.3em 0;
-				}
-
-				.course-section-row {
-					grid-template-columns: 1fr;
-				}
-
-				.course-section-label h3,
-				.course-section-label h4,
-				.course-section-label p {
-					margin: 0.2em 0;
-				}
-
-				blockquote {
-					margin-left: 12px;
-					margin-right: 12px;
-				}
-
-				img,
-				iframe,
-				video,
-				embed,
-				object {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					height: auto;
-				}
-
-				pre {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					white-space: pre-wrap;
-					word-wrap: break-word;
-					overflow-wrap: break-word;
-				}
-
-				pre[class*="language-"],
-				code[class*="language-"] {
-					white-space: pre-wrap !important;
-					overflow-wrap: break-word;
-				}
-
-				pre[class*="language-"] {
-					font-size: 0.8em;
-					line-height: 1.35;
-					padding: 0.6em;
-					overflow-x: auto;
-				}
 			}
 		</style>
 		<script src="../components/copyright-notice.js" defer></script>
@@ -211,15 +77,15 @@
 					<code class="language-cobol">INSPECT</code>.
 				</li>
 			</ul>
-			<div class="course-section">
-				<div class="course-section-header">
+			<div class="page-section">
+				<div class="section-header">
 					<h2 id="intro">Introduction</h2>
 				</div>
-				<div class="course-section-row">
-					<div class="course-section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Aims</h3>
 					</div>
-					<div class="course-section-content">
+					<div class="section-content">
 						<p>
 							Many programming languages rely on library functions for string handling. COBOL
 							too, uses Intrinsic Functions for some tasks but most string manipulation is
@@ -233,11 +99,11 @@
 						<hr />
 					</div>
 				</div>
-				<div class="course-section-row">
-					<div class="course-section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Objectives</h3>
 					</div>
-					<div class="course-section-content">
+					<div class="section-content">
 						<p>By the end of this unit you should:</p>
 						<ol>
 							<li>Understand how the INSPECT verb works.</li>
@@ -253,11 +119,11 @@
 						<hr />
 					</div>
 				</div>
-				<div class="course-section-row">
-					<div class="course-section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Prerequisites</h3>
 					</div>
-					<div class="course-section-content">
+					<div class="section-content">
 						<p>You should be familiar with the following material;</p>
 						<ul>
 							<li>Data Declaration</li>
@@ -269,11 +135,11 @@
 						<hr />
 					</div>
 				</div>
-				<div class="course-section-row">
-					<div class="course-section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Syntax legend</h3>
 					</div>
-					<div class="course-section-content">
+					<div class="section-content">
 						<p>
 							To simplify the syntax diagrams and reduce the number of rules that must be
 							explained, special operand endings are used in this unit's syntax diagrams.
@@ -314,15 +180,15 @@
 					/></a>
 				</p>
 			</div>
-			<div class="course-section">
-				<div class="course-section-header">
+			<div class="page-section">
+				<div class="section-header">
 					<h2 id="inspect">Using the INSPECT</h2>
 				</div>
-				<div class="course-section-row">
-					<div class="course-section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Introduction</h3>
 					</div>
-					<div class="course-section-content">
+					<div class="section-content">
 						<p>The INSPECT has four formats;</p>
 						<ol class="spaced">
 							<li>The first format is used for counting characters in a string.</li>
@@ -339,11 +205,11 @@
 						<hr />
 					</div>
 				</div>
-				<div class="course-section-row">
-					<div class="course-section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Example program Counting letter occurences using the INSPECT</h3>
 					</div>
-					<div class="course-section-content">
+					<div class="section-content">
 						<p>
 							We'll start by looking at the PROCEDURE DIVISION of an example
 							program that uses the INSPECT verb. This program reads through a
@@ -399,11 +265,11 @@ Begin.
 						<hr />
 					</div>
 				</div>
-				<div class="course-section-row">
-					<div class="course-section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>How the INSPECT works.</h3>
 					</div>
-					<div class="course-section-content">
+					<div class="section-content">
 						<p>
 							The INSPECT scans the source string from left to right counting, replacing or
 							converting characters under the control of the TALLYING, REPLACING or CONVERTING
@@ -420,11 +286,11 @@ Begin.
 						<hr />
 					</div>
 				</div>
-				<div class="course-section-row">
-					<div class="course-section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>The modifying phrases</h3>
 					</div>
-					<div class="course-section-content">
+					<div class="section-content">
 						<p>
 							The <b>LEADING</b> phrase causes counting/replacement of all Compare$il
 							characters from the first valid one encountered to the first invalid one.
@@ -454,11 +320,11 @@ Begin.
 					/></a>
 				</p>
 			</div>
-			<div class="course-section">
-				<div class="course-section-header">
+			<div class="page-section">
+				<div class="section-header">
 					<h2 id="count">The counting INSPECT</h2>
 				</div>
-				<div class="course-section-full">
+				<div class="section-full">
 					<h3>Syntax</h3>
 					<p><img src="Resources/pics/CntInspect.gif" /></p>
 					<p align="left">
@@ -466,11 +332,11 @@ Begin.
 					</p>
 					<hr />
 				</div>
-				<div class="course-section-row">
-					<div class="course-section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Notes</h3>
 					</div>
-					<div class="course-section-content">
+					<div class="section-content">
 						<p>If Compare$il or Delim$il is a figurative constant it is 1 character in size.</p>
 						<p>
 							An ALL, LEADING or CHARACTERS phrase can have not more than one BEFORE and one
@@ -478,11 +344,11 @@ Begin.
 						</p>
 					</div>
 				</div>
-				<div class="course-section-row">
-					<div class="course-section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Examples</h3>
 					</div>
-					<div class="course-section-content">
+					<div class="section-content">
 						<pre
 							class="language-cobol"
 						><code class="language-cobol">INSPECT FullName TALLYING UnstrPtr FOR LEADING SPACES.
@@ -501,11 +367,11 @@ INSPECT SourceLine TALLYING ECount
 					/></a>
 				</p>
 			</div>
-			<div class="course-section">
-				<div class="course-section-header">
+			<div class="page-section">
+				<div class="section-header">
 					<h2 id="replace">The replacing INSPECT</h2>
 				</div>
-				<div class="course-section-full">
+				<div class="section-full">
 					<h3>Syntax</h3>
 					<p><img height="255" src="Resources/pics/RepInspect.gif" width="619" /></p>
 					<p align="left">
@@ -513,11 +379,11 @@ INSPECT SourceLine TALLYING ECount
 					</p>
 					<hr />
 				</div>
-				<div class="course-section-row">
-					<div class="course-section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Rules</h3>
 					</div>
-					<div class="course-section-content">
+					<div class="section-content">
 						<p>The sizes of Compare$il and Replace$il must be equal.</p>
 						<p>When Replace$il is a figurative constant its size equals that of Compare$il.</p>
 						<p>
@@ -531,14 +397,14 @@ INSPECT SourceLine TALLYING ECount
 						<hr />
 					</div>
 				</div>
-				<div class="course-section-row">
-					<div class="course-section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>
 							Example 1<br />
 							with animation
 						</h3>
 					</div>
-					<div class="course-section-content">
+					<div class="section-content">
 						<p>
 							The following examples work on the data in StringData to produce the results
 							shown in the storage schematic below.
@@ -578,11 +444,11 @@ INSPECT SourceLine TALLYING ECount
 						</center>
 					</div>
 				</div>
-				<div class="course-section-row">
-					<div class="course-section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Example 2</h3>
 					</div>
-					<div class="course-section-content">
+					<div class="section-content">
 						<p>
 							This example inspects the string TextLine and checks it for each of the 4 letter
 							swear words in the table. If one is found it is replaced by the text *#@!.
@@ -595,14 +461,14 @@ END-PERFORM</code></pre>
 						<hr />
 					</div>
 				</div>
-				<div class="course-section-row">
-					<div class="course-section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>
 							Example 3<br />
 							with animation
 						</h3>
 					</div>
-					<div class="course-section-content">
+					<div class="section-content">
 						<p>
 							In this example we want to create an edited item with a floating Rouble currency
 							symbol instead of a floating dollar sign.
@@ -638,11 +504,11 @@ END-PERFORM</code></pre>
 					/></a>
 				</p>
 			</div>
-			<div class="course-section">
-				<div class="course-section-header">
+			<div class="page-section">
+				<div class="section-header">
 					<h2 id="combine">The combined INSPECT</h2>
 				</div>
-				<div class="course-section-full">
+				<div class="section-full">
 					<h3>Syntax</h3>
 					<p><img height="338" src="Resources/pics/CombInspect.gif" width="649" /></p>
 					<p>
@@ -660,20 +526,20 @@ END-PERFORM</code></pre>
 				</p>
 			</div>
 			<hr />
-			<div class="course-section">
-				<div class="course-section-header">
+			<div class="page-section">
+				<div class="section-header">
 					<h2 id="convert">The converting INSPECT</h2>
 				</div>
-				<div class="course-section-full">
+				<div class="section-full">
 					<h3>Syntax</h3>
 					<p><img src="Resources/pics/ConvInspect.gif" /></p>
 					<hr />
 				</div>
-				<div class="course-section-row">
-					<div class="course-section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>How this format of the INSPECT works</h3>
 					</div>
-					<div class="course-section-content">
+					<div class="section-content">
 						<p>
 							The INSPECT..CONVERTING works on individual characters. Compare$il is a list of
 							characters that will be replaced with the characters in Convert$il on a one for
@@ -687,11 +553,11 @@ END-PERFORM</code></pre>
 						<hr />
 					</div>
 				</div>
-				<div class="course-section-row">
-					<div class="course-section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Rules</h3>
 					</div>
-					<div class="course-section-content">
+					<div class="section-content">
 						<ol class="spaced">
 							<li>Compare$il and Convert$il must be equal in size.</li>
 							<li>
@@ -705,14 +571,14 @@ END-PERFORM</code></pre>
 						<hr />
 					</div>
 				</div>
-				<div class="course-section-row">
-					<div class="course-section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>
 							Example 1<br />
 							with animation
 						</h3>
 					</div>
-					<div class="course-section-content">
+					<div class="section-content">
 						<p align="left">
 							The following examples work on the data in StringData to produce the results
 							shown in the storage schematic below.
@@ -743,11 +609,11 @@ END-PERFORM</code></pre>
 						<hr />
 					</div>
 				</div>
-				<div class="course-section-row">
-					<div class="course-section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Example 2</h3>
 					</div>
-					<div class="course-section-content">
+					<div class="section-content">
 						<p>
 							This example shows how the INSPECT..CONVERTING can be used to implement a simple
 							encoding mechanism.
@@ -763,11 +629,11 @@ END-PERFORM</code></pre>
 						<hr />
 					</div>
 				</div>
-				<div class="course-section-row">
-					<div class="course-section-label">
+				<div class="section-grid">
+					<div class="section-sidebar">
 						<h3>Example 3</h3>
 					</div>
-					<div class="course-section-content">
+					<div class="section-content">
 						<p>
 							In this example, the INSPECT..CONVERTING is used to convert upper case letters
 							to lower case and visa versa.
