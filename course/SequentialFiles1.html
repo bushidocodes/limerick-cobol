@@ -50,14 +50,14 @@
 					</li>
 					<li>
 						<a href="#part2">Declaring records and files</a><br />
-						This section demonstrates how the FD entry is used to describe a files record buffer and
-						show how to use the SELECT and ASSIGN clause to connect an internal file name to an external
-						data repository.
+						This section demonstrates how the FD entry is used to describe a files record buffer and show
+						how to use the SELECT and ASSIGN clause to connect an internal file name to an external data
+						repository.
 					</li>
 					<li>
 						<a href="#part3">COBOL file handling verbs</a><br />
-						The COBOL verbs for processing Sequential Files are introduced in this section. The section
-						ends with a full example program.
+						The COBOL verbs for processing Sequential Files are introduced in this section. The section ends
+						with a full example program.
 					</li>
 				</ul>
 				<hr />
@@ -350,7 +350,7 @@
 						The fields described above are individual data items but we must collect them together into a
 						record structure as follows;
 					</p>
-						<pre class="language-cobol"><code class="language-cobol">01 StudentRec.
+					<pre class="language-cobol"><code class="language-cobol">01 StudentRec.
    02 StudentId         PIC 9(7).
    02 StudentName       PIC X(10).
    02 DateOfBirth       PIC 9(8).
@@ -366,7 +366,7 @@
 						consists of 4 digits for the year, 2 digits for the month and 2 digits for the day .
 					</p>
 					<p>To allow us to access these fields individually we need to declare the record as follows;</p>
-						<pre class="language-cobol"><code class="language-cobol">01 StudentRec.
+					<pre class="language-cobol"><code class="language-cobol">01 StudentRec.
    02 StudentId         PIC 9(7).
    02 StudentName.
       03 Surname        PIC X(8).
@@ -397,7 +397,7 @@
 						file.
 					</p>
 					<p>So the full file description for the students file might be;.</p>
-						<pre class="language-cobol"><code class="language-cobol">DATA DIVISION.
+					<pre class="language-cobol"><code class="language-cobol">DATA DIVISION.
 FILE SECTION.
 FD StudentFile.
 01 StudentRec.
@@ -437,7 +437,7 @@ FD StudentFile.
 						<code class="language-cobol">INPUT-OUTPUT SECTION</code> in the
 						<code class="language-cobol">ENVIRONMENT DIVISION</code>.
 					</p>
-						<pre class="language-cobol"><code class="language-cobol">ENVIRONMENT DIVISION.
+					<pre class="language-cobol"><code class="language-cobol">ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
    SELECT StudentFile
@@ -665,7 +665,7 @@ SELECT StudentFile
 						to true. Since the condition name is set up as shown below, setting it to true fills the whole
 						record with <code class="language-cobol">HIGH</code>-<code class="language-cobol">VALUES</code>.
 					</p>
-						<pre class="language-cobol"><code class="language-cobol">FD StudentFile.
+					<pre class="language-cobol"><code class="language-cobol">FD StudentFile.
 01 StudentRec.
    88 EndOfFile     VALUE HIGH-VALUES.
 
@@ -691,7 +691,10 @@ SELECT StudentFile
 					</aside>
 				</div>
 				<div class="section-content">
-					<p><code class="language-cobol">WRITE</code> RecordName [<code class="language-cobol">FROM</code> Identifier]</p>
+					<p>
+						<code class="language-cobol">WRITE</code> RecordName [<code class="language-cobol">FROM</code>
+						Identifier]
+					</p>
 					<p>
 						The <code class="language-cobol">WRITE</code> verb is used to copy data from the record buffer
 						(RAM) to the file on backing storage (Disk, tape or CD-ROM).
@@ -746,9 +749,7 @@ SELECT StudentFile
 						The example program below demonstrates the items discussed above. The program gets records from
 						the user and writes them to a file. It then reads the file and displays part of each record.
 					</p>
-						<pre
-							class="language-cobol"
-						><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+					<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  SeqWriteRead.
 AUTHOR.  Michael Coughlan.
@@ -815,9 +816,7 @@ GetStudentRecord.
 			<div class="page-footer">
 				<hr />
 				<div align="center">
-					<a href="#top"
-						><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
-					/></a>
+					<a href="#top"><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132" /></a>
 				</div>
 				<copyright-notice></copyright-notice>
 			</div>
