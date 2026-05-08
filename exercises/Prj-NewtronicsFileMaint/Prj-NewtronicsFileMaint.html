@@ -167,25 +167,25 @@
 				</h3>
 				<p>
 					Newtronics Plc. is a company which sells electronic parts (diodes, transistors, IC's, LED's
-					thermostats etc.) and goods.&nbsp; Currently, the company is being computerised and you have
-					been retained to write one of the programs required.
+					thermostats etc.) and goods.&nbsp; Currently, the company is being computerised and you have been
+					retained to write one of the programs required.
 				</p>
 				<p>
-					Information about the parts and goods held in stock by the company is contained in two files;
-					the Stock Master File and the Supplier Master File.&nbsp; Adjustments to stock, such as selling
-					an item or receiving new supplies into stock are made on-line by an update program written by
-					others.&nbsp; File maintenance&nbsp; (Insertion, Deletion and Adjusting of records)&nbsp; to
-					the&nbsp; master files will be achieved by applying a file of transaction records to them at the
-					end of each day.&nbsp;&nbsp; Your task is to write the program which will take the Transaction
-					file and apply it to the master files.
+					Information about the parts and goods held in stock by the company is contained in two files; the
+					Stock Master File and the Supplier Master File.&nbsp; Adjustments to stock, such as selling an item
+					or receiving new supplies into stock are made on-line by an update program written by others.&nbsp;
+					File maintenance&nbsp; (Insertion, Deletion and Adjusting of records)&nbsp; to the&nbsp; master
+					files will be achieved by applying a file of transaction records to them at the end of each
+					day.&nbsp;&nbsp; Your task is to write the program which will take the Transaction file and apply it
+					to the master files.
 				</p>
 				<h3><span style="font-variant: normal; text-transform: uppercase">The Transaction File</span></h3>
 				<p>
 					The Transaction File is a unsorted, unvalidated file containing a number of different types of
-					transaction record.&nbsp; Each transaction record type is identified by a transaction type code
-					in the first character position.&nbsp; The following transaction types have been identified :-
+					transaction record.&nbsp; Each transaction record type is identified by a transaction type code in
+					the first character position.&nbsp; The following transaction types have been identified :-
 				</p>
-				<div align="left" style="margin-left: 62px;">
+				<div align="left" style="margin-left: 62px">
 					<table border="1" cellpadding="0" cellspacing="0" width="302">
 						<tr bgcolor="#FFFFCC">
 							<td class="Normal" valign="top" width="89">
@@ -1097,8 +1097,8 @@
 				</table>
 				<h3><span style="font-variant: normal; text-transform: uppercase">The Error File</span></h3>
 				<p>
-					The Error File is an unordered Sequential File.&nbsp; Records in the Error File have the same
-					format as those in the Transaction File.
+					The Error File is an unordered Sequential File.&nbsp; Records in the Error File have the same format
+					as those in the Transaction File.
 				</p>
 				<h3>
 					<br clear="all" style="page-break-before: always" />
@@ -1106,37 +1106,37 @@
 				</h3>
 				<p>
 					For the sake of efficiency, the Transaction File should be sorted on ascending TransactionType
-					within ascending StockNumber before the records are applied to the Master Files.&nbsp; Some of
-					the validation can be done before the Sort executes and should be done in an Input
-					Procedure.&nbsp; The rest of the processing should be done in an Output Procedure.
+					within ascending StockNumber before the records are applied to the Master Files.&nbsp; Some of the
+					validation can be done before the Sort executes and should be done in an Input Procedure.&nbsp; The
+					rest of the processing should be done in an Output Procedure.
 				</p>
 				<p>
-					When an error occurs the transaction record should be written to an Error File.&nbsp; Records in
-					the Error File have the same format as those in the Transaction File.&nbsp;&nbsp; As soon as an
-					error is found in a transaction record, the record should be written to the Error File and no
-					further checking should be done.
+					When an error occurs the transaction record should be written to an Error File.&nbsp; Records in the
+					Error File have the same format as those in the Transaction File.&nbsp;&nbsp; As soon as an error is
+					found in a transaction record, the record should be written to the Error File and no further
+					checking should be done.
 				</p>
 				<blockquote>
 					<p>
-						<b>General Validation<br /></b> Ensure that the Transaction-Type is numeric and within range
-						1 to 7.
+						<b>General Validation<br /></b> Ensure that the Transaction-Type is numeric and within range 1
+						to 7.
 					</p>
 					<p>
-						<b>General Transaction Record Validation<br /></b> Ensure that the Stock-Number is numeric
-						and that the check digit is correct (implement check digit validation as a contained
-						sub-program with no Global data).&nbsp;
+						<b>General Transaction Record Validation<br /></b> Ensure that the Stock-Number is numeric and
+						that the check digit is correct (implement check digit validation as a contained sub-program
+						with no Global data).&nbsp;
 					</p>
 					<p>
 						<b>Delete Stock Record Special Validation<br /></b> Ensure that the record does exist in the
-						master file and that&nbsp; the Qty-In-Stock in the master file record is zero.&nbsp; If all
-						is OK&nbsp; write the Stock Master File record to the Stock Archive File and then delete the
-						master file record.
+						master file and that&nbsp; the Qty-In-Stock in the master file record is zero.&nbsp; If all is
+						OK&nbsp; write the Stock Master File record to the Stock Archive File and then delete the master
+						file record.
 					</p>
 					<p>
 						<b>Insert Stock Record Special Validation<br /></b> Ensure that the record does not already
-						exist and that there is a corresponding record in the Supplier Master File.&nbsp; Ensure
-						that the Qty-In-Stock, Price, Reorder-Level and Reorder-Qty fields are numeric and
-						initialized to zero.&nbsp; If all is OK&nbsp; insert the record.
+						exist and that there is a corresponding record in the Supplier Master File.&nbsp; Ensure that
+						the Qty-In-Stock, Price, Reorder-Level and Reorder-Qty fields are numeric and initialized to
+						zero.&nbsp; If all is OK&nbsp; insert the record.
 					</p>
 					<p>
 						<b>Adjust Special Validation<br /></b> Ensure that the record does exist in the master
@@ -1145,13 +1145,13 @@
 						>
 					</p>
 					<p>
-						<b>Insert Supplier Record Special Validation<br /></b> Ensure that the record does not
-						already exist.&nbsp; If all is OK then insert the record.
+						<b>Insert Supplier Record Special Validation<br /></b> Ensure that the record does not already
+						exist.&nbsp; If all is OK then insert the record.
 					</p>
 					<p>
 						<b>Delete Supplier Record Special Validation<br /></b> Ensure that the record does exist and
-						that there are no records with this SupplierNumber left in the Stock Master File. If all is
-						OK delete the master file record.
+						that there are no records with this SupplierNumber left in the Stock Master File. If all is OK
+						delete the master file record.
 					</p>
 				</blockquote>
 				<h3>
@@ -1173,10 +1173,10 @@
 					follows:-
 				</p>
 				<p class="in5">
-					Multiply each digit by its weight and add the results together.&nbsp; Divide the sum of the
-					results by the modulus 11 and subtract the remainder from the modulus.&nbsp; The result is the
-					check digit.&nbsp;&nbsp; The check digit in your student number is calculated in exactly the
-					same way so any valid student number will be a valid StockNumber.
+					Multiply each digit by its weight and add the results together.&nbsp; Divide the sum of the results
+					by the modulus 11 and subtract the remainder from the modulus.&nbsp; The result is the check
+					digit.&nbsp;&nbsp; The check digit in your student number is calculated in exactly the same way so
+					any valid student number will be a valid StockNumber.
 				</p>
 				<p class="in5">Here is an example:-</p>
 				<pre>
@@ -1217,8 +1217,8 @@ Check Digit       =            4</pre
 				<p class="h1">So the check digit is 4.</p>
 				<p>
 					If you only want to discover whether a check digit is correct or not then get the
-					<span style="text-transform: uppercase">Sum Of Results</span> as above,&nbsp; add the check
-					digit to it and divide by 11.&nbsp; If there is no remainder then the check digit is correct.
+					<span style="text-transform: uppercase">Sum Of Results</span> as above,&nbsp; add the check digit to
+					it and divide by 11.&nbsp; If there is no remainder then the check digit is correct.
 				</p>
 				<copyright-notice type="project"></copyright-notice>
 			</div>

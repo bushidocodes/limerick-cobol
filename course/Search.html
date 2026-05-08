@@ -66,12 +66,13 @@
 						<div align="center">
 							<p align="left">
 								The task of searching a table to determine whether it contains a particular value is a
-								common operation. The method used to search a table depends heavily on how the values in the
-								table are organized.
+								common operation. The method used to search a table depends heavily on how the values in
+								the table are organized.
 							</p>
 							<p align="left">
-								For instance, if the values are not ordered, the table may only be searched sequentially,
-								but if the values are ordered, then either a sequential or a binary search may be used.
+								For instance, if the values are not ordered, the table may only be searched
+								sequentially, but if the values are ordered, then either a sequential or a binary search
+								may be used.
 							</p>
 							<p align="left">
 								In COBOL, the <code class="language-cobol">SEARCH</code> verb is used for sequential
@@ -80,8 +81,8 @@
 							<p align="left">
 								This tutorial introduces the syntax and rules of operation of the
 								<code class="language-cobol">SEARCH</code> and
-								<code class="language-cobol">SEARCH ALL</code> verbs. It introduces the extensions to the
-								<code class="language-cobol">OCCURS</code> clause that are required when the
+								<code class="language-cobol">SEARCH ALL</code> verbs. It introduces the extensions to
+								the <code class="language-cobol">OCCURS</code> clause that are required when the
 								<code class="language-cobol">SEARCH</code> or
 								<code class="language-cobol">SEARCH ALL</code> is used. It shows how the SET verb may be
 								used to alter the value of an index and it demonstrates how the
@@ -188,8 +189,8 @@
 					<div class="section-content">
 						<p align="left">
 							Before the <code class="language-cobol">SEARCH</code> or
-							<code class="language-cobol">SEARCH ALL</code> can be used to search a table, the table must be
-							defined as having an index item associated with it.
+							<code class="language-cobol">SEARCH ALL</code> can be used to search a table, the table must
+							be defined as having an index item associated with it.
 						</p>
 						<p align="left">
 							The index is specified by the <i>IndexName</i> given in the
@@ -202,8 +203,8 @@
 						</p>
 						<p align="left">
 							Using an index makes the searching more efficient. Since the index is linked to a particular
-							table, the compiler, taking into account the size of the table, can choose the most efficient
-							representation possible for the index and this speeds up the search.
+							table, the compiler, taking into account the size of the table, can choose the most
+							efficient representation possible for the index and this speeds up the search.
 						</p>
 						<p align="left">
 							The only entry that needs to be made for an <i>IndexName</i> is to use it in an
@@ -211,15 +212,15 @@
 							clause for it, because the compiler handles its declaration automatically.
 						</p>
 						<p align="left">
-							Because an index has a special internal representation it cannot be displayed and can only be
-							assigned a value, or have its value assigned, by the
+							Because an index has a special internal representation it cannot be displayed and can only
+							be assigned a value, or have its value assigned, by the
 							<code class="language-cobol">SET</code> verb. The
 							<code class="language-cobol">MOVE</code> cannot be used with a table index.
 						</p>
 						<p align="left">
 							Normal arithmetic cannot be performed on a table index. The
-							<code class="language-cobol">SET</code> verb must be used to increment or decrement the value of
-							an index item.
+							<code class="language-cobol">SET</code> verb must be used to increment or decrement the
+							value of an index item.
 						</p>
 					</div>
 				</div>
@@ -229,17 +230,17 @@
 					</div>
 					<div class="section-content">
 						<p>
-							While the <code class="language-cobol">SEARCH</code> performs a sequential search on a table,
-							the <code class="language-cobol">SEARCH ALL</code> performs a binary search. But a binary search
-							requires that the table is ordered on some key field. The key field may be the element itself
-							or, where the element is a group item, a field within the element.
+							While the <code class="language-cobol">SEARCH</code> performs a sequential search on a
+							table, the <code class="language-cobol">SEARCH ALL</code> performs a binary search. But a
+							binary search requires that the table is ordered on some key field. The key field may be the
+							element itself or, where the element is a group item, a field within the element.
 						</p>
 						<p>
-							Before a table can be searched with the <code class="language-cobol">SEARCH ALL</code>, the key
-							field must be identified by using the <code class="language-cobol">KEY IS</code> phrase in the
-							table declaration. As well as identifying the key field, the
-							<code class="language-cobol">KEY IS</code> phrase specifies whether the table is in ascending or
-							descending order.
+							Before a table can be searched with the <code class="language-cobol">SEARCH ALL</code>, the
+							key field must be identified by using the <code class="language-cobol">KEY IS</code> phrase
+							in the table declaration. As well as identifying the key field, the
+							<code class="language-cobol">KEY IS</code> phrase specifies whether the table is in
+							ascending or descending order.
 						</p>
 					</div>
 				</div>
@@ -262,8 +263,8 @@
 					</div>
 					<div class="section-content">
 						<p>
-							When the values in a table are not ordered, the only way to find the item we seek is to search
-							through the table sequentially, element by element. In COBOL, the
+							When the values in a table are not ordered, the only way to find the item we seek is to
+							search through the table sequentially, element by element. In COBOL, the
 							<code class="language-cobol">SEARCH</code> verb is used to search a table sequentially.
 						</p>
 					</div>
@@ -282,15 +283,15 @@
 								<i>TableName</i> must identify a data-item in the table hierarchy with both
 								<code class="language-cobol">OCCURS</code> and
 								<code class="language-cobol">INDEXED BY</code> clauses. The index specified in the
-								<code class="language-cobol">INDEXED BY</code> clause of <i>TableName</i> is the controlling
-								index of the <code class="language-cobol">SEARCH</code>.
+								<code class="language-cobol">INDEXED BY</code> clause of <i>TableName</i> is the
+								controlling index of the <code class="language-cobol">SEARCH</code>.
 							</li>
 							<li>
-								The <code class="language-cobol">SEARCH</code> can only be used if the table to be searched
-								has an index item associated with it. An index item is associated with a table by using the
-								<code class="language-cobol">INDEXED BY</code> phrase in the table declaration. The index
-								item is known as the table index. The table index is the subscript which the
-								<code class="language-cobol">SEARCH</code> uses to access the table.
+								The <code class="language-cobol">SEARCH</code> can only be used if the table to be
+								searched has an index item associated with it. An index item is associated with a table
+								by using the <code class="language-cobol">INDEXED BY</code> phrase in the table
+								declaration. The index item is known as the table index. The table index is the
+								subscript which the <code class="language-cobol">SEARCH</code> uses to access the table.
 							</li>
 						</ol>
 						<p>
@@ -298,35 +299,36 @@
 						</p>
 						<ul>
 							<li>
-								The <code class="language-cobol">SEARCH</code> searches a table sequentially starting at the
-								element pointed to by the table index.
+								The <code class="language-cobol">SEARCH</code> searches a table sequentially starting at
+								the element pointed to by the table index.
 							</li>
 							<li>
-								The starting value of the table index is under the control of the programmer. The programmer
-								must ensure that, when the
-								<code class="language-cobol">SEARCH</code> executes, the table index points to some element
-								in the table (for instance, it cannot have a value of 0 or be greater than the size of the
-								table).
+								The starting value of the table index is under the control of the programmer. The
+								programmer must ensure that, when the
+								<code class="language-cobol">SEARCH</code> executes, the table index points to some
+								element in the table (for instance, it cannot have a value of 0 or be greater than the
+								size of the table).
 							</li>
 							<li>
 								The <code class="language-cobol">VARYING</code> phrase is only required when we require
 								data-item to mirror the values of the table index. When the
-								<code class="language-cobol">VARYING</code> phrase is used, and the associated data-item is
-								not the table index, then the data-item is varied along with the index.
+								<code class="language-cobol">VARYING</code> phrase is used, and the associated data-item
+								is not the table index, then the data-item is varied along with the index.
 							</li>
 							<li>
-								The <code class="language-cobol">AT END</code> phrase allows the programmer to specify an
-								action to be taken if the searched for item is not found in the table.
+								The <code class="language-cobol">AT END</code> phrase allows the programmer to specify
+								an action to be taken if the searched for item is not found in the table.
 							</li>
 							<li>
 								When the <code class="language-cobol">AT END</code> is specified, and the index is
-								incremented beyond the highest legal occurrence for the table (i.e. the item has not been
-								found), then the statements following the <code class="language-cobol">AT END</code> will be
-								executed and the <code class="language-cobol">SEARCH</code> will terminate.
+								incremented beyond the highest legal occurrence for the table (i.e. the item has not
+								been found), then the statements following the
+								<code class="language-cobol">AT END</code> will be executed and the
+								<code class="language-cobol">SEARCH</code> will terminate.
 							</li>
 							<li>
-								The conditions attached to the <code class="language-cobol">SEARCH</code> are evaluated in
-								turn and as soon as one is true the statements following the
+								The conditions attached to the <code class="language-cobol">SEARCH</code> are evaluated
+								in turn and as soon as one is true the statements following the
 								<code class="language-cobol">WHEN</code> phrase are executed and the
 								<code class="language-cobol">SEARCH</code> ends.
 							</li>
@@ -340,14 +342,14 @@
 					</div>
 					<div class="section-content">
 						<p>
-							The <code class="language-cobol">SET</code> verb is used for a number of unrelated purposes. We
-							have already seen how the <code class="language-cobol">SET</code> verb may be used to set a
-							condition name to true. This section introduces the versions of the
+							The <code class="language-cobol">SET</code> verb is used for a number of unrelated purposes.
+							We have already seen how the <code class="language-cobol">SET</code> verb may be used to set
+							a condition name to true. This section introduces the versions of the
 							<code class="language-cobol">SET</code> verb used to manipulate table indexes.
 						</p>
 						<p>
-							Because an index item has a special internal representation designed to optimize searching, it
-							cannot be used in any type of normal arithmetic operation (<code class="language-cobol"
+							Because an index item has a special internal representation designed to optimize searching,
+							it cannot be used in any type of normal arithmetic operation (<code class="language-cobol"
 								>ADD</code
 							>, <code class="language-cobol">SUBTRACT</code> etc.) or even in a
 							<code class="language-cobol">MOVE</code> or
@@ -355,9 +357,9 @@
 							must be handled by the <code class="language-cobol">SET</code> verb.
 						</p>
 						<p>
-							The versions of the <code class="language-cobol">SET</code> verb shown below are used to assign
-							a value to an index item, to assign the value of an index item to a variable, and to increment
-							or decrement the value of an index item.
+							The versions of the <code class="language-cobol">SET</code> verb shown below are used to
+							assign a value to an index item, to assign the value of an index item to a variable, and to
+							increment or decrement the value of an index item.
 						</p>
 						<p><img height="148" src="Resources/pics/Search4.gif" width="326" /></p>
 					</div>
@@ -370,32 +372,31 @@
 					<div class="section-content">
 						<p>
 							The example program below accepts an upper case letter from the user and then uses the
-							<code class="language-cobol">SEARCH</code> verb to searche a pre-filled table of letters to find
-							and display the position of the letter in the alphabet.
+							<code class="language-cobol">SEARCH</code> verb to searche a pre-filled table of letters to
+							find and display the position of the letter in the alphabet.
 						</p>
 						<p>
-							Because a table index can be tricky to manipulate (can't display it, can't move it) the program
-							uses the <code class="language-cobol">VARYING</code> phrase to vary an ordinary numeric value
-							along with the index. When the letter is found in the table, this item will contain the same
-							value as the index and we can display it without the complications we might encounter with the
-							index item. For instance, to display the value of the index item we would require following code
-							-
+							Because a table index can be tricky to manipulate (can't display it, can't move it) the
+							program uses the <code class="language-cobol">VARYING</code> phrase to vary an ordinary
+							numeric value along with the index. When the letter is found in the table, this item will
+							contain the same value as the index and we can display it without the complications we might
+							encounter with the index item. For instance, to display the value of the index item we would
+							require following code -
 						</p>
 						<pre class="language-cobol"><code class="language-cobol">SET LetterPos TO LetterIdx
 MOVE LetterPos TO PrnPos
 DISPLAY LetterIn, " is in position ", PrnPos
 </code></pre>
 						<p>
-							The example below is not meant to be a practical example of how to find the position of a letter
-							in the alphabet. Nowadays, this task would be accomplished in much the same way as it would in C
-							or Modula-2 except that, in COBOL, we would use the Intrinsic Function - ORD - as shown below.
+							The example below is not meant to be a practical example of how to find the position of a
+							letter in the alphabet. Nowadays, this task would be accomplished in much the same way as it
+							would in C or Modula-2 except that, in COBOL, we would use the Intrinsic Function - ORD - as
+							shown below.
 						</p>
 						<pre
 							class="language-cobol"
 						><code class="language-cobol">COMPUTE PrnIdx = FUNCTION ORD(LetterIn) - FUNCTION ORD("A") + 1 </code></pre>
-						<pre
-								class="language-cobol"
-							><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. LetterSearch.
 AUTHOR. Michael Coughlan.
@@ -442,13 +443,13 @@ Begin.
 					</div>
 					<div class="section-content">
 						<p>
-							In this example below, we return to the County Tax Report problem. In the last question we posed
-							in the <i>Using Tables</i> tutorial we asked how the County Tax report problem could be solved
-							if the tax record contained a county name instead of a county code. We noted that the county
-							name had to be converted into a numeric value that we could use as a subscript. In the
-							<i>Using Tables</i> tutorial we used a <code class="language-cobol">PERFORM</code> to search
-							through the table to find the numeric equivalent of the county name. In this example we use the
-							<code class="language-cobol">SEARCH</code>.
+							In this example below, we return to the County Tax Report problem. In the last question we
+							posed in the <i>Using Tables</i> tutorial we asked how the County Tax report problem could
+							be solved if the tax record contained a county name instead of a county code. We noted that
+							the county name had to be converted into a numeric value that we could use as a subscript.
+							In the <i>Using Tables</i> tutorial we used a <code class="language-cobol">PERFORM</code> to
+							search through the table to find the numeric equivalent of the county name. In this example
+							we use the <code class="language-cobol">SEARCH</code>.
 						</p>
 						<p>
 							The <code class="language-cobol">VARYING</code> phrase is used in this
@@ -456,9 +457,7 @@ Begin.
 							<i>Idx</i> to the <i>CountyIdx</i>. We can not use <i>CountyIdx</i> as a subscript for the
 							<i>CountyTaxTable</i> because it is bound to the <i>CountyNameTable</i>.
 						</p>
-						<pre
-								class="language-cobol"
-							><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. CountyTaxTable.
 AUTHOR. Michael Coughlan.
@@ -582,16 +581,17 @@ DisplayCountyTaxes.
 							<code class="language-cobol">SEARCH</code> must be an item in the table with both an
 							<code class="language-cobol">OCCURS</code> clause and an
 							<code class="language-cobol">INDEXED BY</code> phrase. The index item specified in the
-							<code class="language-cobol">INDEXED BY</code> phrase is the controlling index of the search.
-							The controlling index governs the submission of the elements, or element items, for examination
-							by the <code class="language-cobol">WHEN</code> phrase of the
+							<code class="language-cobol">INDEXED BY</code> phrase is the controlling index of the
+							search. The controlling index governs the submission of the elements, or element items, for
+							examination by the <code class="language-cobol">WHEN</code> phrase of the
 							<code class="language-cobol">SEARCH</code>. A <code class="language-cobol">SEARCH</code> can
 							only have one controlling index.
 						</p>
 						<p align="left">
-							Because a <code class="language-cobol">SEARCH</code> can only have one controlling index it can
-							only be used to search a single dimension of a table at a time. If the table to be searched is a
-							multi-dimension table then the programmer must control the indexes of the other dimensions.
+							Because a <code class="language-cobol">SEARCH</code> can only have one controlling index it
+							can only be used to search a single dimension of a table at a time. If the table to be
+							searched is a multi-dimension table then the programmer must control the indexes of the
+							other dimensions.
 						</p>
 						<p align="left">
 							For instance, suppose a hotel keeps an Occupancy Table showing which rooms in the hotel are
@@ -612,16 +612,18 @@ DisplayCountyTaxes.
 							/>
 						</div>
 						<p align="left">
-							Suppose we want to search the table to discover which room is occupied by customer 126789. We
-							can't use the <code class="language-cobol">SEARCH</code> to search the whole two-dimension table
-							directly but we can use the <code class="language-cobol">SEARCH</code> to search the table floor
-							by floor. In other words, we can treat the table as if it were a collection of floor tables and
-							we use the <code class="language-cobol">SEARCH</code> to search all the rooms in a particular
-							floor table.
+							Suppose we want to search the table to discover which room is occupied by customer 126789.
+							We can't use the <code class="language-cobol">SEARCH</code> to search the whole
+							two-dimension table directly but we can use the
+							<code class="language-cobol">SEARCH</code> to search the table floor by floor. In other
+							words, we can treat the table as if it were a collection of floor tables and we use the
+							<code class="language-cobol">SEARCH</code> to search all the rooms in a particular floor
+							table.
 						</p>
 						<p align="left">
-							The example program below demonstrates how the <code class="language-cobol">SEARCH</code> verb
-							may be used to search the two-dimension <i>HotelOccupancyTable</i>.
+							The example program below demonstrates how the
+							<code class="language-cobol">SEARCH</code> verb may be used to search the two-dimension
+							<i>HotelOccupancyTable</i>.
 						</p>
 					</div>
 				</div>
@@ -630,9 +632,7 @@ DisplayCountyTaxes.
 						<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
 					</div>
 					<div class="section-content">
-						<pre
-								class="language-cobol"
-							><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. HotelSearch.
 AUTHOR. Michael Coughlan.
@@ -709,8 +709,8 @@ LoadTable.
 							search either of the dimensions of a two-dimension table.
 						</p>
 						<p>
-							Suppose that we want to use a two-dimension table to hold the finishing positions of drivers in
-							fifteen races. The table to hold these details may be described as -
+							Suppose that we want to use a two-dimension table to hold the finishing positions of drivers
+							in fifteen races. The table to hold these details may be described as -
 						</p>
 						<pre class="language-cobol"><code class="language-cobol">01 RaceResultsTable.
    02 Race OCCURS 15 TIMES INDEXED BY Ridx.
@@ -720,9 +720,9 @@ LoadTable.
 						<p>We can represent this diagramatically as follows -</p>
 						<p align="center"><img height="109" src="Resources/pics/Search6.gif" width="469" /></p>
 						<p>
-							In the example program below, the first dimension of the table is searched to find the results
-							for a particular venue and then the second dimension, representing the results fo the race at
-							that venue, are searched to find the finishing position of a particular driver.
+							In the example program below, the first dimension of the table is searched to find the
+							results for a particular venue and then the second dimension, representing the results fo
+							the race at that venue, are searched to find the finishing position of a particular driver.
 						</p>
 					</div>
 				</div>
@@ -731,9 +731,7 @@ LoadTable.
 						<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
 					</div>
 					<div class="section-content">
-						<pre
-								class="language-cobol"
-							><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. RaceSearch.
 AUTHOR. Michael Coughlan.
@@ -804,8 +802,8 @@ LoadTable.
 						<p>
 							In the example above an out-of-line perform was used for the second
 							<code class="language-cobol">SEARCH</code>. This was not strictly necessary. The same result
-							could have been achieved with nested <code class="language-cobol">SEARCH</code> statements. For
-							instance -
+							could have been achieved with nested <code class="language-cobol">SEARCH</code> statements.
+							For instance -
 						</p>
 						<pre class="language-cobol"><code class="language-cobol">SET Ridx TO 1
 SEARCH Race
@@ -842,12 +840,12 @@ END-SEARCH</code></pre>
 					</div>
 					<div class="section-content">
 						<p>
-							The <code class="language-cobol">SEARCH ALL</code> is used when a binary search is required. For
-							this reason, the <code class="language-cobol">SEARCH ALL</code> will only work on an ordered
-							table. The table must be ordered on some some key field. The key field may be the element itself
-							or, where the element is a group item, a field within the element. The key field must be
-							identified by using the <code class="language-cobol">KEY IS</code> phrase in the table
-							declaration.
+							The <code class="language-cobol">SEARCH ALL</code> is used when a binary search is required.
+							For this reason, the <code class="language-cobol">SEARCH ALL</code> will only work on an
+							ordered table. The table must be ordered on some some key field. The key field may be the
+							element itself or, where the element is a group item, a field within the element. The key
+							field must be identified by using the <code class="language-cobol">KEY IS</code> phrase in
+							the table declaration.
 						</p>
 						<hr size="1" />
 					</div>
@@ -863,8 +861,8 @@ END-SEARCH</code></pre>
 						</p>
 						<ol>
 							<li>
-								The <code class="language-cobol">OCCURS</code> clause of the table to be searched must have
-								a <code class="language-cobol">KEY IS</code> clause in addition to an
+								The <code class="language-cobol">OCCURS</code> clause of the table to be searched must
+								have a <code class="language-cobol">KEY IS</code> clause in addition to an
 								<code class="language-cobol">INDEXED BY</code> clause.
 							</li>
 							<li>
@@ -873,30 +871,31 @@ END-SEARCH</code></pre>
 								<code class="language-cobol">OCCURS</code> clause.
 							</li>
 							<li>
-								The <i>ConditionName</i> must have only one value and it must be associated with a data-item
-								referenced by the <code class="language-cobol">KEY IS</code> phrase of the table's
-								<code class="language-cobol">OCCURS</code> clause.
+								The <i>ConditionName</i> must have only one value and it must be associated with a
+								data-item referenced by the <code class="language-cobol">KEY IS</code> phrase of the
+								table's <code class="language-cobol">OCCURS</code> clause.
 							</li>
 						</ol>
 						<p align="left">
 							<b> <code class="language-cobol">SEARCH ALL</code> notes<br /> </b> The
-							<code class="language-cobol">KEY IS</code> phrase identifies the data-item upon which the table
-							is ordered.
+							<code class="language-cobol">KEY IS</code> phrase identifies the data-item upon which the
+							table is ordered.
 						</p>
 						<p align="left">
-							When the <code class="language-cobol">SEARCH ALL</code> is used, the programmer does not need to
-							set the table index to a starting value because the
+							When the <code class="language-cobol">SEARCH ALL</code> is used, the programmer does not
+							need to set the table index to a starting value because the
 							<code class="language-cobol">SEARCH ALL</code> controls it automatically.
 						</p>
 						<p align="left">
 							<b>Some problems using the <code class="language-cobol">SEARCH ALL</code></b
 							><br />
 							If the table to be searched is only partially populated, the
-							<code class="language-cobol">SEARCH ALL</code> may not work correctly. If the table is ordered
-							in ascending sequence then, to get the <code class="language-cobol">SEARCH ALL</code> to
-							function correctly, the unpopulated elements must be filled with
-							<code class="language-cobol">HIGH-VALUES</code>. If the table is in descending sequence, the
-							unpopulated elements should be filled with <code class="language-cobol">LOW-VALUES</code>.
+							<code class="language-cobol">SEARCH ALL</code> may not work correctly. If the table is
+							ordered in ascending sequence then, to get the
+							<code class="language-cobol">SEARCH ALL</code> to function correctly, the unpopulated
+							elements must be filled with <code class="language-cobol">HIGH-VALUES</code>. If the table
+							is in descending sequence, the unpopulated elements should be filled with
+							<code class="language-cobol">LOW-VALUES</code>.
 						</p>
 						<hr size="1" width="100%" />
 					</div>
@@ -907,16 +906,16 @@ END-SEARCH</code></pre>
 					</div>
 					<div class="section-content">
 						<p>
-							A binary search requires that the table to be searched is ordered on some key field. A binary
-							search works by repeatedly dividing the search area into a top and bottom half, deciding which
-							half contains the required item, and then making that half the new search area. It continues
-							halving the search area like this until the required item is found or it discovers that the item
-							is not in the table.
+							A binary search requires that the table to be searched is ordered on some key field. A
+							binary search works by repeatedly dividing the search area into a top and bottom half,
+							deciding which half contains the required item, and then making that half the new search
+							area. It continues halving the search area like this until the required item is found or it
+							discovers that the item is not in the table.
 						</p>
 						<p>The algorithm for the binary search is -</p>
 						<pre
-								class="language-cobol"
-							><code class="language-cobol">PERFORM UNTIL ItemFound OR ItemNotInTable
+							class="language-cobol"
+						><code class="language-cobol">PERFORM UNTIL ItemFound OR ItemNotInTable
   COMPUTE Middle = (Lower + Upper) / 2
   EVALUATE TRUE
     WHEN Key(Middle) &lt; SearchItem COMPUTE Lower = Middle + 1
@@ -927,9 +926,10 @@ END-SEARCH</code></pre>
 END-PERFORM</code></pre>
 						<p>
 							The animation below demonstrates how the binary search works. It uses a search of the letter
-							table described in one of the examples above, as an example. To allow the table to be searched
-							with the <code class="language-cobol">SEARCH ALL</code> the description of the table has to be
-							amended to include a <code class="language-cobol">KEY IS</code> phrase as shown below.
+							table described in one of the examples above, as an example. To allow the table to be
+							searched with the <code class="language-cobol">SEARCH ALL</code> the description of the
+							table has to be amended to include a <code class="language-cobol">KEY IS</code> phrase as
+							shown below.
 						</p>
 						<pre class="language-cobol"><code class="language-cobol">01  LetterTable.
     02 LetterValues.
@@ -965,9 +965,7 @@ END-SEARCH.</code></pre>
 						<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
 					</div>
 					<div class="section-content">
-						<pre
-								class="language-cobol"
-							><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. LetterSearchAll.
 AUTHOR. Michael Coughlan.
@@ -1016,12 +1014,11 @@ Begin.
 					<div class="section-content">
 						<p>
 							In this example, we revisit the County Tax Report program once more. This time we use the
-							<code class="language-cobol">SEARCH ALL</code> to search the pre-filled table of county names.
+							<code class="language-cobol">SEARCH ALL</code> to search the pre-filled table of county
+							names.
 						</p>
 						<p>The new parts of the program are coloured red.</p>
-						<pre
-								class="language-cobol"
-							><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. CountyTaxTable4.
 AUTHOR. Michael Coughlan.

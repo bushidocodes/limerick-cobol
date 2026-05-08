@@ -30,8 +30,8 @@
 						<li>
 							<a href="#part1">The USAGE clause</a><br />
 							Subprograms, the syntax and semantics of the
-							<code class="language-cobol">CALL</code> verb and parameter passing mechanisms.
-							State memory, the <code class="language-cobol">IS INITIAL</code> clause and the
+							<code class="language-cobol">CALL</code> verb and parameter passing mechanisms. State
+							memory, the <code class="language-cobol">IS INITIAL</code> clause and the
 							<code class="language-cobol">CANCEL</code> command.
 						</li>
 					</ul>
@@ -47,23 +47,23 @@
 				<div class="section-content">
 					<div align="center">
 						<p align="left">
-							The internal representation of data can be an important consideration for
-							program efficiency. Unfortunately the default representation used by COBOL for
-							numeric data items can negatively impact the speed of computations. A more
-							efficient format for numeric data can be specified by using the USAGE clause.
+							The internal representation of data can be an important consideration for program
+							efficiency. Unfortunately the default representation used by COBOL for numeric data items
+							can negatively impact the speed of computations. A more efficient format for numeric data
+							can be specified by using the USAGE clause.
 						</p>
 						<p align="left">
-							This unit introduces the concept of internal data representations, it discusses
-							the default representation used in COBOL and outlines how that representation,
-							used for numeric data, might cause inefficiencies.
+							This unit introduces the concept of internal data representations, it discusses the default
+							representation used in COBOL and outlines how that representation, used for numeric data,
+							might cause inefficiencies.
 						</p>
 						<p align="left">
-							The syntax of the <code class="language-cobol">USAGE</code> clause is given and
-							the various options explained.
+							The syntax of the <code class="language-cobol">USAGE</code> clause is given and the various
+							options explained.
 						</p>
 						<p align="left">
-							The <code class="language-cobol">SYNCHRONIZED</code> clause is introduced and a
-							generalized example given.
+							The <code class="language-cobol">SYNCHRONIZED</code> clause is introduced and a generalized
+							example given.
 						</p>
 						<hr align="center" size="1" width="100%" />
 					</div>
@@ -83,8 +83,8 @@
 							<br />
 						</li>
 						<li>
-							Be able to use use the <code class="language-cobol">USAGE</code> clause to
-							change the way numeric data is stored in the computer.<br />
+							Be able to use use the <code class="language-cobol">USAGE</code> clause to change the way
+							numeric data is stored in the computer.<br />
 							<br />
 						</li>
 						<li>
@@ -132,13 +132,11 @@
 						<p>
 							<br />
 							<b>ASCII</b><br />
-							<b>A</b>merican <b>S</b>tandard <b>C</b>ode for <b>I</b>nformation
-							<b>I</b>nterchange
+							<b>A</b>merican <b>S</b>tandard <b>C</b>ode for <b>I</b>nformation <b>I</b>nterchange
 						</p>
 						<p>
 							<b>EBCDIC<br /></b>
-							<b>E</b>xtended <b>B</b>inary <b>C</b>oded <b>D</b>ecimal <b>I</b>nterchange
-							<b>C</b>ode
+							<b>E</b>xtended <b>B</b>inary <b>C</b>oded <b>D</b>ecimal <b>I</b>nterchange <b>C</b>ode
 						</p>
 						<p>
 							<b>BCD</b><br />
@@ -148,30 +146,28 @@
 				</div>
 				<div class="section-content">
 					<p>
-						Computers store their data in the form of binary digits. Apart from cardinal numbers
-						(positive integers) all other data stored in the computer's memory uses some sort of
-						formatting convention.
+						Computers store their data in the form of binary digits. Apart from cardinal numbers (positive
+						integers) all other data stored in the computer's memory uses some sort of formatting
+						convention.
 					</p>
 					<p>
-						Text data, for example, is stored using an encoding sequence like ASCII or EBCDIC.
-						An encoding system is simply a convention which specifies that a particular set of
-						bits is to be used to represent a particular character. For instance, the diagram
-						below shows the bit configuration used to represent an upper case "A" in the ASCII
-						and the EBCDIC encoding sequences.
+						Text data, for example, is stored using an encoding sequence like ASCII or EBCDIC. An encoding
+						system is simply a convention which specifies that a particular set of bits is to be used to
+						represent a particular character. For instance, the diagram below shows the bit configuration
+						used to represent an upper case "A" in the ASCII and the EBCDIC encoding sequences.
 					</p>
 					<p align="center"><img height="102" src="Resources/pics/Usage1.gif" width="396" /></p>
 					<p>
-						Numeric data can be held as text digits (ASCII digits) or as pure binary numbers (in
-						the case of cardinal values), or as twos complement binary numbers (in the case of
-						integers), or as decimal numbers (using BCD), or as real numbers (using a real
-						number format such as the IEEE specification for floating point numbers).
+						Numeric data can be held as text digits (ASCII digits) or as pure binary numbers (in the case of
+						cardinal values), or as twos complement binary numbers (in the case of integers), or as decimal
+						numbers (using BCD), or as real numbers (using a real number format such as the IEEE
+						specification for floating point numbers).
 					</p>
 					<p>
-						The <code class="language-cobol">USAGE</code> clause is used to specify how a data
-						item is to be stored in the computer's memory. Every variable declared in a COBOL
-						program has a <code class="language-cobol">USAGE</code> clause - even when no
-						explicit clause is specified. When there is no explicit
-						<code class="language-cobol">USAGE</code> clause, the default -
+						The <code class="language-cobol">USAGE</code> clause is used to specify how a data item is to be
+						stored in the computer's memory. Every variable declared in a COBOL program has a
+						<code class="language-cobol">USAGE</code> clause - even when no explicit clause is specified.
+						When there is no explicit <code class="language-cobol">USAGE</code> clause, the default -
 						<code class="language-cobol">USAGE IS DISPLAY</code> - is applied.
 					</p>
 					<hr align="center" size="1" width="100%" />
@@ -186,45 +182,42 @@
 							<img height="44" src="Resources/pics/aai-LightBulbTip.gif" width="42" />
 						</p>
 						<p>
-							The speed of modern computers means that it is hardly worth the effort of using
-							the USAGE clause unless the data item is going to be used in thousands of
-							computations.
+							The speed of modern computers means that it is hardly worth the effort of using the USAGE
+							clause unless the data item is going to be used in thousands of computations.
 						</p>
 						<p>
 							For reasons of portability the
 							<code class="language-cobol">USAGE</code> clause should never be used in record
 							descriptions.<br />
-							If the file is read on a different make of computer we have no guarantee that
-							the data will be interpreted correctly.
+							If the file is read on a different make of computer we have no guarantee that the data will
+							be interpreted correctly.
 						</p>
 						<p>
 							Even on the same make of computer, using the
-							<code class="language-cobol">USAGE</code> clause in record descriptions means
-							that the data in the file will probably not be understood by other programming
-							languages or by utility programs or by text editors.
+							<code class="language-cobol">USAGE</code> clause in record descriptions means that the data
+							in the file will probably not be understood by other programming languages or by utility
+							programs or by text editors.
 						</p>
 					</aside>
 				</div>
 				<div class="section-content">
 					<p>
-						For text items, or for numeric items that are not going to be used in a computation
-						(Account Numbers, Phone Numbers etc.), the default of
-						<code class="language-cobol">USAGE IS DISPLAY</code> presents no problems; but for
-						numeric items upon which some calculation is to be performed the default usage is
-						not the most efficient way to store the data.
+						For text items, or for numeric items that are not going to be used in a computation (Account
+						Numbers, Phone Numbers etc.), the default of
+						<code class="language-cobol">USAGE IS DISPLAY</code> presents no problems; but for numeric items
+						upon which some calculation is to be performed the default usage is not the most efficient way
+						to store the data.
 					</p>
 					<p>
 						When numeric items (PIC 9 items) have a usage of
-						<code class="language-cobol">DISPLAY</code>, they are stored as ASCII digits (see
-						the ASCII digits 0-9 in the ASCII table below).
+						<code class="language-cobol">DISPLAY</code>, they are stored as ASCII digits (see the ASCII
+						digits 0-9 in the ASCII table below).
 					</p>
 					<p>
-						Consider the following program fragment. What would happen if computations were done
-						directly on numbers stored in this format?
+						Consider the following program fragment. What would happen if computations were done directly on
+						numbers stored in this format?
 					</p>
-						<pre
-							class="language-cobol"
-						><code class="language-cobol">   ? ? ? ? ? ? ? ? ? ? ? ?
+					<pre class="language-cobol"><code class="language-cobol">   ? ? ? ? ? ? ? ? ? ? ? ?
 WORKING-STORAGE SECTION.
 01 Num1    PIC 9 VALUE 4.
 01 NUM2    PIC 9 VALUE 1.
@@ -239,13 +232,12 @@ Begin.
 					<p>
 						Since none of the data items have an explicit
 						<code class="language-cobol">USAGE</code> clause they default to -
-						<code class="language-cobol">USAGE IS DISPLAY</code>. This means that the values in
-						the variables Num1, Num2 and Num3 are stored as ASCII digits. How does this effect
-						calculations?
+						<code class="language-cobol">USAGE IS DISPLAY</code>. This means that the values in the
+						variables Num1, Num2 and Num3 are stored as ASCII digits. How does this effect calculations?
 					</p>
 					<p>
-						If you examine the ASCII table below you will see that the digit 4 (the value in
-						Num1) is encoded as
+						If you examine the ASCII table below you will see that the digit 4 (the value in Num1) is
+						encoded as
 						<b>
 							<span style="color: #ff0000">00110100</span>
 						</b>
@@ -263,14 +255,14 @@ Begin.
 					<p align="center"><img height="202" src="Resources/pics/Usage2.gif" width="439" /></p>
 					<p>
 						When calculations are done with numeric data items whose
-						<code class="language-cobol">USAGE IS DISPLAY</code>, the computer has to convert
-						the numeric values to their binary equivalents before the calculation can be done.
-						When the result has been computed the computer has to reconvert it to ASCII digits.
-						Conversion to and from ASCII digits slows down computations.
+						<code class="language-cobol">USAGE IS DISPLAY</code>, the computer has to convert the numeric
+						values to their binary equivalents before the calculation can be done. When the result has been
+						computed the computer has to reconvert it to ASCII digits. Conversion to and from ASCII digits
+						slows down computations.
 					</p>
 					<p>
-						For this reason, data that is heavily involved in computation is often declared
-						using one of the usages optimized for computation such as
+						For this reason, data that is heavily involved in computation is often declared using one of the
+						usages optimized for computation such as
 						<code class="language-cobol">USAGE IS COMPUTATIONAL</code>.
 					</p>
 					<div align="center">
@@ -2138,20 +2130,19 @@ Begin.
 							<img height="62" src="Resources/pics/aai-BugAlert.gif" width="56" />
 						</p>
 						<p align="center">
-							Group items are always treated as alphanumeric and this can cause problems when
-							there are subordinate COMP items.
+							Group items are always treated as alphanumeric and this can cause problems when there are
+							subordinate COMP items.
 						</p>
 						<p align="center">
 							For instance, suppose we had a statement like -<br />
 							<code class="language-cobol">MOVE ZEROS TO GROUP2</code>.<br />
 							in the program opposite.<br />
 							<br />
-							On the surface it looks as if this statement is moving the numeric value 0 to
-							NumItem1 and NumItem2 but what is actually moved into these items is the ASCII
-							digit "0".<br />
+							On the surface it looks as if this statement is moving the numeric value 0 to NumItem1 and
+							NumItem2 but what is actually moved into these items is the ASCII digit "0".<br />
 							<br />
-							When an attempt is made to use NumItem1 or NumItem2 in a calculation the program
-							will crash because these data-items contain non-numeric data.
+							When an attempt is made to use NumItem1 or NumItem2 in a calculation the program will crash
+							because these data-items contain non-numeric data.
 						</p>
 					</aside>
 				</div>
@@ -2162,28 +2153,27 @@ Begin.
 					<p><b>USAGE notes</b></p>
 					<ul>
 						<li>
-							The <code class="language-cobol">USAGE</code> clause may be used with any data
-							description entry except those with level numbers of 66 or 88.<br />
+							The <code class="language-cobol">USAGE</code> clause may be used with any data description
+							entry except those with level numbers of 66 or 88.<br />
 							<br />
 						</li>
 						<li>
-							When the <code class="language-cobol">USAGE</code> clause is declared for a
-							group item, the usage specified is applied to every item in the group. The group
-							item itself is still treated as an alphanumeric data-item (see example program
-							below).<br />
+							When the <code class="language-cobol">USAGE</code> clause is declared for a group item, the
+							usage specified is applied to every item in the group. The group item itself is still
+							treated as an alphanumeric data-item (see example program below).<br />
 							<br />
 						</li>
 						<li>
 							<code class="language-cobol">USAGE IS COMPUTATIONAL</code> or
-							<code class="language-cobol">COMP</code> or
-							<code class="language-cobol">BINARY</code> are synonyms of one another.<br />
+							<code class="language-cobol">COMP</code> or <code class="language-cobol">BINARY</code> are
+							synonyms of one another.<br />
 							<br />
 						</li>
 						<li>
-							The <code class="language-cobol">USAGE IS INDEX</code> clause is used to provide
-							an optimized table subscript. When a table is the target of a
-							<code class="language-cobol">SEARCH</code> statement it must have an associated
-							index item (see the Search Tutorial).
+							The <code class="language-cobol">USAGE IS INDEX</code> clause is used to provide an
+							optimized table subscript. When a table is the target of a
+							<code class="language-cobol">SEARCH</code> statement it must have an associated index item
+							(see the Search Tutorial).
 						</li>
 					</ul>
 					<p>
@@ -2192,8 +2182,8 @@ Begin.
 					</p>
 					<ol>
 						<li>
-							Any item declared with <code class="language-cobol">USAGE IS INDEX</code> can
-							only appear in:<br />
+							Any item declared with <code class="language-cobol">USAGE IS INDEX</code> can only appear
+							in:<br />
 							- A <code class="language-cobol">SEARCH</code> or
 							<code class="language-cobol">SET</code> statement<br />
 							- A relation condition<br />
@@ -2205,8 +2195,8 @@ Begin.
 						</li>
 						<li>
 							The picture string of a <code class="language-cobol">COMP</code> or
-							<code class="language-cobol">PACKED-DECIMAL</code> item can contain only the
-							symbols 9, S, V and/or P.<br />
+							<code class="language-cobol">PACKED-DECIMAL</code> item can contain only the symbols 9, S, V
+							and/or P.<br />
 							<br />
 						</li>
 						<li>
@@ -2215,7 +2205,7 @@ Begin.
 						</li>
 					</ol>
 					<p><b>USAGE examples</b></p>
-						<pre class="language-cobol"><code class="language-cobol">
+					<pre class="language-cobol"><code class="language-cobol">
 01 Num1 PIC 9(5)V99 USAGE IS COMP.
 01 Num2 PIC 99 USAGE IS PACKED-DECIMAL.
 01 IdxItem USAGE IS INDEX.
@@ -2231,8 +2221,8 @@ Begin.
 </code></pre>
 					<p>
 						<b>COMP/COMPUTATIONAL/BINARY</b><br />
-						<code class="language-cobol">COMP</code> items are held in memory as pure binary
-						two's complement numbers. The storage requirements for fields described as
+						<code class="language-cobol">COMP</code> items are held in memory as pure binary two's
+						complement numbers. The storage requirements for fields described as
 						<code class="language-cobol">COMP</code> are as follows:
 					</p>
 					<table align="center" border="1" cellpadding="1" cellspacing="1" width="293">
@@ -2257,35 +2247,31 @@ Begin.
 						<br />
 						<br />
 						<b>PACKED-DECIMAL</b><br />
-						Data-items declared as <code class="language-cobol">PACKED-DECIMAL</code> are held
-						in binary-coded-decimal (BCD) form.<br />
-						Instead of representing the value as a single binary number, the binary value of
-						each digit is held in a nibble (half a byte). The sign is held in a separate nibble
-						in the least significant position of the item (see diagram below).
+						Data-items declared as <code class="language-cobol">PACKED-DECIMAL</code> are held in
+						binary-coded-decimal (BCD) form.<br />
+						Instead of representing the value as a single binary number, the binary value of each digit is
+						held in a nibble (half a byte). The sign is held in a separate nibble in the least significant
+						position of the item (see diagram below).
 					</p>
 					<p align="center"><img height="155" src="Resources/pics/Usage3.gif" width="406" /></p>
 					<p>
 						<br />
 						<b>General USAGE notes</b><br />
-						The <code class="language-cobol">USAGE</code> clause is one of the areas where many
-						vendors have introduced extensions to the COBOL standard. It is not uncommon to see
-						<code class="language-cobol">COMP-1</code>,
-						<code class="language-cobol">COMP-2</code>,
-						<code class="language-cobol">COMP-3</code>,
-						<code class="language-cobol">COMP-4</code>,
-						<code class="language-cobol">COMP-5</code> and
-						<code class="language-cobol">POINTER</code> usage items in programs written using
-						these extensions.
+						The <code class="language-cobol">USAGE</code> clause is one of the areas where many vendors have
+						introduced extensions to the COBOL standard. It is not uncommon to see
+						<code class="language-cobol">COMP-1</code>, <code class="language-cobol">COMP-2</code>,
+						<code class="language-cobol">COMP-3</code>, <code class="language-cobol">COMP-4</code>,
+						<code class="language-cobol">COMP-5</code> and <code class="language-cobol">POINTER</code> usage
+						items in programs written using these extensions.
 					</p>
 					<p>
 						Even though <code class="language-cobol">COMP-1</code> and
-						<code class="language-cobol">COMP-2</code> are extensions to the COBOL standard,
-						vendors seem to use identical representations for these usages.
-						<code class="language-cobol">COMP-1</code> is usually defined as a single precision,
-						floating point number, adhering to the IEEE specification for such numbers (Real or
-						Float in typed languages) and <code class="language-cobol">COMP-2</code> is usually
-						defined as a double precision, floating point number (LongReal or Double in typed
-						languages).
+						<code class="language-cobol">COMP-2</code> are extensions to the COBOL standard, vendors seem to
+						use identical representations for these usages. <code class="language-cobol">COMP-1</code> is
+						usually defined as a single precision, floating point number, adhering to the IEEE specification
+						for such numbers (Real or Float in typed languages) and
+						<code class="language-cobol">COMP-2</code> is usually defined as a double precision, floating
+						point number (LongReal or Double in typed languages).
 					</p>
 					<hr align="center" size="1" width="100%" />
 				</div>
@@ -2296,55 +2282,52 @@ Begin.
 					<p>
 						The <code class="language-cobol">SYNCHRONIZED</code> clause is sometimes used with
 						<code class="language-cobol">USAGE IS COMP</code> or
-						<code class="language-cobol">USAGE IS INDEX</code> items. It is used to optimize
-						speed of processing but it does so at the expense of increased storage requirements.
+						<code class="language-cobol">USAGE IS INDEX</code> items. It is used to optimize speed of
+						processing but it does so at the expense of increased storage requirements.
 					</p>
 					<p>
-						Many computer memories are organized in such a way that there are natural addressing
-						boundaries - such as word boundaries. If no special action is taken some data items
-						in memory may straddle theses boundaries. This may cause a processing overhead as
-						the CPU may need two fetch cycles to retrieve the data from memory.
+						Many computer memories are organized in such a way that there are natural addressing boundaries
+						- such as word boundaries. If no special action is taken some data items in memory may straddle
+						theses boundaries. This may cause a processing overhead as the CPU may need two fetch cycles to
+						retrieve the data from memory.
 					</p>
 					<p>
-						The <code class="language-cobol">SYNCHRONIZED</code> clause is used to explicitly
-						align <code class="language-cobol">COMP</code> and
-						<code class="language-cobol">INDEX</code> items along their natural word boundaries.
-						Without the <code class="language-cobol">SYNCHRONIZED</code> clause, data-items are
-						aligned on byte boundaries.
+						The <code class="language-cobol">SYNCHRONIZED</code> clause is used to explicitly align
+						<code class="language-cobol">COMP</code> and <code class="language-cobol">INDEX</code> items
+						along their natural word boundaries. Without the
+						<code class="language-cobol">SYNCHRONIZED</code> clause, data-items are aligned on byte
+						boundaries.
 					</p>
 					<p>
 						The word <code class="language-cobol">SYNC</code> can be used instead of
 						<code class="language-cobol">SYNCHRONIZED</code>.
 					</p>
 					<p>
-						The effect of the synchronized clause is implementation dependant. You will need to
-						read your vendor manual to see how it works on your computer (in some cases it may
-						have no effect).
+						The effect of the synchronized clause is implementation dependant. You will need to read your
+						vendor manual to see how it works on your computer (in some cases it may have no effect).
 					</p>
 					<p>
 						For the purpose of illustrating how the
-						<code class="language-cobol">SYNCHRONIZED</code> clause works let us assume that a
-						COBOL program is running on a word-oriented computer where the CPU fetches data from
-						memory a word at a time.
+						<code class="language-cobol">SYNCHRONIZED</code> clause works let us assume that a COBOL program
+						is running on a word-oriented computer where the CPU fetches data from memory a word at a time.
 					</p>
 					<p>
-						In this program we want to perform a calculation on the number stored in the
-						variable <i>TwoBytes</i> (as declared in the diagram below). Because of the way the
-						data items have been declared, the number stored in <i>TwoBytes</i> straddles a word
-						boundary.
+						In this program we want to perform a calculation on the number stored in the variable
+						<i>TwoBytes</i> (as declared in the diagram below). Because of the way the data items have been
+						declared, the number stored in <i>TwoBytes</i> straddles a word boundary.
 					</p>
 					<p>
-						In order to use the number, the CPU has to execute two fetch cycles - one to get the
-						first part of the number in Word2 and the second to get the second part of the
-						number in Word3. This double fetch slows down calculations.
+						In order to use the number, the CPU has to execute two fetch cycles - one to get the first part
+						of the number in Word2 and the second to get the second part of the number in Word3. This double
+						fetch slows down calculations.
 					</p>
 					<p align="center"><img height="164" src="Resources/pics/Usage4.gif" width="492" /></p>
 					<p>
 						Now consider the impact of using the
-						<code class="language-cobol">SYNCHRONIZED</code> clause. The number in
-						<i>TwoBytes</i> is now aligned along the word boundary, so the CPU only has to do
-						one fetch cycle to retrieve the number from memory. This speeds up processing but at
-						the expense of wasting some storage (the second byte of Word2 is no longer used).
+						<code class="language-cobol">SYNCHRONIZED</code> clause. The number in <i>TwoBytes</i> is now
+						aligned along the word boundary, so the CPU only has to do one fetch cycle to retrieve the
+						number from memory. This speeds up processing but at the expense of wasting some storage (the
+						second byte of Word2 is no longer used).
 					</p>
 					<p align="center"><img height="164" src="Resources/pics/Usage5.gif" width="492" /></p>
 					<hr align="center" size="1" width="100%" />

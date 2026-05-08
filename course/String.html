@@ -21,12 +21,7 @@
 			<div class="page-content">
 				<center>
 					<p id="top">
-						<img
-							alt="Cobol Tutorial"
-							height="59"
-							src="Resources/pics/t-CobolTut.gif"
-							width="173"
-						/>
+						<img alt="Cobol Tutorial" height="59" src="Resources/pics/t-CobolTut.gif" width="173" />
 					</p>
 					<h1>The STRING verb</h1>
 				</center>
@@ -42,8 +37,8 @@
 					</li>
 					<li>
 						<a href="#examples">STRING examples</a><br />
-						This section starts with some animated examples and ends with some examples that take
-						the form of Self Assessment Questions (SAQ).
+						This section starts with some animated examples and ends with some examples that take the form
+						of Self Assessment Questions (SAQ).
 					</li>
 				</ul>
 			</div>
@@ -56,8 +51,7 @@
 				</div>
 				<div class="section-content">
 					<p>
-						The aim of this unit is to provide to provide you with a solid understanding of
-						the STRING verb.
+						The aim of this unit is to provide to provide you with a solid understanding of the STRING verb.
 					</p>
 					<hr />
 				</div>
@@ -90,9 +84,7 @@
 			<div class="section-full">
 				<hr />
 				<p align="center">
-					<a href="#top"
-						><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
-					/></a>
+					<a href="#top"><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132" /></a>
 				</p>
 			</div>
 			<div class="section-grid">
@@ -104,19 +96,19 @@
 				</div>
 				<div class="section-content">
 					<p>
-						The STRING verb is used for string concatenation. That is, it is used to join
-						together the contents of two or more source strings or partial source string to
-						create a single destination string.
+						The STRING verb is used for string concatenation. That is, it is used to join together the
+						contents of two or more source strings or partial source string to create a single destination
+						string.
 					</p>
 					<p>The examples below show how the STRING is used.</p>
 					<p>
-						The first example concatenates the entire contents of the identifiers Indent1
-						and Ident2 with the literal "10" and puts the resulting sting into DestString.
+						The first example concatenates the entire contents of the identifiers Indent1 and Ident2 with
+						the literal "10" and puts the resulting sting into DestString.
 					</p>
 					<p>
-						The second example concatenates the entire contents of Ident1, with the partial
-						contents of Ident2 (all the characters up to the first space) and Ident3 (all
-						the characters up to the word "frogs").
+						The second example concatenates the entire contents of Ident1, with the partial contents of
+						Ident2 (all the characters up to the first space) and Ident3 (all the characters up to the word
+						"frogs").
 					</p>
 					<pre
 						class="language-cobol"
@@ -142,15 +134,14 @@ END-STRING.</code></pre>
 							<tr>
 								<td width="21%">Delim$il</td>
 								<td width="79%">
-									Character or set of characters in a source string that terminates
-									data transfer to the destination string.
+									Character or set of characters in a source string that terminates data transfer to
+									the destination string.
 								</td>
 							</tr>
 							<tr>
 								<td width="21%">Pointer#i</td>
 								<td width="79%">
-									Points to the position in the destination string where the next
-									character will go.
+									Points to the position in the destination string where the next character will go.
 								</td>
 							</tr>
 						</table>
@@ -162,33 +153,29 @@ END-STRING.</code></pre>
 				</div>
 				<div class="section-content">
 					<p>
-						The STRING statement moves characters from the source string to the destination
-						string according to the rules for alphanumeric to alphanumeric moves.
+						The STRING statement moves characters from the source string to the destination string according
+						to the rules for alphanumeric to alphanumeric moves.
 					</p>
 					<p>
-						However, no space filling occurs and unless characters in the destination string
-						are explicitly overwritten they remain undisturbed.
+						However, no space filling occurs and unless characters in the destination string are explicitly
+						overwritten they remain undisturbed.
+					</p>
+					<p>As usual with alphanumeric to alphanumeric MOVEs, data movement is from left to right.</p>
+					<p>
+						The leftmost character of the source is moved to the leftmost position of the destination then
+						the next leftmost of the source to the next leftmost of the destination and so on.
 					</p>
 					<p>
-						As usual with alphanumeric to alphanumeric MOVEs, data movement is from left to
-						right.
+						When a number of source strings are concatenated, characters are moved from the leftmost source
+						string first.
 					</p>
 					<p>
-						The leftmost character of the source is moved to the leftmost position of the
-						destination then the next leftmost of the source to the next leftmost of the
-						destination and so on.
+						When a WITH POINTER phrase is used, its value determines the starting character position for
+						insertion into the destination string.
 					</p>
 					<p>
-						When a number of source strings are concatenated, characters are moved from the
-						leftmost source string first.
-					</p>
-					<p>
-						When a WITH POINTER phrase is used, its value determines the starting character
-						position for insertion into the destination string.
-					</p>
-					<p>
-						The ON OVERFLOW clause executes if there are still valid characters left in the
-						source strings but the destination string is full.
+						The ON OVERFLOW clause executes if there are still valid characters left in the source strings
+						but the destination string is full.
 					</p>
 					<hr />
 				</div>
@@ -222,8 +209,7 @@ END-STRING.</code></pre>
 				<div class="section-content">
 					<ol>
 						<li>
-							Where a literal can be use, a Figurative Constant can be used except the ALL
-							(literal).<br />
+							Where a literal can be use, a Figurative Constant can be used except the ALL (literal).<br />
 							<br />
 						</li>
 						<li>
@@ -231,15 +217,14 @@ END-STRING.</code></pre>
 							<br />
 						</li>
 						<li>
-							The destination item Dest$i must be an elementary data item without editing
-							symbols or the JUSTIFIED clause.<br />
+							The destination item Dest$i must be an elementary data item without editing symbols or the
+							JUSTIFIED clause.<br />
 							<br />
 						</li>
 						<li>
-							Pointer#i must be an integer item and its description must allow it to
-							contain a value one greater than the size of the destination string. For
-							instance, a pointer declared as PIC 9 is too small if the destination string
-							is 10 characters long.
+							Pointer#i must be an integer item and its description must allow it to contain a value one
+							greater than the size of the destination string. For instance, a pointer declared as PIC 9
+							is too small if the destination string is 10 characters long.
 						</li>
 					</ol>
 					<hr />
@@ -250,37 +235,35 @@ END-STRING.</code></pre>
 				<div class="section-content">
 					<p>
 						<b>ON OVERFLOW</b> <b></b><br />
-						If the ON OVERFLOW clause is used then the statement following it will be
-						executed if there are still characters left to pass across in the source
-						field(s) but the destination field has been filled.
+						If the ON OVERFLOW clause is used then the statement following it will be executed if there are
+						still characters left to pass across in the source field(s) but the destination field has been
+						filled.
 					</p>
 					<p>
 						<b>WITH POINTER</b> <b></b><br />
-						The WITH POINTER phrase allows an identifier/dataname to be kept which holds the
-						position in the Destination String where the next character will go.
+						The WITH POINTER phrase allows an identifier/dataname to be kept which holds the position in the
+						Destination String where the next character will go.
 					</p>
 					<p>
-						When the WITH POINTER phrase is used, the program must set the pointer to an
-						initial value greater than 0 and less than the length of the destination string
-						before the STRING statement executes.
+						When the WITH POINTER phrase is used, the program must set the pointer to an initial value
+						greater than 0 and less than the length of the destination string before the STRING statement
+						executes.
 					</p>
 					<p>
-						If the WITH POINTER phrase is <b>not</b> used, operation on the destination
-						field starts from the leftmost position.
+						If the WITH POINTER phrase is <b>not</b> used, operation on the destination field starts from
+						the leftmost position.
 					</p>
 					<p>
 						<b>DELIMITED BY SIZE</b> <b></b><br />
-						The DELIMITED BY SIZE clause means that the whole of the sending field will be
-						added to the destination string.
+						The DELIMITED BY SIZE clause means that the whole of the sending field will be added to the
+						destination string.
 					</p>
 				</div>
 			</div>
 			<div class="section-full">
 				<hr />
 				<p align="center">
-					<a href="#top"
-						><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
-					/></a>
+					<a href="#top"><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132" /></a>
 				</p>
 			</div>
 			<div class="section-grid">
@@ -292,9 +275,8 @@ END-STRING.</code></pre>
 				</div>
 				<div class="section-content">
 					<p>
-						This section starts with some examples to reinforce the material you have just
-						read and it ends with a few test/examples to let you see if you have understood
-						everything so far.
+						This section starts with some examples to reinforce the material you have just read and it ends
+						with a few test/examples to let you see if you have understood everything so far.
 					</p>
 					<hr />
 				</div>
@@ -306,8 +288,8 @@ END-STRING.</code></pre>
 				</div>
 				<div class="section-content">
 					<p>
-						The animation in this example shows how the STRING works by stepping though each
-						clause in the STRING statement.
+						The animation in this example shows how the STRING works by stepping though each clause in the
+						STRING statement.
 					</p>
 					<p>
 						<iframe
@@ -318,9 +300,8 @@ END-STRING.</code></pre>
 						></iframe>
 					</p>
 					<p align="center">
-						Click on the diagram below to step through the animation. Left click or PageDown
-						to go to the next step and right click or press PageUp to go to the previous
-						step.
+						Click on the diagram below to step through the animation. Left click or PageDown to go to the
+						next step and right click or press PageUp to go to the previous step.
 					</p>
 					<hr />
 				</div>
@@ -332,19 +313,17 @@ END-STRING.</code></pre>
 				</div>
 				<div class="section-content">
 					<p>
-						The WITH POINTER phrase is often very useful because it means that we don't have
-						to STRING all the source strings together in one go.
+						The WITH POINTER phrase is often very useful because it means that we don't have to STRING all
+						the source strings together in one go.
 					</p>
 					<p>
-						Using the WITH POINTER we can build the destination string by executing a number
-						of separate STRING statements or by executing a STRING statement a number of
-						times.
+						Using the WITH POINTER we can build the destination string by executing a number of separate
+						STRING statements or by executing a STRING statement a number of times.
 					</p>
 					<p>
-						In this example we show how a destination string may be built a piece at a time
-						by executing several separate STRING statements. At the end of this unit in the
-						combined example you will see how a STRING statement may be used within a loop
-						to build a destination string.
+						In this example we show how a destination string may be built a piece at a time by executing
+						several separate STRING statements. At the end of this unit in the combined example you will see
+						how a STRING statement may be used within a loop to build a destination string.
 					</p>
 					<p>
 						<iframe
@@ -355,9 +334,8 @@ END-STRING.</code></pre>
 						></iframe>
 					</p>
 					<p align="center">
-						Click on the diagram below to step through the animation. Left click or PageDown
-						to go to the next step and right click or press PageUp to go to the previous
-						step.
+						Click on the diagram below to step through the animation. Left click or PageDown to go to the
+						next step and right click or press PageUp to go to the previous step.
 					</p>
 					<hr />
 				</div>
@@ -365,19 +343,14 @@ END-STRING.</code></pre>
 					<h4 align="left">Self assessment questions/examples</h4>
 				</div>
 				<div class="section-content">
+					<p>The examples below consist of data delarations and a number of STRING statements.</p>
 					<p>
-						The examples below consist of data delarations and a number of STRING
-						statements.
+						For each STRING example, write out the text that would be displayed by the DISPLAY statement.
+						Assume that the data starts off fresh for each STRING statement.
 					</p>
 					<p>
-						For each STRING example, write out the text that would be displayed by the
-						DISPLAY statement. Assume that the data starts off fresh for each STRING
-						statement.
-					</p>
-					<p>
-						Treat the examples as an opportunity to test your understanding of the STRING
-						verb. Before you click on the answers in the frame below write down your own
-						answer.
+						Treat the examples as an opportunity to test your understanding of the STRING verb. Before you
+						click on the answers in the frame below write down your own answer.
 					</p>
 					<p><b>Data Declarations.</b></p>
 					<pre class="language-cobol"><code class="language-cobol">01 StringFields.
@@ -440,17 +413,15 @@ END-STRING.</code></pre>
 							style="border: 1px solid #ccc; width: 100%; aspect-ratio: 520/208"
 							width="520"
 						></iframe>
-						Left click or PageDown to go to the next answer and right click or press PageUp
-						to go to the previous answer.&nbsp;
+						Left click or PageDown to go to the next answer and right click or press PageUp to go to the
+						previous answer.&nbsp;
 					</p>
 				</div>
 			</div>
 			<div class="page-footer">
 				<hr />
 				<div align="center">
-					<a href="#top"
-						><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
-					/></a>
+					<a href="#top"><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132" /></a>
 				</div>
 				<copyright-notice></copyright-notice>
 			</div>

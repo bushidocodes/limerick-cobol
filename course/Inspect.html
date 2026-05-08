@@ -20,12 +20,7 @@
 			<div class="page-content">
 				<center>
 					<p id="top">
-						<img
-							alt=""
-							height="59"
-							src="Resources/pics/t-CobolTut.gif"
-							width="173"
-						/>
+						<img alt="" height="59" src="Resources/pics/t-CobolTut.gif" width="173" />
 					</p>
 					<h1>The INSPECT verb</h1>
 				</center>
@@ -37,9 +32,9 @@
 					</li>
 					<li>
 						<a href="#inspect">Using the INSPECT</a><br />
-						The <code class="language-cobol">INSPECT</code> is introduced by looking at an example
-						program. The way the <code class="language-cobol">INSPECT</code> works is explained and
-						its modifying phrases are explored.
+						The <code class="language-cobol">INSPECT</code> is introduced by looking at an example program.
+						The way the <code class="language-cobol">INSPECT</code> works is explained and its modifying
+						phrases are explored.
 					</li>
 					<li>
 						<a href="#count">The counting format</a><br />
@@ -53,8 +48,8 @@
 					</li>
 					<li>
 						<a href="#combine">The combined format</a><br />
-						This version combines the syntax and rules of the other two formats. The syntax of this
-						combined format is presented.
+						This version combines the syntax and rules of the other two formats. The syntax of this combined
+						format is presented.
 					</li>
 					<li>
 						<a href="#convert">The converting format</a><br />
@@ -72,14 +67,13 @@
 				</div>
 				<div class="section-content">
 					<p>
-						Many programming languages rely on library functions for string handling. COBOL
-						too, uses Intrinsic Functions for some tasks but most string manipulation is
-						done using Reference Modification and the three string handling verbs : INSPECT,
-						STRING and UNSTRING.
+						Many programming languages rely on library functions for string handling. COBOL too, uses
+						Intrinsic Functions for some tasks but most string manipulation is done using Reference
+						Modification and the three string handling verbs : INSPECT, STRING and UNSTRING.
 					</p>
 					<p>
-						This unit examines the first of three string handling verbs and aims to provide
-						you with a solid understanding of its various formats and modifying phrases.
+						This unit examines the first of three string handling verbs and aims to provide you with a solid
+						understanding of its various formats and modifying phrases.
 					</p>
 					<hr />
 				</div>
@@ -93,13 +87,9 @@
 					<ol>
 						<li>Understand how the INSPECT verb works.</li>
 						<li>
-							Have a good knowledge of the different formats and modifying phrases of the
-							INSPECT verb.
+							Have a good knowledge of the different formats and modifying phrases of the INSPECT verb.
 						</li>
-						<li>
-							Be able to use the INSPECT to count, replace and convert characters in a
-							string.
-						</li>
+						<li>Be able to use the INSPECT to count, replace and convert characters in a string.</li>
 					</ol>
 					<hr />
 				</div>
@@ -126,8 +116,8 @@
 				</div>
 				<div class="section-content">
 					<p>
-						To simplify the syntax diagrams and reduce the number of rules that must be
-						explained, special operand endings are used in this unit's syntax diagrams.
+						To simplify the syntax diagrams and reduce the number of rules that must be explained, special
+						operand endings are used in this unit's syntax diagrams.
 					</p>
 					<p>These operand endings have the following meaning:</p>
 					<div align="center">
@@ -159,9 +149,7 @@
 			<div class="section-full">
 				<hr />
 				<p align="center">
-					<a href="#top"
-						><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
-					/></a>
+					<a href="#top"><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132" /></a>
 				</p>
 			</div>
 			<div class="section-header">
@@ -175,14 +163,11 @@
 					<p>The INSPECT has four formats;</p>
 					<ol class="spaced">
 						<li>The first format is used for counting characters in a string.</li>
-						<li>
-							The second replaces a group of characters in a string with another group of
-							characters.
-						</li>
+						<li>The second replaces a group of characters in a string with another group of characters.</li>
 						<li>The third combines both operations in one statement.</li>
 						<li>
-							The fourth format converts each of a set of characters to its corresponding
-							character in another set of characters.
+							The fourth format converts each of a set of characters to its corresponding character in
+							another set of characters.
 						</li>
 					</ol>
 					<hr />
@@ -194,33 +179,22 @@
 				</div>
 				<div class="section-content">
 					<p>
-						We'll start by looking at the PROCEDURE DIVISION of an example
-						program that uses the INSPECT verb. This program reads through a
-						file, counts how many times each letter of the alphabet occurs and
-						displays the results
+						We'll start by looking at the PROCEDURE DIVISION of an example program that uses the INSPECT
+						verb. This program reads through a file, counts how many times each letter of the alphabet
+						occurs and displays the results
 					</p>
 					<p>To do this the program;</p>
 					<ul>
 						<li>Reads in a line of text</li>
+						<li>Converts all the characters to upper case using the INSPECT..CONVERTING</li>
 						<li>
-							Converts all the characters to upper case using the
-							INSPECT..CONVERTING
+							Counts the number of times each letter appears in the line using the INSPECT..TALLYING and
+							increments the count in LetterCount. It gets the letters from inspection from a pre-defined
+							table of letters (see the unit on tables for the definition of this letter table)
 						</li>
-						<li>
-							Counts the number of times each letter appears in the line using
-							the INSPECT..TALLYING and increments the count in LetterCount.
-							It gets the letters from inspection from a pre-defined table of
-							letters (see the unit on tables for the definition of this
-							letter table)
-						</li>
-						<li>
-							Uses a PERFORM..VARYING to display the counts after they have
-							been accumulated.
-						</li>
+						<li>Uses a PERFORM..VARYING to display the counts after they have been accumulated.</li>
 					</ul>
-						<pre
-							class="language-cobol"
-						><code class="language-cobol">PROCEDURE DIVISION.
+					<pre class="language-cobol"><code class="language-cobol">PROCEDURE DIVISION.
 Begin.
     OPEN INPUT TextFile
     READ TextFile
@@ -254,17 +228,15 @@ Begin.
 				</div>
 				<div class="section-content">
 					<p>
-						The INSPECT scans the source string from left to right counting, replacing or
-						converting characters under the control of the TALLYING, REPLACING or CONVERTING
-						phrases.
+						The INSPECT scans the source string from left to right counting, replacing or converting
+						characters under the control of the TALLYING, REPLACING or CONVERTING phrases.
 					</p>
 					<p>
-						The behavior of the INSPECT is modified by using the LEADING, FIRST, BEFORE and
-						AFTER phrases.
+						The behavior of the INSPECT is modified by using the LEADING, FIRST, BEFORE and AFTER phrases.
 					</p>
 					<p>
-						An ALL, LEADING, CHARACTERS, FIRST or CONVERTING phrase may only be followed by
-						one BEFORE and one AFTER phrase.
+						An ALL, LEADING, CHARACTERS, FIRST or CONVERTING phrase may only be followed by one BEFORE and
+						one AFTER phrase.
 					</p>
 					<hr />
 				</div>
@@ -275,31 +247,28 @@ Begin.
 				</div>
 				<div class="section-content">
 					<p>
-						The <b>LEADING</b> phrase causes counting/replacement of all Compare$il
-						characters from the first valid one encountered to the first invalid one.
+						The <b>LEADING</b> phrase causes counting/replacement of all Compare$il characters from the
+						first valid one encountered to the first invalid one.
 					</p>
 					<p>The <b>FIRST</b> phrase causes only the first valid character to be replaced.</p>
 					<p>
-						The <b>BEFORE</b> phrase designates as valid those characters to the left of the
-						delimiter associated with it.
+						The <b>BEFORE</b> phrase designates as valid those characters to the left of the delimiter
+						associated with it.
 					</p>
 					<p>
-						The <b>AFTER</b> phrase designates as valid those characters to the right of the
-						delimiter associated with it.
+						The <b>AFTER</b> phrase designates as valid those characters to the right of the delimiter
+						associated with it.
 					</p>
 					<p>
-						If the delimiter is not present in the SourceStr$i then using the BEFORE phrase
-						implies the whole string and using the AFTER phrase implies no characters at
-						all.
+						If the delimiter is not present in the SourceStr$i then using the BEFORE phrase implies the
+						whole string and using the AFTER phrase implies no characters at all.
 					</p>
 				</div>
 			</div>
 			<div class="section-full">
 				<hr />
 				<p align="center">
-					<a href="#top"
-						><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
-					/></a>
+					<a href="#top"><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132" /></a>
 				</p>
 			</div>
 			<div class="section-header">
@@ -308,9 +277,7 @@ Begin.
 			<div class="section-full">
 				<h4>Syntax</h4>
 				<p><img src="Resources/pics/CntInspect.gif" /></p>
-				<p align="left">
-					This format of the Inspect is used to count characters in a string.
-				</p>
+				<p align="left">This format of the Inspect is used to count characters in a string.</p>
 				<hr />
 			</div>
 			<div class="section-grid">
@@ -320,8 +287,8 @@ Begin.
 				<div class="section-content">
 					<p>If Compare$il or Delim$il is a figurative constant it is 1 character in size.</p>
 					<p>
-						An ALL, LEADING or CHARACTERS phrase can have not more than one BEFORE and one
-						AFTER phrase following it.
+						An ALL, LEADING or CHARACTERS phrase can have not more than one BEFORE and one AFTER phrase
+						following it.
 					</p>
 				</div>
 			</div>
@@ -342,9 +309,7 @@ INSPECT SourceLine TALLYING ECount
 			<div class="section-full">
 				<hr />
 				<p align="center">
-					<a href="#top"
-						><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
-					/></a>
+					<a href="#top"><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132" /></a>
 				</p>
 			</div>
 			<div class="section-header">
@@ -353,9 +318,7 @@ INSPECT SourceLine TALLYING ECount
 			<div class="section-full">
 				<h4>Syntax</h4>
 				<p><img height="255" src="Resources/pics/RepInspect.gif" width="619" /></p>
-				<p align="left">
-					This format of the INSPECT is used to count characters in a string.
-				</p>
+				<p align="left">This format of the INSPECT is used to count characters in a string.</p>
 				<hr />
 			</div>
 			<div class="section-grid">
@@ -366,13 +329,10 @@ INSPECT SourceLine TALLYING ECount
 					<p>The sizes of Compare$il and Replace$il must be equal.</p>
 					<p>When Replace$il is a figurative constant its size equals that of Compare$il.</p>
 					<p>
-						When there is a CHARACTERS phrase, the size of ReplaceChar$il and the delimiter
-						which may follow it (Delim$il) must be one character.
+						When there is a CHARACTERS phrase, the size of ReplaceChar$il and the delimiter which may follow
+						it (Delim$il) must be one character.
 					</p>
-					<p>
-						If Compare$il, Delim$il or Replace$il is a figurative constant it is 1 character
-						in size.
-					</p>
+					<p>If Compare$il, Delim$il or Replace$il is a figurative constant it is 1 character in size.</p>
 					<hr />
 				</div>
 			</div>
@@ -385,13 +345,12 @@ INSPECT SourceLine TALLYING ECount
 				</div>
 				<div class="section-content">
 					<p>
-						The following examples work on the data in StringData to produce the results
-						shown in the storage schematic below.
+						The following examples work on the data in StringData to produce the results shown in the
+						storage schematic below.
 					</p>
 					<p>
-						Click on the storage schematic to see the result of each of these INSPECT
-						statements (use left click or PageDown for next item and right click or PageUp
-						for previsou item) .&nbsp;
+						Click on the storage schematic to see the result of each of these INSPECT statements (use left
+						click or PageDown for next item and right click or PageUp for previsou item) .&nbsp;
 					</p>
 					<pre class="language-cobol"><code class="language-cobol">
 1. INSPECT StringData REPLACING ALL "R" BY "G"
@@ -429,8 +388,8 @@ INSPECT SourceLine TALLYING ECount
 				</div>
 				<div class="section-content">
 					<p>
-						This example inspects the string TextLine and checks it for each of the 4 letter
-						swear words in the table. If one is found it is replaced by the text *#@!.
+						This example inspects the string TextLine and checks it for each of the 4 letter swear words in
+						the table. If one is found it is replaced by the text *#@!.
 					</p>
 					<pre
 						class="language-cobol"
@@ -449,20 +408,20 @@ END-PERFORM</code></pre>
 				</div>
 				<div class="section-content">
 					<p>
-						In this example we want to create an edited item with a floating Rouble currency
-						symbol instead of a floating dollar sign.
+						In this example we want to create an edited item with a floating Rouble currency symbol instead
+						of a floating dollar sign.
 					</p>
 					<p>
-						To achieve we use a picture clause edited with a floating dollar sign and then
-						we use the INSPECT to replace the dollar sign with the Rouble symbol "R".
+						To achieve we use a picture clause edited with a floating dollar sign and then we use the
+						INSPECT to replace the dollar sign with the Rouble symbol "R".
 					</p>
 					<p>
-						This works because when a value is moved into an edited item the editing is
-						immediately applied to the value.
+						This works because when a value is moved into an edited item the editing is immediately applied
+						to the value.
 					</p>
 					<p>
-						Click on the diagram below to see how this use of the INSPECT works (use left
-						click or PageDown for next item and right click or PageUp for previsou item) .
+						Click on the diagram below to see how this use of the INSPECT works (use left click or PageDown
+						for next item and right click or PageUp for previsou item) .
 					</p>
 					<center>
 						<iframe
@@ -477,9 +436,7 @@ END-PERFORM</code></pre>
 			<div class="section-full">
 				<hr />
 				<p align="center">
-					<a href="#top"
-						><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
-					/></a>
+					<a href="#top"><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132" /></a>
 				</p>
 			</div>
 			<div class="section-header">
@@ -489,16 +446,14 @@ END-PERFORM</code></pre>
 				<h4>Syntax</h4>
 				<p><img height="338" src="Resources/pics/CombInspect.gif" width="649" /></p>
 				<p>
-					This format of the INSPECT combines the syntactic elements of the previous two
-					formats allowing both counting and replacing to be done in one statement.&nbsp;
+					This format of the INSPECT combines the syntactic elements of the previous two formats allowing both
+					counting and replacing to be done in one statement.&nbsp;
 				</p>
 			</div>
 			<div class="section-full">
 				<hr />
 				<p align="center">
-					<a href="#top"
-						><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
-					/></a>
+					<a href="#top"><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132" /></a>
 				</p>
 			</div>
 			<hr />
@@ -516,9 +471,8 @@ END-PERFORM</code></pre>
 				</div>
 				<div class="section-content">
 					<p>
-						The INSPECT..CONVERTING works on individual characters. Compare$il is a list of
-						characters that will be replaced with the characters in Convert$il on a one for
-						one basis.
+						The INSPECT..CONVERTING works on individual characters. Compare$il is a list of characters that
+						will be replaced with the characters in Convert$il on a one for one basis.
 					</p>
 					<p>For instance the statement -</p>
 					<pre
@@ -535,12 +489,10 @@ END-PERFORM</code></pre>
 				<div class="section-content">
 					<ol class="spaced">
 						<li>Compare$il and Convert$il must be equal in size.</li>
+						<li>When Convert$il is a figurative constant its size equals that of Compare$il.</li>
 						<li>
-							When Convert$il is a figurative constant its size equals that of Compare$il.
-						</li>
-						<li>
-							The same character cannot appear more than once in the Compare$il (because
-							each character in the Compare$il string is associated with a replacement).
+							The same character cannot appear more than once in the Compare$il (because each character in
+							the Compare$il string is associated with a replacement).
 						</li>
 					</ol>
 					<hr />
@@ -555,13 +507,12 @@ END-PERFORM</code></pre>
 				</div>
 				<div class="section-content">
 					<p align="left">
-						The following examples work on the data in StringData to produce the results
-						shown in the storage schematic below.
+						The following examples work on the data in StringData to produce the results shown in the
+						storage schematic below.
 					</p>
 					<p align="left">
-						Click on the storage schematic to see the result of each of these INSPECT
-						statements (use left click or PageDown for next item and right click or
-						PageUp for previsou item).&nbsp;
+						Click on the storage schematic to see the result of each of these INSPECT statements (use left
+						click or PageDown for next item and right click or PageUp for previsou item).&nbsp;
 					</p>
 					<pre class="language-cobol"><code class="language-cobol">
 1. INSPECT StringData CONVERTING "fxtd" TO "ZYAB".
@@ -588,13 +539,12 @@ END-PERFORM</code></pre>
 				</div>
 				<div class="section-content">
 					<p>
-						This example shows how the INSPECT..CONVERTING can be used to implement a simple
-						encoding mechanism.
+						This example shows how the INSPECT..CONVERTING can be used to implement a simple encoding
+						mechanism.
 					</p>
 					<p>
-						It converts the character 0 to character 5, 1 to 2, 2 to 9, 3 to 8 etc.
-						Conversion starts when the word "codeon" is encountered in the string and stops
-						when "codeoff" is encountered.
+						It converts the character 0 to character 5, 1 to 2, 2 to 9, 3 to 8 etc. Conversion starts when
+						the word "codeon" is encountered in the string and stops when "codeoff" is encountered.
 					</p>
 					<pre class="language-cobol"><code class="language-cobol">INSPECT TextLine
     CONVERTING "0123456789" TO "5298317046"
@@ -608,18 +558,14 @@ END-PERFORM</code></pre>
 				</div>
 				<div class="section-content">
 					<p>
-						In this example, the INSPECT..CONVERTING is used to convert upper case letters
-						to lower case and visa versa.
+						In this example, the INSPECT..CONVERTING is used to convert upper case letters to lower case and
+						visa versa.
 					</p>
 					<p>
-						The first INSPECT shows how we can convert the characters using string literals
-						and the next two show how storing the strings in data items makes the conversion
-						operation more versatile.
+						The first INSPECT shows how we can convert the characters using string literals and the next two
+						show how storing the strings in data items makes the conversion operation more versatile.
 					</p>
-					<p>
-						Actually, these days we can do this with the UPPER-CASE and LOWER-CASE Intrinsic
-						Functions.
-					</p>
+					<p>Actually, these days we can do this with the UPPER-CASE and LOWER-CASE Intrinsic Functions.</p>
 					<pre class="language-cobol"><code class="language-cobol">*&gt; Data Division entries
 01 AlphaChars.
    02 AlphaLower PIC X(26) VALUE "abcdefghijklmnopqrstuvwxyz".
@@ -639,9 +585,7 @@ END-PERFORM</code></pre>
 			<div class="page-footer">
 				<hr />
 				<div align="center">
-					<a href="#top"
-						><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132"
-					/></a>
+					<a href="#top"><img border="0" height="38" src="Resources/pics/i-pagetop.gif" width="132" /></a>
 				</div>
 				<copyright-notice></copyright-notice>
 			</div>
