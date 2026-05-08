@@ -8,12 +8,13 @@
 // keep applying — shadow DOM would isolate the anchor from those colors and
 // break the visited-state contract the surrounding pages rely on. The
 // .back-to-top class hooks the centering and 1em vertical-rhythm rules
-// already defined in course-components.css (Phase 1).
+// already defined in course-components.css (Phase 1); the .i-pagetop class
+// sizes the 🔝 glyph to roughly the original GIF's 38px height.
 class BackToTop extends HTMLElement {
 	connectedCallback() {
 		this.innerHTML = `
 			<div class="back-to-top">
-				<p><a href="#top"><img src="Resources/pics/i-pagetop.gif" width="132" height="38" alt="Back to top" /></a></p>
+				<p><a href="#top"><span class="i-pagetop" aria-hidden="true">🔝</span></a></p>
 			</div>
 		`;
 	}
