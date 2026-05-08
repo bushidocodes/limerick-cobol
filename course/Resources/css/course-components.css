@@ -1,0 +1,41 @@
+/* Course-page component utilities. Loaded after course.css so these rules can
+   override layout-level styling when needed. Each class is designed to replace
+   a recurring chunk of legacy presentational HTML (<center>, align="...",
+   <table border cellspacing cellpadding>) without changing the rendered output. */
+
+.hero {
+	text-align: center;
+}
+
+.center-block {
+	text-align: center;
+}
+
+/* Replaces <p align="center"><a href="#top"><img .../></a></p> blocks placed
+   between sections. The 1em vertical margin matches the default <p> margin so
+   the divider/anchor pair retains its rhythm. The .page-footer override drops
+   that margin because the footer variant uses a <div>, which has no default
+   margin. */
+.back-to-top {
+	text-align: center;
+	margin: 1em 0;
+}
+
+.page-footer .back-to-top {
+	margin: 0;
+}
+
+/* Reproduces <table border="1" cellspacing="1" cellpadding="5"> exactly:
+   1px outer border, 1px gap between cells, 1px border on every cell, 5px
+   cell padding. Verified against legacy renderings before the Phase 4 sweep. */
+.data-table {
+	border-collapse: separate;
+	border-spacing: 1px;
+	border: 1px solid;
+}
+
+.data-table > * > tr > th,
+.data-table > * > tr > td {
+	border: 1px solid;
+	padding: 5px;
+}
