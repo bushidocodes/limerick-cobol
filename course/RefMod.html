@@ -261,7 +261,7 @@
 						</li>
 						<li>
 							A function that returns a number value can be used only in an arithmetic expression or as
-							the source of a MOVE statement.<br />
+							the source of a <code class="language-cobol">MOVE</code> statement.<br />
 							<br />
 						</li>
 						<li>
@@ -277,7 +277,7 @@
 				<div class="section-content">
 					<p>An Intrinsic Function consists of three parts;</p>
 					<ol>
-						<li>The start of the function is signalled by the keyword - FUNCTION.</li>
+						<li>The start of the function is signalled by the keyword - <code class="language-cobol">FUNCTION</code>.</li>
 						<li>The keyword is followed by the name of the function.</li>
 						<li>
 							The name of the function is immediately followed by the bracketed list of parameters or
@@ -286,7 +286,7 @@
 					</ol>
 					<p align="left">The template for Intrinsic Functions is shown below:</p>
 					<blockquote>
-						<p>FUNCTION FunctionName(<i>Parameters</i>)</p>
+						<p><code class="language-cobol">FUNCTION</code> FunctionName(<i>Parameters</i>)</p>
 					</blockquote>
 					<p>
 						<i>FunctionName</i> is the name of the function and <i>Parameters</i> is one or more parameters
@@ -469,15 +469,16 @@ MOVE FUNCTION ORD-MAX(IntElement(ALL)) TO OrdPos             </code></pre>
 				<div class="section-content">
 					<p>The statements in the following examples produce the results shown below.</p>
 					<hr />
-					<pre class="language-cobol"><code class="language-cobol">
+					<pre class="language-cobol"><code class="language-cobol">IDENTIFICATION DIVISION.
+PROGRAM-ID. StringFunctions.
+AUTHOR. Michael Coughlan.
+DATA DIVISION.
 WORKING-STORAGE SECTION.
 01 xString PIC X(38) VALUE "This is the alphanumeric string".
 01 OrdPos PIC 99.
 01 IntArray VALUE "1223037865".
    02 Ielement OCCURS 5 TIMES PIC 99.
 
-PROCEDURE DIVISION.
-Begin.
 PROCEDURE DIVISION.
 Begin.
   DISPLAY "Character at pos 39 is = " FUNCTION CHAR(39)
@@ -947,7 +948,7 @@ Begin.
 								<td valign="top" width="43%">
 									<p>
 										Returns an integer value defined as
-										<b>Int1</b> ï¿½ (<b>Int2</b> * FUNCTION INTEGER (Int1 / Int2)).
+										<b>Int1</b> ï¿½ (<b>Int2</b> * <code class="language-cobol">FUNCTION</code> INTEGER (Int1 / Int2)).
 									</p>
 								</td>
 							</tr>
