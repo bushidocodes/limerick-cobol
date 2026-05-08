@@ -10,65 +10,10 @@
 		<script src="Resources/vendor/prism/prism.min.js" defer></script>
 		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
 		<style type="text/css">
-			.eval-row {
-				display: grid;
-				font-family: monospace;
-				align-items: center;
-				justify-items: center;
-				padding: 4px 0;
-			}
-
-			.eval-row-3col {
-				grid-template-columns: 2fr 1fr 2fr;
-			}
-
-			.eval-row-4col {
-				grid-template-columns: auto auto auto auto;
-				justify-content: center;
-				column-gap: 1.5em;
-			}
-
-			.code-compare {
-				display: flex;
-				gap: 1em;
-				justify-content: center;
-				width: 85%;
-				margin: 0 auto;
-			}
-
-			.code-compare > div {
-				flex: 1;
-				min-width: 0;
-			}
-
-			.condition-types-box {
-				border: 1px solid;
-				width: 241px;
-				margin: 0 auto;
-			}
-
-			.condition-types-box .box-header {
-				background-color: #ffffcc;
-				padding: 7px;
-				text-align: center;
-			}
-
-			.condition-types-box .box-body {
-				background-color: #e1ffe1;
-				padding: 7px;
-			}
-
+			/* Page-scoped table mobile override (display:block + scroll). The
+			   .eval-row*, .code-compare*, and .condition-types-box* component
+			   classes live in course-components.css. */
 			@media (max-width: 600px) {
-				.code-compare {
-					flex-direction: column;
-					width: 100%;
-				}
-
-				.condition-types-box {
-					width: 100%;
-					box-sizing: border-box;
-				}
-
 				table {
 					max-width: 100%;
 					overflow-x: auto;
