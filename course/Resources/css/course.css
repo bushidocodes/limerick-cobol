@@ -1,13 +1,63 @@
+:root {
+	color-scheme: light dark;
+
+	--color-bg: #ffffff;
+	--color-text: #000000;
+
+	--color-link: #0000ff;
+	--color-link-visited: #ff0000;
+	--color-link-active: #009b00;
+
+	--color-header-bg: #993300;
+	--color-header-text: #ffff00;
+	--color-panel-bg: #ffffcc;
+	--color-panel-text: #800000;
+	--color-code-bg: #e1ffe1;
+	--color-results-bg: #ddffff;
+	--color-emphasis: #000099;
+
+	--color-border: currentColor;
+	--color-border-soft: #cccccc;
+	--color-border-mute: #999999;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-bg: #1a1a1a;
+		--color-text: #e6e6e6;
+
+		--color-link: #6ea8ff;
+		--color-link-visited: #ff8a8a;
+		--color-link-active: #6ee06e;
+
+		--color-header-bg: #6b2400;
+		--color-header-text: #ffe066;
+		--color-panel-bg: #3a3520;
+		--color-panel-text: #ffb3b3;
+		--color-code-bg: #1f2e1f;
+		--color-results-bg: #1a2e2e;
+		--color-emphasis: #8aa8ff;
+
+		--color-border-soft: #444444;
+		--color-border-mute: #666666;
+	}
+}
+
+body {
+	background-color: var(--color-bg);
+	color: var(--color-text);
+}
+
 a:link {
-	color: #0000ff;
+	color: var(--color-link);
 }
 
 a:visited {
-	color: #ff0000;
+	color: var(--color-link-visited);
 }
 
 a:active {
-	color: #009b00;
+	color: var(--color-link-active);
 }
 
 img {
@@ -127,14 +177,43 @@ ul.toc a {
 	font-size: larger;
 }
 
+/* Recolor legacy <td bgcolor="..."> attribute markup via CSS background-color,
+   which wins over the deprecated HTML attribute. Lets the theme tokens drive
+   colors on pages that haven't been migrated to component classes. */
+td[bgcolor="#993300"] {
+	background-color: var(--color-header-bg);
+}
+
+td[bgcolor="#FFFFCC"],
+td[bgcolor="#ffffcc"] {
+	background-color: var(--color-panel-bg);
+}
+
+td[bgcolor="#FFFFFF"],
+td[bgcolor="#ffffff"] {
+	background-color: var(--color-bg);
+}
+
+td[bgcolor="#E1FFE1"],
+td[bgcolor="#e1ffe1"] {
+	background-color: var(--color-code-bg);
+}
+
+td[bgcolor="#DDFFFF"],
+td[bgcolor="#ddffff"] {
+	background-color: var(--color-results-bg);
+}
+
 td[bgcolor="#993300"] h2 {
-	color: #ffff00;
+	color: var(--color-header-text);
 	font-family: Arial, Helvetica, sans-serif;
 }
 
 td[bgcolor="#FFFFCC"] h3,
-td[bgcolor="#FFFFCC"] h4 {
-	color: #800000;
+td[bgcolor="#FFFFCC"] h4,
+td[bgcolor="#ffffcc"] h3,
+td[bgcolor="#ffffcc"] h4 {
+	color: var(--color-panel-text);
 	font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -165,7 +244,7 @@ td[bgcolor="#FFFFCC"] h4 {
 
 .section-header {
 	grid-column: 1 / -1;
-	background-color: #993300;
+	background-color: var(--color-header-bg);
 	padding: 4px;
 	min-width: 0;
 	text-align: center;
@@ -173,20 +252,20 @@ td[bgcolor="#FFFFCC"] h4 {
 
 .section-header h2,
 .section-header h3 {
-	color: #ffff00;
+	color: var(--color-header-text);
 	font-family: Arial, Helvetica, sans-serif;
 	margin: 0.3em 0;
 }
 
 .section-sidebar {
-	background-color: #ffffcc;
+	background-color: var(--color-panel-bg);
 	padding: 4px;
 	min-width: 0;
 }
 
 .section-sidebar h3,
 .section-sidebar h4 {
-	color: #800000;
+	color: var(--color-panel-text);
 	font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -211,5 +290,118 @@ td[bgcolor="#FFFFCC"] h4 {
 	.section-sidebar h4,
 	.section-sidebar p {
 		margin: 0.2em 0;
+	}
+}
+
+/* ============================================================================
+   Dark-mode overrides
+   The :root token swap above handles backgrounds and text. The rules below
+   handle three things tokens can't reach: Prism's token colors (defined in
+   the vendor stylesheet), light-background images that need inversion, and
+   inline `style="color: #..."` highlights baked into legacy code samples.
+   ============================================================================ */
+@media (prefers-color-scheme: dark) {
+	/* Prism syntax highlighting — re-color the vendor light theme. The `body`
+	   prefix lifts specificity to (0,1,2) so these win against prism.min.css's
+	   (0,1,1) selectors despite the vendor sheet loading after course.css. */
+	body pre[class*="language-"],
+	body code[class*="language-"] {
+		background: #1f1f1f;
+		color: #e6e6e6;
+		text-shadow: none;
+	}
+
+	body :not(pre) > code[class*="language-"] {
+		background: #1f1f1f;
+	}
+
+	body .token.comment,
+	body .token.prolog,
+	body .token.doctype,
+	body .token.cdata {
+		color: #8a8a8a;
+	}
+
+	body .token.punctuation {
+		color: #c8c8c8;
+	}
+
+	body .token.keyword,
+	body .token.tag,
+	body .token.selector,
+	body .token.atrule {
+		color: #ff9d6e;
+	}
+
+	body .token.string,
+	body .token.attr-value,
+	body .token.char,
+	body .token.builtin,
+	body .token.inserted {
+		color: #b5e8a3;
+	}
+
+	body .token.number,
+	body .token.boolean,
+	body .token.constant,
+	body .token.symbol,
+	body .token.deleted {
+		color: #f8d57e;
+	}
+
+	body .token.function,
+	body .token.class-name {
+		color: #90c8ff;
+	}
+
+	body .token.operator,
+	body .token.entity,
+	body .token.url,
+	body .token.variable,
+	body .language-css .token.string,
+	body .style .token.string {
+		color: #d8a0ff;
+		background: transparent;
+	}
+
+	/* Light-background diagrams and decorative GIFs invert to read on dark.
+	   `0.92` keeps blacks just shy of pure white so they merge into the page;
+	   `hue-rotate(180deg)` recovers reds/greens. Photos opt out by extension
+	   or by adding `class="no-invert"` to the <img>. */
+	img {
+		filter: invert(0.92) hue-rotate(180deg);
+	}
+
+	img.no-invert,
+	img[src$=".jpg"],
+	img[src$=".jpeg"],
+	img[src$=".JPG"],
+	img[src$=".JPEG"] {
+		filter: none;
+	}
+
+	/* Override inline `style="color: #..."` spans baked into legacy code
+	   samples. These attribute selectors target the raw inline value, so
+	   `!important` is required to beat the inline declaration. */
+	[style*="color:#0000ff"],
+	[style*="color: #0000ff"],
+	[style*="color:#0000FF"],
+	[style*="color: #0000FF"] {
+		color: var(--color-link) !important;
+	}
+
+	[style*="color:#993300"],
+	[style*="color: #993300"] {
+		color: #ff9966 !important;
+	}
+
+	[style*="color:#000099"],
+	[style*="color: #000099"] {
+		color: var(--color-emphasis) !important;
+	}
+
+	[style*="color:#800000"],
+	[style*="color: #800000"] {
+		color: var(--color-panel-text) !important;
 	}
 }
