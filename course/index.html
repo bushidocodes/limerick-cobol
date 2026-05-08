@@ -23,6 +23,9 @@
 		<meta name="robots" content="All" />
 		<meta name="rating" content="General" />
 		<style type="text/css">
+			:root {
+				color-scheme: light dark;
+			}
 			body {
 				color: #000000;
 				background-color: #ffffff;
@@ -149,6 +152,43 @@
 				/* Topic sections stack vertically on mobile */
 				.course-topics {
 					grid-template-columns: 1fr;
+				}
+			}
+
+			/* Preliminary dark mode. Token values mirror course.css so this page
+			   feels consistent with the rest of the dark-themed lessons. */
+			@media (prefers-color-scheme: dark) {
+				body {
+					color: #e6e6e6;
+					background-color: #1a1a1a;
+				}
+				a:link {
+					color: #6ea8ff;
+				}
+				a:visited {
+					color: #ff8a8a;
+				}
+				a:active {
+					color: #6ee06e;
+				}
+				.topic-label {
+					background-color: #3a3520;
+				}
+				.topic-links {
+					background-color: #1a1a1a;
+				}
+				.topic-divider {
+					background-color: #b3334d;
+				}
+				img {
+					filter: invert(0.92) hue-rotate(180deg);
+				}
+				img.no-invert,
+				img[src$=".jpg"],
+				img[src$=".jpeg"],
+				img[src$=".JPG"],
+				img[src$=".JPEG"] {
+					filter: none;
 				}
 			}
 		</style>
