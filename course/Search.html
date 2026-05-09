@@ -63,33 +63,31 @@
 						<h4>Aims</h4>
 					</div>
 					<div class="section-content">
-						<div align="center">
-							<p align="left">
-								The task of searching a table to determine whether it contains a particular value is a
-								common operation. The method used to search a table depends heavily on how the values in
-								the table are organized.
-							</p>
-							<p align="left">
-								For instance, if the values are not ordered, the table may only be searched
-								sequentially, but if the values are ordered, then either a sequential or a binary search
-								may be used.
-							</p>
-							<p align="left">
-								In COBOL, the <code class="language-cobol">SEARCH</code> verb is used for sequential
-								searches and the <code class="language-cobol">SEARCH ALL</code> for binary searches.
-							</p>
-							<p align="left">
-								This tutorial introduces the syntax and rules of operation of the
-								<code class="language-cobol">SEARCH</code> and
-								<code class="language-cobol">SEARCH ALL</code> verbs. It introduces the extensions to
-								the <code class="language-cobol">OCCURS</code> clause that are required when the
-								<code class="language-cobol">SEARCH</code> or
-								<code class="language-cobol">SEARCH ALL</code> is used. It shows how the SET verb may be
-								used to alter the value of an index and it demonstrates how the
-								<code class="language-cobol">SEARCH</code> and
-								<code class="language-cobol">SEARCH ALL</code> may be used to search a table.
-							</p>
-						</div>
+						<p>
+							The task of searching a table to determine whether it contains a particular value is a
+							common operation. The method used to search a table depends heavily on how the values in
+							the table are organized.
+						</p>
+						<p>
+							For instance, if the values are not ordered, the table may only be searched
+							sequentially, but if the values are ordered, then either a sequential or a binary search
+							may be used.
+						</p>
+						<p>
+							In COBOL, the <code class="language-cobol">SEARCH</code> verb is used for sequential
+							searches and the <code class="language-cobol">SEARCH ALL</code> for binary searches.
+						</p>
+						<p>
+							This tutorial introduces the syntax and rules of operation of the
+							<code class="language-cobol">SEARCH</code> and
+							<code class="language-cobol">SEARCH ALL</code> verbs. It introduces the extensions to
+							the <code class="language-cobol">OCCURS</code> clause that are required when the
+							<code class="language-cobol">SEARCH</code> or
+							<code class="language-cobol">SEARCH ALL</code> is used. It shows how the SET verb may be
+							used to alter the value of an index and it demonstrates how the
+							<code class="language-cobol">SEARCH</code> and
+							<code class="language-cobol">SEARCH ALL</code> may be used to search a table.
+						</p>
 						<hr size="1" />
 					</div>
 				</div>
@@ -141,10 +139,8 @@
 					</div>
 				</div>
 				<div class="section-full">
-					<div align="center">
-						<hr />
-						<back-to-top></back-to-top>
-					</div>
+					<hr />
+					<back-to-top></back-to-top>
 				</div>
 				<div class="section-header">
 					<h2 id="part1">Occurs clause extensions</h2>
@@ -154,7 +150,7 @@
 						<h4>Introduction</h4>
 					</div>
 					<div class="section-content">
-						<p align="left">
+						<p>
 							When the <code class="language-cobol">SEARCH</code> and
 							<code class="language-cobol">SEARCH ALL</code> are used the normal table declarations are no
 							longer sufficient and the <code class="language-cobol">OCCURS</code> clause must be extended
@@ -162,7 +158,7 @@
 							<code class="language-cobol">SEARCH ALL</code>, by the
 							<code class="language-cobol">KEY IS</code> phrase.
 						</p>
-						<p align="left">
+						<p>
 							The full syntax of the <code class="language-cobol">OCCURS</code> clause, including the
 							<code class="language-cobol">INDEXED BY</code> and
 							<code class="language-cobol">KEY IS</code> phrases is shown below.
@@ -175,7 +171,7 @@
 						<h4>Full OCCURS clause syntax</h4>
 					</div>
 					<div class="section-content">
-						<p align="left"><img height="122" src="Resources/pics/Search1.gif" width="331" /></p>
+						<p><img height="122" src="Resources/pics/Search1.gif" width="331" alt="Full OCCURS clause syntax diagram showing INDEXED BY and KEY IS extensions" /></p>
 					</div>
 				</div>
 				<div class="section-grid">
@@ -183,37 +179,37 @@
 						<h4>INDEXED BY phrase - notes</h4>
 					</div>
 					<div class="section-content">
-						<p align="left">
+						<p>
 							Before the <code class="language-cobol">SEARCH</code> or
 							<code class="language-cobol">SEARCH ALL</code> can be used to search a table, the table must
 							be defined as having an index item associated with it.
 						</p>
-						<p align="left">
+						<p>
 							The index is specified by the <i>IndexName</i> given in the
 							<code class="language-cobol">INDEXED BY</code> phrase.
 						</p>
-						<p align="left">
+						<p>
 							The index defined in a table declaration is associated with that table and is the subscript
 							which the <code class="language-cobol">SEARCH</code> or
 							<code class="language-cobol">SEARCH ALL</code> uses to access the table.
 						</p>
-						<p align="left">
+						<p>
 							Using an index makes the searching more efficient. Since the index is linked to a particular
 							table, the compiler, taking into account the size of the table, can choose the most
 							efficient representation possible for the index and this speeds up the search.
 						</p>
-						<p align="left">
+						<p>
 							The only entry that needs to be made for an <i>IndexName</i> is to use it in an
 							<code class="language-cobol">INDEXED BY</code> phrase. There is no need to define a picture
 							clause for it, because the compiler handles its declaration automatically.
 						</p>
-						<p align="left">
+						<p>
 							Because an index has a special internal representation it cannot be displayed and can only
 							be assigned a value, or have its value assigned, by the
 							<code class="language-cobol">SET</code> verb. The
 							<code class="language-cobol">MOVE</code> cannot be used with a table index.
 						</p>
-						<p align="left">
+						<p>
 							Normal arithmetic cannot be performed on a table index. The
 							<code class="language-cobol">SET</code> verb must be used to increment or decrement the
 							value of an index item.
@@ -241,10 +237,8 @@
 					</div>
 				</div>
 				<div class="section-full">
-					<div align="center">
-						<hr />
-						<back-to-top></back-to-top>
-					</div>
+					<hr />
+					<back-to-top></back-to-top>
 				</div>
 				<div class="section-header">
 					<h2 id="part2">The SEARCH verb</h2>
@@ -266,7 +260,7 @@
 						<h4>SEARCH syntax</h4>
 					</div>
 					<div class="section-content">
-						<p><img height="152" src="Resources/pics/Search2.gif" width="374" /></p>
+						<p><img height="152" src="Resources/pics/Search2.gif" width="374" alt="SEARCH verb syntax diagram" /></p>
 						<p>
 							<b> <code class="language-cobol">SEARCH</code> rules </b>
 						</p>
@@ -353,13 +347,13 @@
 							assign a value to an index item, to assign the value of an index item to a variable, and to
 							increment or decrement the value of an index item.
 						</p>
-						<p><img height="148" src="Resources/pics/Search4.gif" width="326" /></p>
+						<p><img height="148" src="Resources/pics/Search4.gif" width="326" alt="SET verb syntax diagram for manipulating table indexes" /></p>
 					</div>
 				</div>
 				<div class="section-grid">
 					<div class="section-sidebar">
 						<h4>SEARCH example 1</h4>
-						<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
+						<p class="center-block"><img height="44" src="Resources/pics/program.gif" width="42" alt="" /></p>
 					</div>
 					<div class="section-content">
 						<p>
@@ -431,7 +425,7 @@ Begin.
 				<div class="section-grid">
 					<div class="section-sidebar">
 						<h4>Example program 2</h4>
-						<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
+						<p class="center-block"><img height="44" src="Resources/pics/program.gif" width="42" alt="" /></p>
 					</div>
 					<div class="section-content">
 						<p>
@@ -551,10 +545,8 @@ DisplayCountyTaxes.
 					</div>
 				</div>
 				<div class="section-full">
-					<div align="center">
-						<hr />
-						<back-to-top></back-to-top>
-					</div>
+					<hr />
+					<back-to-top></back-to-top>
 				</div>
 				<div class="section-header">
 					<h2 id="part3">Searching multi-dimension tables</h2>
@@ -564,7 +556,7 @@ DisplayCountyTaxes.
 						<h4>Introduction</h4>
 					</div>
 					<div class="section-content">
-						<p align="left">
+						<p>
 							When the <code class="language-cobol">SEARCH</code> verb is used, the target of the
 							<code class="language-cobol">SEARCH</code> must be an item in the table with both an
 							<code class="language-cobol">OCCURS</code> clause and an
@@ -575,23 +567,23 @@ DisplayCountyTaxes.
 							<code class="language-cobol">SEARCH</code>. A <code class="language-cobol">SEARCH</code> can
 							only have one controlling index.
 						</p>
-						<p align="left">
+						<p>
 							Because a <code class="language-cobol">SEARCH</code> can only have one controlling index it
 							can only be used to search a single dimension of a table at a time. If the table to be
 							searched is a multi-dimension table then the programmer must control the indexes of the
 							other dimensions.
 						</p>
-						<p align="left">
+						<p>
 							For instance, suppose a hotel keeps an Occupancy Table showing which rooms in the hotel are
 							currently occupied. The table might be described as -
 						</p>
-						<pre class="language-cobol" align="left"><code class="language-cobol">01 HotelOccupanyTable.
+						<pre class="language-cobol"><code class="language-cobol">01 HotelOccupanyTable.
    02 Floor OCCURS 5 TIMES INDEXED BY Fidx.
       03 Room OCCURS 25 TIMES INDEXED BY Ridx.
          04 CustomerId  PIC 9(6).
          04 NumOfOccupants PIC 9.</code></pre>
-						<p align="left">and we can represent this diagrammatically as follows -</p>
-						<div align="center">
+						<p>and we can represent this diagrammatically as follows -</p>
+						<div class="center-block">
 							<img
 								alt="Diagram of the hotel occupancy table showing floors and rooms"
 								height="170"
@@ -599,7 +591,7 @@ DisplayCountyTaxes.
 								width="411"
 							/>
 						</div>
-						<p align="left">
+						<p>
 							Suppose we want to search the table to discover which room is occupied by customer 126789.
 							We can't use the <code class="language-cobol">SEARCH</code> to search the whole
 							two-dimension table directly but we can use the
@@ -608,7 +600,7 @@ DisplayCountyTaxes.
 							<code class="language-cobol">SEARCH</code> to search all the rooms in a particular floor
 							table.
 						</p>
-						<p align="left">
+						<p>
 							The example program below demonstrates how the
 							<code class="language-cobol">SEARCH</code> verb may be used to search the two-dimension
 							<i>HotelOccupancyTable</i>.
@@ -617,7 +609,7 @@ DisplayCountyTaxes.
 				</div>
 				<div class="section-grid">
 					<div class="section-sidebar">
-						<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
+						<p class="center-block"><img height="44" src="Resources/pics/program.gif" width="42" alt="" /></p>
 					</div>
 					<div class="section-content">
 						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
@@ -706,7 +698,7 @@ LoadTable.
       03 RacePos OCCURS 50 TIMES INDEXED BY Pidx.
          04 DriverId    PIC 9(4).</code></pre>
 						<p>We can represent this diagramatically as follows -</p>
-						<p align="center"><img height="109" src="Resources/pics/Search6.gif" width="469" /></p>
+						<p class="center-block"><img height="109" src="Resources/pics/Search6.gif" width="469" alt="Diagram of the race results table showing races and finishing positions" /></p>
 						<p>
 							In the example program below, the first dimension of the table is searched to find the
 							results for a particular venue and then the second dimension, representing the results fo
@@ -716,7 +708,7 @@ LoadTable.
 				</div>
 				<div class="section-grid">
 					<div class="section-sidebar">
-						<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
+						<p class="center-block"><img height="44" src="Resources/pics/program.gif" width="42" alt="" /></p>
 					</div>
 					<div class="section-content">
 						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
@@ -810,17 +802,15 @@ END-SEARCH</code></pre>
 					</div>
 				</div>
 				<div class="section-full">
-					<div align="center">
-						<hr />
-						<back-to-top></back-to-top>
-					</div>
+					<hr />
+					<back-to-top></back-to-top>
 				</div>
 				<div class="section-header">
 					<h2 id="part4">The SEARCH ALL verb</h2>
 				</div>
 				<div class="section-grid">
 					<div class="section-sidebar">
-						<h4 align="left">Introduction</h4>
+						<h4>Introduction</h4>
 					</div>
 					<div class="section-content">
 						<p>
@@ -839,8 +829,8 @@ END-SEARCH</code></pre>
 						<h4>SEARCH ALL syntax</h4>
 					</div>
 					<div class="section-content">
-						<p align="left"><img height="302" src="Resources/pics/Search3.gif" width="492" /></p>
-						<p align="left">
+						<p><img height="302" src="Resources/pics/Search3.gif" width="492" alt="SEARCH ALL verb syntax diagram" /></p>
+						<p>
 							<b> <code class="language-cobol">SEARCH ALL</code> rules </b>
 						</p>
 						<ol>
@@ -860,17 +850,17 @@ END-SEARCH</code></pre>
 								table's <code class="language-cobol">OCCURS</code> clause.
 							</li>
 						</ol>
-						<p align="left">
+						<p>
 							<b> <code class="language-cobol">SEARCH ALL</code> notes<br /> </b> The
 							<code class="language-cobol">KEY IS</code> phrase identifies the data-item upon which the
 							table is ordered.
 						</p>
-						<p align="left">
+						<p>
 							When the <code class="language-cobol">SEARCH ALL</code> is used, the programmer does not
 							need to set the table index to a starting value because the
 							<code class="language-cobol">SEARCH ALL</code> controls it automatically.
 						</p>
-						<p align="left">
+						<p>
 							<b>Some problems using the <code class="language-cobol">SEARCH ALL</code></b
 							><br />
 							If the table to be searched is only partially populated, the
@@ -936,17 +926,17 @@ END-PERFORM</code></pre>
        SET LetterPos TO LetterIdx
        DISPLAY SearchLetter " is in position " LetterPos
 END-SEARCH.</code></pre>
-						<p align="center">
+						<p class="center-block">
 							<a href="Resources/ppz/TC-Search2.html"
 								><img height="62" src="Resources/pics/i-Animation.gif" width="62" alt=""
 							/></a>
 						</p>
-						<p align="left">The full program for searching the letter table is given below.</p>
+						<p>The full program for searching the letter table is given below.</p>
 					</div>
 				</div>
 				<div class="section-grid">
 					<div class="section-sidebar">
-						<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
+						<p class="center-block"><img height="44" src="Resources/pics/program.gif" width="42" alt="" /></p>
 					</div>
 					<div class="section-content">
 						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
@@ -993,7 +983,7 @@ Begin.
 				<div class="section-grid">
 					<div class="section-sidebar">
 						<h4>Example program</h4>
-						<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
+						<p class="center-block"><img height="44" src="Resources/pics/program.gif" width="42" alt="" /></p>
 					</div>
 					<div class="section-content">
 						<p>
