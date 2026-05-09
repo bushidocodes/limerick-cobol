@@ -179,33 +179,68 @@ ul.toc a {
 	font-size: larger;
 }
 
-/* Recolor legacy <td bgcolor="..."> attribute markup via CSS background-color,
-   which wins over the deprecated HTML attribute. Lets the theme tokens drive
-   colors on pages that haven't been migrated to component classes. */
+/* Recolor legacy <table>/<tr>/<td> bgcolor="..." attribute markup via CSS
+   background-color, which wins over the deprecated HTML attribute. Lets the
+   theme tokens drive colors on pages that haven't been migrated to component
+   classes. */
+table[bgcolor="#993300"],
+tr[bgcolor="#993300"],
 td[bgcolor="#993300"] {
 	background-color: var(--color-header-bg);
 }
 
+table[bgcolor="#FFFFCC"],
+table[bgcolor="#ffffcc"],
+tr[bgcolor="#FFFFCC"],
+tr[bgcolor="#ffffcc"],
 td[bgcolor="#FFFFCC"],
 td[bgcolor="#ffffcc"] {
 	background-color: var(--color-panel-bg);
 }
 
+table[bgcolor="#FFFFFF"],
+table[bgcolor="#ffffff"],
+tr[bgcolor="#FFFFFF"],
+tr[bgcolor="#ffffff"],
 td[bgcolor="#FFFFFF"],
 td[bgcolor="#ffffff"] {
 	background-color: var(--color-bg);
 }
 
+table[bgcolor="#E1FFE1"],
+table[bgcolor="#e1ffe1"],
+table[bgcolor="#D2FFD2"],
+table[bgcolor="#d2ffd2"],
+table[bgcolor="#DDFFDD"],
+table[bgcolor="#ddffdd"],
+tr[bgcolor="#E1FFE1"],
+tr[bgcolor="#e1ffe1"],
+tr[bgcolor="#D2FFD2"],
+tr[bgcolor="#d2ffd2"],
+tr[bgcolor="#DDFFDD"],
+tr[bgcolor="#ddffdd"],
 td[bgcolor="#E1FFE1"],
-td[bgcolor="#e1ffe1"] {
+td[bgcolor="#e1ffe1"],
+td[bgcolor="#D2FFD2"],
+td[bgcolor="#d2ffd2"],
+td[bgcolor="#DDFFDD"],
+td[bgcolor="#ddffdd"] {
 	background-color: var(--color-code-bg);
 }
 
+table[bgcolor="#DDFFFF"],
+table[bgcolor="#ddffff"],
+tr[bgcolor="#DDFFFF"],
+tr[bgcolor="#ddffff"],
 td[bgcolor="#DDFFFF"],
 td[bgcolor="#ddffff"] {
 	background-color: var(--color-results-bg);
 }
 
+table[bgcolor="#E8E8E8"],
+table[bgcolor="#e8e8e8"],
+tr[bgcolor="#E8E8E8"],
+tr[bgcolor="#e8e8e8"],
 td[bgcolor="#E8E8E8"],
 td[bgcolor="#e8e8e8"] {
 	background-color: var(--color-cell-label-bg);
@@ -410,5 +445,36 @@ td[bgcolor="#ffffcc"] h4 {
 	[style*="color:#800000"],
 	[style*="color: #800000"] {
 		color: var(--color-panel-text) !important;
+	}
+
+	[style*="color:#ff0000"],
+	[style*="color: #ff0000"],
+	[style*="color:#FF0000"],
+	[style*="color: #FF0000"] {
+		color: #ff8a8a !important;
+	}
+
+	[style*="color:#006600"],
+	[style*="color: #006600"] {
+		color: #7ec47e !important;
+	}
+
+	[style*="color:#cccccc"],
+	[style*="color: #cccccc"],
+	[style*="color:#CCCCCC"],
+	[style*="color: #CCCCCC"] {
+		color: #888888 !important;
+	}
+
+	/* #CCCCCC has no matching light-mode token (only used as decorative
+	   spacer cells), so it's remapped only in dark mode. Uses the same
+	   --color-cell-label-bg as #E8E8E8 since both are gray. */
+	table[bgcolor="#CCCCCC"],
+	table[bgcolor="#cccccc"],
+	tr[bgcolor="#CCCCCC"],
+	tr[bgcolor="#cccccc"],
+	td[bgcolor="#CCCCCC"],
+	td[bgcolor="#cccccc"] {
+		background-color: var(--color-cell-label-bg);
 	}
 }
