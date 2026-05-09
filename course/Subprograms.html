@@ -46,35 +46,33 @@
 					<h4>Aims</h4>
 				</div>
 				<div class="section-content">
-					<div align="center">
-						<p align="left">
-							To provide a brief introduction to building modular systems using separately compiled and/or
-							contained subprograms.
-						</p>
-						<p align="left">
-							To explore the syntax, semantics, and use of the
-							<code class="language-cobol">CALL</code> verb.
-						</p>
-						<p align="left">
-							To examine how "state memory" is implemented in COBOL and to demonstrate the effects of the
-							<code class="language-cobol">IS INITIAL</code> clause and the
-							<code class="language-cobol">CANCEL</code> command.
-						</p>
-						<p align="left">
-							To examine how contained subprograms are implemented and to show how the
-							<code class="language-cobol">IS GLOBAL</code> clause may be used to implement a form of
-							"Information Hiding".
-						</p>
-						<p align="left">
-							To show how the <code class="language-cobol">IS EXTERNAL</code> clause may be used to set up
-							an area of storage that may be accessed by any program in the run-unit.
-						</p>
-						<p align="left">
-							To introduce Structured Design and to summarize its criteria for achieving good quality
-							subprograms.
-						</p>
-						<hr size="1" />
-					</div>
+					<p>
+						To provide a brief introduction to building modular systems using separately compiled and/or
+						contained subprograms.
+					</p>
+					<p>
+						To explore the syntax, semantics, and use of the
+						<code class="language-cobol">CALL</code> verb.
+					</p>
+					<p>
+						To examine how "state memory" is implemented in COBOL and to demonstrate the effects of the
+						<code class="language-cobol">IS INITIAL</code> clause and the
+						<code class="language-cobol">CANCEL</code> command.
+					</p>
+					<p>
+						To examine how contained subprograms are implemented and to show how the
+						<code class="language-cobol">IS GLOBAL</code> clause may be used to implement a form of
+						"Information Hiding".
+					</p>
+					<p>
+						To show how the <code class="language-cobol">IS EXTERNAL</code> clause may be used to set up
+						an area of storage that may be accessed by any program in the run-unit.
+					</p>
+					<p>
+						To introduce Structured Design and to summarize its criteria for achieving good quality
+						subprograms.
+					</p>
+					<hr size="1" />
 				</div>
 				<div class="section-sidebar">
 					<h4>Objectives</h4>
@@ -151,7 +149,7 @@
 						<b>Introduction</b>
 					</h4>
 					<aside>
-						<p align="center">
+						<p class="center-block">
 							<span class="i-detail" aria-hidden="true">🔍</span><br />
 							Your vendor will have supplied a Linker with your COBOL development system. You will have to
 							read the vendor manual for the specifics of how it works.
@@ -207,10 +205,10 @@
 						<b>CALL syntax and notes</b>
 					</p>
 					<aside>
-						<p align="center">
+						<p class="center-block">
 							<img height="62" src="Resources/pics/i-BugAlert.gif" width="56" alt="" />
 						</p>
-						<p align="center">
+						<p class="center-block">
 							Passing parameters of incorrect types to a called program is a frequent source of program
 							failure (crashes).<br />
 							Always double check to make sure that the types of the parameters passed by the caller
@@ -219,8 +217,8 @@
 					</aside>
 				</div>
 				<div class="section-content">
-					<p align="center"><img height="208" src="Resources/pics/Call1.gif" width="480" /></p>
-					<p align="left"><b>CALL notes</b></p>
+					<p class="center-block"><img height="208" src="Resources/pics/Call1.gif" width="480" alt="CALL verb syntax diagram" /></p>
+					<p><b>CALL notes</b></p>
 					<ol>
 						<li>
 							If the <code class="language-cobol">CALL</code> passes parameters, then the called program
@@ -254,7 +252,7 @@
 							<code class="language-cobol">CALL</code> corresponds to the first in the
 							<code class="language-cobol">USING</code> phase of the called program, and so on.<br />
 							<br />
-							<img height="354" src="Resources/pics/Call2.gif" width="524" /><br />
+							<img height="354" src="Resources/pics/Call2.gif" width="524" alt="Diagram showing parameter correspondence by position between calling and called programs" /><br />
 							<br />
 							<br />
 						</li>
@@ -302,21 +300,21 @@
 						</li>
 					</ul>
 					<p>The diagrams and explanations below show how these mechanisms work.</p>
-					<p align="left">
+					<p>
 						<b>CALL..BY REFERENCE</b><br />
 						When data is passed <code class="language-cobol">BY REFERENCE</code>, the address of the
 						data-item is supplied to the called subprogram. So any changes made to the data-item in the
 						subprogram are also made to the data-item in the main program because both items refer to the
 						same memory location.
 					</p>
-					<p align="center"><img height="164" src="Resources/pics/call3.gif" width="490" /></p>
+					<p class="center-block"><img height="164" src="Resources/pics/call3.gif" width="490" alt="Diagram showing BY REFERENCE parameter passing where both programs share the same memory address" /></p>
 					<p>
 						<b>CALL..BY CONTENT<br /></b> When a parameter is passed
 						<code class="language-cobol">BY CONTENT</code> a copy of the data-item is made and the address
 						of the copy is supplied to subprogram. Any changes made to the data-item in the subprogram
 						affect only the copy.
 					</p>
-					<p align="center"><img height="193" src="Resources/pics/call4.gif" width="489" /></p>
+					<p class="center-block"><img height="193" src="Resources/pics/call4.gif" width="489" alt="Diagram showing BY CONTENT parameter passing where the subprogram receives a copy of the data item" /></p>
 					<hr size="1" />
 				</div>
 				<div class="section-sidebar">
@@ -334,7 +332,7 @@ CALL "DateValidate"
      USING BY CONTENT TempDate
      USING BY REFERENCE DateCheckResult.
 </code></pre>
-					<div align="center">
+					<div class="center-block">
 						The <code class="language-cobol">CALL</code> statement in the calling program.<br />
 					</div>
 					<pre class="language-cobol"><code class="language-cobol">
@@ -353,9 +351,9 @@ Begin.
        EXIT PROGRAM.
 ??????.
        ? ? ? ? ? ? ? ? ? ? ? ?</code></pre>
-					<div align="center">
+					<div class="center-block">
 						<p>Outline of the called program</p>
-						<p align="left">
+						<p>
 							<b>Notes<br /></b> Note that the name given in the
 							<code class="language-cobol">CALL</code> statement (i.e. "DateValidate") corresponds with
 							the name given in the <code class="language-cobol">PROGRAM-ID</code> of the called program.
@@ -437,7 +435,7 @@ Begin.
 						called with the same parameter value. But "Fickle", because it remembers its state from the
 						previous call, will produce different results when called with the same value.
 					</p>
-					<div align="center">
+					<div class="center-block">
 						<pre class="language-cobol"><code class="language-cobol">
 ? ? ? ? ? ? ? ? ? ?
 MOVE 12 TO IncrementVal.
@@ -483,39 +481,37 @@ Begin.
 </code></pre>
 						</div>
 						<div class="run-part">
-							<div align="left">
-								<div align="center">
-									<b>Example Runs<br /></b>
-									The parameter value is shown in <span style="color: #0000ff">blue</span> and the
-									result displayed is shown in <span style="color: #ff0000">red</span>.<br />
-								</div>
-								<hr />
-								<div align="center">First Run<br /></div>
-								<div align="center">
-									<span style="color: #0000ff"><b>12</b></span>
-									<b
-										><br />
-										<span style="color: #ff0000">Total = 62</span>
-									</b>
-								</div>
-								<hr />
-								<div align="center">Second Run<br /></div>
-								<div align="center">
-									<span style="color: #0000ff"><b>5</b></span>
-									<b
-										><br />
-										<span style="color: #ff0000">Total = 55</span>
-									</b>
-								</div>
-								<hr />
-								<div align="center">Third Run<br /></div>
-								<div align="center">
-									<span style="color: #0000ff"><b>12</b></span>
-									<b
-										><br />
-										<span style="color: #ff0000">Total = 62</span>
-									</b>
-								</div>
+							<div class="center-block">
+								<b>Example Runs<br /></b>
+								The parameter value is shown in <span style="color: #0000ff">blue</span> and the
+								result displayed is shown in <span style="color: #ff0000">red</span>.<br />
+							</div>
+							<hr />
+							<div class="center-block">First Run<br /></div>
+							<div class="center-block">
+								<span style="color: #0000ff"><b>12</b></span>
+								<b
+									><br />
+									<span style="color: #ff0000">Total = 62</span>
+								</b>
+							</div>
+							<hr />
+							<div class="center-block">Second Run<br /></div>
+							<div class="center-block">
+								<span style="color: #0000ff"><b>5</b></span>
+								<b
+									><br />
+									<span style="color: #ff0000">Total = 55</span>
+								</b>
+							</div>
+							<hr />
+							<div class="center-block">Third Run<br /></div>
+							<div class="center-block">
+								<span style="color: #0000ff"><b>12</b></span>
+								<b
+									><br />
+									<span style="color: #ff0000">Total = 62</span>
+								</b>
 							</div>
 						</div>
 					</div>
@@ -547,40 +543,38 @@ Begin.
 </code></pre>
 						</div>
 						<div class="run-part">
-							<div align="left">
-								<div align="center">
-									<b>Example Runs<br /></b>
-									The parameter value is shown in <span style="color: #0000ff">blue</span> and the
-									result displayed is shown in <span style="color: #ff0000">red</span>.<br />
-								</div>
-								<hr />
-								<div align="center">First Run<br /></div>
-								<div align="center">
-									<span style="color: #0000ff"><b>12</b></span>
+							<div class="center-block">
+								<b>Example Runs<br /></b>
+								The parameter value is shown in <span style="color: #0000ff">blue</span> and the
+								result displayed is shown in <span style="color: #ff0000">red</span>.<br />
+							</div>
+							<hr />
+							<div class="center-block">First Run<br /></div>
+							<div class="center-block">
+								<span style="color: #0000ff"><b>12</b></span>
+								<b
+									><br />
+									<span style="color: #ff0000">Total = 62</span>
+								</b>
+							</div>
+							<hr />
+							<div class="center-block">Second Run<br /></div>
+							<div class="center-block">
+								<div>
+									<span style="color: #0000ff"><b>5</b></span>
 									<b
 										><br />
-										<span style="color: #ff0000">Total = 62</span>
+										<span style="color: #ff0000">Total = 67</span>
 									</b>
 								</div>
 								<hr />
-								<div align="center">Second Run<br /></div>
-								<div align="center">
-									<div>
-										<span style="color: #0000ff"><b>5</b></span>
-										<b
-											><br />
-											<span style="color: #ff0000">Total = 67</span>
-										</b>
-									</div>
-									<hr />
-									Third Run<br />
-									<div align="center">
-										<span style="color: #0000ff"><b>12</b></span>
-										<b
-											><br />
-											<span style="color: #ff0000">Total = 79</span>
-										</b>
-									</div>
+								Third Run<br />
+								<div class="center-block">
+									<span style="color: #0000ff"><b>12</b></span>
+									<b
+										><br />
+										<span style="color: #ff0000">Total = 79</span>
+									</b>
 								</div>
 							</div>
 						</div>
@@ -610,7 +604,7 @@ Begin.
 						<code class="language-cobol">CANCEL</code> verb/command.
 					</p>
 					<p>The syntax of the <code class="language-cobol">CANCEL</code> verb is as follows</p>
-					<p align="center"><img height="71" src="Resources/pics/call5.gif" width="264" /></p>
+					<p class="center-block"><img height="71" src="Resources/pics/call5.gif" width="264" alt="CANCEL verb syntax diagram" /></p>
 					<p>
 						When the <code class="language-cobol">CANCEL</code> command is executed, the memory space
 						occupied by the subprogram is freed and if the subprogram is called again it will be in its
@@ -682,11 +676,11 @@ CALL "Fickle" USING BY CONTENT IncValue.</code></pre>
 					<h4>Introduction</h4>
 				</div>
 				<div class="section-content">
-					<p align="left">
+					<p>
 						COBOL subprograms can be independently compiled separate programs (linked into a single
 						executable run-unit) or they can be contained within the text of a containing program.
 					</p>
-					<p align="left">
+					<p>
 						Contained subprograms. are very similar to the procedures (or user defined functions) found in
 						other languages except that they are invoked with the
 						<code class="language-cobol">CALL</code> verb and are better protected against accidental data
@@ -710,12 +704,12 @@ CALL "Fickle" USING BY CONTENT IncValue.</code></pre>
 					<b>Defining a contained subprogram</b>
 				</div>
 				<div class="section-content">
-					<p align="left">
+					<p>
 						When contained subprograms are used, the end of the main program, and each subprogram, is
 						signalled by means of the
 						<code class="language-cobol">END PROGRAM</code> statement. This has the format:
 					</p>
-					<p align="center">
+					<p class="center-block">
 						<b>END PROGRAM ProgramIdName.</b>
 					</p>
 					<b>Contained subprogram restrictions</b>
@@ -741,23 +735,23 @@ CALL "Fickle" USING BY CONTENT IncValue.</code></pre>
 					</h4>
 				</div>
 				<div class="section-content">
-					<p align="left">
+					<p>
 						As noted above, data-items declared outside the scope of a contained subprogram cannot be seen
 						within the subprogram.
 					</p>
-					<p align="left">
+					<p>
 						Sometimes however, you may want to share some data-item within a number of contained
 						subprograms.
 					</p>
-					<p align="left">
+					<p>
 						For instance, in the example program fragments below, we want both of our subprograms to be able
 						to access the <i>NameTable</i>.
 					</p>
-					<p align="left">
+					<p>
 						When we want a data-item to be seen within contained subprograms we simply follow the item
 						declaration with the <code class="language-cobol">IS GLOBAL</code> clause.
 					</p>
-					<p align="left">
+					<p>
 						The <code class="language-cobol">IS GLOBAL</code> clause specifies that the data item is to be
 						visible within any subordinate contained subprograms.
 					</p>
@@ -798,39 +792,39 @@ END-PROGRAM ContainerProgram.</code></pre>
 					<h4>Information Hiding using the IS GLOBAL clause and contained subprograms</h4>
 				</div>
 				<div class="section-content">
-					<p align="left">
+					<p>
 						Contained subprograms. seem to offer us the opportunity to create some form of Information
 						Hiding. For instance, it looks as though we could create an Informational Strength module as
 						defined by Myres (Myres, G.J. <i>Composite/Structured Design.</i> 1979) by hiding a table
 						declaration within a containing program and then allowing access to it through the contained
 						subprograms. (see diagram below).
 					</p>
-					<p align="center"><img height="206" src="Resources/pics/call6.gif" width="401" /></p>
-					<p align="left">
+					<p class="center-block"><img height="206" src="Resources/pics/call6.gif" width="401" alt="Diagram showing information hiding with a table declaration inside a containing program accessed through contained subprograms" /></p>
+					<p>
 						Unfortunately, this arrangement is not allowed in COBOL because, although subprograms. may be
 						nested, a contained subprogram can only be called by the immediate containing program or by a
 						subprogram at the same level. So in the diagram above, the main program would not be allowed
 						direct access to the contained subprograms.
 					</p>
-					<p align="left">
+					<p>
 						The only way any kind of Informational Strength module can be achieved is for the MainProgram to
 						call the ContainerProgram and for the ContainerProgram to call the appropriate subprogram as
 						shown below.
 					</p>
-					<p align="left">
+					<p>
 						To do this the MainProgram would have to pass some sort of code to the ContainerProgram to tell
 						it which of the subprograms to use and the parameter list passed to the ContainerProgram would
 						have to be wide enough to accommodate the needs of the contained subprograms. This does not
 						cause much of a problem in the example below, but in a case where the contained programs had
 						more significant data needs it could prove a serious drawback.
 					</p>
-					<p align="left">
+					<p>
 						Glenford Myres (Myres, G.J. <i>Composite/Structured Design.</i> 1979) has produced criteria for
 						deciding whether a module (i.e. a subprogram) is good or bad. Module Coupling (i.e. the data
 						connections between modules) is one of the criteria he considers. According to his criteria the
 						ContainerProgram below exhibits both Stamp and Control coupling.
 					</p>
-					<p align="center"><img height="286" src="Resources/pics/call7.gif" width="406" /></p>
+					<p class="center-block"><img height="286" src="Resources/pics/call7.gif" width="406" alt="Diagram showing the ContainerProgram acting as intermediary between MainProgram and contained subprograms" /></p>
 					<hr size="1" />
 				</div>
 				<div class="section-sidebar">
@@ -863,7 +857,7 @@ END-PROGRAM ContainerProgram.</code></pre>
 						<code class="language-cobol">IS</code> and <code class="language-cobol">PROGRAM</code> are noise
 						words which may be omitted.
 					</p>
-					<p align="center"><img height="23" src="Resources/pics/call8.gif" width="495" /></p>
+					<p class="center-block"><img height="23" src="Resources/pics/call8.gif" width="495" alt="Syntax diagram for IS INITIAL and IS COMMON PROGRAM clauses in PROGRAM-ID" /></p>
 					<hr size="1" />
 				</div>
 				<div class="section-sidebar">
@@ -1019,7 +1013,7 @@ Begin.
 END PROGRAM DisplayTotal.
 END PROGRAM Counter.</code></pre>
 					<div style="background-color: #ffffff; padding: 5px; border-top: 1px solid">
-						<div align="center">
+						<div class="center-block">
 							<h3><b>Example Run</b></h3>
 							<p>
 								Numeric values entered by the user are shown in
@@ -1027,7 +1021,7 @@ END PROGRAM Counter.</code></pre>
 								<span style="color: #ff0000">red</span>.
 							</p>
 						</div>
-						<pre class="language-cobol" align="left"><code class="language-cobol">Enter value - 13
+						<pre class="language-cobol"><code class="language-cobol">Enter value - 13
 Fickle total    = 13
 Steadfast total = 13
 Enter value - 3
@@ -1088,11 +1082,11 @@ Value - 0</code></pre>
      01 SharedRec IS EXTERNAL.
         02 PartA     PIC X(4).
         02 PartB     PIC 9(5).</code></pre>
-					<p align="center">
+					<p class="center-block">
 						SharedRecord<br />
 						Program<br />
 						<a href="Resources/ppz/TC-Call.html"
-							><img align="middle" height="62" src="Resources/pics/i-Animation.gif" width="62" alt=""
+							><img height="62" src="Resources/pics/i-Animation.gif" width="62" alt=""
 						/></a>
 					</p>
 					<p>
