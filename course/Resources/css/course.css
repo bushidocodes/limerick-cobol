@@ -237,6 +237,10 @@ td[bgcolor="#ddffff"] {
 	background-color: var(--color-results-bg);
 }
 
+table[bgcolor="#E8E8E8"],
+table[bgcolor="#e8e8e8"],
+tr[bgcolor="#E8E8E8"],
+tr[bgcolor="#e8e8e8"],
 td[bgcolor="#E8E8E8"],
 td[bgcolor="#e8e8e8"] {
 	background-color: var(--color-cell-label-bg);
@@ -462,21 +466,15 @@ td[bgcolor="#ffffcc"] h4 {
 		color: #888888 !important;
 	}
 
-	/* Gray label/spacer bgcolors don't have matching light-mode tokens, so
-	   they're remapped only here in dark mode and render as authored in
-	   light mode. */
-	table[bgcolor="#E8E8E8"],
-	table[bgcolor="#e8e8e8"],
+	/* #CCCCCC has no matching light-mode token (only used as decorative
+	   spacer cells), so it's remapped only in dark mode. Uses the same
+	   --color-cell-label-bg as #E8E8E8 since both are gray. */
 	table[bgcolor="#CCCCCC"],
 	table[bgcolor="#cccccc"],
-	tr[bgcolor="#E8E8E8"],
-	tr[bgcolor="#e8e8e8"],
 	tr[bgcolor="#CCCCCC"],
 	tr[bgcolor="#cccccc"],
-	td[bgcolor="#E8E8E8"],
-	td[bgcolor="#e8e8e8"],
 	td[bgcolor="#CCCCCC"],
 	td[bgcolor="#cccccc"] {
-		background-color: var(--color-panel-bg);
+		background-color: var(--color-cell-label-bg);
 	}
 }
