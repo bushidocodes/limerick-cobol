@@ -1,0 +1,21 @@
+{
+	"name": "limerick-cobol",
+	"private": true,
+	"description": "Static-site checks for the Limerick COBOL tutorial.",
+	"scripts": {
+		"serve": "http-server . --cors -c-1 -p 8000 --silent",
+		"validate": "html-validate index.html \"course/**/*.html\" \"examples/**/*.html\" \"exercises/**/*.html\" \"faq/**/*.html\" \"lectures/**/*.html\"",
+		"links:run": "linkinator http://localhost:8000 --config linkinator.config.json",
+		"links": "start-server-and-test serve http://localhost:8000 links:run",
+		"a11y:run": "pa11y-ci --config .pa11yci.json",
+		"a11y": "start-server-and-test serve http://localhost:8000 a11y:run",
+		"check": "npm run validate && npm run links && npm run a11y"
+	},
+	"devDependencies": {
+		"html-validate": "^9.0.0",
+		"http-server": "^14.1.1",
+		"linkinator": "^6.1.2",
+		"pa11y-ci": "^4.0.0",
+		"start-server-and-test": "^2.0.13"
+	}
+}
