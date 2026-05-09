@@ -6,12 +6,6 @@ on:
   push:
     branches: [master]
 
-# The accessibility scan (npm run a11y) is intentionally not wired into CI yet.
-# Legacy pages have many pre-existing WCAG violations; gating on them now
-# would just memorize current breakage. Add the job back once the a11y
-# cleanup pass has landed and the violation count is meaningful as a regression
-# signal. Until then, contributors can run `npm run a11y` locally.
-
 jobs:
   validate:
     name: HTML validity
@@ -36,3 +30,15 @@ jobs:
           cache: "npm"
       - run: npm ci
       - run: npm run links
+
+  a11y:
+    name: Accessibility
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - run: npm ci
+      - run: npm run a11y
