@@ -94,17 +94,15 @@
 					<h4>Aims</h4>
 				</div>
 				<div class="section-content">
-					<div align="center">
-						<p align="left">
-							In the "Using Tables" tutorial we examined why we might want to use tables as part of the
-							solution to a programming problem.
-						</p>
-						<p align="left">
-							In this tutorial we examine the syntax and semantics of table declaration. We demonstrate
-							how to create single and multi-dimension tables, how to create variable length tables and
-							how to set up a table pre-filled with data..
-						</p>
-					</div>
+					<p>
+						In the "Using Tables" tutorial we examined why we might want to use tables as part of the
+						solution to a programming problem.
+					</p>
+					<p>
+						In this tutorial we examine the syntax and semantics of table declaration. We demonstrate
+						how to create single and multi-dimension tables, how to create variable length tables and
+						how to set up a table pre-filled with data..
+					</p>
 					<hr size="1" />
 				</div>
 				<div class="section-sidebar">
@@ -152,7 +150,7 @@
 					</ul>
 				</div>
 				<div class="section-full">
-					<div align="center">
+					<div>
 						<hr />
 						<back-to-top></back-to-top>
 					</div>
@@ -165,11 +163,11 @@
 					<h4>Introduction</h4>
 				</div>
 				<div class="section-content">
-					<p align="left">
+					<p>
 						In the "Using Tables" tutorial we saw how would could use a table to hold county tax totals. We
 						even had a brief look at how that table might be created.
 					</p>
-					<p align="left">
+					<p>
 						In this section we will examine, in more detail, how a single dimension table, like the
 						CountyTaxTable, may be created.
 					</p>
@@ -179,7 +177,7 @@
 					<h4>Tables - general notes</h4>
 				</div>
 				<div class="section-content">
-					<p align="left">
+					<p>
 						Most programming languages use the term "array" to describe repeated, or multiple- occurrence,
 						data-items. COBOL uses the term "table".
 					</p>
@@ -205,7 +203,7 @@
 							in brackets (see examples below).
 						</li>
 					</ul>
-					<p align="left">A table is stored in memory as a contiguous block of bytes.</p>
+					<p>A table is stored in memory as a contiguous block of bytes.</p>
 					<hr size="1" />
 				</div>
 				<div class="section-sidebar">
@@ -233,29 +231,27 @@
 					</blockquote>
 					<pre class="language-cobol"><code class="language-cobol">01 CountyTax   OCCURS 26 TIMES PIC 9(8)V99.
 </code></pre>
-					<div align="left">
-						<p>We can represent the county tax table diagrammatically as follows;</p>
-						<p align="center">
-							<a href="Resources/ppz/TC-Tables1.html"
-								><img height="71" src="Resources/pics/Tables1.gif" width="456"
-							/></a>
-						</p>
-						<p align="left">
-							In the example above, we can only refer to the individual elements of the table (see rule 2
-							for subscripts below). We can refer to CountyTax(1) or CountyTax(12) but we have no name for
-							the whole table. It is often very useful to be able to refer to the whole table and so it is
-							usual to define a table as subordinate to a group item which is named to indicate the whole
-							table. For example the CountyTax table would probably be described as -
-						</p>
-						<pre class="language-cobol" align="left"><code class="language-cobol">01 CountyTaxTable.
+					<p>We can represent the county tax table diagrammatically as follows;</p>
+					<p class="center-block">
+						<a href="Resources/ppz/TC-Tables1.html"
+							><img height="71" src="Resources/pics/Tables1.gif" width="456" alt="Diagram of a single-dimension CountyTax table with 26 elements"
+						/></a>
+					</p>
+					<p>
+						In the example above, we can only refer to the individual elements of the table (see rule 2
+						for subscripts below). We can refer to CountyTax(1) or CountyTax(12) but we have no name for
+						the whole table. It is often very useful to be able to refer to the whole table and so it is
+						usual to define a table as subordinate to a group item which is named to indicate the whole
+						table. For example the CountyTax table would probably be described as -
+					</p>
+					<pre class="language-cobol"><code class="language-cobol">01 CountyTaxTable.
 
    02 CountyTax  PIC 9(8)V99  OCCURS 26 TIMES.</code></pre>
-						<p>
-							When declared like this we can refer to <i>CountyTax(sub)</i> when we want to access an
-							element of the table and <i>CountyTaxTable</i> when we want to refer to the whole table.
-						</p>
-						<hr size="1" />
-					</div>
+					<p>
+						When declared like this we can refer to <i>CountyTax(sub)</i> when we want to access an
+						element of the table and <i>CountyTaxTable</i> when we want to refer to the whole table.
+					</p>
+					<hr size="1" />
 				</div>
 				<div class="section-sidebar">
 					<h4>OCCURS clause syntax and rules</h4>
@@ -317,7 +313,7 @@
 				</div>
 				<div class="section-sidebar">
 					<h4>Table examples and some SAQ's</h4>
-					<p align="center"><img height="46" src="Resources/pics/i-SAQ2.gif" width="32" alt="" /></p>
+					<p class="center-block"><img height="46" src="Resources/pics/i-SAQ2.gif" width="32" alt="" /></p>
 				</div>
 				<div class="section-content">
 					<p>
@@ -336,80 +332,78 @@
    02 ExchangeRate OCCURS 50 TIMES PIC 9(5)V99.
 
 01 MonthName   PIC X(3)OCCURS 12 TIMES. </code></pre>
-					<form action="Tables2.html" method="post">
-						<div align="center">
-							<table bgcolor="#E1FFE1" border="1" width="96%">
-								<tr>
-									<td bgcolor="#FFFFCC" width="8%">Q1</td>
-									<td width="62%">
-										What happens to the elements of the DeptTotalsTable when the statement
-										<code class="language-cobol">MOVE ZEROS TO</code> <i>DeptTotalsTable</i> is
-										executed?
-									</td>
-									<td valign="top" width="30%">
-										<select name="select5" size="1">
-											<option selected>Click the arrow for the answer</option>
-											<option>
-												-----------------------------------------------------------------
-											</option>
-											<option>Every element of the table is filled with</option>
-											<option>zeros.</option>
-										</select>
-									</td>
-								</tr>
-								<tr>
-									<td bgcolor="#FFFFCC" width="8%">Q2</td>
-									<td width="62%">
-										What happens when the statement <code class="language-cobol">MOVE</code>
-										<i>456</i> <code class="language-cobol">TO</code> <i>DeptTotal(5)</i> is
-										executed?
-									</td>
-									<td valign="top" width="30%">
-										<select name="select6" size="1">
-											<option selected>Click the arrow for the answer</option>
-											<option>
-												-----------------------------------------------------------------
-											</option>
-											<option>The value 456 is moved into the fifth</option>
-											<option>element of the DeptTotalsTable</option>
-										</select>
-									</td>
-								</tr>
-								<tr>
-									<td bgcolor="#FFFFCC" width="8%">Q3</td>
-									<td width="62%">
-										What statement would we have to write to display the second VAT rate in the
-										VATRateTable?
-									</td>
-									<td valign="top" width="30%">
-										<select name="select7" size="1">
-											<option selected>Click the arrow for the answer</option>
-											<option>
-												-----------------------------------------------------------------
-											</option>
-											<option>DISPLAY VATRate(2)</option>
-										</select>
-									</td>
-								</tr>
-								<tr>
-									<td bgcolor="#FFFFCC" width="8%">Q4</td>
-									<td width="62%">What is the purpose of the level 88 attached to the RatesTable?</td>
-									<td valign="top" width="30%">
-										<select name="select8" size="1">
-											<option selected>Click the arrow for the answer</option>
-											<option>
-												-----------------------------------------------------------------
-											</option>
-											<option>The TableNotPrimed condition name is</option>
-											<option>true is the whole table contains zeros i.e.</option>
-											<option>has not yet been filled with the exchange</option>
-											<option>rates.</option>
-										</select>
-									</td>
-								</tr>
-							</table>
-						</div>
-					</form>
+					<div class="center-block">
+						<table bgcolor="#E1FFE1" border="1" width="96%">
+							<tr>
+								<td bgcolor="#FFFFCC" width="8%">Q1</td>
+								<td width="62%">
+									What happens to the elements of the DeptTotalsTable when the statement
+									<code class="language-cobol">MOVE ZEROS TO</code> <i>DeptTotalsTable</i> is
+									executed?
+								</td>
+								<td valign="top" width="30%">
+									<select aria-label="Click for answer" name="select5" size="1">
+										<option selected>Click the arrow for the answer</option>
+										<option>
+											-----------------------------------------------------------------
+										</option>
+										<option>Every element of the table is filled with</option>
+										<option>zeros.</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td bgcolor="#FFFFCC" width="8%">Q2</td>
+								<td width="62%">
+									What happens when the statement <code class="language-cobol">MOVE</code>
+									<i>456</i> <code class="language-cobol">TO</code> <i>DeptTotal(5)</i> is
+									executed?
+								</td>
+								<td valign="top" width="30%">
+									<select aria-label="Click for answer" name="select6" size="1">
+										<option selected>Click the arrow for the answer</option>
+										<option>
+											-----------------------------------------------------------------
+										</option>
+										<option>The value 456 is moved into the fifth</option>
+										<option>element of the DeptTotalsTable</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td bgcolor="#FFFFCC" width="8%">Q3</td>
+								<td width="62%">
+									What statement would we have to write to display the second VAT rate in the
+									VATRateTable?
+								</td>
+								<td valign="top" width="30%">
+									<select aria-label="Click for answer" name="select7" size="1">
+										<option selected>Click the arrow for the answer</option>
+										<option>
+											-----------------------------------------------------------------
+										</option>
+										<option>DISPLAY VATRate(2)</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td bgcolor="#FFFFCC" width="8%">Q4</td>
+								<td width="62%">What is the purpose of the level 88 attached to the RatesTable?</td>
+								<td valign="top" width="30%">
+									<select aria-label="Click for answer" name="select8" size="1">
+										<option selected>Click the arrow for the answer</option>
+										<option>
+											-----------------------------------------------------------------
+										</option>
+										<option>The TableNotPrimed condition name is</option>
+										<option>true is the whole table contains zeros i.e.</option>
+										<option>has not yet been filled with the exchange</option>
+										<option>rates.</option>
+									</select>
+								</td>
+							</tr>
+						</table>
+					</div>
 					<hr size="1" />
 				</div>
 				<div class="section-sidebar">
@@ -446,7 +440,7 @@
                       DEPENDING ON NumOfReservations. </code></pre>
 				</div>
 				<div class="section-full">
-					<div align="center">
+					<div>
 						<hr />
 						<back-to-top></back-to-top>
 					</div>
@@ -498,7 +492,7 @@
 						<i>CountyTax</i> and <i>PayerCount</i>.
 					</p>
 					<p>We can represent this table diagrammatically as follows;</p>
-					<p align="center"><img height="149" src="Resources/pics/Tables3.gif" width="466" /></p>
+					<p class="center-block"><img height="149" src="Resources/pics/Tables3.gif" width="466" alt="Diagram of CountyTaxTable where each element is a group item subdivided into CountyTax and PayerCount" /></p>
 					<p>
 						To refer to an item that is subordinate to table element, the same number of subscripts must be
 						used as when referring to the element itself. So, to refer to
@@ -509,7 +503,7 @@
 				</div>
 				<div class="section-sidebar">
 					<h4>Self Assessment Questions and animated example</h4>
-					<p align="center"><img height="46" src="Resources/pics/i-SAQ2.gif" width="32" alt="" /></p>
+					<p class="center-block"><img height="46" src="Resources/pics/i-SAQ2.gif" width="32" alt="" /></p>
 				</div>
 				<div class="section-content">
 					<p>
@@ -523,7 +517,7 @@ MOVE ZEROS TO CountyTaxDetails(4)
 MOVE ZEROS TO CountyTaxTable</code></pre>
 					What effect on the table will each of these statements have? Copy the table diagram above, fill in
 					your answer and then click on the animation icon below to see the animated solution.
-					<p align="center">
+					<p class="center-block">
 						<a href="Resources/ppz/TC-Tables3.html"
 							><img height="62" src="Resources/pics/i-Animation.gif" width="62" alt=""
 						/></a>
@@ -539,26 +533,24 @@ MOVE ZEROS TO CountyTaxTable</code></pre>
       03 CountyTax   PIC 9(8)V99 OCCURS 26 TIMES.
       03 PayerCount  PIC 9(7)OCCURS 26 TIMES.
 </code></pre>
-					<form action="Tables2.html" method="post">
-						<div align="center">
-							<select name="select" size="1">
-								<option selected>Click the arrow for the answer</option>
-								<option>
-									------------------------------------------------------------------------------------------------------------------------
-								</option>
-								<option>CountyTaxTable1 is a table where each element is a group item that is</option>
-								<option>divided into the items CountyTax and PayerCount.</option>
-								<option>In CountyTaxTable2, CountyTax and PayerCount are two separate tables.</option>
-								<option>CountyTaxDetails and CountTaxTable2 are group items that contain</option>
-								<option>these two tables.</option>
-							</select>
-						</div>
-					</form>
+					<div class="center-block">
+						<select aria-label="Click for answer" name="select" size="1">
+							<option selected>Click the arrow for the answer</option>
+							<option>
+								------------------------------------------------------------------------------------------------------------------------
+							</option>
+							<option>CountyTaxTable1 is a table where each element is a group item that is</option>
+							<option>divided into the items CountyTax and PayerCount.</option>
+							<option>In CountyTaxTable2, CountyTax and PayerCount are two separate tables.</option>
+							<option>CountyTaxDetails and CountTaxTable2 are group items that contain</option>
+							<option>these two tables.</option>
+						</select>
+					</div>
 					<hr size="1" />
 				</div>
 				<div class="section-sidebar">
 					<h4>Example program</h4>
-					<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
+					<p class="center-block"><img height="44" src="Resources/pics/program.gif" width="42" alt="" /></p>
 				</div>
 				<div class="section-content">
 					<p>
@@ -645,7 +637,7 @@ DisplayCountyTaxes.
    END-IF.</code></pre>
 				</div>
 				<div class="section-full">
-					<div align="center">
+					<div>
 						<hr />
 						<back-to-top></back-to-top>
 					</div>
@@ -658,12 +650,12 @@ DisplayCountyTaxes.
 					<h4>Introduction</h4>
 				</div>
 				<div class="section-content">
-					<p align="left">
+					<p>
 						The Census Office has provided us with a file containing the AgeCategory, Gender, CountyCode and
 						car ownership information of every person in the country. The CensusFile is an unordered
 						sequential file and its records have the following description-
 					</p>
-					<div align="center">
+					<div class="center-block">
 						<table bgcolor="#E1FFE1" border="1" cellpadding="5" width="56%">
 							<tr bgcolor="#FFFFCC">
 								<th scope="col" width="32%">Name</th>
@@ -673,19 +665,19 @@ DisplayCountyTaxes.
 							<tr>
 								<td width="32%">CountyCode</td>
 								<td width="26%">
-									<div align="center">PIC 99</div>
+									<div class="center-block">PIC 99</div>
 								</td>
 								<td width="42%">
-									<div align="center">1-26</div>
+									<div class="center-block">1-26</div>
 								</td>
 							</tr>
 							<tr>
 								<td width="32%">AgeCategory</td>
 								<td width="26%">
-									<div align="center">PIC 9</div>
+									<div class="center-block">PIC 9</div>
 								</td>
 								<td width="42%">
-									<p align="left">
+									<p>
 										1 = Child<br />
 										2 = Teen<br />
 										3 = Adult
@@ -695,7 +687,7 @@ DisplayCountyTaxes.
 							<tr>
 								<td width="32%">Gender</td>
 								<td width="26%">
-									<div align="center">PIC 9</div>
+									<div class="center-block">PIC 9</div>
 								</td>
 								<td width="42%">
 									<p>
@@ -707,15 +699,15 @@ DisplayCountyTaxes.
 							<tr>
 								<td width="32%">CarOwner</td>
 								<td width="26%">
-									<div align="center">PIC X</div>
+									<div class="center-block">PIC X</div>
 								</td>
 								<td width="42%">
-									<p align="center">Y/N</p>
+									<p class="center-block">Y/N</p>
 								</td>
 							</tr>
 						</table>
 					</div>
-					<p align="left">
+					<p>
 						Suppose we were asked to write a program to produce a report displaying the number of males, and
 						the number of females, in each AgeCategory - Child, Teen and Adult. How would we go about it?
 					</p>
@@ -724,22 +716,22 @@ DisplayCountyTaxes.
 					<h4>Problem discussion</h4>
 				</div>
 				<div class="section-content">
-					<p align="left">
+					<p>
 						One way to solve this problem, would be to sort the file on AgeCategory and Gender, and then
 						treat it as a control break problem.
 					</p>
-					<p align="left">
+					<p>
 						Another way to solve the problem, would be to set up a number of total variables and then, when
 						a record is read, use the AgeCategory and Gender information to tell us which total to
 						increment.
 					</p>
-					<p align="left">
+					<p>
 						In this particular problem there are only six totals required - CFTotal, CMTotal, TFTotal,
 						TMTotal, AFTotal, AMTotal - so a solution which involves creating these totals and using an
 						<code class="language-cobol">EVALUATE</code> to decide which total to increment, would not be
 						entirely out of the question.
 					</p>
-					<p align="left">
+					<p>
 						But instead of an <code class="language-cobol">EVALUATE-</code>based solution let's consider
 						using a table to hold the totals. What kind of a table might we require? We can see that six
 						totals are needed, so we might think that the six element, single-dimension, table shown below
@@ -747,7 +739,7 @@ DisplayCountyTaxes.
 					</p>
 					<pre class="language-cobol"><code class="language-cobol">01 PopulationTable.
    02 PopTotal PIC 9(6) OCCURS 6 TIMES.</code></pre>
-					<p align="left">
+					<p>
 						The problem with this is - what can we use as an index into the table? No single item in the
 						record will do. The index must be a combination of the
 						<i>AgeCategory</i> and the <i>Gender</i>. Of course, we could use an
@@ -756,7 +748,6 @@ DisplayCountyTaxes.
 					</p>
 					<pre
 						class="language-cobol"
-						align="left"
 					><code class="language-cobol">EVALUATE AgeCategory ALSO Gender
   WHEN        1      ALSO    1      MOVE 1 TO Idx
   WHEN        1      ALSO    2      MOVE 2 TO Idx
@@ -764,15 +755,15 @@ DisplayCountyTaxes.
           etc...
 END-EVALUATE.
 </code></pre>
-					<p align="left">
+					<p>
 						Or we could manipulate the values arithmetically to map them to the index value. For instance
 						<i>COMPUTE Idx = ((AgeCategory -1) * 2) + Gender</i>
 					</p>
-					<p align="left">
+					<p>
 						But both these methods lack something in elegance and will be difficult to extend when, as I'm
 						sure you have anticipated, we ask for the population information to be provided for each county.
 					</p>
-					<p align="left">
+					<p>
 						The best, and most extensible, solution to the problem is to set up a two dimension table to
 						hold the totals. Since the elements of a two dimension table require two subscripts, we can use
 						the AgeCategory and the Gender to identify the particular element we need to access.
@@ -782,30 +773,30 @@ END-EVALUATE.
 					<h4>A two dimension table</h4>
 				</div>
 				<div class="section-content">
-					<p align="left">
+					<p>
 						A multi-dimension table is declared by nesting
 						<code class="language-cobol">OCCURS</code> clauses. So we can define the two dimension
 						<i>PopulationTable</i> as follows -
 					</p>
-					<pre class="language-cobol" align="left"><code class="language-cobol">01 PopulationTable.
+					<pre class="language-cobol"><code class="language-cobol">01 PopulationTable.
    02 Age OCCURS 3 TIMES.
       03 PopTotal   PIC 9(6)OCCURS 2 TIMES.</code></pre>
-					<p align="left">
+					<p>
 						While the table description shown above is correct; it is not, perhaps, as understandable as it
 						might be. You might prefer to define the table as shown below.
 					</p>
-					<pre class="language-cobol" align="left"><code class="language-cobol">01 PopulationTable.
+					<pre class="language-cobol"><code class="language-cobol">01 PopulationTable.
    02 Age OCCURS 3 TIMES.
       03 Gender OCCURS 2 TIMES.
          04 PopTotal   PIC 9(6).
 </code></pre>
-					<p align="left">We can represent this table diagrammatically as -</p>
-					<p align="center"><img height="170" src="Resources/pics/Tables4.gif" width="470" /></p>
-					<p align="left">
+					<p>We can represent this table diagrammatically as -</p>
+					<p class="center-block"><img height="170" src="Resources/pics/Tables4.gif" width="470" alt="Diagram of a two-dimension PopulationTable with Age (3 elements) and nested Gender (2 elements) containing PopTotal" /></p>
+					<p>
 						Two dimension tables are sometimes represented as a row and column grid, but that representation
 						has the flaw that it does not accurately reflect the data hierarchy.
 					</p>
-					<p align="left">
+					<p>
 						The diagram above uses the correct representation for a two dimension table because it expresses
 						the data hierarchy inherent in the table description where one
 						<code class="language-cobol">OCCURS</code> clause is subordinate to the another.
@@ -814,7 +805,7 @@ END-EVALUATE.
 				</div>
 				<div class="section-sidebar">
 					<h4>Self Assessment Questions and examples</h4>
-					<p align="center"><img height="46" src="Resources/pics/i-SAQ2.gif" width="32" alt="" /></p>
+					<p class="center-block"><img height="46" src="Resources/pics/i-SAQ2.gif" width="32" alt="" /></p>
 				</div>
 				<div class="section-content">
 					<p>
@@ -827,7 +818,7 @@ MOVE 456 TO Gender(3,2)
 ADD 1255 TO PopTotal(2,2)
 MOVE ZEROS TO Age(3)</code></pre>
 					<p>Click on the animation icon below to see an animated answer.</p>
-					<p align="center">
+					<p class="center-block">
 						<a href="Resources/ppz/TC-Tables4.html"
 							><img height="62" src="Resources/pics/i-Animation.gif" width="62" alt=""
 						/></a>
@@ -885,7 +876,7 @@ MOVE ZEROS TO Age(3)</code></pre>
             05 PopTotal   PIC 9(6).
 </code></pre>
 					<p>This table may be represented diagrammatically as follows -</p>
-					<p align="center"><img height="145" src="Resources/pics/Tables5.gif" width="480" /></p>
+					<p class="center-block"><img height="145" src="Resources/pics/Tables5.gif" width="480" alt="Diagram of a three-dimension PopulationTable with County (26), Age (3), and Gender (2) containing PopTotal" /></p>
 					<hr size="1" />
 				</div>
 				<div class="section-sidebar">
@@ -903,7 +894,7 @@ MOVE 56 TO PopTotal(1,3,2)
 MOVE 12 TO PopTotal(2,1,1)
 MOVE ZEROS TO PopulationTable</code></pre>
 					<p>Click on the animation icon below to see an animated answer.</p>
-					<p align="center">
+					<p class="center-block">
 						<a href="Resources/ppz/TC-Tables5.html"
 							><img height="62" src="Resources/pics/i-Animation.gif" width="62" alt=""
 						/></a>
@@ -959,7 +950,7 @@ MOVE ZEROS TO PopulationTable</code></pre>
          04 Gender OCCURS 2 TIMES.
             05 PopTotal   PIC 9(6).  </code></pre>
 					<p>We can represent the declaration above diagrammatically as follows -</p>
-					<p align="center"><img height="156" src="Resources/pics/Tables6.gif" width="481" /></p>
+					<p class="center-block"><img height="156" src="Resources/pics/Tables6.gif" width="481" alt="Diagram of PopulationTable extended with CarOwnersTotal at the County level alongside the Age/Gender sub-table" /></p>
 					<p>
 						One question we might have with this arrangement is - how many subscripts are required when we
 						refer to <i>CarOwnersTotal</i>? To answer this we can frame a general rule -
@@ -988,7 +979,7 @@ MOVE ZEROS TO Gender(18,3,2)
 ADD 56 TO PopTotal(12,3,2)</code></pre>
 				</div>
 				<div class="section-full">
-					<div align="center">
+					<div>
 						<hr />
 						<back-to-top></back-to-top>
 					</div>
@@ -998,7 +989,7 @@ ADD 56 TO PopTotal(12,3,2)</code></pre>
 					<h2 id="part4">Creating pre-filled tables with the REDEFINES clause</h2>
 				</div>
 				<div class="section-sidebar">
-					<h4 align="left">Introduction</h4>
+					<h4>Introduction</h4>
 				</div>
 				<div class="section-content">
 					<p>
@@ -1027,55 +1018,55 @@ ADD 56 TO PopTotal(12,3,2)</code></pre>
 					<h4>Non-tables uses for the REDEFINES clause - some examples</h4>
 				</div>
 				<div class="section-content">
-					<p align="left">
+					<p>
 						<b>Example 1<br /></b> Some COBOL statements, like the UNSTRING, require their receiving fields
 						to be alphanumeric (PIC X) data-items. This is inconvenient if the value of the data-item is
 						actually numeric because then a <code class="language-cobol">MOVE</code> is required to place
 						the value into a numeric item. If the value contains a decimal point then this creates even more
 						difficulties.
 					</p>
-					<p align="left">
+					<p>
 						For example, suppose an <code class="language-cobol">UNSTRING</code> statement has just
 						extracted the text value "1234567" from a string and we want to move this value to a numeric
 						item described as PIC 9(5)V99. An ordinary <code class="language-cobol">MOVE</code> is not going
 						to work because the computer will not know that we actually want the item treated as if it were
 						the value 12345.67.
 					</p>
-					<p align="left">
+					<p>
 						The <code class="language-cobol">REDEFINES</code> clause allows us to solve this problem neatly
 						because we can <code class="language-cobol">UNSTRING</code> the number into <i>TextValue</i> and
 						then treat <i>TextValue</i> as if it were described as PIC 9(5)V99. For instance -
 					</p>
-					<pre class="language-cobol" align="left"><code class="language-cobol">01  TextValue    PIC X(7).
+					<pre class="language-cobol"><code class="language-cobol">01  TextValue    PIC X(7).
 01  NumericValue REDEFINES TextValue PIC 9(5)V99.</code></pre>
-					<p align="left">
+					<p>
 						<b>Example 2<br /></b> The <code class="language-cobol">REDEFINES</code> clause is not just used
 						to create pre-filled tables. It is used whenever a programmer needs to give different data
 						descriptions to the same area of storage.
 					</p>
-					<p align="left">
+					<p>
 						For instance, suppose we accept a date from the user and that sometimes the date has the format
 						yyyymmdd, sometimes it is a European date with the format ddmmyyyy, and somtimes it is a US date
 						with the format mmddyyyy. A code accepted with the date allows us to detect the type of date
 						entered.
 					</p>
-					<p align="left">
+					<p>
 						How can we arrange matters so that no matter which type of date is entered we can retrieve the
 						year, month and day part of the date correctly?
 					</p>
-					<p align="left">
+					<p>
 						If you think about this for a moment you should see that the programming is going to be messy.
 						We'll have to set up three separate date variables and, when we accept the date, we will have to
 						extract the day, month and year parts and put them into the appropriate elementary items of the
 						target date.
 					</p>
-					<p align="left">
+					<p>
 						On the other hand, we could use the <code class="language-cobol">REDEFINES</code> clause to give
 						different names and descriptions to the area of storage holding the date so that we can access
 						the correct day, month and year fields without recourse to special programming. For instance, if
 						define the <i>InputDate</i> as -
 					</p>
-					<pre class="language-cobol" align="left"><code class="language-cobol">01 InputDate.
+					<pre class="language-cobol"><code class="language-cobol">01 InputDate.
    02 DateType         PIC 9.
       88 DateIsSort    VALUE 1.
       88 DateIsEuro    VALUE 2.
@@ -1094,7 +1085,7 @@ ADD 56 TO PopTotal(12,3,2)</code></pre>
       03 USYear        PIC 9(4).
 </code></pre>
 					<p>we can use statements like -</p>
-					<pre class="language-cobol" align="left"><code class="language-cobol">EVALUATE TRUE
+					<pre class="language-cobol"><code class="language-cobol">EVALUATE TRUE
     WHEN DateIsSort
            DISPLAY "SortDate format is yyyy-mm-dd "
            DISPLAY  SortYear "-" SortMonth "-" SortDay
@@ -1106,18 +1097,18 @@ ADD 56 TO PopTotal(12,3,2)</code></pre>
            DISPLAY  USMonth "-" USDay "-" USYear
 END-EVALUATE </code></pre>
 					<p>- and still get the correct values displayed.</p>
-					<p align="left">
+					<p>
 						<b>Example 3<br /></b> The <code class="language-cobol">REDEFINES</code> clause is also useful
 						when we need to treat a numeric item as if it had its decimal point in different places. For
 						instance the value 12345 is treated as if it were 12.345 if we refer to <i>10Rate</i>, 123.45 if
 						we refer to <i>100Rate</i>, and 1234.5 if we refer to <i>1000Rate</i>.
 					</p>
-					<pre class="language-cobol" align="left"><code class="language-cobol">01 Rates.
+					<pre class="language-cobol"><code class="language-cobol">01 Rates.
    02 10Rate                    PIC 99V999.
    02 100Rate  REDEFINES 10Rate PIC 999V99.
    02 1000Rate REDEFINES 10Rate PIC 9999V9.</code></pre>
-					<p align="left"><b>Animated versions of the examples above</b></p>
-					<p align="center">
+					<p><b>Animated versions of the examples above</b></p>
+					<p class="center-block">
 						<a href="Resources/ppz/TC-Tables7.html"
 							><img height="62" src="Resources/pics/i-Animation.gif" width="62" alt=""
 						/></a>
@@ -1128,7 +1119,7 @@ END-EVALUATE </code></pre>
 					<h4>REDEFINES syntax and rules</h4>
 				</div>
 				<div class="section-content">
-					<p><img height="48" src="Resources/pics/Redefines.gif" width="358" /></p>
+					<p><img height="48" src="Resources/pics/Redefines.gif" width="358" alt="REDEFINES clause syntax diagram" /></p>
 					<p><b>REDEFINES</b> <b>rules</b></p>
 					<ol>
 						<li>
@@ -1197,7 +1188,7 @@ END-EVALUATE </code></pre>
 					<pre class="language-cobol"><code class="language-cobol">   02 FILLER REDEFINES MonthValues.
       03 Month OCCURS 12 TIMES PIC X(9).</code></pre>
 					<p>Examine the animation below to view this and other examples.</p>
-					<p align="center">
+					<p class="center-block">
 						<a href="Resources/ppz/TC-Tables8.html"
 							><img height="62" src="Resources/pics/i-Animation.gif" width="62" alt=""
 						/></a>
@@ -1206,7 +1197,7 @@ END-EVALUATE </code></pre>
 				</div>
 				<div class="section-sidebar">
 					<h4>Example program</h4>
-					<p align="center"><img height="44" src="Resources/pics/program.gif" width="42" /></p>
+					<p class="center-block"><img height="44" src="Resources/pics/program.gif" width="42" alt="" /></p>
 				</div>
 				<div class="section-content">
 					<p>
@@ -1335,7 +1326,7 @@ DisplayCountyTaxes.
 					</p>
 					<pre class="language-cobol"><code class="language-cobol">01 DayTable VALUE "MonTueWedThrFriSatSun".
    02 Day OCCURS 7 TIMES PIC X(3).</code></pre>
-					<div align="center">
+					<div class="center-block">
 						<img
 							alt="Diagram showing DayTable filling a 7-entry table with the values Mon, Tue, Wed, Thr, Fri, Sat, and Sun"
 							height="84"
@@ -1348,10 +1339,10 @@ DisplayCountyTaxes.
 					<h4>COBOL'85 table initialisation changes</h4>
 				</div>
 				<div class="section-content">
-					<p align="left">
+					<p>
 						The 1985 COBOL standard also introduced some changes to the way tables are initialised.
 					</p>
-					<p align="left">
+					<p>
 						In the previous versions of COBOL initialising a table was never a problem if the elements of
 						the table were elementary items. All that was required was to move the initialising value to the
 						table's group name. For instance, the statement
