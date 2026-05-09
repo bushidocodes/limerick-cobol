@@ -36,6 +36,6 @@ CI runs two checks on every PR (see [.github/workflows/checks.yml](.github/workf
 
 The starting `html-validate` ruleset is intentionally permissive — it catches parse errors and structural bugs but doesn't flag every legacy-HTML pattern. Tighten over time as modernization progresses.
 
-`linkinator.config.json` skips externals and `*.mso` references — Word "Save as Web Page" debris in the `Prj-*` exercise pages. Remove the `*.mso` skip once those refs are cleaned up.
+`linkinator.config.json` only skips external URLs and `mailto:` links — internal refs are all expected to resolve.
 
 `npm run a11y` is available locally but not in CI yet. Existing pages have many pre-existing WCAG violations; wiring a strict gate now would just memorize current breakage. The a11y job gets added back after the accessibility cleanup pass lands.
