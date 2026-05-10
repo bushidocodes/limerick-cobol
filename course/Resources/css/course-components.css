@@ -429,6 +429,50 @@ ol.spaced > li + li {
 	border-left: 1px solid;
 }
 
+/* ============================================================================
+   Copy-to-clipboard button (components/copy-button.js)
+   The host <pre> gets position:relative so the button can sit top-right.
+   The body prefix matches the specificity of the adjacent Prism overrides so
+   this wins without needing !important.
+   ============================================================================ */
+
+/* Give every Prism <pre> a positioning context for the absolute button. */
+body pre[class*="language-"] {
+	position: relative;
+}
+
+.copy-button {
+	position: absolute;
+	top: 0.4em;
+	right: 0.4em;
+	padding: 0.2em 0.55em;
+	font-size: 0.75em;
+	line-height: 1.4;
+	cursor: pointer;
+	border-radius: 3px;
+	/* Light-theme colours */
+	background-color: #f0f0f0;
+	color: #333;
+	border: 1px solid #bbb;
+	opacity: 0.8;
+	transition: opacity 0.15s;
+}
+
+.copy-button:hover,
+.copy-button:focus {
+	opacity: 1;
+	outline: 2px solid currentColor;
+	outline-offset: 1px;
+}
+
+@media (prefers-color-scheme: dark) {
+	.copy-button {
+		background-color: #2e2e2e;
+		color: #ddd;
+		border-color: #555;
+	}
+}
+
 @media (max-width: 600px) {
 	/* DataDeclaration.html */
 	.code-record {
