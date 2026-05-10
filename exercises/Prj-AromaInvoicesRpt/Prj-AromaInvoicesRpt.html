@@ -1,10 +1,18 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta content="width=device-width, initial-scale=1" name="viewport" />
-		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
 		<title>Aromamora Essential Oils - Sales Report (25 hours)</title>
-
+		<link href="../../course/Resources/css/course.css" rel="stylesheet" />
+		<link href="../../course/Resources/css/course-components.css" rel="stylesheet" />
 		<style>
 			<!--
 			.Normal {
@@ -21,472 +29,334 @@
 			}
 			-->
 		</style>
-		<style type="text/css">
-			img {
-				max-width: 100%;
-				height: auto;
-			}
-
-			table {
-				max-width: 100%;
-			}
-
-			pre {
-				overflow-x: auto;
-				max-width: 100%;
-			}
-
-			body {
-				-webkit-text-size-adjust: 100%;
-			}
-
-			@media (max-width: 600px) {
-				body {
-					margin: 4px;
-					overflow-wrap: break-word;
-					word-wrap: break-word;
-				}
-
-				table[width] {
-					width: 100% !important;
-					height: auto !important;
-				}
-
-				td[width],
-				th[width],
-				td[height],
-				th[height] {
-					width: auto !important;
-					height: auto !important;
-				}
-
-				td[bgcolor="#993300"] > h2,
-				td[bgcolor="#993300"] > h3 {
-					margin: 0.3em 0;
-				}
-
-				blockquote {
-					margin-left: 12px;
-					margin-right: 12px;
-				}
-
-				hr[width] {
-					width: 100% !important;
-				}
-
-				img,
-				iframe,
-				video,
-				embed,
-				object {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					height: auto;
-				}
-
-				pre {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					white-space: pre-wrap;
-					word-wrap: break-word;
-					overflow-wrap: break-word;
-				}
-
-				table[width="715"],
-				table[width="725"],
-				table[width="715"] > tbody,
-				table[width="725"] > tbody,
-				table[width="715"] > tbody > tr,
-				table[width="725"] > tbody > tr,
-				table[width="715"] > tbody > tr > td,
-				table[width="725"] > tbody > tr > td,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])),
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr > td {
-					display: block;
-					width: auto !important;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]),
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody {
-					display: block;
-					width: 100% !important;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr {
-					display: flex;
-					align-items: baseline;
-					gap: 0.4em;
-					margin: 0.4em 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="3%"] {
-					display: none;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="4%"] {
-					display: block;
-					flex: 0 0 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="93%"] {
-					display: block;
-					flex: 1 1 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
-				td[width="175"] > h4:not(:first-child):not(:has(img)),
-				td[width="160"] > h4:not(:first-child):not(:has(img)),
-				h4:has(> img[src*="PanelLine"]) {
-					display: none;
-				}
-
-				td[width="175"] > h3,
-				td[width="175"] > h4,
-				td[width="175"] > p,
-				td[width="160"] > h3,
-				td[width="160"] > h4,
-				td[width="160"] > p {
-					margin: 0.2em 0;
-				}
-			}
-		</style>
+		<script src="../../components/theme-toggle.js" defer></script>
+		<script src="../../components/page-hero.js" defer></script>
+		<script src="../../components/back-to-top.js" defer></script>
 		<script src="../../components/copyright-notice.js" defer></script>
 	</head>
-	<body bgcolor="#FFFFFF" class="Normal" lang="EN-GB" link="blue" vlink="purple">
-		<table class="data-table" cellpadding="5" cellspacing="0" height="1838" width="800">
-			<tr>
-				<td bgcolor="#990000" colspan="2" height="55">
-					<h2 style="text-align: center">
-						<b
-							>Aromamora<br />
-							Outstanding Invoices Report</b
-						>
-					</h2>
-				</td>
-			</tr>
-			<tr>
-				<td height="2" width="21%"><b>Time to complete</b></td>
-				<td height="2" width="79%">Allow 15 hours continuous</td>
-			</tr>
-			<tr>
-				<td height="43" width="21%" style="vertical-align: top"><b>Test Data Files</b></td>
-				<td height="43" width="79%" style="vertical-align: top">
-					<p>
-						No test data files are available. You will have to create your own test data files. To do this
-						create sequential Customer and Invoice files and then write programs to convert them to indexed
-						files.
-					</p>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2" style="vertical-align: top">
-					<h3 style="text-align: left">
-						<span style="font-variant: normal; text-transform: uppercase">Introduction</span>
-					</h3>
-					<p>
-						A program is required that will examine the Aromamora Customer and Invoice files and from them
-						produce a report showing the unpaid customer invoices.&nbsp;&nbsp;&nbsp; The&nbsp;
-						<span style="text-transform: uppercase">Cobol</span> Report-Writer must be used to create the
-						report.
-					</p>
-					<h3>Data Files</h3>
-					<h4><span style="font-variant: normal; text-transform: uppercase">Customer File</span></h4>
-					<p>
-						The Customer File holds details of all Aromamora customers. It is an indexed file with the
-						following record description.
-					</p>
-					<div style="text-align: center">
-						<table class="data-table" cellpadding="0" cellspacing="0">
-							<tr bgcolor="#FFFFCC">
-								<td class="Normal" width="145" style="vertical-align: top">
-									<p class="TableHead"><span>&nbsp;</span>Field</p>
-								</td>
-								<td class="Normal" width="136" style="vertical-align: top">
-									<p class="TableHead">
-										<span style="font-variant: normal; text-transform: uppercase">Key type</span>
-									</p>
-								</td>
-								<td class="Normal" width="70" style="vertical-align: top">
-									<p class="TableHead">
-										<span style="font-variant: normal; text-transform: uppercase">Type</span>
-									</p>
-								</td>
-								<td class="Normal" width="82" style="vertical-align: top">
-									<p class="TableHead">
-										<span style="font-variant: normal; text-transform: uppercase">Length</span>
-									</p>
-								</td>
-								<td class="Normal" width="133" style="vertical-align: top">
-									<p class="TableHead">
-										<span style="font-variant: normal; text-transform: uppercase">Value</span>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="145" style="vertical-align: top">
-									<p>Customer-Number</p>
-								</td>
-								<td class="Normal" width="136" style="vertical-align: top">
-									<p style="text-align: center">Primary</p>
-								</td>
-								<td class="Normal" width="70" style="vertical-align: top">
-									<p style="text-align: center">9</p>
-								</td>
-								<td class="Normal" width="82" style="vertical-align: top">
-									<p style="text-align: center">6</p>
-								</td>
-								<td class="Normal" width="133" style="vertical-align: top">
-									<p style="text-align: center">-</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="145" style="vertical-align: top">
-									<p>Customer-Name</p>
-								</td>
-								<td class="Normal" width="136" style="vertical-align: top">
-									<p style="text-align: center">ALT with Duplicates</p>
-								</td>
-								<td class="Normal" width="70" style="vertical-align: top">
-									<p style="text-align: center">X</p>
-								</td>
-								<td class="Normal" width="82" style="vertical-align: top">
-									<p style="text-align: center">25</p>
-								</td>
-								<td class="Normal" width="133" style="vertical-align: top">
-									<p style="text-align: center">Upper-Case</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="145" style="vertical-align: top">
-									<p>Customer-Address</p>
-								</td>
-								<td class="Normal" width="136" style="vertical-align: top">
-									<p style="text-align: center">--</p>
-								</td>
-								<td class="Normal" width="70" style="vertical-align: top">
-									<p style="text-align: center">X</p>
-								</td>
-								<td class="Normal" width="82" style="vertical-align: top">
-									<p style="text-align: center">40</p>
-								</td>
-								<td class="Normal" width="133" style="vertical-align: top">
-									<p style="text-align: center">-</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="145" style="vertical-align: top">
-									<p>Country</p>
-								</td>
-								<td class="Normal" width="136" style="vertical-align: top">
-									<p style="text-align: center">ALT with Duplicates</p>
-								</td>
-								<td class="Normal" width="70" style="vertical-align: top">
-									<p style="text-align: center">X</p>
-								</td>
-								<td class="Normal" width="82" style="vertical-align: top">
-									<p style="text-align: center">15</p>
-								</td>
-								<td class="Normal" width="133" style="vertical-align: top">
-									<p style="text-align: center">Upper-Case</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="145" style="vertical-align: top">
-									<p>Customer-Balance</p>
-								</td>
-								<td class="Normal" width="136" style="vertical-align: top">
-									<p style="text-align: center">--</p>
-								</td>
-								<td class="Normal" width="70" style="vertical-align: top">
-									<p style="text-align: center">9</p>
-								</td>
-								<td class="Normal" width="82" style="vertical-align: top">
-									<p style="text-align: center">7</p>
-								</td>
-								<td class="Normal" width="133" style="vertical-align: top">
-									<p style="text-align: center">-99999.99 - 0.0</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="145" style="vertical-align: top">
-									<p>Date-Of-Last-Order</p>
-								</td>
-								<td class="Normal" width="136" style="vertical-align: top">
-									<p style="text-align: center">--</p>
-								</td>
-								<td class="Normal" width="70" style="vertical-align: top">
-									<p style="text-align: center">9</p>
-								</td>
-								<td class="Normal" width="82" style="vertical-align: top">
-									<p style="text-align: center">8</p>
-								</td>
-								<td class="Normal" width="133" style="vertical-align: top">
-									<p style="text-align: center">YYYYMMDD</p>
-								</td>
-							</tr>
-						</table>
-						<br />
-					</div>
-					<p>The Country field is used in some reports to group customers by location.</p>
-					<p>
-						The Customer-Balance field holds the amount owed by the customer to Aromamora.&nbsp; Since
-						payments are only accepted when they apply to a specific sale this balance should never be
-						greater than 0.
-					</p>
-					<p>The Date-Of-Last-Order field is used to identify inactive customers.&nbsp;<br /></p>
-					<h4>Invoice&nbsp; File</h4>
-					<p>
-						The Invoice File holds details of all unpaid invoices.&nbsp; When goods are sold to Aromamora
-						customers the sale is recorded in the Invoice File (by way of a transaction file) and an invoice
-						is sent to the customer.&nbsp; Customers pay for goods on receipt of an invoice.&nbsp; When a
-						customer payment is received the payment is matched to a particular invoice which is then
-						deleted from the file and recorded in a sequential Invoice Archive File.&nbsp; Aromamora
-						customers always pay the exact amount specified on the invoice.
-					</p>
-					<p>The Invoice File is an Indexed file with the following record description;</p>
-					<div style="text-align: center">
-						<table class="data-table" cellpadding="0" cellspacing="0">
-							<tr bgcolor="#FFFFCC">
-								<td class="Normal" width="145" style="vertical-align: top">
-									<p class="TableHead"><span>&nbsp;</span>Field</p>
-								</td>
-								<td class="Normal" width="150" style="vertical-align: top">
-									<p class="TableHead">
-										<span style="font-variant: normal; text-transform: uppercase">Key type</span>
-									</p>
-								</td>
-								<td class="Normal" width="75" style="vertical-align: top">
-									<p class="TableHead">
-										<span style="font-variant: normal; text-transform: uppercase">Type</span>
-									</p>
-								</td>
-								<td class="Normal" width="75" style="vertical-align: top">
-									<p class="TableHead">
-										<span style="font-variant: normal; text-transform: uppercase">Length</span>
-									</p>
-								</td>
-								<td class="Normal" width="121" style="vertical-align: top">
-									<p class="TableHead">
-										<span style="font-variant: normal; text-transform: uppercase">Value</span>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="145" style="vertical-align: top">
-									<p>Order-Number</p>
-								</td>
-								<td class="Normal" width="150" style="vertical-align: top">
-									<p style="text-align: center">Primary</p>
-								</td>
-								<td class="Normal" width="75" style="vertical-align: top">
-									<p style="text-align: center">9</p>
-								</td>
-								<td class="Normal" width="75" style="vertical-align: top">
-									<p style="text-align: center">7</p>
-								</td>
-								<td class="Normal" width="121" style="vertical-align: top">
-									<p style="text-align: center">-</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="145" style="vertical-align: top">
-									<p>Customer-Number</p>
-								</td>
-								<td class="Normal" width="150" style="vertical-align: top">
-									<p style="text-align: center">ALT with Duplicates</p>
-								</td>
-								<td class="Normal" width="75" style="vertical-align: top">
-									<p style="text-align: center">9</p>
-								</td>
-								<td class="Normal" width="75" style="vertical-align: top">
-									<p style="text-align: center">6</p>
-								</td>
-								<td class="Normal" width="121" style="vertical-align: top">
-									<p style="text-align: center">-</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="145" style="vertical-align: top">
-									<p>Invoice-Amount</p>
-								</td>
-								<td class="Normal" width="150" style="vertical-align: top">
-									<p style="text-align: center">--</p>
-								</td>
-								<td class="Normal" width="75" style="vertical-align: top">
-									<p style="text-align: center">9</p>
-								</td>
-								<td class="Normal" width="75" style="vertical-align: top">
-									<p style="text-align: center">7</p>
-								</td>
-								<td class="Normal" width="121" style="vertical-align: top">
-									<p style="text-align: center">0.01-9999.99</p>
-								</td>
-							</tr>
-						</table>
-					</div>
-					<h3>The Outstanding Invoices&nbsp; Report</h3>
-					<p>
-						The report must show any outstanding customer invoices in the Invoice File.&nbsp; The report is
-						based on the Customer and Invoice files (see previous specification for details) and must be
-						printed sequenced on ascending Customer-Name.
-					</p>
-					<p>
-						Money values must be printed using floating dollar signs and comma insertion. The page number
-						should be zero suppressed.&nbsp; Change page after line 49 unless the Customer Balance, the
-						Total Amount Outstanding or report footing is the next thing to be printed.
-					</p>
-					<div style="text-align: center">
-						<table cellpadding="5" cellspacing="0" width="700">
-							<tr style="vertical-align: top">
-								<td width="86"><b>Line 1-8&nbsp;&nbsp;</b></td>
-								<td width="594">
-									Page headings.&nbsp; To be printed at the top of each page.&nbsp; The programmer
-									field should contain your name.
-								</td>
-							</tr>
-							<tr style="vertical-align: top">
-								<td width="86"><b>Line 10-15&nbsp;</b></td>
-								<td width="594">
-									Customer Detail lines. Suppress the Customer Name and Customer Number after their
-									first occurrence.&nbsp; See also lines 21-27.
-								</td>
-							</tr>
-							<tr style="vertical-align: top">
-								<td width="86"><b>Line 17&nbsp;</b></td>
-								<td width="594">
-									Customer Balance Line. Amount owed by the customer.&nbsp; Printed at the end of the
-									Customer Detail lines. See also line 30.
-								</td>
-							</tr>
-							<tr style="vertical-align: top">
-								<td width="86"><b>Line 33&nbsp;&nbsp;&nbsp;</b></td>
-								<td width="594">
-									Total amount outstanding.&nbsp; Sum of the amounts owed by each customer.&nbsp;
-									Printed at the end of the report
-								</td>
-							</tr>
-							<tr style="vertical-align: top">
-								<td width="86"><b>Line 36</b></td>
-								<td width="594">Report footing.&nbsp; Printed at the end of the report.</td>
-							</tr>
-						</table>
-					</div>
-					<p style="text-align: center">
-						<a href="Prj-AromaInvoicesRpt.gif"
-							><img
-								height="216"
-								src="sPrj-AromaInvoicesRpt.gif"
-								width="312"
-								style="border: 1px solid" /></a
-						><br />
-						Click for full size version
-					</p>
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="page-content">
+					<page-hero title="Aromamora Outstanding Invoices Report" eyebrow="COBOL Project"></page-hero>
+					<hr />
+
+					<dl class="exam-meta">
+						<dt>Time to complete</dt>
+						<dd>Allow 15 hours continuous</dd>
+						<dt>Test Data Files</dt>
+						<dd>
+							<p>
+								No test data files are available. You will have to create your own test data files. To
+								do this create sequential Customer and Invoice files and then write programs to convert
+								them to indexed files.
+							</p>
+						</dd>
+					</dl>
+					<hr />
+
+					<section>
+						<h2>Introduction</h2>
+						<p>
+							A program is required that will examine the Aromamora Customer and Invoice files and from
+							them produce a report showing the unpaid customer invoices.&nbsp;&nbsp;&nbsp; The&nbsp;
+							<span style="text-transform: uppercase">Cobol</span> Report-Writer must be used to create
+							the report.
+						</p>
+					</section>
+
+					<section>
+						<h2>Data Files</h2>
+						<h3>Customer File</h3>
+						<p>
+							The Customer File holds details of all Aromamora customers. It is an indexed file with the
+							following record description.
+						</p>
+						<div style="text-align: center">
+							<table class="data-table">
+								<tr bgcolor="#FFFFCC">
+									<td class="Normal" style="vertical-align: top">
+										<p class="TableHead"><span>&nbsp;</span>Field</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p class="TableHead">
+											<span style="font-variant: normal; text-transform: uppercase"
+												>Key type</span
+											>
+										</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p class="TableHead">
+											<span style="font-variant: normal; text-transform: uppercase">Type</span>
+										</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p class="TableHead">
+											<span style="font-variant: normal; text-transform: uppercase">Length</span>
+										</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p class="TableHead">
+											<span style="font-variant: normal; text-transform: uppercase">Value</span>
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="Normal" style="vertical-align: top"><p>Customer-Number</p></td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">Primary</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">9</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">6</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">-</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="Normal" style="vertical-align: top"><p>Customer-Name</p></td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">ALT with Duplicates</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">X</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">25</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">Upper-Case</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="Normal" style="vertical-align: top"><p>Customer-Address</p></td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">--</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">X</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">40</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">-</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="Normal" style="vertical-align: top"><p>Country</p></td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">ALT with Duplicates</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">X</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">15</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">Upper-Case</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="Normal" style="vertical-align: top"><p>Customer-Balance</p></td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">--</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">9</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">7</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">-99999.99 - 0.0</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="Normal" style="vertical-align: top"><p>Date-Of-Last-Order</p></td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">--</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">9</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">8</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">YYYYMMDD</p>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<p>The Country field is used in some reports to group customers by location.</p>
+						<p>
+							The Customer-Balance field holds the amount owed by the customer to Aromamora.&nbsp; Since
+							payments are only accepted when they apply to a specific sale this balance should never be
+							greater than 0.
+						</p>
+						<p>The Date-Of-Last-Order field is used to identify inactive customers.&nbsp;</p>
+
+						<h3>Invoice File</h3>
+						<p>
+							The Invoice File holds details of all unpaid invoices.&nbsp; When goods are sold to
+							Aromamora customers the sale is recorded in the Invoice File (by way of a transaction file)
+							and an invoice is sent to the customer.&nbsp; Customers pay for goods on receipt of an
+							invoice.&nbsp; When a customer payment is received the payment is matched to a particular
+							invoice which is then deleted from the file and recorded in a sequential Invoice Archive
+							File.&nbsp; Aromamora customers always pay the exact amount specified on the invoice.
+						</p>
+						<p>The Invoice File is an Indexed file with the following record description;</p>
+						<div style="text-align: center">
+							<table class="data-table">
+								<tr bgcolor="#FFFFCC">
+									<td class="Normal" style="vertical-align: top">
+										<p class="TableHead"><span>&nbsp;</span>Field</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p class="TableHead">
+											<span style="font-variant: normal; text-transform: uppercase"
+												>Key type</span
+											>
+										</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p class="TableHead">
+											<span style="font-variant: normal; text-transform: uppercase">Type</span>
+										</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p class="TableHead">
+											<span style="font-variant: normal; text-transform: uppercase">Length</span>
+										</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p class="TableHead">
+											<span style="font-variant: normal; text-transform: uppercase">Value</span>
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="Normal" style="vertical-align: top"><p>Order-Number</p></td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">Primary</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">9</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">7</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">-</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="Normal" style="vertical-align: top"><p>Customer-Number</p></td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">ALT with Duplicates</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">9</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">6</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">-</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="Normal" style="vertical-align: top"><p>Invoice-Amount</p></td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">--</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">9</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">7</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">0.01-9999.99</p>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</section>
+
+					<section>
+						<h2>The Outstanding Invoices Report</h2>
+						<p>
+							The report must show any outstanding customer invoices in the Invoice File.&nbsp; The report
+							is based on the Customer and Invoice files (see previous specification for details) and must
+							be printed sequenced on ascending Customer-Name.
+						</p>
+						<p>
+							Money values must be printed using floating dollar signs and comma insertion. The page
+							number should be zero suppressed.&nbsp; Change page after line 49 unless the Customer
+							Balance, the Total Amount Outstanding or report footing is the next thing to be printed.
+						</p>
+						<div style="text-align: center">
+							<table>
+								<tr style="vertical-align: top">
+									<td><b>Line 1-8&nbsp;&nbsp;</b></td>
+									<td>
+										Page headings.&nbsp; To be printed at the top of each page.&nbsp; The programmer
+										field should contain your name.
+									</td>
+								</tr>
+								<tr style="vertical-align: top">
+									<td><b>Line 10-15&nbsp;</b></td>
+									<td>
+										Customer Detail lines. Suppress the Customer Name and Customer Number after
+										their first occurrence.&nbsp; See also lines 21-27.
+									</td>
+								</tr>
+								<tr style="vertical-align: top">
+									<td><b>Line 17&nbsp;</b></td>
+									<td>
+										Customer Balance Line. Amount owed by the customer.&nbsp; Printed at the end of
+										the Customer Detail lines. See also line 30.
+									</td>
+								</tr>
+								<tr style="vertical-align: top">
+									<td><b>Line 33&nbsp;&nbsp;&nbsp;</b></td>
+									<td>
+										Total amount outstanding.&nbsp; Sum of the amounts owed by each customer.&nbsp;
+										Printed at the end of the report
+									</td>
+								</tr>
+								<tr style="vertical-align: top">
+									<td><b>Line 36</b></td>
+									<td>Report footing.&nbsp; Printed at the end of the report.</td>
+								</tr>
+							</table>
+						</div>
+						<p style="text-align: center">
+							<a href="Prj-AromaInvoicesRpt.gif"
+								><img
+									height="216"
+									src="sPrj-AromaInvoicesRpt.gif"
+									width="312"
+									style="border: 1px solid"
+									alt="Thumbnail of the Outstanding Invoices Report print layout specification."
+							/></a>
+							<br />
+							Click for full size version
+						</p>
+					</section>
+
+					<back-to-top></back-to-top>
 					<copyright-notice type="project"></copyright-notice>
-				</td>
-			</tr>
-		</table>
+					<p class="center-block"><a href="../index.html">&larr; Back to COBOL Exercises</a></p>
+				</div>
+			</div>
+		</main>
 	</body>
 </html>

@@ -2,146 +2,34 @@
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>LibRoyaltyRpt – Library Royalty Payment Report (COBOL source)</title>
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+		<title>LibRoyaltyRpt – Library Royalty Payment Report (COBOL source)</title>
+		<link href="../../course/Resources/css/course.css" rel="stylesheet" />
+		<link href="../../course/Resources/css/course-components.css" rel="stylesheet" />
 		<link href="../../course/Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
 		<script src="../../course/Resources/vendor/prism/prism.min.js" defer></script>
 		<script src="../../course/Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
-		<style type="text/css">
-			img {
-				max-width: 100%;
-				height: auto;
-			}
-
-			table {
-				max-width: 100%;
-			}
-
-			pre {
-				overflow-x: auto;
-				max-width: 100%;
-			}
-
-			body {
-				-webkit-text-size-adjust: 100%;
-			}
-
-			@media (max-width: 600px) {
-				body {
-					margin: 4px;
-					overflow-wrap: break-word;
-					word-wrap: break-word;
-				}
-
-				table[width] {
-					width: 100% !important;
-					height: auto !important;
-				}
-
-				td[width],
-				th[width],
-				td[height],
-				th[height] {
-					width: auto !important;
-					height: auto !important;
-				}
-
-				td[bgcolor="#993300"] > h2,
-				td[bgcolor="#993300"] > h3 {
-					margin: 0.3em 0;
-				}
-
-				blockquote {
-					margin-left: 12px;
-					margin-right: 12px;
-				}
-
-				hr[width] {
-					width: 100% !important;
-				}
-
-				img,
-				iframe,
-				video,
-				embed,
-				object {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					height: auto;
-				}
-
-				pre {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					white-space: pre-wrap;
-					word-wrap: break-word;
-					overflow-wrap: break-word;
-				}
-
-				table[width="715"],
-				table[width="725"],
-				table[width="715"] > tbody,
-				table[width="725"] > tbody,
-				table[width="715"] > tbody > tr,
-				table[width="725"] > tbody > tr,
-				table[width="715"] > tbody > tr > td,
-				table[width="725"] > tbody > tr > td,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])),
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr > td {
-					display: block;
-					width: auto !important;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]),
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody {
-					display: block;
-					width: 100% !important;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr {
-					display: flex;
-					align-items: baseline;
-					gap: 0.4em;
-					margin: 0.4em 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="3%"] {
-					display: none;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="4%"] {
-					display: block;
-					flex: 0 0 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="93%"] {
-					display: block;
-					flex: 1 1 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
-				td[width="175"] > h4:not(:first-child):not(:has(img)),
-				td[width="160"] > h4:not(:first-child):not(:has(img)),
-				h4:has(> img[src*="PanelLine"]) {
-					display: none;
-				}
-
-				td[width="175"] > h3,
-				td[width="175"] > h4,
-				td[width="175"] > p,
-				td[width="160"] > h3,
-				td[width="160"] > h4,
-				td[width="160"] > p {
-					margin: 0.2em 0;
-				}
-			}
-		</style>
+		<script src="../../components/theme-toggle.js" defer></script>
+		<script src="../../components/page-hero.js" defer></script>
+		<script src="../../components/back-to-top.js" defer></script>
+		<script src="../../components/copy-button.js" defer></script>
+		<script src="../../components/copyright-notice.js" defer></script>
 	</head>
-	<body bgcolor="#FFFFFF" background="../../lectures/Code.gif">
-		<pre class="language-cobol"><code class="language-cobol">
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="page-content">
+					<page-hero title="Library Royalty Payment Report" eyebrow="COBOL Source"></page-hero>
+					<hr />
+					<pre class="language-cobol"><code class="language-cobol">
        &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.   LibRoyaltyRpt.
@@ -174,7 +62,7 @@ FILE-CONTROL.
 
 DATA DIVISION.
 FILE SECTION.
-    
+
 FD  BOOK-FILE.
 01  BOOK-REC-FA.
     02 BOOK-NUMBER-FA            PIC 9(7).
@@ -184,7 +72,7 @@ FD  BOOK-FILE.
     02 QTR-BORROWINGS-FA         PIC 999.
 
 FD  AUTHOR-FILE.
-01  AUTHOR-REC-FB.            
+01  AUTHOR-REC-FB.
     02 AUTHOR-NUM-FB             PIC 9(7).
     02 AUTHOR-NAME-FB            PIC X(25).
     02 AGENT-NAME-FB             PIC X(25).
@@ -282,20 +170,20 @@ PROCEDURE DIVISION.
     START AUTHOR-FILE KEY IS GREATER THAN AGENT-NAME-FB
         INVALID KEY DISPLAY "OH DEAR SOMETHING WRONG IN 10-START"
     END-START.
-    READ AUTHOR-FILE NEXT RECORD 
+    READ AUTHOR-FILE NEXT RECORD
         AT END SET END-OF-AUTHOR-FILE TO TRUE
     END-READ.
     PERFORM 20-PROCESS-AGENTS UNTIL END-OF-AUTHOR-FILE.
     CLOSE BOOK-FILE.
     CLOSE AUTHOR-FILE.
     CLOSE PRINT-FILE.
-    STOP RUN.    
+    STOP RUN.
 
 20-PROCESS-AGENTS.
     MOVE AGENT-NAME-FB TO AGENT-NAME-PRN, PREV-AGENT.
     MOVE ZEROS TO AGENT-PAYMENT.
 
-    PERFORM 30-PROCESS-AUTHORS 
+    PERFORM 30-PROCESS-AUTHORS
         UNTIL END-OF-AUTHOR-FILE
             OR AGENT-NAME-FB NOT EQUAL TO PREV-AGENT.
 
@@ -304,7 +192,7 @@ PROCEDURE DIVISION.
     MOVE SPACES TO PRINT-LINE-FC.
     WRITE PRINT-LINE-FC AFTER ADVANCING 2 LINES.
 
-        
+
 
 
 30-PROCESS-AUTHORS.
@@ -312,14 +200,14 @@ PROCEDURE DIVISION.
     MOVE AUTHOR-NUM-FB TO AUTHOR-NUMBER-FA, PREV-AUTHOR.
     DISPLAY "AUTHOR NUMBER " AUTHOR-NUMBER-FA.
     MOVE AUTHOR-NAME-FB TO AUTHOR-NAME-PRN.
-    READ BOOK-FILE 
+    READ BOOK-FILE
         KEY IS AUTHOR-NUMBER-FA
         INVALID KEY
          DISPLAY "ERROR IN 20-PROCESS-AGENTS = " BOOK-ERROR-STATUS
     END-READ.
     DISPLAY "BOOK RECORD IN 20-PROCESS-AGENTS "  BOOK-REC-FA.
-    PERFORM 40-PROCESS-BOOKS 
-        UNTIL END-OF-BOOK-FILE 
+    PERFORM 40-PROCESS-BOOKS
+        UNTIL END-OF-BOOK-FILE
             OR AUTHOR-NUMBER-FA NOT EQUAL TO PREV-AUTHOR.
     SET NOT-END-OF-BOOK-FILE TO TRUE.
     MOVE QTR-AUTHOR-BORROWS TO QTR-BORROWS-PRN.
@@ -328,7 +216,7 @@ PROCEDURE DIVISION.
     WRITE PRINT-LINE-FC FROM QTR-ROYALTIES-LINE AFTER ADVANCING 1 LINE.
     MOVE SPACES TO PRINT-LINE-FC.
     WRITE PRINT-LINE-FC AFTER ADVANCING 2 LINES.
-    READ AUTHOR-FILE NEXT RECORD 
+    READ AUTHOR-FILE NEXT RECORD
         AT END SET END-OF-AUTHOR-FILE TO TRUE
     END-READ.
 
@@ -340,7 +228,7 @@ PROCEDURE DIVISION.
     MOVE SPACES TO AUTHOR-NAME-PRN, AGENT-NAME-PRN.
 
 50-PROCESS-ONE-BOOK.
-    MULTIPLY QTR-BORROWINGS-FA BY ROYALTY-RATE-FA 
+    MULTIPLY QTR-BORROWINGS-FA BY ROYALTY-RATE-FA
         GIVING BOOK-ROYALTY ROUNDED.
     ADD QTR-BORROWINGS-FA  TO QTR-AUTHOR-BORROWS.
     ADD BOOK-ROYALTY  TO AUTHOR-ROYALTIES, AGENT-PAYMENT.
@@ -356,5 +244,11 @@ PROCEDURE DIVISION.
         DISPLAY "REWRITE 50-PROCESS-ONE-BOOK " BOOK-ERROR-STATUS
     END-REWRITE.
 </code></pre>
+					<back-to-top></back-to-top>
+					<copyright-notice type="examples"></copyright-notice>
+					<p class="center-block"><a href="Exm-LibRoyaltyRpt.html">&larr; Back to specification</a></p>
+				</div>
+			</div>
+		</main>
 	</body>
 </html>

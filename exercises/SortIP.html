@@ -2,397 +2,221 @@
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
 		<title>Sorting a Sequential File</title>
-		<style type="text/css">
-			img {
-				max-width: 100%;
-				height: auto;
-			}
-
-			table {
-				max-width: 100%;
-			}
-
-			pre {
-				overflow-x: auto;
-				max-width: 100%;
-			}
-
-			body {
-				-webkit-text-size-adjust: 100%;
-			}
-
-			@media (max-width: 600px) {
-				body {
-					margin: 4px;
-					overflow-wrap: break-word;
-					word-wrap: break-word;
-				}
-
-				table[width] {
-					width: 100% !important;
-					height: auto !important;
-				}
-
-				td[width],
-				th[width],
-				td[height],
-				th[height] {
-					width: auto !important;
-					height: auto !important;
-				}
-
-				td[bgcolor="#993300"] > h2,
-				td[bgcolor="#993300"] > h3 {
-					margin: 0.3em 0;
-				}
-
-				blockquote {
-					margin-left: 12px;
-					margin-right: 12px;
-				}
-
-				hr[width] {
-					width: 100% !important;
-				}
-
-				img,
-				iframe,
-				video,
-				embed,
-				object {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					height: auto;
-				}
-
-				pre {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					white-space: pre-wrap;
-					word-wrap: break-word;
-					overflow-wrap: break-word;
-				}
-
-				table[width="715"],
-				table[width="725"],
-				table[width="715"] > tbody,
-				table[width="725"] > tbody,
-				table[width="715"] > tbody > tr,
-				table[width="725"] > tbody > tr,
-				table[width="715"] > tbody > tr > td,
-				table[width="725"] > tbody > tr > td,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])),
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr > td {
-					display: block;
-					width: auto !important;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]),
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody {
-					display: block;
-					width: 100% !important;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr {
-					display: flex;
-					align-items: baseline;
-					gap: 0.4em;
-					margin: 0.4em 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="3%"] {
-					display: none;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="4%"] {
-					display: block;
-					flex: 0 0 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="93%"] {
-					display: block;
-					flex: 1 1 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
-				td[width="175"] > h4:not(:first-child):not(:has(img)),
-				td[width="160"] > h4:not(:first-child):not(:has(img)),
-				h4:has(> img[src*="PanelLine"]) {
-					display: none;
-				}
-
-				td[width="175"] > h3,
-				td[width="175"] > h4,
-				td[width="175"] > p,
-				td[width="160"] > h3,
-				td[width="160"] > h4,
-				td[width="160"] > p {
-					margin: 0.2em 0;
-				}
-			}
-		</style>
+		<link href="../course/Resources/css/course.css" rel="stylesheet" />
+		<link href="../course/Resources/css/course-components.css" rel="stylesheet" />
+		<script src="../components/theme-toggle.js" defer></script>
+		<script src="../components/page-hero.js" defer></script>
+		<script src="../components/back-to-top.js" defer></script>
+		<script src="../components/copyright-notice.js" defer></script>
 	</head>
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="page-content">
+					<page-hero title="Sorting a Sequential File" eyebrow="COBOL Exercise"></page-hero>
+					<p class="center-block">
+						<code class="language-cobol">READ</code>, <code class="language-cobol">RELEASE</code>,
+						<code class="language-cobol">SORT</code>, Input Procedure
+					</p>
+					<hr />
 
-	<body text="#000000" bgcolor="#FFFFFF" link="#0000FF" vlink="#FF0000" alink="#009B00">
-		<div class="center-block">
-			<img src="T-CobolExercise.gif" height="56" width="183" alt="" />
-			<h2>Sorting a Sequential File</h2>
-			<hr />
-			<code class="language-cobol">READ</code>, <code class="language-cobol">RELEASE</code>,
-			<code class="language-cobol">SORT</code>, Input Procedure
-		</div>
-		<hr />
-		<h2><b>Introduction</b></h2>
-		A program is required which will process the Students File (Students.Dat) and will count the number of males and
-		females taking each course. The totals must be displayed in ascending CourseCode order.
-		<p>
-			Download <a href="../examples/SeqRead/STUDENTS.DAT">Students.Dat</a> and save it to the \WorkArea directory
-			on drive D:
-		</p>
-		<h2>Student File Description</h2>
-		The Students File is a sequential file held in <b>ascending StudentId</b> order.<br />
-		Each record of the students file contains the following items;
-		<table class="data-table">
-			<tr>
-				<td width="144">
-					<div class="center-block"><b>Field</b></div>
-				</td>
-				<td width="67">
-					<div class="center-block"><b>Type</b></div>
-				</td>
-				<td width="78">
-					<div class="center-block"><b>Length</b></div>
-				</td>
-				<td width="133">
-					<div class="center-block"><b>Value</b></div>
-				</td>
-			</tr>
-			<tr>
-				<td width="144">Student Id</td>
-				<td width="67">
-					<div class="center-block">9</div>
-				</td>
-				<td width="78">
-					<div class="center-block">7</div>
-				</td>
-				<td width="133">
-					<div class="center-block">0-9999999</div>
-				</td>
-			</tr>
-			<tr>
-				<td width="144">Student Name</td>
-				<td width="67"></td>
-				<td width="78"></td>
-				<td width="133">
-					<div class="center-block">Group</div>
-				</td>
-			</tr>
-			<tr>
-				<td width="144">Surname</td>
-				<td width="67">
-					<div class="center-block">X</div>
-				</td>
-				<td width="78">
-					<div class="center-block">8</div>
-				</td>
-				<td width="133">
-					<div class="center-block">-</div>
-				</td>
-			</tr>
-			<tr>
-				<td width="144">Initials</td>
-				<td width="67">
-					<div class="center-block">X</div>
-				</td>
-				<td width="78">
-					<div class="center-block">2</div>
-				</td>
-				<td width="133">
-					<div class="center-block">-</div>
-				</td>
-			</tr>
-			<tr>
-				<td width="144">DateOfBirth</td>
-				<td width="67"></td>
-				<td width="78"></td>
-				<td width="133">
-					<div class="center-block">Group</div>
-				</td>
-			</tr>
-			<tr>
-				<td width="144">Year</td>
-				<td width="67">
-					<div class="center-block">9</div>
-				</td>
-				<td width="78">
-					<div class="center-block">4</div>
-				</td>
-				<td width="133">
-					<div class="center-block">0000-9999</div>
-				</td>
-			</tr>
-			<tr>
-				<td width="144">Month</td>
-				<td width="67">
-					<div class="center-block">9</div>
-				</td>
-				<td width="78">
-					<div class="center-block">2</div>
-				</td>
-				<td width="133">
-					<div class="center-block">01-12</div>
-				</td>
-			</tr>
-			<tr>
-				<td width="144">Day</td>
-				<td width="67">
-					<div class="center-block">9</div>
-				</td>
-				<td width="78">
-					<div class="center-block">2</div>
-				</td>
-				<td width="133">
-					<div class="center-block">01-31</div>
-				</td>
-			</tr>
-			<tr>
-				<td width="144">Course Code</td>
-				<td width="67">
-					<div class="center-block">X</div>
-				</td>
-				<td width="78">
-					<div class="center-block">4</div>
-				</td>
-				<td width="133">
-					<div class="center-block">-</div>
-				</td>
-			</tr>
-			<tr>
-				<td width="144">Gender</td>
-				<td width="67">
-					<div class="center-block">X</div>
-				</td>
-				<td width="78">
-					<div class="center-block">1</div>
-				</td>
-				<td width="133">
-					<div class="center-block">M/F</div>
-				</td>
-			</tr>
-		</table>
-		<h2><b>Suggested Approaches.</b></h2>
-		The main problem that we face here is that the results must be displayed in CourseCode order but the file is
-		held in StudentId order.
-		<p>
-			You may think that a solution using tables would be the answer here.&nbsp; That is, read each record, find
-			its CourseCode and add 1 to the appropriate place in a CourseCode table (where the elements are in
-			CourseCode order).&nbsp; When all the records have been processed display the results by going through the
-			table element by element.
-		</p>
-		<p>
-			The problem with this solution is that new courses are added quite frequently.&nbsp; If we adopted the table
-			approach we would have to change the program each time a new course is added.
-		</p>
-		<p>
-			So the solution you are going to adopt in this exercise is to create a new file with the records sorted on
-			ascending CourseCode by&nbsp; using the SORT verb to sort the Students File.&nbsp; To make the SORT as
-			efficient as possible (by reducing the amount of data that needs to be processed) records of the sorted file
-			should only contain the fields that are needed for this program. An Input Procedure should be used to create
-			the appropriate Sort Records.
-		</p>
-		<p>
-			When the sorted file has been produced it is a simple matter to process it to calculate the required totals
-		</p>
-		<h2>Sorted File Description.</h2>
-		The sorted file is a sequential file held in <b>ascending CourseCode</b> order.<br />
-		Each record of the&nbsp; file contains the following items;
-		<table class="data-table">
-			<tr>
-				<td width="144">
-					<div class="center-block"><b>Field</b></div>
-				</td>
-				<td width="67">
-					<div class="center-block"><b>Type</b></div>
-				</td>
-				<td width="78">
-					<div class="center-block"><b>Length</b></div>
-				</td>
-				<td width="133">
-					<div class="center-block"><b>Value</b></div>
-				</td>
-			</tr>
-			<tr>
-				<td width="144">Course Code</td>
-				<td width="67">
-					<div class="center-block">X</div>
-				</td>
-				<td width="78">
-					<div class="center-block">4</div>
-				</td>
-				<td width="133">
-					<div class="center-block">-</div>
-				</td>
-			</tr>
-			<tr>
-				<td width="144">Gender</td>
-				<td width="67">
-					<div class="center-block">X</div>
-				</td>
-				<td width="78">
-					<div class="center-block">1</div>
-				</td>
-				<td width="133">
-					<div class="center-block">M/F</div>
-				</td>
-			</tr>
-		</table>
-		<ul>
-			<ul>
-				<ul>
-					<ul>
-						<u> Example Run </u>
-					</ul>
-					<tt>CourseCode Females Males</tt
-					><br />
-					<tt>&nbsp; LM51&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp; 15</tt
-					><br />
-					<tt>&nbsp; LM52&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp; 12</tt
-					><br />
-					<tt>&nbsp; LM60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6</tt>
-				</ul>
-			</ul>
-		</ul>
-		Use edited picture clauses and the zero suppression symbol to produce the output as shown.
-		<h2>Sample Solution</h2>
-		<div style="text-align: left">
-			When you have written your program and have compiled it and have it working correctly you may wish to
-			compare it with this <a href="../examples/Sort/sortip.cbl">sample solution</a>.<br />
-			&nbsp;<br />
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<b
-				><u>
-					<span style="color: #ff0000">WARNING</span>
-				</u></b
-			><br />
-			As always please do not look at the solution until you have finished your own program.&nbsp;&nbsp; At the
-			very least you should make a substantial effort to complete your<br />
-			own attempt at the program before examining the sample solution.
-		</div>
-		<hr />
-		<table cellspacing="0" cellpadding="0" cols="1" width="200">
-			<tr style="text-align: center; vertical-align: top">
-				<td>
-					<a href="index.html"
-						><img src="../pics/B-BackArrow.gif" alt="Back to COBOL Exercises page" height="52" width="52"
-					/></a>
-					To COBOL Exercises
-				</td>
-			</tr>
-		</table>
+					<section>
+						<h2>Introduction</h2>
+						<p>
+							A program is required which will process the Students File (Students.Dat) and will count the
+							number of males and females taking each course. The totals must be displayed in ascending
+							CourseCode order.
+						</p>
+						<p>
+							Download <a href="../examples/SeqRead/STUDENTS.DAT">Students.Dat</a> and save it to the
+							\WorkArea directory on drive D:
+						</p>
+					</section>
+
+					<section>
+						<h2>Student File Description</h2>
+						<p>
+							The Students File is a sequential file held in <b>ascending StudentId</b> order.<br />
+							Each record of the students file contains the following items;
+						</p>
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Field</th>
+									<th>Type</th>
+									<th>Length</th>
+									<th>Value</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Student Id</td>
+									<td>9</td>
+									<td>7</td>
+									<td>0-9999999</td>
+								</tr>
+								<tr>
+									<td>Student Name</td>
+									<td></td>
+									<td></td>
+									<td>Group</td>
+								</tr>
+								<tr>
+									<td>Surname</td>
+									<td>X</td>
+									<td>8</td>
+									<td>-</td>
+								</tr>
+								<tr>
+									<td>Initials</td>
+									<td>X</td>
+									<td>2</td>
+									<td>-</td>
+								</tr>
+								<tr>
+									<td>DateOfBirth</td>
+									<td></td>
+									<td></td>
+									<td>Group</td>
+								</tr>
+								<tr>
+									<td>Year</td>
+									<td>9</td>
+									<td>4</td>
+									<td>0000-9999</td>
+								</tr>
+								<tr>
+									<td>Month</td>
+									<td>9</td>
+									<td>2</td>
+									<td>01-12</td>
+								</tr>
+								<tr>
+									<td>Day</td>
+									<td>9</td>
+									<td>2</td>
+									<td>01-31</td>
+								</tr>
+								<tr>
+									<td>Course Code</td>
+									<td>X</td>
+									<td>4</td>
+									<td>-</td>
+								</tr>
+								<tr>
+									<td>Gender</td>
+									<td>X</td>
+									<td>1</td>
+									<td>M/F</td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+
+					<section>
+						<h2>Suggested Approaches</h2>
+						<p>
+							The main problem that we face here is that the results must be displayed in CourseCode order
+							but the file is held in StudentId order.
+						</p>
+						<p>
+							You may think that a solution using tables would be the answer here. That is, read each
+							record, find its CourseCode and add 1 to the appropriate place in a CourseCode table (where
+							the elements are in CourseCode order). When all the records have been processed display the
+							results by going through the table element by element.
+						</p>
+						<p>
+							The problem with this solution is that new courses are added quite frequently. If we adopted
+							the table approach we would have to change the program each time a new course is added.
+						</p>
+						<p>
+							So the solution you are going to adopt in this exercise is to create a new file with the
+							records sorted on ascending CourseCode by using the SORT verb to sort the Students File. To
+							make the SORT as efficient as possible (by reducing the amount of data that needs to be
+							processed) records of the sorted file should only contain the fields that are needed for
+							this program. An Input Procedure should be used to create the appropriate Sort Records.
+						</p>
+						<p>
+							When the sorted file has been produced it is a simple matter to process it to calculate the
+							required totals.
+						</p>
+					</section>
+
+					<section>
+						<h2>Sorted File Description</h2>
+						<p>
+							The sorted file is a sequential file held in <b>ascending CourseCode</b> order.<br />
+							Each record of the file contains the following items;
+						</p>
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Field</th>
+									<th>Type</th>
+									<th>Length</th>
+									<th>Value</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Course Code</td>
+									<td>X</td>
+									<td>4</td>
+									<td>-</td>
+								</tr>
+								<tr>
+									<td>Gender</td>
+									<td>X</td>
+									<td>1</td>
+									<td>M/F</td>
+								</tr>
+							</tbody>
+						</table>
+						<figure class="example-run">
+							<figcaption>Example run</figcaption>
+							<pre><samp>CourseCode Females Males
+  LM51        10     15
+  LM52         5     12
+  LM60        12      6</samp></pre>
+						</figure>
+						<p>
+							Use edited picture clauses and the zero suppression symbol to produce the output as shown.
+						</p>
+					</section>
+
+					<section>
+						<h2>Sample Solution</h2>
+						<p>
+							When you have written your program and have compiled it and have it working correctly you
+							may wish to compare it with this <a href="../examples/Sort/sortip.cbl">sample solution</a>.
+						</p>
+						<p class="center-block">
+							<b
+								><u><span style="color: #ff0000">WARNING</span></u></b
+							>
+						</p>
+						<p>
+							As always please do not look at the solution until you have finished your own program. At
+							the very least you should make a substantial effort to complete your own attempt at the
+							program before examining the sample solution.
+						</p>
+					</section>
+
+					<back-to-top></back-to-top>
+					<copyright-notice type="exercises"></copyright-notice>
+					<p class="center-block"><a href="index.html">&larr; Back to COBOL Exercises</a></p>
+				</div>
+			</div>
+		</main>
 	</body>
 </html>

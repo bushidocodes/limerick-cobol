@@ -721,6 +721,78 @@ body pre[class*="language-"] {
 }
 
 /* ============================================================================
+   Exercise-page patterns (issue #283).
+   Used by exercise spec pages migrated from the legacy maroon-header-table
+   layout. The .exam-meta dl replaces the metadata-rows of the outer table;
+   .example-run wraps the "Example run" sample-output blocks that legacy pages
+   built from nested <ul><tt> hacks.
+   ============================================================================ */
+
+dl.exam-meta {
+	display: grid;
+	grid-template-columns: max-content 1fr;
+	gap: 0.4em 1em;
+	margin: 1em 0;
+}
+
+dl.exam-meta dt {
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+	color: var(--color-panel-text);
+}
+
+dl.exam-meta dd {
+	margin: 0;
+}
+
+dl.exam-meta dd > p:first-child {
+	margin-top: 0;
+}
+
+dl.exam-meta dd > p:last-child {
+	margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+	dl.exam-meta {
+		grid-template-columns: 1fr;
+		gap: 0.2em 0;
+	}
+
+	dl.exam-meta dd {
+		margin-bottom: 0.6em;
+	}
+}
+
+figure.example-run {
+	background-color: var(--color-results-bg);
+	border: 1px solid;
+	margin: 1em 0;
+	padding: 0;
+	max-width: fit-content;
+}
+
+figure.example-run figcaption {
+	background-color: var(--color-panel-bg);
+	color: var(--color-panel-text);
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	padding: 4px 10px;
+	border-bottom: 1px solid;
+}
+
+figure.example-run pre {
+	margin: 0;
+	padding: 8px 10px;
+	background: transparent;
+}
+
+figure.example-run kbd {
+	font-weight: bold;
+	font-family: inherit;
+}
+
+/* ============================================================================
    related-content custom element (cross-linking infrastructure, Issue #220).
    Used on course pages and exercises to link to related examples, exercises,
    and lectures. Light DOM, so these styles apply directly.

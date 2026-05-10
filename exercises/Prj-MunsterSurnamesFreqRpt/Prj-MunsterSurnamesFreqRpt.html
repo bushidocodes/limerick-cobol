@@ -1,10 +1,18 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta content="width=device-width, initial-scale=1" name="viewport" />
-		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
 		<title>Munster Surnames Frequency Report</title>
-
+		<link href="../../course/Resources/css/course.css" rel="stylesheet" />
+		<link href="../../course/Resources/css/course-components.css" rel="stylesheet" />
 		<style>
 			<!--
 			.Normal {
@@ -21,289 +29,156 @@
 			}
 			-->
 		</style>
-		<style type="text/css">
-			img {
-				max-width: 100%;
-				height: auto;
-			}
-
-			table {
-				max-width: 100%;
-			}
-
-			pre {
-				overflow-x: auto;
-				max-width: 100%;
-			}
-
-			body {
-				-webkit-text-size-adjust: 100%;
-			}
-
-			@media (max-width: 600px) {
-				body {
-					margin: 4px;
-					overflow-wrap: break-word;
-					word-wrap: break-word;
-				}
-
-				table[width] {
-					width: 100% !important;
-					height: auto !important;
-				}
-
-				td[width],
-				th[width],
-				td[height],
-				th[height] {
-					width: auto !important;
-					height: auto !important;
-				}
-
-				td[bgcolor="#993300"] > h2,
-				td[bgcolor="#993300"] > h3 {
-					margin: 0.3em 0;
-				}
-
-				blockquote {
-					margin-left: 12px;
-					margin-right: 12px;
-				}
-
-				hr[width] {
-					width: 100% !important;
-				}
-
-				img,
-				iframe,
-				video,
-				embed,
-				object {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					height: auto;
-				}
-
-				pre {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					white-space: pre-wrap;
-					word-wrap: break-word;
-					overflow-wrap: break-word;
-				}
-
-				table[width="715"],
-				table[width="725"],
-				table[width="715"] > tbody,
-				table[width="725"] > tbody,
-				table[width="715"] > tbody > tr,
-				table[width="725"] > tbody > tr,
-				table[width="715"] > tbody > tr > td,
-				table[width="725"] > tbody > tr > td,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])),
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr > td {
-					display: block;
-					width: auto !important;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]),
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody {
-					display: block;
-					width: 100% !important;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr {
-					display: flex;
-					align-items: baseline;
-					gap: 0.4em;
-					margin: 0.4em 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="3%"] {
-					display: none;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="4%"] {
-					display: block;
-					flex: 0 0 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="93%"] {
-					display: block;
-					flex: 1 1 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
-				td[width="175"] > h4:not(:first-child):not(:has(img)),
-				td[width="160"] > h4:not(:first-child):not(:has(img)),
-				h4:has(> img[src*="PanelLine"]) {
-					display: none;
-				}
-
-				td[width="175"] > h3,
-				td[width="175"] > h4,
-				td[width="175"] > p,
-				td[width="160"] > h3,
-				td[width="160"] > h4,
-				td[width="160"] > p {
-					margin: 0.2em 0;
-				}
-			}
-		</style>
+		<script src="../../components/theme-toggle.js" defer></script>
+		<script src="../../components/page-hero.js" defer></script>
+		<script src="../../components/back-to-top.js" defer></script>
 		<script src="../../components/copyright-notice.js" defer></script>
 	</head>
-	<body bgcolor="#FFFFFF" class="Normal" lang="EN-GB" link="blue" vlink="purple">
-		<table class="data-table" cellpadding="5" cellspacing="0" width="800">
-			<tr>
-				<td bgcolor="#990000" colspan="2" height="59">
-					<h2 style="text-align: center">
-						<b
-							>Munster<br />
-							Surnames FrequencyReport</b
-						>
-					</h2>
-				</td>
-			</tr>
-			<tr>
-				<td height="2" width="21%"><b>Time to complete</b></td>
-				<td height="2" width="79%">Allow 15 hours continuous</td>
-			</tr>
-			<tr>
-				<td height="52" width="21%" style="vertical-align: top"><b>Test Data Files</b></td>
-				<td height="52" width="79%" style="vertical-align: top">
-					<p>
-						<a href="Census.dat">Census.Dat</a><br />
-						(The Census Population File)
-					</p>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2" style="vertical-align: top">
-					<h3>
-						<br />
-						<span style="font-variant: normal; text-transform: uppercase">Introduction</span>
-					</h3>
-					<p>
-						The Genealogists Society of Ireland is trying to discover which Irish surnames occur most
-						frequently in the counties of Munster.&nbsp; In order to obtain this information they have
-						persuaded the government to make available to them some of the information from the most recent
-						census.&nbsp; Unfortunately, since there is no fee involved, the government can only make
-						available a standard file covering the entire 26 counties.&nbsp;<br />
-						<br />
-					</p>
-					<h3><span style="font-variant: normal; text-transform: uppercase">Census Population File</span></h3>
-					<p>
-						Comma delimited or comma separated values (CSV), is a file format widely used in the computing
-						industry.&nbsp; It allows data to be transferred&nbsp; between applications with incompatible
-						file formats (Excel, for example, can save its spreadsheets in this form).&nbsp; CSV files
-						consist of free format, variable length records where the fields are separated by commas and do
-						not occupy specific areas. Before the records in a CSV format file can be processed they must be
-						unpacked into individual fields .
-					</p>
-					<p>
-						The Census Population File provided by the government has a CSV-like format.&nbsp; Each record
-						contains a census number, a surname and a county name.&nbsp; The fields are separated from one
-						another by commas.&nbsp; The file is unsorted.
-					</p>
-					<p>For your guidance;</p>
-					<blockquote>
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="page-content">
+					<page-hero title="Munster Surnames Frequency Report" eyebrow="COBOL Project"></page-hero>
+					<hr />
+
+					<dl class="exam-meta">
+						<dt>Time to complete</dt>
+						<dd>Allow 15 hours continuous</dd>
+						<dt>Test Data Files</dt>
+						<dd>
+							<p>
+								<a href="Census.dat">Census.Dat</a><br />
+								(The Census Population File)
+							</p>
+						</dd>
+					</dl>
+					<hr />
+
+					<section>
+						<h2>Introduction</h2>
+						<p>
+							The Genealogists Society of Ireland is trying to discover which Irish surnames occur most
+							frequently in the counties of Munster.&nbsp; In order to obtain this information they have
+							persuaded the government to make available to them some of the information from the most
+							recent census.&nbsp; Unfortunately, since there is no fee involved, the government can only
+							make available a standard file covering the entire 26 counties.&nbsp;
+						</p>
+					</section>
+
+					<section>
+						<h2>Census Population File</h2>
+						<p>
+							Comma delimited or comma separated values (CSV), is a file format widely used in the
+							computing industry.&nbsp; It allows data to be transferred&nbsp; between applications with
+							incompatible file formats (Excel, for example, can save its spreadsheets in this
+							form).&nbsp; CSV files consist of free format, variable length records where the fields are
+							separated by commas and do not occupy specific areas. Before the records in a CSV format
+							file can be processed they must be unpacked into individual fields .
+						</p>
+						<p>
+							The Census Population File provided by the government has a CSV-like format.&nbsp; Each
+							record contains a census number, a surname and a county name.&nbsp; The fields are separated
+							from one another by commas.&nbsp; The file is unsorted.
+						</p>
+						<p>For your guidance;</p>
 						<blockquote>
 							<blockquote>
 								<blockquote>
-									<p>
-										<span style="font-family: Symbol"
-											>·<span style="font: 7pt &quot;Times New Roman&quot;"
-												>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span
-											></span
-										>
-										the census number is 7 digits in size
-									</p>
-									<p>
-										<span style="font-family: Symbol"
-											>·<span style="font: 7pt &quot;Times New Roman&quot;"
-												>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span
-											></span
-										>
-										the surname is a maximum of 20 characters in size
-									</p>
-									<p>
-										<span style="font-family: Symbol"
-											>·<span style="font: 7pt &quot;Times New Roman&quot;"
-												>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span
-											></span
-										>
-										the county name is a maximum of 9 characters in size.
-									</p>
+									<blockquote>
+										<p>
+											<span style="font-family: Symbol"
+												>·<span style="font: 7pt &quot;Times New Roman&quot;"
+													>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span
+												></span
+											>
+											the census number is 7 digits in size
+										</p>
+										<p>
+											<span style="font-family: Symbol"
+												>·<span style="font: 7pt &quot;Times New Roman&quot;"
+													>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span
+												></span
+											>
+											the surname is a maximum of 20 characters in size
+										</p>
+										<p>
+											<span style="font-family: Symbol"
+												>·<span style="font: 7pt &quot;Times New Roman&quot;"
+													>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span
+												></span
+											>
+											the county name is a maximum of 9 characters in size.
+										</p>
+									</blockquote>
 								</blockquote>
 							</blockquote>
 						</blockquote>
-					</blockquote>
-					<h3><span style="font-variant: normal; text-transform: uppercase">Processing</span></h3>
-					<p>
-						You will need to sort the file on ascending Surname within ascending County name.&nbsp; Use an
-						Input Procedure to unpack the records and get rid of any non-Munster records.&nbsp;&nbsp; Use a
-						table to find the top ten surnames in each county.<br />
-						<br />
-					</p>
-					<h3>The Surnames&nbsp; Report</h3>
-					<p>
-						Numeric values must be printed using zero suppression and comma insertion.&nbsp; Change page
-						after line 39 unless the End of Report line is the next line to be printed.
-					</p>
-					<p>See the print specification below for more report format details.&nbsp;</p>
-					<div style="text-align: center">
-						<table cellpadding="0" cellspacing="0" width="612">
-							<tr style="vertical-align: top">
-								<td width="82">Line 2-5&nbsp;&nbsp;</td>
-								<td width="530">
-									Page Heading. To be printed at the top of each page.<br />
-									&nbsp;
-								</td>
-							</tr>
-							<tr style="vertical-align: top">
-								<td width="82">Line 6-15</td>
-								<td width="530">
-									Surname lines.&nbsp; The County name is printed only on the first line.&nbsp;&nbsp;
-									Count is the count of the number of&nbsp; households in the county with this
-									surname.&nbsp; The surname with the highest count occupies position 1, the next
-									highest position 2 and so on.<br />
-									&nbsp;
-								</td>
-							</tr>
-							<tr style="vertical-align: top">
-								<td width="82">Line 44</td>
-								<td width="530">
-									Printed at the end of the report only.<br />
-									&nbsp;
-								</td>
-							</tr>
-							<tr style="vertical-align: top">
-								<td width="82">Line 46-47</td>
-								<td width="530">
-									Printed at the end of the report only.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The programmer
-									name is the name of the person who wrote the program.&nbsp; The programmer id is the
-									Student Id of the person who wrote the program.<br />
-									&nbsp;
-								</td>
-							</tr>
-						</table>
-					</div>
-					<p class="h15" style="text-align: center">
-						<a href="Prj-MunsterSurnamesFreqRpt.gif"
-							><img
-								height="333"
-								src="sPrj-MunsterSurnamesFreqRpt.gif"
-								width="248"
-								alt="Thumbnail of the print layout specification for the Munster Surnames Frequency Report, showing surname frequency rows and a programmer name and ID footer." /></a
-						><br />
-						Click for the full size version
-					</p>
+					</section>
+
+					<section>
+						<h2>Processing</h2>
+						<p>
+							You will need to sort the file on ascending Surname within ascending County name.&nbsp; Use
+							an Input Procedure to unpack the records and get rid of any non-Munster records.&nbsp;&nbsp;
+							Use a table to find the top ten surnames in each county.
+						</p>
+					</section>
+
+					<section>
+						<h2>The Surnames Report</h2>
+						<p>
+							Numeric values must be printed using zero suppression and comma insertion.&nbsp; Change page
+							after line 39 unless the End of Report line is the next line to be printed.
+						</p>
+						<p>See the print specification below for more report format details.&nbsp;</p>
+						<div style="text-align: center">
+							<table>
+								<tr style="vertical-align: top">
+									<td>Line 2-5&nbsp;&nbsp;</td>
+									<td>Page Heading. To be printed at the top of each page.</td>
+								</tr>
+								<tr style="vertical-align: top">
+									<td>Line 6-15</td>
+									<td>
+										Surname lines.&nbsp; The County name is printed only on the first
+										line.&nbsp;&nbsp; Count is the count of the number of&nbsp; households in the
+										county with this surname.&nbsp; The surname with the highest count occupies
+										position 1, the next highest position 2 and so on.
+									</td>
+								</tr>
+								<tr style="vertical-align: top">
+									<td>Line 44</td>
+									<td>Printed at the end of the report only.</td>
+								</tr>
+								<tr style="vertical-align: top">
+									<td>Line 46-47</td>
+									<td>
+										Printed at the end of the report only.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The
+										programmer name is the name of the person who wrote the program.&nbsp; The
+										programmer id is the Student Id of the person who wrote the program.
+									</td>
+								</tr>
+							</table>
+						</div>
+						<p style="text-align: center">
+							<a href="Prj-MunsterSurnamesFreqRpt.gif"
+								><img
+									height="333"
+									src="sPrj-MunsterSurnamesFreqRpt.gif"
+									width="248"
+									alt="Thumbnail of the print layout specification for the Munster Surnames Frequency Report, showing surname frequency rows and a programmer name and ID footer."
+							/></a>
+							<br />
+							Click for the full size version
+						</p>
+					</section>
+
+					<back-to-top></back-to-top>
 					<copyright-notice type="project"></copyright-notice>
-				</td>
-			</tr>
-		</table>
+					<p class="center-block"><a href="../index.html">&larr; Back to COBOL Exercises</a></p>
+				</div>
+			</div>
+		</main>
 	</body>
 </html>

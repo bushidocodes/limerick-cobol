@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+		<title>Science Fiction by Mail - Order Processing Program (Exam Paper)</title>
+		<link href="../../course/Resources/css/course.css" rel="stylesheet" />
+		<link href="../../course/Resources/css/course-components.css" rel="stylesheet" />
+		<script src="../../components/theme-toggle.js" defer></script>
+		<script src="../../components/page-hero.js" defer></script>
+		<script src="../../components/back-to-top.js" defer></script>
+		<script src="../../components/copyright-notice.js" defer></script>
+	</head>
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="page-content">
+					<page-hero
+						title="Science Fiction by Mail Order Processing Program"
+						eyebrow="COBOL Exam"
+					></page-hero>
+					<hr />
+
+					<dl class="exam-meta">
+						<dt>Time to complete</dt>
+						<dd>This is a tough one. Allow 6 hours continuous.</dd>
+						<dt>Program Download</dt>
+						<dd>
+							<a href="sfbymail.cbl">SFbyMail.Cbl</a> is a model answer. Don't look at this until you have
+							made your own attempt at the program.
+						</dd>
+						<dt>Example Output</dt>
+						<dd>
+							<p>
+								See the <a href="DATAFiles.txt">Data Files</a> with spaces inserted for easy viewing.<br />
+								The contents of the Processed Orders file is shown as well as the Orders File and the
+								Book Stock File both before and after processing.
+							</p>
+						</dd>
+						<dt>Example Input</dt>
+						<dd>
+							<p>
+								See the <a href="DATAFiles.txt">Data Files</a> with spaces inserted for easy viewing.<br />
+								The contents of the Processed Orders file is shown as well as the Orders File and the
+								Book Stock File both before and after processing.
+							</p>
+							<p>For the actual input files</p>
+							<p><a href="Orders.DAT">Orders.Dat</a> is the sequential orders file</p>
+							<p>
+								<a href="Bsf-IN.Dat">BSF-In.Dat</a> is a sequential file that be converted into the
+								indexed Book Stock File (BookStock.Dat) using the program
+								<a href="seq2bsf.cbl">Seq2BSF.Cbl</a>.
+							</p>
+							<p>
+								The conversion program is required because Indexed files are not standard ASCII files
+								and cannot be viewed or edited in a standard text application like Notepad.
+							</p>
+							<p>
+								If you want to view that contents of the indexed file you can convert it back to a
+								sequential ASCII file using the program <a href="BSF2Seq.cbl">BSF2Seq.Cbl</a>.
+							</p>
+						</dd>
+						<dt>Subprograms</dt>
+						<dd>
+							<p>
+								In a large software system, where a number of programmers are working on different
+								subprograms, some programmers will finish before others. Programmers who have completed
+								their work will want to test their programs. But if a completed program either CALLs, or
+								is CALLed by, other programs, the programmer will have to wait for the other programs to
+								be completed before any testing can be done. Obviously this not an acceptable state of
+								affairs. The problem is usually solved by means of "stubs" and "drivers".
+							</p>
+							<p>
+								A"stub" is a small program that pretends to be a Called program. The stub, of course,
+								does not provide anything like the functionality that the final subprogram will provide.
+								It contains just enough code to allow the programmer to verify that his program is
+								actually calling the subprogram and is passing and receiving the parameter values
+								correctly. The stub might do this by providing a limited set of responses to a limited
+								set of inputs or it might interrogate the user to allow him to provide a response to any
+								input parameters.
+							</p>
+							<p>
+								A "driver" is the reverse of this. It is a small program that pretends to be the CALLing
+								program. It contains just enough code to call the subprogram and to pass and receive the
+								parameter values. Just as with the stub, the driver program might generate a very
+								limited set of parameter values or might interrogate the user to obtain input parameters
+								and might display the value of any output parameters.
+							</p>
+							<p>
+								Science Fiction by Mail calls two programs that are supposed to be written by others.
+								Both of these programs have been provided as "stubs".
+							</p>
+							<p>
+								<a href="getpostage.cbl">GetPostage.Cbl</a> is the stub standing in for the real
+								GetPostage subprogram
+							</p>
+							<p>
+								<a href="getcustomeraddress.cbl">GetCustomerAddress.Cbl</a> is the stub standing in for
+								the real GetCustomerAddress.Cbl.
+							</p>
+						</dd>
+						<dt>Major Constructs</dt>
+						<dd>
+							CALL, subprograms, Sequential files, Indexed files, READ, WRITE, REWRITE, COMPUTE, UNSTRING
+						</dd>
+					</dl>
+					<hr />
+
+					<section>
+						<h2>Introduction</h2>
+						<p>
+							<i>Science Fiction by Mail</i> is a company which sells Science Fiction and Fantasy books
+							through the Internet. Customers view the book catalogues and place orders by connecting to
+							the company's web site. When an order is placed, an Order-Number is assigned, and the
+							details of the order are written to an Orders file (ORDERS.DAT). Only already registered
+							customers can place an order.
+						</p>
+						<p>
+							At the end of the day, the Orders file is processed, applying it to the Book Stock file and
+							producing a Processed Orders file.&nbsp; The Processed Orders file is used by other programs
+							(not required for this exam) to bill the customers and to produce invoices and address
+							labels.
+						</p>
+						<p>
+							For each book title required in an order, the Book Stock File must be updated by subtracting
+							the Qty-Required from the Qty-In-Stock.&nbsp; When a book request cannot be filled because
+							there is insufficient stock, this must be indicated by writing zeros to the
+							Quantity-Required field of the Processed-Orders record. The Book Stock file must not be
+							updated.
+						</p>
+						<p>
+							A program is required to apply the Orders file to the Book Stock file and produce the
+							Processed Orders file.
+						</p>
+					</section>
+
+					<section>
+						<h2>File Descriptions</h2>
+
+						<h3>The Orders File (Sequential)</h3>
+						<p>
+							The Orders file is an&nbsp; unsorted, validated, sequential file.&nbsp; Each record may
+							contain an order for up to 10 different book titles.&nbsp; Where all ten titles are not
+							requested the rest of the record is space filled.
+						</p>
+						<p>
+							The Book-Details are held in a ten element table.&nbsp; Each element consists of the Book-Id
+							and the Qty-Required. The record description is as follows;
+						</p>
+						<div class="center-block">
+							<table class="data-table">
+								<tr bgcolor="#FFFFCC">
+									<td>
+										<p class="center-block"><b>&nbsp;&nbsp; Field</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>Type</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>Length</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>Occurrence</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td><p>Order-Number</p></td>
+									<td><p class="center-block">X</p></td>
+									<td><p class="center-block">7</p></td>
+									<td><p class="center-block">1</p></td>
+								</tr>
+								<tr>
+									<td><p>Customer-Id</p></td>
+									<td><p class="center-block">X</p></td>
+									<td><p class="center-block">5</p></td>
+									<td><p class="center-block">1</p></td>
+								</tr>
+								<tr>
+									<td><p>Book-Details</p></td>
+									<td><p class="center-block">Group</p></td>
+									<td><p class="center-block">-</p></td>
+									<td><p class="center-block">10</p></td>
+								</tr>
+								<tr>
+									<td><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Book-Id</p></td>
+									<td><p class="center-block">X</p></td>
+									<td><p class="center-block">5</p></td>
+									<td><p class="center-block">-</p></td>
+								</tr>
+								<tr>
+									<td><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Qty-Required</p></td>
+									<td><p class="center-block">9</p></td>
+									<td><p class="center-block">2</p></td>
+									<td><p class="center-block">-</p></td>
+								</tr>
+							</table>
+							<p>In the following example record spaces have been inserted for convenience.</p>
+						</div>
+						<blockquote>
+							<div class="center-block">1234567 C1234&nbsp; B1234 01&nbsp; B2345 03&nbsp; B3456 02</div>
+						</blockquote>
+						<p>
+							The order number in this record is 1234567, the Customer-Id is C1234 and 3 different titles
+							have been requested.&nbsp; One copy of B1234, three copies of B2345 and two copies of B3456
+							have been ordered.
+						</p>
+
+						<h3>Book Stock File (Indexed)</h3>
+						<p>
+							The Book Stock file holds details of the company's stock of books.&nbsp; It is an indexed
+							file containing records with the following description;
+						</p>
+						<div class="center-block">
+							<table class="data-table">
+								<tr bgcolor="#FFFFCC">
+									<td>
+										<p class="center-block"><b>Field</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>Key type</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>Type</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>Length</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>Value</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td><p>Book-Id</p></td>
+									<td><p class="center-block">Primary</p></td>
+									<td><p class="center-block">X</p></td>
+									<td><p class="center-block">5</p></td>
+									<td><p class="center-block">-</p></td>
+								</tr>
+								<tr>
+									<td><p>Book-Title</p></td>
+									<td><p class="center-block">ALT</p></td>
+									<td><p class="center-block">X</p></td>
+									<td><p class="center-block">20</p></td>
+									<td><p class="center-block">-</p></td>
+								</tr>
+								<tr>
+									<td><p>Author-Id</p></td>
+									<td><p class="center-block">ALT with Duplicates</p></td>
+									<td><p class="center-block">9</p></td>
+									<td><p class="center-block">4</p></td>
+									<td><p class="center-block">-</p></td>
+								</tr>
+								<tr>
+									<td><p>Qty-In-Stock</p></td>
+									<td><p class="center-block">--</p></td>
+									<td><p class="center-block">9</p></td>
+									<td><p class="center-block">3</p></td>
+									<td><p class="center-block">0-999</p></td>
+								</tr>
+								<tr>
+									<td><p>Copy-Price</p></td>
+									<td><p class="center-block">--</p></td>
+									<td><p class="center-block">9</p></td>
+									<td><p class="center-block">4</p></td>
+									<td><p class="center-block">01.50-99.99</p></td>
+								</tr>
+							</table>
+						</div>
+
+						<h3>Processed Orders File (Sequential)</h3>
+						<p>
+							The Processed Orders file is a sequential file.&nbsp;&nbsp; For each
+							<b>book title</b> requested in the Orders File, a record must be created in the Processed
+							Orders File.&nbsp; The record description is as follows;
+						</p>
+						<div class="center-block">
+							<table class="data-table">
+								<tr bgcolor="#FFFFCC">
+									<td>
+										<p class="center-block"><b>Field</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>Type</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>Length</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>Value</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td><p>Order-Number</p></td>
+									<td><p class="center-block">X</p></td>
+									<td><p class="center-block">7</p></td>
+									<td><p class="center-block">-</p></td>
+								</tr>
+								<tr>
+									<td><p>Customer-Id</p></td>
+									<td><p class="center-block">X</p></td>
+									<td><p class="center-block">5</p></td>
+									<td><p class="center-block">-</p></td>
+								</tr>
+								<tr>
+									<td><p>Book-Title</p></td>
+									<td><p class="center-block">X</p></td>
+									<td><p class="center-block">20</p></td>
+									<td><p class="center-block">-</p></td>
+								</tr>
+								<tr>
+									<td><p>Qty-Required</p></td>
+									<td><p class="center-block">9</p></td>
+									<td><p class="center-block">2</p></td>
+									<td><p class="center-block">0-99</p></td>
+								</tr>
+								<tr>
+									<td><p>Title-Cost</p></td>
+									<td><p class="center-block">9</p></td>
+									<td><p class="center-block">5</p></td>
+									<td><p class="center-block">0.50-999.99</p></td>
+								</tr>
+								<tr>
+									<td><p>Title-Postage</p></td>
+									<td><p class="center-block">9</p></td>
+									<td><p class="center-block">4</p></td>
+									<td><p class="center-block">1.50-99.99</p></td>
+								</tr>
+							</table>
+						</div>
+					</section>
+
+					<section>
+						<h2>Sub Programs</h2>
+						<p>
+							The Copy-Postage may be obtained&nbsp; by calling two external subprograms.&nbsp; These
+							subprograms have already been written and you may assume that they will be present in the
+							same directory where your program is run.
+						</p>
+						<blockquote>
+							<p>
+								<b>GetCustomerAddress</b> is a subprogram that takes two parameters<br />
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								IN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Customer-Id&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PIC X(5)<br />
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OUT&nbsp;&nbsp;&nbsp;
+								Cust-Address &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								PIC X(40)
+							</p>
+						</blockquote>
+						<p>
+							Cust-Address contains the customer address. The parts of the customer address are separated
+							from one another by commas.&nbsp;&nbsp; The last item in the customer address is a two
+							character Country-Code.&nbsp; This code must be extracted from the customer address and then
+							used to obtain the Copy-Postage (cost of posting one book to the customer).
+						</p>
+						<p>Example address = 13 Winchester Drive, Castletroy, Limerick, Ireland, IE</p>
+						<blockquote>
+							<p>
+								<b>GetPostage</b> is a subprogram that takes two parameters<br />
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								IN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								Country-Code&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								PIC XX<br />
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OUT&nbsp;&nbsp;&nbsp;
+								Copy-Postage&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								PIC 99V99
+							</p>
+						</blockquote>
+					</section>
+
+					<back-to-top></back-to-top>
+					<copyright-notice type="exercises"></copyright-notice>
+					<p class="center-block"><a href="../index.html">&larr; Back to COBOL Exercises</a></p>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>

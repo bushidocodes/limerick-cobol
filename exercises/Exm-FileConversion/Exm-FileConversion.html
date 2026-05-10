@@ -1,592 +1,318 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta content="width=device-width, initial-scale=1" name="viewport" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
 		<title>File Conversion Program (Exam Paper)</title>
-		<style type="text/css">
-			img {
-				max-width: 100%;
-				height: auto;
-			}
-
-			table {
-				max-width: 100%;
-			}
-
-			pre {
-				overflow-x: auto;
-				max-width: 100%;
-			}
-
-			body {
-				-webkit-text-size-adjust: 100%;
-			}
-
-			@media (max-width: 600px) {
-				body {
-					margin: 4px;
-					overflow-wrap: break-word;
-					word-wrap: break-word;
-				}
-
-				table[width] {
-					width: 100% !important;
-					height: auto !important;
-				}
-
-				td[width],
-				th[width],
-				td[height],
-				th[height] {
-					width: auto !important;
-					height: auto !important;
-				}
-
-				td[bgcolor="#993300"] > h2,
-				td[bgcolor="#993300"] > h3 {
-					margin: 0.3em 0;
-				}
-
-				blockquote {
-					margin-left: 12px;
-					margin-right: 12px;
-				}
-
-				hr[width] {
-					width: 100% !important;
-				}
-
-				img,
-				iframe,
-				video,
-				embed,
-				object {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					height: auto;
-				}
-
-				pre {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					white-space: pre-wrap;
-					word-wrap: break-word;
-					overflow-wrap: break-word;
-				}
-
-				table[width="715"],
-				table[width="725"],
-				table[width="715"] > tbody,
-				table[width="725"] > tbody,
-				table[width="715"] > tbody > tr,
-				table[width="725"] > tbody > tr,
-				table[width="715"] > tbody > tr > td,
-				table[width="725"] > tbody > tr > td,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])),
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr > td {
-					display: block;
-					width: auto !important;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]),
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody {
-					display: block;
-					width: 100% !important;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr {
-					display: flex;
-					align-items: baseline;
-					gap: 0.4em;
-					margin: 0.4em 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="3%"] {
-					display: none;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="4%"] {
-					display: block;
-					flex: 0 0 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="93%"] {
-					display: block;
-					flex: 1 1 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
-				td[width="175"] > h4:not(:first-child):not(:has(img)),
-				td[width="160"] > h4:not(:first-child):not(:has(img)),
-				h4:has(> img[src*="PanelLine"]) {
-					display: none;
-				}
-
-				td[width="175"] > h3,
-				td[width="175"] > h4,
-				td[width="175"] > p,
-				td[width="160"] > h3,
-				td[width="160"] > h4,
-				td[width="160"] > p {
-					margin: 0.2em 0;
-				}
-			}
-		</style>
+		<link href="../../course/Resources/css/course.css" rel="stylesheet" />
+		<link href="../../course/Resources/css/course-components.css" rel="stylesheet" />
+		<script src="../../components/theme-toggle.js" defer></script>
+		<script src="../../components/page-hero.js" defer></script>
+		<script src="../../components/back-to-top.js" defer></script>
 		<script src="../../components/copyright-notice.js" defer></script>
 	</head>
-	<body bgcolor="#FFFFFF" class="Normal" lang="EN-GB" link="blue" vlink="purple">
-		<table class="data-table" cellpadding="5" cellspacing="0" height="72%" width="694">
-			<tr>
-				<td bgcolor="#990000" colspan="3" height="38">
-					<h2 style="text-align: center">
-						File Conversion<br />
-						Program
-					</h2>
-				</td>
-			</tr>
-			<tr style="vertical-align: top">
-				<td bgcolor="#FFFFFF" colspan="2" height="27"><b>Time to complete</b></td>
-				<td bgcolor="#FFFFFF" height="27" width="78%">This is a tough one. Allow 6 hours continuous.</td>
-			</tr>
-			<tr style="vertical-align: top">
-				<td bgcolor="#FFFFFF" colspan="2" height="8"><b>Program Download</b></td>
-				<td bgcolor="#FFFFFF" height="8" width="78%">
-					<a href="FileConv.cbl">FileConv.Cbl</a> is a model answer. Don't look at this until you have made
-					your own attempt at the program.
-				</td>
-			</tr>
-			<tr style="vertical-align: top">
-				<td bgcolor="#FFFFFF" colspan="2" height="8"><b>Example Output</b></td>
-				<td bgcolor="#FFFFFF" height="8" width="78%">
-					<p><a href="SClients.DAT">SClients.Dat</a> (The sorted clients file)</p>
-					<p><a href="Error.DAT">Error.Dat</a> (The error file)</p>
-				</td>
-			</tr>
-			<tr style="vertical-align: top">
-				<td bgcolor="#FFFFFF" colspan="2" height="46"><b>Example Input</b></td>
-				<td bgcolor="#FFFFFF" height="46" width="78%">
-					<p><a href="Clients.DAT">Clients.Dat</a> (The unsorted Client-Names file)</p>
-				</td>
-			</tr>
-			<tr style="vertical-align: top">
-				<td bgcolor="#FFFFFF" colspan="2" height="23"><b>Major Constructs</b></td>
-				<td bgcolor="#FFFFFF" height="23" width="78%">
-					Sequential files, SORT with Input Procedure, Pre-Defined Table of values, STRING, UNSTRING, INSPECT,
-					SEARCH ALL
-				</td>
-			</tr>
-			<tr>
-				<td colspan="3" height="1373" style="vertical-align: top">
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="page-content">
+					<page-hero title="File Conversion Program" eyebrow="COBOL Exam"></page-hero>
 					<hr />
-					<h3>Introduction</h3>
-					<p>
-						A program is required to convert the unsorted Client-Names file of free-format, variable length,
-						records into a sorted file of fixed length records. The sorted file must be sorted into
-						ascending Client-Name within ascending County-Name. In addition to converting and sorting the
-						file, the program must ensure that the county name is valid and must convert it to a county
-						number.<br />
-						<br />
-					</p>
-					<h3>File Descriptions</h3>
-					<h4>The Client-Names File (input)</h4>
-					<p>
-						The records of the Client-Names file are unsorted, free-format, variable length records where
-						the fields are separated by commas. While the fields do not occupy specific character positions,
-						they are in a specific order. The Client-Name is first, the Client-Address is next and the
-						Client-Number is last. The fields also have a maximum size. The Client-Name is a maximum of 35
-						characters, the Address is a maximum of 60 characters long and the Client-Number is always 4
-						digits long.
-					</p>
-					<p>
-						The constituent parts of the fields are separated by one or more spaces. The fields may be upper
-						case or lower case or a mixture of these. In the Address field the County Name will always be
-						the last part of the address.
-					</p>
-					<p>Some example records are;</p>
-					<pre>Michael Terence Ryan,34 Winchester Drive Dublin 3 Co. Dublin,0123
-MARY TYLER MOORE,THIS IS AN INVALID ADDRESS,1432<br>Fred James Hoyle,17 Starry Lane Cork Co. Cork,0012</pre>
-					<h4>The Sorted-Clients File (output)</h4>
-					<p>
-						The Sorted-Clients file is produced from the unsorted Client-Names file. The records of the file
-						must be fixed length records held in ascending Client-Name within ascending County-Num. Each
-						record has the following description.
-					</p>
-					<div style="text-align: center">
-						<table class="data-table" cellpadding="0" cellspacing="0" height="60" width="497">
-							<tr>
-								<td bgcolor="#FFFFCC" height="23" width="119" style="vertical-align: top">
-									<p class="MsoNormal" style="text-align: center"><b>Field</b></p>
-								</td>
-								<td bgcolor="#FFFFCC" height="23" width="40" style="vertical-align: top">
-									<p class="MsoNormal" style="text-align: center"><b>Type</b><b></b></p>
-								</td>
-								<td bgcolor="#FFFFCC" height="23" width="71" style="vertical-align: top">
-									<p class="MsoNormal" style="text-align: center"><b>Length</b><b></b></p>
-								</td>
-								<td bgcolor="#FFFFCC" height="23" width="119" style="vertical-align: top">
-									<p class="MsoNormal" style="text-align: center"><b>Value</b><b></b></p>
-								</td>
-							</tr>
-							<tr>
-								<td height="2" width="119" style="vertical-align: top">
-									<div style="text-align: left">Client-Name</div>
-								</td>
-								<td height="2" width="40" style="vertical-align: top">
-									<div style="text-align: center">X</div>
-								</td>
-								<td height="2" width="71" style="vertical-align: top">
-									<div style="text-align: center">30</div>
-								</td>
-								<td height="2" width="119" style="vertical-align: top">
-									<div style="text-align: center">--</div>
-								</td>
-							</tr>
-							<tr>
-								<td height="2" width="119" style="vertical-align: top">
-									<div style="text-align: left">Client-Address</div>
-								</td>
-								<td height="2" width="40" style="vertical-align: top">
-									<div style="text-align: center">X</div>
-								</td>
-								<td height="2" width="71" style="vertical-align: top">
-									<div style="text-align: center">45</div>
-								</td>
-								<td height="2" width="119" style="vertical-align: top">
-									<div style="text-align: center">--</div>
-								</td>
-							</tr>
-							<tr>
-								<td height="2" width="119" style="vertical-align: top">
-									<div style="text-align: left">County-Num</div>
-								</td>
-								<td height="2" width="40" style="vertical-align: top">
-									<div style="text-align: center">9</div>
-								</td>
-								<td height="2" width="71" style="vertical-align: top">
-									<div style="text-align: center">2</div>
-								</td>
-								<td height="2" width="119" style="vertical-align: top">
-									<div style="text-align: center">1-32</div>
-								</td>
-							</tr>
-							<tr>
-								<td height="2" width="119" style="vertical-align: top">
-									<div style="text-align: left">Client-Num</div>
-								</td>
-								<td height="2" width="40" style="vertical-align: top">
-									<div style="text-align: center">9</div>
-								</td>
-								<td height="2" width="71" style="vertical-align: top">
-									<div style="text-align: center">4</div>
-								</td>
-								<td height="2" width="119" style="vertical-align: top">
-									<div style="text-align: center">0001-9999</div>
-								</td>
-							</tr>
-						</table>
-					</div>
-					<p>
-						This file only contains records with valid county names. Records with invalid county names must
-						be written to an error file.
-					</p>
-					<p>
-						The Client-Name in the sorted file must have the surname first so that the sorting will be done
-						correctly.
-					</p>
-					<p>Some sample records are;</p>
-					<pre>
+
+					<dl class="exam-meta">
+						<dt>Time to complete</dt>
+						<dd>This is a tough one. Allow 6 hours continuous.</dd>
+						<dt>Program Download</dt>
+						<dd>
+							<a href="FileConv.cbl">FileConv.Cbl</a> is a model answer. Don't look at this until you have
+							made your own attempt at the program.
+						</dd>
+						<dt>Example Output</dt>
+						<dd>
+							<p><a href="SClients.DAT">SClients.Dat</a> (The sorted clients file)</p>
+							<p><a href="Error.DAT">Error.Dat</a> (The error file)</p>
+						</dd>
+						<dt>Example Input</dt>
+						<dd>
+							<p><a href="Clients.DAT">Clients.Dat</a> (The unsorted Client-Names file)</p>
+						</dd>
+						<dt>Major Constructs</dt>
+						<dd>
+							Sequential files, SORT with Input Procedure, Pre-Defined Table of values, STRING, UNSTRING,
+							INSPECT, SEARCH ALL
+						</dd>
+					</dl>
+					<hr />
+
+					<section>
+						<h2>Introduction</h2>
+						<p>
+							A program is required to convert the unsorted Client-Names file of free-format, variable
+							length, records into a sorted file of fixed length records. The sorted file must be sorted
+							into ascending Client-Name within ascending County-Name. In addition to converting and
+							sorting the file, the program must ensure that the county name is valid and must convert it
+							to a county number.
+						</p>
+					</section>
+
+					<section>
+						<h2>File Descriptions</h2>
+
+						<h3>The Client-Names File (input)</h3>
+						<p>
+							The records of the Client-Names file are unsorted, free-format, variable length records
+							where the fields are separated by commas. While the fields do not occupy specific character
+							positions, they are in a specific order. The Client-Name is first, the Client-Address is
+							next and the Client-Number is last. The fields also have a maximum size. The Client-Name is
+							a maximum of 35 characters, the Address is a maximum of 60 characters long and the
+							Client-Number is always 4 digits long.
+						</p>
+						<p>
+							The constituent parts of the fields are separated by one or more spaces. The fields may be
+							upper case or lower case or a mixture of these. In the Address field the County Name will
+							always be the last part of the address.
+						</p>
+						<p>Some example records are;</p>
+						<pre>
+Michael Terence Ryan,34 Winchester Drive Dublin 3 Co. Dublin,0123
+MARY TYLER MOORE,THIS IS AN INVALID ADDRESS,1432
+Fred James Hoyle,17 Starry Lane Cork Co. Cork,0012</pre
+						>
+
+						<h3>The Sorted-Clients File (output)</h3>
+						<p>
+							The Sorted-Clients file is produced from the unsorted Client-Names file. The records of the
+							file must be fixed length records held in ascending Client-Name within ascending County-Num.
+							Each record has the following description.
+						</p>
+						<div class="center-block">
+							<table class="data-table">
+								<tr>
+									<td bgcolor="#FFFFCC">
+										<p class="center-block"><b>Field</b></p>
+									</td>
+									<td bgcolor="#FFFFCC">
+										<p class="center-block"><b>Type</b></p>
+									</td>
+									<td bgcolor="#FFFFCC">
+										<p class="center-block"><b>Length</b></p>
+									</td>
+									<td bgcolor="#FFFFCC">
+										<p class="center-block"><b>Value</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td>Client-Name</td>
+									<td><div class="center-block">X</div></td>
+									<td><div class="center-block">30</div></td>
+									<td><div class="center-block">--</div></td>
+								</tr>
+								<tr>
+									<td>Client-Address</td>
+									<td><div class="center-block">X</div></td>
+									<td><div class="center-block">45</div></td>
+									<td><div class="center-block">--</div></td>
+								</tr>
+								<tr>
+									<td>County-Num</td>
+									<td><div class="center-block">9</div></td>
+									<td><div class="center-block">2</div></td>
+									<td><div class="center-block">1-32</div></td>
+								</tr>
+								<tr>
+									<td>Client-Num</td>
+									<td><div class="center-block">9</div></td>
+									<td><div class="center-block">4</div></td>
+									<td><div class="center-block">0001-9999</div></td>
+								</tr>
+							</table>
+						</div>
+						<p>
+							This file only contains records with valid county names. Records with invalid county names
+							must be written to an error file.
+						</p>
+						<p>
+							The Client-Name in the sorted file must have the surname first so that the sorting will be
+							done correctly.
+						</p>
+						<p>Some sample records are;</p>
+						<pre>
 Hoyle Fred James              17 Starry Lane Cork Co. CORK                060012
 Ryan Michael Terence          34 Winchester Drive Dubline 7 Co. Dublin    090123
      </pre
-					>
-					<h4>The Error File</h4>
-					<p>
-						Any records that are found to contain invalid county names are sent to an Error File. This file
-						has the same format as the input file
-					</p>
-					<p>An example error record is;</p>
-					<blockquote>
-						<p>Mary Tyler Moore,This is an invalid address,1435<br /></p>
-					</blockquote>
-					<h3>Appendix</h3>
-					<p>
-						The names, and corresponding county numbers, of the 32 counties of Ireland are given in the
-						table below.<br />
-					</p>
-					<div style="text-align: center">
-						<table class="data-table" cellpadding="2" cellspacing="0">
-							<tr bgcolor="#FFFFCC">
-								<td class="Normal" width="94" style="vertical-align: top">
-									<div style="text-align: center"><b>County Num</b></div>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<div style="text-align: center"><b>County Name</b></div>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">1</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Antrim</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">2</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Armagh</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">3</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Carlow</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">4</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Cavan</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">5</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Clare</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">6</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Cork</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">7</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Derry</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">8</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Donegal</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">9</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Down</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">10</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Dublin</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">11</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Fermanagh</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">12</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Galway</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">13</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Kerry</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">14</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Kildare</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">15</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Kilkenny</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">16</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Laois</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">17</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Leitrim</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">18</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Limerick</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">19</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Longford</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">20</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Louth</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">21</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Mayo</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">22</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Meath</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">23</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Monaghan</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">24</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Offaly</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">25</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Roscommon</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">26</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Sligo</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">27</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Tipperary</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">28</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Tyrone</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">29</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Westmeath</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">30</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Waterford</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">31</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Wexford</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="94" style="vertical-align: top">
-									<p style="text-align: center">32</p>
-								</td>
-								<td class="Normal" width="101" style="vertical-align: top">
-									<p>Wicklow</p>
-								</td>
-							</tr>
-						</table>
-					</div>
-					<copyright-notice type="project"></copyright-notice>
-				</td>
-			</tr>
-		</table>
+						>
+
+						<h3>The Error File</h3>
+						<p>
+							Any records that are found to contain invalid county names are sent to an Error File. This
+							file has the same format as the input file
+						</p>
+						<p>An example error record is;</p>
+						<blockquote>
+							<p>Mary Tyler Moore,This is an invalid address,1435</p>
+						</blockquote>
+					</section>
+
+					<section>
+						<h2>Appendix</h2>
+						<p>
+							The names, and corresponding county numbers, of the 32 counties of Ireland are given in the
+							table below.
+						</p>
+						<div class="center-block">
+							<table class="data-table">
+								<tr bgcolor="#FFFFCC">
+									<td>
+										<div class="center-block"><b>County Num</b></div>
+									</td>
+									<td>
+										<div class="center-block"><b>County Name</b></div>
+									</td>
+								</tr>
+								<tr>
+									<td><p class="center-block">1</p></td>
+									<td><p>Antrim</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">2</p></td>
+									<td><p>Armagh</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">3</p></td>
+									<td><p>Carlow</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">4</p></td>
+									<td><p>Cavan</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">5</p></td>
+									<td><p>Clare</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">6</p></td>
+									<td><p>Cork</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">7</p></td>
+									<td><p>Derry</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">8</p></td>
+									<td><p>Donegal</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">9</p></td>
+									<td><p>Down</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">10</p></td>
+									<td><p>Dublin</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">11</p></td>
+									<td><p>Fermanagh</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">12</p></td>
+									<td><p>Galway</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">13</p></td>
+									<td><p>Kerry</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">14</p></td>
+									<td><p>Kildare</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">15</p></td>
+									<td><p>Kilkenny</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">16</p></td>
+									<td><p>Laois</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">17</p></td>
+									<td><p>Leitrim</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">18</p></td>
+									<td><p>Limerick</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">19</p></td>
+									<td><p>Longford</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">20</p></td>
+									<td><p>Louth</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">21</p></td>
+									<td><p>Mayo</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">22</p></td>
+									<td><p>Meath</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">23</p></td>
+									<td><p>Monaghan</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">24</p></td>
+									<td><p>Offaly</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">25</p></td>
+									<td><p>Roscommon</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">26</p></td>
+									<td><p>Sligo</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">27</p></td>
+									<td><p>Tipperary</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">28</p></td>
+									<td><p>Tyrone</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">29</p></td>
+									<td><p>Westmeath</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">30</p></td>
+									<td><p>Waterford</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">31</p></td>
+									<td><p>Wexford</p></td>
+								</tr>
+								<tr>
+									<td><p class="center-block">32</p></td>
+									<td><p>Wicklow</p></td>
+								</tr>
+							</table>
+						</div>
+					</section>
+
+					<back-to-top></back-to-top>
+					<copyright-notice type="exercises"></copyright-notice>
+					<p class="center-block"><a href="../index.html">&larr; Back to COBOL Exercises</a></p>
+				</div>
+			</div>
+		</main>
 	</body>
 </html>

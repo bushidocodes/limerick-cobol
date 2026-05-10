@@ -1,917 +1,518 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta content="width=device-width, initial-scale=1" name="viewport" />
-		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-		<style type="text/css">
-			img {
-				max-width: 100%;
-				height: auto;
-			}
-
-			table {
-				max-width: 100%;
-			}
-
-			pre {
-				overflow-x: auto;
-				max-width: 100%;
-			}
-
-			body {
-				-webkit-text-size-adjust: 100%;
-			}
-
-			@media (max-width: 600px) {
-				body {
-					margin: 4px;
-					overflow-wrap: break-word;
-					word-wrap: break-word;
-				}
-
-				table[width] {
-					width: 100% !important;
-					height: auto !important;
-				}
-
-				td[width],
-				th[width],
-				td[height],
-				th[height] {
-					width: auto !important;
-					height: auto !important;
-				}
-
-				td[bgcolor="#993300"] > h2,
-				td[bgcolor="#993300"] > h3 {
-					margin: 0.3em 0;
-				}
-
-				blockquote {
-					margin-left: 12px;
-					margin-right: 12px;
-				}
-
-				hr[width] {
-					width: 100% !important;
-				}
-
-				img,
-				iframe,
-				video,
-				embed,
-				object {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					height: auto;
-				}
-
-				pre {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					white-space: pre-wrap;
-					word-wrap: break-word;
-					overflow-wrap: break-word;
-				}
-
-				table[width="715"],
-				table[width="725"],
-				table[width="715"] > tbody,
-				table[width="725"] > tbody,
-				table[width="715"] > tbody > tr,
-				table[width="725"] > tbody > tr,
-				table[width="715"] > tbody > tr > td,
-				table[width="725"] > tbody > tr > td,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])),
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr > td {
-					display: block;
-					width: auto !important;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]),
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody {
-					display: block;
-					width: 100% !important;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr {
-					display: flex;
-					align-items: baseline;
-					gap: 0.4em;
-					margin: 0.4em 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="3%"] {
-					display: none;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="4%"] {
-					display: block;
-					flex: 0 0 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="93%"] {
-					display: block;
-					flex: 1 1 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
-				td[width="175"] > h4:not(:first-child):not(:has(img)),
-				td[width="160"] > h4:not(:first-child):not(:has(img)),
-				h4:has(> img[src*="PanelLine"]) {
-					display: none;
-				}
-
-				td[width="175"] > h3,
-				td[width="175"] > h4,
-				td[width="175"] > p,
-				td[width="160"] > h3,
-				td[width="160"] > h4,
-				td[width="160"] > p {
-					margin: 0.2em 0;
-				}
-			}
-		</style>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
 		<title>ACME Stock Reorder 1999 (Exam Paper)</title>
+		<link href="../../course/Resources/css/course.css" rel="stylesheet" />
+		<link href="../../course/Resources/css/course-components.css" rel="stylesheet" />
+		<script src="../../components/theme-toggle.js" defer></script>
+		<script src="../../components/page-hero.js" defer></script>
+		<script src="../../components/back-to-top.js" defer></script>
 		<script src="../../components/copyright-notice.js" defer></script>
 	</head>
-	<body bgcolor="#FFFFFF" class="Normal" lang="EN-GB" link="blue" vlink="purple">
-		<table class="data-table" cellpadding="5" cellspacing="0" height="72%" width="694">
-			<tr>
-				<td bgcolor="#990000" colspan="3" height="48">
-					<h2 style="text-align: center">
-						The ACME<br />
-						Stock Reorder System
-					</h2>
-				</td>
-			</tr>
-			<tr style="vertical-align: top">
-				<td bgcolor="#FFFFFF" colspan="2" height="27"><b>Time to complete</b></td>
-				<td bgcolor="#FFFFFF" height="27" width="78%">This is a tough one. Allow 6 hours continuous.</td>
-			</tr>
-			<tr style="vertical-align: top">
-				<td bgcolor="#FFFFFF" colspan="2" height="87"><b>Program Download</b></td>
-				<td bgcolor="#FFFFFF" height="87" width="78%">
-					<p>
-						<a href="Acme99.CBL">ACME99.Cbl</a> is a model answer. Don't look at this until you have made
-						your own attempt at the program.
-					</p>
-					<p>
-						The main program (ACME99.cbl) calls the <a href="POSTAGE-RATE.CBL">PostageRate.Cbl</a> program..
-					</p>
-				</td>
-			</tr>
-			<tr style="vertical-align: top">
-				<td bgcolor="#FFFFFF" colspan="2" height="8"><b>Example Output</b></td>
-				<td bgcolor="#FFFFFF" height="8" width="78%">
-					<p>
-						<a href="DataFiles.doc">DataFiles.Doc</a> (A word file showing the contents of the Orders file
-						after running the program and of the Stock and Manufacturer files both before and after running
-						the program.)
-					</p>
-				</td>
-			</tr>
-			<tr style="vertical-align: top">
-				<td bgcolor="#FFFFFF" colspan="2" height="195"><b>Example Input</b></td>
-				<td bgcolor="#FFFFFF" height="195" width="78%">
-					<p>
-						<a href="DataFilesBefore/INSTK.DAT">InStk.Dat</a> and
-						<a href="DataFilesBefore/INMANF.DAT">In-Manf.Dat</a> are sequential files that must be converted
-						into the relative Stock File (Stock.Dat) and the indexed Manufacturer File (Manf.Dat) by using
-						<a href="DataFilesBefore/Seq2Direct.CBL">the Seq2Direct.Cbl</a> program.
-					</p>
-					<p>
-						The conversion program is required because direct access files are not standard ASCII files and
-						cannot be viewed or edited in a standard text application like Notepad.
-					</p>
-					<p>
-						To view the contents of the Stock and Manufacturer files they must first be converted into
-						sequential files using the <a href="DataFilesAfter/Direct2Seq.CBL">Direct2Seq.Cbl</a> program.
-					</p>
-				</td>
-			</tr>
-			<tr style="vertical-align: top">
-				<td bgcolor="#FFFFFF" colspan="2" height="23"><b>Major Constructs</b></td>
-				<td bgcolor="#FFFFFF" height="23" width="78%">
-					Indexed files, Relative Files, SubPrograms, <code class="language-cobol">CALL..USING</code>,
-					<code class="language-cobol">READ</code>, <code class="language-cobol">WRITE</code>,
-					<code class="language-cobol">REWRITE</code>, Condition Names (level 88s),
-					<code class="language-cobol">EVALUATE</code>, <code class="language-cobol">UNSTRING</code>,
-					<code class="language-cobol">MULTIPLY..ON SIZE ERROR</code>.
-				</td>
-			</tr>
-			<tr>
-				<td colspan="3" height="1373" style="vertical-align: top">
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="page-content">
+					<page-hero title="The ACME Stock Reorder System" eyebrow="COBOL Exam"></page-hero>
 					<hr />
-					<h3><span style="font-variant: normal; text-transform: uppercase">Introduction</span></h3>
-					<p>
-						Acme Manufacturing Plc. manufactures a range of cheap catering equipment for the European
-						market. Some of the parts used are fabricated within the company, but most are standard units
-						purchased from a range of companies in Europe and Ireland.<br />
-						<br />
-						<br />
-					</p>
-					<h3>General Description</h3>
-					<p>
-						A program is required which will process the Stock file and Manufacturer file to create an
-						Orders file containing ordering information for all the parts that need to be re-ordered (i.e.
-						where the QtyInStock is less than the ReorderLevel).
-					</p>
-					<p>
-						For each stock item that needs to be re-ordered the program will create a record in the Orders
-						file and will set an <code class="language-cobol">ONORDER</code> flag in the Stock file to show
-						that the item has been ordered.
-					</p>
-					<p>
-						Acme Manufacturing tries to pay all suppliers in EU countries in advance. For these countries,
-						the <code class="language-cobol">COSTOFITEMS</code> and
-						<code class="language-cobol">POSTAGE</code>
-						fields of each Orders file record must be calculated.
-					</p>
-					<p>
-						With the exception of the Republic of Ireland, postage rates for all EU countries are the same.
-						The postage rates are obtained by calling a program "PostageRate" with two parameters; the
-						<code class="language-cobol">POSTNUMBER</code> (In) and the
-						<code class="language-cobol">POSTCHARGE</code> (In/Out). The
-						<code class="language-cobol">POSTNUMBER</code> is derived, as shown by the decision table below.
-						The <code class="language-cobol">POSTCHARGE</code> is the value returned (in Euro and Cent :-
-						max €99.99) by "PostageRate" for a particular <code class="language-cobol">POSTNUMBER</code>.
-						Note, that if the total weight of the items ordered is greater than 50kg then the items cannot
-						be sent by post and the <code class="language-cobol">POSTAGE</code> must be set to €0.00.
-					</p>
-					<div style="text-align: center">
-						<table class="data-table" cellpadding="0" cellspacing="0">
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="111" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">Weight To</span></b
-										><br />
-										500&nbsp; g
-									</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center">
-										<br />
-										Y
-									</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center">
-										<br />
-										Y
-									</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="111" style="vertical-align: top">
-									<p style="text-align: center">1&nbsp;&nbsp;&nbsp; kg</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center">Y</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center">Y</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="111" style="vertical-align: top">
-									<p style="text-align: center">3&nbsp;&nbsp;&nbsp; kg</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center">Y</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center">Y</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="111" style="vertical-align: top">
-									<p style="text-align: center">5&nbsp;&nbsp;&nbsp; kg</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center">Y</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center">Y</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="111" style="vertical-align: top">
-									<p style="text-align: center">10&nbsp; kg</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center">Y</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center">Y</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="111" style="vertical-align: top">
-									<p style="text-align: center">50&nbsp; kg</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center">Y</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center">&nbsp;Y</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="111" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">Country</span></b>
-									</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="111" style="vertical-align: top">
-									<p style="text-align: center">Republic</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center">Y</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center">Y</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center">Y</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center">Y</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center">Y</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center">Y</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="111" style="vertical-align: top">
-									<p style="text-align: center">Other EU</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center">Y</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center">Y</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center">Y</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center">Y</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center">Y</p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center">Y</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="111" style="vertical-align: top">
-									<p style="text-align: center"><b>Post Number</b></p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center"><b>1</b></p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center"><b>2</b></p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center"><b>3</b></p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center"><b>4</b></p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center"><b>5</b></p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center"><b>6</b></p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center"><b>7</b></p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center"><b>8</b></p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center"><b>9</b></p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center"><b>10</b></p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center"><b>11</b></p>
-								</td>
-								<td class="Normal" width="38" style="vertical-align: top">
-									<p style="text-align: center"><b>12</b></p>
-								</td>
-							</tr>
-						</table>
-					</div>
-					<h3>
-						<br />
-						<br />
-						File Descriptions<br />
-						<br />
-					</h3>
-					<h4><b>Orders file (Sequential)</b></h4>
-					<div style="text-align: center">
-						<table class="data-table" cellpadding="0" cellspacing="0">
-							<tr bgcolor="#FFFFCC">
-								<td class="Normal" width="139" style="vertical-align: top">
-									<p style="text-align: center"><b>Field</b></p>
-								</td>
-								<td class="Normal" width="67" style="vertical-align: top">
-									<p style="text-align: center"><b>Type</b></p>
-								</td>
-								<td class="Normal" width="100" style="vertical-align: top">
-									<p style="text-align: center"><b>Length</b></p>
-								</td>
-								<td class="Normal" width="154" style="vertical-align: top">
-									<p style="text-align: center"><b>Values</b></p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="139" style="vertical-align: top">
-									<p><span style="text-transform: uppercase">ItemDescription</span></p>
-								</td>
-								<td class="Normal" width="67" style="vertical-align: top">
-									<p style="text-align: center">X</p>
-								</td>
-								<td class="Normal" width="100" style="vertical-align: top">
-									<p style="text-align: center">30</p>
-								</td>
-								<td class="Normal" width="154" style="vertical-align: top">
-									<p style="text-align: center">--</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" height="20" width="139" style="vertical-align: top">
-									<p><span style="text-transform: uppercase">ManfName</span></p>
-								</td>
-								<td class="Normal" height="20" width="67" style="vertical-align: top">
-									<p style="text-align: center">X</p>
-								</td>
-								<td class="Normal" height="20" width="100" style="vertical-align: top">
-									<p style="text-align: center">30</p>
-								</td>
-								<td class="Normal" height="20" width="154" style="vertical-align: top">
-									<p style="text-align: center">--</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="139" style="vertical-align: top">
-									<p><span style="text-transform: uppercase">QtyRequired</span></p>
-								</td>
-								<td class="Normal" width="67" style="vertical-align: top">
-									<p style="text-align: center">9</p>
-								</td>
-								<td class="Normal" width="100" style="vertical-align: top">
-									<p style="text-align: center">6</p>
-								</td>
-								<td class="Normal" width="154" style="vertical-align: top">
-									<p style="text-align: center">1 - 999999</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="139" style="vertical-align: top">
-									<p><span style="text-transform: uppercase">CostOfItems</span></p>
-								</td>
-								<td class="Normal" width="67" style="vertical-align: top">
-									<p style="text-align: center">9</p>
-								</td>
-								<td class="Normal" width="100" style="vertical-align: top">
-									<p style="text-align: center">7</p>
-								</td>
-								<td class="Normal" width="154" style="vertical-align: top">
-									<p style="text-align: center">0.00 - 99999.99</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="139" style="vertical-align: top">
-									<p><span style="text-transform: uppercase">Postage</span></p>
-								</td>
-								<td class="Normal" width="67" style="vertical-align: top">
-									<p style="text-align: center">9</p>
-								</td>
-								<td class="Normal" width="100" style="vertical-align: top">
-									<p style="text-align: center">4</p>
-								</td>
-								<td class="Normal" width="154" style="vertical-align: top">
-									<p style="text-align: center">0.00&nbsp; - 99.99</p>
-								</td>
-							</tr>
-						</table>
-						<p style="text-align: left">
-							The last two items are 0 for all non EU countries.<br />
-							The <span style="text-transform: uppercase">QtyRequired</span> is obtained from the
-							<span style="text-transform: uppercase">ReorderQty</span> field in the Stock File.
+
+					<dl class="exam-meta">
+						<dt>Time to complete</dt>
+						<dd>This is a tough one. Allow 6 hours continuous.</dd>
+						<dt>Program Download</dt>
+						<dd>
+							<p>
+								<a href="Acme99.CBL">ACME99.Cbl</a> is a model answer. Don't look at this until you have
+								made your own attempt at the program.
+							</p>
+							<p>
+								The main program (ACME99.cbl) calls the
+								<a href="POSTAGE-RATE.CBL">PostageRate.Cbl</a> program..
+							</p>
+						</dd>
+						<dt>Example Output</dt>
+						<dd>
+							<p>
+								<a href="DataFiles.doc">DataFiles.Doc</a> (A word file showing the contents of the
+								Orders file after running the program and of the Stock and Manufacturer files both
+								before and after running the program.)
+							</p>
+						</dd>
+						<dt>Example Input</dt>
+						<dd>
+							<p>
+								<a href="DataFilesBefore/INSTK.DAT">InStk.Dat</a> and
+								<a href="DataFilesBefore/INMANF.DAT">In-Manf.Dat</a> are sequential files that must be
+								converted into the relative Stock File (Stock.Dat) and the indexed Manufacturer File
+								(Manf.Dat) by using
+								<a href="DataFilesBefore/Seq2Direct.CBL">the Seq2Direct.Cbl</a> program.
+							</p>
+							<p>
+								The conversion program is required because direct access files are not standard ASCII
+								files and cannot be viewed or edited in a standard text application like Notepad.
+							</p>
+							<p>
+								To view the contents of the Stock and Manufacturer files they must first be converted
+								into sequential files using the
+								<a href="DataFilesAfter/Direct2Seq.CBL">Direct2Seq.Cbl</a> program.
+							</p>
+						</dd>
+						<dt>Major Constructs</dt>
+						<dd>
+							Indexed files, Relative Files, SubPrograms, <code class="language-cobol">CALL..USING</code>,
+							<code class="language-cobol">READ</code>, <code class="language-cobol">WRITE</code>,
+							<code class="language-cobol">REWRITE</code>, Condition Names (level 88s),
+							<code class="language-cobol">EVALUATE</code>, <code class="language-cobol">UNSTRING</code>,
+							<code class="language-cobol">MULTIPLY..ON SIZE ERROR</code>.
+						</dd>
+					</dl>
+					<hr />
+
+					<section>
+						<h2>Introduction</h2>
+						<p>
+							Acme Manufacturing Plc. manufactures a range of cheap catering equipment for the European
+							market. Some of the parts used are fabricated within the company, but most are standard
+							units purchased from a range of companies in Europe and Ireland.
 						</p>
-					</div>
-					<p>
-						The <span style="text-transform: uppercase">CostOfItems</span> is the
-						<span style="text-transform: uppercase">QtyRequired</span> multiplied by the
-						<span style="text-transform: uppercase">ItemCost</span>.<br />
-						<br />
-					</p>
-					<p><b>Stock File (Relative)</b></p>
-					<div style="text-align: center">
-						<table class="data-table" cellpadding="0" cellspacing="0">
-							<tr bgcolor="#FFFFCC">
-								<td class="Normal" width="139" style="vertical-align: top">
-									<p style="text-align: center"><b>Field</b></p>
-								</td>
-								<td class="Normal" width="67" style="vertical-align: top">
-									<p style="text-align: center"><b>Type</b></p>
-								</td>
-								<td class="Normal" width="100" style="vertical-align: top">
-									<p style="text-align: center"><b>Length</b></p>
-								</td>
-								<td class="Normal" width="154" style="vertical-align: top">
-									<p style="text-align: center"><b>Values</b></p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="139" style="vertical-align: top">
-									<p><span style="text-transform: uppercase">StockNumber</span></p>
-								</td>
-								<td class="Normal" width="66" style="vertical-align: top">
-									<p style="text-align: center">
-										<span style="text-transform: uppercase">9</span>
-									</p>
-								</td>
-								<td class="Normal" width="85" style="vertical-align: top">
-									<p style="text-align: center">
-										<span style="text-transform: uppercase">5</span>
-									</p>
-								</td>
-								<td class="Normal" width="172" style="vertical-align: top">
-									<p style="text-align: center">
-										<span style="text-transform: uppercase">10001 - 99999</span>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="139" style="vertical-align: top">
-									<p><span style="text-transform: uppercase">ManfCode</span></p>
-								</td>
-								<td class="Normal" width="66" style="vertical-align: top">
-									<p style="text-align: center">
-										<span style="text-transform: uppercase">X</span>
-									</p>
-								</td>
-								<td class="Normal" width="85" style="vertical-align: top">
-									<p style="text-align: center">
-										<span style="text-transform: uppercase">4</span>
-									</p>
-								</td>
-								<td class="Normal" width="172" style="vertical-align: top">
-									<p style="text-align: center">
-										<span style="text-transform: uppercase">aaaa- zzzz</span>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="139" style="vertical-align: top">
-									<p><span style="text-transform: uppercase">ItemDescription</span></p>
-								</td>
-								<td class="Normal" width="66" style="vertical-align: top">
-									<p style="text-align: center">
-										<span style="text-transform: uppercase">X</span>
-									</p>
-								</td>
-								<td class="Normal" width="85" style="vertical-align: top">
-									<p style="text-align: center">
-										<span style="text-transform: uppercase">30</span>
-									</p>
-								</td>
-								<td class="Normal" width="172" style="vertical-align: top">
-									<p style="text-align: center">
-										<span style="text-transform: uppercase">--</span>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="139" style="vertical-align: top">
-									<p><span style="text-transform: uppercase">QtyInStock</span></p>
-								</td>
-								<td class="Normal" width="66" style="vertical-align: top">
-									<p style="text-align: center">
-										<span style="text-transform: uppercase">9</span>
-									</p>
-								</td>
-								<td class="Normal" width="85" style="vertical-align: top">
-									<p style="text-align: center">
-										<span style="text-transform: uppercase">6</span>
-									</p>
-								</td>
-								<td class="Normal" width="172" style="vertical-align: top">
-									<p style="text-align: center">
-										<span style="text-transform: uppercase">1 - 999999</span>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="139" style="vertical-align: top">
-									<p><span style="text-transform: uppercase">ReorderLevel</span></p>
-								</td>
-								<td class="Normal" width="66" style="vertical-align: top">
-									<p style="text-align: center">
-										<span style="text-transform: uppercase">9</span>
-									</p>
-								</td>
-								<td class="Normal" width="85" style="vertical-align: top">
-									<p style="text-align: center">
-										<span style="text-transform: uppercase">3</span>
-									</p>
-								</td>
-								<td class="Normal" width="172" style="vertical-align: top">
-									<p style="text-align: center">
-										<span style="text-transform: uppercase">1 - 999</span>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="139" style="vertical-align: top">
-									<p><span style="text-transform: uppercase">ReorderQty</span></p>
-								</td>
-								<td class="Normal" width="66" style="vertical-align: top">
-									<p style="text-align: center">
-										<span style="text-transform: uppercase">9</span>
-									</p>
-								</td>
-								<td class="Normal" width="85" style="vertical-align: top">
-									<p style="text-align: center">
-										<span style="text-transform: uppercase">6</span>
-									</p>
-								</td>
-								<td class="Normal" width="172" style="vertical-align: top">
-									<p style="text-align: center">
-										<span style="text-transform: uppercase">1 - 999999</span>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="139" style="vertical-align: top">
-									<p><span style="text-transform: uppercase">ItemCost</span></p>
-								</td>
-								<td class="Normal" width="66" style="vertical-align: top">
-									<p style="text-align: center">
-										<span style="text-transform: uppercase">9</span>
-									</p>
-								</td>
-								<td class="Normal" width="85" style="vertical-align: top">
-									<p style="text-align: center">
-										<span style="text-transform: uppercase">5</span>
-									</p>
-								</td>
-								<td class="Normal" width="172" style="vertical-align: top">
-									<p style="text-align: center">
-										<span style="text-transform: uppercase">0.00- 999.99</span>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="139" style="vertical-align: top">
-									<p><span style="text-transform: uppercase">ItemWeight</span></p>
-								</td>
-								<td class="Normal" width="66" style="vertical-align: top">
-									<p style="text-align: center">
-										<span style="text-transform: uppercase">9</span>
-									</p>
-								</td>
-								<td class="Normal" width="85" style="vertical-align: top">
-									<p style="text-align: center">
-										<span style="text-transform: uppercase">5</span>
-									</p>
-								</td>
-								<td class="Normal" width="172" style="vertical-align: top">
-									<p style="text-align: center">
-										<span style="text-transform: uppercase">1</span>g<span
-											style="text-transform: uppercase"
-											>- 99999</span
-										>g<span style="text-transform: uppercase"></span>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="139" style="vertical-align: top">
-									<p><span style="text-transform: uppercase">OnOrder</span></p>
-								</td>
-								<td class="Normal" width="66" style="vertical-align: top">
-									<p style="text-align: center">
-										<span style="text-transform: uppercase">X</span>
-									</p>
-								</td>
-								<td class="Normal" width="85" style="vertical-align: top">
-									<p style="text-align: center">
-										<span style="text-transform: uppercase">1</span>
-									</p>
-								</td>
-								<td class="Normal" width="172" style="vertical-align: top">
-									<p style="text-align: center">
-										<span style="text-transform: uppercase">y/n</span>
-									</p>
-								</td>
-							</tr>
-						</table>
-					</div>
-					<p>
-						<b>Note:</b> The relative record key is obtained by subtracting 10000 from the
-						<span style="text-transform: uppercase">StockNumber</span>.
-					</p>
-					<p><b>Manufacturer File (Indexed)</b></p>
-					<div style="text-align: center">
-						<table class="data-table" cellpadding="0" cellspacing="0">
-							<tr bgcolor="#FFFFCC">
-								<td class="Normal" width="102" style="vertical-align: top">
-									<p style="text-align: center"><b>Field</b></p>
-								</td>
-								<td class="Normal" width="139" style="vertical-align: top">
-									<p style="text-align: center"><b>Key</b></p>
-								</td>
-								<td class="Normal" width="66" style="vertical-align: top">
-									<p style="text-align: center"><b>Type</b></p>
-								</td>
-								<td class="Normal" width="77" style="vertical-align: top">
-									<p style="text-align: center"><b>Length</b></p>
-								</td>
-								<td class="Normal" width="112" style="vertical-align: top">
-									<p style="text-align: center"><b>Values</b></p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="102" style="vertical-align: top">
-									<p><span style="text-transform: uppercase">ManfCode</span></p>
-								</td>
-								<td class="Normal" width="139" style="vertical-align: top">
-									<p style="text-align: center">Primary</p>
-								</td>
-								<td class="Normal" width="66" style="vertical-align: top">
-									<p style="text-align: center">X</p>
-								</td>
-								<td class="Normal" width="77" style="vertical-align: top">
-									<p style="text-align: center">4</p>
-								</td>
-								<td class="Normal" width="112" style="vertical-align: top">
-									<p style="text-align: center">AAAA -ZZZZ</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="102" style="vertical-align: top">
-									<p><span style="text-transform: uppercase">ManfName</span></p>
-								</td>
-								<td class="Normal" width="139" style="vertical-align: top">
-									<p style="text-align: center">ALT with Duplicates</p>
-								</td>
-								<td class="Normal" width="66" style="vertical-align: top">
-									<p style="text-align: center">X</p>
-								</td>
-								<td class="Normal" width="77" style="vertical-align: top">
-									<p style="text-align: center">30</p>
-								</td>
-								<td class="Normal" width="112" style="vertical-align: top">
-									<p style="text-align: center">-</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="102" style="vertical-align: top">
-									<p><span style="text-transform: uppercase">ManfAddress</span></p>
-								</td>
-								<td class="Normal" width="139" style="vertical-align: top">
-									<p style="text-align: center">-</p>
-								</td>
-								<td class="Normal" width="66" style="vertical-align: top">
-									<p style="text-align: center">X</p>
-								</td>
-								<td class="Normal" width="77" style="vertical-align: top">
-									<p style="text-align: center">70</p>
-								</td>
-								<td class="Normal" width="112" style="vertical-align: top">
-									<p style="text-align: center">-</p>
-								</td>
-							</tr>
-						</table>
-					</div>
-					<p><b>Note.</b>&nbsp;</p>
-					<p>
-						The constituent parts of the address are separated by commas, with the country name coming
-						last.&nbsp;
-					</p>
-					<p>
-						The country name for Ireland and Northern Ireland is always <b>Ireland</b> even though, for
-						postage charge purposes, Northern Ireland is treated as an Other EU country.&nbsp;
-					</p>
-					<p>
-						The second last item in an Irish address is the county name.&nbsp; This allows us to distinguish
-						Northern Ireland addresses from those in the Republic.&nbsp;&nbsp;&nbsp;<br />
-						e.g.&nbsp;
-						<span style="font-size: 10pt">SMALL PARTS LTD.,15 SHORE ROAD,BALLYMENA,ANTRIM,IRELAND</span>
-					</p>
-					<p>Each constituent part of the address will immediately follow its preceding comma.</p>
-					<p>Addresses are always in upper case.</p>
-					<p>
-						<b>EU countries<br /></b> Austria, Belgium, Denmark, England, Finland, France, Germany, Greece,
-						Ireland, Italy, Luxembourg, Portugal, Scotland, Spain, Sweden, Wales.
-					</p>
-					<p>
-						<b>Northern Ireland counties<br /></b> Antrim, Armagh, Derry, Down, Fermanagh, Tyrone.
-					</p>
-					<copyright-notice type="project"></copyright-notice>
-				</td>
-			</tr>
-		</table>
+					</section>
+
+					<section>
+						<h2>General Description</h2>
+						<p>
+							A program is required which will process the Stock file and Manufacturer file to create an
+							Orders file containing ordering information for all the parts that need to be re-ordered
+							(i.e. where the QtyInStock is less than the ReorderLevel).
+						</p>
+						<p>
+							For each stock item that needs to be re-ordered the program will create a record in the
+							Orders file and will set an <code class="language-cobol">ONORDER</code> flag in the Stock
+							file to show that the item has been ordered.
+						</p>
+						<p>
+							Acme Manufacturing tries to pay all suppliers in EU countries in advance. For these
+							countries, the <code class="language-cobol">COSTOFITEMS</code> and
+							<code class="language-cobol">POSTAGE</code>
+							fields of each Orders file record must be calculated.
+						</p>
+						<p>
+							With the exception of the Republic of Ireland, postage rates for all EU countries are the
+							same. The postage rates are obtained by calling a program "PostageRate" with two parameters;
+							the
+							<code class="language-cobol">POSTNUMBER</code> (In) and the
+							<code class="language-cobol">POSTCHARGE</code> (In/Out). The
+							<code class="language-cobol">POSTNUMBER</code> is derived, as shown by the decision table
+							below. The <code class="language-cobol">POSTCHARGE</code> is the value returned (in Euro and
+							Cent :- max &euro;99.99) by "PostageRate" for a particular
+							<code class="language-cobol">POSTNUMBER</code>. Note, that if the total weight of the items
+							ordered is greater than 50kg then the items cannot be sent by post and the
+							<code class="language-cobol">POSTAGE</code> must be set to &euro;0.00.
+						</p>
+						<div class="center-block">
+							<table class="data-table">
+								<tr>
+									<td bgcolor="#FFFFCC">
+										<p class="center-block"><b>WEIGHT TO</b><br />500&nbsp; g</p>
+									</td>
+									<td><p class="center-block">Y</p></td>
+									<td><p class="center-block">Y</p></td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC"><p class="center-block">1&nbsp;&nbsp;&nbsp; kg</p></td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td><p class="center-block">Y</p></td>
+									<td><p class="center-block">Y</p></td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC"><p class="center-block">3&nbsp;&nbsp;&nbsp; kg</p></td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td><p class="center-block">Y</p></td>
+									<td><p class="center-block">Y</p></td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC"><p class="center-block">5&nbsp;&nbsp;&nbsp; kg</p></td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td><p class="center-block">Y</p></td>
+									<td><p class="center-block">Y</p></td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC"><p class="center-block">10&nbsp; kg</p></td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td><p class="center-block">Y</p></td>
+									<td><p class="center-block">Y</p></td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC"><p class="center-block">50&nbsp; kg</p></td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td><p class="center-block">Y</p></td>
+									<td><p class="center-block">&nbsp;Y</p></td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC">
+										<p class="center-block"><b>COUNTRY</b></p>
+									</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC"><p class="center-block">Republic</p></td>
+									<td><p class="center-block">Y</p></td>
+									<td>&nbsp;</td>
+									<td><p class="center-block">Y</p></td>
+									<td>&nbsp;</td>
+									<td><p class="center-block">Y</p></td>
+									<td>&nbsp;</td>
+									<td><p class="center-block">Y</p></td>
+									<td>&nbsp;</td>
+									<td><p class="center-block">Y</p></td>
+									<td>&nbsp;</td>
+									<td><p class="center-block">Y</p></td>
+									<td>&nbsp;</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC"><p class="center-block">Other EU</p></td>
+									<td>&nbsp;</td>
+									<td><p class="center-block">Y</p></td>
+									<td>&nbsp;</td>
+									<td><p class="center-block">Y</p></td>
+									<td>&nbsp;</td>
+									<td><p class="center-block">Y</p></td>
+									<td>&nbsp;</td>
+									<td><p class="center-block">Y</p></td>
+									<td>&nbsp;</td>
+									<td><p class="center-block">Y</p></td>
+									<td>&nbsp;</td>
+									<td><p class="center-block">Y</p></td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC">
+										<p class="center-block"><b>Post Number</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>1</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>2</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>3</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>4</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>5</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>6</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>7</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>8</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>9</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>10</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>11</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>12</b></p>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</section>
+
+					<section>
+						<h2>File Descriptions</h2>
+
+						<h3>Orders file (Sequential)</h3>
+						<div class="center-block">
+							<table class="data-table">
+								<tr bgcolor="#FFFFCC">
+									<td>
+										<p class="center-block"><b>Field</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>Type</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>Length</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>Values</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td><p>ITEMDESCRIPTION</p></td>
+									<td><p class="center-block">X</p></td>
+									<td><p class="center-block">30</p></td>
+									<td><p class="center-block">--</p></td>
+								</tr>
+								<tr>
+									<td><p>MANFNAME</p></td>
+									<td><p class="center-block">X</p></td>
+									<td><p class="center-block">30</p></td>
+									<td><p class="center-block">--</p></td>
+								</tr>
+								<tr>
+									<td><p>QTYREQUIRED</p></td>
+									<td><p class="center-block">9</p></td>
+									<td><p class="center-block">6</p></td>
+									<td><p class="center-block">1 - 999999</p></td>
+								</tr>
+								<tr>
+									<td><p>COSTOFITEMS</p></td>
+									<td><p class="center-block">9</p></td>
+									<td><p class="center-block">7</p></td>
+									<td><p class="center-block">0.00 - 99999.99</p></td>
+								</tr>
+								<tr>
+									<td><p>POSTAGE</p></td>
+									<td><p class="center-block">9</p></td>
+									<td><p class="center-block">4</p></td>
+									<td><p class="center-block">0.00&nbsp; - 99.99</p></td>
+								</tr>
+							</table>
+							<p>
+								The last two items are 0 for all non EU countries.<br />
+								The QTYREQUIRED is obtained from the REORDERQTY field in the Stock File.
+							</p>
+						</div>
+						<p>The COSTOFITEMS is the QTYREQUIRED multiplied by the ITEMCOST.</p>
+
+						<h3>Stock File (Relative)</h3>
+						<div class="center-block">
+							<table class="data-table">
+								<tr bgcolor="#FFFFCC">
+									<td>
+										<p class="center-block"><b>Field</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>Type</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>Length</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>Values</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td><p>STOCKNUMBER</p></td>
+									<td><p class="center-block">9</p></td>
+									<td><p class="center-block">5</p></td>
+									<td><p class="center-block">10001 - 99999</p></td>
+								</tr>
+								<tr>
+									<td><p>MANFCODE</p></td>
+									<td><p class="center-block">X</p></td>
+									<td><p class="center-block">4</p></td>
+									<td><p class="center-block">AAAA- ZZZZ</p></td>
+								</tr>
+								<tr>
+									<td><p>ITEMDESCRIPTION</p></td>
+									<td><p class="center-block">X</p></td>
+									<td><p class="center-block">30</p></td>
+									<td><p class="center-block">--</p></td>
+								</tr>
+								<tr>
+									<td><p>QTYINSTOCK</p></td>
+									<td><p class="center-block">9</p></td>
+									<td><p class="center-block">6</p></td>
+									<td><p class="center-block">1 - 999999</p></td>
+								</tr>
+								<tr>
+									<td><p>REORDERLEVEL</p></td>
+									<td><p class="center-block">9</p></td>
+									<td><p class="center-block">3</p></td>
+									<td><p class="center-block">1 - 999</p></td>
+								</tr>
+								<tr>
+									<td><p>REORDERQTY</p></td>
+									<td><p class="center-block">9</p></td>
+									<td><p class="center-block">6</p></td>
+									<td><p class="center-block">1 - 999999</p></td>
+								</tr>
+								<tr>
+									<td><p>ITEMCOST</p></td>
+									<td><p class="center-block">9</p></td>
+									<td><p class="center-block">5</p></td>
+									<td><p class="center-block">0.00- 999.99</p></td>
+								</tr>
+								<tr>
+									<td><p>ITEMWEIGHT</p></td>
+									<td><p class="center-block">9</p></td>
+									<td><p class="center-block">5</p></td>
+									<td><p class="center-block">1g- 99999g</p></td>
+								</tr>
+								<tr>
+									<td><p>ONORDER</p></td>
+									<td><p class="center-block">X</p></td>
+									<td><p class="center-block">1</p></td>
+									<td><p class="center-block">Y/N</p></td>
+								</tr>
+							</table>
+						</div>
+						<p>
+							<b>Note:</b> The relative record key is obtained by subtracting 10000 from the STOCKNUMBER.
+						</p>
+
+						<h3>Manufacturer File (Indexed)</h3>
+						<div class="center-block">
+							<table class="data-table">
+								<tr bgcolor="#FFFFCC">
+									<td>
+										<p class="center-block"><b>Field</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>Key</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>Type</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>Length</b></p>
+									</td>
+									<td>
+										<p class="center-block"><b>Values</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td><p>MANFCODE</p></td>
+									<td><p class="center-block">Primary</p></td>
+									<td><p class="center-block">X</p></td>
+									<td><p class="center-block">4</p></td>
+									<td><p class="center-block">AAAA -ZZZZ</p></td>
+								</tr>
+								<tr>
+									<td><p>MANFNAME</p></td>
+									<td><p class="center-block">ALT with Duplicates</p></td>
+									<td><p class="center-block">X</p></td>
+									<td><p class="center-block">30</p></td>
+									<td><p class="center-block">-</p></td>
+								</tr>
+								<tr>
+									<td><p>MANFADDRESS</p></td>
+									<td><p class="center-block">-</p></td>
+									<td><p class="center-block">X</p></td>
+									<td><p class="center-block">70</p></td>
+									<td><p class="center-block">-</p></td>
+								</tr>
+							</table>
+						</div>
+						<p><b>Note.</b>&nbsp;</p>
+						<p>
+							The constituent parts of the address are separated by commas, with the country name coming
+							last.&nbsp;
+						</p>
+						<p>
+							The country name for Ireland and Northern Ireland is always <b>Ireland</b> even though, for
+							postage charge purposes, Northern Ireland is treated as an Other EU country.&nbsp;
+						</p>
+						<p>
+							The second last item in an Irish address is the county name.&nbsp; This allows us to
+							distinguish Northern Ireland addresses from those in the Republic.&nbsp;&nbsp;&nbsp;<br />
+							e.g.&nbsp;
+							<span style="font-size: 10pt">SMALL PARTS LTD.,15 SHORE ROAD,BALLYMENA,ANTRIM,IRELAND</span>
+						</p>
+						<p>Each constituent part of the address will immediately follow its preceding comma.</p>
+						<p>Addresses are always in upper case.</p>
+						<p>
+							<b>EU countries<br /></b> Austria, Belgium, Denmark, England, Finland, France, Germany,
+							Greece, Ireland, Italy, Luxembourg, Portugal, Scotland, Spain, Sweden, Wales.
+						</p>
+						<p>
+							<b>Northern Ireland counties<br /></b> Antrim, Armagh, Derry, Down, Fermanagh, Tyrone.
+						</p>
+					</section>
+
+					<back-to-top></back-to-top>
+					<copyright-notice type="exercises"></copyright-notice>
+					<p class="center-block"><a href="../index.html">&larr; Back to COBOL Exercises</a></p>
+				</div>
+			</div>
+		</main>
 	</body>
 </html>

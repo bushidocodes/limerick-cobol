@@ -2,287 +2,158 @@
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>ACCEPT + DISPLAY Terminal Exercise</title>
-		<style type="text/css">
-			img {
-				max-width: 100%;
-				height: auto;
-			}
-
-			table {
-				max-width: 100%;
-			}
-
-			pre {
-				overflow-x: auto;
-				max-width: 100%;
-			}
-
-			body {
-				-webkit-text-size-adjust: 100%;
-			}
-
-			@media (max-width: 600px) {
-				body {
-					margin: 4px;
-					overflow-wrap: break-word;
-					word-wrap: break-word;
-				}
-
-				table[width] {
-					width: 100% !important;
-					height: auto !important;
-				}
-
-				td[width],
-				th[width],
-				td[height],
-				th[height] {
-					width: auto !important;
-					height: auto !important;
-				}
-
-				td[bgcolor="#993300"] > h2,
-				td[bgcolor="#993300"] > h3 {
-					margin: 0.3em 0;
-				}
-
-				blockquote {
-					margin-left: 12px;
-					margin-right: 12px;
-				}
-
-				hr[width] {
-					width: 100% !important;
-				}
-
-				img,
-				iframe,
-				video,
-				embed,
-				object {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					height: auto;
-				}
-
-				pre {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					white-space: pre-wrap;
-					word-wrap: break-word;
-					overflow-wrap: break-word;
-				}
-
-				table[width="715"],
-				table[width="725"],
-				table[width="715"] > tbody,
-				table[width="725"] > tbody,
-				table[width="715"] > tbody > tr,
-				table[width="725"] > tbody > tr,
-				table[width="715"] > tbody > tr > td,
-				table[width="725"] > tbody > tr > td,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])),
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr > td {
-					display: block;
-					width: auto !important;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]),
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody {
-					display: block;
-					width: 100% !important;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr {
-					display: flex;
-					align-items: baseline;
-					gap: 0.4em;
-					margin: 0.4em 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="3%"] {
-					display: none;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="4%"] {
-					display: block;
-					flex: 0 0 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="93%"] {
-					display: block;
-					flex: 1 1 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
-				td[width="175"] > h4:not(:first-child):not(:has(img)),
-				td[width="160"] > h4:not(:first-child):not(:has(img)),
-				h4:has(> img[src*="PanelLine"]) {
-					display: none;
-				}
-
-				td[width="175"] > h3,
-				td[width="175"] > h4,
-				td[width="175"] > p,
-				td[width="160"] > h3,
-				td[width="160"] > h4,
-				td[width="160"] > p {
-					margin: 0.2em 0;
-				}
-			}
-
-			td[bgcolor="#993300"] h2 {
-				color: #ffff00;
-				font-family: Arial, Helvetica, sans-serif;
-			}
-
-			td[bgcolor="#FFFFCC"] h3,
-			td[bgcolor="#FFFFCC"] h4 {
-				color: #800000;
-				font-family: Arial, Helvetica, sans-serif;
-			}
-		</style>
+		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+		<title>The Calculator and Countdown exercises</title>
+		<link href="../course/Resources/css/course.css" rel="stylesheet" />
+		<link href="../course/Resources/css/course-components.css" rel="stylesheet" />
+		<script src="../components/theme-toggle.js" defer></script>
+		<script src="../components/page-hero.js" defer></script>
+		<script src="../components/back-to-top.js" defer></script>
+		<script src="../components/copyright-notice.js" defer></script>
 	</head>
-	<body text="#000000" bgcolor="#FFFFFF" link="#0000FF" vlink="#FF0000" alink="#009B00">
-		<div class="center-block">
-			<h2><img src="T-CobolExercise.gif" height="56" width="183" alt="" /></h2>
-			<h2>The Calculator and Countdown exercises</h2>
-			<hr />
-			<code class="language-cobol">ACCEPT</code>, <code class="language-cobol">DISPLAY</code>,
-			<code class="language-cobol">PERFORM..TIMES</code>, <code class="language-cobol">COMPUTE</code>,
-			<code class="language-cobol">IF</code>
-		</div>
-		<hr />
-		&nbsp;
-		<h2>Introduction</h2>
-		<p>&#128218; <a href="../course/Iteration.html">Read the tutorial: COBOL Iteration Constructs</a></p>
-		In this exercise you will amend the IterCalc.Cbl program.&nbsp; This program is a version of the example
-		iteration program shown in the
-		<a href="../lectures/CS4312Topics.html#General">introductory COBOL lecture</a>.&nbsp;&nbsp; Note - use your
-		browsers back button to get back to this page.
-		<p>
-			Download the <a href="../examples/Conditn/itercalc.cbl">IterCalc.Cbl</a> program and save it to the
-			\WorkArea directory on drive D:.
-		</p>
-		<p>
-			Load the program into the NetExpress environment.<br />
-			&nbsp;
-		</p>
-		<h2>Examining IterCalc</h2>
-		Compile and run the program IterCalc.Cbl.&nbsp; Use the Animator to step through the program and examine the
-		contents of the Variables/Identifiers.
-		<p>Examine the program and attempt to answer the following questions:-</p>
-		<ol>
-			<li>What is the maximum number of digits that the variable Num1 will hold?</li>
-			<li>What is the maximum number of digits that&nbsp; Num2 will hold?</li>
-			<li>What is the maximum number of digits that Result will hold?</li>
-			<li>
-				If a user enters more digits than the receiving variable will hold what happens to the number entered?
-			</li>
-			<li>
-				No validation is done on values entered by the user.&nbsp;&nbsp; Examine the program and predict what
-				will happen if an operator other than + or * is entered.
-			</li>
-		</ol>
-		Test your answers by running the program and using the Animator to follow the flow of control through the
-		program (Step) and to examine the contents of the variables.
-		<h2>Amending IterCalc</h2>
-		Amend the program so that instead of doing a fixed number of calculations (three in IterCalc.Cbl) it asks the
-		user to enter the number of calculations required and then executes the loop that many times.
-		<p>
-			The version of the <code class="language-cobol">PERFORM</code> used in this program has the syntax
-			<code class="language-cobol">PERFORM</code> <i>Identifier/Literal</i>
-			<code class="language-cobol">TIMES</code>. That is, either an identifier or a literal can be used to
-			indicate how many times the loop is to be executed. The current version of IterCalc.Cbl uses a literal. You
-			must change it so that it uses an identifier.
-		</p>
-		<p>
-			When run with the same data your amended program should the produce the results shown below.&nbsp; For
-			purposes of illustration, user input is shown enlarged and in bold.
-		</p>
-		<ul>
-			<ul>
-				<ul>
-					<u>Example run</u>
-				</ul>
-				<tt>Enter the number of calcs required :- <b>2</b></tt
-				><br />
-				<tt>Enter First Number : <b>3</b></tt
-				><br />
-				<tt>Enter Second Number : <b>3</b></tt
-				><br />
-				<tt>Enter operator (+ or *) : <b>*</b></tt
-				><br />
-				<tt>Result is = 9</tt
-				><br />
-				<tt>Enter First Number : <b>3</b></tt
-				><br />
-				<tt>Enter Second Number : <b>3</b></tt
-				><br />
-				<tt>Enter operator (+ or *) : <b>+</b></tt
-				><br />
-				<tt>Result is = 6</tt
-				><br />
-				&nbsp;
-			</ul>
-		</ul>
-		<h2>Making a new program</h2>
-		Amend the program again. This time create a new program called Countdown.Cbl (use <b><i>Save As</i></b> from the
-		NetExpress <b><i>File</i></b> menu). This program should get the user's name from the keyboard and should then
-		display a count-down before displaying the name that was entered.<br />
-		&nbsp;<br />
-		The program should produce results similar to those shown in the example run below.&nbsp; For purposes of
-		illustration, user input is shown enlarged and in bold.
-		<ul>
-			<ul>
-				<ul>
-					<u>Example run</u>
-				</ul>
-				<tt>Enter your name :- <b>Mike Ryan</b></tt
-				><br />
-				<tt>Enter the count-down start value :- <b>05</b></tt
-				><br />
-				<tt>Getting ready to display your name.</tt
-				><br />
-				<tt>05</tt
-				><br />
-				<tt>04</tt
-				><br />
-				<tt>03</tt
-				><br />
-				<tt>02</tt
-				><br />
-				<tt>01</tt
-				><br />
-				<tt>Your name is Mike Ryan</tt>
-			</ul>
-		</ul>
-		&nbsp;
-		<h2>Conclusion</h2>
-		You may be wondering if COBOL provides some sort of counting loop, like the FOR loop in other languages, which
-		you could use in this exercise.&nbsp; COBOL does provide such a looping structure in the form of the
-		<code class="language-cobol">PERFORM..VARYING</code>.&nbsp;&nbsp;&nbsp;<br />
-		<br />
-		<br />
-		The format (simplified) for this version&nbsp; is <code class="language-cobol">PERFORM</code>
-		<code class="language-cobol">VARYING</code> <i>counter</i> <code class="language-cobol">FROM</code> <i>start</i>
-		<code class="language-cobol">BY</code> <i>step</i> <code class="language-cobol">UNTIL</code>
-		<i>terminatingcondition</i>.&nbsp;&nbsp;<br />
-		<hr />
-		<table cellspacing="0" cellpadding="0" cols="1" width="200">
-			<tr style="text-align: center; vertical-align: top">
-				<td>
-					<a href="index.html"
-						><img src="../pics/B-BackArrow.gif" alt="Back to COBOL Exercises page" height="52" width="52"
-					/></a>
-					To COBOL Exercises
-				</td>
-			</tr>
-		</table>
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="page-content">
+					<page-hero title="The Calculator and Countdown exercises" eyebrow="COBOL Exercise"></page-hero>
+					<p class="center-block">
+						<code class="language-cobol">ACCEPT</code>, <code class="language-cobol">DISPLAY</code>,
+						<code class="language-cobol">PERFORM..TIMES</code>, <code class="language-cobol">COMPUTE</code>,
+						<code class="language-cobol">IF</code>
+					</p>
+					<hr />
+
+					<section>
+						<h2>Introduction</h2>
+						<p>
+							&#128218;
+							<a href="../course/Iteration.html">Read the tutorial: COBOL Iteration Constructs</a>
+						</p>
+						<p>
+							In this exercise you will amend the IterCalc.Cbl program. This program is a version of the
+							example iteration program shown in the
+							<a href="../lectures/CS4312Topics.html#General">introductory COBOL lecture</a>. Note &mdash;
+							use your browser's back button to get back to this page.
+						</p>
+						<p>
+							Download the <a href="../examples/Conditn/itercalc.cbl">IterCalc.Cbl</a> program and save it
+							to the \WorkArea directory on drive D:.
+						</p>
+						<p>Load the program into the NetExpress environment.</p>
+					</section>
+
+					<section>
+						<h2>Examining IterCalc</h2>
+						<p>
+							Compile and run the program IterCalc.Cbl. Use the Animator to step through the program and
+							examine the contents of the Variables/Identifiers.
+						</p>
+						<p>Examine the program and attempt to answer the following questions:</p>
+						<ol>
+							<li>What is the maximum number of digits that the variable Num1 will hold?</li>
+							<li>What is the maximum number of digits that Num2 will hold?</li>
+							<li>What is the maximum number of digits that Result will hold?</li>
+							<li>
+								If a user enters more digits than the receiving variable will hold what happens to the
+								number entered?
+							</li>
+							<li>
+								No validation is done on values entered by the user. Examine the program and predict
+								what will happen if an operator other than + or * is entered.
+							</li>
+						</ol>
+						<p>
+							Test your answers by running the program and using the Animator to follow the flow of
+							control through the program (Step) and to examine the contents of the variables.
+						</p>
+					</section>
+
+					<section>
+						<h2>Amending IterCalc</h2>
+						<p>
+							Amend the program so that instead of doing a fixed number of calculations (three in
+							IterCalc.Cbl) it asks the user to enter the number of calculations required and then
+							executes the loop that many times.
+						</p>
+						<p>
+							The version of the <code class="language-cobol">PERFORM</code> used in this program has the
+							syntax <code class="language-cobol">PERFORM</code> <i>Identifier/Literal</i>
+							<code class="language-cobol">TIMES</code>. That is, either an identifier or a literal can be
+							used to indicate how many times the loop is to be executed. The current version of
+							IterCalc.Cbl uses a literal. You must change it so that it uses an identifier.
+						</p>
+						<p>
+							When run with the same data your amended program should produce the results shown below. For
+							purposes of illustration, user input is shown enlarged and in bold.
+						</p>
+						<figure class="example-run">
+							<figcaption>Example run</figcaption>
+							<pre><samp>Enter the number of calcs required :- <kbd>2</kbd>
+Enter First Number : <kbd>3</kbd>
+Enter Second Number : <kbd>3</kbd>
+Enter operator (+ or *) : <kbd>*</kbd>
+Result is = 9
+Enter First Number : <kbd>3</kbd>
+Enter Second Number : <kbd>3</kbd>
+Enter operator (+ or *) : <kbd>+</kbd>
+Result is = 6</samp></pre>
+						</figure>
+					</section>
+
+					<section>
+						<h2>Making a new program</h2>
+						<p>
+							Amend the program again. This time create a new program called Countdown.Cbl (use
+							<b><i>Save As</i></b> from the NetExpress <b><i>File</i></b> menu). This program should get
+							the user's name from the keyboard and should then display a count-down before displaying the
+							name that was entered.
+						</p>
+						<p>
+							The program should produce results similar to those shown in the example run below. For
+							purposes of illustration, user input is shown enlarged and in bold.
+						</p>
+						<figure class="example-run">
+							<figcaption>Example run</figcaption>
+							<pre><samp>Enter your name :- <kbd>Mike Ryan</kbd>
+Enter the count-down start value :- <kbd>05</kbd>
+Getting ready to display your name.
+05
+04
+03
+02
+01
+Your name is Mike Ryan</samp></pre>
+						</figure>
+					</section>
+
+					<section>
+						<h2>Conclusion</h2>
+						<p>
+							You may be wondering if COBOL provides some sort of counting loop, like the FOR loop in
+							other languages, which you could use in this exercise. COBOL does provide such a looping
+							structure in the form of the <code class="language-cobol">PERFORM..VARYING</code>.
+						</p>
+						<p>
+							The format (simplified) for this version is <code class="language-cobol">PERFORM</code>
+							<code class="language-cobol">VARYING</code> <i>counter</i>
+							<code class="language-cobol">FROM</code> <i>start</i> <code class="language-cobol">BY</code>
+							<i>step</i> <code class="language-cobol">UNTIL</code> <i>terminatingcondition</i>.
+						</p>
+					</section>
+
+					<back-to-top></back-to-top>
+					<copyright-notice type="exercises"></copyright-notice>
+					<p class="center-block"><a href="index.html">&larr; Back to COBOL Exercises</a></p>
+				</div>
+			</div>
+		</main>
 	</body>
 </html>
