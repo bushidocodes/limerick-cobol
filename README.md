@@ -25,17 +25,17 @@ npm install
 npm run serve   # http://localhost:8000
 ```
 
-CI runs two checks on every PR (see [.github/workflows/checks.yml](.github/workflows/checks.yml)):
+CI runs three checks on every PR (see [.github/workflows/checks.yml](.github/workflows/checks.yml)):
 
 | Script             | What it does                                              | In CI? |
 | ------------------ | --------------------------------------------------------- | ------ |
 | `npm run validate` | HTML parse / structure check via `html-validate`          | yes    |
 | `npm run links`    | Internal link check via `linkinator` (externals skipped)  | yes    |
-| `npm run a11y`     | WCAG 2.1 AA scan via `pa11y-ci` (sample of pages)         | no     |
+| `npm run a11y`     | WCAG 2.1 AA scan via `pa11y-ci` (all pages)               | yes    |
 | `npm run check`    | Runs all three locally                                    | —      |
 
 The starting `html-validate` ruleset is intentionally permissive — it catches parse errors and structural bugs but doesn't flag every legacy-HTML pattern. Tighten over time as modernization progresses.
 
 `linkinator.config.json` only skips external URLs and `mailto:` links — internal refs are all expected to resolve.
 
-`npm run a11y` is available locally but not in CI yet. Existing pages have many pre-existing WCAG violations; wiring a strict gate now would just memorize current breakage. The a11y job gets added back after the accessibility cleanup pass lands.
+`pa11y-ci` uses `.pa11yci.json` for its configuration. Known pre-existing violations are listed in the `ignore` array as an explicit debt ledger — each entry should reference an open issue tracking its eventual removal. New violations will block PRs.
