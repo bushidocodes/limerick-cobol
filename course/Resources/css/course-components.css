@@ -313,6 +313,34 @@ ol.spaced > li + li {
 	vertical-align: top;
 }
 
+.saq-reveal {
+	border: 1px solid var(--color-border-soft);
+	border-radius: 3px;
+	background-color: var(--color-code-bg);
+}
+
+.saq-reveal summary {
+	cursor: pointer;
+	padding: 3px 6px;
+	font-style: italic;
+	list-style: none;
+}
+
+.saq-reveal summary::before {
+	content: "▶ ";
+	font-style: normal;
+	font-size: 0.7em;
+}
+
+details[open].saq-reveal summary::before {
+	content: "▼ ";
+}
+
+.saq-reveal > :not(summary) {
+	padding: 4px 8px;
+	margin: 0;
+}
+
 /* RefMod.html */
 
 .table-scroll {
@@ -459,12 +487,6 @@ ol.spaced > li + li {
 	background-color: var(--color-code-bg);
 	padding: 4px 8px;
 	overflow: hidden;
-}
-
-.qa-form .qa-answer select {
-	max-width: 100%;
-	width: 100%;
-	box-sizing: border-box;
 }
 
 /* SortMerge.html */
@@ -628,12 +650,6 @@ body pre[class*="language-"] {
 
 	.saq-question {
 		border-right: none;
-	}
-
-	.saq-answer select {
-		max-width: 100%;
-		width: 100%;
-		box-sizing: border-box;
 	}
 
 	.processing-template {
