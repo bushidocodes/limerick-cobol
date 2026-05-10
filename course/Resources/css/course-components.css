@@ -65,6 +65,33 @@
 	vertical-align: middle;
 }
 
+/* Lesson-level Prev / Next navigation bar. Rendered by lesson-nav.js.
+   Flex row with space-between keeps Prev on the left and Next on the right.
+   min-height: 2em reserves space even when one side is absent so the bar does
+   not collapse. Inherits link colours from course.css (light and dark mode). */
+.lesson-nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 0.5em;
+	padding: 0.75em 0;
+	border-top: 1px solid;
+	margin-top: 1em;
+	min-height: 2em;
+}
+
+.lesson-nav-prev,
+.lesson-nav-next {
+	font-size: 0.95em;
+}
+
+@media (prefers-color-scheme: dark) {
+	.lesson-nav {
+		border-top-color: var(--color-border-soft, #444);
+	}
+}
+
 /* ============================================================================
    Page-component classes migrated from per-page <style> blocks (Phase 5).
    Each rule belongs to a single course page in HTML usage. Rules that
