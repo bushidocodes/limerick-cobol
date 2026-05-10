@@ -20,303 +20,316 @@
 	<body>
 		<a class="skip-link" href="#main-content">Skip to main content</a>
 		<main id="main-content">
-		<div class="page-wrapper">
-			<div class="page-content">
-				<page-hero title="Introduction to Sequential Files"></page-hero>
-				<hr />
-				<ul class="toc">
-					<li>
-						<a href="#intro">Introduction</a><br />
-						Unit aims, objectives, prerequisites.
-					</li>
-					<li>
-						<a href="#part1">Introduction to record-based files</a><br />
-						This section introduces record-based files, the concept of the record buffer and defines
-						terminology such as file, record and field.
-					</li>
-					<li>
-						<a href="#part2">Declaring records and files</a><br />
-						This section demonstrates how the FD entry is used to describe a files record buffer and show
-						how to use the SELECT and ASSIGN clause to connect an internal file name to an external data
-						repository.
-					</li>
-					<li>
-						<a href="#part3">COBOL file handling verbs</a><br />
-						The COBOL verbs for processing Sequential Files are introduced in this section. The section ends
-						with a full example program.
-					</li>
-				</ul>
-				<hr />
-			</div>
-			<!-- Introduction -->
-			<div class="section-grid">
-				<div class="section-header">
-					<h2 id="intro">Introduction</h2>
-				</div>
-				<div class="section-sidebar">
-					<h3>Aims</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						Files are repositories of data that reside on backing storage (hard disk, magnetic tape or
-						CD-ROM). Nowadays, files are used to store a variety of different types of information, such
-						as programs, documents, spreadsheets, videos, sounds, pictures and record-based data.
-					</p>
-					<p>
-						Although COBOL can be used to process these other kinds of data file, it is generally used
-						only to process record-based files.
-					</p>
-					<p>
-						In this, and subsequent file-oriented tutorials, we examine how COBOL may be used to process
-						record-based files.
-					</p>
-					<p>There are essentially two types of record-based file organization:</p>
-					<ol>
-						<li>Serial Files (COBOL calls these Sequential Files)</li>
-						<li>Direct Access Files.</li>
-					</ol>
-					<p>In a Serial File, the records are organized and accessed serially.</p>
-					<p>
-						In a Direct Access File, the records are organized in a manner that allows direct access to
-						a particular record without having the read any of the preceding records.
-					</p>
-					<p>
-						In this tutorial, you will discover how COBOL may be used to process serial files.
-					</p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>Objectives</h3>
-				</div>
-				<div class="section-content">
-					<p>By the end of this unit you should -</p>
-					<ol>
-						<li>Understand concepts and terminology like file, record, field and record buffer.</li>
-						<li>Be able to write the file and record declarations for a Sequential File.</li>
-						<li>Understand how <code class="language-cobol">READ</code> verbs works</li>
+			<div class="page-wrapper">
+				<div class="page-content">
+					<page-hero title="Introduction to Sequential Files"></page-hero>
+					<hr />
+					<ul class="toc">
 						<li>
-							Be able to use the <code class="language-cobol">READ</code>,
-							<code class="language-cobol">WRITE</code>, <code class="language-cobol">OPEN</code> and
-							<code class="language-cobol">CLOSE</code> verbs to process a Sequential File.
-						</li>
-					</ol>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>Prerequisites</h3>
-				</div>
-				<div class="section-content">
-					<ul>
-						<li>Introduction to COBOL</li>
-						<li>Declaring data in COBOL</li>
-						<li>Basic Procedure Division Commands</li>
-						<li>Selection Constructs</li>
-						<li>Iteration Constructs</li>
-					</ul>
-				</div>
-				<div class="section-full">
-					<div>
-						<hr />
-						<back-to-top></back-to-top>
-					</div>
-				</div>
-			</div>
-			<!-- Introduction to record-based files -->
-			<div class="section-grid">
-				<div class="section-header">
-					<h2 id="part1">Introduction to record-based files</h2>
-				</div>
-				<div class="section-sidebar">
-					<h3>Introduction</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						COBOL is generally used in situations where the volume of data to be processed is large.
-						These systems are sometimes referred to as "data intensive" systems. Generally, large
-						volumes arise not because the data is inherently voluminous but because the same items of
-						information have been recorded about a great many instances of the same object. Record-based
-						files are used to record this information.
-					</p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>Files, Records, Fields</h3>
-				</div>
-				<div class="section-content">
-					<p>In record-based files;</p>
-					<ul>
-						<li>
-							We use the term <i>file</i>, to describe a collection of one or more occurrences
-							(instances) of a record type (template).
+							<a href="#intro">Introduction</a><br />
+							Unit aims, objectives, prerequisites.
 						</li>
 						<li>
-							We use the term r<i>ecord,</i> to describe a collection of fields which record
-							information about an object.
+							<a href="#part1">Introduction to record-based files</a><br />
+							This section introduces record-based files, the concept of the record buffer and defines
+							terminology such as file, record and field.
 						</li>
 						<li>
-							We use the term <i>field,</i> to describe an item of information recorded about an
-							object (e.g. StudentName, DateOfBirth).
+							<a href="#part2">Declaring records and files</a><br />
+							This section demonstrates how the FD entry is used to describe a files record buffer and
+							show how to use the SELECT and ASSIGN clause to connect an internal file name to an external
+							data repository.
+						</li>
+						<li>
+							<a href="#part3">COBOL file handling verbs</a><br />
+							The COBOL verbs for processing Sequential Files are introduced in this section. The section
+							ends with a full example program.
 						</li>
 					</ul>
-					<hr width="50%" />
+					<hr />
 				</div>
-				<div class="section-sidebar">
-					<h3>Record instance vs Record type</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						It is important to distinguish between a record occurrence (i.e. the values of a record) and
-						the record type or template (i.e. the structure of the record).
-					</p>
-					<p>
-						Each record occurrence in a file will have a different value but every record in the file
-						will have the same structure.
-					</p>
-					<p>
-						For instance, in the student details file, illustrated below, the occurrences of the student
-						records are actual values in the file. The record type/template describes the
-						<i>structure</i> of each record occurrence.
-					</p>
-					<p class="center-block">
-						<img height="388" src="Resources/pics/FileSeq1.gif" width="472" alt="Student details file showing record occurrences mapped to the record type template" />
-					</p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>The record buffer</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						Before a computer can do any processing on a piece of data, the data must be loaded into main
-						memory (RAM). The CPU can only address data that is in RAM.
-					</p>
-					<p>
-						A record-based file may consist of hundreds of thousands, millions or even tens of millions of
-						records, and may require gigabytes of storage. Files of this size cannot be processed by loading
-						the whole file into memory in one go. Instead, files are processed by reading the records into
-						memory, one at a time.
-					</p>
-					<p>
-						To store the record read into memory and to allow access to the individual fields of the record,
-						a programmer must declare the record structure (see the diagram above) in his program. The
-						computer uses the programmer's description of the record (the record template) to set aside
-						sufficient memory to store one instance of the record. The memory allocated for storing a record
-						is usually called a "record buffer".
-					</p>
-					<p>
-						A record buffer is capable of storing the data recorded for only one instance of the record. To
-						process a file a program must read the records one at a time into the record buffer. The record
-						buffer is the only connection between the program and the records in the file.
-					</p>
-					<p class="center-block"><img height="248" src="Resources/pics/FileSeq2.gif" width="471" alt="Diagram showing a record being read from a sequential file into the record buffer in RAM" /></p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>Some implications of "buffers"</h3>
-					<p class="center-block"><img height="44" src="Resources/pics/program.gif" width="42" alt="" /></p>
-				</div>
-				<div class="section-content">
-					<p>If a program processes more than one file, a record buffer must be defined for each file.</p>
-					<p>
-						To process all the records in an <code class="language-cobol">INPUT</code> file, we must ensure
-						that each record instance is copied (read) from the file, into the record buffer, when required.
-					</p>
-					<p>
-						To create an <code class="language-cobol">OUTPUT</code> file containing data records, we must
-						ensure that each record is placed in the record buffer and then transferred (written) to the
-						file.
-					</p>
-					<p>
-						To transfer a record from an input file to an output file we must read the record into the input
-						record buffer, transfer it to the output record buffer and then write the data to the output
-						file from the output record buffer. This type of data transfer between 'buffers' is quite common
-						in COBOL programs.
-					</p>
-				</div>
-				<div class="section-full">
-					<div>
-						<hr />
-						<back-to-top></back-to-top>
+				<!-- Introduction -->
+				<div class="section-grid">
+					<div class="section-header">
+						<h2 id="intro">Introduction</h2>
 					</div>
-				</div>
-			</div>
-			<!-- Declaring Records and Files -->
-			<div class="section-grid">
-				<div class="section-header">
-					<h2 id="part2">Declaring Records and Files</h2>
-				</div>
-				<div class="section-sidebar">
-					<h3>Introduction</h3>
-					<aside>
-						<p class="center-block">
-							<span class="i-detail" aria-hidden="true">🔍</span><br />
-							This is for demonstration only. In reality we would need to include far more items and some
-							of the fields would have to be considerably larger.
+					<div class="section-sidebar">
+						<h3>Aims</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							Files are repositories of data that reside on backing storage (hard disk, magnetic tape or
+							CD-ROM). Nowadays, files are used to store a variety of different types of information, such
+							as programs, documents, spreadsheets, videos, sounds, pictures and record-based data.
 						</p>
-					</aside>
+						<p>
+							Although COBOL can be used to process these other kinds of data file, it is generally used
+							only to process record-based files.
+						</p>
+						<p>
+							In this, and subsequent file-oriented tutorials, we examine how COBOL may be used to process
+							record-based files.
+						</p>
+						<p>There are essentially two types of record-based file organization:</p>
+						<ol>
+							<li>Serial Files (COBOL calls these Sequential Files)</li>
+							<li>Direct Access Files.</li>
+						</ol>
+						<p>In a Serial File, the records are organized and accessed serially.</p>
+						<p>
+							In a Direct Access File, the records are organized in a manner that allows direct access to
+							a particular record without having the read any of the preceding records.
+						</p>
+						<p>In this tutorial, you will discover how COBOL may be used to process serial files.</p>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>Objectives</h3>
+					</div>
+					<div class="section-content">
+						<p>By the end of this unit you should -</p>
+						<ol>
+							<li>Understand concepts and terminology like file, record, field and record buffer.</li>
+							<li>Be able to write the file and record declarations for a Sequential File.</li>
+							<li>Understand how <code class="language-cobol">READ</code> verbs works</li>
+							<li>
+								Be able to use the <code class="language-cobol">READ</code>,
+								<code class="language-cobol">WRITE</code>, <code class="language-cobol">OPEN</code> and
+								<code class="language-cobol">CLOSE</code> verbs to process a Sequential File.
+							</li>
+						</ol>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>Prerequisites</h3>
+					</div>
+					<div class="section-content">
+						<ul>
+							<li>Introduction to COBOL</li>
+							<li>Declaring data in COBOL</li>
+							<li>Basic Procedure Division Commands</li>
+							<li>Selection Constructs</li>
+							<li>Iteration Constructs</li>
+						</ul>
+					</div>
+					<div class="section-full">
+						<div>
+							<hr />
+							<back-to-top></back-to-top>
+						</div>
+					</div>
 				</div>
-				<div class="section-content">
-					<p>
-						Suppose we want to create a file to hold information about the students in the University. What
-						kind of information do we need to store about each student?
-					</p>
-					<p>
-						One thing we need to store is the student's name. Each student is assigned an identification
-						number; so we need to store that as well. We also need to store the date of birth, and the code
-						of the course the student is taking. Finally, we are going to store the student's gender. These
-						items are summarized below;
-					</p>
-					<ul>
-						<li>Student Id</li>
-						<li>Student Name</li>
-						<li>Date of birth</li>
-						<li>Course Code</li>
-						<li>Gender</li>
-					</ul>
-					<hr width="50%" />
+				<!-- Introduction to record-based files -->
+				<div class="section-grid">
+					<div class="section-header">
+						<h2 id="part1">Introduction to record-based files</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Introduction</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							COBOL is generally used in situations where the volume of data to be processed is large.
+							These systems are sometimes referred to as "data intensive" systems. Generally, large
+							volumes arise not because the data is inherently voluminous but because the same items of
+							information have been recorded about a great many instances of the same object. Record-based
+							files are used to record this information.
+						</p>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>Files, Records, Fields</h3>
+					</div>
+					<div class="section-content">
+						<p>In record-based files;</p>
+						<ul>
+							<li>
+								We use the term <i>file</i>, to describe a collection of one or more occurrences
+								(instances) of a record type (template).
+							</li>
+							<li>
+								We use the term r<i>ecord,</i> to describe a collection of fields which record
+								information about an object.
+							</li>
+							<li>
+								We use the term <i>field,</i> to describe an item of information recorded about an
+								object (e.g. StudentName, DateOfBirth).
+							</li>
+						</ul>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>Record instance vs Record type</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							It is important to distinguish between a record occurrence (i.e. the values of a record) and
+							the record type or template (i.e. the structure of the record).
+						</p>
+						<p>
+							Each record occurrence in a file will have a different value but every record in the file
+							will have the same structure.
+						</p>
+						<p>
+							For instance, in the student details file, illustrated below, the occurrences of the student
+							records are actual values in the file. The record type/template describes the
+							<i>structure</i> of each record occurrence.
+						</p>
+						<p class="center-block">
+							<img
+								height="388"
+								src="Resources/pics/FileSeq1.gif"
+								width="472"
+								alt="Student details file showing record occurrences mapped to the record type template"
+							/>
+						</p>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>The record buffer</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							Before a computer can do any processing on a piece of data, the data must be loaded into
+							main memory (RAM). The CPU can only address data that is in RAM.
+						</p>
+						<p>
+							A record-based file may consist of hundreds of thousands, millions or even tens of millions
+							of records, and may require gigabytes of storage. Files of this size cannot be processed by
+							loading the whole file into memory in one go. Instead, files are processed by reading the
+							records into memory, one at a time.
+						</p>
+						<p>
+							To store the record read into memory and to allow access to the individual fields of the
+							record, a programmer must declare the record structure (see the diagram above) in his
+							program. The computer uses the programmer's description of the record (the record template)
+							to set aside sufficient memory to store one instance of the record. The memory allocated for
+							storing a record is usually called a "record buffer".
+						</p>
+						<p>
+							A record buffer is capable of storing the data recorded for only one instance of the record.
+							To process a file a program must read the records one at a time into the record buffer. The
+							record buffer is the only connection between the program and the records in the file.
+						</p>
+						<p class="center-block">
+							<img
+								height="248"
+								src="Resources/pics/FileSeq2.gif"
+								width="471"
+								alt="Diagram showing a record being read from a sequential file into the record buffer in RAM"
+							/>
+						</p>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>Some implications of "buffers"</h3>
+						<p class="center-block">
+							<img height="44" src="Resources/pics/program.gif" width="42" alt="" />
+						</p>
+					</div>
+					<div class="section-content">
+						<p>If a program processes more than one file, a record buffer must be defined for each file.</p>
+						<p>
+							To process all the records in an <code class="language-cobol">INPUT</code> file, we must
+							ensure that each record instance is copied (read) from the file, into the record buffer,
+							when required.
+						</p>
+						<p>
+							To create an <code class="language-cobol">OUTPUT</code> file containing data records, we
+							must ensure that each record is placed in the record buffer and then transferred (written)
+							to the file.
+						</p>
+						<p>
+							To transfer a record from an input file to an output file we must read the record into the
+							input record buffer, transfer it to the output record buffer and then write the data to the
+							output file from the output record buffer. This type of data transfer between 'buffers' is
+							quite common in COBOL programs.
+						</p>
+					</div>
+					<div class="section-full">
+						<div>
+							<hr />
+							<back-to-top></back-to-top>
+						</div>
+					</div>
 				</div>
-				<div class="section-sidebar">
-					<h3>Creating a record</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						To create a record buffer large enough to store one instance of a record, containing the
-						information described above, we must decide on the type and size of each of the fields.
-					</p>
-					<ul>
-						<li>
-							The student identity number is 7 digits in size so we need to declare the data-item to hold
-							it as PIC 9(7).
-						</li>
-						<li>
-							To store the student name, we will assume that we require only 10 characters. So we can
-							declare a data-item to hold it as PIC X(10).
-						</li>
-						<li>The date of birth is 8 digits long so we declare it as PIC 9(8).</li>
-						<li>The course code is 4 characters long so we declare it as PIC X(4).</li>
-						<li>Finally, the gender is only one character so we declare it as PIC X.</li>
-					</ul>
-					<p>
-						The fields described above are individual data items but we must collect them together into a
-						record structure as follows;
-					</p>
-					<pre class="language-cobol"><code class="language-cobol">01 StudentRec.
+				<!-- Declaring Records and Files -->
+				<div class="section-grid">
+					<div class="section-header">
+						<h2 id="part2">Declaring Records and Files</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Introduction</h3>
+						<aside>
+							<p class="center-block">
+								<span class="i-detail" aria-hidden="true">🔍</span><br />
+								This is for demonstration only. In reality we would need to include far more items and
+								some of the fields would have to be considerably larger.
+							</p>
+						</aside>
+					</div>
+					<div class="section-content">
+						<p>
+							Suppose we want to create a file to hold information about the students in the University.
+							What kind of information do we need to store about each student?
+						</p>
+						<p>
+							One thing we need to store is the student's name. Each student is assigned an identification
+							number; so we need to store that as well. We also need to store the date of birth, and the
+							code of the course the student is taking. Finally, we are going to store the student's
+							gender. These items are summarized below;
+						</p>
+						<ul>
+							<li>Student Id</li>
+							<li>Student Name</li>
+							<li>Date of birth</li>
+							<li>Course Code</li>
+							<li>Gender</li>
+						</ul>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>Creating a record</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							To create a record buffer large enough to store one instance of a record, containing the
+							information described above, we must decide on the type and size of each of the fields.
+						</p>
+						<ul>
+							<li>
+								The student identity number is 7 digits in size so we need to declare the data-item to
+								hold it as PIC 9(7).
+							</li>
+							<li>
+								To store the student name, we will assume that we require only 10 characters. So we can
+								declare a data-item to hold it as PIC X(10).
+							</li>
+							<li>The date of birth is 8 digits long so we declare it as PIC 9(8).</li>
+							<li>The course code is 4 characters long so we declare it as PIC X(4).</li>
+							<li>Finally, the gender is only one character so we declare it as PIC X.</li>
+						</ul>
+						<p>
+							The fields described above are individual data items but we must collect them together into
+							a record structure as follows;
+						</p>
+						<pre class="language-cobol"><code class="language-cobol">01 StudentRec.
    02 StudentId         PIC 9(7).
    02 StudentName       PIC X(10).
    02 DateOfBirth       PIC 9(8).
    02 CourseCode        PIC X(4).
    02 Gender            PIC X.</code></pre>
-					<p>
-						The record description above is correct as far as it goes. It reserves the correct amount of
-						storage for the record buffer. But it does not allow us to access all the individual parts of
-						the record that we might require.
-					</p>
-					<p>
-						For instance, the name is actually made up of the student's surname and initials while the date
-						consists of 4 digits for the year, 2 digits for the month and 2 digits for the day .
-					</p>
-					<p>To allow us to access these fields individually we need to declare the record as follows;</p>
-					<pre class="language-cobol"><code class="language-cobol">01 StudentRec.
+						<p>
+							The record description above is correct as far as it goes. It reserves the correct amount of
+							storage for the record buffer. But it does not allow us to access all the individual parts
+							of the record that we might require.
+						</p>
+						<p>
+							For instance, the name is actually made up of the student's surname and initials while the
+							date consists of 4 digits for the year, 2 digits for the month and 2 digits for the day .
+						</p>
+						<p>To allow us to access these fields individually we need to declare the record as follows;</p>
+						<pre class="language-cobol"><code class="language-cobol">01 StudentRec.
    02 StudentId         PIC 9(7).
    02 StudentName.
       03 Surname        PIC X(8).
@@ -327,27 +340,34 @@
       03 DOBirth        PIC 99.
    02 CourseCode        PIC X(4).
    02 Gender            PIC X.</code></pre>
-					<p>
-						In this description, StudentName is a group item consisting of Surname and Initials, and
-						DateOfBirth consists of YOBirth, MOBirth and DOBirth.
-					</p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>Declaring a record buffer in your program</h3>
-					<p class="center-block"><img height="44" src="Resources/pics/program-fragment.svg" width="48" alt="Program fragment" /></p>
-				</div>
-				<div class="section-content">
-					<p>
-						The record type/template/buffer of every file used in a program must be described in the
-						<code class="language-cobol">FILE SECTION</code> by means of an
-						<code class="language-cobol">FD</code> (file description) entry. The
-						<code class="language-cobol">FD</code> entry consists of the letters
-						<code class="language-cobol">FD</code> and an internal name that the programmer assigns to the
-						file.
-					</p>
-					<p>So the full file description for the students file might be;.</p>
-					<pre class="language-cobol"><code class="language-cobol">DATA DIVISION.
+						<p>
+							In this description, StudentName is a group item consisting of Surname and Initials, and
+							DateOfBirth consists of YOBirth, MOBirth and DOBirth.
+						</p>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>Declaring a record buffer in your program</h3>
+						<p class="center-block">
+							<img
+								height="44"
+								src="Resources/pics/program-fragment.svg"
+								width="48"
+								alt="Program fragment"
+							/>
+						</p>
+					</div>
+					<div class="section-content">
+						<p>
+							The record type/template/buffer of every file used in a program must be described in the
+							<code class="language-cobol">FILE SECTION</code> by means of an
+							<code class="language-cobol">FD</code> (file description) entry. The
+							<code class="language-cobol">FD</code> entry consists of the letters
+							<code class="language-cobol">FD</code> and an internal name that the programmer assigns to
+							the file.
+						</p>
+						<p>So the full file description for the students file might be;.</p>
+						<pre class="language-cobol"><code class="language-cobol">DATA DIVISION.
 FILE SECTION.
 FD StudentFile.
 01 StudentRec.
@@ -361,33 +381,41 @@ FD StudentFile.
       03 DOBirth        PIC 99.
    02 CourseCode        PIC X(4).
    02 Gender            PIC X.</code></pre>
-					<p>
-						Note that we have assigned the name StudentFile as the internal file name. The actual name of
-						the file on disk is <i>Students.Dat</i>.
-					</p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>The SELECT and ASSIGN clause</h3>
-					<p class="center-block"><img height="44" src="Resources/pics/program-fragment.svg" width="48" alt="Program fragment" /></p>
-				</div>
-				<div class="section-content">
-					<p>
-						Although the name of the students file on disk is <i>Students.Dat</i> we are going to refer to
-						it in our program as StudentFile. How can we connect the name we are going to use internally
-						with the actual name of the program on disk?
-					</p>
-					<p>
-						The internal file name used in a file's <code class="language-cobol">FD</code> entry is
-						connected to an external file (on disk, tape or CD-ROM) by means of the
-						<code class="language-cobol">SELECT</code> and
-						<code class="language-cobol">ASSIGN</code> clause. The
-						<code class="language-cobol">SELECT</code> and <code class="language-cobol">ASSIGN</code> clause
-						is an entry in the <code class="language-cobol">FILE-CONTROL</code> paragraph in the
-						<code class="language-cobol">INPUT-OUTPUT SECTION</code> in the
-						<code class="language-cobol">ENVIRONMENT DIVISION</code>.
-					</p>
-					<pre class="language-cobol"><code class="language-cobol">ENVIRONMENT DIVISION.
+						<p>
+							Note that we have assigned the name StudentFile as the internal file name. The actual name
+							of the file on disk is <i>Students.Dat</i>.
+						</p>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>The SELECT and ASSIGN clause</h3>
+						<p class="center-block">
+							<img
+								height="44"
+								src="Resources/pics/program-fragment.svg"
+								width="48"
+								alt="Program fragment"
+							/>
+						</p>
+					</div>
+					<div class="section-content">
+						<p>
+							Although the name of the students file on disk is <i>Students.Dat</i> we are going to refer
+							to it in our program as StudentFile. How can we connect the name we are going to use
+							internally with the actual name of the program on disk?
+						</p>
+						<p>
+							The internal file name used in a file's <code class="language-cobol">FD</code> entry is
+							connected to an external file (on disk, tape or CD-ROM) by means of the
+							<code class="language-cobol">SELECT</code> and
+							<code class="language-cobol">ASSIGN</code> clause. The
+							<code class="language-cobol">SELECT</code> and
+							<code class="language-cobol">ASSIGN</code> clause is an entry in the
+							<code class="language-cobol">FILE-CONTROL</code> paragraph in the
+							<code class="language-cobol">INPUT-OUTPUT SECTION</code> in the
+							<code class="language-cobol">ENVIRONMENT DIVISION</code>.
+						</p>
+						<pre class="language-cobol"><code class="language-cobol">ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
    SELECT StudentFile
@@ -406,290 +434,322 @@ FD StudentFile.
       03 DOBirth        PIC 99.
    02 CourseCode        PIC X(4).
    02 Gender            PIC X.</code></pre>
-				</div>
-				<div class="section-sidebar">
-					<h3>SELECT and ASSIGN syntax for Sequential files</h3>
-					<aside>
-						<p class="center-block">
-							<span class="i-detail" aria-hidden="true">🔍</span><br />
-							The Select and Assign clause has far more entries (even for Sequential files) than those we
-							show here; but we will examine the other entries in later tutorials.
+					</div>
+					<div class="section-sidebar">
+						<h3>SELECT and ASSIGN syntax for Sequential files</h3>
+						<aside>
+							<p class="center-block">
+								<span class="i-detail" aria-hidden="true">🔍</span><br />
+								The Select and Assign clause has far more entries (even for Sequential files) than those
+								we show here; but we will examine the other entries in later tutorials.
+							</p>
+						</aside>
+						<aside>
+							<p class="center-block">
+								<span class="i-detail" aria-hidden="true">🔍</span><br />
+								We are only going to deal with statically assigned file names for the moment, but it is
+								possible to assign a file name to a file at run-time.
+							</p>
+						</aside>
+					</div>
+					<div class="section-content">
+						<p>
+							<img
+								height="72"
+								src="Resources/pics/FileSeq3.gif"
+								width="375"
+								alt="SELECT and ASSIGN syntax diagram for Sequential files"
+							/>
 						</p>
-					</aside>
-					<aside>
+						<p>The Microfocus COBOL compiler recognizes two kinds of Sequential File organization</p>
 						<p class="center-block">
-							<span class="i-detail" aria-hidden="true">🔍</span><br />
-							We are only going to deal with statically assigned file names for the moment, but it is
-							possible to assign a file name to a file at run-time.
+							<code class="language-cobol">LINE SEQUENTIAL</code><br />
+							and
+							<br /><code class="language-cobol">RECORD SEQUENTIAL</code>.
 						</p>
-					</aside>
-				</div>
-				<div class="section-content">
-					<p>
-						<img height="72" src="Resources/pics/FileSeq3.gif" width="375" alt="SELECT and ASSIGN syntax diagram for Sequential files" />
-					</p>
-					<p>
-						The Microfocus COBOL compiler recognizes two kinds of Sequential File organization
-					</p>
-					<p class="center-block">
-						<code class="language-cobol">LINE SEQUENTIAL</code><br />
-						and
-						<br /><code class="language-cobol">RECORD SEQUENTIAL</code>.
-					</p>
-					<p>
-						<code class="language-cobol">LINE SEQUENTIAL</code> files, are files in which each record is
-						followed by the carriage return and line feed characters. These are the kind of files
-						produced by a text editor such as Notepad.
-					</p>
-					<p>
-						<code class="language-cobol">RECORD SEQUENTIAL</code> files, are files where the file
-						consists of a stream of bytes. Only the fact that we know the size of each record allows us
-						to retrieve them. Files that are not record based, can be processed by defining them as
-						<code class="language-cobol">RECORD SEQUENTIAL</code>.
-					</p>
-					<p>
-						The <i>ExternalFileReference</i> can be a simple file name, or a full, or a partial, file
-						specification. If a simple file name is used, the drive and directory where the program is
-						running is assumed but we may choose to include the full path to the file. For instance, we
-						could associate the StudentFile with an actual file using statements like:
-					</p>
-					<pre class="language-cobol"><code class="language-cobol">SELECT StudentFile
+						<p>
+							<code class="language-cobol">LINE SEQUENTIAL</code> files, are files in which each record is
+							followed by the carriage return and line feed characters. These are the kind of files
+							produced by a text editor such as Notepad.
+						</p>
+						<p>
+							<code class="language-cobol">RECORD SEQUENTIAL</code> files, are files where the file
+							consists of a stream of bytes. Only the fact that we know the size of each record allows us
+							to retrieve them. Files that are not record based, can be processed by defining them as
+							<code class="language-cobol">RECORD SEQUENTIAL</code>.
+						</p>
+						<p>
+							The <i>ExternalFileReference</i> can be a simple file name, or a full, or a partial, file
+							specification. If a simple file name is used, the drive and directory where the program is
+							running is assumed but we may choose to include the full path to the file. For instance, we
+							could associate the StudentFile with an actual file using statements like:
+						</p>
+						<pre class="language-cobol"><code class="language-cobol">SELECT StudentFile
        ASSIGN TO "D:\Cobol\ExampleProgs\Students.Dat"
 
 SELECT StudentFile
        ASSIGN TO "A:\Students.Dat"
 </code></pre>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>What is the purpose of the SELECT and ASSIGN clause?</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						The <code class="language-cobol">SELECT</code> and
-						<code class="language-cobol">ASSIGN</code> clause allows us to assign a meaningful name to
-						an actual file on a storage device. The advantage of this is that it makes our programs more
-						readable and more easy to maintain. If the location of the file, or the medium on which the
-						file is held, changes then the only change we need to make to our program, is to change the
-						entry in the <code class="language-cobol">SELECT</code> and
-						<code class="language-cobol">ASSIGN</code> clause.
-					</p>
-				</div>
-				<div class="section-full">
-					<div>
-						<hr />
-						<back-to-top></back-to-top>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>What is the purpose of the SELECT and ASSIGN clause?</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							The <code class="language-cobol">SELECT</code> and
+							<code class="language-cobol">ASSIGN</code> clause allows us to assign a meaningful name to
+							an actual file on a storage device. The advantage of this is that it makes our programs more
+							readable and more easy to maintain. If the location of the file, or the medium on which the
+							file is held, changes then the only change we need to make to our program, is to change the
+							entry in the <code class="language-cobol">SELECT</code> and
+							<code class="language-cobol">ASSIGN</code> clause.
+						</p>
+					</div>
+					<div class="section-full">
+						<div>
+							<hr />
+							<back-to-top></back-to-top>
+						</div>
 					</div>
 				</div>
-			</div>
-			<!-- COBOL file handling verbs -->
-			<div class="section-grid">
-				<div class="section-header">
-					<h2 id="part3">COBOL file handling verbs</h2>
-				</div>
-				<div class="section-sidebar">
-					<h3>Introduction</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						Sequential files are uncomplicated. To write programs that process Sequential Files you only
-						need to know four new verbs - the <code class="language-cobol">OPEN</code>,
-						<code class="language-cobol">CLOSE</code>, <code class="language-cobol">READ</code> and
-						<code class="language-cobol">WRITE</code>.
-					</p>
-					<p>
-						You must ensure that (before terminating) your program closes all the files it has opened.
-						Failure to do so may result in data not being written to the file or users being prevented from
-						accessing the file.
-					</p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>The OPEN verb</h3>
-					<aside>
-						<p class="center-block">
-							<img height="44" src="Resources/pics/i-LightBulbTip.gif" width="42" alt="" /><br />
-							Although, as you can see from the ellipses in the syntax diagram, it is possible to open a
-							number of files with one OPEN statement it not advisable to do so. If an error is detected
-							on opening a file and you have used only one statement to open all the files, the system
-							probably won't be able to show you which particular file is causing the problem. If you open
-							all the files separately, it will.
+				<!-- COBOL file handling verbs -->
+				<div class="section-grid">
+					<div class="section-header">
+						<h2 id="part3">COBOL file handling verbs</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Introduction</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							Sequential files are uncomplicated. To write programs that process Sequential Files you only
+							need to know four new verbs - the <code class="language-cobol">OPEN</code>,
+							<code class="language-cobol">CLOSE</code>, <code class="language-cobol">READ</code> and
+							<code class="language-cobol">WRITE</code>.
 						</p>
-					</aside>
-				</div>
-				<div class="section-content">
-					<p><img height="78" src="Resources/pics/FileSeq4.gif" width="277" alt="OPEN verb syntax diagram for Sequential files" /></p>
-					<p>
-						Before your program can access the data in an input file or place data in an output file, you
-						must make the file available to the program by
-						<code class="language-cobol">OPEN</code>ing it.
-					</p>
-					<p>
-						When you open a file you have to indicate how you intend to use it (e.g.
-						<code class="language-cobol">INPUT</code>, <code class="language-cobol">OUTPUT</code>,
-						<code class="language-cobol">EXTEND</code>) so that the system can manage the file
-						correctly.Opening a file does not transfer any data to the record buffer, it simply provides
-						access.
-					</p>
-					<p>
-						<b> <code class="language-cobol">OPEN</code> notes<br /> </b> When a file is opened for
-						<code class="language-cobol">INPUT</code> or <code class="language-cobol">EXTEND</code>, the
-						file must exist or the <code class="language-cobol">OPEN</code> will fail.
-					</p>
-					<p>
-						When a file is opened for <code class="language-cobol">INPUT</code>, the
-						<i>Next Record Pointer</i>
-						is positioned at the beginning of the file.
-					</p>
-					<p>
-						When the file is opened for <code class="language-cobol">EXTEND</code>, the Next Record Pointer
-						is positioned after the last record in the file. This allows records to be appended to the file.
-					</p>
-					<p>
-						When a file is opened for <code class="language-cobol">OUTPUT</code>, it is created if it does
-						not exist, and is overwritten, if it already exists.
-					</p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>The CLOSE verb</h3>
-				</div>
-				<div class="section-content">
-					<p><code class="language-cobol">CLOSE</code> InternalFileName...</p>
-					<p>
-						You must ensure that, before terminating, your program closes all the files it has opened.
-						Failure to do so may result in some data not being written to the file or users being prevented
-						from accessing the file.
-					</p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>The READ verb</h3>
-				</div>
-				<div class="section-content">
-					<p><img height="101" src="Resources/pics/FileSeq5.gif" width="288" alt="READ verb syntax diagram for Sequential files" /></p>
-					<p>
-						Once the system has opened a file and made it available to the program it is the programmers
-						responsibility to process it correctly. To process all the records in the file we have to
-						transfer them, one record at a time, from the file to the file's record buffer. The READ is
-						provided this purpose.
-					</p>
-					<p>
-						The READ copies a record occurrence/instance from the file and places it in the record buffer.
-					</p>
-					<p>
-						<b> <code class="language-cobol">READ</code> notes<br /> </b> When the
-						<code class="language-cobol">READ</code> attempts to read a record from the file and encounters
-						the end of file marker, the <code class="language-cobol">AT END</code> is triggered and the
-						<i>StatementBlock</i> following the <code class="language-cobol">AT END</code> is executed.
-					</p>
-					<p>
-						Using the <code class="language-cobol">INTO</code> <i>Identifier</i> clause, causes the data to
-						be read into the record buffer and then copied from there, to the <i>Identifier</i>, in one
-						operation. When this option is used, there will be two copies of the data. One in the record
-						buffer and one in the <i>Identifier</i>. Using this clause is the equivalent of executing a
-						<code class="language-cobol">READ</code> and then moving the contents of the record buffer to
-						the <i>Identifier</i>.
-					</p>
-				</div>
-				<div class="section-sidebar">
-					<h3>How the READ works</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						The animation below demonstrates how the <code class="language-cobol">READ</code> works. When a
-						record is read it is copied from the backing storage file into the record buffer in
-						<code class="language-cobol">RAM</code>. When an attempt to
-						<code class="language-cobol">READ</code> detects the end of file the
-						<code class="language-cobol">AT END</code> is triggered and the condition name EndOfFile is set
-						to true. Since the condition name is set up as shown below, setting it to true fills the whole
-						record with <code class="language-cobol">HIGH</code>-<code class="language-cobol">VALUES</code>.
-					</p>
-					<pre class="language-cobol"><code class="language-cobol">FD StudentFile.
+						<p>
+							You must ensure that (before terminating) your program closes all the files it has opened.
+							Failure to do so may result in data not being written to the file or users being prevented
+							from accessing the file.
+						</p>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>The OPEN verb</h3>
+						<aside>
+							<p class="center-block">
+								<img height="44" src="Resources/pics/i-LightBulbTip.gif" width="42" alt="" /><br />
+								Although, as you can see from the ellipses in the syntax diagram, it is possible to open
+								a number of files with one OPEN statement it not advisable to do so. If an error is
+								detected on opening a file and you have used only one statement to open all the files,
+								the system probably won't be able to show you which particular file is causing the
+								problem. If you open all the files separately, it will.
+							</p>
+						</aside>
+					</div>
+					<div class="section-content">
+						<p>
+							<img
+								height="78"
+								src="Resources/pics/FileSeq4.gif"
+								width="277"
+								alt="OPEN verb syntax diagram for Sequential files"
+							/>
+						</p>
+						<p>
+							Before your program can access the data in an input file or place data in an output file,
+							you must make the file available to the program by
+							<code class="language-cobol">OPEN</code>ing it.
+						</p>
+						<p>
+							When you open a file you have to indicate how you intend to use it (e.g.
+							<code class="language-cobol">INPUT</code>, <code class="language-cobol">OUTPUT</code>,
+							<code class="language-cobol">EXTEND</code>) so that the system can manage the file
+							correctly.Opening a file does not transfer any data to the record buffer, it simply provides
+							access.
+						</p>
+						<p>
+							<b> <code class="language-cobol">OPEN</code> notes<br /> </b> When a file is opened for
+							<code class="language-cobol">INPUT</code> or <code class="language-cobol">EXTEND</code>, the
+							file must exist or the <code class="language-cobol">OPEN</code> will fail.
+						</p>
+						<p>
+							When a file is opened for <code class="language-cobol">INPUT</code>, the
+							<i>Next Record Pointer</i>
+							is positioned at the beginning of the file.
+						</p>
+						<p>
+							When the file is opened for <code class="language-cobol">EXTEND</code>, the Next Record
+							Pointer is positioned after the last record in the file. This allows records to be appended
+							to the file.
+						</p>
+						<p>
+							When a file is opened for <code class="language-cobol">OUTPUT</code>, it is created if it
+							does not exist, and is overwritten, if it already exists.
+						</p>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>The CLOSE verb</h3>
+					</div>
+					<div class="section-content">
+						<p><code class="language-cobol">CLOSE</code> InternalFileName...</p>
+						<p>
+							You must ensure that, before terminating, your program closes all the files it has opened.
+							Failure to do so may result in some data not being written to the file or users being
+							prevented from accessing the file.
+						</p>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>The READ verb</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							<img
+								height="101"
+								src="Resources/pics/FileSeq5.gif"
+								width="288"
+								alt="READ verb syntax diagram for Sequential files"
+							/>
+						</p>
+						<p>
+							Once the system has opened a file and made it available to the program it is the programmers
+							responsibility to process it correctly. To process all the records in the file we have to
+							transfer them, one record at a time, from the file to the file's record buffer. The READ is
+							provided this purpose.
+						</p>
+						<p>
+							The READ copies a record occurrence/instance from the file and places it in the record
+							buffer.
+						</p>
+						<p>
+							<b> <code class="language-cobol">READ</code> notes<br /> </b> When the
+							<code class="language-cobol">READ</code> attempts to read a record from the file and
+							encounters the end of file marker, the <code class="language-cobol">AT END</code> is
+							triggered and the <i>StatementBlock</i> following the
+							<code class="language-cobol">AT END</code> is executed.
+						</p>
+						<p>
+							Using the <code class="language-cobol">INTO</code> <i>Identifier</i> clause, causes the data
+							to be read into the record buffer and then copied from there, to the <i>Identifier</i>, in
+							one operation. When this option is used, there will be two copies of the data. One in the
+							record buffer and one in the <i>Identifier</i>. Using this clause is the equivalent of
+							executing a <code class="language-cobol">READ</code> and then moving the contents of the
+							record buffer to the <i>Identifier</i>.
+						</p>
+					</div>
+					<div class="section-sidebar">
+						<h3>How the READ works</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							The animation below demonstrates how the <code class="language-cobol">READ</code> works.
+							When a record is read it is copied from the backing storage file into the record buffer in
+							<code class="language-cobol">RAM</code>. When an attempt to
+							<code class="language-cobol">READ</code> detects the end of file the
+							<code class="language-cobol">AT END</code> is triggered and the condition name EndOfFile is
+							set to true. Since the condition name is set up as shown below, setting it to true fills the
+							whole record with <code class="language-cobol">HIGH</code>-<code class="language-cobol"
+								>VALUES</code
+							>.
+						</p>
+						<pre class="language-cobol"><code class="language-cobol">FD StudentFile.
 01 StudentRec.
    88 EndOfFile     VALUE HIGH-VALUES.
 
    02 StudentId     PIC 9(7).
        etc
 </code></pre>
-					<p class="center-block">
-						<a href="Resources/ppz/TC-SeqFile1.html"
-							><img height="62" src="Resources/pics/i-Animation.gif" width="62" alt="Click for animation: how the READ verb works with sequential files"
-						/></a>
-					</p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>The WRITE verb</h3>
-					<aside>
 						<p class="center-block">
-							<span class="i-detail" aria-hidden="true">🔍</span><br />
-							The <code class="language-cobol">WRITE</code> format actually contains a number of other
-							entries but these relate to writing to print files and will be covered in subsequent
-							tutorials.
+							<a href="Resources/ppz/TC-SeqFile1.html"
+								><img
+									height="62"
+									src="Resources/pics/i-Animation.gif"
+									width="62"
+									alt="Click for animation: how the READ verb works with sequential files"
+							/></a>
 						</p>
-					</aside>
-				</div>
-				<div class="section-content">
-					<p>
-						<code class="language-cobol">WRITE</code> RecordName [<code class="language-cobol">FROM</code>
-						Identifier]
-					</p>
-					<p>
-						The <code class="language-cobol">WRITE</code> verb is used to copy data from the record buffer
-						(RAM) to the file on backing storage (Disk, tape or CD-ROM).
-					</p>
-					<p>
-						To <code class="language-cobol">WRITE</code> data to a file we must move the data to the record
-						buffer (declared in the FD entry) and then <code class="language-cobol">WRITE</code> the
-						contents of record buffer to the file.
-					</p>
-					<p>
-						When the <code class="language-cobol">WRITE..FROM</code> is used the data contained in the
-						<i>Identifier</i> is copied into the record buffer and is then written to the file. The
-						<code class="language-cobol">WRITE..FROM</code> is the equivalent of a
-						<code class="language-cobol">MOVE</code>
-						<i>Identifier <code class="language-cobol">TO</code> RecordBuffer</i> statement followed by a
-						<i> <code class="language-cobol">WRITE</code> RecordBuffer </i> statement.
-					</p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>Read a file, Write a record</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						If you were paying close attention to the syntax diagrams above you probably noticed that while
-						we <code class="language-cobol">READ</code> a file, we must
-						<code class="language-cobol">WRITE</code> a record.
-					</p>
-					<p>
-						The reason we read a file but write a record, is that a file can contain a number of different
-						types of record. For instance, if we want to update the students file we might have a file of
-						transaction records that contained Insertion records and Deletion records. While the Insertion
-						records would contain all the student record fields, the Deletion only needs the StudentId.
-					</p>
-					<p>
-						When we read a record from the transaction file we don't know which of the types will be
-						supplied; so we must - <i> <code class="language-cobol">READ</code> Filename </i> . It is the
-						programmers responsibility to discover what type of record has been supplied.
-					</p>
-					<p>
-						When we write a record to the a file we have to specify which of the record types we want to
-						write; so we must - <i> <code class="language-cobol">WRITE</code> RecordName </i> .
-					</p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>Example Program</h3>
-					<p class="center-block"><img height="44" src="Resources/pics/program.gif" width="42" alt="" /></p>
-				</div>
-				<div class="section-content">
-					<p>
-						The example program below demonstrates the items discussed above. The program gets records from
-						the user and writes them to a file. It then reads the file and displays part of each record.
-					</p>
-					<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>The WRITE verb</h3>
+						<aside>
+							<p class="center-block">
+								<span class="i-detail" aria-hidden="true">🔍</span><br />
+								The <code class="language-cobol">WRITE</code> format actually contains a number of other
+								entries but these relate to writing to print files and will be covered in subsequent
+								tutorials.
+							</p>
+						</aside>
+					</div>
+					<div class="section-content">
+						<p>
+							<code class="language-cobol">WRITE</code> RecordName [<code class="language-cobol"
+								>FROM</code
+							>
+							Identifier]
+						</p>
+						<p>
+							The <code class="language-cobol">WRITE</code> verb is used to copy data from the record
+							buffer (RAM) to the file on backing storage (Disk, tape or CD-ROM).
+						</p>
+						<p>
+							To <code class="language-cobol">WRITE</code> data to a file we must move the data to the
+							record buffer (declared in the FD entry) and then
+							<code class="language-cobol">WRITE</code> the contents of record buffer to the file.
+						</p>
+						<p>
+							When the <code class="language-cobol">WRITE..FROM</code> is used the data contained in the
+							<i>Identifier</i> is copied into the record buffer and is then written to the file. The
+							<code class="language-cobol">WRITE..FROM</code> is the equivalent of a
+							<code class="language-cobol">MOVE</code>
+							<i>Identifier <code class="language-cobol">TO</code> RecordBuffer</i> statement followed by
+							a <i> <code class="language-cobol">WRITE</code> RecordBuffer </i> statement.
+						</p>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>Read a file, Write a record</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							If you were paying close attention to the syntax diagrams above you probably noticed that
+							while we <code class="language-cobol">READ</code> a file, we must
+							<code class="language-cobol">WRITE</code> a record.
+						</p>
+						<p>
+							The reason we read a file but write a record, is that a file can contain a number of
+							different types of record. For instance, if we want to update the students file we might
+							have a file of transaction records that contained Insertion records and Deletion records.
+							While the Insertion records would contain all the student record fields, the Deletion only
+							needs the StudentId.
+						</p>
+						<p>
+							When we read a record from the transaction file we don't know which of the types will be
+							supplied; so we must - <i> <code class="language-cobol">READ</code> Filename </i> . It is
+							the programmers responsibility to discover what type of record has been supplied.
+						</p>
+						<p>
+							When we write a record to the a file we have to specify which of the record types we want to
+							write; so we must - <i> <code class="language-cobol">WRITE</code> RecordName </i> .
+						</p>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>Example Program</h3>
+						<p class="center-block">
+							<img height="44" src="Resources/pics/program.gif" width="42" alt="" />
+						</p>
+					</div>
+					<div class="section-content">
+						<p>
+							The example program below demonstrates the items discussed above. The program gets records
+							from the user and writes them to a file. It then reads the file and displays part of each
+							record.
+						</p>
+						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  SeqWriteRead.
 AUTHOR.  Michael Coughlan.
@@ -751,15 +811,15 @@ Begin.
 GetStudentRecord.
     DISPLAY "NNNNNNNSSSSSSSSIIYYYYMMDDCCCCG"
     ACCEPT  StudentRec.</code></pre>
+					</div>
+				</div>
+				<div class="page-footer">
+					<hr />
+					<lesson-nav></lesson-nav>
+					<back-to-top></back-to-top>
+					<copyright-notice></copyright-notice>
 				</div>
 			</div>
-			<div class="page-footer">
-				<hr />
-				<lesson-nav></lesson-nav>
-				<back-to-top></back-to-top>
-				<copyright-notice></copyright-notice>
-			</div>
-		</div>
 		</main>
 	</body>
 </html>

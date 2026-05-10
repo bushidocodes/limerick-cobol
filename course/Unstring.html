@@ -19,103 +19,105 @@
 	<body>
 		<a class="skip-link" href="#main-content">Skip to main content</a>
 		<main id="main-content">
-		<div class="page-wrapper">
-			<div class="page-content">
-				<page-hero title="The UNSTRING verb"></page-hero>
-				<hr />
-				<ul class="toc">
-					<li>
-						<a href="#intro">Introduction</a><br />
-						Unit aims, objectives and prerequisites.
-					</li>
-					<li>
-						<a href="#verb">The UNSTRING verb</a><br />
-						This section examines the syntax, functioning and rules of the
-						<code class="language-cobol">UNSTRING</code>.
-					</li>
-					<li>
-						<a href="#examples">UNSTRING examples</a><br />
-						This section starts with some abstract examples, goes on to a more practical example and ends
-						with a example program
-					</li>
-					<li>
-						<a href="#combined">A combined example</a><br />
-						The unit ends with a practical example that uses the
-						<code class="language-cobol">STRING</code> and
-						<code class="language-cobol">UNSTRING</code> verbs in combination.
-					</li>
-				</ul>
-			</div>
-			<div class="section-grid">
-				<div class="section-header">
-					<h2 id="intro">Introduction</h2>
-				</div>
-				<div class="section-sidebar">
-					<h3>Aims</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						The aim of this unit is to provide to provide you with a solid understanding of the UNSTRING
-						verb.
-					</p>
+			<div class="page-wrapper">
+				<div class="page-content">
+					<page-hero title="The UNSTRING verb"></page-hero>
 					<hr />
-				</div>
-				<div class="section-sidebar">
-					<h3>Objectives</h3>
-				</div>
-				<div class="section-content">
-					<p>By the end of this unit you should:</p>
-					<ol>
-						<li>Understand how the UNSTRING works</li>
-						<li>Be able to use the UNSTRING to divide a string into sub-strings</li>
-					</ol>
-					<hr />
-				</div>
-				<div class="section-sidebar">
-					<h3>Prerequisites</h3>
-				</div>
-				<div class="section-content">
-					<p>You should be familiar with the material covered in the unit;</p>
-					<ul>
-						<li>Data Declaration</li>
-						<li>Iteration</li>
-						<li>Selection</li>
-						<li>Tables</li>
-						<li>Edited Pictures</li>
-						<li>The INSPECT verb</li>
-						<li>The STRING verb</li>
+					<ul class="toc">
+						<li>
+							<a href="#intro">Introduction</a><br />
+							Unit aims, objectives and prerequisites.
+						</li>
+						<li>
+							<a href="#verb">The UNSTRING verb</a><br />
+							This section examines the syntax, functioning and rules of the
+							<code class="language-cobol">UNSTRING</code>.
+						</li>
+						<li>
+							<a href="#examples">UNSTRING examples</a><br />
+							This section starts with some abstract examples, goes on to a more practical example and
+							ends with a example program
+						</li>
+						<li>
+							<a href="#combined">A combined example</a><br />
+							The unit ends with a practical example that uses the
+							<code class="language-cobol">STRING</code> and
+							<code class="language-cobol">UNSTRING</code> verbs in combination.
+						</li>
 					</ul>
 				</div>
-				<div class="section-full">
-					<hr />
-					<back-to-top></back-to-top>
+				<div class="section-grid">
+					<div class="section-header">
+						<h2 id="intro">Introduction</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Aims</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							The aim of this unit is to provide to provide you with a solid understanding of the UNSTRING
+							verb.
+						</p>
+						<hr />
+					</div>
+					<div class="section-sidebar">
+						<h3>Objectives</h3>
+					</div>
+					<div class="section-content">
+						<p>By the end of this unit you should:</p>
+						<ol>
+							<li>Understand how the UNSTRING works</li>
+							<li>Be able to use the UNSTRING to divide a string into sub-strings</li>
+						</ol>
+						<hr />
+					</div>
+					<div class="section-sidebar">
+						<h3>Prerequisites</h3>
+					</div>
+					<div class="section-content">
+						<p>You should be familiar with the material covered in the unit;</p>
+						<ul>
+							<li>Data Declaration</li>
+							<li>Iteration</li>
+							<li>Selection</li>
+							<li>Tables</li>
+							<li>Edited Pictures</li>
+							<li>The INSPECT verb</li>
+							<li>The STRING verb</li>
+						</ul>
+					</div>
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
 				</div>
-			</div>
-			<div class="section-grid">
-				<div class="section-header">
-					<h2 id="verb">The UNSTRING verb</h2>
-				</div>
-				<div class="section-sidebar">
-					<h3>Introduction</h3>
-				</div>
-				<div class="section-content">
-					<p>The UNSTRING is used to divide a string into sub-strings.</p>
-					<p>The examples below show how the UNSTRING is used.</p>
-					<p>
-						The first example breaks a name string into its three constituent part - the first name , second
-						name and surname. For instance the string "John Joseph Ryan" is broken into the three strings
-						"John", "Joseph" and "Ryan".
-					</p>
-					<p>
-						The second example breaks an address string (where the parts of the address are separated from
-						one another by commas) into separate address lines. The address lines are stored in a six
-						element table.
-					</p>
-					<p>
-						Since not all addresses will have six parts exactly, we use the TALLYING clause to discover how
-						many parts there are.
-					</p>
-					<pre class="language-cobol"><code class="language-cobol">UNSTRING FullName DELIMITED BY ALL SPACES
+				<div class="section-grid">
+					<div class="section-header">
+						<h2 id="verb">The UNSTRING verb</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Introduction</h3>
+					</div>
+					<div class="section-content">
+						<p>The UNSTRING is used to divide a string into sub-strings.</p>
+						<p>The examples below show how the UNSTRING is used.</p>
+						<p>
+							The first example breaks a name string into its three constituent part - the first name ,
+							second name and surname. For instance the string "John Joseph Ryan" is broken into the three
+							strings "John", "Joseph" and "Ryan".
+						</p>
+						<p>
+							The second example breaks an address string (where the parts of the address are separated
+							from one another by commas) into separate address lines. The address lines are stored in a
+							six element table.
+						</p>
+						<p>
+							Since not all addresses will have six parts exactly, we use the TALLYING clause to discover
+							how many parts there are.
+						</p>
+						<pre
+							class="language-cobol"
+						><code class="language-cobol">UNSTRING FullName DELIMITED BY ALL SPACES
     INTO FirstName, SecondName, Surname
 END-UNSTRING.
 
@@ -124,14 +126,14 @@ UNSTRING CustAddress DELIMITED BY ","
         AdrLine(4), AdrLine(5), AdrLine(6)
    TALLYING IN AdrLinesUsed
 END-UNSTRING.</code></pre>
-					<hr />
-				</div>
-				<div class="section-sidebar">
-					<h3>UNSTRING syntax</h3>
-				</div>
-				<div class="section-content">
-					<p><img src="Resources/pics/I-UnString.gif" alt="" /></p>
-					<table bgcolor="#DDFFDD" border="1" cellpadding="5" width="77%" style="margin:0 auto">
+						<hr />
+					</div>
+					<div class="section-sidebar">
+						<h3>UNSTRING syntax</h3>
+					</div>
+					<div class="section-content">
+						<p><img src="Resources/pics/I-UnString.gif" alt="" /></p>
+						<table bgcolor="#DDFFDD" border="1" cellpadding="5" width="77%" style="margin: 0 auto">
 							<tr>
 								<td width="21%">Delim$il</td>
 								<td width="79%">
@@ -168,267 +170,273 @@ END-UNSTRING.</code></pre>
 								</td>
 							</tr>
 						</table>
-					<hr />
+						<hr />
+					</div>
+					<div class="section-sidebar">
+						<h3>How the UNSTRING works</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							The UNSTRING copies characters from the source string, to the destination string, until a
+							condition is encountered that terminates data movement.
+						</p>
+						<p>
+							When data movement ends for a particular destination string, the next destination string
+							becomes the receiving area and characters are copied into it until once again a terminating
+							condition is encountered.
+						</p>
+						<p>
+							Characters are copied from the source string to the destination strings according to the
+							rules for alphanumeric moves. There is space filling.
+						</p>
+						<hr />
+					</div>
+					<div class="section-sidebar">
+						<h3>Data movement termination</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							When the DELIMITED BY clause is used data movement from the source string to the current
+							destination string ends when either ;
+						</p>
+						<ul>
+							<li>a delimiter is encountered in the source string</li>
+							<li>the end of the source string is reached.</li>
+						</ul>
+						<p>
+							When the DELIMITED BY clause is not used, data movement from the source string to the
+							current destination string ends when either;
+						</p>
+						<ul>
+							<li>the destination string is full</li>
+							<li>the end of the source string is reached</li>
+						</ul>
+						<hr />
+					</div>
+					<div class="section-sidebar">
+						<h3>UNSTRING termination</h3>
+					</div>
+					<div class="section-content">
+						<p>The UNSTRING statement terminates when either;</p>
+						<ul>
+							<li>All the characters in the source string have been examined</li>
+							<li>All the destination strings have been processed</li>
+							<li>
+								Some error condition is encountered (such as the pointer pointing outside the source
+								string).
+							</li>
+						</ul>
+						<hr />
+					</div>
+					<div class="section-sidebar">
+						<h3>UNSTRING rules</h3>
+					</div>
+					<div class="section-content">
+						<ol>
+							<li>
+								Where a literal can be used any figurative constant can be used except the ALL
+								(literal).<br />
+								<br />
+							</li>
+							<li>
+								When a figurative constant is used then its length is one character.<br />
+								<br />
+							</li>
+							<li>
+								Characters are moved from the source string to the destination strings according to the
+								rules for the MOVE, with space filling if required.<br />
+								<br />
+							</li>
+							<li>
+								The delimiter is moved into HoldDelim$i according to the rules for the MOVE.<br />
+								<br />
+							</li>
+							<li>
+								The DELIMITER IN and COUNT IN phrases may be specified only if the DELIMITED BY phrase
+								is used.
+							</li>
+						</ol>
+						<hr />
+					</div>
+					<div class="section-sidebar">
+						<h3>UNSTRING clauses</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							<b>ON OVERFLOW</b><br />
+							The ON OVERFLOW is activated if :-
+						</p>
+						<ul>
+							<li>
+								The unstring pointer (Pointer#i) is not pointing to a character position within the
+								source string when the UNSTRING executes.
+							</li>
+							<li>
+								All the destination strings have been processed but there are still valid unexamined
+								characters in the source string.
+							</li>
+						</ul>
+						<p>
+							The statements following the NOT ON OVERFLOW are executed if the UNSTRING is about to
+							terminate successfully.
+						</p>
+						<p>
+							<b>COUNT IN</b><br />
+							The COUNT IN clause is associated with a particular destination string and holds a count of
+							the number of characters passed to the destination string.
+						</p>
+						<p>
+							<b>TALLYING IN</b><br />
+							Only one TALLYING clause can be used with each UNSTRING . It holds a count of the number of
+							destination strings affected by the UNSTRING operation.
+						</p>
+						<p>
+							<b>WITH POINTER</b><br />
+							When the WITH POINTER clause is used the Pointer#i holds the position of the next
+							non-delimiter character to be examined in the source string.
+						</p>
+						<p>
+							Pointer#i must be large enough to hold a value one greater than the size of the source
+							string.
+						</p>
+						<p>
+							<b>ALL<br /></b>
+							When the ALL phrase is used, contiguous delimiters are treated as if only one delimiter had
+							been encountered. <b></b>
+							<b><br /></b>
+						</p>
+						<p>
+							If the ALL is not used, contiguous delimiters will result in spaces being sent to some of
+							the destination strings
+						</p>
+						<p>
+							<b>DELIMITER IN</b><br />
+							A DELIMITER IN clause is associated with a particular destination string. HoldDelim$i holds
+							the delimiter that was encountered in the source string.
+						</p>
+						<p>
+							If the DELIMITER IN phrase is used with the ALL phrase then only one occurrence of the
+							delimiter will be moved to HoldDelim$i.
+						</p>
+						<p>
+							<b>DELIMITED BY<br /></b>
+							When the DELIMITED BY phrase is used, characters are examined in the source string and
+							transferred to the current destination string until one of the specified delimiters is
+							encountered or the end the source string is reached.
+						</p>
+						<p>
+							If there is not enough room in the destination string to take all the characters that are
+							sent to it from the source string then the remaining characters will be truncated/lost.
+						</p>
+						<p>
+							When the delimiter is encountered in the source string, the next destination string becomes
+							current and characters are transferred into it, from the source string.
+						</p>
+						<p>Delimiters are not transferred or counted in CharCounter#i.</p>
+					</div>
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
 				</div>
-				<div class="section-sidebar">
-					<h3>How the UNSTRING works</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						The UNSTRING copies characters from the source string, to the destination string, until a
-						condition is encountered that terminates data movement.
-					</p>
-					<p>
-						When data movement ends for a particular destination string, the next destination string becomes
-						the receiving area and characters are copied into it until once again a terminating condition is
-						encountered.
-					</p>
-					<p>
-						Characters are copied from the source string to the destination strings according to the rules
-						for alphanumeric moves. There is space filling.
-					</p>
-					<hr />
-				</div>
-				<div class="section-sidebar">
-					<h3>Data movement termination</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						When the DELIMITED BY clause is used data movement from the source string to the current
-						destination string ends when either ;
-					</p>
-					<ul>
-						<li>a delimiter is encountered in the source string</li>
-						<li>the end of the source string is reached.</li>
-					</ul>
-					<p>
-						When the DELIMITED BY clause is not used, data movement from the source string to the current
-						destination string ends when either;
-					</p>
-					<ul>
-						<li>the destination string is full</li>
-						<li>the end of the source string is reached</li>
-					</ul>
-					<hr />
-				</div>
-				<div class="section-sidebar">
-					<h3>UNSTRING termination</h3>
-				</div>
-				<div class="section-content">
-					<p>The UNSTRING statement terminates when either;</p>
-					<ul>
-						<li>All the characters in the source string have been examined</li>
-						<li>All the destination strings have been processed</li>
-						<li>
-							Some error condition is encountered (such as the pointer pointing outside the source
-							string).
-						</li>
-					</ul>
-					<hr />
-				</div>
-				<div class="section-sidebar">
-					<h3>UNSTRING rules</h3>
-				</div>
-				<div class="section-content">
-					<ol>
-						<li>
-							Where a literal can be used any figurative constant can be used except the ALL (literal).<br />
-							<br />
-						</li>
-						<li>
-							When a figurative constant is used then its length is one character.<br />
-							<br />
-						</li>
-						<li>
-							Characters are moved from the source string to the destination strings according to the
-							rules for the MOVE, with space filling if required.<br />
-							<br />
-						</li>
-						<li>
-							The delimiter is moved into HoldDelim$i according to the rules for the MOVE.<br />
-							<br />
-						</li>
-						<li>
-							The DELIMITER IN and COUNT IN phrases may be specified only if the DELIMITED BY phrase is
-							used.
-						</li>
-					</ol>
-					<hr />
-				</div>
-				<div class="section-sidebar">
-					<h3>UNSTRING clauses</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						<b>ON OVERFLOW</b><br />
-						The ON OVERFLOW is activated if :-
-					</p>
-					<ul>
-						<li>
-							The unstring pointer (Pointer#i) is not pointing to a character position within the source
-							string when the UNSTRING executes.
-						</li>
-						<li>
-							All the destination strings have been processed but there are still valid unexamined
-							characters in the source string.
-						</li>
-					</ul>
-					<p>
-						The statements following the NOT ON OVERFLOW are executed if the UNSTRING is about to terminate
-						successfully.
-					</p>
-					<p>
-						<b>COUNT IN</b><br />
-						The COUNT IN clause is associated with a particular destination string and holds a count of the
-						number of characters passed to the destination string.
-					</p>
-					<p>
-						<b>TALLYING IN</b><br />
-						Only one TALLYING clause can be used with each UNSTRING . It holds a count of the number of
-						destination strings affected by the UNSTRING operation.
-					</p>
-					<p>
-						<b>WITH POINTER</b><br />
-						When the WITH POINTER clause is used the Pointer#i holds the position of the next non-delimiter
-						character to be examined in the source string.
-					</p>
-					<p>
-						Pointer#i must be large enough to hold a value one greater than the size of the source string.
-					</p>
-					<p>
-						<b>ALL<br /></b>
-						When the ALL phrase is used, contiguous delimiters are treated as if only one delimiter had been
-						encountered. <b></b>
-						<b><br /></b>
-					</p>
-					<p>
-						If the ALL is not used, contiguous delimiters will result in spaces being sent to some of the
-						destination strings
-					</p>
-					<p>
-						<b>DELIMITER IN</b><br />
-						A DELIMITER IN clause is associated with a particular destination string. HoldDelim$i holds the
-						delimiter that was encountered in the source string.
-					</p>
-					<p>
-						If the DELIMITER IN phrase is used with the ALL phrase then only one occurrence of the delimiter
-						will be moved to HoldDelim$i.
-					</p>
-					<p>
-						<b>DELIMITED BY<br /></b>
-						When the DELIMITED BY phrase is used, characters are examined in the source string and
-						transferred to the current destination string until one of the specified delimiters is
-						encountered or the end the source string is reached.
-					</p>
-					<p>
-						If there is not enough room in the destination string to take all the characters that are sent
-						to it from the source string then the remaining characters will be truncated/lost.
-					</p>
-					<p>
-						When the delimiter is encountered in the source string, the next destination string becomes
-						current and characters are transferred into it, from the source string.
-					</p>
-					<p>Delimiters are not transferred or counted in CharCounter#i.</p>
-				</div>
-				<div class="section-full">
-					<hr />
-					<back-to-top></back-to-top>
-				</div>
-			</div>
-			<div class="section-grid">
-				<div class="section-header">
-					<h2 id="examples">UNSTRING examples</h2>
-				</div>
-				<div class="section-sidebar">
-					<h3>Introduction</h3>
-				</div>
-				<div class="section-content">
-					<p>This section starts with 6 short examples exploring various aspects the UNSTRING.</p>
-					<p>Example 7 is a longer and more practical example</p>
-					<p>Finally the section ends with an example program that uses the UNSTRING.</p>
-					<hr />
-				</div>
-				<div class="section-sidebar">
-					<h3>
-						Examples 1 - 6<br />
-						(animation)
-					</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						When you view these examples start by carefully examining the UNSTRING statement. See if you can
-						figure out what it's going to do (you may need to review the material above for this).
-					</p>
-					<p>When you are happy with your prediction step through the example and see if you were correct.</p>
-					<p>
-						If your prediction is not correct try to discover what misunderstanding has led to your error.
-					</p>
-					<iframe
-						height="416"
-						src="Resources/pdf-viewer.html?src=ppz/Unstring2.pdf"
-						style="border: 1px solid #ccc; width: 100%; aspect-ratio: 520/416"
-						title="Animation: UNSTRING examples 1 to 6"
-						width="520"
-					></iframe>
-					Left click or PageDown to go to the next frame and right click or press PageUp to go to the
-					previous frame.
-					<hr />
-				</div>
-				<div class="section-sidebar">
-					<h3>
-						Example 7<br />
-						(animation)
-					</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						The WITH POINTER phrase is often very useful because it means that we don't have to unpack the
-						whole source string in one go..
-					</p>
-					<p>
-						In this example, we unpack a full name, any number of Christian names followed by a surname, and
-						display the names one after another.
-					</p>
-					<iframe
-						height="416"
-						src="Resources/pdf-viewer.html?src=ppz/Unstring1.pdf"
-						style="border: 1px solid #ccc; width: 100%; aspect-ratio: 520/416"
-						title="Animation: UNSTRING example 7 - unpacking a full name with WITH POINTER"
-						width="520"
-					></iframe>
-					Click on the diagram below to step through the animation. Left click or PageDown to go to the
-					next step and right click or press PageUp to go to the previous step.
-					<hr />
-				</div>
-				<div class="section-sidebar">
-					<h3>Example program</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						Comma delimited or comma separated values (CSV) is a file format widely used in the computing
-						industry.
-					</p>
-					<p>
-						It allows data to be transferred between applications with incompatible file formats (Excel, for
-						example, can save its spreadsheets in this form).
-					</p>
-					<p>
-						But before the records in a CSV format file can be processed they must be unpacked into
-						individual fields.
-					</p>
-					<p>
-						In this example, a file of customer records is held in file with a CSV-like format. Each record
-						contains a customer name, a customer address and the customer balance. The fields are separated
-						from one another by commas. The individual parts of the customer address are separated by the
-						slash "/" character.
-					</p>
-					<p>An example record is -</p>
-					<p>Michael Ryan,3 Winchester Drive/Castletroy/Limerick/Ireland,0022456</p>
-					<p>
-						The program below reads the file, unpacks each the record into separate fields and writes the
-						unpacked record to a new file.
-					</p>
-					<pre class="language-cobol"><code class="language-cobol">IDENTIFICATION DIVISION.
+				<div class="section-grid">
+					<div class="section-header">
+						<h2 id="examples">UNSTRING examples</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Introduction</h3>
+					</div>
+					<div class="section-content">
+						<p>This section starts with 6 short examples exploring various aspects the UNSTRING.</p>
+						<p>Example 7 is a longer and more practical example</p>
+						<p>Finally the section ends with an example program that uses the UNSTRING.</p>
+						<hr />
+					</div>
+					<div class="section-sidebar">
+						<h3>
+							Examples 1 - 6<br />
+							(animation)
+						</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							When you view these examples start by carefully examining the UNSTRING statement. See if you
+							can figure out what it's going to do (you may need to review the material above for this).
+						</p>
+						<p>
+							When you are happy with your prediction step through the example and see if you were
+							correct.
+						</p>
+						<p>
+							If your prediction is not correct try to discover what misunderstanding has led to your
+							error.
+						</p>
+						<iframe
+							height="416"
+							src="Resources/pdf-viewer.html?src=ppz/Unstring2.pdf"
+							style="border: 1px solid #ccc; width: 100%; aspect-ratio: 520/416"
+							title="Animation: UNSTRING examples 1 to 6"
+							width="520"
+						></iframe>
+						Left click or PageDown to go to the next frame and right click or press PageUp to go to the
+						previous frame.
+						<hr />
+					</div>
+					<div class="section-sidebar">
+						<h3>
+							Example 7<br />
+							(animation)
+						</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							The WITH POINTER phrase is often very useful because it means that we don't have to unpack
+							the whole source string in one go..
+						</p>
+						<p>
+							In this example, we unpack a full name, any number of Christian names followed by a surname,
+							and display the names one after another.
+						</p>
+						<iframe
+							height="416"
+							src="Resources/pdf-viewer.html?src=ppz/Unstring1.pdf"
+							style="border: 1px solid #ccc; width: 100%; aspect-ratio: 520/416"
+							title="Animation: UNSTRING example 7 - unpacking a full name with WITH POINTER"
+							width="520"
+						></iframe>
+						Click on the diagram below to step through the animation. Left click or PageDown to go to the
+						next step and right click or press PageUp to go to the previous step.
+						<hr />
+					</div>
+					<div class="section-sidebar">
+						<h3>Example program</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							Comma delimited or comma separated values (CSV) is a file format widely used in the
+							computing industry.
+						</p>
+						<p>
+							It allows data to be transferred between applications with incompatible file formats (Excel,
+							for example, can save its spreadsheets in this form).
+						</p>
+						<p>
+							But before the records in a CSV format file can be processed they must be unpacked into
+							individual fields.
+						</p>
+						<p>
+							In this example, a file of customer records is held in file with a CSV-like format. Each
+							record contains a customer name, a customer address and the customer balance. The fields are
+							separated from one another by commas. The individual parts of the customer address are
+							separated by the slash "/" character.
+						</p>
+						<p>An example record is -</p>
+						<p>Michael Ryan,3 Winchester Drive/Castletroy/Limerick/Ireland,0022456</p>
+						<p>
+							The program below reads the file, unpacks each the record into separate fields and writes
+							the unpacked record to a new file.
+						</p>
+						<pre class="language-cobol"><code class="language-cobol">IDENTIFICATION DIVISION.
 PROGRAM-ID. CDFILE.
 AUTHOR. Michael Coughlan.
 
@@ -482,32 +490,32 @@ Begin.
     END-PERFORM
     CLOSE CommaDelimitedFile, CustomerFile
     STOP RUN.</code></pre>
+					</div>
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
 				</div>
-				<div class="section-full">
-					<hr />
-					<back-to-top></back-to-top>
-				</div>
-			</div>
-			<div class="section-grid">
-				<div class="section-header">
-					<h2 id="combined">Combined example</h2>
-				</div>
-				<div class="section-sidebar">
-					<h3>Introduction</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						This example takes a string, containing a name consisting of any number of Christian names
-						followed by a surname, and converts it by reducing the Christian names to their first letters
-						followed by a period.
-					</p>
-					<p>For example "Michael John Tim James Ryan" becomes "M.J.T.J. Ryan".</p>
-				</div>
-				<div class="section-sidebar">
-					<h3>Data items used in the example</h3>
-				</div>
-				<div class="section-content">
-					<pre class="language-cobol"><code class="language-cobol">01 OldName  PIC X(80).
+				<div class="section-grid">
+					<div class="section-header">
+						<h2 id="combined">Combined example</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Introduction</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							This example takes a string, containing a name consisting of any number of Christian names
+							followed by a surname, and converts it by reducing the Christian names to their first
+							letters followed by a period.
+						</p>
+						<p>For example "Michael John Tim James Ryan" becomes "M.J.T.J. Ryan".</p>
+					</div>
+					<div class="section-sidebar">
+						<h3>Data items used in the example</h3>
+					</div>
+					<div class="section-content">
+						<pre class="language-cobol"><code class="language-cobol">01 OldName  PIC X(80).
 
 01 TempName.
    02 NameInitial  PIC X.
@@ -519,30 +527,32 @@ Begin.
    02 StrPtr       PIC 99 VALUE 1.
    02 UnstrPtr     PIC 99 VALUE 1.
       88 NameProcessed VALUE 81.</code></pre>
+						<hr />
+					</div>
+					<div class="section-sidebar">
+						<h3>Animation</h3>
+					</div>
+					<div class="section-content">
+						<iframe
+							height="416"
+							src="Resources/pdf-viewer.html?src=ppz/Unstring3.pdf"
+							style="border: 1px solid #ccc; width: 100%; aspect-ratio: 520/416"
+							title="Animation: Combined STRING and UNSTRING example - abbreviating Christian names"
+							width="520"
+						></iframe>
+						<p>
+							Click on the diagram below to step through the animation. Left click or PageDown to go to
+							the next step and right click or press PageUp to go to the previous step.
+						</p>
+					</div>
+				</div>
+				<div class="page-footer">
 					<hr />
-				</div>
-				<div class="section-sidebar">
-					<h3>Animation</h3>
-				</div>
-				<div class="section-content">
-					<iframe
-						height="416"
-						src="Resources/pdf-viewer.html?src=ppz/Unstring3.pdf"
-						style="border: 1px solid #ccc; width: 100%; aspect-ratio: 520/416"
-						title="Animation: Combined STRING and UNSTRING example - abbreviating Christian names"
-						width="520"
-					></iframe>
-					<p>Click on the diagram below to step through the animation. Left click or PageDown to go to the
-					next step and right click or press PageUp to go to the previous step.</p>
+					<lesson-nav></lesson-nav>
+					<back-to-top></back-to-top>
+					<copyright-notice></copyright-notice>
 				</div>
 			</div>
-			<div class="page-footer">
-				<hr />
-				<lesson-nav></lesson-nav>
-				<back-to-top></back-to-top>
-				<copyright-notice></copyright-notice>
-			</div>
-		</div>
 		</main>
 	</body>
 </html>

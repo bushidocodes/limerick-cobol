@@ -19,299 +19,302 @@
 	<body>
 		<a class="skip-link" href="#main-content">Skip to main content</a>
 		<main id="main-content">
-		<div class="page-wrapper">
-			<div class="page-content">
-				<page-hero title="Reference Modification and Intrinsic Functions"></page-hero>
-				<hr />
-				<ul class="toc">
-					<li>
-						<a href="#intro">Introduction</a><br />
-						Unit aims, objectives and prerequisites.
-					</li>
-					<li>
-						<a href="#part1">Reference Modification</a><br />
-						This section examines the syntax and semantics of Reference Modification. The section ends with
-						some animated examples.
-					</li>
-					<li>
-						<a href="#part2">Intrinsic Functions - Introduction</a><br />
-						This section introduces COBOL's predefined functions - called Intrinsic Functions. It explains
-						how they may be used and introduces the notation used in the Intrinsic Function definitions in
-						the later sections.
-					</li>
-					<li>
-						<a href="#part3">String Functions</a><br />
-						This section presents the definitions of the Intrinsic Functions used for string handling . The
-						section ends with some examples.
-					</li>
-					<li>
-						<a href="#part4">Date Functions</a><br />
-						This section presents the definitions of the Intrinsic Functions used for date manipulations .
-						The section ends with a set of comprehensive examples.
-					</li>
-					<li>
-						<a href="#part5">Miscellaneous Functions</a><br />
-						This section presents the definitions of the other (mainly maths) Intrinsic Functions including
-						used for string handling . The section ends with an example using the RANDOM Intrinsic
-						Function..
-					</li>
-				</ul>
-				<hr />
-			</div>
-			<!-- Introduction -->
-			<div class="section-grid">
-				<div class="section-header">
-					<h2 id="intro">Introduction</h2>
-				</div>
-				<div class="section-sidebar">
-					<h3>Aims</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						The aim of this unit is to provide to provide you with a solid understanding of string
-						manipulation using Reference Modification. It will also introduce you to Intrinsic Functions and
-						will show how strings may be manipulated using the the String Intrinsic Functions.
-					</p>
+			<div class="page-wrapper">
+				<div class="page-content">
+					<page-hero title="Reference Modification and Intrinsic Functions"></page-hero>
 					<hr />
-				</div>
-				<div class="section-sidebar">
-					<h3>Objectives</h3>
-				</div>
-				<div class="section-content">
-					<p>By the end of this unit you should:</p>
-					<ol>
-						<li>Understand how Reference Modification works</li>
-						<li>Be able to use Reference Modification to extract and insert sub-strings.</li>
-						<li>Understand how Intrinsic Functions work.</li>
-						<li>Be able to using Intrinsic Functions for string and date manipulation.</li>
-					</ol>
-					<hr />
-				</div>
-				<div class="section-sidebar">
-					<h3>Prerequisites</h3>
-				</div>
-				<div class="section-content">
-					<p>You should be familiar with the material covered in the unit;</p>
-					<ul>
-						<li>Data Declaration</li>
-						<li>Iteration</li>
-						<li>Selection</li>
-						<li>Tables</li>
-						<li>Edited Pictures</li>
-						<li>The <code class="language-cobol">INSPECT</code> verb</li>
-						<li>The <code class="language-cobol">STRING</code> verb</li>
-						<li>The <code class="language-cobol">UNSTRING</code> verb</li>
+					<ul class="toc">
+						<li>
+							<a href="#intro">Introduction</a><br />
+							Unit aims, objectives and prerequisites.
+						</li>
+						<li>
+							<a href="#part1">Reference Modification</a><br />
+							This section examines the syntax and semantics of Reference Modification. The section ends
+							with some animated examples.
+						</li>
+						<li>
+							<a href="#part2">Intrinsic Functions - Introduction</a><br />
+							This section introduces COBOL's predefined functions - called Intrinsic Functions. It
+							explains how they may be used and introduces the notation used in the Intrinsic Function
+							definitions in the later sections.
+						</li>
+						<li>
+							<a href="#part3">String Functions</a><br />
+							This section presents the definitions of the Intrinsic Functions used for string handling .
+							The section ends with some examples.
+						</li>
+						<li>
+							<a href="#part4">Date Functions</a><br />
+							This section presents the definitions of the Intrinsic Functions used for date manipulations
+							. The section ends with a set of comprehensive examples.
+						</li>
+						<li>
+							<a href="#part5">Miscellaneous Functions</a><br />
+							This section presents the definitions of the other (mainly maths) Intrinsic Functions
+							including used for string handling . The section ends with an example using the RANDOM
+							Intrinsic Function..
+						</li>
 					</ul>
-				</div>
-				<div class="section-full">
 					<hr />
-					<back-to-top></back-to-top>
 				</div>
-			</div>
-			<!-- Reference Modification -->
-			<div class="section-grid">
-				<div class="section-header">
-					<h2 id="part1">Reference Modification</h2>
-				</div>
-				<div class="section-sidebar">
-					<h3>Definition &amp; Syntax</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						Reference Modification allows you to treat a numeric (<code class="language-cobol">PIC 9</code>)
-						or alphanumeric (<code class="language-cobol">PIC X</code>) data-item as if it were an array of
-						characters. To access sub-strings using Reference Modification you must specify;
-					</p>
-					<blockquote>
+				<!-- Introduction -->
+				<div class="section-grid">
+					<div class="section-header">
+						<h2 id="intro">Introduction</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Aims</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							The aim of this unit is to provide to provide you with a solid understanding of string
+							manipulation using Reference Modification. It will also introduce you to Intrinsic Functions
+							and will show how strings may be manipulated using the the String Intrinsic Functions.
+						</p>
+						<hr />
+					</div>
+					<div class="section-sidebar">
+						<h3>Objectives</h3>
+					</div>
+					<div class="section-content">
+						<p>By the end of this unit you should:</p>
+						<ol>
+							<li>Understand how Reference Modification works</li>
+							<li>Be able to use Reference Modification to extract and insert sub-strings.</li>
+							<li>Understand how Intrinsic Functions work.</li>
+							<li>Be able to using Intrinsic Functions for string and date manipulation.</li>
+						</ol>
+						<hr />
+					</div>
+					<div class="section-sidebar">
+						<h3>Prerequisites</h3>
+					</div>
+					<div class="section-content">
+						<p>You should be familiar with the material covered in the unit;</p>
 						<ul>
-							<li>the name of the data-item</li>
-							<li>the start character position of the sub-string</li>
-							<li>the number of characters in the sub-string</li>
+							<li>Data Declaration</li>
+							<li>Iteration</li>
+							<li>Selection</li>
+							<li>Tables</li>
+							<li>Edited Pictures</li>
+							<li>The <code class="language-cobol">INSPECT</code> verb</li>
+							<li>The <code class="language-cobol">STRING</code> verb</li>
+							<li>The <code class="language-cobol">UNSTRING</code> verb</li>
 						</ul>
-					</blockquote>
-					<p>To apply Reference Modification the following syntax must be used.</p>
-					<blockquote>
-						<p><b>DataName(</b><i>StartPos</i> [<b>:</b><i>SubStrLength</i>]<b>)</b></p>
-					</blockquote>
-					<p>
-						<i>StartPos</i> is the character position of the first character in the sub-string and
-						<i>SubStrLength</i> is number of characters in the substring.
-					</p>
-					<p>
-						As the square brackets indicate, the SubStrLength may be omitted, and in that case the substring
-						from StartPos to the end of the string is assumed.
-					</p>
-					<p>Reference Modification may be used almost anywhere an alphanumeric data-item is permitted.</p>
-					<hr />
+					</div>
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
 				</div>
-				<div class="section-sidebar">
-					<h3>Examples</h3>
-				</div>
-				<div class="section-content">
-					<pre class="language-cobol"><code class="language-cobol">WORKING-STORAGE SECTION.
+				<!-- Reference Modification -->
+				<div class="section-grid">
+					<div class="section-header">
+						<h2 id="part1">Reference Modification</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Definition &amp; Syntax</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							Reference Modification allows you to treat a numeric (<code class="language-cobol"
+								>PIC 9</code
+							>) or alphanumeric (<code class="language-cobol">PIC X</code>) data-item as if it were an
+							array of characters. To access sub-strings using Reference Modification you must specify;
+						</p>
+						<blockquote>
+							<ul>
+								<li>the name of the data-item</li>
+								<li>the start character position of the sub-string</li>
+								<li>the number of characters in the sub-string</li>
+							</ul>
+						</blockquote>
+						<p>To apply Reference Modification the following syntax must be used.</p>
+						<blockquote>
+							<p><b>DataName(</b><i>StartPos</i> [<b>:</b><i>SubStrLength</i>]<b>)</b></p>
+						</blockquote>
+						<p>
+							<i>StartPos</i> is the character position of the first character in the sub-string and
+							<i>SubStrLength</i> is number of characters in the substring.
+						</p>
+						<p>
+							As the square brackets indicate, the SubStrLength may be omitted, and in that case the
+							substring from StartPos to the end of the string is assumed.
+						</p>
+						<p>
+							Reference Modification may be used almost anywhere an alphanumeric data-item is permitted.
+						</p>
+						<hr />
+					</div>
+					<div class="section-sidebar">
+						<h3>Examples</h3>
+					</div>
+					<div class="section-content">
+						<pre class="language-cobol"><code class="language-cobol">WORKING-STORAGE SECTION.
 01 xString    PIC X(38) VALUE "This is the alphanumeric string".
 01 nString    PIC 9(5)V99 VALUE 34526.56.
 01 SubStrSize PIC 99 VALUE 12.
 01 StartPos   PIC 99 VALUE 18.</code></pre>
-					<p class="center-block">
-						<iframe
-							height="333"
-							src="Resources/pdf-viewer.html?src=ppz/TC-RefModEg.pdf"
-							style="border: 1px solid #ccc; width: 100%; aspect-ratio: 520/333"
-							width="520"
-							title="Reference modification examples animation"
-						></iframe>
-					</p>
-					<hr />
+						<p class="center-block">
+							<iframe
+								height="333"
+								src="Resources/pdf-viewer.html?src=ppz/TC-RefModEg.pdf"
+								style="border: 1px solid #ccc; width: 100%; aspect-ratio: 520/333"
+								width="520"
+								title="Reference modification examples animation"
+							></iframe>
+						</p>
+						<hr />
+					</div>
 				</div>
-			</div>
-			<!-- Intrinsic Functions -->
-			<div class="section-grid">
-				<div class="section-header">
-					<h2 id="part2">Intrinsic Functions</h2>
-				</div>
-				<div class="section-sidebar">
-					<h3>Introduction</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						Although COBOL does not permit user-defined functions or procedures, it does have a number of
-						Intrinsic (built-in) Functions, which you can use in your programs.
-					</p>
-					<p>
-						These functions fall into three broad categories : date functions, numeric functions and string
-						functions.
-					</p>
-					<hr />
-				</div>
-				<div class="section-sidebar">
-					<h3>Using Intrinsic Functions</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						Like functions in other languages, an Intrinsic Function is replaced in the position where it
-						occurs by the function result.
-					</p>
-					<p>
-						In COBOL, an Intrinsic Function is a temporary data item whose value is determined at the time
-						the function is executed.
-					</p>
-					<p>
-						Whereever a literal with the same type as the function result may be referenced, the Intrinsic
-						Function may be referenced.
-					</p>
-					<hr />
-				</div>
-				<div class="section-sidebar">
-					<h3>Intrinsic Function Notes</h3>
-				</div>
-				<div class="section-content">
-					<ul>
-						<li>
-							Where the function result is alphanumeric it has an implicit usage of
-							<code class="language-cobol">DISPLAY</code>.<br />
-							<br />
-						</li>
-						<li>
-							Functions that return a number value (numeric &amp; integer) are always considered to be
-							signed.<br />
-							<br />
-						</li>
-						<li>
-							A function that returns a number value can be used only in an arithmetic expression or as
-							the source of a <code class="language-cobol">MOVE</code> statement.<br />
-							<br />
-						</li>
-						<li>
-							A function that returns a numeric value cannot be used where an interger operand is required
-							(because it may return a non-integer value).
-						</li>
-					</ul>
-					<hr />
-				</div>
-				<div class="section-sidebar">
-					<h3>Intrinsic Function Template</h3>
-				</div>
-				<div class="section-content">
-					<p>An Intrinsic Function consists of three parts;</p>
-					<ol>
-						<li>
-							The start of the function is signalled by the keyword -
-							<code class="language-cobol">FUNCTION</code>.
-						</li>
-						<li>The keyword is followed by the name of the function.</li>
-						<li>
-							The name of the function is immediately followed by the bracketed list of parameters or
-							arguments.
-						</li>
-					</ol>
-					<p>The template for Intrinsic Functions is shown below:</p>
-					<blockquote>
-						<p><code class="language-cobol">FUNCTION</code> FunctionName(<i>Parameters</i>)</p>
-					</blockquote>
-					<p>
-						<i>FunctionName</i> is the name of the function and <i>Parameters</i> is one or more parameters
-						supplied to the function.
-					</p>
-					<p>Example declarations.</p>
-					<pre
-						class="language-cobol"
-					><code class="language-cobol">MOVE FUNCTION RANDOM(99) TO RandNum. </code></pre>
-					<pre
-						class="language-cobol"
-					><code class="language-cobol">DISPLAY FUNCTION UPPER-CASE("this will be in upper case").</code></pre>
-					<hr />
-				</div>
-				<div class="section-sidebar">
-					<h3>Intrinsic Function Notation</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						In the Intrinsic Function definitions in the sections below the functions produce a result of
-						one of the following types;
-					</p>
-					<ul>
-						<li>Alphanumeric</li>
-						<li>Numeric (includes Integer)</li>
-						<li>Integer (does not allow the decimal point)</li>
-					</ul>
-					<p>
-						Where parameters are required in the function the parameter name is used to indicate the type of
-						the parameter.
-					</p>
-					<ul>
-						<li><b>Alph</b> indicates Alphanumeric</li>
-						<li><b>Num</b> indicates any Numeric</li>
-						<li><b>PosNum</b> indicates a Positive Numeric</li>
-						<li><b>Int</b> indicates any Integer</li>
-						<li><b>PosInt</b> indicates a PositiveInteger</li>
-						<li><b>Any</b> indicates that any type may be used</li>
-					</ul>
-					<p>
-						Where a function takes a parameter list (indicated by <b>{Any}...</b> in the function
-						definition) the parameter list may be replaced by an array. The reserved word ALL is used as the
-						array subscript to indicate all the elements of the array.
-					</p>
-					<p>For instance the ORD-MAX function may take a parameter list or an array may be used:</p>
-					<pre
-						class="language-cobol"
-					><code class="language-cobol">MOVE FUNCTION ORD-MAX(12 23 03 78 65) TO OrdPos
+				<!-- Intrinsic Functions -->
+				<div class="section-grid">
+					<div class="section-header">
+						<h2 id="part2">Intrinsic Functions</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Introduction</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							Although COBOL does not permit user-defined functions or procedures, it does have a number
+							of Intrinsic (built-in) Functions, which you can use in your programs.
+						</p>
+						<p>
+							These functions fall into three broad categories : date functions, numeric functions and
+							string functions.
+						</p>
+						<hr />
+					</div>
+					<div class="section-sidebar">
+						<h3>Using Intrinsic Functions</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							Like functions in other languages, an Intrinsic Function is replaced in the position where
+							it occurs by the function result.
+						</p>
+						<p>
+							In COBOL, an Intrinsic Function is a temporary data item whose value is determined at the
+							time the function is executed.
+						</p>
+						<p>
+							Whereever a literal with the same type as the function result may be referenced, the
+							Intrinsic Function may be referenced.
+						</p>
+						<hr />
+					</div>
+					<div class="section-sidebar">
+						<h3>Intrinsic Function Notes</h3>
+					</div>
+					<div class="section-content">
+						<ul>
+							<li>
+								Where the function result is alphanumeric it has an implicit usage of
+								<code class="language-cobol">DISPLAY</code>.<br />
+								<br />
+							</li>
+							<li>
+								Functions that return a number value (numeric &amp; integer) are always considered to be
+								signed.<br />
+								<br />
+							</li>
+							<li>
+								A function that returns a number value can be used only in an arithmetic expression or
+								as the source of a <code class="language-cobol">MOVE</code> statement.<br />
+								<br />
+							</li>
+							<li>
+								A function that returns a numeric value cannot be used where an interger operand is
+								required (because it may return a non-integer value).
+							</li>
+						</ul>
+						<hr />
+					</div>
+					<div class="section-sidebar">
+						<h3>Intrinsic Function Template</h3>
+					</div>
+					<div class="section-content">
+						<p>An Intrinsic Function consists of three parts;</p>
+						<ol>
+							<li>
+								The start of the function is signalled by the keyword -
+								<code class="language-cobol">FUNCTION</code>.
+							</li>
+							<li>The keyword is followed by the name of the function.</li>
+							<li>
+								The name of the function is immediately followed by the bracketed list of parameters or
+								arguments.
+							</li>
+						</ol>
+						<p>The template for Intrinsic Functions is shown below:</p>
+						<blockquote>
+							<p><code class="language-cobol">FUNCTION</code> FunctionName(<i>Parameters</i>)</p>
+						</blockquote>
+						<p>
+							<i>FunctionName</i> is the name of the function and <i>Parameters</i> is one or more
+							parameters supplied to the function.
+						</p>
+						<p>Example declarations.</p>
+						<pre
+							class="language-cobol"
+						><code class="language-cobol">MOVE FUNCTION RANDOM(99) TO RandNum. </code></pre>
+						<pre
+							class="language-cobol"
+						><code class="language-cobol">DISPLAY FUNCTION UPPER-CASE("this will be in upper case").</code></pre>
+						<hr />
+					</div>
+					<div class="section-sidebar">
+						<h3>Intrinsic Function Notation</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							In the Intrinsic Function definitions in the sections below the functions produce a result
+							of one of the following types;
+						</p>
+						<ul>
+							<li>Alphanumeric</li>
+							<li>Numeric (includes Integer)</li>
+							<li>Integer (does not allow the decimal point)</li>
+						</ul>
+						<p>
+							Where parameters are required in the function the parameter name is used to indicate the
+							type of the parameter.
+						</p>
+						<ul>
+							<li><b>Alph</b> indicates Alphanumeric</li>
+							<li><b>Num</b> indicates any Numeric</li>
+							<li><b>PosNum</b> indicates a Positive Numeric</li>
+							<li><b>Int</b> indicates any Integer</li>
+							<li><b>PosInt</b> indicates a PositiveInteger</li>
+							<li><b>Any</b> indicates that any type may be used</li>
+						</ul>
+						<p>
+							Where a function takes a parameter list (indicated by <b>{Any}...</b> in the function
+							definition) the parameter list may be replaced by an array. The reserved word ALL is used as
+							the array subscript to indicate all the elements of the array.
+						</p>
+						<p>For instance the ORD-MAX function may take a parameter list or an array may be used:</p>
+						<pre
+							class="language-cobol"
+						><code class="language-cobol">MOVE FUNCTION ORD-MAX(12 23 03 78 65) TO OrdPos
                      or
 MOVE FUNCTION ORD-MAX(IntElement(ALL)) TO OrdPos             </code></pre>
-					<hr />
+						<hr />
+					</div>
 				</div>
-			</div>
-			<!-- String Functions -->
-			<div class="section-grid">
-				<div class="section-header">
-					<h2 id="part3">String Functions</h2>
-				</div>
-				<div class="section-sidebar">
-					<h3>Definitions</h3>
-				</div>
-				<div class="section-content">
-					<div class="table-scroll">
-													<table bgcolor="#E1FFE1" border="2" cellpadding="7" cellspacing="0" width="502">
+				<!-- String Functions -->
+				<div class="section-grid">
+					<div class="section-header">
+						<h2 id="part3">String Functions</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Definitions</h3>
+					</div>
+					<div class="section-content">
+						<div class="table-scroll">
+							<table bgcolor="#E1FFE1" border="2" cellpadding="7" cellspacing="0" width="502">
 								<tr>
 									<th scope="col" width="34%">Function Name</th>
 									<th scope="col" width="20%">Result Type</th>
@@ -419,16 +422,16 @@ MOVE FUNCTION ORD-MAX(IntElement(ALL)) TO OrdPos             </code></pre>
 									</td>
 								</tr>
 							</table>
+						</div>
+						<hr />
 					</div>
-					<hr />
-				</div>
-				<div class="section-sidebar">
-					<h3>Examples</h3>
-				</div>
-				<div class="section-content">
-					<p>The statements in the following examples produce the results shown below.</p>
-					<hr />
-					<pre class="language-cobol"><code class="language-cobol">IDENTIFICATION DIVISION.
+					<div class="section-sidebar">
+						<h3>Examples</h3>
+					</div>
+					<div class="section-content">
+						<p>The statements in the following examples produce the results shown below.</p>
+						<hr />
+						<pre class="language-cobol"><code class="language-cobol">IDENTIFICATION DIVISION.
 PROGRAM-ID. StringFunctions.
 AUTHOR. Michael Coughlan.
 DATA DIVISION.
@@ -459,8 +462,8 @@ Begin.
   DISPLAY FUNCTION UPPER-CASE(xString)
   DISPLAY FUNCTION LOWER-CASE(xString)
   STOP RUN.</code></pre>
-					<hr />
-											<div class="results-box">
+						<hr />
+						<div class="results-box">
 							<div class="results-box-header">Results</div>
 							<div class="results-two-col">
 								<div>
@@ -488,20 +491,20 @@ Begin.
 								</div>
 							</div>
 						</div>
-					<hr />
+						<hr />
+					</div>
 				</div>
-			</div>
-			<!-- Date Functions -->
-			<div class="section-grid">
-				<div class="section-header">
-					<h2 id="part4">Date Functions</h2>
-				</div>
-				<div class="section-sidebar">
-					<h3>Definitions</h3>
-				</div>
-				<div class="section-content">
-					<div class="table-scroll">
-													<table bgcolor="#E1FFE1" border="2" cellpadding="7" cellspacing="0" width="502">
+				<!-- Date Functions -->
+				<div class="section-grid">
+					<div class="section-header">
+						<h2 id="part4">Date Functions</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Definitions</h3>
+					</div>
+					<div class="section-content">
+						<div class="table-scroll">
+							<table bgcolor="#E1FFE1" border="2" cellpadding="7" cellspacing="0" width="502">
 								<tr>
 									<th scope="col" width="36%">Function Name</th>
 									<th scope="col" width="20%">Result Type</th>
@@ -596,19 +599,19 @@ Begin.
 									</td>
 								</tr>
 							</table>
+						</div>
+						<hr />
 					</div>
-					<hr />
-				</div>
-				<div class="section-sidebar">
-					<h3>Examples</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						The example program below uses most of the date functions described in the table above. The
-						results from running the program are shown below.
-					</p>
-					<hr />
-					<pre class="language-cobol"><code class="language-cobol">IDENTIFICATION DIVISION.
+					<div class="section-sidebar">
+						<h3>Examples</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							The example program below uses most of the date functions described in the table above. The
+							results from running the program are shown below.
+						</p>
+						<hr />
+						<pre class="language-cobol"><code class="language-cobol">IDENTIFICATION DIVISION.
 PROGRAM-ID. DateFunctions.
 AUTHOR. Michael Coughlan.
 DATA DIVISION.
@@ -680,8 +683,8 @@ Begin.
   NumOfDays " days time will be " MonthD "/" DayD "/" YearD
   STOP RUN.
 </code></pre>
-					<hr />
-											<div class="results-box">
+						<hr />
+						<div class="results-box">
 							<div class="results-box-header">Results</div>
 							<div>
 								Current Date is 01/26/1998<br />
@@ -693,20 +696,20 @@ Begin.
 								The date in 365 days time will be 01/27/1999
 							</div>
 						</div>
-					<hr />
+						<hr />
+					</div>
 				</div>
-			</div>
-			<!-- Miscellaneous Functions -->
-			<div class="section-grid">
-				<div class="section-header">
-					<h2 id="part5">Miscellaneous Functions</h2>
-				</div>
-				<div class="section-sidebar">
-					<h3>Other Functions</h3>
-				</div>
-				<div class="section-content">
-					<div class="table-scroll">
-													<table bgcolor="#E1FFE1" border="2" cellpadding="7" cellspacing="0" width="502">
+				<!-- Miscellaneous Functions -->
+				<div class="section-grid">
+					<div class="section-header">
+						<h2 id="part5">Miscellaneous Functions</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Other Functions</h3>
+					</div>
+					<div class="section-content">
+						<div class="table-scroll">
+							<table bgcolor="#E1FFE1" border="2" cellpadding="7" cellspacing="0" width="502">
 								<tr>
 									<th scope="col" width="36%">Function Name</th>
 									<th scope="col" width="21%">Result Type</th>
@@ -959,7 +962,9 @@ Begin.
 								<tr>
 									<td valign="top" width="36%">RANGE({Num1}...)</td>
 									<td valign="top" width="21%">
-										<div class="center-block">Integer if all parameter are Integer else Numeric</div>
+										<div class="center-block">
+											Integer if all parameter are Integer else Numeric
+										</div>
 									</td>
 									<td valign="top" width="43%">
 										Examines a list of parameters and returns a value that is equal to the value of
@@ -1007,7 +1012,9 @@ Begin.
 								<tr>
 									<td valign="top" width="36%">SUM({Num}...)</td>
 									<td valign="top" width="21%">
-										<div class="center-block">Integer if all parameter are Integer else Numeric</div>
+										<div class="center-block">
+											Integer if all parameter are Integer else Numeric
+										</div>
 									</td>
 									<td valign="top" width="43%">Returns the sum of the parameters.</td>
 								</tr>
@@ -1031,19 +1038,19 @@ Begin.
 									</td>
 								</tr>
 							</table>
+						</div>
+						<hr />
 					</div>
-					<hr />
-				</div>
-				<div class="section-sidebar">
-					<h3>General Examples</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						The example program below uses many of the functions described in the table above. The results
-						from running the program are shown below.
-					</p>
-					<hr />
-					<pre class="language-cobol"><code class="language-cobol">IDENTIFICATION DIVISION.
+					<div class="section-sidebar">
+						<h3>General Examples</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							The example program below uses many of the functions described in the table above. The
+							results from running the program are shown below.
+						</p>
+						<hr />
+						<pre class="language-cobol"><code class="language-cobol">IDENTIFICATION DIVISION.
 PROGRAM-ID.  OtherFunctions.
 AUTHOR.  Michael Coughlan.
 *&gt; An example program using misc Intrinsic Functions
@@ -1087,8 +1094,8 @@ Begin.
   MOVE FUNCTION VARIANCE(Ielement(ALL)) TO IResult
   DISPLAY "The variance of the values is " IResult
   STOP RUN.</code></pre>
-					<hr />
-											<div class="results-box">
+						<hr />
+						<div class="results-box">
 							<div class="results-box-header">Results</div>
 							<div>
 								<p>
@@ -1102,33 +1109,33 @@ Begin.
 								</p>
 							</div>
 						</div>
-					<hr />
-				</div>
-				<div class="section-sidebar">
-					<h3>Lotto Example</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						The example program below uses the RANDOM function to get and display 6 unique lotto numbers.
-						Valid lotto numbers fall between 1 and 42.
-					</p>
-					<p>
-						In this program the last five digits of the system time (i.e. minutes, seconds and hundreths of
-						seconds) is used as the random number seed.
-					</p>
-					<p>
-						The algorithm is based on Niklaus Wirth's algorithm for finding a set of unique integers. In
-						this algorithm when the loop test in executed -
-					</p>
-					<blockquote>
+						<hr />
+					</div>
+					<div class="section-sidebar">
+						<h3>Lotto Example</h3>
+					</div>
+					<div class="section-content">
 						<p>
-							i + 1 is the position where the current number was inserted<br />
-							j is the first position where the current number was found<br />
-							If i + 1 = j then the current number has no duplicates.
+							The example program below uses the RANDOM function to get and display 6 unique lotto
+							numbers. Valid lotto numbers fall between 1 and 42.
 						</p>
-					</blockquote>
-					<hr />
-					<pre class="language-cobol"><code class="language-cobol">IDENTIFICATION DIVISION.
+						<p>
+							In this program the last five digits of the system time (i.e. minutes, seconds and hundreths
+							of seconds) is used as the random number seed.
+						</p>
+						<p>
+							The algorithm is based on Niklaus Wirth's algorithm for finding a set of unique integers. In
+							this algorithm when the loop test in executed -
+						</p>
+						<blockquote>
+							<p>
+								i + 1 is the position where the current number was inserted<br />
+								j is the first position where the current number was found<br />
+								If i + 1 = j then the current number has no duplicates.
+							</p>
+						</blockquote>
+						<hr />
+						<pre class="language-cobol"><code class="language-cobol">IDENTIFICATION DIVISION.
 PROGRAM-ID.  Lotto.
 AUTHOR.  Michael Coughlan.
 *&gt; This program displays six unique random lotto numbers.
@@ -1162,15 +1169,15 @@ Begin.
       DISPLAY LottoNum(i) SPACE WITH NO ADVANCING
    END-PERFORM
    STOP RUN.</code></pre>
+					</div>
+				</div>
+				<div class="page-footer">
+					<hr />
+					<lesson-nav></lesson-nav>
+					<back-to-top></back-to-top>
+					<copyright-notice></copyright-notice>
 				</div>
 			</div>
-			<div class="page-footer">
-				<hr />
-				<lesson-nav></lesson-nav>
-				<back-to-top></back-to-top>
-				<copyright-notice></copyright-notice>
-			</div>
-		</div>
 		</main>
 	</body>
 </html>

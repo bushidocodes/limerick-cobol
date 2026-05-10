@@ -5,19 +5,19 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
 		<script type="application/ld+json">
-		{
-			"@context": "https://schema.org",
-			"@type": "LearningResource",
-			"name": "COBOL Iteration Constructs",
-			"description": "A tutorial covering COBOL iteration constructs including PERFORM..Proc, PERFORM..THRU, PERFORM..TIMES, PERFORM..UNTIL, and PERFORM..VARYING.",
-			"url": "https://www.csis.ul.ie/cobol/course/Iteration.html",
-			"learningResourceType": "Tutorial",
-			"educationalLevel": "Beginner",
-			"isPartOf": {
-				"@type": "Course",
-				"url": "https://www.csis.ul.ie/cobol/course/index.html"
+			{
+				"@context": "https://schema.org",
+				"@type": "LearningResource",
+				"name": "COBOL Iteration Constructs",
+				"description": "A tutorial covering COBOL iteration constructs including PERFORM..Proc, PERFORM..THRU, PERFORM..TIMES, PERFORM..UNTIL, and PERFORM..VARYING.",
+				"url": "https://www.csis.ul.ie/cobol/course/Iteration.html",
+				"learningResourceType": "Tutorial",
+				"educationalLevel": "Beginner",
+				"isPartOf": {
+					"@type": "Course",
+					"url": "https://www.csis.ul.ie/cobol/course/index.html"
+				}
 			}
-		}
 		</script>
 		<title>COBOL Iteration Constructs</title>
 		<link href="Resources/css/course.css" rel="stylesheet" />
@@ -35,381 +35,393 @@
 	<body>
 		<a class="skip-link" href="#main-content">Skip to main content</a>
 		<main id="main-content">
-		<div class="page-wrapper">
-			<div class="page-content">
-				<page-hero title="COBOL Iteration Constructs"></page-hero>
-				<hr />
-				<ul class="toc">
-					<li>
-						<a href="#intro">Introduction</a><br />
-						Unit aims, objectives, prerequisites.
-					</li>
-					<li>
-						<a href="#part1">PERFORM..Proc</a><br />
-						This section introduces the format of the
-						<code class="language-cobol">PERFORM</code> that is used to transfer control to a paragraph or
-						section.
-					</li>
-					<li>
-						<a href="#part2">Using the PERFORM..THRU</a><br />
-						This section demonstrates how the <code class="language-cobol">PERFORM..THRU</code> can be used
-						to implement an emergency exit from a paragraph.
-					</li>
-					<li>
-						<a href="#part3">PERFORM..TIMES</a><br />
-						This section introduces the <code class="language-cobol">PERFORM..TIMES</code> which allow us to
-						create an iteration that executes x number of times. Also discusses the use of in-line versus
-						out-of-line <code class="language-cobol">PERFORM</code>s
-					</li>
-					<li>
-						<a href="#part4">PERFORM..UNTIL</a><br />
-						In this section <code class="language-cobol">PERFORM..UNTIL</code>, COBOL's version of the while
-						and do/repeat loops, is introduced.
-					</li>
-					<li>
-						<a href="#part5">PERFORM..VARYING</a><br />
-						This section demonstrates <code class="language-cobol">PERFORM..VARYING</code>, COBOL's version
-						of the for loop.
-					</li>
-				</ul>
-				<hr />
-			</div>
-			<div class="section-grid">
-				<div class="section-header">
-					<h2 id="intro">Introduction</h2>
-				</div>
-				<div class="section-sidebar">
-					<h3>Aims</h3>
-				</div>
-				<div class="section-content">
-					<div>
-						<p>
-							In almost every programming job, there is some task that needs to be done over and over
-							again. For example: The job of processing a file of records is an iteration of the task -
-							get and process record. The job of getting the sum of a stream of numbers is an iteration of
-							the task - get and add number. These jobs are accomplished using iteration constructs.
-						</p>
-						<p>
-							Other computer languages support a variety of looping constructs, including Repeat, While,
-							and For loops. Although COBOL has a set of looping constructs that is just as rich as other
-							languages - richer in some cases - it only has one iteration verb. In COBOL, all iteration
-							is handled by the PERFORM verb.
-						</p>
-					</div>
-					<div>
-						<p class="center-block">
-							<b>Iteration constructs and their COBOL equivalents</b>
-						</p>
-						<div>
-							<table bgcolor="#E1FFE1" border cellpadding="7" cellspacing="1" width="411">
-								<tr bgcolor="#FFFFCC">
-									<th scope="col" width="18%">C</th>
-									<th scope="col" width="23%">Modula-2</th>
-									<th scope="col" width="59%">COBOL</th>
-								</tr>
-								<tr>
-									<td valign="top" width="18%">
-										<div class="center-block">do{}while</div>
-									</td>
-									<td valign="top" width="23%">
-										<p class="center-block">Repeat</p>
-									</td>
-									<td valign="top" width="59%">
-										<p class="center-block">Perform Until ..With Test After</p>
-									</td>
-								</tr>
-								<tr>
-									<td valign="top" width="18%">
-										<div class="center-block">while</div>
-									</td>
-									<td valign="top" width="23%">
-										<p class="center-block">While</p>
-									</td>
-									<td valign="top" width="59%">
-										<p class="center-block">Perform Until ..With Test Before</p>
-									</td>
-								</tr>
-								<tr>
-									<td valign="top" width="18%">
-										<div class="center-block">for</div>
-									</td>
-									<td valign="top" width="23%">
-										<p class="center-block">For</p>
-									</td>
-									<td valign="top" width="59%">
-										<p class="center-block">Perform ..Varying</p>
-									</td>
-								</tr>
-							</table>
-							<p>
-								This tutorial demonstrates how the <code class="language-cobol">PERFORM</code> verb is
-								used to create Repeat loops, While loops and For loops. It will also demonstrate how the
-								<code class="language-cobol">PERFORM</code> is used to transfer control to an open
-								subroutine.
-							</p>
-						</div>
-						<hr width="50%" />
-					</div>
-				</div>
-				<div class="section-sidebar">
-					<h3>Objectives</h3>
-				</div>
-				<div class="section-content">
-					<p>By the end of this unit you should -</p>
-					<ol>
+			<div class="page-wrapper">
+				<div class="page-content">
+					<page-hero title="COBOL Iteration Constructs"></page-hero>
+					<hr />
+					<ul class="toc">
 						<li>
-							Understand how the PERFORM can be used to transfer control to block of code contained in a
-							paragraph or section..
+							<a href="#intro">Introduction</a><br />
+							Unit aims, objectives, prerequisites.
 						</li>
 						<li>
-							Know how to use the PERFORM..THRU and the GO TO and understand the restrictions placed on
-							using them.
-						</li>
-						<li>Understand the difference between in-line and out-of-line Performs</li>
-						<li>Be able to use the PERFORM..TIMES.</li>
-						<li>
-							Understand how the PERFORM..UNTIL works and be able to use it to implement
-							<i>while</i> or <i>do/repeat</i> loops.
+							<a href="#part1">PERFORM..Proc</a><br />
+							This section introduces the format of the
+							<code class="language-cobol">PERFORM</code> that is used to transfer control to a paragraph
+							or section.
 						</li>
 						<li>
-							Be able to use PERFORM..VARYING to implement counting iteration such as that implemented in
-							other languages by the <i>for</i> construct.
+							<a href="#part2">Using the PERFORM..THRU</a><br />
+							This section demonstrates how the <code class="language-cobol">PERFORM..THRU</code> can be
+							used to implement an emergency exit from a paragraph.
 						</li>
-						<li>Understand the significance of the order of execution in the PERFORM..VARYING flowchart</li>
-					</ol>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>Prerequisites</h3>
-				</div>
-				<div class="section-content">
-					<ul>
-						<li>Introduction to COBOL</li>
-						<li>Declaring data in COBOL</li>
-						<li>Basic Procedure Division Commands</li>
-						<li>Selection Constructs</li>
+						<li>
+							<a href="#part3">PERFORM..TIMES</a><br />
+							This section introduces the <code class="language-cobol">PERFORM..TIMES</code> which allow
+							us to create an iteration that executes x number of times. Also discusses the use of in-line
+							versus out-of-line <code class="language-cobol">PERFORM</code>s
+						</li>
+						<li>
+							<a href="#part4">PERFORM..UNTIL</a><br />
+							In this section <code class="language-cobol">PERFORM..UNTIL</code>, COBOL's version of the
+							while and do/repeat loops, is introduced.
+						</li>
+						<li>
+							<a href="#part5">PERFORM..VARYING</a><br />
+							This section demonstrates <code class="language-cobol">PERFORM..VARYING</code>, COBOL's
+							version of the for loop.
+						</li>
 					</ul>
+					<hr />
 				</div>
-				<div class="section-full">
-					<div>
-						<hr />
-						<back-to-top></back-to-top>
+				<div class="section-grid">
+					<div class="section-header">
+						<h2 id="intro">Introduction</h2>
 					</div>
-				</div>
-				<div class="section-header">
-					<h2 id="part1">PERFORM..Proc</h2>
-				</div>
-				<div class="section-sidebar">
-					<h3>Introduction</h3>
-				</div>
-				<div class="section-content">
-					<div>
-						<p>
-							If you have written programs in another language, you will probably have come across the
-							idea of a subroutine; a block of code that is executed, when invoked by name. What you may
-							not have realized is that there are essentially two types of subroutine.:
-						</p>
-						<p class="center-block">
-							Open Subroutines<br />
-							and<br />
-							Closed Subroutines
-						</p>
-						<p>
-							If the language you learned was C or Modula-2, you are probably familiar with closed
-							subroutines. If you learned BASIC, you may be familiar with open subroutines.
-						</p>
-						<p>
-							<b>Open subroutines.</b><br />
-							An open subroutine., is a named block of code that control can fall into, or through. An
-							open subroutine., usually has access to all the data-items declared in the main program and
-							it can't declare any data-items of its own.
-						</p>
-						<p>
-							Although an open subroutine. is normally executed by invoking it by name, it is also
-							possible, unless the programmer is careful, to fall into it from the main program. In BASIC,
-							the GOSUB command allows programmers to implement open subroutines.
-						</p>
-						<p>
-							<b>Closed subroutines.</b><br />
-							A closed subroutine., is a named block of code that can only be executed by invoking it by
-							name. Usually a closed subroutine. can declare its own local data which cannot be accessed
-							outside the subroutine. In a closed subroutine., data is usually passed between the main
-							program and the subroutine. by means of parameters passed to the subroutine. when it is
-							invoked.
-						</p>
-						<p>In C and Modula-2, Procedures and Functions implement closed subroutines.</p>
-						<p>
-							<b>COBOL subroutines.</b><br />
-							COBOL supports both open and closed subroutines. Open subroutines, are implemented using the
-							first format of the <code class="language-cobol">PERFORM</code> verb. Closed subroutines.,
-							are implemented using the <code class="language-cobol">CALL</code> verb and contained or
-							external subprograms.
-						</p>
+					<div class="section-sidebar">
+						<h3>Aims</h3>
 					</div>
-					<div>
-						<hr width="50%" />
-					</div>
-				</div>
-				<div class="section-sidebar">
-					<h3>PERFORM format 1 syntax</h3>
-					<aside>
-						<p class="center-block">
-							<img height="44" src="Resources/pics/i-LightBulbTip.gif" width="42" alt="" />
-						</p>
-						<p>
-							A paragraph is a block of code that starts at the paragraph name and extends to the next
-							paragraph name, the next section name or the end of the program text.
-						</p>
-						<p>
-							A section is a block of code that starts at the section name and extends to the next section
-							name or the end of the program text. A section must contain at least one paragraph.
-						</p>
-					</aside>
-				</div>
-				<div class="section-content">
-					<div>
-						<p>
-							<img height="74" src="Resources/pics/Perform1.gif" width="317" alt="PERFORM format 1 syntax diagram" />
-						</p>
-						<p>
-							Unless it is otherwise instructed, a computer running a COBOL program processes the
-							statements of the program in sequence, starting at the top of the program and working its
-							way down until the <code class="language-cobol">STOP RUN</code> is reached. The
-							<code class="language-cobol">PERFORM</code> verb is is one way of altering the sequential
-							flow of control in a COBOL program. The <code class="language-cobol">PERFORM</code> verb can
-							be used for two major purposes;
-						</p>
-					</div>
-					<ol>
-						<li>To transfer control to a designated block of code.</li>
-						<li>To execute a block of code iteratively.</li>
-					</ol>
-					<div>
-						<p>
-							While the other formats of the <code class="language-cobol">PERFORM</code> verb implement
-							various types of iteration, the format shown here is used to transfer control to an
-							out-of-line block of code.
-						</p>
-						<p>The block of code may be one or more paragraphs, or one or more sections.</p>
-						<hr width="50%" />
-					</div>
-				</div>
-				<div class="section-sidebar">
-					<h3>How this format works</h3>
-					<aside>
-						<p class="center-block">
-							<img height="62" src="Resources/pics/i-BugAlert.gif" width="56" alt="" />
-						</p>
-						<p>
-							>The <code class="language-cobol">PERFORM..THRU</code> should be used sparingly and then
-							only to <code class="language-cobol">PERFORM</code> a paragraph and its immediately
-							succeeding paragraph.
-						</p>
-						<p>
-							The problem with using the <code class="language-cobol">PERFORM..THRU</code> to execute an
-							number of paragraphs as one unit is that, in the maintenance phase of your program's life,
-							another programmer may insert a paragraph in the middle of your
-							<code class="language-cobol">PERFORM..THRU</code>
-							block. Suddenly your block won't work correctly because now its executing an additional,
-							unintentional paragraph.
-						</p>
-					</aside>
-					<aside>
-						<p class="center-block">
-							<span class="i-detail" aria-hidden="true">🔍</span>
-						</p>
-						<p>
-							Although Netexpress does allow recursive Performs, this is a nonstandard extension. Please
-							do not take advantage of it..
-						</p>
-					</aside>
-				</div>
-				<div class="section-content">
-					<div>
-						<p>
-							This format of the <code class="language-cobol">PERFORM</code> verb, transfers control an
-							out-of-line block of code. When the end of the block is reached, control reverts to the
-							statement (not the sentence) immediately following the
-							<code class="language-cobol">PERFORM</code>.
-						</p>
-						<p>1stProc and EndProc are the names of paragraphs or sections.</p>
-						<p>
-							When the <code class="language-cobol">PERFORM..THRU</code> is used, the paragraphs or
-							sections from 1stProc to EndProc are treated a single block of code. COBOL programmers
-							typically use this format of the <code class="language-cobol">PERFORM</code> to divide a
-							program into open subroutines.
-						</p>
-						<p>
-							These subroutines are not as robust as the user-defined Procedures or Functions found in
-							other languages, but when COBOL programmers require that kind of partitioning, they use
-							contained or external subprograms.
-						</p>
-						<p>
-							Open subroutines. are useful because they allow a programmer to code a subroutine. without
-							the formality or overhead involved in coding a Procedure or Function.
-						</p>
-					</div>
-					<div>
-						<p>
-							<b> <code class="language-cobol">PERFORM</code> general notes. </b>
-						</p>
-					</div>
-					<blockquote>
+					<div class="section-content">
 						<div>
 							<p>
-								<b> PERFORMs may be nested. </b><br />
-								That is, a PERFORM may execute a paragraph that contains a
-								<code class="language-cobol">PERFORM</code> which in turn may execute a paragraph that
-								contains another <code class="language-cobol">PERFORM</code>. As control reaches the end
-								of each paragraph it returns to the statement following the perform which cause the
-								paragraph to be executed.
+								In almost every programming job, there is some task that needs to be done over and over
+								again. For example: The job of processing a file of records is an iteration of the task
+								- get and process record. The job of getting the sum of a stream of numbers is an
+								iteration of the task - get and add number. These jobs are accomplished using iteration
+								constructs.
 							</p>
 							<p>
-								<b>Order of execution independent of physical placement</b><br />
-								The order of execution of the paragraphs is independent of their physical placement. So
-								it doesn't matter where in the Procedure Division we put our paragraphs the
-								<code class="language-cobol">PERFORM</code> will find and execute them
-							</p>
-							<p>
-								<b>Recursion not allowed.</b><br />
-								Although Performs can be nested, neither direct nor indirect recursion is allowed. This
-								means that a paragraph must not contain a
-								<code class="language-cobol">PERFORM</code> that invokes itself or any ancestor
-								paragraph (parent, grandparent etc). Unfortunately this restriction is not enforced by
-								the compiler but your program will not work correctly if you use recursive Performs
+								Other computer languages support a variety of looping constructs, including Repeat,
+								While, and For loops. Although COBOL has a set of looping constructs that is just as
+								rich as other languages - richer in some cases - it only has one iteration verb. In
+								COBOL, all iteration is handled by the PERFORM verb.
 							</p>
 						</div>
-					</blockquote>
-					<div>
+						<div>
+							<p class="center-block">
+								<b>Iteration constructs and their COBOL equivalents</b>
+							</p>
+							<div>
+								<table bgcolor="#E1FFE1" border cellpadding="7" cellspacing="1" width="411">
+									<tr bgcolor="#FFFFCC">
+										<th scope="col" width="18%">C</th>
+										<th scope="col" width="23%">Modula-2</th>
+										<th scope="col" width="59%">COBOL</th>
+									</tr>
+									<tr>
+										<td valign="top" width="18%">
+											<div class="center-block">do{}while</div>
+										</td>
+										<td valign="top" width="23%">
+											<p class="center-block">Repeat</p>
+										</td>
+										<td valign="top" width="59%">
+											<p class="center-block">Perform Until ..With Test After</p>
+										</td>
+									</tr>
+									<tr>
+										<td valign="top" width="18%">
+											<div class="center-block">while</div>
+										</td>
+										<td valign="top" width="23%">
+											<p class="center-block">While</p>
+										</td>
+										<td valign="top" width="59%">
+											<p class="center-block">Perform Until ..With Test Before</p>
+										</td>
+									</tr>
+									<tr>
+										<td valign="top" width="18%">
+											<div class="center-block">for</div>
+										</td>
+										<td valign="top" width="23%">
+											<p class="center-block">For</p>
+										</td>
+										<td valign="top" width="59%">
+											<p class="center-block">Perform ..Varying</p>
+										</td>
+									</tr>
+								</table>
+								<p>
+									This tutorial demonstrates how the <code class="language-cobol">PERFORM</code> verb
+									is used to create Repeat loops, While loops and For loops. It will also demonstrate
+									how the <code class="language-cobol">PERFORM</code> is used to transfer control to
+									an open subroutine.
+								</p>
+							</div>
+							<hr width="50%" />
+						</div>
+					</div>
+					<div class="section-sidebar">
+						<h3>Objectives</h3>
+					</div>
+					<div class="section-content">
+						<p>By the end of this unit you should -</p>
+						<ol>
+							<li>
+								Understand how the PERFORM can be used to transfer control to block of code contained in
+								a paragraph or section..
+							</li>
+							<li>
+								Know how to use the PERFORM..THRU and the GO TO and understand the restrictions placed
+								on using them.
+							</li>
+							<li>Understand the difference between in-line and out-of-line Performs</li>
+							<li>Be able to use the PERFORM..TIMES.</li>
+							<li>
+								Understand how the PERFORM..UNTIL works and be able to use it to implement
+								<i>while</i> or <i>do/repeat</i> loops.
+							</li>
+							<li>
+								Be able to use PERFORM..VARYING to implement counting iteration such as that implemented
+								in other languages by the <i>for</i> construct.
+							</li>
+							<li>
+								Understand the significance of the order of execution in the PERFORM..VARYING flowchart
+							</li>
+						</ol>
 						<hr width="50%" />
 					</div>
-				</div>
-				<div class="section-sidebar">
-					<h3>Why use this format?</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						This format of the <code class="language-cobol">PERFORM</code> verb is used to make programs
-						more readable and maintainable.
-					</p>
-					<p>
-						When we can identify a block of code in the program that performs some specific task (e.g.
-						Prints the report headings) this format allows us to replace the details of
-						<i>how</i> the task is being accomplished with a name that indicates <i>what</i> is being done
-						(e.g. <code class="language-cobol">PERFORM</code> PrintReportHeadings).
-					</p>
-					<p>
-						We should use this format of the <code class="language-cobol">PERFORM</code> to divide our
-						programs into a hierarchy of tasks and sub-tasks.
-					</p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>PERFORM..PROC example</h3>
-					<p class="center-block"><img height="44" src="Resources/pics/program.gif" width="42" alt="" /></p>
-				</div>
-				<div class="section-content">
-					<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+					<div class="section-sidebar">
+						<h3>Prerequisites</h3>
+					</div>
+					<div class="section-content">
+						<ul>
+							<li>Introduction to COBOL</li>
+							<li>Declaring data in COBOL</li>
+							<li>Basic Procedure Division Commands</li>
+							<li>Selection Constructs</li>
+						</ul>
+					</div>
+					<div class="section-full">
+						<div>
+							<hr />
+							<back-to-top></back-to-top>
+						</div>
+					</div>
+					<div class="section-header">
+						<h2 id="part1">PERFORM..Proc</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Introduction</h3>
+					</div>
+					<div class="section-content">
+						<div>
+							<p>
+								If you have written programs in another language, you will probably have come across the
+								idea of a subroutine; a block of code that is executed, when invoked by name. What you
+								may not have realized is that there are essentially two types of subroutine.:
+							</p>
+							<p class="center-block">
+								Open Subroutines<br />
+								and<br />
+								Closed Subroutines
+							</p>
+							<p>
+								If the language you learned was C or Modula-2, you are probably familiar with closed
+								subroutines. If you learned BASIC, you may be familiar with open subroutines.
+							</p>
+							<p>
+								<b>Open subroutines.</b><br />
+								An open subroutine., is a named block of code that control can fall into, or through. An
+								open subroutine., usually has access to all the data-items declared in the main program
+								and it can't declare any data-items of its own.
+							</p>
+							<p>
+								Although an open subroutine. is normally executed by invoking it by name, it is also
+								possible, unless the programmer is careful, to fall into it from the main program. In
+								BASIC, the GOSUB command allows programmers to implement open subroutines.
+							</p>
+							<p>
+								<b>Closed subroutines.</b><br />
+								A closed subroutine., is a named block of code that can only be executed by invoking it
+								by name. Usually a closed subroutine. can declare its own local data which cannot be
+								accessed outside the subroutine. In a closed subroutine., data is usually passed between
+								the main program and the subroutine. by means of parameters passed to the subroutine.
+								when it is invoked.
+							</p>
+							<p>In C and Modula-2, Procedures and Functions implement closed subroutines.</p>
+							<p>
+								<b>COBOL subroutines.</b><br />
+								COBOL supports both open and closed subroutines. Open subroutines, are implemented using
+								the first format of the <code class="language-cobol">PERFORM</code> verb. Closed
+								subroutines., are implemented using the <code class="language-cobol">CALL</code> verb
+								and contained or external subprograms.
+							</p>
+						</div>
+						<div>
+							<hr width="50%" />
+						</div>
+					</div>
+					<div class="section-sidebar">
+						<h3>PERFORM format 1 syntax</h3>
+						<aside>
+							<p class="center-block">
+								<img height="44" src="Resources/pics/i-LightBulbTip.gif" width="42" alt="" />
+							</p>
+							<p>
+								A paragraph is a block of code that starts at the paragraph name and extends to the next
+								paragraph name, the next section name or the end of the program text.
+							</p>
+							<p>
+								A section is a block of code that starts at the section name and extends to the next
+								section name or the end of the program text. A section must contain at least one
+								paragraph.
+							</p>
+						</aside>
+					</div>
+					<div class="section-content">
+						<div>
+							<p>
+								<img
+									height="74"
+									src="Resources/pics/Perform1.gif"
+									width="317"
+									alt="PERFORM format 1 syntax diagram"
+								/>
+							</p>
+							<p>
+								Unless it is otherwise instructed, a computer running a COBOL program processes the
+								statements of the program in sequence, starting at the top of the program and working
+								its way down until the <code class="language-cobol">STOP RUN</code> is reached. The
+								<code class="language-cobol">PERFORM</code> verb is is one way of altering the
+								sequential flow of control in a COBOL program. The
+								<code class="language-cobol">PERFORM</code> verb can be used for two major purposes;
+							</p>
+						</div>
+						<ol>
+							<li>To transfer control to a designated block of code.</li>
+							<li>To execute a block of code iteratively.</li>
+						</ol>
+						<div>
+							<p>
+								While the other formats of the <code class="language-cobol">PERFORM</code> verb
+								implement various types of iteration, the format shown here is used to transfer control
+								to an out-of-line block of code.
+							</p>
+							<p>The block of code may be one or more paragraphs, or one or more sections.</p>
+							<hr width="50%" />
+						</div>
+					</div>
+					<div class="section-sidebar">
+						<h3>How this format works</h3>
+						<aside>
+							<p class="center-block">
+								<img height="62" src="Resources/pics/i-BugAlert.gif" width="56" alt="" />
+							</p>
+							<p>
+								>The <code class="language-cobol">PERFORM..THRU</code> should be used sparingly and then
+								only to <code class="language-cobol">PERFORM</code> a paragraph and its immediately
+								succeeding paragraph.
+							</p>
+							<p>
+								The problem with using the <code class="language-cobol">PERFORM..THRU</code> to execute
+								an number of paragraphs as one unit is that, in the maintenance phase of your program's
+								life, another programmer may insert a paragraph in the middle of your
+								<code class="language-cobol">PERFORM..THRU</code>
+								block. Suddenly your block won't work correctly because now its executing an additional,
+								unintentional paragraph.
+							</p>
+						</aside>
+						<aside>
+							<p class="center-block">
+								<span class="i-detail" aria-hidden="true">🔍</span>
+							</p>
+							<p>
+								Although Netexpress does allow recursive Performs, this is a nonstandard extension.
+								Please do not take advantage of it..
+							</p>
+						</aside>
+					</div>
+					<div class="section-content">
+						<div>
+							<p>
+								This format of the <code class="language-cobol">PERFORM</code> verb, transfers control
+								an out-of-line block of code. When the end of the block is reached, control reverts to
+								the statement (not the sentence) immediately following the
+								<code class="language-cobol">PERFORM</code>.
+							</p>
+							<p>1stProc and EndProc are the names of paragraphs or sections.</p>
+							<p>
+								When the <code class="language-cobol">PERFORM..THRU</code> is used, the paragraphs or
+								sections from 1stProc to EndProc are treated a single block of code. COBOL programmers
+								typically use this format of the <code class="language-cobol">PERFORM</code> to divide a
+								program into open subroutines.
+							</p>
+							<p>
+								These subroutines are not as robust as the user-defined Procedures or Functions found in
+								other languages, but when COBOL programmers require that kind of partitioning, they use
+								contained or external subprograms.
+							</p>
+							<p>
+								Open subroutines. are useful because they allow a programmer to code a subroutine.
+								without the formality or overhead involved in coding a Procedure or Function.
+							</p>
+						</div>
+						<div>
+							<p>
+								<b> <code class="language-cobol">PERFORM</code> general notes. </b>
+							</p>
+						</div>
+						<blockquote>
+							<div>
+								<p>
+									<b> PERFORMs may be nested. </b><br />
+									That is, a PERFORM may execute a paragraph that contains a
+									<code class="language-cobol">PERFORM</code> which in turn may execute a paragraph
+									that contains another <code class="language-cobol">PERFORM</code>. As control
+									reaches the end of each paragraph it returns to the statement following the perform
+									which cause the paragraph to be executed.
+								</p>
+								<p>
+									<b>Order of execution independent of physical placement</b><br />
+									The order of execution of the paragraphs is independent of their physical placement.
+									So it doesn't matter where in the Procedure Division we put our paragraphs the
+									<code class="language-cobol">PERFORM</code> will find and execute them
+								</p>
+								<p>
+									<b>Recursion not allowed.</b><br />
+									Although Performs can be nested, neither direct nor indirect recursion is allowed.
+									This means that a paragraph must not contain a
+									<code class="language-cobol">PERFORM</code> that invokes itself or any ancestor
+									paragraph (parent, grandparent etc). Unfortunately this restriction is not enforced
+									by the compiler but your program will not work correctly if you use recursive
+									Performs
+								</p>
+							</div>
+						</blockquote>
+						<div>
+							<hr width="50%" />
+						</div>
+					</div>
+					<div class="section-sidebar">
+						<h3>Why use this format?</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							This format of the <code class="language-cobol">PERFORM</code> verb is used to make programs
+							more readable and maintainable.
+						</p>
+						<p>
+							When we can identify a block of code in the program that performs some specific task (e.g.
+							Prints the report headings) this format allows us to replace the details of
+							<i>how</i> the task is being accomplished with a name that indicates <i>what</i> is being
+							done (e.g. <code class="language-cobol">PERFORM</code> PrintReportHeadings).
+						</p>
+						<p>
+							We should use this format of the <code class="language-cobol">PERFORM</code> to divide our
+							programs into a hierarchy of tasks and sub-tasks.
+						</p>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>PERFORM..PROC example</h3>
+						<p class="center-block">
+							<img height="44" src="Resources/pics/program.gif" width="42" alt="" />
+						</p>
+					</div>
+					<div class="section-content">
+						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  PerformFormat1.
 AUTHOR.  Michael Coughlan.
@@ -435,18 +447,20 @@ OneLevelDown.
 ThreeLevelsDown.
     DISPLAY "&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Now in ThreeLevelsDown".
 </code></pre>
-				</div>
-				<div class="section-sidebar">
-					<h3>Self Assessment Questions</h3>
-					<p class="center-block"><img height="46" src="Resources/pics/i-SAQ2.gif" width="32" alt="" /></p>
-				</div>
-				<div class="section-content">
-					<div>
-						<p>
-							Now that you understand how this version of the
-							<code class="language-cobol">PERFORM</code> works, test your understanding by referring to
-							the example program above and answering the following questions.
+					</div>
+					<div class="section-sidebar">
+						<h3>Self Assessment Questions</h3>
+						<p class="center-block">
+							<img height="46" src="Resources/pics/i-SAQ2.gif" width="32" alt="" />
 						</p>
+					</div>
+					<div class="section-content">
+						<div>
+							<p>
+								Now that you understand how this version of the
+								<code class="language-cobol">PERFORM</code> works, test your understanding by referring
+								to the example program above and answering the following questions.
+							</p>
 							<div class="saq-table" style="width: 96%">
 								<div class="saq-row">
 									<div class="saq-label">Q1</div>
@@ -544,41 +558,49 @@ ThreeLevelsDown.
 									</div>
 								</div>
 							</div>
+						</div>
 					</div>
-				</div>
-				<div class="section-full">
-					<div>
-						<hr />
-						<back-to-top></back-to-top>
+					<div class="section-full">
+						<div>
+							<hr />
+							<back-to-top></back-to-top>
+						</div>
 					</div>
-				</div>
-				<div class="section-header">
-					<h2 id="part2">Using the PERFORM..THRU</h2>
-				</div>
-				<div class="section-sidebar">
-					<h3>Introduction</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						Although the <code class="language-cobol">PERFORM..THRU</code> has dangers, as outlined above,
-						it can be a useful construct for dealing with errors. Sometimes we need to stop executing a
-						paragraph if an error is detected. The
-						<code class="language-cobol">PERFORM..THRU</code> provides a mechanism which allows us to do
-						this.
-					</p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>Coping with errors</h3>
-					<p class="center-block"><img height="44" src="Resources/pics/program-fragment.svg" width="48" alt="Program fragment" /></p>
-				</div>
-				<div class="section-content">
-					<p>
-						In the program fragment below, the programmer does not want to execute the remaining statements
-						in the paragraph if an error is detected. The solution he has adopted, based on nested
-						<code class="language-cobol">IF</code> statements, is somewhat cumbersome.
-					</p>
-					<pre class="language-cobol"><code class="language-cobol">PROCEDURE DIVISION.
+					<div class="section-header">
+						<h2 id="part2">Using the PERFORM..THRU</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Introduction</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							Although the <code class="language-cobol">PERFORM..THRU</code> has dangers, as outlined
+							above, it can be a useful construct for dealing with errors. Sometimes we need to stop
+							executing a paragraph if an error is detected. The
+							<code class="language-cobol">PERFORM..THRU</code> provides a mechanism which allows us to do
+							this.
+						</p>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>Coping with errors</h3>
+						<p class="center-block">
+							<img
+								height="44"
+								src="Resources/pics/program-fragment.svg"
+								width="48"
+								alt="Program fragment"
+							/>
+						</p>
+					</div>
+					<div class="section-content">
+						<p>
+							In the program fragment below, the programmer does not want to execute the remaining
+							statements in the paragraph if an error is detected. The solution he has adopted, based on
+							nested
+							<code class="language-cobol">IF</code> statements, is somewhat cumbersome.
+						</p>
+						<pre class="language-cobol"><code class="language-cobol">PROCEDURE DIVISION.
 Begin.
    PERFORM SumSales
    STOP RUN.
@@ -601,41 +623,48 @@ SumSales.
          END-IF
       END-IF
    END-IF.</code></pre>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>Using the PERFORM..THRU</h3>
-					<aside>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>Using the PERFORM..THRU</h3>
+						<aside>
+							<p class="center-block">
+								<span class="i-detail" aria-hidden="true">🔍</span><br />
+								Actually this approach will soon be unnecessary on the way out, because the coming COBOL
+								standard solves the problem by having an
+								<code class="language-cobol">EXIT PARAGRAPH</code> statement, that can be used to exit a
+								paragraph prematurely.
+							</p>
+						</aside>
 						<p class="center-block">
-							<span class="i-detail" aria-hidden="true">🔍</span><br />
-							Actually this approach will soon be unnecessary on the way out, because the coming COBOL
-							standard solves the problem by having an
-							<code class="language-cobol">EXIT PARAGRAPH</code> statement, that can be used to exit a
-							paragraph prematurely.
+							<img
+								height="44"
+								src="Resources/pics/program-fragment.svg"
+								width="48"
+								alt="Program fragment"
+							/>
 						</p>
-					</aside>
-					<p class="center-block"><img height="44" src="Resources/pics/program-fragment.svg" width="48" alt="Program fragment" /></p>
-				</div>
-				<div class="section-content">
-					<p>
-						In the program fragment below, the <code class="language-cobol">PERFORM..THRU</code> is used to
-						deal with detected errors in a more elegant manner.
-					</p>
-					<p>
-						When the statement <code class="language-cobol">PERFORM</code> SumSales
-						<code class="language-cobol">THRU</code> SumSalesExit is executed, both paragraphs will be
-						performed as if they were one paragraph. The <code class="language-cobol">GO TO</code> jumps to
-						the exit paragraph which, because the paragraphs are treated as one, is the end of the block of
-						code. This technique allows the programmer to skip over the code he does not want executed if an
-						error is detected.
-					</p>
-					<p>
-						The <code class="language-cobol">EXIT</code> statement in the SumSalesExit paragraph is a dummy
-						statement. It has absolutely no effect on the flow of control. It is in the paragraph merely to
-						conform to the rule that every paragraph must contain at least one sentence and in fact it must
-						be the only sentence in the paragraph. It may be regarded as a comment.
-					</p>
-					<pre class="language-cobol"><code class="language-cobol">PROCEDURE DIVISION
+					</div>
+					<div class="section-content">
+						<p>
+							In the program fragment below, the <code class="language-cobol">PERFORM..THRU</code> is used
+							to deal with detected errors in a more elegant manner.
+						</p>
+						<p>
+							When the statement <code class="language-cobol">PERFORM</code> SumSales
+							<code class="language-cobol">THRU</code> SumSalesExit is executed, both paragraphs will be
+							performed as if they were one paragraph. The <code class="language-cobol">GO TO</code> jumps
+							to the exit paragraph which, because the paragraphs are treated as one, is the end of the
+							block of code. This technique allows the programmer to skip over the code he does not want
+							executed if an error is detected.
+						</p>
+						<p>
+							The <code class="language-cobol">EXIT</code> statement in the SumSalesExit paragraph is a
+							dummy statement. It has absolutely no effect on the flow of control. It is in the paragraph
+							merely to conform to the rule that every paragraph must contain at least one sentence and in
+							fact it must be the only sentence in the paragraph. It may be regarded as a comment.
+						</p>
+						<pre class="language-cobol"><code class="language-cobol">PROCEDURE DIVISION
 Begin.
    PERFORM SumSales THRU SumSalesExit
    STOP RUN.
@@ -661,105 +690,113 @@ SumSales.
 
 SumSalesExit.
    EXIT.</code></pre>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>PERFORM..THRU restrictions</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						The <code class="language-cobol">PERFORM..THRU</code> and
-						<code class="language-cobol">GO TO</code> are dangerous constructs which, if used unwisely, will
-						make your programs very difficult to read, understand and maintain. Because of this, the
-						<code class="language-cobol">PERFORM..THRU</code> should only be used to set up a paragraph exit
-						as in the example above and it should only cover two paragraphs. No other use of the
-						<code class="language-cobol">PERFORM..THRU</code> is acceptable.
-					</p>
-					<p>This is also the only time the <code class="language-cobol">GO TO</code> should be used.</p>
-				</div>
-				<div class="section-full">
-					<div>
-						<hr />
-						<back-to-top></back-to-top>
+						<hr width="50%" />
 					</div>
-				</div>
-				<div class="section-header">
-					<h2 id="part3">PERFORM..TIMES</h2>
-				</div>
-				<div class="section-sidebar">
-					<h3>Introduction</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						The <code class="language-cobol">PERFORM..TIMES</code> format has no real equivalent in most
-						programming languages. This format allows a block of code to be executed a specified number of
-						times.
-					</p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>PERFORM..TIMES Syntax</h3>
-				</div>
-				<div class="section-content">
-					<p><img height="105" src="Resources/pics/Perform2.gif" width="406" alt="PERFORM..TIMES syntax diagram" /></p>
-					<p>
-						This format of the PERFORM executes a block of code RepeatCount number of times before returning
-						control to the statement following the PERFORM.
-					</p>
-					<p>Like the remaining formats of the PERFORM, this format allow two types of execution.</p>
-					<ul>
-						<li>Out-of-line execution of a block of code</li>
-						<li>In-line execution of a block of code.</li>
-					</ul>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>In-line vs Out-of-line</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						<b>In-line execution</b><br />
-						In-line execution will be familiar to programmers who have used the iteration constructs
-						(while,do/repeat, for) of most other programming languages. In an in-line
-						<code class="language-cobol">PERFORM</code>, the block of code to be iteratively executed is
-						contained within the same paragraph as the <code class="language-cobol">PERFORM</code>. That is,
-						the loop body is in-line with the rest of the paragraph code.
-					</p>
-					<p>
-						The block of code to be executed starts at the keyword
-						<code class="language-cobol">PERFORM</code> and ends at the keyword
-						<code class="language-cobol">END-PERFORM</code> (see example program below).
-					</p>
-					<p>
-						<b>Out-of-line execution</b><br />
-						In an out-of-line PERFORM the loop body is a separate paragraph or section. It is the equivalent
-						of having a Procedure or Function call inside the loop body of a while or for construct.
-					</p>
-					<p>
-						<b>Some guidelines</b><br />
-						In general, where a loop is needed but only a few statements are involved, an in-line
-						<code class="language-cobol">PERFORM</code> should be used.
-					</p>
-					<p>
-						Where out-of-line code is executed by a format 1 <code class="language-cobol">PERFORM</code>,
-						the code should perform some specific function and that function should be identified by the
-						paragraph name chosen.
-					</p>
-					<p>
-						Where an out-of-line paragraph consists of 5 statements or less, there should be a good reason
-						for placing these statements in a separate paragraph.
-					</p>
-					<p>
-						Programmers should try to achieve a balance between in-line and out-of-line code. The program
-						should not be too fragmented, nor too monolithic.
-					</p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>Example</h3>
-				</div>
-				<div class="section-content">
-					<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+					<div class="section-sidebar">
+						<h3>PERFORM..THRU restrictions</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							The <code class="language-cobol">PERFORM..THRU</code> and
+							<code class="language-cobol">GO TO</code> are dangerous constructs which, if used unwisely,
+							will make your programs very difficult to read, understand and maintain. Because of this,
+							the <code class="language-cobol">PERFORM..THRU</code> should only be used to set up a
+							paragraph exit as in the example above and it should only cover two paragraphs. No other use
+							of the <code class="language-cobol">PERFORM..THRU</code> is acceptable.
+						</p>
+						<p>This is also the only time the <code class="language-cobol">GO TO</code> should be used.</p>
+					</div>
+					<div class="section-full">
+						<div>
+							<hr />
+							<back-to-top></back-to-top>
+						</div>
+					</div>
+					<div class="section-header">
+						<h2 id="part3">PERFORM..TIMES</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Introduction</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							The <code class="language-cobol">PERFORM..TIMES</code> format has no real equivalent in most
+							programming languages. This format allows a block of code to be executed a specified number
+							of times.
+						</p>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>PERFORM..TIMES Syntax</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							<img
+								height="105"
+								src="Resources/pics/Perform2.gif"
+								width="406"
+								alt="PERFORM..TIMES syntax diagram"
+							/>
+						</p>
+						<p>
+							This format of the PERFORM executes a block of code RepeatCount number of times before
+							returning control to the statement following the PERFORM.
+						</p>
+						<p>Like the remaining formats of the PERFORM, this format allow two types of execution.</p>
+						<ul>
+							<li>Out-of-line execution of a block of code</li>
+							<li>In-line execution of a block of code.</li>
+						</ul>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>In-line vs Out-of-line</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							<b>In-line execution</b><br />
+							In-line execution will be familiar to programmers who have used the iteration constructs
+							(while,do/repeat, for) of most other programming languages. In an in-line
+							<code class="language-cobol">PERFORM</code>, the block of code to be iteratively executed is
+							contained within the same paragraph as the <code class="language-cobol">PERFORM</code>. That
+							is, the loop body is in-line with the rest of the paragraph code.
+						</p>
+						<p>
+							The block of code to be executed starts at the keyword
+							<code class="language-cobol">PERFORM</code> and ends at the keyword
+							<code class="language-cobol">END-PERFORM</code> (see example program below).
+						</p>
+						<p>
+							<b>Out-of-line execution</b><br />
+							In an out-of-line PERFORM the loop body is a separate paragraph or section. It is the
+							equivalent of having a Procedure or Function call inside the loop body of a while or for
+							construct.
+						</p>
+						<p>
+							<b>Some guidelines</b><br />
+							In general, where a loop is needed but only a few statements are involved, an in-line
+							<code class="language-cobol">PERFORM</code> should be used.
+						</p>
+						<p>
+							Where out-of-line code is executed by a format 1
+							<code class="language-cobol">PERFORM</code>, the code should perform some specific function
+							and that function should be identified by the paragraph name chosen.
+						</p>
+						<p>
+							Where an out-of-line paragraph consists of 5 statements or less, there should be a good
+							reason for placing these statements in a separate paragraph.
+						</p>
+						<p>
+							Programmers should try to achieve a balance between in-line and out-of-line code. The
+							program should not be too fragmented, nor too monolithic.
+						</p>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>Example</h3>
+					</div>
+					<div class="section-content">
+						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  InLineVsOutOfLine.
 AUTHOR.  Michael Coughlan.
@@ -783,13 +820,15 @@ Begin.
 
 OutOfLineEG.
     DISPLAY "&gt;&gt;&gt;&gt; This is an out of line Perform".</code></pre>
-				</div>
-				<div class="section-sidebar">
-					<h3>Self Assessment Questions</h3>
-					<p class="center-block"><img height="46" src="Resources/pics/i-SAQ2.gif" width="32" alt="" /></p>
-				</div>
-				<div class="section-content">
-					<p>Examine the program above and write out what it will display on the screen.</p>
+					</div>
+					<div class="section-sidebar">
+						<h3>Self Assessment Questions</h3>
+						<p class="center-block">
+							<img height="46" src="Resources/pics/i-SAQ2.gif" width="32" alt="" />
+						</p>
+					</div>
+					<div class="section-content">
+						<p>Examine the program above and write out what it will display on the screen.</p>
 						<div>
 							<select aria-label="Click for answer" name="select">
 								<option selected>Click the arrow for the answer</option>
@@ -807,129 +846,142 @@ OutOfLineEG.
 								<option>Back in Begin. About to stop</option>
 							</select>
 						</div>
-				</div>
-				<div class="section-full">
-					<div>
-						<hr />
-						<back-to-top></back-to-top>
 					</div>
-				</div>
-				<div class="section-header">
-					<h2 id="part4">PERFORM..UNTIL</h2>
-				</div>
-				<div class="section-sidebar">
-					<h3>Introduction</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						This format of the <code class="language-cobol">PERFORM</code> is used where the
-						<i>while</i> and <i>do/repeat</i> constructs are used in other languages. It causes a block of
-						code to be iteratively executed until some terminating condition is reached.
-					</p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>PERFORM..UNTIL syntax</h3>
-				</div>
-				<div class="section-content">
-					<p><img height="126" src="Resources/pics/Perform3.gif" width="502" alt="PERFORM..UNTIL syntax diagram" /></p>
-					<p>
-						<b>Notes<br /></b> If the <code class="language-cobol">WITH TEST BEFORE</code> phrase is used,
-						the <code class="language-cobol">PERFORM</code> behaves like a <i>while</i> loop and the
-						condition is tested before the loop body is entered.
-					</p>
-					<p>
-						The <code class="language-cobol">WITH TEST AFTER</code> phrase causes the
-						<code class="language-cobol">PERFORM</code> to act <i>do/repeat</i> loop and the condition is
-						tested after the loop body is entered.
-					</p>
-					<p>
-						The <code class="language-cobol">WITH TEST BEFORE</code> phrase is the default and so is rarely
-						explicitly stated.
-					</p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>How the PERFORM..UNTIL works</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						The flowcharts below show how the <code class="language-cobol">PERFORM..UNTIL</code> works. As
-						you can see the terminating condition is only checked at the beginning of each iteration (<code
-							class="language-cobol"
-							>PERFORM WITH TEST BEFORE</code
-						>) or at the end of each iteration (<code class="language-cobol">PERFORM WITH TEST AFTER</code
-						>).
-					</p>
-					<p>
-						The terminating condition is only checked at the beginning of each iteration (<code
-							class="language-cobol"
-							>PERFORM WITH TEST BEFORE</code
-						>) or at the end of each iteration (<code class="language-cobol">PERFORM WITH TEST AFTER</code
-						>). If the terminating condition is reached in the middle of the iteration, the rest of the loop
-						body will still be executed; although the terminating condition has been reached, it cannot be
-						checked until the current iteration has finished.
-					</p>
-					<p>
-						Although the <code class="language-cobol">PERFORM WITH TEST BEFORE</code> is often said to be
-						equivalent to a <i>while</i> loop, this is not entirely true. In a <i>while</i> loop, the
-						condition is tested to see whether the iteration should continue (for example, while(Letter !=
-						's') ) but in a <code class="language-cobol">PERFORM</code>, the condition is tested to see if
-						the iteration should stop (For example,
-						<code class="language-cobol">PERFORM WITH TEST BEFORE UNTIL</code> Letter = "s") .
-					</p>
-					<p><img height="414" src="Resources/pics/PerfUntil.gif" width="500" alt="Comparison of PERFORM..UNTIL with TEST BEFORE vs TEST AFTER, showing the iteration flow for each variant" /></p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>TEST BEFORE Vs TEST AFTER</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						Beginning programmers often ask; when should they use the
-						<code class="language-cobol">WITH TEST BEFORE</code> loop, and when should they use the
-						<code class="language-cobol">WITH TEST AFTER</code>.
-					</p>
-					<p>
-						There really isn't a cookbook answer to this. It's a matter of experience. But we can identify
-						some circumstances, when it is better to use the WITH TEST BEFORE, than the
-						<code class="language-cobol">WITH TEST AFTER</code>.
-					</p>
-					<p>
-						When you need to process a stream of data items, and don't know the size of the stream, and
-						can't detect the end of the stream until you attempt to retrieve the next item, then a
-						<i>test before loop,</i> is the best construct to use.
-					</p>
-					<p>
-						If the end of the stream can be detected when the last item is retrieved, then the appropriate
-						construct is probably a <i>test after loop</i>.
-					</p>
-				</div>
-				<div class="section-sidebar">
-					<h3>The "read ahead" technique</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						Processing a stream of data items of undetermined length, is a common operation in COBOL,
-						because sequential files fall into this category. A useful strategy known as the "read ahead"
-						has been developed for processing sequential files.
-					</p>
-					<p>
-						The central idea of the "read ahead" is that, because the end of the file cannot be detected
-						until an attempt is made to read a record, the Read must be positioned as the last statement in
-						the record processing loop.
-					</p>
-					<p>
-						You can see how this works in the processing template below. With the "read ahead" strategy we
-						always try to stay one data item ahead of the processing. So the Read outside the loop, reads
-						the first record and this record is processed inside the loop. The Read inside the loop, reads
-						the next, and all the succeeding records. When the inside Read detects the end of file, it sets
-						a Condition Name that immediately causes the loop to halt.
-					</p>
-					<div class="processing-template">
-						<div class="processing-template-header">Processing Template</div>
-						<div class="processing-template-body">
-							<pre class="language-cobol"><code class="language-cobol">READ StudentRecords
+					<div class="section-full">
+						<div>
+							<hr />
+							<back-to-top></back-to-top>
+						</div>
+					</div>
+					<div class="section-header">
+						<h2 id="part4">PERFORM..UNTIL</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Introduction</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							This format of the <code class="language-cobol">PERFORM</code> is used where the
+							<i>while</i> and <i>do/repeat</i> constructs are used in other languages. It causes a block
+							of code to be iteratively executed until some terminating condition is reached.
+						</p>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>PERFORM..UNTIL syntax</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							<img
+								height="126"
+								src="Resources/pics/Perform3.gif"
+								width="502"
+								alt="PERFORM..UNTIL syntax diagram"
+							/>
+						</p>
+						<p>
+							<b>Notes<br /></b> If the <code class="language-cobol">WITH TEST BEFORE</code> phrase is
+							used, the <code class="language-cobol">PERFORM</code> behaves like a <i>while</i> loop and
+							the condition is tested before the loop body is entered.
+						</p>
+						<p>
+							The <code class="language-cobol">WITH TEST AFTER</code> phrase causes the
+							<code class="language-cobol">PERFORM</code> to act <i>do/repeat</i> loop and the condition
+							is tested after the loop body is entered.
+						</p>
+						<p>
+							The <code class="language-cobol">WITH TEST BEFORE</code> phrase is the default and so is
+							rarely explicitly stated.
+						</p>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>How the PERFORM..UNTIL works</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							The flowcharts below show how the <code class="language-cobol">PERFORM..UNTIL</code> works.
+							As you can see the terminating condition is only checked at the beginning of each iteration
+							(<code class="language-cobol">PERFORM WITH TEST BEFORE</code>) or at the end of each
+							iteration (<code class="language-cobol">PERFORM WITH TEST AFTER</code>).
+						</p>
+						<p>
+							The terminating condition is only checked at the beginning of each iteration (<code
+								class="language-cobol"
+								>PERFORM WITH TEST BEFORE</code
+							>) or at the end of each iteration (<code class="language-cobol"
+								>PERFORM WITH TEST AFTER</code
+							>). If the terminating condition is reached in the middle of the iteration, the rest of the
+							loop body will still be executed; although the terminating condition has been reached, it
+							cannot be checked until the current iteration has finished.
+						</p>
+						<p>
+							Although the <code class="language-cobol">PERFORM WITH TEST BEFORE</code> is often said to
+							be equivalent to a <i>while</i> loop, this is not entirely true. In a <i>while</i> loop, the
+							condition is tested to see whether the iteration should continue (for example, while(Letter
+							!= 's') ) but in a <code class="language-cobol">PERFORM</code>, the condition is tested to
+							see if the iteration should stop (For example,
+							<code class="language-cobol">PERFORM WITH TEST BEFORE UNTIL</code> Letter = "s") .
+						</p>
+						<p>
+							<img
+								height="414"
+								src="Resources/pics/PerfUntil.gif"
+								width="500"
+								alt="Comparison of PERFORM..UNTIL with TEST BEFORE vs TEST AFTER, showing the iteration flow for each variant"
+							/>
+						</p>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>TEST BEFORE Vs TEST AFTER</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							Beginning programmers often ask; when should they use the
+							<code class="language-cobol">WITH TEST BEFORE</code> loop, and when should they use the
+							<code class="language-cobol">WITH TEST AFTER</code>.
+						</p>
+						<p>
+							There really isn't a cookbook answer to this. It's a matter of experience. But we can
+							identify some circumstances, when it is better to use the WITH TEST BEFORE, than the
+							<code class="language-cobol">WITH TEST AFTER</code>.
+						</p>
+						<p>
+							When you need to process a stream of data items, and don't know the size of the stream, and
+							can't detect the end of the stream until you attempt to retrieve the next item, then a
+							<i>test before loop,</i> is the best construct to use.
+						</p>
+						<p>
+							If the end of the stream can be detected when the last item is retrieved, then the
+							appropriate construct is probably a <i>test after loop</i>.
+						</p>
+					</div>
+					<div class="section-sidebar">
+						<h3>The "read ahead" technique</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							Processing a stream of data items of undetermined length, is a common operation in COBOL,
+							because sequential files fall into this category. A useful strategy known as the "read
+							ahead" has been developed for processing sequential files.
+						</p>
+						<p>
+							The central idea of the "read ahead" is that, because the end of the file cannot be detected
+							until an attempt is made to read a record, the Read must be positioned as the last statement
+							in the record processing loop.
+						</p>
+						<p>
+							You can see how this works in the processing template below. With the "read ahead" strategy
+							we always try to stay one data item ahead of the processing. So the Read outside the loop,
+							reads the first record and this record is processed inside the loop. The Read inside the
+							loop, reads the next, and all the succeeding records. When the inside Read detects the end
+							of file, it sets a Condition Name that immediately causes the loop to halt.
+						</p>
+						<div class="processing-template">
+							<div class="processing-template-header">Processing Template</div>
+							<div class="processing-template-body">
+								<pre class="language-cobol"><code class="language-cobol">READ StudentRecords
    AT END SET EndOfStudentFile TO TRUE
 END-READ
 PERFORM WITH TEST BEFORE UNTIL EndOfStudentFile
@@ -940,147 +992,168 @@ PERFORM WITH TEST BEFORE UNTIL EndOfStudentFile
      AT END SET EndOfStudentFile TO TRUE
    END-READ
 END-PERFORM</code></pre>
+							</div>
+						</div>
+						<p>This approach to processing a sequential file has two main advantages.</p>
+						<ol>
+							<li>
+								Because the read outside the loop reads the first record, the loop is never entered if
+								the file is empty.
+							</li>
+							<li>
+								Because the Read is the last statement in the loop, the loop can be halted as soon as
+								the end of file is detected.
+							</li>
+						</ol>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>PERFORM..UNTIL comment</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							The primary concern of a programmer who creates a loop should be - will the loop terminate.
+							Much of the work of proofs of program correctness goes into proving that the loops in a
+							program are going to terminate. It seems curious then, that in most programming languages
+							the loop condition concentrates on, not whether the loop will end, but on whether the loop
+							will keep going. COBOL is one of the few languages that gets this right. In COBOL, the loop
+							body is executed
+							<b>until</b> the terminating condition is reached.
+						</p>
+					</div>
+					<div class="section-full">
+						<div>
+							<hr />
+							<back-to-top></back-to-top>
 						</div>
 					</div>
-					<p>This approach to processing a sequential file has two main advantages.</p>
-					<ol>
-						<li>
-							Because the read outside the loop reads the first record, the loop is never entered if the
-							file is empty.
-						</li>
-						<li>
-							Because the Read is the last statement in the loop, the loop can be halted as soon as the
-							end of file is detected.
-						</li>
-					</ol>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>PERFORM..UNTIL comment</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						The primary concern of a programmer who creates a loop should be - will the loop terminate. Much
-						of the work of proofs of program correctness goes into proving that the loops in a program are
-						going to terminate. It seems curious then, that in most programming languages the loop condition
-						concentrates on, not whether the loop will end, but on whether the loop will keep going. COBOL
-						is one of the few languages that gets this right. In COBOL, the loop body is executed
-						<b>until</b> the terminating condition is reached.
-					</p>
-				</div>
-				<div class="section-full">
-					<div>
-						<hr />
-						<back-to-top></back-to-top>
+					<div class="section-header">
+						<h2 id="part5">PERFORM..VARYING</h2>
 					</div>
-				</div>
-				<div class="section-header">
-					<h2 id="part5">PERFORM..VARYING</h2>
-				</div>
-				<div class="section-sidebar">
-					<h3>Introduction</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						The PERFORM..VARYING is used to implement counting iteration. It is similar to the For construct
-						in languages like Modula-2, Pascal and C. However, these languages permit only one counting
-						variable per loop instruction, while COBOL allows up to three.
-					</p>
-					<p>
-						Why three? Earlier versions of COBOL only allowed tables with a maximum of three dimensions, and
-						the PERFORM..VARYING was a mechanism for processing them.
-					</p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>PERFORM..VARYING syntax</h3>
-				</div>
-				<div class="section-content">
-					<p><img height="234" src="Resources/pics/Perform4.gif" width="502" alt="PERFORM..VARYING syntax diagram" /></p>
-					<p>
-						N<b>otes</b><br />
-						The <code class="language-cobol">AFTER</code> phrase cannot be used in an in-line
-						<code class="language-cobol">PERFORM</code>. This means that only one counter may be used with
-						an in-line <code class="language-cobol">PERFORM</code>.
-					</p>
-					<p>
-						The item after the <code class="language-cobol">VARYING</code> phrase is the most significant
-						counter, the counter following the first <code class="language-cobol">AFTER</code> phrase is the
-						next most significant, and the last counter is the least significant.
-					</p>
-					<p>
-						The least significant counter must go though all its values and reach its terminating condition
-						before the next most significant counter can be incremented.
-					</p>
-					<p>The item after the FROM, is the starting value of the counter.</p>
-					<p>
-						The item after the BY, is the step value of the counter. This can be negative or positive. If a
-						negative step value is used, the counter should be signed (PIC S99, etc.).
-					</p>
-					<p>When the iteration ends, the counters retain their terminating values.</p>
-					<p>
-						As before, when no <code class="language-cobol">WITH TEST</code> phrase is used, the
-						<code class="language-cobol">WITH TEST BEFORE</code> is assumed.
-					</p>
-					<p>
-						Though the condition would normally involve some evaluation of the counter, it is not mandatory.
-						For instance, the statement that follows is perfectly valid:
-					</p>
-					<pre class="language-cobol"><code class="language-cobol">PERFORM CountRecords
+					<div class="section-sidebar">
+						<h3>Introduction</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							The PERFORM..VARYING is used to implement counting iteration. It is similar to the For
+							construct in languages like Modula-2, Pascal and C. However, these languages permit only one
+							counting variable per loop instruction, while COBOL allows up to three.
+						</p>
+						<p>
+							Why three? Earlier versions of COBOL only allowed tables with a maximum of three dimensions,
+							and the PERFORM..VARYING was a mechanism for processing them.
+						</p>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>PERFORM..VARYING syntax</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							<img
+								height="234"
+								src="Resources/pics/Perform4.gif"
+								width="502"
+								alt="PERFORM..VARYING syntax diagram"
+							/>
+						</p>
+						<p>
+							N<b>otes</b><br />
+							The <code class="language-cobol">AFTER</code> phrase cannot be used in an in-line
+							<code class="language-cobol">PERFORM</code>. This means that only one counter may be used
+							with an in-line <code class="language-cobol">PERFORM</code>.
+						</p>
+						<p>
+							The item after the <code class="language-cobol">VARYING</code> phrase is the most
+							significant counter, the counter following the first
+							<code class="language-cobol">AFTER</code> phrase is the next most significant, and the last
+							counter is the least significant.
+						</p>
+						<p>
+							The least significant counter must go though all its values and reach its terminating
+							condition before the next most significant counter can be incremented.
+						</p>
+						<p>The item after the FROM, is the starting value of the counter.</p>
+						<p>
+							The item after the BY, is the step value of the counter. This can be negative or positive.
+							If a negative step value is used, the counter should be signed (PIC S99, etc.).
+						</p>
+						<p>When the iteration ends, the counters retain their terminating values.</p>
+						<p>
+							As before, when no <code class="language-cobol">WITH TEST</code> phrase is used, the
+							<code class="language-cobol">WITH TEST BEFORE</code> is assumed.
+						</p>
+						<p>
+							Though the condition would normally involve some evaluation of the counter, it is not
+							mandatory. For instance, the statement that follows is perfectly valid:
+						</p>
+						<pre class="language-cobol"><code class="language-cobol">PERFORM CountRecords
         VARYING RecCount FROM 1 BY 1 UNTIL EndOfFile </code></pre>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>PERFORM..VARYING using one counter Example</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						The example animation below demonstrates how a simple PERFORM..VARYING, using only one counter,
-						work. Pay particular attention to when the counter is incremented. In the example note that the
-						condition
-						<i>Idx1 = 3</i> results in only two passes through the loop body.
-					</p>
-					<p class="center-block">
-						<a href="Resources/ppz/TC-Perform1.html"
-							><img height="62" src="Resources/pics/i-Animation.gif" width="62" alt="Animation: PERFORM..VARYING with one counter"
-						/></a>
-					</p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>PERFORM..VARYING using two counter Example</h3>
-				</div>
-				<div class="section-content">
-					<p>This example animation demonstrates how a PERFORM..VARYING, with two counters, works.</p>
-					<p>
-						Note how the counter Idx2 must go through all its values and reach its terminating value before
-						the Idx1 counter is incremented. An easy way to think about this is to think of it as a mileage
-						counter. In a mileage counter, the units counter must go through all its values 0-9 before the
-						tens counter is incremented, and the tens counter must go through all its values before the
-						hundreds counter is increment.
-					</p>
-					<p>
-						Note that the first counter mentioned in the PERFORM is the most significant and the next is the
-						next most significant etc.
-					</p>
-					<p class="center-block">
-						<a href="Resources/ppz/TC-Perform2.html"
-							><img height="62" src="Resources/pics/i-Animation.gif" width="62" alt="Animation: PERFORM..VARYING with two counters"
-						/></a>
-					</p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>PERFORM..VARYING Example Program</h3>
-					<p class="center-block"><img height="44" src="Resources/pics/program.gif" width="42" alt="" /></p>
-					<p class="center-block"><img height="46" src="Resources/pics/i-SAQ2.gif" width="32" alt="" /></p>
-				</div>
-				<div class="section-content">
-					<p>
-						In the example program simulates the mileage counter mentioned above. Examine this program an
-						then attempt to answer the Self Assessment Question which follow.
-					</p>
-					<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>PERFORM..VARYING using one counter Example</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							The example animation below demonstrates how a simple PERFORM..VARYING, using only one
+							counter, work. Pay particular attention to when the counter is incremented. In the example
+							note that the condition
+							<i>Idx1 = 3</i> results in only two passes through the loop body.
+						</p>
+						<p class="center-block">
+							<a href="Resources/ppz/TC-Perform1.html"
+								><img
+									height="62"
+									src="Resources/pics/i-Animation.gif"
+									width="62"
+									alt="Animation: PERFORM..VARYING with one counter"
+							/></a>
+						</p>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>PERFORM..VARYING using two counter Example</h3>
+					</div>
+					<div class="section-content">
+						<p>This example animation demonstrates how a PERFORM..VARYING, with two counters, works.</p>
+						<p>
+							Note how the counter Idx2 must go through all its values and reach its terminating value
+							before the Idx1 counter is incremented. An easy way to think about this is to think of it as
+							a mileage counter. In a mileage counter, the units counter must go through all its values
+							0-9 before the tens counter is incremented, and the tens counter must go through all its
+							values before the hundreds counter is increment.
+						</p>
+						<p>
+							Note that the first counter mentioned in the PERFORM is the most significant and the next is
+							the next most significant etc.
+						</p>
+						<p class="center-block">
+							<a href="Resources/ppz/TC-Perform2.html"
+								><img
+									height="62"
+									src="Resources/pics/i-Animation.gif"
+									width="62"
+									alt="Animation: PERFORM..VARYING with two counters"
+							/></a>
+						</p>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>PERFORM..VARYING Example Program</h3>
+						<p class="center-block">
+							<img height="44" src="Resources/pics/program.gif" width="42" alt="" />
+						</p>
+						<p class="center-block">
+							<img height="46" src="Resources/pics/i-SAQ2.gif" width="32" alt="" />
+						</p>
+					</div>
+					<div class="section-content">
+						<p>
+							In the example program simulates the mileage counter mentioned above. Examine this program
+							an then attempt to answer the Self Assessment Question which follow.
+						</p>
+						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  MileageCounter.
 AUTHOR.  Michael Coughlan.
@@ -1189,16 +1262,16 @@ CountMileage.
 								</div>
 							</div>
 						</div>
-					<hr width="50%" />
-				</div>
-				<div class="page-footer">
-					<hr />
-					<lesson-nav></lesson-nav>
-					<back-to-top></back-to-top>
-					<copyright-notice></copyright-notice>
+						<hr width="50%" />
+					</div>
+					<div class="page-footer">
+						<hr />
+						<lesson-nav></lesson-nav>
+						<back-to-top></back-to-top>
+						<copyright-notice></copyright-notice>
+					</div>
 				</div>
 			</div>
-		</div>
 		</main>
 	</body>
 </html>
