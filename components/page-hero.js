@@ -12,6 +12,7 @@ class PageHero extends HTMLElement {
 			<div class="hero">
 				<p id="top" class="page-hero-eyebrow">COBOL Tutorial</p>
 				<h1></h1>
+				<theme-toggle></theme-toggle>
 			</div>
 		`;
 		this.querySelector("h1").textContent = title;

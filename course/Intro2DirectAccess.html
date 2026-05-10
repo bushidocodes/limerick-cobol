@@ -2,6 +2,12 @@
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
 		<title>Introduction to Direct Access Files</title>
@@ -10,6 +16,7 @@
 		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
 		<script src="Resources/vendor/prism/prism.min.js" defer></script>
 		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
+		<script src="../components/theme-toggle.js" defer></script>
 		<script src="../components/page-hero.js" defer></script>
 		<script src="../components/back-to-top.js" defer></script>
 		<script src="../components/lesson-nav.js" defer></script>
