@@ -136,11 +136,38 @@
 					margin: 0.2em 0;
 				}
 			}
+
+			/* Skip-to-content link */
+			.skip-link {
+				position: absolute;
+				left: -9999px;
+				top: auto;
+				width: 1px;
+				height: 1px;
+				overflow: hidden;
+			}
+
+			.skip-link:focus {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: auto;
+				height: auto;
+				overflow: visible;
+				padding: 0.5em 1em;
+				background-color: #993300;
+				color: #ffff00;
+				font-weight: bold;
+				z-index: 9999;
+				text-decoration: none;
+			}
 		</style>
 	</head>
 
 	<body alink="#009B00" bgcolor="#FFFFFF" link="#0000FF" text="#000000" vlink="#FF0000">
-		<h2>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+				<h2>
 			<img align="top" border="0" height="42" src="../pics/I-TEACHER.GIF" width="40" alt="" />&nbsp;
 			<img align="top" height="36" src="../pics/T-Dept.gif" width="297" alt="" /><br />
 			COBOL lectures and tutorials
@@ -366,5 +393,6 @@
 				</td>
 			</tr>
 		</table>
+		</main>
 	</body>
 </html>

@@ -191,10 +191,37 @@
 					filter: none;
 				}
 			}
+
+			/* Skip-to-content link */
+			.skip-link {
+				position: absolute;
+				left: -9999px;
+				top: auto;
+				width: 1px;
+				height: 1px;
+				overflow: hidden;
+			}
+
+			.skip-link:focus {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: auto;
+				height: auto;
+				overflow: visible;
+				padding: 0.5em 1em;
+				background-color: #993300;
+				color: #ffff00;
+				font-weight: bold;
+				z-index: 9999;
+				text-decoration: none;
+			}
 		</style>
 	</head>
 	<body>
-		<!-- Header: flex row replaces 3-column layout table -->
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+				<!-- Header: flex row replaces 3-column layout table -->
 		<div class="course-header">
 			<div class="course-header-icon">
 				<img src="../pics/I-TEACHER.GIF" width="40" height="42" style="margin: 4px" alt="" />
@@ -703,5 +730,6 @@
 				</div>
 			</div>
 		</div>
+		</main>
 	</body>
 </html>
