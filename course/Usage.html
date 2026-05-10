@@ -20,194 +20,207 @@
 	<body>
 		<a class="skip-link" href="#main-content">Skip to main content</a>
 		<main id="main-content">
-		<div class="page-wrapper">
-			<div class="section-grid">
-				<div class="section-full">
-					<page-hero title="The USAGE clause"></page-hero>
-					<hr />
-					<ul class="toc">
-						<li>
-							<a href="#intro">Introduction</a><br />
-							Unit aims, objectives, prerequisites.
-						</li>
-						<li>
-							<a href="#part1">The USAGE clause</a><br />
-							Subprograms, the syntax and semantics of the
-							<code class="language-cobol">CALL</code> verb and parameter passing mechanisms. State
-							memory, the <code class="language-cobol">IS INITIAL</code> clause and the
-							<code class="language-cobol">CANCEL</code> command.
-						</li>
-					</ul>
-					<hr />
-				</div>
-				<div class="section-header">
-					<h2 id="intro">Introduction</h2>
-				</div>
-				<div class="section-sidebar">
-					<h3>Aims</h3>
-				</div>
-				<div class="section-content">
-<p>
-	The internal representation of data can be an important consideration for program
-	efficiency. Unfortunately the default representation used by COBOL for numeric data items
-	can negatively impact the speed of computations. A more efficient format for numeric data
-	can be specified by using the USAGE clause.
-</p>
-<p>
-	This unit introduces the concept of internal data representations, it discusses the default
-	representation used in COBOL and outlines how that representation, used for numeric data,
-	might cause inefficiencies.
-</p>
-<p>
-	The syntax of the <code class="language-cobol">USAGE</code> clause is given and the various
-	options explained.
-</p>
-<p>
-	The <code class="language-cobol">SYNCHRONIZED</code> clause is introduced and a generalized
-	example given.
-</p>
-<hr size="1" />
-				</div>
-				<div class="section-sidebar">
-					<h3>Objectives</h3>
-				</div>
-				<div class="section-content">
-					<p>By the end of this unit you should -</p>
-					<ol>
-						<li>
-							Know that text is stored in a computer using some encoding sequence.<br />
+			<div class="page-wrapper">
+				<div class="section-grid">
+					<div class="section-full">
+						<page-hero title="The USAGE clause"></page-hero>
+						<hr />
+						<ul class="toc">
+							<li>
+								<a href="#intro">Introduction</a><br />
+								Unit aims, objectives, prerequisites.
+							</li>
+							<li>
+								<a href="#part1">The USAGE clause</a><br />
+								Subprograms, the syntax and semantics of the
+								<code class="language-cobol">CALL</code> verb and parameter passing mechanisms. State
+								memory, the <code class="language-cobol">IS INITIAL</code> clause and the
+								<code class="language-cobol">CANCEL</code> command.
+							</li>
+						</ul>
+						<hr />
+					</div>
+					<div class="section-header">
+						<h2 id="intro">Introduction</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Aims</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							The internal representation of data can be an important consideration for program
+							efficiency. Unfortunately the default representation used by COBOL for numeric data items
+							can negatively impact the speed of computations. A more efficient format for numeric data
+							can be specified by using the USAGE clause.
+						</p>
+						<p>
+							This unit introduces the concept of internal data representations, it discusses the default
+							representation used in COBOL and outlines how that representation, used for numeric data,
+							might cause inefficiencies.
+						</p>
+						<p>
+							The syntax of the <code class="language-cobol">USAGE</code> clause is given and the various
+							options explained.
+						</p>
+						<p>
+							The <code class="language-cobol">SYNCHRONIZED</code> clause is introduced and a generalized
+							example given.
+						</p>
+						<hr size="1" />
+					</div>
+					<div class="section-sidebar">
+						<h3>Objectives</h3>
+					</div>
+					<div class="section-content">
+						<p>By the end of this unit you should -</p>
+						<ol>
+							<li>
+								Know that text is stored in a computer using some encoding sequence.<br />
+								<br />
+							</li>
+							<li>
+								Understand the problems caused by storing numeric data as ASCII digits.<br />
+								<br />
+							</li>
+							<li>
+								Be able to use use the <code class="language-cobol">USAGE</code> clause to change the
+								way numeric data is stored in the computer.<br />
+								<br />
+							</li>
+							<li>
+								Know when and how to use the
+								<code class="language-cobol">SYNCHRONIZED</code> clause.
+							</li>
+						</ol>
+						<hr size="1" />
+					</div>
+					<div class="section-sidebar">
+						<h3>Prerequisites</h3>
+					</div>
+					<div class="section-content">
+						<ul>
+							<li>Introduction to COBOL</li>
+							<li>Declaring data in COBOL</li>
+							<li>Basic Procedure Division commands</li>
+							<li>Selection in COBOL</li>
+							<li>Iteration in COBOL</li>
+							<li>Introduction to Sequential files</li>
+							<li>Processing Sequential files</li>
+							<li>Reading Sequential Files</li>
+							<li>Edited Pictures</li>
+						</ul>
+					</div>
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+					<div class="section-header">
+						<h2 id="part1">The USAGE clause</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3><b>Introduction</b></h3>
+						<span class="i-detail" aria-hidden="true">🔍</span>
+						<p>
 							<br />
-						</li>
-						<li>
-							Understand the problems caused by storing numeric data as ASCII digits.<br />
-							<br />
-						</li>
-						<li>
-							Be able to use use the <code class="language-cobol">USAGE</code> clause to change the way
-							numeric data is stored in the computer.<br />
-							<br />
-						</li>
-						<li>
-							Know when and how to use the
-							<code class="language-cobol">SYNCHRONIZED</code> clause.
-						</li>
-					</ol>
-					<hr size="1" />
-				</div>
-				<div class="section-sidebar">
-					<h3>Prerequisites</h3>
-				</div>
-				<div class="section-content">
-					<ul>
-						<li>Introduction to COBOL</li>
-						<li>Declaring data in COBOL</li>
-						<li>Basic Procedure Division commands</li>
-						<li>Selection in COBOL</li>
-						<li>Iteration in COBOL</li>
-						<li>Introduction to Sequential files</li>
-						<li>Processing Sequential files</li>
-						<li>Reading Sequential Files</li>
-						<li>Edited Pictures</li>
-					</ul>
-				</div>
-				<div class="section-full">
-<hr />
-<back-to-top></back-to-top>
-				</div>
-				<div class="section-header">
-					<h2 id="part1">The USAGE clause</h2>
-				</div>
-				<div class="section-sidebar">
-					<h3><b>Introduction</b></h3>
-<span class="i-detail" aria-hidden="true">🔍</span>
-<p>
-	<br />
-	<b>ASCII</b><br />
-	<b>A</b>merican <b>S</b>tandard <b>C</b>ode for <b>I</b>nformation <b>I</b>nterchange
-</p>
-<p>
-	<b>EBCDIC<br /></b>
-	<b>E</b>xtended <b>B</b>inary <b>C</b>oded <b>D</b>ecimal <b>I</b>nterchange <b>C</b>ode
-</p>
-<p>
-	<b>BCD</b><br />
-	<b>B</b>inary <b>C</b>oded <b>D</b>ecimal
-</p>
-				</div>
-				<div class="section-content">
-					<p>
-						Computers store their data in the form of binary digits. Apart from cardinal numbers (positive
-						integers) all other data stored in the computer's memory uses some sort of formatting
-						convention.
-					</p>
-					<p>
-						Text data, for example, is stored using an encoding sequence like ASCII or EBCDIC. An encoding
-						system is simply a convention which specifies that a particular set of bits is to be used to
-						represent a particular character. For instance, the diagram below shows the bit configuration
-						used to represent an upper case "A" in the ASCII and the EBCDIC encoding sequences.
-					</p>
-					<p class="center-block"><img height="102" src="Resources/pics/Usage1.gif" width="396" alt="Bit representations of the letter A in ASCII (01000001) and EBCDIC (11000001) encoding" /></p>
-					<p>
-						Numeric data can be held as text digits (ASCII digits) or as pure binary numbers (in the case of
-						cardinal values), or as twos complement binary numbers (in the case of integers), or as decimal
-						numbers (using BCD), or as real numbers (using a real number format such as the IEEE
-						specification for floating point numbers).
-					</p>
-					<p>
-						The <code class="language-cobol">USAGE</code> clause is used to specify how a data item is to be
-						stored in the computer's memory. Every variable declared in a COBOL program has a
-						<code class="language-cobol">USAGE</code> clause - even when no explicit clause is specified.
-						When there is no explicit <code class="language-cobol">USAGE</code> clause, the default -
-						<code class="language-cobol">USAGE IS DISPLAY</code> - is applied.
-					</p>
-					<hr size="1" />
-				</div>
-				<div class="section-sidebar">
-					<h3><b>Problems with USAGE IS DISPLAY</b></h3>
-					<p class="center-block">
-						<img height="44" src="Resources/pics/program-fragment.svg" width="48" alt="Program fragment" />
-					</p>
-					<aside>
+							<b>ASCII</b><br />
+							<b>A</b>merican <b>S</b>tandard <b>C</b>ode for <b>I</b>nformation <b>I</b>nterchange
+						</p>
+						<p>
+							<b>EBCDIC<br /></b>
+							<b>E</b>xtended <b>B</b>inary <b>C</b>oded <b>D</b>ecimal <b>I</b>nterchange <b>C</b>ode
+						</p>
+						<p>
+							<b>BCD</b><br />
+							<b>B</b>inary <b>C</b>oded <b>D</b>ecimal
+						</p>
+					</div>
+					<div class="section-content">
+						<p>
+							Computers store their data in the form of binary digits. Apart from cardinal numbers
+							(positive integers) all other data stored in the computer's memory uses some sort of
+							formatting convention.
+						</p>
+						<p>
+							Text data, for example, is stored using an encoding sequence like ASCII or EBCDIC. An
+							encoding system is simply a convention which specifies that a particular set of bits is to
+							be used to represent a particular character. For instance, the diagram below shows the bit
+							configuration used to represent an upper case "A" in the ASCII and the EBCDIC encoding
+							sequences.
+						</p>
 						<p class="center-block">
-							<img height="44" src="Resources/pics/aai-LightBulbTip.gif" width="42" alt="" />
+							<img
+								height="102"
+								src="Resources/pics/Usage1.gif"
+								width="396"
+								alt="Bit representations of the letter A in ASCII (01000001) and EBCDIC (11000001) encoding"
+							/>
 						</p>
 						<p>
-							The speed of modern computers means that it is hardly worth the effort of using the USAGE
-							clause unless the data item is going to be used in thousands of computations.
+							Numeric data can be held as text digits (ASCII digits) or as pure binary numbers (in the
+							case of cardinal values), or as twos complement binary numbers (in the case of integers), or
+							as decimal numbers (using BCD), or as real numbers (using a real number format such as the
+							IEEE specification for floating point numbers).
 						</p>
 						<p>
-							For reasons of portability the
-							<code class="language-cobol">USAGE</code> clause should never be used in record
-							descriptions.<br />
-							If the file is read on a different make of computer we have no guarantee that the data will
-							be interpreted correctly.
+							The <code class="language-cobol">USAGE</code> clause is used to specify how a data item is
+							to be stored in the computer's memory. Every variable declared in a COBOL program has a
+							<code class="language-cobol">USAGE</code> clause - even when no explicit clause is
+							specified. When there is no explicit <code class="language-cobol">USAGE</code> clause, the
+							default - <code class="language-cobol">USAGE IS DISPLAY</code> - is applied.
+						</p>
+						<hr size="1" />
+					</div>
+					<div class="section-sidebar">
+						<h3><b>Problems with USAGE IS DISPLAY</b></h3>
+						<p class="center-block">
+							<img
+								height="44"
+								src="Resources/pics/program-fragment.svg"
+								width="48"
+								alt="Program fragment"
+							/>
+						</p>
+						<aside>
+							<p class="center-block">
+								<img height="44" src="Resources/pics/aai-LightBulbTip.gif" width="42" alt="" />
+							</p>
+							<p>
+								The speed of modern computers means that it is hardly worth the effort of using the
+								USAGE clause unless the data item is going to be used in thousands of computations.
+							</p>
+							<p>
+								For reasons of portability the
+								<code class="language-cobol">USAGE</code> clause should never be used in record
+								descriptions.<br />
+								If the file is read on a different make of computer we have no guarantee that the data
+								will be interpreted correctly.
+							</p>
+							<p>
+								Even on the same make of computer, using the
+								<code class="language-cobol">USAGE</code> clause in record descriptions means that the
+								data in the file will probably not be understood by other programming languages or by
+								utility programs or by text editors.
+							</p>
+						</aside>
+					</div>
+					<div class="section-content">
+						<p>
+							For text items, or for numeric items that are not going to be used in a computation (Account
+							Numbers, Phone Numbers etc.), the default of
+							<code class="language-cobol">USAGE IS DISPLAY</code> presents no problems; but for numeric
+							items upon which some calculation is to be performed the default usage is not the most
+							efficient way to store the data.
 						</p>
 						<p>
-							Even on the same make of computer, using the
-							<code class="language-cobol">USAGE</code> clause in record descriptions means that the data
-							in the file will probably not be understood by other programming languages or by utility
-							programs or by text editors.
+							When numeric items (PIC 9 items) have a usage of
+							<code class="language-cobol">DISPLAY</code>, they are stored as ASCII digits (see the ASCII
+							digits 0-9 in the ASCII table below).
 						</p>
-					</aside>
-				</div>
-				<div class="section-content">
-					<p>
-						For text items, or for numeric items that are not going to be used in a computation (Account
-						Numbers, Phone Numbers etc.), the default of
-						<code class="language-cobol">USAGE IS DISPLAY</code> presents no problems; but for numeric items
-						upon which some calculation is to be performed the default usage is not the most efficient way
-						to store the data.
-					</p>
-					<p>
-						When numeric items (PIC 9 items) have a usage of
-						<code class="language-cobol">DISPLAY</code>, they are stored as ASCII digits (see the ASCII
-						digits 0-9 in the ASCII table below).
-					</p>
-					<p>
-						Consider the following program fragment. What would happen if computations were done directly on
-						numbers stored in this format?
-					</p>
-					<pre class="language-cobol"><code class="language-cobol">   ? ? ? ? ? ? ? ? ? ? ? ?
+						<p>
+							Consider the following program fragment. What would happen if computations were done
+							directly on numbers stored in this format?
+						</p>
+						<pre class="language-cobol"><code class="language-cobol">   ? ? ? ? ? ? ? ? ? ? ? ?
 WORKING-STORAGE SECTION.
 01 Num1    PIC 9 VALUE 4.
 01 NUM2    PIC 9 VALUE 1.
@@ -219,1981 +232,1998 @@ Begin.
    ? ? ? ? ? ? ? ? ? ? ? ?
    ADD Num1, Num2 GIVING Num3
    ? ? ? ? ? ? ? ? ? ? ? ?</code></pre>
-					<p>
-						Since none of the data items have an explicit
-						<code class="language-cobol">USAGE</code> clause they default to -
-						<code class="language-cobol">USAGE IS DISPLAY</code>. This means that the values in the
-						variables Num1, Num2 and Num3 are stored as ASCII digits. How does this effect calculations?
-					</p>
-					<p>
-						If you examine the ASCII table below you will see that the digit 4 (the value in Num1) is
-						encoded as
-						<b>
-							<span style="color: #ff0000">00110100</span>
-						</b>
-						and the digit 1 is encoded as <span style="color: #ff0000"><b>00110001</b></span
-						>.
-					</p>
-					<p>
-						When these these binary numbers are added together the result is
-						<b>
-							<span style="color: #ff0000">01100101</span>
-						</b>
-						which is the ASCII code for the lower case letter "e".
-					</p>
-					<p>The sum <b>4 + 1 = e</b> does not compute.</p>
-					<p class="center-block"><img height="202" src="Resources/pics/Usage2.gif" width="439" alt="ASCII table showing that adding digits 4 and 1 produces 01100101, the code for the letter e" /></p>
-					<p>
-						When calculations are done with numeric data items whose
-						<code class="language-cobol">USAGE IS DISPLAY</code>, the computer has to convert the numeric
-						values to their binary equivalents before the calculation can be done. When the result has been
-						computed the computer has to reconvert it to ASCII digits. Conversion to and from ASCII digits
-						slows down computations.
-					</p>
-					<p>
-						For this reason, data that is heavily involved in computation is often declared using one of the
-						usages optimized for computation such as
-						<code class="language-cobol">USAGE IS COMPUTATIONAL</code>.
-					</p>
-<p><b>ASCII Table</b></p>
-<table style="margin:0 auto" border="1" cellpadding="0" cellspacing="0">
-	<tr bgcolor="#FFFFCC">
-		<th scope="col" width="114">Char</th>
-		<th scope="col" width="66">Dec</th>
-		<th scope="col" width="60">Hex</th>
-		<th scope="col" width="108">Binary</th>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^@ (NUL)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">0</p>
-		</td>
-		<td width="60">
-			<p class="center-block">00</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00000000</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^A (SOX)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">1</p>
-		</td>
-		<td width="60">
-			<p class="center-block">01</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00000001</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^B (STX)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">2</p>
-		</td>
-		<td width="60">
-			<p class="center-block">02</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00000010</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^C (ETX)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">3</p>
-		</td>
-		<td width="60">
-			<p class="center-block">03</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00000011</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^D (EOT)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">4</p>
-		</td>
-		<td width="60">
-			<p class="center-block">04</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00000100</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^E (ENQ)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">5</p>
-		</td>
-		<td width="60">
-			<p class="center-block">05</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00000101</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^F (ACK)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">6</p>
-		</td>
-		<td width="60">
-			<p class="center-block">06</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00000110</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^G (BEL)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">7</p>
-		</td>
-		<td width="60">
-			<p class="center-block">07</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00000111</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^H (BS)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">8</p>
-		</td>
-		<td width="60">
-			<p class="center-block">08</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00001000</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^I (HT)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">9</p>
-		</td>
-		<td width="60">
-			<p class="center-block">09</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00001001</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^J (NL)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">10</p>
-		</td>
-		<td width="60">
-			<p class="center-block">0A</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00001010</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^K (VT)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">11</p>
-		</td>
-		<td width="60">
-			<p class="center-block">0B</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00001011</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^L (NP)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">12</p>
-		</td>
-		<td width="60">
-			<p class="center-block">0C</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00001100</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^M (CR)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">13</p>
-		</td>
-		<td width="60">
-			<p class="center-block">0D</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00001101</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^N (SO)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">14</p>
-		</td>
-		<td width="60">
-			<p class="center-block">0E</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00001110</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^O (SI)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">15</p>
-		</td>
-		<td width="60">
-			<p class="center-block">0F</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00001111</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^P (DLE)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">16</p>
-		</td>
-		<td width="60">
-			<p class="center-block">10</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00010000</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^Q (DS1)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">17</p>
-		</td>
-		<td width="60">
-			<p class="center-block">11</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00010001</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^R (DS2)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">18</p>
-		</td>
-		<td width="60">
-			<p class="center-block">12</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00010010</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^S (DS3)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">19</p>
-		</td>
-		<td width="60">
-			<p class="center-block">13</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00010011</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^T (DC4)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">20</p>
-		</td>
-		<td width="60">
-			<p class="center-block">14</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00010100</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^U (NAK)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">21</p>
-		</td>
-		<td width="60">
-			<p class="center-block">15</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00010101</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^V (SYN)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">22</p>
-		</td>
-		<td width="60">
-			<p class="center-block">16</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00010110</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^W (ETB)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">23</p>
-		</td>
-		<td width="60">
-			<p class="center-block">17</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00010111</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^X (CAN)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">24</p>
-		</td>
-		<td width="60">
-			<p class="center-block">18</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00011000</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^Y (EM)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">25</p>
-		</td>
-		<td width="60">
-			<p class="center-block">19</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00011001</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^Z (SUB)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">26</p>
-		</td>
-		<td width="60">
-			<p class="center-block">1A</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00011010</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^[ (ESC)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">27</p>
-		</td>
-		<td width="60">
-			<p class="center-block">1B</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00011011</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^\ (FS)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">28</p>
-		</td>
-		<td width="60">
-			<p class="center-block">1C</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00011100</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^] (GS)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">29</p>
-		</td>
-		<td width="60">
-			<p class="center-block">1D</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00011101</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^^ (RS)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">30</p>
-		</td>
-		<td width="60">
-			<p class="center-block">1E</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00011110</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^_ (US)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">31</p>
-		</td>
-		<td width="60">
-			<p class="center-block">1F</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00011111</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>(SP)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">32</p>
-		</td>
-		<td width="60">
-			<p class="center-block">20</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00100000</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>!</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">33</p>
-		</td>
-		<td width="60">
-			<p class="center-block">21</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00100001</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>"</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">34</p>
-		</td>
-		<td width="60">
-			<p class="center-block">22</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00100010</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>#</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">35</p>
-		</td>
-		<td width="60">
-			<p class="center-block">23</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00100011</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>$</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">36</p>
-		</td>
-		<td width="60">
-			<p class="center-block">24</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00100100</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>%</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">37</p>
-		</td>
-		<td width="60">
-			<p class="center-block">25</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00100101</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>&</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">38</p>
-		</td>
-		<td width="60">
-			<p class="center-block">26</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00100110</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>'</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">39</p>
-		</td>
-		<td width="60">
-			<p class="center-block">27</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00100111</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>(</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">40</p>
-		</td>
-		<td width="60">
-			<p class="center-block">28</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00101000</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">41</p>
-		</td>
-		<td width="60">
-			<p class="center-block">29</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00101001</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>*</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">42</p>
-		</td>
-		<td width="60">
-			<p class="center-block">2A</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00101010</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>+</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">43</p>
-		</td>
-		<td width="60">
-			<p class="center-block">2B</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00101011</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>,</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">44</p>
-		</td>
-		<td width="60">
-			<p class="center-block">2C</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00101100</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>-</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">45</p>
-		</td>
-		<td width="60">
-			<p class="center-block">2D</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00101101</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>.</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">46</p>
-		</td>
-		<td width="60">
-			<p class="center-block">2E</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00101110</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>/</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">47</p>
-		</td>
-		<td width="60">
-			<p class="center-block">2F</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00101111</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>0</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">48</p>
-		</td>
-		<td width="60">
-			<p class="center-block">30</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00110000</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block">
-				<b>
-					<span style="color: #ff0000">1</span>
-				</b>
-			</p>
-		</td>
-		<td width="66">
-			<p class="center-block">
-				<b>
-					<span style="color: #ff0000">49</span>
-				</b>
-			</p>
-		</td>
-		<td width="60">
-			<p class="center-block">
-				<b>
-					<span style="color: #ff0000">31</span>
-				</b>
-			</p>
-		</td>
-		<td width="108">
-			<p class="center-block">
-				<b>
-					<span style="color: #ff0000">00110001</span>
-				</b>
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>2</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">50</p>
-		</td>
-		<td width="60">
-			<p class="center-block">32</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00110010</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>3</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">51</p>
-		</td>
-		<td width="60">
-			<p class="center-block">33</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00110011</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block">
-				<b>
-					<span style="color: #ff0000">4</span>
-				</b>
-			</p>
-		</td>
-		<td width="66">
-			<p class="center-block">
-				<b>
-					<span style="color: #ff0000">52</span>
-				</b>
-			</p>
-		</td>
-		<td width="60">
-			<p class="center-block">
-				<b>
-					<span style="color: #ff0000">34</span>
-				</b>
-			</p>
-		</td>
-		<td width="108">
-			<p class="center-block">
-				<b>
-					<span style="color: #ff0000">00110100</span>
-				</b>
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>5</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">53</p>
-		</td>
-		<td width="60">
-			<p class="center-block">35</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00110101</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>6</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">54</p>
-		</td>
-		<td width="60">
-			<p class="center-block">36</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00110110</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>7</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">55</p>
-		</td>
-		<td width="60">
-			<p class="center-block">37</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00110111</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>8</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">56</p>
-		</td>
-		<td width="60">
-			<p class="center-block">38</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00111000</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>9</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">57</p>
-		</td>
-		<td width="60">
-			<p class="center-block">39</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00111001</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>:</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">58</p>
-		</td>
-		<td width="60">
-			<p class="center-block">3A</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00111010</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>;</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">59</p>
-		</td>
-		<td width="60">
-			<p class="center-block">3B</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00111011</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>&lt;</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">60</p>
-		</td>
-		<td width="60">
-			<p class="center-block">3C</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00111100</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>=</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">61</p>
-		</td>
-		<td width="60">
-			<p class="center-block">3D</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00111101</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>&gt;</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">62</p>
-		</td>
-		<td width="60">
-			<p class="center-block">3E</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00111110</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>?</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">63</p>
-		</td>
-		<td width="60">
-			<p class="center-block">3F</p>
-		</td>
-		<td width="108">
-			<p class="center-block">00111111</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>@</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">64</p>
-		</td>
-		<td width="60">
-			<p class="center-block">40</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01000000</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>A</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">65</p>
-		</td>
-		<td width="60">
-			<p class="center-block">41</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01000001</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>B</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">66</p>
-		</td>
-		<td width="60">
-			<p class="center-block">42</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01000010</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>C</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">67</p>
-		</td>
-		<td width="60">
-			<p class="center-block">43</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01000011</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>D</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">68</p>
-		</td>
-		<td width="60">
-			<p class="center-block">44</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01000100</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>E</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">69</p>
-		</td>
-		<td width="60">
-			<p class="center-block">45</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01000101</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>F</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">70</p>
-		</td>
-		<td width="60">
-			<p class="center-block">46</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01000110</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>G</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">71</p>
-		</td>
-		<td width="60">
-			<p class="center-block">47</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01000111</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>H</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">72</p>
-		</td>
-		<td width="60">
-			<p class="center-block">48</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01001000</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>I</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">73</p>
-		</td>
-		<td width="60">
-			<p class="center-block">49</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01001001</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>J</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">74</p>
-		</td>
-		<td width="60">
-			<p class="center-block">4A</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01001010</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>K</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">75</p>
-		</td>
-		<td width="60">
-			<p class="center-block">4B</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01001011</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>L</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">76</p>
-		</td>
-		<td width="60">
-			<p class="center-block">4C</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01001100</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>M</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">77</p>
-		</td>
-		<td width="60">
-			<p class="center-block">4D</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01001101</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>N</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">78</p>
-		</td>
-		<td width="60">
-			<p class="center-block">4E</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01001110</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>O</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">79</p>
-		</td>
-		<td width="60">
-			<p class="center-block">4F</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01001111</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>P</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">80</p>
-		</td>
-		<td width="60">
-			<p class="center-block">50</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01010000</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>Q</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">81</p>
-		</td>
-		<td width="60">
-			<p class="center-block">51</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01010001</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>R</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">82</p>
-		</td>
-		<td width="60">
-			<p class="center-block">52</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01010010</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>S</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">83</p>
-		</td>
-		<td width="60">
-			<p class="center-block">53</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01010011</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>T</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">84</p>
-		</td>
-		<td width="60">
-			<p class="center-block">54</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01010100</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>U</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">85</p>
-		</td>
-		<td width="60">
-			<p class="center-block">55</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01010101</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>V</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">86</p>
-		</td>
-		<td width="60">
-			<p class="center-block">56</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01010110</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>W</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">87</p>
-		</td>
-		<td width="60">
-			<p class="center-block">57</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01010111</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>X</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">88</p>
-		</td>
-		<td width="60">
-			<p class="center-block">58</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01011000</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>Y</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">89</p>
-		</td>
-		<td width="60">
-			<p class="center-block">59</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01011001</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>Z</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">90</p>
-		</td>
-		<td width="60">
-			<p class="center-block">5A</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01011010</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>[</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">91</p>
-		</td>
-		<td width="60">
-			<p class="center-block">5B</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01011011</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>\</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">92</p>
-		</td>
-		<td width="60">
-			<p class="center-block">5C</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01011100</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>]</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">93</p>
-		</td>
-		<td width="60">
-			<p class="center-block">5D</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01011101</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">94</p>
-		</td>
-		<td width="60">
-			<p class="center-block">5E</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01011110</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>_</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">95</p>
-		</td>
-		<td width="60">
-			<p class="center-block">5F</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01011111</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>`</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">96</p>
-		</td>
-		<td width="60">
-			<p class="center-block">60</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01100000</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>a</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">97</p>
-		</td>
-		<td width="60">
-			<p class="center-block">61</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01100001</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>b</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">98</p>
-		</td>
-		<td width="60">
-			<p class="center-block">62</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01100010</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>c</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">99</p>
-		</td>
-		<td width="60">
-			<p class="center-block">63</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01100011</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>d</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">100</p>
-		</td>
-		<td width="60">
-			<p class="center-block">64</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01100100</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block">
-				<b>
-					<span style="color: #ff0000">e</span>
-				</b>
-			</p>
-		</td>
-		<td width="66">
-			<p class="center-block">
-				<b>
-					<span style="color: #ff0000">101</span>
-				</b>
-			</p>
-		</td>
-		<td width="60">
-			<p class="center-block">
-				<b>
-					<span style="color: #ff0000">65</span>
-				</b>
-			</p>
-		</td>
-		<td width="108">
-			<p class="center-block">
-				<b>
-					<span style="color: #ff0000">01100101</span>
-				</b>
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>f</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">102</p>
-		</td>
-		<td width="60">
-			<p class="center-block">66</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01100110</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>g</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">103</p>
-		</td>
-		<td width="60">
-			<p class="center-block">67</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01100111</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>h</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">104</p>
-		</td>
-		<td width="60">
-			<p class="center-block">68</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01101000</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>i</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">105</p>
-		</td>
-		<td width="60">
-			<p class="center-block">69</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01101001</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>j</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">106</p>
-		</td>
-		<td width="60">
-			<p class="center-block">6A</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01101010</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>k</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">107</p>
-		</td>
-		<td width="60">
-			<p class="center-block">6B</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01101011</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>l</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">108</p>
-		</td>
-		<td width="60">
-			<p class="center-block">6C</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01101100</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>m</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">109</p>
-		</td>
-		<td width="60">
-			<p class="center-block">6D</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01101101</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>n</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">110</p>
-		</td>
-		<td width="60">
-			<p class="center-block">6E</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01101110</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>o</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">111</p>
-		</td>
-		<td width="60">
-			<p class="center-block">6F</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01101111</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>p</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">112</p>
-		</td>
-		<td width="60">
-			<p class="center-block">70</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01110000</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>q</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">113</p>
-		</td>
-		<td width="60">
-			<p class="center-block">71</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01110001</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>r</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">114</p>
-		</td>
-		<td width="60">
-			<p class="center-block">72</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01110010</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>s</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">115</p>
-		</td>
-		<td width="60">
-			<p class="center-block">73</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01110011</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>t</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">116</p>
-		</td>
-		<td width="60">
-			<p class="center-block">74</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01110100</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>u</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">117</p>
-		</td>
-		<td width="60">
-			<p class="center-block">75</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01110101</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>v</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">118</p>
-		</td>
-		<td width="60">
-			<p class="center-block">76</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01110110</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>w</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">119</p>
-		</td>
-		<td width="60">
-			<p class="center-block">77</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01110111</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>x</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">120</p>
-		</td>
-		<td width="60">
-			<p class="center-block">78</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01111000</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>y</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">121</p>
-		</td>
-		<td width="60">
-			<p class="center-block">79</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01111001</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>z</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">122</p>
-		</td>
-		<td width="60">
-			<p class="center-block">7A</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01111010</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>{</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">123</p>
-		</td>
-		<td width="60">
-			<p class="center-block">7B</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01111011</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>|</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">124</p>
-		</td>
-		<td width="60">
-			<p class="center-block">7C</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01111100</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>}</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">125</p>
-		</td>
-		<td width="60">
-			<p class="center-block">7D</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01111101</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>~</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">126</p>
-		</td>
-		<td width="60">
-			<p class="center-block">7E</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01111110</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="114">
-			<p class="center-block"><b>^? (DEL)</b></p>
-		</td>
-		<td width="66">
-			<p class="center-block">127</p>
-		</td>
-		<td width="60">
-			<p class="center-block">7F</p>
-		</td>
-		<td width="108">
-			<p class="center-block">01111111</p>
-		</td>
-	</tr>
-</table>
-					<hr size="1" />
-				</div>
-				<div class="section-sidebar">
-					<p>
-						<b>USAGE syntax and notes</b>
-					</p>
-					<p class="center-block">
-						<img height="44" src="Resources/pics/program-fragment.svg" width="48" alt="Program fragment" />
-					</p>
-					<aside>
+						<p>
+							Since none of the data items have an explicit
+							<code class="language-cobol">USAGE</code> clause they default to -
+							<code class="language-cobol">USAGE IS DISPLAY</code>. This means that the values in the
+							variables Num1, Num2 and Num3 are stored as ASCII digits. How does this effect calculations?
+						</p>
+						<p>
+							If you examine the ASCII table below you will see that the digit 4 (the value in Num1) is
+							encoded as
+							<b>
+								<span style="color: #ff0000">00110100</span>
+							</b>
+							and the digit 1 is encoded as <span style="color: #ff0000"><b>00110001</b></span
+							>.
+						</p>
+						<p>
+							When these these binary numbers are added together the result is
+							<b>
+								<span style="color: #ff0000">01100101</span>
+							</b>
+							which is the ASCII code for the lower case letter "e".
+						</p>
+						<p>The sum <b>4 + 1 = e</b> does not compute.</p>
 						<p class="center-block">
-							<img height="62" src="Resources/pics/aai-BugAlert.gif" width="56" alt="" />
+							<img
+								height="202"
+								src="Resources/pics/Usage2.gif"
+								width="439"
+								alt="ASCII table showing that adding digits 4 and 1 produces 01100101, the code for the letter e"
+							/>
+						</p>
+						<p>
+							When calculations are done with numeric data items whose
+							<code class="language-cobol">USAGE IS DISPLAY</code>, the computer has to convert the
+							numeric values to their binary equivalents before the calculation can be done. When the
+							result has been computed the computer has to reconvert it to ASCII digits. Conversion to and
+							from ASCII digits slows down computations.
+						</p>
+						<p>
+							For this reason, data that is heavily involved in computation is often declared using one of
+							the usages optimized for computation such as
+							<code class="language-cobol">USAGE IS COMPUTATIONAL</code>.
+						</p>
+						<p><b>ASCII Table</b></p>
+						<table style="margin: 0 auto" border="1" cellpadding="0" cellspacing="0">
+							<tr bgcolor="#FFFFCC">
+								<th scope="col" width="114">Char</th>
+								<th scope="col" width="66">Dec</th>
+								<th scope="col" width="60">Hex</th>
+								<th scope="col" width="108">Binary</th>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^@ (NUL)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">0</p>
+								</td>
+								<td width="60">
+									<p class="center-block">00</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00000000</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^A (SOX)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">1</p>
+								</td>
+								<td width="60">
+									<p class="center-block">01</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00000001</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^B (STX)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">2</p>
+								</td>
+								<td width="60">
+									<p class="center-block">02</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00000010</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^C (ETX)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">3</p>
+								</td>
+								<td width="60">
+									<p class="center-block">03</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00000011</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^D (EOT)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">4</p>
+								</td>
+								<td width="60">
+									<p class="center-block">04</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00000100</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^E (ENQ)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">5</p>
+								</td>
+								<td width="60">
+									<p class="center-block">05</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00000101</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^F (ACK)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">6</p>
+								</td>
+								<td width="60">
+									<p class="center-block">06</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00000110</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^G (BEL)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">7</p>
+								</td>
+								<td width="60">
+									<p class="center-block">07</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00000111</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^H (BS)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">8</p>
+								</td>
+								<td width="60">
+									<p class="center-block">08</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00001000</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^I (HT)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">9</p>
+								</td>
+								<td width="60">
+									<p class="center-block">09</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00001001</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^J (NL)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">10</p>
+								</td>
+								<td width="60">
+									<p class="center-block">0A</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00001010</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^K (VT)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">11</p>
+								</td>
+								<td width="60">
+									<p class="center-block">0B</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00001011</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^L (NP)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">12</p>
+								</td>
+								<td width="60">
+									<p class="center-block">0C</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00001100</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^M (CR)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">13</p>
+								</td>
+								<td width="60">
+									<p class="center-block">0D</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00001101</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^N (SO)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">14</p>
+								</td>
+								<td width="60">
+									<p class="center-block">0E</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00001110</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^O (SI)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">15</p>
+								</td>
+								<td width="60">
+									<p class="center-block">0F</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00001111</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^P (DLE)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">16</p>
+								</td>
+								<td width="60">
+									<p class="center-block">10</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00010000</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^Q (DS1)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">17</p>
+								</td>
+								<td width="60">
+									<p class="center-block">11</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00010001</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^R (DS2)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">18</p>
+								</td>
+								<td width="60">
+									<p class="center-block">12</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00010010</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^S (DS3)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">19</p>
+								</td>
+								<td width="60">
+									<p class="center-block">13</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00010011</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^T (DC4)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">20</p>
+								</td>
+								<td width="60">
+									<p class="center-block">14</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00010100</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^U (NAK)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">21</p>
+								</td>
+								<td width="60">
+									<p class="center-block">15</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00010101</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^V (SYN)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">22</p>
+								</td>
+								<td width="60">
+									<p class="center-block">16</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00010110</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^W (ETB)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">23</p>
+								</td>
+								<td width="60">
+									<p class="center-block">17</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00010111</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^X (CAN)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">24</p>
+								</td>
+								<td width="60">
+									<p class="center-block">18</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00011000</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^Y (EM)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">25</p>
+								</td>
+								<td width="60">
+									<p class="center-block">19</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00011001</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^Z (SUB)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">26</p>
+								</td>
+								<td width="60">
+									<p class="center-block">1A</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00011010</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^[ (ESC)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">27</p>
+								</td>
+								<td width="60">
+									<p class="center-block">1B</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00011011</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^\ (FS)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">28</p>
+								</td>
+								<td width="60">
+									<p class="center-block">1C</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00011100</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^] (GS)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">29</p>
+								</td>
+								<td width="60">
+									<p class="center-block">1D</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00011101</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^^ (RS)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">30</p>
+								</td>
+								<td width="60">
+									<p class="center-block">1E</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00011110</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^_ (US)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">31</p>
+								</td>
+								<td width="60">
+									<p class="center-block">1F</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00011111</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>(SP)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">32</p>
+								</td>
+								<td width="60">
+									<p class="center-block">20</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00100000</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>!</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">33</p>
+								</td>
+								<td width="60">
+									<p class="center-block">21</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00100001</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>"</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">34</p>
+								</td>
+								<td width="60">
+									<p class="center-block">22</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00100010</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>#</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">35</p>
+								</td>
+								<td width="60">
+									<p class="center-block">23</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00100011</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>$</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">36</p>
+								</td>
+								<td width="60">
+									<p class="center-block">24</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00100100</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>%</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">37</p>
+								</td>
+								<td width="60">
+									<p class="center-block">25</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00100101</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>&</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">38</p>
+								</td>
+								<td width="60">
+									<p class="center-block">26</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00100110</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>'</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">39</p>
+								</td>
+								<td width="60">
+									<p class="center-block">27</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00100111</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>(</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">40</p>
+								</td>
+								<td width="60">
+									<p class="center-block">28</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00101000</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">41</p>
+								</td>
+								<td width="60">
+									<p class="center-block">29</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00101001</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>*</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">42</p>
+								</td>
+								<td width="60">
+									<p class="center-block">2A</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00101010</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>+</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">43</p>
+								</td>
+								<td width="60">
+									<p class="center-block">2B</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00101011</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>,</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">44</p>
+								</td>
+								<td width="60">
+									<p class="center-block">2C</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00101100</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>-</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">45</p>
+								</td>
+								<td width="60">
+									<p class="center-block">2D</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00101101</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>.</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">46</p>
+								</td>
+								<td width="60">
+									<p class="center-block">2E</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00101110</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>/</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">47</p>
+								</td>
+								<td width="60">
+									<p class="center-block">2F</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00101111</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>0</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">48</p>
+								</td>
+								<td width="60">
+									<p class="center-block">30</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00110000</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block">
+										<b>
+											<span style="color: #ff0000">1</span>
+										</b>
+									</p>
+								</td>
+								<td width="66">
+									<p class="center-block">
+										<b>
+											<span style="color: #ff0000">49</span>
+										</b>
+									</p>
+								</td>
+								<td width="60">
+									<p class="center-block">
+										<b>
+											<span style="color: #ff0000">31</span>
+										</b>
+									</p>
+								</td>
+								<td width="108">
+									<p class="center-block">
+										<b>
+											<span style="color: #ff0000">00110001</span>
+										</b>
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>2</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">50</p>
+								</td>
+								<td width="60">
+									<p class="center-block">32</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00110010</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>3</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">51</p>
+								</td>
+								<td width="60">
+									<p class="center-block">33</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00110011</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block">
+										<b>
+											<span style="color: #ff0000">4</span>
+										</b>
+									</p>
+								</td>
+								<td width="66">
+									<p class="center-block">
+										<b>
+											<span style="color: #ff0000">52</span>
+										</b>
+									</p>
+								</td>
+								<td width="60">
+									<p class="center-block">
+										<b>
+											<span style="color: #ff0000">34</span>
+										</b>
+									</p>
+								</td>
+								<td width="108">
+									<p class="center-block">
+										<b>
+											<span style="color: #ff0000">00110100</span>
+										</b>
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>5</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">53</p>
+								</td>
+								<td width="60">
+									<p class="center-block">35</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00110101</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>6</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">54</p>
+								</td>
+								<td width="60">
+									<p class="center-block">36</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00110110</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>7</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">55</p>
+								</td>
+								<td width="60">
+									<p class="center-block">37</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00110111</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>8</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">56</p>
+								</td>
+								<td width="60">
+									<p class="center-block">38</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00111000</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>9</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">57</p>
+								</td>
+								<td width="60">
+									<p class="center-block">39</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00111001</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>:</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">58</p>
+								</td>
+								<td width="60">
+									<p class="center-block">3A</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00111010</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>;</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">59</p>
+								</td>
+								<td width="60">
+									<p class="center-block">3B</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00111011</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>&lt;</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">60</p>
+								</td>
+								<td width="60">
+									<p class="center-block">3C</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00111100</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>=</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">61</p>
+								</td>
+								<td width="60">
+									<p class="center-block">3D</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00111101</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>&gt;</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">62</p>
+								</td>
+								<td width="60">
+									<p class="center-block">3E</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00111110</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>?</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">63</p>
+								</td>
+								<td width="60">
+									<p class="center-block">3F</p>
+								</td>
+								<td width="108">
+									<p class="center-block">00111111</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>@</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">64</p>
+								</td>
+								<td width="60">
+									<p class="center-block">40</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01000000</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>A</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">65</p>
+								</td>
+								<td width="60">
+									<p class="center-block">41</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01000001</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>B</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">66</p>
+								</td>
+								<td width="60">
+									<p class="center-block">42</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01000010</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>C</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">67</p>
+								</td>
+								<td width="60">
+									<p class="center-block">43</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01000011</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>D</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">68</p>
+								</td>
+								<td width="60">
+									<p class="center-block">44</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01000100</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>E</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">69</p>
+								</td>
+								<td width="60">
+									<p class="center-block">45</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01000101</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>F</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">70</p>
+								</td>
+								<td width="60">
+									<p class="center-block">46</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01000110</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>G</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">71</p>
+								</td>
+								<td width="60">
+									<p class="center-block">47</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01000111</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>H</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">72</p>
+								</td>
+								<td width="60">
+									<p class="center-block">48</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01001000</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>I</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">73</p>
+								</td>
+								<td width="60">
+									<p class="center-block">49</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01001001</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>J</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">74</p>
+								</td>
+								<td width="60">
+									<p class="center-block">4A</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01001010</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>K</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">75</p>
+								</td>
+								<td width="60">
+									<p class="center-block">4B</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01001011</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>L</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">76</p>
+								</td>
+								<td width="60">
+									<p class="center-block">4C</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01001100</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>M</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">77</p>
+								</td>
+								<td width="60">
+									<p class="center-block">4D</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01001101</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>N</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">78</p>
+								</td>
+								<td width="60">
+									<p class="center-block">4E</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01001110</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>O</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">79</p>
+								</td>
+								<td width="60">
+									<p class="center-block">4F</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01001111</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>P</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">80</p>
+								</td>
+								<td width="60">
+									<p class="center-block">50</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01010000</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>Q</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">81</p>
+								</td>
+								<td width="60">
+									<p class="center-block">51</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01010001</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>R</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">82</p>
+								</td>
+								<td width="60">
+									<p class="center-block">52</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01010010</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>S</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">83</p>
+								</td>
+								<td width="60">
+									<p class="center-block">53</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01010011</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>T</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">84</p>
+								</td>
+								<td width="60">
+									<p class="center-block">54</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01010100</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>U</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">85</p>
+								</td>
+								<td width="60">
+									<p class="center-block">55</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01010101</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>V</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">86</p>
+								</td>
+								<td width="60">
+									<p class="center-block">56</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01010110</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>W</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">87</p>
+								</td>
+								<td width="60">
+									<p class="center-block">57</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01010111</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>X</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">88</p>
+								</td>
+								<td width="60">
+									<p class="center-block">58</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01011000</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>Y</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">89</p>
+								</td>
+								<td width="60">
+									<p class="center-block">59</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01011001</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>Z</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">90</p>
+								</td>
+								<td width="60">
+									<p class="center-block">5A</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01011010</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>[</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">91</p>
+								</td>
+								<td width="60">
+									<p class="center-block">5B</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01011011</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>\</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">92</p>
+								</td>
+								<td width="60">
+									<p class="center-block">5C</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01011100</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>]</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">93</p>
+								</td>
+								<td width="60">
+									<p class="center-block">5D</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01011101</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">94</p>
+								</td>
+								<td width="60">
+									<p class="center-block">5E</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01011110</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>_</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">95</p>
+								</td>
+								<td width="60">
+									<p class="center-block">5F</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01011111</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>`</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">96</p>
+								</td>
+								<td width="60">
+									<p class="center-block">60</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01100000</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>a</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">97</p>
+								</td>
+								<td width="60">
+									<p class="center-block">61</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01100001</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>b</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">98</p>
+								</td>
+								<td width="60">
+									<p class="center-block">62</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01100010</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>c</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">99</p>
+								</td>
+								<td width="60">
+									<p class="center-block">63</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01100011</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>d</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">100</p>
+								</td>
+								<td width="60">
+									<p class="center-block">64</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01100100</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block">
+										<b>
+											<span style="color: #ff0000">e</span>
+										</b>
+									</p>
+								</td>
+								<td width="66">
+									<p class="center-block">
+										<b>
+											<span style="color: #ff0000">101</span>
+										</b>
+									</p>
+								</td>
+								<td width="60">
+									<p class="center-block">
+										<b>
+											<span style="color: #ff0000">65</span>
+										</b>
+									</p>
+								</td>
+								<td width="108">
+									<p class="center-block">
+										<b>
+											<span style="color: #ff0000">01100101</span>
+										</b>
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>f</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">102</p>
+								</td>
+								<td width="60">
+									<p class="center-block">66</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01100110</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>g</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">103</p>
+								</td>
+								<td width="60">
+									<p class="center-block">67</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01100111</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>h</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">104</p>
+								</td>
+								<td width="60">
+									<p class="center-block">68</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01101000</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>i</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">105</p>
+								</td>
+								<td width="60">
+									<p class="center-block">69</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01101001</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>j</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">106</p>
+								</td>
+								<td width="60">
+									<p class="center-block">6A</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01101010</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>k</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">107</p>
+								</td>
+								<td width="60">
+									<p class="center-block">6B</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01101011</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>l</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">108</p>
+								</td>
+								<td width="60">
+									<p class="center-block">6C</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01101100</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>m</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">109</p>
+								</td>
+								<td width="60">
+									<p class="center-block">6D</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01101101</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>n</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">110</p>
+								</td>
+								<td width="60">
+									<p class="center-block">6E</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01101110</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>o</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">111</p>
+								</td>
+								<td width="60">
+									<p class="center-block">6F</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01101111</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>p</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">112</p>
+								</td>
+								<td width="60">
+									<p class="center-block">70</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01110000</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>q</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">113</p>
+								</td>
+								<td width="60">
+									<p class="center-block">71</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01110001</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>r</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">114</p>
+								</td>
+								<td width="60">
+									<p class="center-block">72</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01110010</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>s</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">115</p>
+								</td>
+								<td width="60">
+									<p class="center-block">73</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01110011</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>t</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">116</p>
+								</td>
+								<td width="60">
+									<p class="center-block">74</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01110100</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>u</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">117</p>
+								</td>
+								<td width="60">
+									<p class="center-block">75</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01110101</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>v</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">118</p>
+								</td>
+								<td width="60">
+									<p class="center-block">76</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01110110</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>w</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">119</p>
+								</td>
+								<td width="60">
+									<p class="center-block">77</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01110111</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>x</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">120</p>
+								</td>
+								<td width="60">
+									<p class="center-block">78</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01111000</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>y</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">121</p>
+								</td>
+								<td width="60">
+									<p class="center-block">79</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01111001</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>z</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">122</p>
+								</td>
+								<td width="60">
+									<p class="center-block">7A</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01111010</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>{</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">123</p>
+								</td>
+								<td width="60">
+									<p class="center-block">7B</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01111011</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>|</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">124</p>
+								</td>
+								<td width="60">
+									<p class="center-block">7C</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01111100</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>}</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">125</p>
+								</td>
+								<td width="60">
+									<p class="center-block">7D</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01111101</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>~</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">126</p>
+								</td>
+								<td width="60">
+									<p class="center-block">7E</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01111110</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="114">
+									<p class="center-block"><b>^? (DEL)</b></p>
+								</td>
+								<td width="66">
+									<p class="center-block">127</p>
+								</td>
+								<td width="60">
+									<p class="center-block">7F</p>
+								</td>
+								<td width="108">
+									<p class="center-block">01111111</p>
+								</td>
+							</tr>
+						</table>
+						<hr size="1" />
+					</div>
+					<div class="section-sidebar">
+						<p>
+							<b>USAGE syntax and notes</b>
 						</p>
 						<p class="center-block">
-							Group items are always treated as alphanumeric and this can cause problems when there are
-							subordinate COMP items.
+							<img
+								height="44"
+								src="Resources/pics/program-fragment.svg"
+								width="48"
+								alt="Program fragment"
+							/>
 						</p>
+						<aside>
+							<p class="center-block">
+								<img height="62" src="Resources/pics/aai-BugAlert.gif" width="56" alt="" />
+							</p>
+							<p class="center-block">
+								Group items are always treated as alphanumeric and this can cause problems when there
+								are subordinate COMP items.
+							</p>
+							<p class="center-block">
+								For instance, suppose we had a statement like -<br />
+								<code class="language-cobol">MOVE ZEROS TO GROUP2</code>.<br />
+								in the program opposite.<br />
+								<br />
+								On the surface it looks as if this statement is moving the numeric value 0 to NumItem1
+								and NumItem2 but what is actually moved into these items is the ASCII digit "0".<br />
+								<br />
+								When an attempt is made to use NumItem1 or NumItem2 in a calculation the program will
+								crash because these data-items contain non-numeric data.
+							</p>
+						</aside>
+					</div>
+					<div class="section-content">
 						<p class="center-block">
-							For instance, suppose we had a statement like -<br />
-							<code class="language-cobol">MOVE ZEROS TO GROUP2</code>.<br />
-							in the program opposite.<br />
-							<br />
-							On the surface it looks as if this statement is moving the numeric value 0 to NumItem1 and
-							NumItem2 but what is actually moved into these items is the ASCII digit "0".<br />
-							<br />
-							When an attempt is made to use NumItem1 or NumItem2 in a calculation the program will crash
-							because these data-items contain non-numeric data.
+							<img
+								height="118"
+								src="Resources/pics/UsageSyn1.gif"
+								width="214"
+								alt="USAGE clause syntax diagram"
+							/>
 						</p>
-					</aside>
-				</div>
-				<div class="section-content">
-					<p class="center-block">
-						<img height="118" src="Resources/pics/UsageSyn1.gif" width="214" alt="USAGE clause syntax diagram" />
-					</p>
-					<p><b>USAGE notes</b></p>
-					<ul>
-						<li>
-							The <code class="language-cobol">USAGE</code> clause may be used with any data description
-							entry except those with level numbers of 66 or 88.<br />
+						<p><b>USAGE notes</b></p>
+						<ul>
+							<li>
+								The <code class="language-cobol">USAGE</code> clause may be used with any data
+								description entry except those with level numbers of 66 or 88.<br />
+								<br />
+							</li>
+							<li>
+								When the <code class="language-cobol">USAGE</code> clause is declared for a group item,
+								the usage specified is applied to every item in the group. The group item itself is
+								still treated as an alphanumeric data-item (see example program below).<br />
+								<br />
+							</li>
+							<li>
+								<code class="language-cobol">USAGE IS COMPUTATIONAL</code> or
+								<code class="language-cobol">COMP</code> or
+								<code class="language-cobol">BINARY</code> are synonyms of one another.<br />
+								<br />
+							</li>
+							<li>
+								The <code class="language-cobol">USAGE IS INDEX</code> clause is used to provide an
+								optimized table subscript. When a table is the target of a
+								<code class="language-cobol">SEARCH</code> statement it must have an associated index
+								item (see the Search Tutorial).
+							</li>
+						</ul>
+						<p>
 							<br />
-						</li>
-						<li>
-							When the <code class="language-cobol">USAGE</code> clause is declared for a group item, the
-							usage specified is applied to every item in the group. The group item itself is still
-							treated as an alphanumeric data-item (see example program below).<br />
-							<br />
-						</li>
-						<li>
-							<code class="language-cobol">USAGE IS COMPUTATIONAL</code> or
-							<code class="language-cobol">COMP</code> or <code class="language-cobol">BINARY</code> are
-							synonyms of one another.<br />
-							<br />
-						</li>
-						<li>
-							The <code class="language-cobol">USAGE IS INDEX</code> clause is used to provide an
-							optimized table subscript. When a table is the target of a
-							<code class="language-cobol">SEARCH</code> statement it must have an associated index item
-							(see the Search Tutorial).
-						</li>
-					</ul>
-					<p>
-						<br />
-						<b>USAGE rules</b><br />
-					</p>
-					<ol>
-						<li>
-							Any item declared with <code class="language-cobol">USAGE IS INDEX</code> can only appear
-							in:<br />
-							- A <code class="language-cobol">SEARCH</code> or
-							<code class="language-cobol">SET</code> statement<br />
-							- A relation condition<br />
-							- The <code class="language-cobol">USING</code> phrase of the
-							<code class="language-cobol">PROCEDURE DIVISION</code><br />
-							- The <code class="language-cobol">USING</code> phrase of the
-							<code class="language-cobol">CALL</code> statement<br />
-							<br />
-						</li>
-						<li>
-							The picture string of a <code class="language-cobol">COMP</code> or
-							<code class="language-cobol">PACKED-DECIMAL</code> item can contain only the symbols 9, S, V
-							and/or P.<br />
-							<br />
-						</li>
-						<li>
-							The picture clause used for <code class="language-cobol">COMP</code> or
-							<code class="language-cobol">PACKED-DECIMAL</code> items must be numeric.<br />
-						</li>
-					</ol>
-					<p><b>USAGE examples</b></p>
-					<pre class="language-cobol"><code class="language-cobol">
+							<b>USAGE rules</b><br />
+						</p>
+						<ol>
+							<li>
+								Any item declared with <code class="language-cobol">USAGE IS INDEX</code> can only
+								appear in:<br />
+								- A <code class="language-cobol">SEARCH</code> or
+								<code class="language-cobol">SET</code> statement<br />
+								- A relation condition<br />
+								- The <code class="language-cobol">USING</code> phrase of the
+								<code class="language-cobol">PROCEDURE DIVISION</code><br />
+								- The <code class="language-cobol">USING</code> phrase of the
+								<code class="language-cobol">CALL</code> statement<br />
+								<br />
+							</li>
+							<li>
+								The picture string of a <code class="language-cobol">COMP</code> or
+								<code class="language-cobol">PACKED-DECIMAL</code> item can contain only the symbols 9,
+								S, V and/or P.<br />
+								<br />
+							</li>
+							<li>
+								The picture clause used for <code class="language-cobol">COMP</code> or
+								<code class="language-cobol">PACKED-DECIMAL</code> items must be numeric.<br />
+							</li>
+						</ol>
+						<p><b>USAGE examples</b></p>
+						<pre class="language-cobol"><code class="language-cobol">
 01 Num1 PIC 9(5)V99 USAGE IS COMP.
 01 Num2 PIC 99 USAGE IS PACKED-DECIMAL.
 01 IdxItem USAGE IS INDEX.
@@ -2207,127 +2237,151 @@ Begin.
    02 NumItem1 PIC 9(3)V99 USAGE IS COMP.
    02 NumItem2 PIC 99V99   USAGE IS COMP.
 </code></pre>
-					<p>
-						<b>COMP/COMPUTATIONAL/BINARY</b><br />
-						<code class="language-cobol">COMP</code> items are held in memory as pure binary two's
-						complement numbers. The storage requirements for fields described as
-						<code class="language-cobol">COMP</code> are as follows:
-					</p>
-					<table style="margin:0 auto" border="1" cellpadding="1" cellspacing="1" width="293">
-						<tr bgcolor="#FFFFCC">
-							<th scope="col" width="133">Number of Digits</th>
-							<th scope="col" width="166">Storage Required.</th>
-						</tr>
-						<tr>
-							<td width="133">PIC 9(1 to 4)</td>
-							<td width="166">1 Word (2 Bytes)</td>
-						</tr>
-						<tr>
-							<td width="133">PIC 9(5 to 9)</td>
-							<td width="166">1 LongWord (4 Bytes)</td>
-						</tr>
-						<tr>
-							<td width="133">PIC 9(10 to 18)</td>
-							<td width="166">1QuadWord (8 Bytes)</td>
-						</tr>
-					</table>
-					<p>
-						<br />
-						<br />
-						<b>PACKED-DECIMAL</b><br />
-						Data-items declared as <code class="language-cobol">PACKED-DECIMAL</code> are held in
-						binary-coded-decimal (BCD) form.<br />
-						Instead of representing the value as a single binary number, the binary value of each digit is
-						held in a nibble (half a byte). The sign is held in a separate nibble in the least significant
-						position of the item (see diagram below).
-					</p>
-					<p class="center-block"><img height="155" src="Resources/pics/Usage3.gif" width="406" alt="PACKED-DECIMAL (BCD) storage format diagram showing digit nibbles and sign nibble" /></p>
-					<p>
-						<br />
-						<b>General USAGE notes</b><br />
-						The <code class="language-cobol">USAGE</code> clause is one of the areas where many vendors have
-						introduced extensions to the COBOL standard. It is not uncommon to see
-						<code class="language-cobol">COMP-1</code>, <code class="language-cobol">COMP-2</code>,
-						<code class="language-cobol">COMP-3</code>, <code class="language-cobol">COMP-4</code>,
-						<code class="language-cobol">COMP-5</code> and <code class="language-cobol">POINTER</code> usage
-						items in programs written using these extensions.
-					</p>
-					<p>
-						Even though <code class="language-cobol">COMP-1</code> and
-						<code class="language-cobol">COMP-2</code> are extensions to the COBOL standard, vendors seem to
-						use identical representations for these usages. <code class="language-cobol">COMP-1</code> is
-						usually defined as a single precision, floating point number, adhering to the IEEE specification
-						for such numbers (Real or Float in typed languages) and
-						<code class="language-cobol">COMP-2</code> is usually defined as a double precision, floating
-						point number (LongReal or Double in typed languages).
-					</p>
-					<hr size="1" />
+						<p>
+							<b>COMP/COMPUTATIONAL/BINARY</b><br />
+							<code class="language-cobol">COMP</code> items are held in memory as pure binary two's
+							complement numbers. The storage requirements for fields described as
+							<code class="language-cobol">COMP</code> are as follows:
+						</p>
+						<table style="margin: 0 auto" border="1" cellpadding="1" cellspacing="1" width="293">
+							<tr bgcolor="#FFFFCC">
+								<th scope="col" width="133">Number of Digits</th>
+								<th scope="col" width="166">Storage Required.</th>
+							</tr>
+							<tr>
+								<td width="133">PIC 9(1 to 4)</td>
+								<td width="166">1 Word (2 Bytes)</td>
+							</tr>
+							<tr>
+								<td width="133">PIC 9(5 to 9)</td>
+								<td width="166">1 LongWord (4 Bytes)</td>
+							</tr>
+							<tr>
+								<td width="133">PIC 9(10 to 18)</td>
+								<td width="166">1QuadWord (8 Bytes)</td>
+							</tr>
+						</table>
+						<p>
+							<br />
+							<br />
+							<b>PACKED-DECIMAL</b><br />
+							Data-items declared as <code class="language-cobol">PACKED-DECIMAL</code> are held in
+							binary-coded-decimal (BCD) form.<br />
+							Instead of representing the value as a single binary number, the binary value of each digit
+							is held in a nibble (half a byte). The sign is held in a separate nibble in the least
+							significant position of the item (see diagram below).
+						</p>
+						<p class="center-block">
+							<img
+								height="155"
+								src="Resources/pics/Usage3.gif"
+								width="406"
+								alt="PACKED-DECIMAL (BCD) storage format diagram showing digit nibbles and sign nibble"
+							/>
+						</p>
+						<p>
+							<br />
+							<b>General USAGE notes</b><br />
+							The <code class="language-cobol">USAGE</code> clause is one of the areas where many vendors
+							have introduced extensions to the COBOL standard. It is not uncommon to see
+							<code class="language-cobol">COMP-1</code>, <code class="language-cobol">COMP-2</code>,
+							<code class="language-cobol">COMP-3</code>, <code class="language-cobol">COMP-4</code>,
+							<code class="language-cobol">COMP-5</code> and
+							<code class="language-cobol">POINTER</code> usage items in programs written using these
+							extensions.
+						</p>
+						<p>
+							Even though <code class="language-cobol">COMP-1</code> and
+							<code class="language-cobol">COMP-2</code> are extensions to the COBOL standard, vendors
+							seem to use identical representations for these usages.
+							<code class="language-cobol">COMP-1</code> is usually defined as a single precision,
+							floating point number, adhering to the IEEE specification for such numbers (Real or Float in
+							typed languages) and <code class="language-cobol">COMP-2</code> is usually defined as a
+							double precision, floating point number (LongReal or Double in typed languages).
+						</p>
+						<hr size="1" />
+					</div>
+					<div class="section-sidebar">
+						<b>The SYNCHRONIZED clause</b>
+					</div>
+					<div class="section-content">
+						<p>
+							The <code class="language-cobol">SYNCHRONIZED</code> clause is sometimes used with
+							<code class="language-cobol">USAGE IS COMP</code> or
+							<code class="language-cobol">USAGE IS INDEX</code> items. It is used to optimize speed of
+							processing but it does so at the expense of increased storage requirements.
+						</p>
+						<p>
+							Many computer memories are organized in such a way that there are natural addressing
+							boundaries - such as word boundaries. If no special action is taken some data items in
+							memory may straddle theses boundaries. This may cause a processing overhead as the CPU may
+							need two fetch cycles to retrieve the data from memory.
+						</p>
+						<p>
+							The <code class="language-cobol">SYNCHRONIZED</code> clause is used to explicitly align
+							<code class="language-cobol">COMP</code> and <code class="language-cobol">INDEX</code> items
+							along their natural word boundaries. Without the
+							<code class="language-cobol">SYNCHRONIZED</code> clause, data-items are aligned on byte
+							boundaries.
+						</p>
+						<p>
+							The word <code class="language-cobol">SYNC</code> can be used instead of
+							<code class="language-cobol">SYNCHRONIZED</code>.
+						</p>
+						<p>
+							The effect of the synchronized clause is implementation dependant. You will need to read
+							your vendor manual to see how it works on your computer (in some cases it may have no
+							effect).
+						</p>
+						<p>
+							For the purpose of illustrating how the
+							<code class="language-cobol">SYNCHRONIZED</code> clause works let us assume that a COBOL
+							program is running on a word-oriented computer where the CPU fetches data from memory a word
+							at a time.
+						</p>
+						<p>
+							In this program we want to perform a calculation on the number stored in the variable
+							<i>TwoBytes</i> (as declared in the diagram below). Because of the way the data items have
+							been declared, the number stored in <i>TwoBytes</i> straddles a word boundary.
+						</p>
+						<p>
+							In order to use the number, the CPU has to execute two fetch cycles - one to get the first
+							part of the number in Word2 and the second to get the second part of the number in Word3.
+							This double fetch slows down calculations.
+						</p>
+						<p class="center-block">
+							<img
+								height="164"
+								src="Resources/pics/Usage4.gif"
+								width="492"
+								alt="Diagram showing a COMP item straddling a word boundary, requiring two fetch cycles"
+							/>
+						</p>
+						<p>
+							Now consider the impact of using the
+							<code class="language-cobol">SYNCHRONIZED</code> clause. The number in <i>TwoBytes</i> is
+							now aligned along the word boundary, so the CPU only has to do one fetch cycle to retrieve
+							the number from memory. This speeds up processing but at the expense of wasting some storage
+							(the second byte of Word2 is no longer used).
+						</p>
+						<p class="center-block">
+							<img
+								height="164"
+								src="Resources/pics/Usage5.gif"
+								width="492"
+								alt="Diagram showing a COMP item aligned on a word boundary with SYNCHRONIZED, requiring only one fetch cycle"
+							/>
+						</p>
+						<hr size="1" />
+					</div>
 				</div>
-				<div class="section-sidebar">
-					<b>The SYNCHRONIZED clause</b>
-				</div>
-				<div class="section-content">
-					<p>
-						The <code class="language-cobol">SYNCHRONIZED</code> clause is sometimes used with
-						<code class="language-cobol">USAGE IS COMP</code> or
-						<code class="language-cobol">USAGE IS INDEX</code> items. It is used to optimize speed of
-						processing but it does so at the expense of increased storage requirements.
-					</p>
-					<p>
-						Many computer memories are organized in such a way that there are natural addressing boundaries
-						- such as word boundaries. If no special action is taken some data items in memory may straddle
-						theses boundaries. This may cause a processing overhead as the CPU may need two fetch cycles to
-						retrieve the data from memory.
-					</p>
-					<p>
-						The <code class="language-cobol">SYNCHRONIZED</code> clause is used to explicitly align
-						<code class="language-cobol">COMP</code> and <code class="language-cobol">INDEX</code> items
-						along their natural word boundaries. Without the
-						<code class="language-cobol">SYNCHRONIZED</code> clause, data-items are aligned on byte
-						boundaries.
-					</p>
-					<p>
-						The word <code class="language-cobol">SYNC</code> can be used instead of
-						<code class="language-cobol">SYNCHRONIZED</code>.
-					</p>
-					<p>
-						The effect of the synchronized clause is implementation dependant. You will need to read your
-						vendor manual to see how it works on your computer (in some cases it may have no effect).
-					</p>
-					<p>
-						For the purpose of illustrating how the
-						<code class="language-cobol">SYNCHRONIZED</code> clause works let us assume that a COBOL program
-						is running on a word-oriented computer where the CPU fetches data from memory a word at a time.
-					</p>
-					<p>
-						In this program we want to perform a calculation on the number stored in the variable
-						<i>TwoBytes</i> (as declared in the diagram below). Because of the way the data items have been
-						declared, the number stored in <i>TwoBytes</i> straddles a word boundary.
-					</p>
-					<p>
-						In order to use the number, the CPU has to execute two fetch cycles - one to get the first part
-						of the number in Word2 and the second to get the second part of the number in Word3. This double
-						fetch slows down calculations.
-					</p>
-					<p class="center-block"><img height="164" src="Resources/pics/Usage4.gif" width="492" alt="Diagram showing a COMP item straddling a word boundary, requiring two fetch cycles" /></p>
-					<p>
-						Now consider the impact of using the
-						<code class="language-cobol">SYNCHRONIZED</code> clause. The number in <i>TwoBytes</i> is now
-						aligned along the word boundary, so the CPU only has to do one fetch cycle to retrieve the
-						number from memory. This speeds up processing but at the expense of wasting some storage (the
-						second byte of Word2 is no longer used).
-					</p>
-					<p class="center-block"><img height="164" src="Resources/pics/Usage5.gif" width="492" alt="Diagram showing a COMP item aligned on a word boundary with SYNCHRONIZED, requiring only one fetch cycle" /></p>
-					<hr size="1" />
+				<div class="page-footer">
+					<hr />
+					<lesson-nav></lesson-nav>
+					<back-to-top></back-to-top>
+					<copyright-notice></copyright-notice>
 				</div>
 			</div>
-			<div class="page-footer">
-				<hr />
-				<lesson-nav></lesson-nav>
-				<back-to-top></back-to-top>
-				<copyright-notice></copyright-notice>
-			</div>
-		</div>
 		</main>
 	</body>
 </html>

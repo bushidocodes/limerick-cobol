@@ -42,10 +42,12 @@ function collectHtmlFiles(dir) {
 function getLastMod(filePath) {
 	try {
 		const { execSync } = require("child_process");
-		const result = execSync(
-			`git log -1 --format=%cI -- "${filePath}"`,
-			{ cwd: REPO_ROOT, stdio: ["ignore", "pipe", "ignore"] }
-		).toString().trim();
+		const result = execSync(`git log -1 --format=%cI -- "${filePath}"`, {
+			cwd: REPO_ROOT,
+			stdio: ["ignore", "pipe", "ignore"],
+		})
+			.toString()
+			.trim();
 		if (result) {
 			return result.slice(0, 10);
 		}

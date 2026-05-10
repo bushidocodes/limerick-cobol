@@ -27,12 +27,12 @@ npm run serve   # http://localhost:8000
 
 CI runs three checks on every PR (see [.github/workflows/checks.yml](.github/workflows/checks.yml)):
 
-| Script             | What it does                                              | In CI? |
-| ------------------ | --------------------------------------------------------- | ------ |
-| `npm run validate` | HTML parse / structure check via `html-validate`          | yes    |
-| `npm run links`    | Internal link check via `linkinator` (externals skipped)  | yes    |
-| `npm run a11y`     | WCAG 2.1 AA scan via `pa11y-ci` (all pages)               | yes    |
-| `npm run check`    | Runs all three locally                                    | —      |
+| Script             | What it does                                             | In CI? |
+| ------------------ | -------------------------------------------------------- | ------ |
+| `npm run validate` | HTML parse / structure check via `html-validate`         | yes    |
+| `npm run links`    | Internal link check via `linkinator` (externals skipped) | yes    |
+| `npm run a11y`     | WCAG 2.1 AA scan via `pa11y-ci` (all pages)              | yes    |
+| `npm run check`    | Runs all three locally                                   | —      |
 
 The starting `html-validate` ruleset is intentionally permissive — it catches parse errors and structural bugs but doesn't flag every legacy-HTML pattern. Tighten over time as modernization progresses.
 

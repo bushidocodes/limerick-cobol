@@ -20,218 +20,230 @@
 	<body>
 		<a class="skip-link" href="#main-content">Skip to main content</a>
 		<main id="main-content">
-		<div class="page-wrapper">
-			<div class="page-content">
-				<page-hero title="Basic Procedure Division Commands"></page-hero>
-				<hr />
-				<ul class="toc">
-					<li>
-						<a href="#intro">Introduction</a><br />
-						Unit aims, objectives, prerequisites.
-					</li>
-					<li>
-						<a href="#part1">Basic User Input and Output</a><br />
-						This section introduces the ACCEPT and DISPLAY verbs and shows how the ACCEPT may be used to get
-						the system date and time.
-					</li>
-					<li>
-						<a href="#part2">Assignment using the MOVE verb</a><br />
-						This section demonstrates how assignment is achieved in COBOL.
-					</li>
-					<li>
-						<a href="#part3">Arithmetic in COBOL</a><br />
-						This section introduces the ADD, SUBTRACT, MULTIPLY, DIVIDE and COMPUTE verbs.
-					</li>
-				</ul>
-				<hr />
-			</div>
-
-			<!-- Introduction -->
-			<div class="section-grid">
-				<div class="section-header">
-					<h2 id="intro">Introduction</h2>
-				</div>
-				<div class="section-sidebar">
-					<h3>Aims</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						The <code class="language-cobol">PROCEDURE DIVISION</code> contains the code used to manipulate
-						the data described in the <code class="language-cobol">DATA DIVISION</code>. This tutorial
-						examines some of the basic COBOL commands used in the
-						<code class="language-cobol">PROCEDURE DIVISION</code>.
-					</p>
-					<p>
-						In the course of this tutorial you will examine how assignment is done in COBOL, how the date
-						and time can be obtained from the computer and how arithmetic statements are written.
-					</p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>Objectives</h3>
-				</div>
-				<div class="section-content">
-					<p>By the end of this unit you should -</p>
-					<ol>
-						<li>Know how to get data from the keyboard and write it to the screen.</li>
-						<li>Know how to get the system date and time.</li>
-						<li>Understand how the MOVE is used for assignment in COBOL.</li>
-						<li>Understand how alphanumeric and numeric moves work.</li>
-						<li>Be able to use the arithmetic verbs to perform calculations.</li>
-					</ol>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>Prerequisites</h3>
-				</div>
-				<div class="section-content">
-					<ul>
-						<li>Introduction to COBOL</li>
-						<li>Declaring data in COBOL</li>
+			<div class="page-wrapper">
+				<div class="page-content">
+					<page-hero title="Basic Procedure Division Commands"></page-hero>
+					<hr />
+					<ul class="toc">
+						<li>
+							<a href="#intro">Introduction</a><br />
+							Unit aims, objectives, prerequisites.
+						</li>
+						<li>
+							<a href="#part1">Basic User Input and Output</a><br />
+							This section introduces the ACCEPT and DISPLAY verbs and shows how the ACCEPT may be used to
+							get the system date and time.
+						</li>
+						<li>
+							<a href="#part2">Assignment using the MOVE verb</a><br />
+							This section demonstrates how assignment is achieved in COBOL.
+						</li>
+						<li>
+							<a href="#part3">Arithmetic in COBOL</a><br />
+							This section introduces the ADD, SUBTRACT, MULTIPLY, DIVIDE and COMPUTE verbs.
+						</li>
 					</ul>
+					<hr />
 				</div>
-			</div>
 
-			<div class="page-content">
-				<hr />
-				<back-to-top></back-to-top>
-			</div>
-
-			<!-- Part 1: Basic User Input and Output -->
-			<div class="section-grid">
-				<div class="section-header">
-					<h2 id="part1">Basic User Input and Output</h2>
-				</div>
-				<div class="section-sidebar">
-					<h3>Introduction</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						In COBOL, the <code class="language-cobol">ACCEPT</code> and
-						<code class="language-cobol">DISPLAY</code> verbs are used to read from the keyboard and
-						write to the screen. Input and output using these commands is somewhat primitive because
-						they were originally designed to be used in a batch programming environment to communicate
-						with the computer operator.
-					</p>
-					<p>
-						In recent years many vendors have augmented the
-						<code class="language-cobol">ACCEPT</code> and
-						<code class="language-cobol">DISPLAY</code> syntax to facilitate the creation of on-line
-						systems by allowing such things as: cursor positioning, character attribute control and
-						auto-validation of input.
-					</p>
-					<p>
-						In this tutorial we will examine only the standard
-						<code class="language-cobol">ACCEPT</code> and
-						<code class="language-cobol">DISPLAY</code> syntax.
-					</p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>The DISPLAY verb</h3>
-					<aside>
-						<p class="center-block">
-							<img height="44" src="Resources/pics/i-LightBulbTip.gif" width="42" alt="" />
+				<!-- Introduction -->
+				<div class="section-grid">
+					<div class="section-header">
+						<h2 id="intro">Introduction</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Aims</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							The <code class="language-cobol">PROCEDURE DIVISION</code> contains the code used to
+							manipulate the data described in the <code class="language-cobol">DATA DIVISION</code>. This
+							tutorial examines some of the basic COBOL commands used in the
+							<code class="language-cobol">PROCEDURE DIVISION</code>.
 						</p>
 						<p>
-							In the COBOL syntax diagrams ( the COBOL metalanguage) upper case words are keywords. If
-							underlined, they are mandatory.<br />
-							{ } brackets mean that one of the options must be selected<br />
-							[ ] brackets mean that the item is optional<br />
-							ellipses (...) mean that the item may be repeated at the programmer's discretion.
+							In the course of this tutorial you will examine how assignment is done in COBOL, how the
+							date and time can be obtained from the computer and how arithmetic statements are written.
+						</p>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>Objectives</h3>
+					</div>
+					<div class="section-content">
+						<p>By the end of this unit you should -</p>
+						<ol>
+							<li>Know how to get data from the keyboard and write it to the screen.</li>
+							<li>Know how to get the system date and time.</li>
+							<li>Understand how the MOVE is used for assignment in COBOL.</li>
+							<li>Understand how alphanumeric and numeric moves work.</li>
+							<li>Be able to use the arithmetic verbs to perform calculations.</li>
+						</ol>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>Prerequisites</h3>
+					</div>
+					<div class="section-content">
+						<ul>
+							<li>Introduction to COBOL</li>
+							<li>Declaring data in COBOL</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="page-content">
+					<hr />
+					<back-to-top></back-to-top>
+				</div>
+
+				<!-- Part 1: Basic User Input and Output -->
+				<div class="section-grid">
+					<div class="section-header">
+						<h2 id="part1">Basic User Input and Output</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Introduction</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							In COBOL, the <code class="language-cobol">ACCEPT</code> and
+							<code class="language-cobol">DISPLAY</code> verbs are used to read from the keyboard and
+							write to the screen. Input and output using these commands is somewhat primitive because
+							they were originally designed to be used in a batch programming environment to communicate
+							with the computer operator.
 						</p>
 						<p>
-							The symbols used in the syntax diagram identifiers have the following significance:-<br />
-							<b>$</b> signifies a string item,<br />
-							<b>#</b> is numeric item,<br />
-							<b>i</b> indicates that the item can be a variable identifier<br />
-							<b>l</b> indicates that the item can be a literal.
+							In recent years many vendors have augmented the
+							<code class="language-cobol">ACCEPT</code> and
+							<code class="language-cobol">DISPLAY</code> syntax to facilitate the creation of on-line
+							systems by allowing such things as: cursor positioning, character attribute control and
+							auto-validation of input.
 						</p>
-					</aside>
-				</div>
-				<div class="section-content">
-					<p><img height="54" src="Resources/pics/Display.gif" width="440" alt="DISPLAY verb syntax diagram" /></p>
-					<p>
-						The <code class="language-cobol">DISPLAY</code> verb is used to send output to the computer
-						screen or to a peripheral device.
-					</p>
-					<p>
-						As you can see from the ellipses (...) in the metalanguage above a single
-						<code class="language-cobol">DISPLAY</code> can be used to display several data-items or
-						literals or any combination of these.
-					</p>
-					<p>
-						<b> <code class="language-cobol">DISPLAY</code> notes<br /> </b> After the items in the
-						display list have been sent to the screen, the
-						<code class="language-cobol">DISPLAY</code> automatically moves the screen cursor to the
-						next line unless a <code class="language-cobol">WITH NO ADVANCING</code> clause is present.
-					</p>
-					<p>
-						Mnemonic-Names are used to make programs more readable. A Mnemonic-Name is a name devised by
-						the programmer to represent some peripheral device (such as a serial port) or control code.
-						The name is connected to the actual device or code by entries in the
-						<code class="language-cobol">ENVIRONMENT DIVISION</code>.
-					</p>
-					<p>
-						When a Mnemonic-Name is used with the <code class="language-cobol">DISPLAY</code> it
-						represents an output device (serial port, parallel port etc).
-					</p>
-					<p>
-						If a Mnemonic-Name is used output is sent to the device specified; otherwise, output is sent
-						to the computer screen.
-					</p>
-					<p>
-						<b> <code class="language-cobol">DISPLAY</code> examples </b>
-					</p>
-					<pre
-						class="language-cobol"
-					><code class="language-cobol">DISPLAY "My name is " ProgrammerName.
+						<p>
+							In this tutorial we will examine only the standard
+							<code class="language-cobol">ACCEPT</code> and
+							<code class="language-cobol">DISPLAY</code> syntax.
+						</p>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>The DISPLAY verb</h3>
+						<aside>
+							<p class="center-block">
+								<img height="44" src="Resources/pics/i-LightBulbTip.gif" width="42" alt="" />
+							</p>
+							<p>
+								In the COBOL syntax diagrams ( the COBOL metalanguage) upper case words are keywords. If
+								underlined, they are mandatory.<br />
+								{ } brackets mean that one of the options must be selected<br />
+								[ ] brackets mean that the item is optional<br />
+								ellipses (...) mean that the item may be repeated at the programmer's discretion.
+							</p>
+							<p>
+								The symbols used in the syntax diagram identifiers have the following significance:-<br />
+								<b>$</b> signifies a string item,<br />
+								<b>#</b> is numeric item,<br />
+								<b>i</b> indicates that the item can be a variable identifier<br />
+								<b>l</b> indicates that the item can be a literal.
+							</p>
+						</aside>
+					</div>
+					<div class="section-content">
+						<p>
+							<img
+								height="54"
+								src="Resources/pics/Display.gif"
+								width="440"
+								alt="DISPLAY verb syntax diagram"
+							/>
+						</p>
+						<p>
+							The <code class="language-cobol">DISPLAY</code> verb is used to send output to the computer
+							screen or to a peripheral device.
+						</p>
+						<p>
+							As you can see from the ellipses (...) in the metalanguage above a single
+							<code class="language-cobol">DISPLAY</code> can be used to display several data-items or
+							literals or any combination of these.
+						</p>
+						<p>
+							<b> <code class="language-cobol">DISPLAY</code> notes<br /> </b> After the items in the
+							display list have been sent to the screen, the
+							<code class="language-cobol">DISPLAY</code> automatically moves the screen cursor to the
+							next line unless a <code class="language-cobol">WITH NO ADVANCING</code> clause is present.
+						</p>
+						<p>
+							Mnemonic-Names are used to make programs more readable. A Mnemonic-Name is a name devised by
+							the programmer to represent some peripheral device (such as a serial port) or control code.
+							The name is connected to the actual device or code by entries in the
+							<code class="language-cobol">ENVIRONMENT DIVISION</code>.
+						</p>
+						<p>
+							When a Mnemonic-Name is used with the <code class="language-cobol">DISPLAY</code> it
+							represents an output device (serial port, parallel port etc).
+						</p>
+						<p>
+							If a Mnemonic-Name is used output is sent to the device specified; otherwise, output is sent
+							to the computer screen.
+						</p>
+						<p>
+							<b> <code class="language-cobol">DISPLAY</code> examples </b>
+						</p>
+						<pre class="language-cobol"><code class="language-cobol">DISPLAY "My name is " ProgrammerName.
 DISPLAY "The vat rate is " VatRate.
 DISPLAY PrinterSetupCodes UPON PrinterPort1.
 </code></pre>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>The ACCEPT verb</h3>
-				</div>
-				<div class="section-content">
-					<p><img height="120" src="Resources/pics/ACCEPT.gif" width="390" alt="ACCEPT verb syntax diagram" /></p>
-					<p>
-						The ACCEPT verb is used to get data from the keyboard, a peripheral device, or certain
-						system variables.
-					</p>
-					<p>
-						<b> <code class="language-cobol">ACCEPT</code> notes<br /> </b> When the first format is
-						used, the <code class="language-cobol">ACCEPT</code> inserts the data typed at the keyboard
-						(or coming from the peripheral device), into the receiving data-item.
-					</p>
-					<p>
-						When the second format is used, the <code class="language-cobol">ACCEPT</code> inserts the
-						data obtained from one of the system variables, into the receiving data-item.
-					</p>
-				</div>
-				<div class="section-sidebar">
-					<h3>Using the ACCEPT to get the system date and time</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						The second format of the <code class="language-cobol">ACCEPT</code> allows the
-						programmer to access the system date and time (i.e. the date and time held in the
-						computer's internal clock). The system variables provided are -
-					</p>
-					<ul>
-						<li>Date</li>
-						<li>Day of the year</li>
-						<li>Day of the week</li>
-						<li>Time</li>
-					</ul>
-					<p>
-						The declarations and comments below show the format required for data-items receiving each
-						of the system variables.
-					</p>
-					<pre
-						class="language-cobol"
-					><code class="language-cobol">*&gt; CurrentDate is the date in YYMMDD format
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>The ACCEPT verb</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							<img
+								height="120"
+								src="Resources/pics/ACCEPT.gif"
+								width="390"
+								alt="ACCEPT verb syntax diagram"
+							/>
+						</p>
+						<p>
+							The ACCEPT verb is used to get data from the keyboard, a peripheral device, or certain
+							system variables.
+						</p>
+						<p>
+							<b> <code class="language-cobol">ACCEPT</code> notes<br /> </b> When the first format is
+							used, the <code class="language-cobol">ACCEPT</code> inserts the data typed at the keyboard
+							(or coming from the peripheral device), into the receiving data-item.
+						</p>
+						<p>
+							When the second format is used, the <code class="language-cobol">ACCEPT</code> inserts the
+							data obtained from one of the system variables, into the receiving data-item.
+						</p>
+					</div>
+					<div class="section-sidebar">
+						<h3>Using the ACCEPT to get the system date and time</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							The second format of the <code class="language-cobol">ACCEPT</code> allows the programmer to
+							access the system date and time (i.e. the date and time held in the computer's internal
+							clock). The system variables provided are -
+						</p>
+						<ul>
+							<li>Date</li>
+							<li>Day of the year</li>
+							<li>Day of the week</li>
+							<li>Time</li>
+						</ul>
+						<p>
+							The declarations and comments below show the format required for data-items receiving each
+							of the system variables.
+						</p>
+						<pre
+							class="language-cobol"
+						><code class="language-cobol">*&gt; CurrentDate is the date in YYMMDD format
 01 CurrentDate         PIC 9(6).
 
 *&gt; DayOfYear is current day in YYDDD format
@@ -243,45 +255,47 @@ DISPLAY PrinterSetupCodes UPON PrinterPort1.
 *&gt; CurrentTime is the time in HHMMSSss format where s = S/100
 01 CurrentTime         PIC 9(8).
 </code></pre>
-				</div>
-				<div class="section-sidebar">
-					<h3>New formats for the ACCEPT</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						The problem with <code class="language-cobol">ACCEPT ..FROM DATE</code> and
-						<code class="language-cobol">ACCEPT..FROM DAY</code> is that since they hold only the year in
-						only two digits, they are subject to the millennium bug. To resolve this problem, these two
-						formats of now take additional (optional) formatting instructions to allow the programmer to
-						specify that the date is to be supplied with a 4 digit year.
-					</p>
-					<p>The syntax for these new formatting instructions is:</p>
-					<ul>
-						<li><code class="language-cobol">ACCEPT DATE [YYYYMMDD]</code></li>
-						<li><code class="language-cobol">ACCEPT DAY [YYYYDDD] </code></li>
-					</ul>
-					<p>When the new formatting instructions are used, the receiving fields must be defined as;</p>
-					<pre
-						class="language-cobol"
-					><code class="language-cobol">*&gt; Y2KDate is the date in YYYYMMDD format
+					</div>
+					<div class="section-sidebar">
+						<h3>New formats for the ACCEPT</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							The problem with <code class="language-cobol">ACCEPT ..FROM DATE</code> and
+							<code class="language-cobol">ACCEPT..FROM DAY</code> is that since they hold only the year
+							in only two digits, they are subject to the millennium bug. To resolve this problem, these
+							two formats of now take additional (optional) formatting instructions to allow the
+							programmer to specify that the date is to be supplied with a 4 digit year.
+						</p>
+						<p>The syntax for these new formatting instructions is:</p>
+						<ul>
+							<li><code class="language-cobol">ACCEPT DATE [YYYYMMDD]</code></li>
+							<li><code class="language-cobol">ACCEPT DAY [YYYYDDD] </code></li>
+						</ul>
+						<p>When the new formatting instructions are used, the receiving fields must be defined as;</p>
+						<pre
+							class="language-cobol"
+						><code class="language-cobol">*&gt; Y2KDate is the date in YYYYMMDD format
 01 Y2KDate PIC 9(8).
 
 *&gt; Y2KDayOfYear is current day in YYYYDDD format
 01 Y2KDayOfYear PIC 9(7).</code></pre>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>ACCEPT and DISPLAY example program</h3>
-					<p class="center-block"><img height="44" src="Resources/pics/program.gif" width="42" alt="" /></p>
-				</div>
-				<div class="section-content">
-					<p>
-						This example program uses the <code class="language-cobol">ACCEPT</code> and
-						<code class="language-cobol">DISPLAY</code> to get a student record from the user and display
-						some of its fields. It also demonstrates how the <code class="language-cobol">ACCEPT</code> can
-						be used to get the system date and time.
-					</p>
-					<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>ACCEPT and DISPLAY example program</h3>
+						<p class="center-block">
+							<img height="44" src="Resources/pics/program.gif" width="42" alt="" />
+						</p>
+					</div>
+					<div class="section-content">
+						<p>
+							This example program uses the <code class="language-cobol">ACCEPT</code> and
+							<code class="language-cobol">DISPLAY</code> to get a student record from the user and
+							display some of its fields. It also demonstrates how the
+							<code class="language-cobol">ACCEPT</code> can be used to get the system date and time.
+						</p>
+						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  AcceptAndDisplay.
 AUTHOR.  Michael Coughlan.
@@ -338,10 +352,10 @@ Begin.
     DISPLAY "The time is " CurrentHour ":" CurrentMinute.
     STOP RUN.
 </code></pre>
-					<p class="center-block">
-						<b>Results of running ACCEPT.CBL</b>
-					</p>
-					<pre>
+						<p class="center-block">
+							<b>Results of running ACCEPT.CBL</b>
+						</p>
+						<pre>
 Enter student details using template below
 Enter - ID, Surname, Initials, CourseCode, Gender
 SSSSSSSNNNNNNNNIICCCCG
@@ -351,608 +365,670 @@ Date is 01 03 1999
 Today is day 060 of the year
 The time is 14:41
 </pre
-					>
+						>
+					</div>
 				</div>
-			</div>
 
-			<div class="page-content">
-				<hr />
-				<back-to-top></back-to-top>
-			</div>
-
-			<!-- Part 2: Assignment using the MOVE verb -->
-			<div class="section-grid">
-				<div class="section-header">
-					<h2 id="part2">Assignment using the MOVE verb</h2>
-				</div>
-				<div class="section-sidebar">
-					<h3>Introduction</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						In "strongly typed" languages like Modula-2, Pascal or ADA the assignment operation is simple
-						because assignment is only allowed between data items with compatible types. The simplicity of
-						assignment in these languages, is achieved at the "cost" of having a large number of data types.
-					</p>
-					<p>In COBOL there are basically only three data types;</p>
-					<ul>
-						<li>Alphabetic (PIC A)</li>
-						<li>Alphanumeric (PIC X)</li>
-						<li>Numeric (PIC 9)</li>
-					</ul>
-					<p>
-						But this simplicity is achieved only at the cost of having a very complex assignment statement.
-					</p>
-					<p>In COBOL, assignment is achieved using the <code class="language-cobol">MOVE</code> verb.</p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>The MOVE verb</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						<code class="language-cobol">MOVE</code> Source$#il
-						<code class="language-cobol">TO</code> Destination$#i ...
-					</p>
-					<p>
-						As we can see from the syntax metalanguage above, the
-						<code class="language-cobol">MOVE</code> copies data from the source identifier or literal to
-						one or more destination identifiers.
-					</p>
-					<p>
-						Although this sounds simple, the actual operation of the
-						<code class="language-cobol">MOVE</code> is somewhat more complicated and is governed by a
-						number of rules.
-					</p>
-					<p>
-						<b> <code class="language-cobol">MOVE</code> rules<br /> </b> In most other programming
-						languages, data is assigned from the source item on the right to the destination item on the
-						left (e.g. Qty = 10;) but in COBOL the <code class="language-cobol">MOVE</code> assigns data
-						from left to right. The source item is on the left of the word
-						<code class="language-cobol">TO</code> and the receiving item(s) is on the right.
-					</p>
-					<p>The source and destination identifiers can be group or elementary data-items.</p>
-					<p>When data is moved into an item, the contents of the item are completely replaced.</p>
-					<p>
-						If the number of characters in the source data-item is less than the number in the destination
-						item, the rest of the destination item is filled with zeros or spaces.
-					</p>
-					<p>
-						If the source data-item is larger than the destination item, the characters that cannot fit into
-						the destination item will be lost. This is known as truncation.
-					</p>
-					<p>
-						When the destination item is alphanumeric or alphabetic (PIC X or A), data is copied into the
-						destination area from left to right with space filling or truncation on the right.
-					</p>
-					<p>
-						When the destination item is numeric, or edited numeric, data is aligned along the decimal point
-						with zero filling or truncation as necessary.
-					</p>
-					<p>
-						When the decimal point is not explicitly specified in either the source or destination items,
-						the item is treated as if it had an assumed decimal point immediately after its rightmost
-						character.
-					</p>
-					<p>
-						<b> <code class="language-cobol">MOVE</code> combinations<br /> </b> Although COBOL is much less
-						restrictive in this respect than many other languages, certain combinations of sending and
-						receiving data types are not permitted and will be rejected by the compiler. The valid and
-						invalid <code class="language-cobol">MOVE</code> combinations are shown in the diagram below:
-					</p>
-					<p class="center-block"><img height="232" src="Resources/pics/Move2.gif" width="520" alt="Table of valid and invalid MOVE combinations between data types" /></p>
-				</div>
-				<div class="section-sidebar">
-					<h3>MOVE examples</h3>
-				</div>
-				<div class="section-content">
-					<p id="com1">
-						Examine the examples in the animation below in combination with the MOVE rules above. Make sure
-						you understand the why the moves produce the results shown.
-					</p>
-					<p class="center-block">
-						<a href="Resources/ppz/TC-Commands1.html"
-							><img
-								alt="Click for animation: MOVE statement examples"
-								height="62"
-								src="Resources/pics/i-Animation.gif"
-								width="62"
-						/></a>
-					</p>
-				</div>
-			</div>
-
-			<div class="page-content">
-				<hr />
-				<back-to-top></back-to-top>
-			</div>
-
-			<!-- Part 3: Arithmetic in COBOL -->
-			<div class="section-grid">
-				<div class="section-header">
-					<h2 id="part3">Arithmetic in COBOL</h2>
-				</div>
-				<div class="section-sidebar">
-					<h3>Introduction</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						Most procedural programming languages perform computations by assigning the result of an
-						arithmetic expression or a function to a variable. In COBOL the
-						<code class="language-cobol">COMPUTE</code> verb is used to evaluate arithmetic expressions,
-						but there are also specific commands for adding, subtracting, multiplying and dividing.
-					</p>
-				</div>
-				<div class="section-sidebar">
-					<h3>Data Movement</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						In a <code class="language-cobol">MOVE</code> operation data is moved from a source item on the
-						left to the destination item(s) on the right. Data movement is from left to right. The same
-						direction of data movement can be observed in the COBOL arithmetic verbs.
-					</p>
-					<p>
-						All the arithmetic verbs, except the <code class="language-cobol">COMPUTE</code>, assign the
-						result of the calculation to the rightmost data-items.
-					</p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>General Rules</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						All the arithmetic verbs move the result of a calculation into a receiving data-item
-						according to the rules for a numeric move; that is, with alignment along the assumed decimal
-						point and with zero-filling or truncation as necessary.
-					</p>
-					<p>
-						All arithmetic verbs must use numeric literals or numeric data-items (PIC 9) that contain
-						numeric data. There is one exception. Identifiers that appear to the right of the word
-						<code class="language-cobol">GIVING</code> may refer to numeric data-items that contain
-						editing symbols.
-					</p>
-					<p>
-						When the <code class="language-cobol">GIVING</code> phrase is used, the data-item following
-						the word <code class="language-cobol">GIVING</code> is the receiving field of the
-						calculation but it is <b>not</b> one of the statement operands (does not contribute to the
-						result). The original values of all the items before the word
-						<code class="language-cobol">GIVING</code> are left intact.
-					</p>
-					<p>
-						If the <code class="language-cobol">GIVING</code> phrase is not used, the data-item(s) after
-						the word <code class="language-cobol">TO</code>, <code class="language-cobol">FROM</code>,
-						<code class="language-cobol">BY</code> or <code class="language-cobol">INTO</code> both
-						contribute to the result and are receiving fields for it.
-					</p>
-					<p>The maximum size of each operand is 18 digits.</p>
-				</div>
-				<div class="section-sidebar">
-					<h3>The ROUNDED option</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						All the arithmetic verbs allow the <code class="language-cobol">ROUNDED</code> phrase.
-					</p>
-					<p>
-						The <code class="language-cobol">ROUNDED</code> phrase takes effect when, after decimal point
-						alignment, the result calculated must be truncated on the right hand side. The option adds 1 to
-						the receiving item when the leftmost truncated digit has an absolute value of 5 or greater.
-					</p>
-					<table style="margin:0 auto" bgcolor="#E1FFE1" border="1" width="84%">
-						<tr>
-							<td colspan="4">
-								<div class="center-block">
-									<b> <code class="language-cobol">ROUNDED</code> examples </b>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<th scope="col">Receiving Field</th>
-							<th scope="col">Actual Result</th>
-							<th scope="col">Truncated Result</th>
-							<th scope="col">Rounded Result</th>
-						</tr>
-						<tr>
-							<td>
-								<p><b>PIC 9(3)V9</b></p>
-							</td>
-							<td>
-								<b>123.2<span style="color: #ff0000">5</span></b>
-							</td>
-							<td><b>123.2</b></td>
-							<td><b>123.3</b></td>
-						</tr>
-						<tr>
-							<td><b>PIC 9(3)V9</b></td>
-							<td>
-								<b>123.2<span style="color: #ff0000">47</span></b>
-							</td>
-							<td><b>123.2</b></td>
-							<td><b>123.2</b></td>
-						</tr>
-						<tr>
-							<td><b>PIC 9(3)</b></td>
-							<td>
-								<b>123.<span style="color: #ff0000">25</span></b>
-							</td>
-							<td><b>123</b></td>
-							<td><b>123</b></td>
-						</tr>
-					</table>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>ON SIZE ERROR</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						When a computation is performed it is possible for the result to be too large or too small
-						to be contained in the receiving field. When this occurs, there will be truncation of the
-						result. The <code class="language-cobol">ON SIZE ERROR</code> phrase detects this condition.
-					</p>
-					<p>
-						<code class="language-cobol">ON SIZE ERROR</code> <b>notes<br /></b> All the arithmetic
-						verbs allow the <code class="language-cobol">ON SIZE ERROR</code> phrase.
-					</p>
-					<p>
-						A size error condition exists when, after decimal point alignment, the result is truncated
-						on either the left or the right hand side.
-					</p>
-					<p>
-						If an arithmetic statement has a <code class="language-cobol">ROUNDED</code> phrase then a
-						size error only occurs if there is truncation on the left-hand side (most significant
-						digits) because if we specify the <code class="language-cobol">ROUNDED</code> option we
-						indicate that we know there will be truncation on the right and are specifying rounding to
-						deal with it.
-					</p>
-					<p>Division by 0 always causes a SIZE ERROR.</p>
-					<p><code class="language-cobol">ON SIZE ERROR</code> <b>examples</b></p>
-					<table style="margin:0 auto" bgcolor="#E1FFE1" border="1" cellpadding="5" cellspacing="0" width="70%">
-						<tr>
-							<th bgcolor="#FFFFCC" width="45%">
-								<div class="center-block">
-									<b>
-										<span style="color: #ff0000">Receiving Field</span>
-									</b>
-								</div>
-							</th>
-							<th bgcolor="#FFFFCC" width="19%">
-								<div class="center-block">
-									<b>
-										<span style="color: #ff0000">Actual Result</span>
-									</b>
-								</div>
-							</th>
-							<th bgcolor="#FFFFCC" width="22%">
-								<div class="center-block">
-									<b>
-										<span style="color: #ff0000">Truncated Result</span>
-									</b>
-								</div>
-							</th>
-							<th bgcolor="#FFFFCC" width="14%">
-								<div class="center-block">
-									<b>
-										<span style="color: #ff0000">Size Error?</span>
-									</b>
-								</div>
-							</th>
-						</tr>
-						<tr>
-							<td width="45%"><b>PIC 9(3)V9</b></td>
-							<td width="19%">
-								<b>&nbsp;&nbsp;245.9<span style="color: #ff0000">6</span></b>
-							</td>
-							<td width="22%">
-								<b>&nbsp;&nbsp;&nbsp;245.9</b>
-							</td>
-							<td width="14%">
-								<div class="center-block">
-									<b>YES</b>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td width="45%"><b>PIC 9(3)V9</b></td>
-							<td width="19%">
-								<b>&nbsp;&nbsp;<span style="color: #ff0000">3</span>245.9</b>
-							</td>
-							<td width="22%">
-								<b>&nbsp;&nbsp;&nbsp;245.9</b>
-							</td>
-							<td width="14%">
-								<div class="center-block">
-									<b>
-										<code class="language-cobol">YES</code>
-									</b>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td width="45%"><b>PIC 9(3)</b></td>
-							<td width="19%">
-								<b>&nbsp;&nbsp;324</b>
-							</td>
-							<td width="22%">
-								<b>&nbsp;&nbsp;&nbsp;324</b>
-							</td>
-							<td width="14%">
-								<div class="center-block">
-									<b>
-										<code class="language-cobol">NO</code>
-									</b>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td width="45%"><b>PIC 9(3)</b></td>
-							<td width="19%">
-								<b>&nbsp;<span style="color: #ff0000">&nbsp;5</span>324</b>
-							</td>
-							<td width="22%">
-								<b>&nbsp;&nbsp;&nbsp;324</b>
-							</td>
-							<td width="14%">
-								<div class="center-block">
-									<b>
-										<code class="language-cobol">YES</code>
-									</b>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td valign="top" width="45%"><b>PIC 9(3)V9 not Rounded</b></td>
-							<td width="19%">
-								<b>&nbsp;&nbsp;523.3<span style="color: #ff0000">5</span></b>
-							</td>
-							<td width="22%">
-								<b>&nbsp;&nbsp;&nbsp;523.3</b>
-							</td>
-							<td width="14%">
-								<div class="center-block">
-									<b>
-										<code class="language-cobol">YES</code>
-									</b>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td width="45%"><b>PIC 9(3)V9 Rounded</b></td>
-							<td width="19%">
-								<b>&nbsp;&nbsp;523.3<span style="color: #ff0000">5</span></b>
-							</td>
-							<td width="22%"><b>&nbsp;&nbsp;&nbsp;523.4</b></td>
-							<td width="14%">
-								<div class="center-block">
-									<b>
-										<code class="language-cobol">NO</code>
-									</b>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td width="45%"><b>PIC 9(3)V9 Rounded</b></td>
-							<td width="19%">
-								<b>
-									<span style="color: #ff0000">&nbsp;&nbsp;3</span>523.3<span
-										style="color: #ff0000"
-										>5</span
-									>
-								</b>
-							</td>
-							<td width="22%">
-								<b>&nbsp;&nbsp;&nbsp;523.4</b>
-							</td>
-							<td width="14%">
-								<div class="center-block">
-									<b>
-										<code class="language-cobol">YES</code>
-									</b>
-								</div>
-							</td>
-						</tr>
-					</table>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>ADD verb</h3>
-				</div>
-				<div class="section-content">
-					<p><img height="74" src="Resources/pics/Add.gif" width="499" alt="ADD verb syntax diagram" /></p>
-					<p>
-						If the <code class="language-cobol">GIVING</code> phrase is used, everything before the word
-						<code class="language-cobol">GIVING</code> is added together and the <b>combined result</b> is
-						moved into each of the Result#i items.
-					</p>
-					<p>
-						If the <code class="language-cobol">GIVING</code> phrase is not used, everything before the word
-						<code class="language-cobol">TO</code> is added together and the <b>combined result</b> is then
-						added to <b>each</b> of the ValueResult#i items in turn.
-					</p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>SUBTRACT verb</h3>
-				</div>
-				<div class="section-content">
-					<p><img height="96" src="Resources/pics/Sub.gif" width="481" alt="SUBTRACT verb syntax diagram" /></p>
-					<p>
-						If the <code class="language-cobol">GIVING</code> phrase is used, everything before the word
-						<code class="language-cobol">FROM</code> is added together and the <b>combined result</b> is
-						subtracted from the Value#il item after the word
-						<code class="language-cobol">FROM</code> and the result is moved into each of the Result#i
-						items.
-					</p>
-					<p>
-						If the <code class="language-cobol">GIVING</code> phrase is not used everything before the
-						word <code class="language-cobol">FROM</code> is added together and the
-						<b>combined result</b> is then subtracted from <b>each</b> of the ValueResult#i items after
-						the word <code class="language-cobol">FROM</code> in turn.
-					</p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>MULTIPLY verb</h3>
-				</div>
-				<div class="section-content">
-					<p><img height="72" src="Resources/pics/Mult.gif" width="498" alt="MULTIPLY verb syntax diagram" /></p>
-					<p>
-						If the <code class="language-cobol">GIVING</code> phrase is used, then the item to the left of
-						the word <code class="language-cobol">BY</code> is multiplied by the Value#i item to the right
-						of the word <code class="language-cobol">BY</code> and the result is moved into <b>each</b> of
-						the Result#i items.
-					</p>
-					<p>
-						If the <code class="language-cobol">GIVING</code> phrase is not used, then the Value#il to the
-						left of the word <code class="language-cobol">BY</code> is multiplied by <b>each</b> of the
-						ValueResult#i items. The result of each calculation is placed in the ValueResult#i involved in
-						the calculation.
-					</p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>DIVIDE verb</h3>
-				</div>
-				<div class="section-content">
-					<p>The Divide has two main formats. One produces a remainder and the other does not.</p>
-					<p><b>Format1</b></p>
-					<p><img height="101" src="Resources/pics/Div1.gif" width="525" alt="DIVIDE verb format 1 syntax diagram" /></p>
-					<p>
-						If the <code class="language-cobol">GIVING</code> phrase is used, the Value#il to the left of
-						<code class="language-cobol">BY</code> or <code class="language-cobol">INTO</code> is divided by
-						or into the Value#il to the right of <code class="language-cobol">BY</code> or
-						<code class="language-cobol">INTO</code> and the result of the calculation is moved into
-						<b>each</b> of the Result#i items in turn.
-					</p>
-					<p>
-						If the <code class="language-cobol">GIVING</code> phrase is not used, the item to the left of
-						the word <code class="language-cobol">INTO</code> is divided into each of the ValueResult#i
-						items in turn. The result of each calculation is placed in the ValueResult#i involved in the
-						calculation.
-					</p>
-					<p><b>Format2</b></p>
-					<p><img height="128" src="Resources/pics/Div2.gif" width="462" alt="DIVIDE verb format 2 syntax diagram with REMAINDER phrase" /></p>
-					<p>
-						In this format the Val#il to the left of <code class="language-cobol">BY</code> or
-						<code class="language-cobol">INTO</code> is divided by or into the Val#il to the right of
-						<code class="language-cobol">BY</code> or <code class="language-cobol">INTO</code>. The quotient
-						part of the computation is assigned to Quot#i and the remainder is assigned to Rem#i.
-					</p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>COMPUTE verb</h3>
-				</div>
-				<div class="section-content">
-					<p><img height="77" src="Resources/pics/Compute.gif" width="509" alt="COMPUTE verb syntax diagram" /></p>
-					<p>
-						The <code class="language-cobol">COMPUTE</code> assigns the result of an arithmetic expression
-						to a data-item. The arithmetic expression is evaluated according to the normal arithmetic rules.
-						That is, the expression is normally evaluated from left to right but bracketing and the
-						precedence rules shown below can change the order of evaluation.
-					</p>
-					<table style="margin:0 auto" bgcolor="#E1FFE1" border cellpadding="7" cellspacing="1" width="259">
-						<tr>
-							<td bgcolor="#FFFFCC" valign="top" width="32%">
-								<p class="center-block">Precedence</p>
-							</td>
-							<td bgcolor="#FFFFCC" valign="top" width="29%">
-								<p class="center-block">Symbol</p>
-							</td>
-							<td bgcolor="#FFFFCC" valign="top" width="39%">
-								<p class="center-block">Meaning</p>
-							</td>
-						</tr>
-						<tr>
-							<td valign="top" width="32%">
-								<p class="center-block">1.</p>
-							</td>
-							<td valign="top" width="29%">
-								<p class="center-block"><b>**</b></p>
-							</td>
-							<td valign="top" width="39%">
-								<p class="center-block">Power</p>
-							</td>
-						</tr>
-						<tr>
-							<td rowspan="2" valign="top" width="32%">
-								<p class="center-block">2.</p>
-							</td>
-							<td valign="top" width="29%">
-								<p class="center-block"><b>*</b></p>
-							</td>
-							<td valign="top" width="39%">
-								<p class="center-block">multiply</p>
-							</td>
-						</tr>
-						<tr>
-							<td valign="top" width="29%">
-								<p class="center-block"><b>/</b></p>
-							</td>
-							<td valign="top" width="39%">
-								<p class="center-block">divide</p>
-							</td>
-						</tr>
-						<tr>
-							<td rowspan="2" valign="top" width="32%">
-								<p class="center-block">3.</p>
-							</td>
-							<td valign="top" width="29%">
-								<p class="center-block"><b>+</b></p>
-							</td>
-							<td valign="top" width="39%">
-								<p class="center-block">add</p>
-							</td>
-						</tr>
-						<tr>
-							<td valign="top" width="29%">
-								<p class="center-block"><b>-</b></p>
-							</td>
-							<td valign="top" width="39%">
-								<p class="center-block">subtract</p>
-							</td>
-						</tr>
-					</table>
-					<p>
-						Note that unlike some other programming languages COBOL provides the ** expression symbol to
-						represent raising to a power.
-					</p>
-					<hr width="50%" />
-				</div>
-				<div class="section-sidebar">
-					<h3>Arithmetic examples</h3>
-				</div>
-				<div class="section-content">
-					<p id="com2">
-						The animation below contains examples of each of the arithmetic verbs. The arithmetic statement
-						shows the contents of the variables before the statement executes. Initially the contents of the
-						variables after execution are hidden; but you can display them by clicking with the mouse.
-					</p>
-					<p>
-						Before you display the contents of the variables, try to figure out what they are going to be.
-						If you get the wrong answer, make sure you understand why the statement produces the answer
-						shown.
-					</p>
-					<p class="center-block">
-						<a href="Resources/ppz/TC-Commands2.html"
-							><img
-								alt="Click for animation: Arithmetic statement examples"
-								height="62"
-								src="Resources/pics/i-Animation.gif"
-								width="62"
-						/></a>
-					</p>
-				</div>
-				<div class="page-footer">
+				<div class="page-content">
 					<hr />
-					<lesson-nav></lesson-nav>
 					<back-to-top></back-to-top>
-					<copyright-notice></copyright-notice>
+				</div>
+
+				<!-- Part 2: Assignment using the MOVE verb -->
+				<div class="section-grid">
+					<div class="section-header">
+						<h2 id="part2">Assignment using the MOVE verb</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Introduction</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							In "strongly typed" languages like Modula-2, Pascal or ADA the assignment operation is
+							simple because assignment is only allowed between data items with compatible types. The
+							simplicity of assignment in these languages, is achieved at the "cost" of having a large
+							number of data types.
+						</p>
+						<p>In COBOL there are basically only three data types;</p>
+						<ul>
+							<li>Alphabetic (PIC A)</li>
+							<li>Alphanumeric (PIC X)</li>
+							<li>Numeric (PIC 9)</li>
+						</ul>
+						<p>
+							But this simplicity is achieved only at the cost of having a very complex assignment
+							statement.
+						</p>
+						<p>In COBOL, assignment is achieved using the <code class="language-cobol">MOVE</code> verb.</p>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>The MOVE verb</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							<code class="language-cobol">MOVE</code> Source$#il
+							<code class="language-cobol">TO</code> Destination$#i ...
+						</p>
+						<p>
+							As we can see from the syntax metalanguage above, the
+							<code class="language-cobol">MOVE</code> copies data from the source identifier or literal
+							to one or more destination identifiers.
+						</p>
+						<p>
+							Although this sounds simple, the actual operation of the
+							<code class="language-cobol">MOVE</code> is somewhat more complicated and is governed by a
+							number of rules.
+						</p>
+						<p>
+							<b> <code class="language-cobol">MOVE</code> rules<br /> </b> In most other programming
+							languages, data is assigned from the source item on the right to the destination item on the
+							left (e.g. Qty = 10;) but in COBOL the <code class="language-cobol">MOVE</code> assigns data
+							from left to right. The source item is on the left of the word
+							<code class="language-cobol">TO</code> and the receiving item(s) is on the right.
+						</p>
+						<p>The source and destination identifiers can be group or elementary data-items.</p>
+						<p>When data is moved into an item, the contents of the item are completely replaced.</p>
+						<p>
+							If the number of characters in the source data-item is less than the number in the
+							destination item, the rest of the destination item is filled with zeros or spaces.
+						</p>
+						<p>
+							If the source data-item is larger than the destination item, the characters that cannot fit
+							into the destination item will be lost. This is known as truncation.
+						</p>
+						<p>
+							When the destination item is alphanumeric or alphabetic (PIC X or A), data is copied into
+							the destination area from left to right with space filling or truncation on the right.
+						</p>
+						<p>
+							When the destination item is numeric, or edited numeric, data is aligned along the decimal
+							point with zero filling or truncation as necessary.
+						</p>
+						<p>
+							When the decimal point is not explicitly specified in either the source or destination
+							items, the item is treated as if it had an assumed decimal point immediately after its
+							rightmost character.
+						</p>
+						<p>
+							<b> <code class="language-cobol">MOVE</code> combinations<br /> </b> Although COBOL is much
+							less restrictive in this respect than many other languages, certain combinations of sending
+							and receiving data types are not permitted and will be rejected by the compiler. The valid
+							and invalid <code class="language-cobol">MOVE</code> combinations are shown in the diagram
+							below:
+						</p>
+						<p class="center-block">
+							<img
+								height="232"
+								src="Resources/pics/Move2.gif"
+								width="520"
+								alt="Table of valid and invalid MOVE combinations between data types"
+							/>
+						</p>
+					</div>
+					<div class="section-sidebar">
+						<h3>MOVE examples</h3>
+					</div>
+					<div class="section-content">
+						<p id="com1">
+							Examine the examples in the animation below in combination with the MOVE rules above. Make
+							sure you understand the why the moves produce the results shown.
+						</p>
+						<p class="center-block">
+							<a href="Resources/ppz/TC-Commands1.html"
+								><img
+									alt="Click for animation: MOVE statement examples"
+									height="62"
+									src="Resources/pics/i-Animation.gif"
+									width="62"
+							/></a>
+						</p>
+					</div>
+				</div>
+
+				<div class="page-content">
+					<hr />
+					<back-to-top></back-to-top>
+				</div>
+
+				<!-- Part 3: Arithmetic in COBOL -->
+				<div class="section-grid">
+					<div class="section-header">
+						<h2 id="part3">Arithmetic in COBOL</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Introduction</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							Most procedural programming languages perform computations by assigning the result of an
+							arithmetic expression or a function to a variable. In COBOL the
+							<code class="language-cobol">COMPUTE</code> verb is used to evaluate arithmetic expressions,
+							but there are also specific commands for adding, subtracting, multiplying and dividing.
+						</p>
+					</div>
+					<div class="section-sidebar">
+						<h3>Data Movement</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							In a <code class="language-cobol">MOVE</code> operation data is moved from a source item on
+							the left to the destination item(s) on the right. Data movement is from left to right. The
+							same direction of data movement can be observed in the COBOL arithmetic verbs.
+						</p>
+						<p>
+							All the arithmetic verbs, except the <code class="language-cobol">COMPUTE</code>, assign the
+							result of the calculation to the rightmost data-items.
+						</p>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>General Rules</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							All the arithmetic verbs move the result of a calculation into a receiving data-item
+							according to the rules for a numeric move; that is, with alignment along the assumed decimal
+							point and with zero-filling or truncation as necessary.
+						</p>
+						<p>
+							All arithmetic verbs must use numeric literals or numeric data-items (PIC 9) that contain
+							numeric data. There is one exception. Identifiers that appear to the right of the word
+							<code class="language-cobol">GIVING</code> may refer to numeric data-items that contain
+							editing symbols.
+						</p>
+						<p>
+							When the <code class="language-cobol">GIVING</code> phrase is used, the data-item following
+							the word <code class="language-cobol">GIVING</code> is the receiving field of the
+							calculation but it is <b>not</b> one of the statement operands (does not contribute to the
+							result). The original values of all the items before the word
+							<code class="language-cobol">GIVING</code> are left intact.
+						</p>
+						<p>
+							If the <code class="language-cobol">GIVING</code> phrase is not used, the data-item(s) after
+							the word <code class="language-cobol">TO</code>, <code class="language-cobol">FROM</code>,
+							<code class="language-cobol">BY</code> or <code class="language-cobol">INTO</code> both
+							contribute to the result and are receiving fields for it.
+						</p>
+						<p>The maximum size of each operand is 18 digits.</p>
+					</div>
+					<div class="section-sidebar">
+						<h3>The ROUNDED option</h3>
+					</div>
+					<div class="section-content">
+						<p>All the arithmetic verbs allow the <code class="language-cobol">ROUNDED</code> phrase.</p>
+						<p>
+							The <code class="language-cobol">ROUNDED</code> phrase takes effect when, after decimal
+							point alignment, the result calculated must be truncated on the right hand side. The option
+							adds 1 to the receiving item when the leftmost truncated digit has an absolute value of 5 or
+							greater.
+						</p>
+						<table style="margin: 0 auto" bgcolor="#E1FFE1" border="1" width="84%">
+							<tr>
+								<td colspan="4">
+									<div class="center-block">
+										<b> <code class="language-cobol">ROUNDED</code> examples </b>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th scope="col">Receiving Field</th>
+								<th scope="col">Actual Result</th>
+								<th scope="col">Truncated Result</th>
+								<th scope="col">Rounded Result</th>
+							</tr>
+							<tr>
+								<td>
+									<p><b>PIC 9(3)V9</b></p>
+								</td>
+								<td>
+									<b>123.2<span style="color: #ff0000">5</span></b>
+								</td>
+								<td><b>123.2</b></td>
+								<td><b>123.3</b></td>
+							</tr>
+							<tr>
+								<td><b>PIC 9(3)V9</b></td>
+								<td>
+									<b>123.2<span style="color: #ff0000">47</span></b>
+								</td>
+								<td><b>123.2</b></td>
+								<td><b>123.2</b></td>
+							</tr>
+							<tr>
+								<td><b>PIC 9(3)</b></td>
+								<td>
+									<b>123.<span style="color: #ff0000">25</span></b>
+								</td>
+								<td><b>123</b></td>
+								<td><b>123</b></td>
+							</tr>
+						</table>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>ON SIZE ERROR</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							When a computation is performed it is possible for the result to be too large or too small
+							to be contained in the receiving field. When this occurs, there will be truncation of the
+							result. The <code class="language-cobol">ON SIZE ERROR</code> phrase detects this condition.
+						</p>
+						<p>
+							<code class="language-cobol">ON SIZE ERROR</code> <b>notes<br /></b> All the arithmetic
+							verbs allow the <code class="language-cobol">ON SIZE ERROR</code> phrase.
+						</p>
+						<p>
+							A size error condition exists when, after decimal point alignment, the result is truncated
+							on either the left or the right hand side.
+						</p>
+						<p>
+							If an arithmetic statement has a <code class="language-cobol">ROUNDED</code> phrase then a
+							size error only occurs if there is truncation on the left-hand side (most significant
+							digits) because if we specify the <code class="language-cobol">ROUNDED</code> option we
+							indicate that we know there will be truncation on the right and are specifying rounding to
+							deal with it.
+						</p>
+						<p>Division by 0 always causes a SIZE ERROR.</p>
+						<p><code class="language-cobol">ON SIZE ERROR</code> <b>examples</b></p>
+						<table
+							style="margin: 0 auto"
+							bgcolor="#E1FFE1"
+							border="1"
+							cellpadding="5"
+							cellspacing="0"
+							width="70%"
+						>
+							<tr>
+								<th bgcolor="#FFFFCC" width="45%">
+									<div class="center-block">
+										<b>
+											<span style="color: #ff0000">Receiving Field</span>
+										</b>
+									</div>
+								</th>
+								<th bgcolor="#FFFFCC" width="19%">
+									<div class="center-block">
+										<b>
+											<span style="color: #ff0000">Actual Result</span>
+										</b>
+									</div>
+								</th>
+								<th bgcolor="#FFFFCC" width="22%">
+									<div class="center-block">
+										<b>
+											<span style="color: #ff0000">Truncated Result</span>
+										</b>
+									</div>
+								</th>
+								<th bgcolor="#FFFFCC" width="14%">
+									<div class="center-block">
+										<b>
+											<span style="color: #ff0000">Size Error?</span>
+										</b>
+									</div>
+								</th>
+							</tr>
+							<tr>
+								<td width="45%"><b>PIC 9(3)V9</b></td>
+								<td width="19%">
+									<b>&nbsp;&nbsp;245.9<span style="color: #ff0000">6</span></b>
+								</td>
+								<td width="22%">
+									<b>&nbsp;&nbsp;&nbsp;245.9</b>
+								</td>
+								<td width="14%">
+									<div class="center-block">
+										<b>YES</b>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td width="45%"><b>PIC 9(3)V9</b></td>
+								<td width="19%">
+									<b>&nbsp;&nbsp;<span style="color: #ff0000">3</span>245.9</b>
+								</td>
+								<td width="22%">
+									<b>&nbsp;&nbsp;&nbsp;245.9</b>
+								</td>
+								<td width="14%">
+									<div class="center-block">
+										<b>
+											<code class="language-cobol">YES</code>
+										</b>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td width="45%"><b>PIC 9(3)</b></td>
+								<td width="19%">
+									<b>&nbsp;&nbsp;324</b>
+								</td>
+								<td width="22%">
+									<b>&nbsp;&nbsp;&nbsp;324</b>
+								</td>
+								<td width="14%">
+									<div class="center-block">
+										<b>
+											<code class="language-cobol">NO</code>
+										</b>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td width="45%"><b>PIC 9(3)</b></td>
+								<td width="19%">
+									<b>&nbsp;<span style="color: #ff0000">&nbsp;5</span>324</b>
+								</td>
+								<td width="22%">
+									<b>&nbsp;&nbsp;&nbsp;324</b>
+								</td>
+								<td width="14%">
+									<div class="center-block">
+										<b>
+											<code class="language-cobol">YES</code>
+										</b>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td valign="top" width="45%"><b>PIC 9(3)V9 not Rounded</b></td>
+								<td width="19%">
+									<b>&nbsp;&nbsp;523.3<span style="color: #ff0000">5</span></b>
+								</td>
+								<td width="22%">
+									<b>&nbsp;&nbsp;&nbsp;523.3</b>
+								</td>
+								<td width="14%">
+									<div class="center-block">
+										<b>
+											<code class="language-cobol">YES</code>
+										</b>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td width="45%"><b>PIC 9(3)V9 Rounded</b></td>
+								<td width="19%">
+									<b>&nbsp;&nbsp;523.3<span style="color: #ff0000">5</span></b>
+								</td>
+								<td width="22%"><b>&nbsp;&nbsp;&nbsp;523.4</b></td>
+								<td width="14%">
+									<div class="center-block">
+										<b>
+											<code class="language-cobol">NO</code>
+										</b>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td width="45%"><b>PIC 9(3)V9 Rounded</b></td>
+								<td width="19%">
+									<b>
+										<span style="color: #ff0000">&nbsp;&nbsp;3</span>523.3<span
+											style="color: #ff0000"
+											>5</span
+										>
+									</b>
+								</td>
+								<td width="22%">
+									<b>&nbsp;&nbsp;&nbsp;523.4</b>
+								</td>
+								<td width="14%">
+									<div class="center-block">
+										<b>
+											<code class="language-cobol">YES</code>
+										</b>
+									</div>
+								</td>
+							</tr>
+						</table>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>ADD verb</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							<img height="74" src="Resources/pics/Add.gif" width="499" alt="ADD verb syntax diagram" />
+						</p>
+						<p>
+							If the <code class="language-cobol">GIVING</code> phrase is used, everything before the word
+							<code class="language-cobol">GIVING</code> is added together and the
+							<b>combined result</b> is moved into each of the Result#i items.
+						</p>
+						<p>
+							If the <code class="language-cobol">GIVING</code> phrase is not used, everything before the
+							word <code class="language-cobol">TO</code> is added together and the
+							<b>combined result</b> is then added to <b>each</b> of the ValueResult#i items in turn.
+						</p>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>SUBTRACT verb</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							<img
+								height="96"
+								src="Resources/pics/Sub.gif"
+								width="481"
+								alt="SUBTRACT verb syntax diagram"
+							/>
+						</p>
+						<p>
+							If the <code class="language-cobol">GIVING</code> phrase is used, everything before the word
+							<code class="language-cobol">FROM</code> is added together and the <b>combined result</b> is
+							subtracted from the Value#il item after the word
+							<code class="language-cobol">FROM</code> and the result is moved into each of the Result#i
+							items.
+						</p>
+						<p>
+							If the <code class="language-cobol">GIVING</code> phrase is not used everything before the
+							word <code class="language-cobol">FROM</code> is added together and the
+							<b>combined result</b> is then subtracted from <b>each</b> of the ValueResult#i items after
+							the word <code class="language-cobol">FROM</code> in turn.
+						</p>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>MULTIPLY verb</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							<img
+								height="72"
+								src="Resources/pics/Mult.gif"
+								width="498"
+								alt="MULTIPLY verb syntax diagram"
+							/>
+						</p>
+						<p>
+							If the <code class="language-cobol">GIVING</code> phrase is used, then the item to the left
+							of the word <code class="language-cobol">BY</code> is multiplied by the Value#i item to the
+							right of the word <code class="language-cobol">BY</code> and the result is moved into
+							<b>each</b> of the Result#i items.
+						</p>
+						<p>
+							If the <code class="language-cobol">GIVING</code> phrase is not used, then the Value#il to
+							the left of the word <code class="language-cobol">BY</code> is multiplied by <b>each</b> of
+							the ValueResult#i items. The result of each calculation is placed in the ValueResult#i
+							involved in the calculation.
+						</p>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>DIVIDE verb</h3>
+					</div>
+					<div class="section-content">
+						<p>The Divide has two main formats. One produces a remainder and the other does not.</p>
+						<p><b>Format1</b></p>
+						<p>
+							<img
+								height="101"
+								src="Resources/pics/Div1.gif"
+								width="525"
+								alt="DIVIDE verb format 1 syntax diagram"
+							/>
+						</p>
+						<p>
+							If the <code class="language-cobol">GIVING</code> phrase is used, the Value#il to the left
+							of <code class="language-cobol">BY</code> or <code class="language-cobol">INTO</code> is
+							divided by or into the Value#il to the right of <code class="language-cobol">BY</code> or
+							<code class="language-cobol">INTO</code> and the result of the calculation is moved into
+							<b>each</b> of the Result#i items in turn.
+						</p>
+						<p>
+							If the <code class="language-cobol">GIVING</code> phrase is not used, the item to the left
+							of the word <code class="language-cobol">INTO</code> is divided into each of the
+							ValueResult#i items in turn. The result of each calculation is placed in the ValueResult#i
+							involved in the calculation.
+						</p>
+						<p><b>Format2</b></p>
+						<p>
+							<img
+								height="128"
+								src="Resources/pics/Div2.gif"
+								width="462"
+								alt="DIVIDE verb format 2 syntax diagram with REMAINDER phrase"
+							/>
+						</p>
+						<p>
+							In this format the Val#il to the left of <code class="language-cobol">BY</code> or
+							<code class="language-cobol">INTO</code> is divided by or into the Val#il to the right of
+							<code class="language-cobol">BY</code> or <code class="language-cobol">INTO</code>. The
+							quotient part of the computation is assigned to Quot#i and the remainder is assigned to
+							Rem#i.
+						</p>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>COMPUTE verb</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							<img
+								height="77"
+								src="Resources/pics/Compute.gif"
+								width="509"
+								alt="COMPUTE verb syntax diagram"
+							/>
+						</p>
+						<p>
+							The <code class="language-cobol">COMPUTE</code> assigns the result of an arithmetic
+							expression to a data-item. The arithmetic expression is evaluated according to the normal
+							arithmetic rules. That is, the expression is normally evaluated from left to right but
+							bracketing and the precedence rules shown below can change the order of evaluation.
+						</p>
+						<table
+							style="margin: 0 auto"
+							bgcolor="#E1FFE1"
+							border
+							cellpadding="7"
+							cellspacing="1"
+							width="259"
+						>
+							<tr>
+								<td bgcolor="#FFFFCC" valign="top" width="32%">
+									<p class="center-block">Precedence</p>
+								</td>
+								<td bgcolor="#FFFFCC" valign="top" width="29%">
+									<p class="center-block">Symbol</p>
+								</td>
+								<td bgcolor="#FFFFCC" valign="top" width="39%">
+									<p class="center-block">Meaning</p>
+								</td>
+							</tr>
+							<tr>
+								<td valign="top" width="32%">
+									<p class="center-block">1.</p>
+								</td>
+								<td valign="top" width="29%">
+									<p class="center-block"><b>**</b></p>
+								</td>
+								<td valign="top" width="39%">
+									<p class="center-block">Power</p>
+								</td>
+							</tr>
+							<tr>
+								<td rowspan="2" valign="top" width="32%">
+									<p class="center-block">2.</p>
+								</td>
+								<td valign="top" width="29%">
+									<p class="center-block"><b>*</b></p>
+								</td>
+								<td valign="top" width="39%">
+									<p class="center-block">multiply</p>
+								</td>
+							</tr>
+							<tr>
+								<td valign="top" width="29%">
+									<p class="center-block"><b>/</b></p>
+								</td>
+								<td valign="top" width="39%">
+									<p class="center-block">divide</p>
+								</td>
+							</tr>
+							<tr>
+								<td rowspan="2" valign="top" width="32%">
+									<p class="center-block">3.</p>
+								</td>
+								<td valign="top" width="29%">
+									<p class="center-block"><b>+</b></p>
+								</td>
+								<td valign="top" width="39%">
+									<p class="center-block">add</p>
+								</td>
+							</tr>
+							<tr>
+								<td valign="top" width="29%">
+									<p class="center-block"><b>-</b></p>
+								</td>
+								<td valign="top" width="39%">
+									<p class="center-block">subtract</p>
+								</td>
+							</tr>
+						</table>
+						<p>
+							Note that unlike some other programming languages COBOL provides the ** expression symbol to
+							represent raising to a power.
+						</p>
+						<hr width="50%" />
+					</div>
+					<div class="section-sidebar">
+						<h3>Arithmetic examples</h3>
+					</div>
+					<div class="section-content">
+						<p id="com2">
+							The animation below contains examples of each of the arithmetic verbs. The arithmetic
+							statement shows the contents of the variables before the statement executes. Initially the
+							contents of the variables after execution are hidden; but you can display them by clicking
+							with the mouse.
+						</p>
+						<p>
+							Before you display the contents of the variables, try to figure out what they are going to
+							be. If you get the wrong answer, make sure you understand why the statement produces the
+							answer shown.
+						</p>
+						<p class="center-block">
+							<a href="Resources/ppz/TC-Commands2.html"
+								><img
+									alt="Click for animation: Arithmetic statement examples"
+									height="62"
+									src="Resources/pics/i-Animation.gif"
+									width="62"
+							/></a>
+						</p>
+					</div>
+					<div class="page-footer">
+						<hr />
+						<lesson-nav></lesson-nav>
+						<back-to-top></back-to-top>
+						<copyright-notice></copyright-notice>
+					</div>
 				</div>
 			</div>
-		</div>
 		</main>
 	</body>
 </html>
