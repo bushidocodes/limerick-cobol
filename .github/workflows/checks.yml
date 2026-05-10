@@ -22,3 +22,11 @@ jobs:
             - run: npm run check:assets
             - run: npm run links
             - run: npm run a11y
+
+    typos:
+        name: Spell check (typos)
+        runs-on: ubuntu-latest
+        continue-on-error: true
+        steps:
+            - uses: actions/checkout@v4
+            - uses: crate-ci/typos-action@v1
