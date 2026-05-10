@@ -162,6 +162,31 @@ body {
 	}
 }
 
+/* Skip-to-content link: visually hidden until focused, then visible at top-left */
+.skip-link {
+	position: absolute;
+	left: -9999px;
+	top: auto;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+}
+
+.skip-link:focus {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: auto;
+	height: auto;
+	overflow: visible;
+	padding: 0.5em 1em;
+	background-color: var(--color-header-bg);
+	color: var(--color-header-text);
+	font-weight: bold;
+	z-index: 9999;
+	text-decoration: none;
+}
+
 ul.toc {
 	list-style-image: url(../pics/BallGreenG.gif);
 	padding-left: 2.5em;

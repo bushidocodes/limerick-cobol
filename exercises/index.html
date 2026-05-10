@@ -23,12 +23,39 @@
 			ul.toc {
 				list-style-image: url(../pics/BallRedG.gif);
 			}
+
+			/* Skip-to-content link */
+			.skip-link {
+				position: absolute;
+				left: -9999px;
+				top: auto;
+				width: 1px;
+				height: 1px;
+				overflow: hidden;
+			}
+
+			.skip-link:focus {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: auto;
+				height: auto;
+				overflow: visible;
+				padding: 0.5em 1em;
+				background-color: #993300;
+				color: #ffff00;
+				font-weight: bold;
+				z-index: 9999;
+				text-decoration: none;
+			}
 		</style>
 		<script src="../components/copyright-notice.js" defer></script>
 		<script src="../components/back-to-top.js" defer></script>
 	</head>
 	<body>
-		<h2>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<h2>
 			<img border="1" height="40" src="../pics/i-AtComputer.gif" width="40" alt="" /><img
 				height="36"
 			
@@ -504,5 +531,6 @@
 				</tr>
 			</table>
 		</ul>
+		</main>
 	</body>
 </html>

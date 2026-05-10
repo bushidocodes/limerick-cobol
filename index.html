@@ -66,10 +66,37 @@
 					font-size: medium;
 				}
 			}
+
+			/* Skip-to-content link */
+			.skip-link {
+				position: absolute;
+				left: -9999px;
+				top: auto;
+				width: 1px;
+				height: 1px;
+				overflow: hidden;
+			}
+
+			.skip-link:focus {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: auto;
+				height: auto;
+				overflow: visible;
+				padding: 0.5em 1em;
+				background-color: #993300;
+				color: #ffff00;
+				font-weight: bold;
+				z-index: 9999;
+				text-decoration: none;
+			}
 		</style>
 	</head>
 	<body>
-		<div id="page-header">
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div id="page-header">
 			<div class="header-icon">
 				<img src="pics/i-program.gif" height="42" width="40" alt="" />
 			</div>
@@ -113,5 +140,6 @@
 			</li>
 			<li><a href="https://bushidocodes.github.io/klein-cobol-faq/">COBOL FAQ</a></li>
 		</ul>
+		</main>
 	</body>
 </html>
