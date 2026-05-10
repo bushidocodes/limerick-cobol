@@ -2,369 +2,198 @@
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
 		<title>Reading Sequential Files</title>
-		<style type="text/css">
-			img {
-				max-width: 100%;
-				height: auto;
-			}
-
-			table {
-				max-width: 100%;
-			}
-
-			pre {
-				overflow-x: auto;
-				max-width: 100%;
-			}
-
-			body {
-				-webkit-text-size-adjust: 100%;
-			}
-
-			@media (max-width: 600px) {
-				body {
-					margin: 4px;
-					overflow-wrap: break-word;
-					word-wrap: break-word;
-				}
-
-				table[width] {
-					width: 100% !important;
-					height: auto !important;
-				}
-
-				td[width],
-				th[width],
-				td[height],
-				th[height] {
-					width: auto !important;
-					height: auto !important;
-				}
-
-				td[bgcolor="#993300"] > h2,
-				td[bgcolor="#993300"] > h3 {
-					margin: 0.3em 0;
-				}
-
-				blockquote {
-					margin-left: 12px;
-					margin-right: 12px;
-				}
-
-				hr[width] {
-					width: 100% !important;
-				}
-
-				img,
-				iframe,
-				video,
-				embed,
-				object {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					height: auto;
-				}
-
-				pre {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					white-space: pre-wrap;
-					word-wrap: break-word;
-					overflow-wrap: break-word;
-				}
-
-				table[width="715"],
-				table[width="725"],
-				table[width="715"] > tbody,
-				table[width="725"] > tbody,
-				table[width="715"] > tbody > tr,
-				table[width="725"] > tbody > tr,
-				table[width="715"] > tbody > tr > td,
-				table[width="725"] > tbody > tr > td,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])),
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr > td {
-					display: block;
-					width: auto !important;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]),
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody {
-					display: block;
-					width: 100% !important;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr {
-					display: flex;
-					align-items: baseline;
-					gap: 0.4em;
-					margin: 0.4em 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="3%"] {
-					display: none;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="4%"] {
-					display: block;
-					flex: 0 0 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="93%"] {
-					display: block;
-					flex: 1 1 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
-				td[width="175"] > h4:not(:first-child):not(:has(img)),
-				td[width="160"] > h4:not(:first-child):not(:has(img)),
-				h4:has(> img[src*="PanelLine"]) {
-					display: none;
-				}
-
-				td[width="175"] > h3,
-				td[width="175"] > h4,
-				td[width="175"] > p,
-				td[width="160"] > h3,
-				td[width="160"] > h4,
-				td[width="160"] > p {
-					margin: 0.2em 0;
-				}
-			}
-		</style>
+		<link href="../course/Resources/css/course.css" rel="stylesheet" />
+		<link href="../course/Resources/css/course-components.css" rel="stylesheet" />
+		<script src="../components/theme-toggle.js" defer></script>
+		<script src="../components/page-hero.js" defer></script>
+		<script src="../components/back-to-top.js" defer></script>
+		<script src="../components/copyright-notice.js" defer></script>
 	</head>
-	<body text="#000000" bgcolor="#FFFFFF" link="#0000FF" vlink="#FF0000" alink="#009B00">
-		<div class="center-block">
-			<h2><img src="T-CobolExercise.gif" height="56" width="183" alt="" /></h2>
-			<h2>Reading Sequential Files</h2>
-			<hr />
-			<code class="language-cobol">READ</code>, <code class="language-cobol">PERFORM .. UNTIL</code>,
-			<code class="language-cobol">DISPLAY</code>
-		</div>
-		<hr />
-		<h2>Introduction</h2>
-		The program SeqRead.Cbl reads a sequential file and displays the StudentId, StudentName and the CourseCode of
-		each record in the file on the screen.&nbsp;&nbsp; In this exercise you will re-write this program so that it
-		displays the Student Initials, Surname and DateOfBirth on the screen.
-		<p>
-			Download the <a href="../examples/SeqRead/Seqread.cbl">SeqRead.Cbl</a> program and save it to the WorkArea
-			directory on drive D:.
-		</p>
-		<p>
-			Download the data file <a href="../examples/SeqRead/STUDENTS.DAT">Students.Dat</a> and save it to the same
-			place.
-		</p>
-		<p>
-			Load SeqRead.Cbl into the NetExpress environment.<br />
-			&nbsp;
-		</p>
-		<h2>Examining SeqRead</h2>
-		Examine the program carefully, paying particular attention to the way the end of file is handled.&nbsp; Note the
-		use of&nbsp; the condition name EndOfStudentFile.
-		<p>
-			Compile the program.&nbsp;<img
-				src="i-tick.gif"
-				height="24"
-				width="24"
-				alt=""
-				style="margin-left: 7px; margin-right: 7px"
-			/>
-		</p>
-		<p>
-			Set a breakpoint at the first statement in the Procedure Division (move the cursor over the statement,
-			right-click and select Set Breakpoint from the menu which appears).<br />
-			Use the Animator to step&nbsp;<img
-				src="i-step.gif"
-				height="23"
-				width="23"
-				alt=""
-				style="margin-left: 7px; margin-right: 7px"
-			/>through the program.
-		</p>
-		<p>
-			Assign the variables StudentDetails, StudentName, Initials, DateOfBirth and MOBirth to the watch list
-			(Right-click on the variable, select <b><i>Examine</i></b> from menu and then <b><i>Add to list</i></b> from
-			dialogue box).
-		</p>
-		<p>As the program runs attempt to answer the following questions:-</p>
-		<ol>
-			<li>What is the size (in characters) of the StudentDetails record?</li>
-			<li>What is the size of StudentName?</li>
-			<li>What is the size of DateOfBirth?</li>
-			<li>
-				The level number for MOBirth is 03 and that of DateOfBirth is 02.&nbsp; What is the significance of
-				that?&nbsp; Examine the values in DateOfBirth and MOBirth as the program runs to see if your answer
-				makes sense.
-			</li>
-		</ol>
-		<h2>Amending SeqRead</h2>
-		Change the program SeqRead.Cbl to produce a program which displays the student Initials, Surname and DateOfBirth
-		on the computer screen. The Initials should be immediately followed by a full stop and a space (see example run
-		below). The date should be displayed in the US month, day, year format. The parts of the date should be
-		separated from one another by a hyphen. The year should be the full four digits.
-		<p>The student record consists of the following items;</p>
-		<table width="50%" class="data-table">
-			<tr>
-				<td width="115">
-					<div class="center-block"><b>Field</b></div>
-				</td>
-				<td width="11">
-					<div class="center-block"><b>Type</b></div>
-				</td>
-				<td width="64">
-					<div class="center-block"><b>Length</b></div>
-				</td>
-				<td width="188">
-					<div class="center-block"><b>Value</b></div>
-				</td>
-			</tr>
-			<tr>
-				<td width="115">Student Id</td>
-				<td width="11">
-					<div class="center-block">9</div>
-				</td>
-				<td width="64">
-					<div class="center-block">7</div>
-				</td>
-				<td width="188">
-					<div class="center-block">0-9999999</div>
-				</td>
-			</tr>
-			<tr>
-				<td width="115">Student Name</td>
-				<td width="11">
-					<div class="center-block">.</div>
-				</td>
-				<td width="64">
-					<div class="center-block">.</div>
-				</td>
-				<td width="188">
-					<div class="center-block">Group</div>
-				</td>
-			</tr>
-			<tr>
-				<td width="115">Surname</td>
-				<td width="11">
-					<div class="center-block">X</div>
-				</td>
-				<td width="64">
-					<div class="center-block">8</div>
-				</td>
-				<td width="188">
-					<div class="center-block">-</div>
-				</td>
-			</tr>
-			<tr>
-				<td width="115">Initials</td>
-				<td width="11">
-					<div class="center-block">X</div>
-				</td>
-				<td width="64">
-					<div class="center-block">2</div>
-				</td>
-				<td width="188">
-					<div class="center-block">-</div>
-				</td>
-			</tr>
-			<tr>
-				<td width="115">DateOfBirth</td>
-				<td width="11">
-					<div class="center-block">.</div>
-				</td>
-				<td width="64">
-					<div class="center-block">.</div>
-				</td>
-				<td width="188">
-					<div class="center-block">Group</div>
-				</td>
-			</tr>
-			<tr>
-				<td width="115">Year</td>
-				<td width="11">
-					<div class="center-block">9</div>
-				</td>
-				<td width="64">
-					<div class="center-block">4</div>
-				</td>
-				<td width="188">
-					<div class="center-block">00-9999</div>
-				</td>
-			</tr>
-			<tr>
-				<td width="115">Month</td>
-				<td width="11">
-					<div class="center-block">9</div>
-				</td>
-				<td width="64">
-					<div class="center-block">2</div>
-				</td>
-				<td width="188">
-					<div class="center-block">01-12</div>
-				</td>
-			</tr>
-			<tr>
-				<td width="115">Day</td>
-				<td width="11">
-					<div class="center-block">9</div>
-				</td>
-				<td width="64">
-					<div class="center-block">2</div>
-				</td>
-				<td width="188">
-					<div class="center-block">01-31</div>
-				</td>
-			</tr>
-			<tr>
-				<td width="115">Course Code</td>
-				<td width="11">
-					<div class="center-block">X</div>
-				</td>
-				<td width="64">
-					<div class="center-block">4</div>
-				</td>
-				<td width="188">
-					<div class="center-block">-</div>
-				</td>
-			</tr>
-			<tr>
-				<td width="115">Gender</td>
-				<td width="11">
-					<div class="center-block">X</div>
-				</td>
-				<td width="64">
-					<div class="center-block">1</div>
-				</td>
-				<td width="188">
-					<div class="center-block">M/F</div>
-				</td>
-			</tr>
-		</table>
-		<ul>
-			<ul>
-				<ul>
-					<u>Example Run</u>
-				</ul>
-				<tt>------ STUDENT REPORT ------</tt>
-				<p><tt>MS. COUGHLAN DOB = 10-08-1985</tt></p>
-				<p><tt>SR. SMITH DOB = 01-28-1989</tt></p>
-				<p><tt>JM. Ryan DOB = 09-25-1986</tt></p>
-				<p><tt>etc.</tt></p>
-			</ul>
-		</ul>
-		<hr />
-		<table cellspacing="0" cellpadding="0" cols="1" width="200">
-			<tr style="text-align: center; vertical-align: top">
-				<td>
-					<a href="index.html"
-						><img src="../pics/B-BackArrow.gif" alt="Back to COBOL Exercises page" height="52" width="52"
-					/></a>
-					To COBOL Exercises
-				</td>
-			</tr>
-		</table>
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="page-content">
+					<page-hero title="Reading Sequential Files" eyebrow="COBOL Exercise"></page-hero>
+					<p class="center-block">
+						<code class="language-cobol">READ</code>, <code class="language-cobol">PERFORM .. UNTIL</code>,
+						<code class="language-cobol">DISPLAY</code>
+					</p>
+					<hr />
+
+					<section>
+						<h2>Introduction</h2>
+						<p>
+							The program SeqRead.Cbl reads a sequential file and displays the StudentId, StudentName and
+							the CourseCode of each record in the file on the screen. In this exercise you will re-write
+							this program so that it displays the Student Initials, Surname and DateOfBirth on the
+							screen.
+						</p>
+						<p>
+							Download the <a href="../examples/SeqRead/Seqread.cbl">SeqRead.Cbl</a> program and save it
+							to the WorkArea directory on drive D:.
+						</p>
+						<p>
+							Download the data file <a href="../examples/SeqRead/STUDENTS.DAT">Students.Dat</a> and save
+							it to the same place.
+						</p>
+						<p>Load SeqRead.Cbl into the NetExpress environment.</p>
+					</section>
+
+					<section>
+						<h2>Examining SeqRead</h2>
+						<p>
+							Examine the program carefully, paying particular attention to the way the end of file is
+							handled. Note the use of the condition name EndOfStudentFile.
+						</p>
+						<p>
+							Compile the program.<img
+								src="i-tick.gif"
+								height="24"
+								width="24"
+								alt=""
+								style="margin-left: 7px; margin-right: 7px"
+							/>
+						</p>
+						<p>
+							Set a breakpoint at the first statement in the Procedure Division (move the cursor over the
+							statement, right-click and select Set Breakpoint from the menu which appears).<br />
+							Use the Animator to step<img
+								src="i-step.gif"
+								height="23"
+								width="23"
+								alt=""
+								style="margin-left: 7px; margin-right: 7px"
+							/>through the program.
+						</p>
+						<p>
+							Assign the variables StudentDetails, StudentName, Initials, DateOfBirth and MOBirth to the
+							watch list (Right-click on the variable, select <b><i>Examine</i></b> from menu and then
+							<b><i>Add to list</i></b> from dialogue box).
+						</p>
+						<p>As the program runs attempt to answer the following questions:</p>
+						<ol>
+							<li>What is the size (in characters) of the StudentDetails record?</li>
+							<li>What is the size of StudentName?</li>
+							<li>What is the size of DateOfBirth?</li>
+							<li>
+								The level number for MOBirth is 03 and that of DateOfBirth is 02. What is the
+								significance of that? Examine the values in DateOfBirth and MOBirth as the program runs
+								to see if your answer makes sense.
+							</li>
+						</ol>
+					</section>
+
+					<section>
+						<h2>Amending SeqRead</h2>
+						<p>
+							Change the program SeqRead.Cbl to produce a program which displays the student Initials,
+							Surname and DateOfBirth on the computer screen. The Initials should be immediately followed
+							by a full stop and a space (see example run below). The date should be displayed in the US
+							month, day, year format. The parts of the date should be separated from one another by a
+							hyphen. The year should be the full four digits.
+						</p>
+						<p>The student record consists of the following items;</p>
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Field</th>
+									<th>Type</th>
+									<th>Length</th>
+									<th>Value</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Student Id</td>
+									<td>9</td>
+									<td>7</td>
+									<td>0-9999999</td>
+								</tr>
+								<tr>
+									<td>Student Name</td>
+									<td>.</td>
+									<td>.</td>
+									<td>Group</td>
+								</tr>
+								<tr>
+									<td>Surname</td>
+									<td>X</td>
+									<td>8</td>
+									<td>-</td>
+								</tr>
+								<tr>
+									<td>Initials</td>
+									<td>X</td>
+									<td>2</td>
+									<td>-</td>
+								</tr>
+								<tr>
+									<td>DateOfBirth</td>
+									<td>.</td>
+									<td>.</td>
+									<td>Group</td>
+								</tr>
+								<tr>
+									<td>Year</td>
+									<td>9</td>
+									<td>4</td>
+									<td>00-9999</td>
+								</tr>
+								<tr>
+									<td>Month</td>
+									<td>9</td>
+									<td>2</td>
+									<td>01-12</td>
+								</tr>
+								<tr>
+									<td>Day</td>
+									<td>9</td>
+									<td>2</td>
+									<td>01-31</td>
+								</tr>
+								<tr>
+									<td>Course Code</td>
+									<td>X</td>
+									<td>4</td>
+									<td>-</td>
+								</tr>
+								<tr>
+									<td>Gender</td>
+									<td>X</td>
+									<td>1</td>
+									<td>M/F</td>
+								</tr>
+							</tbody>
+						</table>
+						<figure class="example-run">
+							<figcaption>Example run</figcaption>
+							<pre><samp>------ STUDENT REPORT ------
+
+MS. COUGHLAN DOB = 10-08-1985
+
+SR. SMITH DOB = 01-28-1989
+
+JM. Ryan DOB = 09-25-1986
+
+etc.</samp></pre>
+						</figure>
+					</section>
+
+					<back-to-top></back-to-top>
+					<copyright-notice type="exercises"></copyright-notice>
+					<p class="center-block"><a href="index.html">&larr; Back to COBOL Exercises</a></p>
+				</div>
+			</div>
+		</main>
 	</body>
 </html>

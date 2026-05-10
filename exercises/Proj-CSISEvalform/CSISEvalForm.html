@@ -1,323 +1,240 @@
 <!doctype html>
 <html lang="en-GB">
 	<head>
-		<meta content="width=device-width, initial-scale=1" name="viewport" />
-		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
 		<title>Zoom taxis DP291 Cobol project</title>
-		<style>
-			body {
-				font-size: 12pt;
-				font-family: "Times New Roman", serif;
-				background-color: #ffffff;
-				margin: 0;
-				padding: 0;
-				-webkit-text-size-adjust: 100%;
-			}
-			a:link {
-				color: blue;
-			}
-			a:visited {
-				color: purple;
-			}
-			img {
-				max-width: 100%;
-				height: auto;
-			}
-			pre {
-				overflow-x: auto;
-				max-width: 100%;
-				white-space: pre;
-				overflow-wrap: normal;
-				word-wrap: normal;
-			}
-			.page-wrapper {
-				max-width: 800px;
-				margin: 0 auto;
-				border: 1px solid #000;
-			}
-			.page-header {
-				background-color: #990000;
-				padding: 10px 5px;
-				text-align: center;
-			}
-			.page-header h2 {
-				margin: 0;
-				font-size: 12pt;
-				font-family: "Times New Roman", serif;
-			}
-			.meta-table {
-				width: 100%;
-				margin: 0;
-			}
-			.meta-table td {
-				border: 1px solid #000;
-				padding: 5px;
-				vertical-align: top;
-			}
-			.meta-table .meta-label {
-				width: 21%;
-				font-weight: bold;
-				white-space: nowrap;
-			}
-			.main-content {
-				padding: 5px;
-			}
-			table {
-				border-collapse: collapse;
-				margin: 0 auto;
-				max-width: 100%;
-			}
-			th,
-			td {
-				border: 1px solid #000;
-				padding: 4px;
-				font-size: 12pt;
-				font-family: "Times New Roman", serif;
-			}
-			thead tr {
-				background-color: #ffffcc;
-			}
-			thead th {
-				font-variant: small-caps;
-				text-align: center;
-			}
-			.center {
-				text-align: center;
-			}
-			@media (max-width: 600px) {
-				body {
-					margin: 4px;
-					overflow-wrap: break-word;
-					word-wrap: break-word;
-				}
-				.meta-table tr,
-				.meta-table td {
-					display: block;
-					width: 100% !important;
-				}
-				.meta-table .meta-label {
-					border-bottom: none;
-					white-space: normal;
-				}
-				blockquote {
-					margin-left: 12px;
-					margin-right: 12px;
-				}
-				img,
-				iframe,
-				video,
-				embed,
-				object {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					height: auto;
-				}
-			}
-		</style>
+		<link href="../../course/Resources/css/course.css" rel="stylesheet" />
+		<link href="../../course/Resources/css/course-components.css" rel="stylesheet" />
+		<script src="../../components/theme-toggle.js" defer></script>
+		<script src="../../components/page-hero.js" defer></script>
+		<script src="../../components/back-to-top.js" defer></script>
 		<script src="../../components/copyright-notice.js" defer></script>
 	</head>
 	<body>
-		<div class="page-wrapper">
-			<div class="page-header">
-				<h2>CSIS WebSite<br />Evaluation Form Report</h2>
-			</div>
-			<table class="meta-table">
-				<tr>
-					<td class="meta-label">Time to complete</td>
-					<td>Allow 30 hours continuous</td>
-				</tr>
-				<tr>
-					<td class="meta-label">Input Data Files</td>
-					<td>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="page-content">
+					<page-hero title="CSIS WebSite Evaluation Form Report" eyebrow="COBOL Project"></page-hero>
+					<hr />
+
+					<dl class="exam-meta">
+						<dt>Time to complete</dt>
+						<dd>Allow 30 hours continuous</dd>
+						<dt>Input Data Files</dt>
+						<dd>
+							<p>
+								<a href="Occupations.dat">Occupations.dat</a><br />
+								(On each country line, the name of the most common occupation of visitors from that
+								country must be displayed. But records in the Evaluation Form file only contain a code
+								that represents the visitor occupation so this code must be converted into the name of
+								the occupation.&nbsp;&nbsp;&nbsp; The occupation codes and their corresponding names are
+								contained in a sequential file (Occupations.Dat). )
+							</p>
+							<p>
+								<i><a href="EVALFORM.DAT">EvalForm.Dat</a></i
+								><br />
+								The Evaluation Form File, is an unordered sequential file that contains the results from
+								the Evaluation Form on the CSIS web site.
+							</p>
+						</dd>
+					</dl>
+					<hr />
+
+					<section>
+						<h2>Introduction</h2>
 						<p>
-							<a href="Occupations.dat">Occupations.dat</a><br />
-							(On each country line, the name of the most common occupation of visitors from that country
+							Visitors to the CSIS web site are asked to fill in an evaluation form. The form requests the
+							name of the visitor, his/her country of origin, his/her occupation, an evaluation of the web
+							site, and an optional comment. These fields are stored as a fixed length record in an
+							Evaluation Form file (EvalForm.Dat).
+						</p>
+						<p>
+							A program is required which will produce a report from the Evaluation Form file.&nbsp; For
+							each country from which the site has been visited the report should show-
+						</p>
+						<ul>
+							<li>The name of the country</li>
+							<li>The number of visitors from this country</li>
+							<li>Most common occupation of visitors from this country</li>
+							<li>The average evaluation of the web site by visitors from this country.</li>
+						</ul>
+						<p>
+							The report must be implemented as an HTML web page and the information on the page should
+							appear in ascending country name sequence.
+						</p>
+						<p>
+							In the course of creating the HTML web page, the program must produce a sorted file
+							containing the VisitorCountryName, VisitorOccupation and SiteEvaluation fields.
+						</p>
+
+						<h3>Evaluation Form File</h3>
+						<p>
+							The Evaluation Form File (EvalForm.Dat), is an unordered sequential file, with the following
+							record description;
+						</p>
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>FieldName</th>
+									<th>Type</th>
+									<th>Length</th>
+									<th>Value</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>VisitorName</td>
+									<td style="text-align: center">X</td>
+									<td style="text-align: center">20</td>
+									<td style="text-align: center">-</td>
+								</tr>
+								<tr>
+									<td>VisitorCountryName</td>
+									<td style="text-align: center">X</td>
+									<td style="text-align: center">20</td>
+									<td style="text-align: center">-</td>
+								</tr>
+								<tr>
+									<td>VisitorOccupation</td>
+									<td style="text-align: center">X</td>
+									<td style="text-align: center">2</td>
+									<td style="text-align: center">-</td>
+								</tr>
+								<tr>
+									<td>SiteEvaluation</td>
+									<td style="text-align: center">9</td>
+									<td style="text-align: center">1</td>
+									<td style="text-align: center">1-5</td>
+								</tr>
+								<tr>
+									<td>VisitorComment</td>
+									<td style="text-align: center">X</td>
+									<td style="text-align: center">35</td>
+									<td style="text-align: center">-</td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+
+					<section>
+						<h2>File Conversions</h2>
+						<h3>Visitor Occupation</h3>
+						<p>
+							On each country line, the name of the most common occupation of visitors from that country
 							must be displayed. But records in the Evaluation Form file only contain a code that
 							represents the visitor occupation so this code must be converted into the name of the
 							occupation.&nbsp;&nbsp;&nbsp; The occupation codes and their corresponding names are
-							contained in a sequential file (Occupations.Dat). )
+							contained in a sequential file (Occupations.Dat). To allow an efficient conversion of the
+							occupation code to the occupation name this file must be loaded into a table in
+							memory.&nbsp;&nbsp; There are currently 25 occupations in the file but you must write your
+							program so that it is easy to extend the number of occupations.&nbsp;
+						</p>
+
+						<h3>Occupation File</h3>
+						<p>
+							The Occupation File (Occupations.Dat) is a sequential file ordered on ascending
+							OccupationCode.&nbsp;&nbsp; Each record contains a CountryCode and its corresponding
+							CountryName.
+						</p>
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Field</th>
+									<th>Type</th>
+									<th>Length</th>
+									<th>Value</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>OccupationCode</td>
+									<td style="text-align: center">X</td>
+									<td style="text-align: center">2</td>
+									<td style="text-align: center">-</td>
+								</tr>
+								<tr>
+									<td>OccupationName</td>
+									<td style="text-align: center">X</td>
+									<td style="text-align: center">23</td>
+									<td style="text-align: center">-</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<h3>Site Evaluation</h3>
+						<p>
+							The SiteEvaluation field is a numeric value.&nbsp;&nbsp; In the report, the rounded average
+							of the evaluations for a particular country must be shown.&nbsp;&nbsp; But the average must
+							be printed as text, not as a numeric value.&nbsp; The evaluation values and their text
+							equivalents are given below and must be set up as a predefined table of values in your
+							program.
+						</p>
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Value</th>
+									<th>Text Equivalent</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td style="text-align: center">1</td>
+									<td style="text-align: center">Excellent</td>
+								</tr>
+								<tr>
+									<td style="text-align: center">2</td>
+									<td style="text-align: center">Very Good</td>
+								</tr>
+								<tr>
+									<td style="text-align: center">3</td>
+									<td style="text-align: center">Good</td>
+								</tr>
+								<tr>
+									<td style="text-align: center">4</td>
+									<td style="text-align: center">Poor</td>
+								</tr>
+								<tr>
+									<td style="text-align: center">5</td>
+									<td style="text-align: center">Very Poor</td>
+								</tr>
+							</tbody>
+						</table>
+						<p>
+							The report also requires an overall evaluation.&nbsp; This is the average of the evaluations
+							of all the visitors to the site.
+						</p>
+					</section>
+
+					<section>
+						<h2>The HTML report page</h2>
+						<p>
+							The report must be produced as an HTML page to be viewed in a web browser.&nbsp;&nbsp; In
+							the &lt;TITLE&gt; tag, the title of the page should be
+							<i>CSIS Evaluation Form Report</i>.&nbsp; In the &lt;BODY&gt; tag the background colour
+							should be white &ndash; i.e. #FFFFFF.&nbsp;&nbsp; The other colours and fonts used are left
+							to the discretion of the programmer but they should make the report as easy to read as
+							possible.&nbsp;&nbsp; Reports that are easy to read, because they make good use of font,
+							colour and text alignment, will tend to attract marks.
 						</p>
 						<p>
-							<i><a href="EVALFORM.DAT">EvalForm.Dat</a></i
-							><br />
-							The Evaluation Form File, is an unordered sequential file that contains the results from the
-							Evaluation Form on the CSIS web site.
+							The country lines of the report must appear in ascending country name sequence.&nbsp;
+							Numeric values must be zero suppressed up to but not including the last digit and should
+							have commas inserted where appropriate.&nbsp;
 						</p>
-					</td>
-				</tr>
-			</table>
-			<div class="main-content">
-				<h3>Introduction</h3>
-				<p>
-					Visitors to the CSIS web site are asked to fill in an evaluation form. The form requests the name of
-					the visitor, his/her country of origin, his/her occupation, an evaluation of the web site, and an
-					optional comment. These fields are stored as a fixed length record in an Evaluation Form file
-					(EvalForm.Dat).
-				</p>
-				<p>
-					A program is required which will produce a report from the Evaluation Form file.&nbsp; For each
-					country from which the site has been visited the report should show-
-				</p>
-				<ul>
-					<li>The name of the country</li>
-					<li>The number of visitors from this country</li>
-					<li>Most common occupation of visitors from this country</li>
-					<li>The average evaluation of the web site by visitors from this country.</li>
-				</ul>
-				<p>
-					The report must be implemented as an HTML web page and the information on the page should appear in
-					ascending country name sequence.
-				</p>
-				<p>
-					In the course of creating the HTML web page, the program must produce a sorted file containing the
-					VisitorCountryName, VisitorOccupation and SiteEvaluation fields.
-				</p>
-				<h4>Evaluation Form File</h4>
-				<p>
-					The Evaluation Form File (EvalForm.Dat), is an unordered sequential file, with the following record
-					description;
-				</p>
-				<table>
-					<thead>
-						<tr>
-							<th>FieldName</th>
-							<th>Type</th>
-							<th>Length</th>
-							<th>Value</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>VisitorName</td>
-							<td class="center">X</td>
-							<td class="center">20</td>
-							<td class="center">-</td>
-						</tr>
-						<tr>
-							<td>VisitorCountryName</td>
-							<td class="center">X</td>
-							<td class="center">20</td>
-							<td class="center">-</td>
-						</tr>
-						<tr>
-							<td>VisitorOccupation</td>
-							<td class="center">X</td>
-							<td class="center">2</td>
-							<td class="center">-</td>
-						</tr>
-						<tr>
-							<td>SiteEvaluation</td>
-							<td class="center">9</td>
-							<td class="center">1</td>
-							<td class="center">1-5</td>
-						</tr>
-						<tr>
-							<td>VisitorComment</td>
-							<td class="center">X</td>
-							<td class="center">35</td>
-							<td class="center">-</td>
-						</tr>
-					</tbody>
-				</table>
-				<h3>File Conversions</h3>
-				<h4>Visitor Occupation</h4>
-				<p>
-					On each country line, the name of the most common occupation of visitors from that country must be
-					displayed. But records in the Evaluation Form file only contain a code that represents the visitor
-					occupation so this code must be converted into the name of the occupation.&nbsp;&nbsp;&nbsp; The
-					occupation codes and their corresponding names are contained in a sequential file (Occupations.Dat).
-					To allow an efficient conversion of the occupation code to the occupation name this file must be
-					loaded into a table in memory.&nbsp;&nbsp; There are currently 25 occupations in the file but you
-					must write your program so that it is easy to extend the number of occupations.&nbsp;
-				</p>
-				<h4>Occupation File</h4>
-				<p>
-					The Occupation File (Occupations.Dat) is a sequential file ordered on ascending
-					OccupationCode.&nbsp;&nbsp; Each record contains a CountryCode and its corresponding CountryName.
-				</p>
-				<table>
-					<thead>
-						<tr>
-							<th>Field</th>
-							<th>Type</th>
-							<th>Length</th>
-							<th>Value</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>OccupationCode</td>
-							<td class="center">X</td>
-							<td class="center">2</td>
-							<td class="center">-</td>
-						</tr>
-						<tr>
-							<td>OccupationName</td>
-							<td class="center">X</td>
-							<td class="center">23</td>
-							<td class="center">-</td>
-						</tr>
-					</tbody>
-				</table>
-				<h4>Site Evaluation</h4>
-				<p>
-					The SiteEvaluation field is a numeric value.&nbsp;&nbsp; In the report, the rounded average of the
-					evaluations for a particular country must be shown.&nbsp;&nbsp; But the average must be printed as
-					text, not as a numeric value.&nbsp; The evaluation values and their text equivalents are given below
-					and must be set up as a predefined table of values in your program.
-				</p>
-				<table>
-					<thead>
-						<tr>
-							<th>Value</th>
-							<th>Text Equivalent</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td class="center">1</td>
-							<td class="center">Excellent</td>
-						</tr>
-						<tr>
-							<td class="center">2</td>
-							<td class="center">Very Good</td>
-						</tr>
-						<tr>
-							<td class="center">3</td>
-							<td class="center">Good</td>
-						</tr>
-						<tr>
-							<td class="center">4</td>
-							<td class="center">Poor</td>
-						</tr>
-						<tr>
-							<td class="center">5</td>
-							<td class="center">Very Poor</td>
-						</tr>
-					</tbody>
-				</table>
-				<p>
-					The report also requires an overall evaluation.&nbsp; This is the average of the evaluations of all
-					the visitors to the site.
-				</p>
-				<h3>The HTML report page</h3>
-				<p>
-					The report must be produced as an HTML page to be viewed in a web browser.&nbsp;&nbsp; In the
-					&lt;TITLE&gt; tag, the title of the page should be <i>CSIS Evaluation Form Report</i>.&nbsp; In the
-					&lt;BODY&gt; tag the background colour should be white &ndash; i.e. #FFFFFF.&nbsp;&nbsp; The other
-					colours and fonts used are left to the discretion of the programmer but they should make the report
-					as easy to read as possible.&nbsp;&nbsp; Reports that are easy to read, because they make good use
-					of font, colour and text alignment, will tend to attract marks.
-				</p>
-				<p>
-					The country lines of the report must appear in ascending country name sequence.&nbsp; Numeric values
-					must be zero suppressed up to but not including the last digit and should have commas inserted where
-					appropriate.&nbsp;
-				</p>
-				<p>
-					The structure of the report should generally conform to the outline shown below but the exact
-					placement of items is left to the discretion of the programmer.
-				</p>
-				<pre>                              <b>CSIS Web Site</b>
+						<p>
+							The structure of the report should generally conform to the outline shown below but the
+							exact placement of items is left to the discretion of the programmer.
+						</p>
+						<pre>                              <b>CSIS Web Site</b>
                           <b>Evaluation Form Report</b>
 
 <b>CountryName          Visitors       Occupation                 Evaluation</b>
@@ -329,8 +246,13 @@
 <b>-----------------------------------------------------------------</b>
 <b>Total Visitors           -      XXX,XXX</b>
 <b>Overall Evaluation  - XXXXXXXXX</b></pre>
-				<copyright-notice type="project"></copyright-notice>
+					</section>
+
+					<back-to-top></back-to-top>
+					<copyright-notice type="project"></copyright-notice>
+					<p class="center-block"><a href="../index.html">&larr; Back to COBOL Exercises</a></p>
+				</div>
 			</div>
-		</div>
+		</main>
 	</body>
 </html>

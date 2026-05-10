@@ -1,10 +1,18 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta content="width=device-width, initial-scale=1" name="viewport" />
-		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
 		<title>UL CAO points calculator and Report</title>
-
+		<link href="../../course/Resources/css/course.css" rel="stylesheet" />
+		<link href="../../course/Resources/css/course-components.css" rel="stylesheet" />
 		<style>
 			<!--
 			.Normal {
@@ -21,1495 +29,943 @@
 			}
 			-->
 		</style>
-		<style type="text/css">
-			img {
-				max-width: 100%;
-				height: auto;
-			}
-
-			table {
-				max-width: 100%;
-			}
-
-			pre {
-				overflow-x: auto;
-				max-width: 100%;
-			}
-
-			body {
-				-webkit-text-size-adjust: 100%;
-			}
-
-			@media (max-width: 600px) {
-				body {
-					margin: 4px;
-					overflow-wrap: break-word;
-					word-wrap: break-word;
-				}
-
-				table[width] {
-					width: 100% !important;
-					height: auto !important;
-				}
-
-				td[width],
-				th[width],
-				td[height],
-				th[height] {
-					width: auto !important;
-					height: auto !important;
-				}
-
-				td[bgcolor="#993300"] > h2,
-				td[bgcolor="#993300"] > h3 {
-					margin: 0.3em 0;
-				}
-
-				blockquote {
-					margin-left: 12px;
-					margin-right: 12px;
-				}
-
-				hr[width] {
-					width: 100% !important;
-				}
-
-				img,
-				iframe,
-				video,
-				embed,
-				object {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					height: auto;
-				}
-
-				pre {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					white-space: pre-wrap;
-					word-wrap: break-word;
-					overflow-wrap: break-word;
-				}
-
-				table[width="715"],
-				table[width="725"],
-				table[width="715"] > tbody,
-				table[width="725"] > tbody,
-				table[width="715"] > tbody > tr,
-				table[width="725"] > tbody > tr,
-				table[width="715"] > tbody > tr > td,
-				table[width="725"] > tbody > tr > td,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])),
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr > td {
-					display: block;
-					width: auto !important;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]),
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody {
-					display: block;
-					width: 100% !important;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr {
-					display: flex;
-					align-items: baseline;
-					gap: 0.4em;
-					margin: 0.4em 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="3%"] {
-					display: none;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="4%"] {
-					display: block;
-					flex: 0 0 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="93%"] {
-					display: block;
-					flex: 1 1 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
-				td[width="175"] > h4:not(:first-child):not(:has(img)),
-				td[width="160"] > h4:not(:first-child):not(:has(img)),
-				h4:has(> img[src*="PanelLine"]) {
-					display: none;
-				}
-
-				td[width="175"] > h3,
-				td[width="175"] > h4,
-				td[width="175"] > p,
-				td[width="160"] > h3,
-				td[width="160"] > h4,
-				td[width="160"] > p {
-					margin: 0.2em 0;
-				}
-			}
-		</style>
+		<script src="../../components/theme-toggle.js" defer></script>
+		<script src="../../components/page-hero.js" defer></script>
+		<script src="../../components/back-to-top.js" defer></script>
 		<script src="../../components/copyright-notice.js" defer></script>
 	</head>
-	<body bgcolor="#FFFFFF" class="Normal" lang="EN-GB" link="blue" vlink="purple">
-		<table class="data-table" cellpadding="5" cellspacing="0" width="800">
-			<tr>
-				<td bgcolor="#990000" colspan="2" height="59">
-					<h2 style="text-align: center">
-						<b>UL CAO points calculator<br /></b>
-						<b>and Report</b>
-					</h2>
-				</td>
-			</tr>
-			<tr>
-				<td height="2" width="21%"><b>Time to complete</b></td>
-				<td height="2" width="79%">Allow 20 hours continuous</td>
-			</tr>
-			<tr>
-				<td height="127" width="21%" style="vertical-align: top"><b>Test Data Files</b></td>
-				<td height="127" width="79%" style="vertical-align: top">
-					<p>
-						<a href="CAOAPPS.DAT">CAOapps.Dat</a><br />
-						(The CAO applications file)
-					</p>
-					<p>
-						LC-Results.Dat<br />
-						(The Leaving Certificate results file. This file is not available for download. You will have to
-						make up your own test data file.)
-					</p>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2" style="vertical-align: top">
-					<h3>
-						<br />
-						<span style="font-variant: normal; text-transform: uppercase">Introduction</span>
-					</h3>
-					<p>
-						The Central Applications Office (CAO) provides a centralised applications mechanism to many of
-						the third level institutions in Ireland.&nbsp; Students wishing to take courses in any of the
-						participating institutions indicate their course preferences in order of preference on the CAO
-						form.&nbsp; Places are offered on the basis of points calculated on the Leaving Certificate
-						results.&nbsp;&nbsp;
-					</p>
-					<p>
-						Although the Central Applications Office makes offers or places to applicants it does not
-						calculate the points.&nbsp; The points awarded for Leaving Certificate results are calculated by
-						the participating institutions.&nbsp;&nbsp; This allows these institutions to build into the CAO
-						system any special requirements which they might have.<br />
-						<br />
-					</p>
-					<h3>
-						<b
-							><span style="font-size: 14pt; text-transform: uppercase"
-								>The CAO and the University of Limerick (UL)</span
-							></b
-						>
-					</h3>
-					<p>
-						After the Leaving Certificate results become available the CAO sends a copy of the CAO
-						Applications File and the Exam Results File to the UL.&nbsp;&nbsp; The UL must then use these
-						files and internal points allocation algorithms to generate the points awarded for each course
-						application.&nbsp; The results are returned to the CAO in the form of a Course Points
-						File.&nbsp;<br />
-						<br />
-					</p>
-					<h3>The&nbsp; Files</h3>
-					<p>
-						The CAO sends two files to the UL (the CAO Applications file and the Exam Results File) and
-						sends one file back to the CAO (the Course Points File)..
-					</p>
-					<p>
-						<b>CAO Applications File</b><br />
-						The CAO Applications File is a sequential file ordered on ascending CAO-Number.&nbsp; It
-						contains applicant details.&nbsp; The courses that the applicant applies for are held in a 10
-						element table.&nbsp; Note that the first two characters of the Course-Code represent the
-						institution. For instance, LM represents the University of Limerick.
-					</p>
-					<div style="text-align: center">
-						<table class="data-table" cellpadding="0" cellspacing="0">
-							<tr bgcolor="#FFFFCC">
-								<td class="Normal" width="134" style="vertical-align: top">
-									<p><b>&nbsp;&nbsp; Field</b></p>
-								</td>
-								<td class="Normal" width="77" style="vertical-align: top">
-									<p style="text-align: center"><b>Type</b></p>
-								</td>
-								<td class="Normal" width="77" style="vertical-align: top">
-									<p style="text-align: center"><b>Length</b></p>
-								</td>
-								<td class="Normal" width="106" style="vertical-align: top">
-									<p style="text-align: center"><b>Occurrence</b></p>
-								</td>
-								<td class="Normal" width="106" style="vertical-align: top">
-									<p style="text-align: center"><b>Value</b></p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="134" style="vertical-align: top">
-									<p>CAO-Number</p>
-								</td>
-								<td class="Normal" width="77" style="vertical-align: top">
-									<p style="text-align: center">X</p>
-								</td>
-								<td class="Normal" width="77" style="vertical-align: top">
-									<p style="text-align: center">8</p>
-								</td>
-								<td class="Normal" width="106" style="vertical-align: top">
-									<p style="text-align: center">1</p>
-								</td>
-								<td class="Normal" width="106" style="vertical-align: top">
-									<p style="text-align: center">-</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="134" style="vertical-align: top">
-									<p>Applicant-Name</p>
-								</td>
-								<td class="Normal" width="77" style="vertical-align: top">
-									<p style="text-align: center">X</p>
-								</td>
-								<td class="Normal" width="77" style="vertical-align: top">
-									<p style="text-align: center">60</p>
-								</td>
-								<td class="Normal" width="106" style="vertical-align: top">
-									<p style="text-align: center">1</p>
-								</td>
-								<td class="Normal" width="106" style="vertical-align: top">
-									<p style="text-align: center">-</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="134" style="vertical-align: top">
-									<p>Applicant-Address</p>
-								</td>
-								<td class="Normal" width="77" style="vertical-align: top">
-									<p style="text-align: center">X</p>
-								</td>
-								<td class="Normal" width="77" style="vertical-align: top">
-									<p style="text-align: center">100</p>
-								</td>
-								<td class="Normal" width="106" style="vertical-align: top">
-									<p style="text-align: center">1</p>
-								</td>
-								<td class="Normal" width="106" style="vertical-align: top">
-									<p style="text-align: center">-</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="134" style="vertical-align: top">
-									<p>Course-Code</p>
-								</td>
-								<td class="Normal" width="77" style="vertical-align: top">
-									<p style="text-align: center">X</p>
-								</td>
-								<td class="Normal" width="77" style="vertical-align: top">
-									<p style="text-align: center">5</p>
-								</td>
-								<td class="Normal" width="106" style="vertical-align: top">
-									<p style="text-align: center">10</p>
-								</td>
-								<td class="Normal" width="106" style="vertical-align: top">
-									<p style="text-align: center">e.g LM051</p>
-								</td>
-							</tr>
-						</table>
-					</div>
-					<p>
-						<b>Note</b><br />
-						Elements of the Applicant-Address are separated from one another by commas. You are guaranteed
-						that the last item in the address is the county name. The county name will be preceded by the
-						letters Co. and a space. The address may be upper case, lower case or a mixture.<br />
-						E.g. 13 Winchester Drive,Castletroy,Ennis,Co. Clare<br />
-						Wilderness Co. ,LittleVillage, co. Waterford
-					</p>
-					<p>
-						<b>The Exam Results File</b><br />
-						The Exam Results File is a sequential file ordered on ascending CAO-Number.&nbsp;&nbsp; It
-						contains the Leaving Certificate exam results for CAO applicants.&nbsp; The applicants Leaving
-						Certificate results are held in a 14 element table.&nbsp; Each element consists of the
-						Subject-Code and the Subject-Result.
-					</p>
-					<div style="text-align: center">
-						<table class="data-table" cellpadding="0" cellspacing="0">
-							<tr bgcolor="#FFFFCC">
-								<td class="Normal" width="134" style="vertical-align: top">
-									<p><b>Field</b></p>
-								</td>
-								<td class="Normal" width="69" style="vertical-align: top">
-									<p style="text-align: center"><b>Type</b></p>
-								</td>
-								<td class="Normal" width="69" style="vertical-align: top">
-									<p style="text-align: center"><b>Length</b></p>
-								</td>
-								<td class="Normal" width="121" style="vertical-align: top">
-									<p style="text-align: center"><b>Occurrence</b></p>
-								</td>
-								<td class="Normal" width="121" style="vertical-align: top">
-									<p style="text-align: center"><b>Value</b></p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="134" style="vertical-align: top">
-									<p>CAO-Number</p>
-								</td>
-								<td class="Normal" width="69" style="vertical-align: top">
-									<p style="text-align: center">X</p>
-								</td>
-								<td class="Normal" width="69" style="vertical-align: top">
-									<p style="text-align: center">8</p>
-								</td>
-								<td class="Normal" width="121" style="vertical-align: top">
-									<p style="text-align: center">1</p>
-								</td>
-								<td class="Normal" width="121" style="vertical-align: top">
-									<p style="text-align: center">-</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="134" style="vertical-align: top">
-									<p>LC-Result</p>
-								</td>
-								<td class="Normal" width="69" style="vertical-align: top">
-									<p style="text-align: center">Group</p>
-								</td>
-								<td class="Normal" width="69" style="vertical-align: top">
-									<p style="text-align: center">Group</p>
-								</td>
-								<td class="Normal" width="121" style="vertical-align: top">
-									<p style="text-align: center">14</p>
-								</td>
-								<td class="Normal" width="121" style="vertical-align: top">
-									<p style="text-align: center">-</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="134" style="vertical-align: top">
-									<p>Subject-Code</p>
-								</td>
-								<td class="Normal" width="69" style="vertical-align: top">
-									<p style="text-align: center">X</p>
-								</td>
-								<td class="Normal" width="69" style="vertical-align: top">
-									<p style="text-align: center">3</p>
-								</td>
-								<td class="Normal" width="121" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="121" style="vertical-align: top">
-									<p style="text-align: center">-</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="134" style="vertical-align: top">
-									<p>Subject-Result</p>
-								</td>
-								<td class="Normal" width="69" style="vertical-align: top">
-									<p style="text-align: center">X</p>
-								</td>
-								<td class="Normal" width="69" style="vertical-align: top">
-									<p style="text-align: center">3</p>
-								</td>
-								<td class="Normal" width="121" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" width="121" style="vertical-align: top">
-									<p style="text-align: center">-</p>
-								</td>
-							</tr>
-						</table>
-					</div>
-					<p>
-						<b>The Course Points File</b><br />
-						The Course Points File is a sequential file ordered on ascending CAO-Number.&nbsp; It contains
-						the points awarded for each course application.
-					</p>
-					<div style="text-align: center">
-						<table class="data-table" cellpadding="0" cellspacing="0">
-							<tr bgcolor="#FFFFCC">
-								<td class="Normal" width="134" style="vertical-align: top">
-									<p><b>&nbsp; Field</b></p>
-								</td>
-								<td class="Normal" width="77" style="vertical-align: top">
-									<p style="text-align: center"><b>Type</b></p>
-								</td>
-								<td class="Normal" width="77" style="vertical-align: top">
-									<p style="text-align: center"><b>Length</b></p>
-								</td>
-								<td class="Normal" width="96" style="vertical-align: top">
-									<p style="text-align: center"><b>Value</b></p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="134" style="vertical-align: top">
-									<p>CAO-Number</p>
-								</td>
-								<td class="Normal" width="77" style="vertical-align: top">
-									<p style="text-align: center">X</p>
-								</td>
-								<td class="Normal" width="77" style="vertical-align: top">
-									<p style="text-align: center">8</p>
-								</td>
-								<td class="Normal" width="96" style="vertical-align: top">
-									<p style="text-align: center">-&nbsp;&nbsp;&nbsp;</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="134" style="vertical-align: top">
-									<p>Course-Code</p>
-								</td>
-								<td class="Normal" width="77" style="vertical-align: top">
-									<p style="text-align: center">X</p>
-								</td>
-								<td class="Normal" width="77" style="vertical-align: top">
-									<p style="text-align: center">5</p>
-								</td>
-								<td class="Normal" width="96" style="vertical-align: top">
-									<p style="text-align: center">&nbsp;-</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="134" style="vertical-align: top">
-									<p>Points</p>
-								</td>
-								<td class="Normal" width="77" style="vertical-align: top">
-									<p style="text-align: center">N</p>
-								</td>
-								<td class="Normal" width="77" style="vertical-align: top">
-									<p style="text-align: center">3</p>
-								</td>
-								<td class="Normal" width="96" style="vertical-align: top">
-									<p style="text-align: center">0-999</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="Normal" width="134" style="vertical-align: top">
-									<p>Random-Number</p>
-								</td>
-								<td class="Normal" width="77" style="vertical-align: top">
-									<p style="text-align: center">N</p>
-								</td>
-								<td class="Normal" width="77" style="vertical-align: top">
-									<p style="text-align: center">3</p>
-								</td>
-								<td class="Normal" width="96" style="vertical-align: top">
-									<p style="text-align: center">0-999</p>
-								</td>
-							</tr>
-						</table>
-					</div>
-					<h3><span style="font-variant: normal; text-transform: uppercase">The Program</span></h3>
-					<p>Write a program that creates the Course Points File and generates a report showing;</p>
-					<blockquote>
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="page-content">
+					<page-hero title="UL CAO points calculator and Report" eyebrow="COBOL Project"></page-hero>
+					<hr />
+
+					<dl class="exam-meta">
+						<dt>Time to complete</dt>
+						<dd>Allow 20 hours continuous</dd>
+						<dt>Test Data Files</dt>
+						<dd>
+							<p>
+								<a href="CAOAPPS.DAT">CAOapps.Dat</a><br />
+								(The CAO applications file)
+							</p>
+							<p>
+								LC-Results.Dat<br />
+								(The Leaving Certificate results file. This file is not available for download. You will
+								have to make up your own test data file.)
+							</p>
+						</dd>
+					</dl>
+					<hr />
+
+					<section>
+						<h2>Introduction</h2>
 						<p>
-							1.<span style="font: 7pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;</span> The number
-							of applicants from each county.
+							The Central Applications Office (CAO) provides a centralised applications mechanism to many
+							of the third level institutions in Ireland.&nbsp; Students wishing to take courses in any of
+							the participating institutions indicate their course preferences in order of preference on
+							the CAO form.&nbsp; Places are offered on the basis of points calculated on the Leaving
+							Certificate results.&nbsp;&nbsp;
 						</p>
 						<p>
-							2.<span style="font: 7pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;</span> The number
-							of first choices for each UL course.
+							Although the Central Applications Office makes offers or places to applicants it does not
+							calculate the points.&nbsp; The points awarded for Leaving Certificate results are
+							calculated by the participating institutions.&nbsp;&nbsp; This allows these institutions to
+							build into the CAO system any special requirements which they might have.
+						</p>
+					</section>
+
+					<section>
+						<h2>The CAO and the University of Limerick (UL)</h2>
+						<p>
+							After the Leaving Certificate results become available the CAO sends a copy of the CAO
+							Applications File and the Exam Results File to the UL.&nbsp;&nbsp; The UL must then use
+							these files and internal points allocation algorithms to generate the points awarded for
+							each course application.&nbsp; The results are returned to the CAO in the form of a Course
+							Points File.&nbsp;
+						</p>
+					</section>
+
+					<section>
+						<h2>The Files</h2>
+						<p>
+							The CAO sends two files to the UL (the CAO Applications file and the Exam Results File) and
+							sends one file back to the CAO (the Course Points File)..
+						</p>
+						<h3>CAO Applications File</h3>
+						<p>
+							The CAO Applications File is a sequential file ordered on ascending CAO-Number.&nbsp; It
+							contains applicant details.&nbsp; The courses that the applicant applies for are held in a
+							10 element table.&nbsp; Note that the first two characters of the Course-Code represent the
+							institution. For instance, LM represents the University of Limerick.
+						</p>
+						<div style="text-align: center">
+							<table class="data-table">
+								<tr bgcolor="#FFFFCC">
+									<td class="Normal" style="vertical-align: top">
+										<p><b>&nbsp;&nbsp; Field</b></p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center"><b>Type</b></p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center"><b>Length</b></p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center"><b>Occurrence</b></p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center"><b>Value</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td class="Normal" style="vertical-align: top"><p>CAO-Number</p></td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">X</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">8</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">1</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">-</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="Normal" style="vertical-align: top"><p>Applicant-Name</p></td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">X</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">60</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">1</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">-</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="Normal" style="vertical-align: top"><p>Applicant-Address</p></td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">X</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">100</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">1</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">-</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="Normal" style="vertical-align: top"><p>Course-Code</p></td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">X</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">5</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">10</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">e.g LM051</p>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<p>
+							<b>Note</b><br />
+							Elements of the Applicant-Address are separated from one another by commas. You are
+							guaranteed that the last item in the address is the county name. The county name will be
+							preceded by the letters Co. and a space. The address may be upper case, lower case or a
+							mixture.<br />
+							E.g. 13 Winchester Drive,Castletroy,Ennis,Co. Clare<br />
+							Wilderness Co. ,LittleVillage, co. Waterford
+						</p>
+
+						<h3>The Exam Results File</h3>
+						<p>
+							The Exam Results File is a sequential file ordered on ascending CAO-Number.&nbsp;&nbsp; It
+							contains the Leaving Certificate exam results for CAO applicants.&nbsp; The applicants
+							Leaving Certificate results are held in a 14 element table.&nbsp; Each element consists of
+							the Subject-Code and the Subject-Result.
+						</p>
+						<div style="text-align: center">
+							<table class="data-table">
+								<tr bgcolor="#FFFFCC">
+									<td class="Normal" style="vertical-align: top">
+										<p><b>Field</b></p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center"><b>Type</b></p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center"><b>Length</b></p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center"><b>Occurrence</b></p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center"><b>Value</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td class="Normal" style="vertical-align: top"><p>CAO-Number</p></td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">X</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">8</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">1</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">-</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="Normal" style="vertical-align: top"><p>LC-Result</p></td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">Group</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">Group</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">14</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">-</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="Normal" style="vertical-align: top"><p>Subject-Code</p></td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">X</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">3</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">&nbsp;</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">-</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="Normal" style="vertical-align: top"><p>Subject-Result</p></td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">X</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">3</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">&nbsp;</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">-</p>
+									</td>
+								</tr>
+							</table>
+						</div>
+
+						<h3>The Course Points File</h3>
+						<p>
+							The Course Points File is a sequential file ordered on ascending CAO-Number.&nbsp; It
+							contains the points awarded for each course application.
+						</p>
+						<div style="text-align: center">
+							<table class="data-table">
+								<tr bgcolor="#FFFFCC">
+									<td class="Normal" style="vertical-align: top">
+										<p><b>&nbsp; Field</b></p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center"><b>Type</b></p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center"><b>Length</b></p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center"><b>Value</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td class="Normal" style="vertical-align: top"><p>CAO-Number</p></td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">X</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">8</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">-&nbsp;&nbsp;&nbsp;</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="Normal" style="vertical-align: top"><p>Course-Code</p></td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">X</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">5</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">&nbsp;-</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="Normal" style="vertical-align: top"><p>Points</p></td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">N</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">3</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">0-999</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="Normal" style="vertical-align: top"><p>Random-Number</p></td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">N</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">3</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p style="text-align: center">0-999</p>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</section>
+
+					<section>
+						<h2>The Program</h2>
+						<p>Write a program that creates the Course Points File and generates a report showing;</p>
+						<blockquote>
+							<p>
+								1.<span style="font: 7pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;</span> The
+								number of applicants from each county.
+							</p>
+							<p>
+								2.<span style="font: 7pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;</span> The
+								number of first choices for each UL course.
+							</p>
+							<p>
+								3.<span style="font: 7pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;</span> The
+								number of first choices for the UL.
+							</p>
+						</blockquote>
+						<p>The format of the report is left to the programmers discretion.&nbsp;</p>
+						<p>The program should apply to the 26 counties only.</p>
+					</section>
+
+					<section>
+						<h2>General Requirements</h2>
+						<p>
+							All applicants must hold a Leaving Certificate with at least a grade C3 in two higher level
+							subjects (HC3) and at least a&nbsp; D3 in four ordinary subjects (OD3).&nbsp; Applicants
+							must have at least a OD3 in Mathematics; Irish or another language; and English.&nbsp;
+							Applicants who do not satisfy these requirements must be awarded zero points.
 						</p>
 						<p>
-							3.<span style="font: 7pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;</span> The number
-							of first choices for the UL.
+							The following are valid languages;<br />
+							IRS = Irish, ENG = English, FRH = French, SPH = Spanish, GER = German,<br />
+							ITA = Italian, DUT = Dutch, DAN = Danish, GRM = Greek (modern),<br />
+							POR = Portuguese, RUS = Russian
 						</p>
-					</blockquote>
-					<p>The format of the report is left to the programmers discretion.&nbsp;</p>
-					<p>The program should apply to the 26 counties only.</p>
-					<h3>
-						<b><span style="font-size: 14pt; text-transform: uppercase">General Requirements</span></b>
-					</h3>
-					<p>
-						All applicants must hold a Leaving Certificate with at least a grade C3 in two higher level
-						subjects (HC3) and at least a&nbsp; D3 in four ordinary subjects (OD3).&nbsp; Applicants must
-						have at least a OD3 in Mathematics; Irish or another language; and English.&nbsp; Applicants who
-						do not satisfy these requirements must be awarded zero points.
-					</p>
-					<p>
-						The following are valid languages;<br />
-						IRS = Irish, ENG = English, FRH = French, SPH = Spanish, GER = German,<br />
-						ITA = Italian, DUT = Dutch, DAN = Danish, GRM = Greek (modern),<br />
-						POR = Portuguese, RUS = Russian<br />
-						<br />
-					</p>
-					<h3>
-						<b><span style="font-size: 14pt; text-transform: uppercase">Special Requirements</span></b>
-					</h3>
-					<p>
-						In addition to the General Requirement outlined above applicants to some courses must satisfy
-						additional requirements.&nbsp; Applicants who do not satisfy these requirements must be awarded
-						zero points.&nbsp; The additional requirements are as follows;
-					</p>
-					<blockquote>
+					</section>
+
+					<section>
+						<h2>Special Requirements</h2>
+						<p>
+							In addition to the General Requirement outlined above applicants to some courses must
+							satisfy additional requirements.&nbsp; Applicants who do not satisfy these requirements must
+							be awarded zero points.&nbsp; The additional requirements are as follows;
+						</p>
 						<blockquote>
 							<blockquote>
-								<p>LM020&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OC3 Maths</p>
-								<p>
-									LM021&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HB3
-									French/German/Spanish/Irish & OB3 Maths
-								</p>
-								<p>LM050&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OC3 Maths</p>
-								<p>
-									LM051&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OB3/HD3
-									Maths
-								</p>
+								<blockquote>
+									<p>
+										LM020&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OC3
+										Maths
+									</p>
+									<p>
+										LM021&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HB3
+										French/German/Spanish/Irish & OB3 Maths
+									</p>
+									<p>
+										LM050&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OC3
+										Maths
+									</p>
+									<p>
+										LM051&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OB3/HD3
+										Maths
+									</p>
+								</blockquote>
 							</blockquote>
 						</blockquote>
-					</blockquote>
-					<h3>
-						<b
-							><span style="font-size: 14pt; text-transform: uppercase"
-								>Leaving Certificate Points System</span
-							></b
-						>
-					</h3>
-					<p>Standard points are calculated as follows;</p>
-					<div style="text-align: center">
-						<table class="data-table" cellpadding="2" cellspacing="0" width="270">
-							<tr bgcolor="#FFFFCC" style="vertical-align: top">
-								<td height="8" width="129">
-									<p><b>Grade&nbsp; &nbsp; Points</b></p>
-								</td>
-								<td height="8" width="127">
-									<p><b>Grade&nbsp;&nbsp; Points</b></p>
-								</td>
-							</tr>
-							<tr>
-								<td width="129">&nbsp;HA1&nbsp; =&nbsp; 100&nbsp;</td>
-								<td width="127">
-									<div style="text-align: left">&nbsp;OA1&nbsp; =&nbsp; 60&nbsp;&nbsp;</div>
-								</td>
-							</tr>
-							<tr>
-								<td width="129">&nbsp;HA2&nbsp; =&nbsp; 90&nbsp;</td>
-								<td width="127">
-									<div style="text-align: left">&nbsp;OA2&nbsp; =&nbsp; 50</div>
-								</td>
-							</tr>
-							<tr>
-								<td width="129">&nbsp;HB1&nbsp; =&nbsp; 85</td>
-								<td width="127">
-									<div style="text-align: left">&nbsp;OB1&nbsp; =&nbsp; 45</div>
-								</td>
-							</tr>
-							<tr>
-								<td width="129">&nbsp;HB2&nbsp; =&nbsp; 80</td>
-								<td width="127">
-									<div style="text-align: left">&nbsp;OB2&nbsp; =&nbsp; 40</div>
-								</td>
-							</tr>
-							<tr>
-								<td width="129">&nbsp;HB3&nbsp; =&nbsp; 75&nbsp;</td>
-								<td width="127">
-									<div style="text-align: left">&nbsp;OB3&nbsp; =&nbsp; 35</div>
-								</td>
-							</tr>
-							<tr>
-								<td width="129">&nbsp;HC1&nbsp; =&nbsp; 70&nbsp;</td>
-								<td width="127">
-									<div style="text-align: left">&nbsp;OC1&nbsp; =&nbsp; 30</div>
-								</td>
-							</tr>
-							<tr>
-								<td width="129">&nbsp;HC2&nbsp; =&nbsp; 65&nbsp;</td>
-								<td width="127">
-									<div style="text-align: left">&nbsp;OC2&nbsp; =&nbsp; 25</div>
-								</td>
-							</tr>
-							<tr>
-								<td width="129">&nbsp;HC3&nbsp; =&nbsp; 60</td>
-								<td width="127">
-									<div style="text-align: left">&nbsp;OC3&nbsp; =&nbsp; 20</div>
-								</td>
-							</tr>
-							<tr>
-								<td width="129">&nbsp;HD1&nbsp; =&nbsp; 55</td>
-								<td width="127">
-									<div style="text-align: left">&nbsp;OD1&nbsp; = 15</div>
-								</td>
-							</tr>
-							<tr>
-								<td width="129">&nbsp;HD2&nbsp; =&nbsp; 50&nbsp;</td>
-								<td width="127">
-									<div style="text-align: left">&nbsp;OD2&nbsp; = 10</div>
-								</td>
-							</tr>
-							<tr>
-								<td height="2" width="129">&nbsp;HD3 &nbsp;=&nbsp; 45&nbsp;</td>
-								<td height="2" width="127">
-									<div style="text-align: left">&nbsp;OD3&nbsp; =&nbsp; 5</div>
-								</td>
-							</tr>
-						</table>
-					</div>
-					<h3>
-						<b><span style="font-size: 14pt; text-transform: uppercase">Bonus Points</span></b>
-					</h3>
-					<p>Candidates may be awarded the following bonus points for all courses;</p>
-					<p>Maths HA1=40, HA2=35, HB1=30, HB2=25, HB3=20, HC1=15, HC2=10, HC3=5</p>
-					<h3>
-						<b><span style="font-size: 14pt; text-transform: uppercase">Processing</span></b>
-					</h3>
-					<p>
-						The overall points awarded to a candidate for a course is based on the candidate’s six best
-						Leaving Certificate subject points scores taking the bonus points into account.&nbsp;
-					</p>
-					<p>
-						To discriminate as fairly as possible between students who have the same score, the CAO requires
-						that a random number be produced in addition to the points score.&nbsp; The random number can be
-						produced using the COBOL Intrinsic Function RANDOM.
-					</p>
-					<p>
-						The code for processing the General and Special Requirements as well as the code for calculating
-						the Bonus points must be written as contained sub-programs.&nbsp; The code for calculating the
-						General points must be written as a separately complied sub-program.
-					</p>
-					<p>The COBOL Report Writer must be used to produce the report.</p>
-					<h3>Notes</h3>
-					<p>
-						The list of Leaving Certificate Subject Codes is supplied in the form of a copy file called
-						<a href="caosubj.cpy">caosubj.cpy</a>. Use the <code class="language-cobol">COPY</code> verb to
-						import the codes into your program.
-					</p>
-					<p>The list of UL courses and their Course Codes is given in the table below.<br /></p>
-					<div style="text-align: center">
-						<table class="data-table" cellpadding="2" cellspacing="0">
-							<tr bgcolor="#CCFFFF">
-								<td class="Normal" colspan="2" height="27" width="518" style="vertical-align: top">
-									<div style="text-align: center">
-										<b>UL Courses and Course Codes</b>
-									</div>
-								</td>
-							</tr>
-							<tr bgcolor="#FFFFCC">
-								<td class="Normal" height="13" width="121" style="vertical-align: top">
-									<div style="text-align: center"><b>Course Code</b></div>
-								</td>
-								<td class="Normal" height="13" width="397" style="vertical-align: top">
-									<div style="text-align: center"><b>Course Name</b></div>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM020</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.A. Law and Accounting</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM043</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.A. Insurance and European Studies</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM063</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.Tech. Production Management</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM051</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.Sc Computer Systems</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM059</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.Sc. Computer Systems with French</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM060</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.Sc Mathematical Sciences and Computing</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM069</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.Eng.Computer Engineering</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM070</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.Eng.Electronic Engineering</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM080</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.Tech.Electronic Systems</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM083</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.Tech.Information Technology and Telecommunications</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM062</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.Sc. Biomedical & Advanced Materials</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM067</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.Tech. Wood Science and Technology</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM071</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.Eng. Biomedical Engineering</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM072</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.Des. Industrial Design (Jointly with NCAD)</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM073</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.Eng. Mechanical Engineering</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM074</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.Eng. Computer Integrated Design</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM077</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.Eng. Aeronautical Engineering</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM078</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.Eng. Mechanical Engineering with a Language (German)</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM079</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.Eng.Manufacturing Engineering</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM081</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.Tech.Manufacturing Technology</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM050</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.B.S. Business Studies</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM052</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.B.S. Business Studies with French</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM053</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.B.S. Business Studies with German</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM054</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.B.S. Business Studies with Spanish</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM055</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.B.S. Business Studies with Japanese</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11.5pt; font-family: ArialNarrow"
-											>LM090</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11.5pt; font-family: ArialNarrow"
-											>B.Sc. Physical Education</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11.5pt; font-family: ArialNarrow"
-											>LM092</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11.5pt; font-family: ArialNarrow"
-											>B.Sc.(Education)</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11.5pt; font-family: ArialNarrow"
-											>LM094</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11.5pt; font-family: ArialNarrow"
-											>B.Tech.(Education)- Materials and Construction</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11.5pt; font-family: ArialNarrow"
-											>LM095</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11.5pt; font-family: ArialNarrow"
-											>B.Tech. (Education) – Materials and Engineering</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11.5pt; font-family: ArialNarrow"
-											>LM096</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11.5pt; font-family: ArialNarrow"
-											>B.Sc. (Education) Physics & Chemistry</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM021</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.A. Languages with Computing</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM030</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.A. Irish Traditional Music and Dance</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM040</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.A. European Studies</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM041</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.A. Public Administration</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM042</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LL.B. Law and European Studies</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM044</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.A. Applied Languages</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM045</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.A. Language and Cultural Studies</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM046</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.A. History</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM047</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.A. Arts (Offered at Mary Immaculate College)</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM048</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.A. Irish Studies</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM061</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.Sc. Industrial Chemistry</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM064</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.Sc. Industrial Biochemistry</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM065</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.Sc. Applied Physics</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM066</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.Sc. Environmental Science</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM068</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.Sc. Food Technology</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM089</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.Sc. Sports and Exercise Science</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM093</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.Sc. Equine Science</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM150</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.Sc. Nursing (General)</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM152</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.Sc. Nursing (Mental Health)</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-autospace: none; text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM154</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p style="text-autospace: none">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>B.Sc. Nursing (Intellectual Disability)</span
-										>
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#FFFFCC" class="Normal" width="121" style="vertical-align: top">
-									<p style="text-align: center">
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>LM180</span
-										>
-									</p>
-								</td>
-								<td class="Normal" width="397" style="vertical-align: top">
-									<p>
-										<span lang="EN-US" style="font-size: 11pt; font-family: ArialNarrow"
-											>Certificate/Diploma Equine Science</span
-										><b><span style="font-family: Arial"></span></b>
-									</p>
-								</td>
-							</tr>
-						</table>
-					</div>
+					</section>
+
+					<section>
+						<h2>Leaving Certificate Points System</h2>
+						<p>Standard points are calculated as follows;</p>
+						<div style="text-align: center">
+							<table class="data-table">
+								<tr bgcolor="#FFFFCC" style="vertical-align: top">
+									<td>
+										<p><b>Grade&nbsp; &nbsp; Points</b></p>
+									</td>
+									<td>
+										<p><b>Grade&nbsp;&nbsp; Points</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td>&nbsp;HA1&nbsp; =&nbsp; 100&nbsp;</td>
+									<td>
+										<div style="text-align: left">&nbsp;OA1&nbsp; =&nbsp; 60&nbsp;&nbsp;</div>
+									</td>
+								</tr>
+								<tr>
+									<td>&nbsp;HA2&nbsp; =&nbsp; 90&nbsp;</td>
+									<td>
+										<div style="text-align: left">&nbsp;OA2&nbsp; =&nbsp; 50</div>
+									</td>
+								</tr>
+								<tr>
+									<td>&nbsp;HB1&nbsp; =&nbsp; 85</td>
+									<td>
+										<div style="text-align: left">&nbsp;OB1&nbsp; =&nbsp; 45</div>
+									</td>
+								</tr>
+								<tr>
+									<td>&nbsp;HB2&nbsp; =&nbsp; 80</td>
+									<td>
+										<div style="text-align: left">&nbsp;OB2&nbsp; =&nbsp; 40</div>
+									</td>
+								</tr>
+								<tr>
+									<td>&nbsp;HB3&nbsp; =&nbsp; 75&nbsp;</td>
+									<td>
+										<div style="text-align: left">&nbsp;OB3&nbsp; =&nbsp; 35</div>
+									</td>
+								</tr>
+								<tr>
+									<td>&nbsp;HC1&nbsp; =&nbsp; 70&nbsp;</td>
+									<td>
+										<div style="text-align: left">&nbsp;OC1&nbsp; =&nbsp; 30</div>
+									</td>
+								</tr>
+								<tr>
+									<td>&nbsp;HC2&nbsp; =&nbsp; 65&nbsp;</td>
+									<td>
+										<div style="text-align: left">&nbsp;OC2&nbsp; =&nbsp; 25</div>
+									</td>
+								</tr>
+								<tr>
+									<td>&nbsp;HC3&nbsp; =&nbsp; 60</td>
+									<td>
+										<div style="text-align: left">&nbsp;OC3&nbsp; =&nbsp; 20</div>
+									</td>
+								</tr>
+								<tr>
+									<td>&nbsp;HD1&nbsp; =&nbsp; 55</td>
+									<td>
+										<div style="text-align: left">&nbsp;OD1&nbsp; = 15</div>
+									</td>
+								</tr>
+								<tr>
+									<td>&nbsp;HD2&nbsp; =&nbsp; 50&nbsp;</td>
+									<td>
+										<div style="text-align: left">&nbsp;OD2&nbsp; = 10</div>
+									</td>
+								</tr>
+								<tr>
+									<td>&nbsp;HD3 &nbsp;=&nbsp; 45&nbsp;</td>
+									<td>
+										<div style="text-align: left">&nbsp;OD3&nbsp; =&nbsp; 5</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</section>
+
+					<section>
+						<h2>Bonus Points</h2>
+						<p>Candidates may be awarded the following bonus points for all courses;</p>
+						<p>Maths HA1=40, HA2=35, HB1=30, HB2=25, HB3=20, HC1=15, HC2=10, HC3=5</p>
+					</section>
+
+					<section>
+						<h2>Processing</h2>
+						<p>
+							The overall points awarded to a candidate for a course is based on the candidate’s six best
+							Leaving Certificate subject points scores taking the bonus points into account.&nbsp;
+						</p>
+						<p>
+							To discriminate as fairly as possible between students who have the same score, the CAO
+							requires that a random number be produced in addition to the points score.&nbsp; The random
+							number can be produced using the COBOL Intrinsic Function RANDOM.
+						</p>
+						<p>
+							The code for processing the General and Special Requirements as well as the code for
+							calculating the Bonus points must be written as contained sub-programs.&nbsp; The code for
+							calculating the General points must be written as a separately complied sub-program.
+						</p>
+						<p>The COBOL Report Writer must be used to produce the report.</p>
+					</section>
+
+					<section>
+						<h2>Notes</h2>
+						<p>
+							The list of Leaving Certificate Subject Codes is supplied in the form of a copy file called
+							<a href="caosubj.cpy">caosubj.cpy</a>. Use the <code class="language-cobol">COPY</code> verb
+							to import the codes into your program.
+						</p>
+						<p>The list of UL courses and their Course Codes is given in the table below.</p>
+						<div style="text-align: center">
+							<table class="data-table">
+								<tr bgcolor="#CCFFFF">
+									<td class="Normal" colspan="2" style="vertical-align: top">
+										<div style="text-align: center"><b>UL Courses and Course Codes</b></div>
+									</td>
+								</tr>
+								<tr bgcolor="#FFFFCC">
+									<td class="Normal" style="vertical-align: top">
+										<div style="text-align: center"><b>Course Code</b></div>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<div style="text-align: center"><b>Course Name</b></div>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM020</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.A. Law and Accounting</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM043</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.A. Insurance and European Studies</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM063</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Tech. Production Management</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM051</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Sc Computer Systems</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM059</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Sc. Computer Systems with French</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM060</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Sc Mathematical Sciences and Computing</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM069</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Eng.Computer Engineering</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM070</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Eng.Electronic Engineering</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM080</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Tech.Electronic Systems</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM083</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Tech.Information Technology and Telecommunications</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM062</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Sc. Biomedical & Advanced Materials</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM067</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Tech. Wood Science and Technology</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM071</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Eng. Biomedical Engineering</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM072</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Des. Industrial Design (Jointly with NCAD)</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM073</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Eng. Mechanical Engineering</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM074</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Eng. Computer Integrated Design</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM077</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Eng. Aeronautical Engineering</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM078</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Eng. Mechanical Engineering with a Language (German)</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM079</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Eng.Manufacturing Engineering</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM081</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Tech.Manufacturing Technology</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM050</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.B.S. Business Studies</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM052</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.B.S. Business Studies with French</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM053</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.B.S. Business Studies with German</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM054</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.B.S. Business Studies with Spanish</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM055</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.B.S. Business Studies with Japanese</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM090</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Sc. Physical Education</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM092</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Sc.(Education)</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM094</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Tech.(Education)- Materials and Construction</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM095</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Tech. (Education) – Materials and Engineering</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM096</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Sc. (Education) Physics & Chemistry</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM021</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.A. Languages with Computing</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM030</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.A. Irish Traditional Music and Dance</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM040</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.A. European Studies</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM041</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.A. Public Administration</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM042</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>LL.B. Law and European Studies</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM044</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.A. Applied Languages</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM045</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.A. Language and Cultural Studies</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM046</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.A. History</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM047</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.A. Arts (Offered at Mary Immaculate College)</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM048</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.A. Irish Studies</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM061</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Sc. Industrial Chemistry</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM064</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Sc. Industrial Biochemistry</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM065</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Sc. Applied Physics</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM066</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Sc. Environmental Science</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM068</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Sc. Food Technology</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM089</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Sc. Sports and Exercise Science</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM093</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Sc. Equine Science</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM150</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Sc. Nursing (General)</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM152</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Sc. Nursing (Mental Health)</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM154</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>B.Sc. Nursing (Intellectual Disability)</p>
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFCC" class="Normal" style="vertical-align: top">
+										<p style="text-align: center">LM180</p>
+									</td>
+									<td class="Normal" style="vertical-align: top">
+										<p>Certificate/Diploma Equine Science</p>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</section>
+
+					<back-to-top></back-to-top>
 					<copyright-notice type="project"></copyright-notice>
-				</td>
-			</tr>
-		</table>
+					<p class="center-block"><a href="../index.html">&larr; Back to COBOL Exercises</a></p>
+				</div>
+			</div>
+		</main>
 	</body>
 </html>

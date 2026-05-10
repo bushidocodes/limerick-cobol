@@ -2,146 +2,34 @@
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>AcmeStockReorder – ACME Stock Reorder 1999 (COBOL source)</title>
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+		<title>AcmeStockReorder – ACME Stock Reorder 1999 (COBOL source)</title>
+		<link href="../../course/Resources/css/course.css" rel="stylesheet" />
+		<link href="../../course/Resources/css/course-components.css" rel="stylesheet" />
 		<link href="../../course/Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
 		<script src="../../course/Resources/vendor/prism/prism.min.js" defer></script>
 		<script src="../../course/Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
-		<style type="text/css">
-			img {
-				max-width: 100%;
-				height: auto;
-			}
-
-			table {
-				max-width: 100%;
-			}
-
-			pre {
-				overflow-x: auto;
-				max-width: 100%;
-			}
-
-			body {
-				-webkit-text-size-adjust: 100%;
-			}
-
-			@media (max-width: 600px) {
-				body {
-					margin: 4px;
-					overflow-wrap: break-word;
-					word-wrap: break-word;
-				}
-
-				table[width] {
-					width: 100% !important;
-					height: auto !important;
-				}
-
-				td[width],
-				th[width],
-				td[height],
-				th[height] {
-					width: auto !important;
-					height: auto !important;
-				}
-
-				td[bgcolor="#993300"] > h2,
-				td[bgcolor="#993300"] > h3 {
-					margin: 0.3em 0;
-				}
-
-				blockquote {
-					margin-left: 12px;
-					margin-right: 12px;
-				}
-
-				hr[width] {
-					width: 100% !important;
-				}
-
-				img,
-				iframe,
-				video,
-				embed,
-				object {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					height: auto;
-				}
-
-				pre {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					white-space: pre-wrap;
-					word-wrap: break-word;
-					overflow-wrap: break-word;
-				}
-
-				table[width="715"],
-				table[width="725"],
-				table[width="715"] > tbody,
-				table[width="725"] > tbody,
-				table[width="715"] > tbody > tr,
-				table[width="725"] > tbody > tr,
-				table[width="715"] > tbody > tr > td,
-				table[width="725"] > tbody > tr > td,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])),
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr > td {
-					display: block;
-					width: auto !important;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]),
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody {
-					display: block;
-					width: 100% !important;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr {
-					display: flex;
-					align-items: baseline;
-					gap: 0.4em;
-					margin: 0.4em 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="3%"] {
-					display: none;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="4%"] {
-					display: block;
-					flex: 0 0 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="93%"] {
-					display: block;
-					flex: 1 1 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
-				td[width="175"] > h4:not(:first-child):not(:has(img)),
-				td[width="160"] > h4:not(:first-child):not(:has(img)),
-				h4:has(> img[src*="PanelLine"]) {
-					display: none;
-				}
-
-				td[width="175"] > h3,
-				td[width="175"] > h4,
-				td[width="175"] > p,
-				td[width="160"] > h3,
-				td[width="160"] > h4,
-				td[width="160"] > p {
-					margin: 0.2em 0;
-				}
-			}
-		</style>
+		<script src="../../components/theme-toggle.js" defer></script>
+		<script src="../../components/page-hero.js" defer></script>
+		<script src="../../components/back-to-top.js" defer></script>
+		<script src="../../components/copy-button.js" defer></script>
+		<script src="../../components/copyright-notice.js" defer></script>
 	</head>
-	<body bgcolor="#FFFFFF" background="../../lectures/Code.gif">
-		<pre class="language-cobol"><code class="language-cobol">
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="page-content">
+					<page-hero title="ACME Stock Reorder" eyebrow="COBOL Source"></page-hero>
+					<hr />
+					<pre class="language-cobol"><code class="language-cobol">
        &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  ACME99.
@@ -225,8 +113,8 @@ WORKING-STORAGE SECTION.
                               "FERMANAGH", "TYRONE".
     02 COUNTRY-WC                   PIC X(10).
        88 EEC-COUNTRY
-          VALUE   "AUSTRIA", "BELGIUM", "DENMARK", "ENGLAND", "FINLAND", 
-                  "FRANCE", "GERMANY", "GREECE", "IRELAND", "ITALY", 
+          VALUE   "AUSTRIA", "BELGIUM", "DENMARK", "ENGLAND", "FINLAND",
+                  "FRANCE", "GERMANY", "GREECE", "IRELAND", "ITALY",
                   "LUXEMBOURG", "PORTUGAL", "SCOTLAND", "SPAIN",
                   "SWEDEN", "WALES".
        88 IRELAND                   VALUE "IRELAND".
@@ -293,7 +181,7 @@ GET-POSTAGE.
    MULTIPLY ITEM-WEIGHT-FB BY REORDER-QTY-FB
             GIVING TOTAL-WEIGHT-WD
             ON SIZE ERROR  MOVE 99999 TO TOTAL-WEIGHT-WD.
-        
+
    EVALUATE TOTAL-WEIGHT-WD ALSO REPUBLIC ALSO OTHER-EEC
      WHEN  1 THRU 500       ALSO TRUE     ALSO FALSE MOVE 1 TO POST-NUM-WA
      WHEN  1 THRU 500       ALSO FALSE    ALSO TRUE  MOVE 2 TO POST-NUM-WA
@@ -326,7 +214,7 @@ UPDATE-STOCK-RECORD.
            INVALID KEY DISPLAY "STOCK REWRITE STATUS = " STOCK-STATUS-WB
    END-REWRITE.
 
-                
+
 
 EXTRACT-ADDRESS-ITEMS.
    MOVE 1 TO UNSTRING-POINTER-WC.
@@ -342,5 +230,11 @@ EXTRACT-ADDRESS-ITEMS.
    DISPLAY "COUNTY = "  COUNTY-WC.
    DISPLAY "COUNTRY = " COUNTRY-WC.
  </code></pre>
+					<back-to-top></back-to-top>
+					<copyright-notice type="examples"></copyright-notice>
+					<p class="center-block"><a href="Exm-AcmeStockReorder.html">&larr; Back to specification</a></p>
+				</div>
+			</div>
+		</main>
 	</body>
 </html>

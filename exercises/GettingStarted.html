@@ -2,318 +2,242 @@
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
 		<title>Getting Started with the VISOC Environment</title>
-		<style type="text/css">
-			img {
-				max-width: 100%;
-				height: auto;
-			}
-
-			table {
-				max-width: 100%;
-			}
-
-			pre {
-				overflow-x: auto;
-				max-width: 100%;
-			}
-
-			body {
-				-webkit-text-size-adjust: 100%;
-			}
-
-			@media (max-width: 600px) {
-				body {
-					margin: 4px;
-					overflow-wrap: break-word;
-					word-wrap: break-word;
-				}
-
-				table[width] {
-					width: 100% !important;
-					height: auto !important;
-				}
-
-				td[width],
-				th[width],
-				td[height],
-				th[height] {
-					width: auto !important;
-					height: auto !important;
-				}
-
-				td[bgcolor="#993300"] > h2,
-				td[bgcolor="#993300"] > h3 {
-					margin: 0.3em 0;
-				}
-
-				blockquote {
-					margin-left: 12px;
-					margin-right: 12px;
-				}
-
-				hr[width] {
-					width: 100% !important;
-				}
-
-				img,
-				iframe,
-				video,
-				embed,
-				object {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					height: auto;
-				}
-
-				pre {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					white-space: pre-wrap;
-					word-wrap: break-word;
-					overflow-wrap: break-word;
-				}
-
-				table[width="715"],
-				table[width="725"],
-				table[width="715"] > tbody,
-				table[width="725"] > tbody,
-				table[width="715"] > tbody > tr,
-				table[width="725"] > tbody > tr,
-				table[width="715"] > tbody > tr > td,
-				table[width="725"] > tbody > tr > td,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])),
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr > td {
-					display: block;
-					width: auto !important;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]),
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody {
-					display: block;
-					width: 100% !important;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr {
-					display: flex;
-					align-items: baseline;
-					gap: 0.4em;
-					margin: 0.4em 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="3%"] {
-					display: none;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="4%"] {
-					display: block;
-					flex: 0 0 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="93%"] {
-					display: block;
-					flex: 1 1 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
-				td[width="175"] > h4:not(:first-child):not(:has(img)),
-				td[width="160"] > h4:not(:first-child):not(:has(img)),
-				h4:has(> img[src*="PanelLine"]) {
-					display: none;
-				}
-
-				td[width="175"] > h3,
-				td[width="175"] > h4,
-				td[width="175"] > p,
-				td[width="160"] > h3,
-				td[width="160"] > h4,
-				td[width="160"] > p {
-					margin: 0.2em 0;
-				}
-			}
-		</style>
+		<link href="../course/Resources/css/course.css" rel="stylesheet" />
+		<link href="../course/Resources/css/course-components.css" rel="stylesheet" />
+		<script src="../components/theme-toggle.js" defer></script>
+		<script src="../components/page-hero.js" defer></script>
+		<script src="../components/back-to-top.js" defer></script>
+		<script src="../components/copyright-notice.js" defer></script>
 	</head>
-	<body text="#000000" bgcolor="#FFFFFF" link="#0000FF" vlink="#FF0000" alink="#009B00">
-		<div class="center-block">
-			<h2><img src="T-CobolExercise.gif" height="56" width="183" alt="" /></h2>
-			<h2><b>Getting Started with the NetExpress Environment</b></h2>
-			<hr />
-			<code class="language-cobol">ACCEPT</code>, <code class="language-cobol">DISPLAY</code>,
-			<code class="language-cobol">MULTIPLY</code>, <code class="language-cobol">COMPUTE</code>
-		</div>
-		<hr />
-		<h2>Starting NetExpress</h2>
-		<p>
-			We will start by loading an existing COBOL program into the development environment and then compiling and
-			running the program.
-		</p>
-		<p>
-			The development environment we are using for this course is Microfocus NetExpress. NetExpress is an
-			Integrated Development Environment (IDE) supporting an Object Oriented version of COBOL. The OO-COBOL
-			supported by NetExpress is a preview of the coming standard.
-		</p>
-		<p>
-			To load the program, click on the&nbsp;
-			<a href="../examples/Accept/gettingstarted.cbl">GettingStarted.Cbl</a>&nbsp; link.&nbsp;&nbsp; This will
-			allow you (depending on how your browser is set up) to either download the file to your local hard disk or
-			load it directly into the NetExpress environment.
-		</p>
-		<p>
-			If you download the program you should save it to the \WorkArea directory on the drive D:.&nbsp;&nbsp; When
-			the file has been downloaded, start NetExpress and load the program using the <b><i>File</i></b> option in
-			the main menu bar.
-		</p>
-		<p>
-			If you load it directly into the NetExpress environment you should use the <b><i>Save As</i></b> option in
-			the <b><i>File</i></b> menu to save it as GettingStarted.Cbl to the \WorkArea directory.
-		</p>
-		<p>The NetExpress programming environment should now be running with the GettingStarted.Cbl file loaded.</p>
-		<h2>Configuring the NetExpress environment</h2>
-		The default NetExpress Environment makes it difficult to write programs the way we would like so we need to make
-		some changes to it.
-		<p>
-			From the NetExpress <b><i>Options</i></b> menu select <b><i>Edit</i></b
-			>. This brings up a dialogue box with a number of tabs.&nbsp; Make sure the <b><i>Profile</i></b> tab has
-			the focus.
-		</p>
-		<p>
-			In the <b><i>Margins</i></b> option change the left margin to 0.
-		</p>
-		<p>
-			Now select the <b><i>Blocks/Clipboard</i></b> tab.
-		</p>
-		<p>
-			In the "<b><i>Selecting line blocks and column blocks</i></b
-			>" option select "Select column blocks when dragging, except when in prefix area".
-		</p>
-		<p>
-			Select <b><i>OK</i></b> to close the dialogue box and observe the results.
-		</p>
-		<h2>Compiling the program</h2>
-		<p>
-			Click on the tick icon<img
-				src="i-tick.gif"
-				height="24"
-				width="24"
-				alt=""
-				style="margin-left: 7px; margin-right: 7px"
-			/>in the NetExpress toolbar. This compiles the program.
-		</p>
-		<h2>Starting to run the program</h2>
-		For the time being we will run our COBOL programs from within the NetExpress Animator.&nbsp; Later in the course
-		we will create stand alone programs (.EXE's).
-		<p>
-			Position the cursor over program statement&nbsp; "ACCEPT Num1.".&nbsp; Click the right mouse button.&nbsp;
-			From the menu which appears select <i><b>Set Breakpoint</b>.</i>
-		</p>
-		<p>
-			Now select "<b><i>Start Animating</i></b
-			>" from within the <b><i>Animate</i></b> menu option and chose <b><i>OK</i></b> from the dialogue box which
-			appears.
-		</p>
-		<p>
-			The program starts to run, the first statement in the Procedure Division is highlighted but is not executed.
-		</p>
-		<h2>Using the Animator</h2>
-		Before we continue with running the program let's have a look at some of the facilities the Animator provides.
-		<p>
-			Right click on the variable Num1 in the program statement "MULTIPLY Num1 BY Num2 GIVING Result. " Take note
-			of all the options that appear in the right-click menu.
-		</p>
-		<p>Let's suppose that we want to find out the size and type of Num1.</p>
-		<p>
-			To do this select <b><i>Locate "Num1"</i></b> from the right-click menu.
-		</p>
-		<p>
-			The cursor jumps up to the Num1 declaration. Now right-click on a blank part of the program text and select
-			"<b><i>Return</i></b
-			>" from the right-click menu.
-		</p>
-		<p>The cursor jumps back to where it came from.</p>
-		<p>Now let's examine two ways of monitoring the contents of variables.</p>
-		<p>In the program statement "MULTIPLY Num1 BY Num2 GIVING Result." right click on the variable Num1.</p>
-		<p>
-			Select "<b><i>Examine Num1</i></b
-			>" from the right-click menu. From the "Examine List" dialogue that appears select the
-			<b><i>Monitor</i></b> option. This creates a little window which is used to monitor the contents of the
-			variable Num1.
-		</p>
-		<p>
-			Right-click on Num2 and select "<b><i>Examine Num2</i></b
-			>" from the right-click menu. From the dialogue that appears select the "<b><i>Add to List</i></b
-			>" option. This creates a "Watch list" window and adds Num2 to the watch list.
-		</p>
-		<p>Do the same for the Result variable.</p>
-		<p>The watch list window should now have two entries - Num2 and Result.</p>
-		<h2>Continuing with the program run</h2>
-		Let's go back to running the program.
-		<p>
-			From the NetExpress toolbar select the Step icon&nbsp;<img
-				src="i-step.gif"
-				height="23"
-				width="23"
-				alt=""
-				style="margin-left: 7px; margin-right: 7px"
-			/>(if you position the cursor over each icon for a short time the computer will display a label for it). You
-			can also select step from the <b><i>Animate</i></b> menu or by pressing Ctrl-S.
-		</p>
-		<p>
-			The first Procedure Division statement should now be executed. A console window is created and has the focus
-			and the program waits for the user (that's you) to enter the first number. Enter the value 3 and press
-			return.
-		</p>
-		<p>The focus returns to the NetExpress environment.</p>
-		<p>Look at the monitoring window for the Num1 variable. Note the contents.</p>
-		<p>Click on the Step icon again to execute the Multiply instruction.</p>
-		<p>Note that the contents of the Result variable in the watch list window do not change (3*0=0).</p>
-		<p>Click on the step icon again and this time enter 5 in the console window and press return.</p>
-		<p>Note the value that has been assigned to Num2 in the watch list window.</p>
-		<p>Click on the step icon again to execute the Display instruction.</p>
-		<p>
-			Note that this time the console window does not take the focus. You have to click on the console window to
-			give it the focus.
-		</p>
-		<p>Note that the program produces the wrong answer.</p>
-		<p>Click on the step icon again to execute the STOP-RUN.</p>
-		<p>
-			Select "<b><i>Stop Animating</i></b
-			>" from the <b><i>Animate</i></b> menu.
-		</p>
-		<p>
-			Select "<b><i>NO</i></b
-			>" in response to the question "Do you want to keep the project created for the animate session".
-		</p>
-		<h2>Fixing the Program</h2>
-		<p>
-			Change the program so that it prompts the user for input (hint&nbsp;
-			<code class="language-cobol">DISPLAY WITH NO ADVANCING</code>) and produces the correct answer.
-		</p>
-		<h2>Conclusion</h2>
-		See if you can replace the MULTIPLY statement by the equivalent COMPUTE statement.
-		<p>The format for the COMPUTE is&nbsp; -</p>
-		<ul>
-			<ul>
-				COMPUTE
-				<i>result</i
-				>=
-				<i>operand operator operand</i>
-			</ul>
-		</ul>
-		<br />
-		<hr />
-		<table cellspacing="0" cellpadding="0" cols="1" width="200">
-			<tr style="text-align: center; vertical-align: top">
-				<td>
-					<a href="index.html"
-						><img src="../pics/B-BackArrow.gif" alt="Back to COBOL Exercises page" height="52" width="52"
-					/></a>
-					To COBOL Exercises
-				</td>
-			</tr>
-		</table>
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="page-content">
+					<page-hero
+						title="Getting Started with the NetExpress Environment"
+						eyebrow="COBOL Exercise"
+					></page-hero>
+					<p class="center-block">
+						<code class="language-cobol">ACCEPT</code>, <code class="language-cobol">DISPLAY</code>,
+						<code class="language-cobol">MULTIPLY</code>, <code class="language-cobol">COMPUTE</code>
+					</p>
+					<hr />
+
+					<section>
+						<h2>Starting NetExpress</h2>
+						<p>
+							We will start by loading an existing COBOL program into the development environment and then
+							compiling and running the program.
+						</p>
+						<p>
+							The development environment we are using for this course is Microfocus NetExpress.
+							NetExpress is an Integrated Development Environment (IDE) supporting an Object Oriented
+							version of COBOL. The OO-COBOL supported by NetExpress is a preview of the coming standard.
+						</p>
+						<p>
+							To load the program, click on the
+							<a href="../examples/Accept/gettingstarted.cbl">GettingStarted.Cbl</a> link. This will allow
+							you (depending on how your browser is set up) to either download the file to your local hard
+							disk or load it directly into the NetExpress environment.
+						</p>
+						<p>
+							If you download the program you should save it to the \WorkArea directory on the drive D:.
+							When the file has been downloaded, start NetExpress and load the program using the
+							<b><i>File</i></b> option in the main menu bar.
+						</p>
+						<p>
+							If you load it directly into the NetExpress environment you should use the
+							<b><i>Save As</i></b> option in the <b><i>File</i></b> menu to save it as GettingStarted.Cbl
+							to the \WorkArea directory.
+						</p>
+						<p>
+							The NetExpress programming environment should now be running with the GettingStarted.Cbl
+							file loaded.
+						</p>
+					</section>
+
+					<section>
+						<h2>Configuring the NetExpress environment</h2>
+						<p>
+							The default NetExpress Environment makes it difficult to write programs the way we would
+							like so we need to make some changes to it.
+						</p>
+						<p>
+							From the NetExpress <b><i>Options</i></b> menu select <b><i>Edit</i></b
+							>. This brings up a dialogue box with a number of tabs. Make sure the
+							<b><i>Profile</i></b> tab has the focus.
+						</p>
+						<p>
+							In the <b><i>Margins</i></b> option change the left margin to 0.
+						</p>
+						<p>
+							Now select the <b><i>Blocks/Clipboard</i></b> tab.
+						</p>
+						<p>
+							In the "<b><i>Selecting line blocks and column blocks</i></b
+							>" option select "Select column blocks when dragging, except when in prefix area".
+						</p>
+						<p>
+							Select <b><i>OK</i></b> to close the dialogue box and observe the results.
+						</p>
+					</section>
+
+					<section>
+						<h2>Compiling the program</h2>
+						<p>
+							Click on the tick icon<img
+								src="i-tick.gif"
+								height="24"
+								width="24"
+								alt=""
+								style="margin-left: 7px; margin-right: 7px"
+							/>in the NetExpress toolbar. This compiles the program.
+						</p>
+					</section>
+
+					<section>
+						<h2>Starting to run the program</h2>
+						<p>
+							For the time being we will run our COBOL programs from within the NetExpress Animator. Later
+							in the course we will create stand alone programs (.EXE's).
+						</p>
+						<p>
+							Position the cursor over program statement "ACCEPT Num1.". Click the right mouse button.
+							From the menu which appears select <i><b>Set Breakpoint</b>.</i>
+						</p>
+						<p>
+							Now select "<b><i>Start Animating</i></b
+							>" from within the <b><i>Animate</i></b> menu option and chose <b><i>OK</i></b> from the
+							dialogue box which appears.
+						</p>
+						<p>
+							The program starts to run, the first statement in the Procedure Division is highlighted but
+							is not executed.
+						</p>
+					</section>
+
+					<section>
+						<h2>Using the Animator</h2>
+						<p>
+							Before we continue with running the program let's have a look at some of the facilities the
+							Animator provides.
+						</p>
+						<p>
+							Right click on the variable Num1 in the program statement "MULTIPLY Num1 BY Num2 GIVING
+							Result. " Take note of all the options that appear in the right-click menu.
+						</p>
+						<p>Let's suppose that we want to find out the size and type of Num1.</p>
+						<p>
+							To do this select <b><i>Locate "Num1"</i></b> from the right-click menu.
+						</p>
+						<p>
+							The cursor jumps up to the Num1 declaration. Now right-click on a blank part of the program
+							text and select "<b><i>Return</i></b
+							>" from the right-click menu.
+						</p>
+						<p>The cursor jumps back to where it came from.</p>
+						<p>Now let's examine two ways of monitoring the contents of variables.</p>
+						<p>
+							In the program statement "MULTIPLY Num1 BY Num2 GIVING Result." right click on the variable
+							Num1.
+						</p>
+						<p>
+							Select "<b><i>Examine Num1</i></b
+							>" from the right-click menu. From the "Examine List" dialogue that appears select the
+							<b><i>Monitor</i></b> option. This creates a little window which is used to monitor the
+							contents of the variable Num1.
+						</p>
+						<p>
+							Right-click on Num2 and select "<b><i>Examine Num2</i></b
+							>" from the right-click menu. From the dialogue that appears select the "<b
+								><i>Add to List</i></b
+							>" option. This creates a "Watch list" window and adds Num2 to the watch list.
+						</p>
+						<p>Do the same for the Result variable.</p>
+						<p>The watch list window should now have two entries - Num2 and Result.</p>
+					</section>
+
+					<section>
+						<h2>Continuing with the program run</h2>
+						<p>Let's go back to running the program.</p>
+						<p>
+							From the NetExpress toolbar select the Step icon<img
+								src="i-step.gif"
+								height="23"
+								width="23"
+								alt=""
+								style="margin-left: 7px; margin-right: 7px"
+							/>(if you position the cursor over each icon for a short time the computer will display a
+							label for it). You can also select step from the <b><i>Animate</i></b> menu or by pressing
+							Ctrl-S.
+						</p>
+						<p>
+							The first Procedure Division statement should now be executed. A console window is created
+							and has the focus and the program waits for the user (that's you) to enter the first number.
+							Enter the value 3 and press return.
+						</p>
+						<p>The focus returns to the NetExpress environment.</p>
+						<p>Look at the monitoring window for the Num1 variable. Note the contents.</p>
+						<p>Click on the Step icon again to execute the Multiply instruction.</p>
+						<p>
+							Note that the contents of the Result variable in the watch list window do not change
+							(3*0=0).
+						</p>
+						<p>
+							Click on the step icon again and this time enter 5 in the console window and press return.
+						</p>
+						<p>Note the value that has been assigned to Num2 in the watch list window.</p>
+						<p>Click on the step icon again to execute the Display instruction.</p>
+						<p>
+							Note that this time the console window does not take the focus. You have to click on the
+							console window to give it the focus.
+						</p>
+						<p>Note that the program produces the wrong answer.</p>
+						<p>Click on the step icon again to execute the STOP-RUN.</p>
+						<p>
+							Select "<b><i>Stop Animating</i></b
+							>" from the <b><i>Animate</i></b> menu.
+						</p>
+						<p>
+							Select "<b><i>NO</i></b
+							>" in response to the question "Do you want to keep the project created for the animate
+							session".
+						</p>
+					</section>
+
+					<section>
+						<h2>Fixing the Program</h2>
+						<p>
+							Change the program so that it prompts the user for input (hint
+							<code class="language-cobol">DISPLAY WITH NO ADVANCING</code>) and produces the correct
+							answer.
+						</p>
+					</section>
+
+					<section>
+						<h2>Conclusion</h2>
+						<p>See if you can replace the MULTIPLY statement by the equivalent COMPUTE statement.</p>
+						<p>The format for the COMPUTE is</p>
+						<p class="center-block">
+							<code class="language-cobol">COMPUTE</code> <i>result</i> = <i>operand operator operand</i>
+						</p>
+					</section>
+
+					<back-to-top></back-to-top>
+					<copyright-notice type="exercises"></copyright-notice>
+					<p class="center-block"><a href="index.html">&larr; Back to COBOL Exercises</a></p>
+				</div>
+			</div>
+		</main>
 	</body>
 </html>

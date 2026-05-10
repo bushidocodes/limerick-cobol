@@ -2,316 +2,149 @@
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
 		<title>Writing records to a Sequential File</title>
-		<style type="text/css">
-			img {
-				max-width: 100%;
-				height: auto;
-			}
-
-			table {
-				max-width: 100%;
-			}
-
-			pre {
-				overflow-x: auto;
-				max-width: 100%;
-			}
-
-			body {
-				-webkit-text-size-adjust: 100%;
-			}
-
-			@media (max-width: 600px) {
-				body {
-					margin: 4px;
-					overflow-wrap: break-word;
-					word-wrap: break-word;
-				}
-
-				table[width] {
-					width: 100% !important;
-					height: auto !important;
-				}
-
-				td[width],
-				th[width],
-				td[height],
-				th[height] {
-					width: auto !important;
-					height: auto !important;
-				}
-
-				td[bgcolor="#993300"] > h2,
-				td[bgcolor="#993300"] > h3 {
-					margin: 0.3em 0;
-				}
-
-				blockquote {
-					margin-left: 12px;
-					margin-right: 12px;
-				}
-
-				hr[width] {
-					width: 100% !important;
-				}
-
-				img,
-				iframe,
-				video,
-				embed,
-				object {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					height: auto;
-				}
-
-				pre {
-					max-width: min(100%, calc(100vw - 16px)) !important;
-					white-space: pre-wrap;
-					word-wrap: break-word;
-					overflow-wrap: break-word;
-				}
-
-				table[width="715"],
-				table[width="725"],
-				table[width="715"] > tbody,
-				table[width="725"] > tbody,
-				table[width="715"] > tbody > tr,
-				table[width="725"] > tbody > tr,
-				table[width="715"] > tbody > tr > td,
-				table[width="725"] > tbody > tr > td,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])),
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr,
-				table[width="710"]:not(:has(> tbody > tr > td[width="93%"])) > tbody > tr > td {
-					display: block;
-					width: auto !important;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]),
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody {
-					display: block;
-					width: 100% !important;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr {
-					display: flex;
-					align-items: baseline;
-					gap: 0.4em;
-					margin: 0.4em 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="3%"] {
-					display: none;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="4%"] {
-					display: block;
-					flex: 0 0 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
-				table[width="710"]:has(> tbody > tr > td[width="93%"]) > tbody > tr > td[width="93%"] {
-					display: block;
-					flex: 1 1 auto;
-					width: auto !important;
-					padding: 0;
-				}
-
-				td[width="175"] > h4:not(:first-child):not(:has(img)),
-				td[width="160"] > h4:not(:first-child):not(:has(img)),
-				h4:has(> img[src*="PanelLine"]) {
-					display: none;
-				}
-
-				td[width="175"] > h3,
-				td[width="175"] > h4,
-				td[width="175"] > p,
-				td[width="160"] > h3,
-				td[width="160"] > h4,
-				td[width="160"] > p {
-					margin: 0.2em 0;
-				}
-			}
-		</style>
+		<link href="../course/Resources/css/course.css" rel="stylesheet" />
+		<link href="../course/Resources/css/course-components.css" rel="stylesheet" />
+		<script src="../components/theme-toggle.js" defer></script>
+		<script src="../components/page-hero.js" defer></script>
+		<script src="../components/back-to-top.js" defer></script>
+		<script src="../components/copyright-notice.js" defer></script>
 	</head>
-	<body text="#000000" bgcolor="#FFFFFF" link="#0000FF" vlink="#FF0000" alink="#009B00">
-		<div class="center-block">
-			<img src="T-CobolExercise.gif" height="56" width="183" alt="" />
-			<h2>Writing records to a Sequential File</h2>
-			<hr />
-			<code class="language-cobol">ACCEPT</code>, <code class="language-cobol">DISPLAY</code>,&nbsp;
-			<code class="language-cobol">WRITE</code>, <code class="language-cobol">PERFORM..UNTIL</code>
-		</div>
-		<hr />
-		<h2>Introduction</h2>
-		Using Seqread.Cbl as a starting point, write a program called SeqWrite.Cbl to accept student records from the
-		user and write them to a file (MyStudents.Dat).&nbsp; The program should keep accepting records from the user
-		until spaces are entered instead of a record (i.e.the Enter key is pressed without having entered any
-		data).&nbsp; No error checking on the data entered is required.
-		<p>
-			The program should prompt the user for each record and should provide a template to make it more easy to
-			enter the data correctly (see Example Run below).
-		</p>
-		<h2>Output File</h2>
-		The student records accepted from the user must be written to a file.&nbsp; Each record will have the following
-		description.<br />
-		&nbsp;
-		<table class="data-table">
-			<tr>
-				<td width="144">
-					<div class="center-block"><b>Field</b></div>
-				</td>
-				<td width="67">
-					<div class="center-block"><b>Type</b></div>
-				</td>
-				<td width="84">
-					<div class="center-block"><b>Length</b></div>
-				</td>
-				<td width="127">
-					<div class="center-block"><b>Value</b></div>
-				</td>
-			</tr>
-			<tr>
-				<td width="144">Student Id</td>
-				<td width="67">
-					<div class="center-block">9</div>
-				</td>
-				<td width="84">
-					<div class="center-block">7</div>
-				</td>
-				<td width="127">
-					<div class="center-block">0-9999999</div>
-				</td>
-			</tr>
-			<tr>
-				<td width="144">Student Name</td>
-				<td width="67">
-					<div class="center-block">.</div>
-				</td>
-				<td width="84">
-					<div class="center-block">.</div>
-				</td>
-				<td width="127">
-					<div class="center-block">Group</div>
-				</td>
-			</tr>
-			<tr>
-				<td width="144">Surname</td>
-				<td width="67">
-					<div class="center-block">X</div>
-				</td>
-				<td width="84">
-					<div class="center-block">8</div>
-				</td>
-				<td width="127">
-					<div class="center-block">-</div>
-				</td>
-			</tr>
-			<tr>
-				<td width="144">Initials</td>
-				<td width="67">
-					<div class="center-block">X</div>
-				</td>
-				<td width="84">
-					<div class="center-block">2</div>
-				</td>
-				<td width="127">
-					<div class="center-block">-</div>
-				</td>
-			</tr>
-			<tr>
-				<td width="144">Gender</td>
-				<td width="67">
-					<div class="center-block">X</div>
-				</td>
-				<td width="84">
-					<div class="center-block">1</div>
-				</td>
-				<td width="127">
-					<div class="center-block">M/F</div>
-				</td>
-			</tr>
-		</table>
-		&nbsp;
-		<ul>
-			<ul>
-				<ul>
-					<u>Example Run</u>
-				</ul>
-				<tt>Please enter the student record using the template below.</tt
-				><br />
-				<tt>Press the Enter key with no data to stop.</tt
-				><br />
-				<tt>nnnnnnnSSSSSSSSiiG</tt
-				><br />
-				<tt>9765321COUGHLANMSM</tt
-				><br />
-				<tt>9787654RYAN&nbsp;&nbsp;&nbsp; GTF</tt
-				><br />
-				<tt>9734563POWER&nbsp;&nbsp; RGM</tt
-				><br />
-				<tt>9734562SMITH&nbsp;&nbsp; WBM</tt
-				><br />
-				<tt>9765341KENNEDY DSF</tt
-				><br />
-				<tt>&nbsp;&nbsp;&nbsp; <i>enter</i></tt
-				><br />
-				<i><tt></tt></i
-				>&nbsp;
-			</ul>
-		</ul>
-		<h2><tt>Further Work</tt></h2>
-		<tt
-			>Add code to your program to read the file you have just created and display the records.&nbsp; Display the
-			records as shown in the example run below</tt
-		>
-		<ul>
-			<ul>
-				<ul>
-					<u>Example Run</u>
-				</ul>
-				<tt>Stud-Id&nbsp; Student Name Gender</tt
-				><br />
-				<tt>9765321&nbsp; COUGHLAN MS&nbsp;&nbsp;&nbsp; M</tt
-				><br />
-				<tt>9787654&nbsp; RYAN&nbsp;&nbsp;&nbsp;&nbsp; GT&nbsp;&nbsp;&nbsp; F</tt
-				><br />
-				<tt>9734563&nbsp; POWER&nbsp;&nbsp;&nbsp; RG&nbsp;&nbsp;&nbsp; M</tt
-				><br />
-				<tt>9734562&nbsp; SMITH&nbsp;&nbsp;&nbsp; WB&nbsp;&nbsp;&nbsp; M</tt
-				><br />
-				<tt>9765341&nbsp; KENNEDY&nbsp; DS&nbsp;&nbsp;&nbsp; F</tt>
-			</ul>
-		</ul>
-		<h2><tt></tt></h2>
-		<h2><tt>Example Program</tt></h2>
-		<tt
-			>When you have written your program and have compiled it and have it working correctly, you may wish to
-			compare it with this <a href="../examples/SeqWrite/SEQWRITE.CBL">sample solution</a>.</tt
-		><br />
-		<tt></tt>&nbsp;<tt></tt>
-		<div class="center-block">
-			<tt
-				><b><span style="color: #ff0000">WARNING</span></b></tt
-			>
-			<tt
-				>Do not look at the solution until you have finished your own or at least have made a substantial effort
-				to complete it.</tt
-			>
-		</div>
-		<hr />
-		<table cellspacing="0" cellpadding="0" cols="1" width="200">
-			<tr style="text-align: center; vertical-align: top">
-				<td>
-					<a href="index.html"
-						><img src="../pics/B-BackArrow.gif" alt="Back to COBOL Exercises page" height="52" width="52"
-					/></a>
-					To COBOL Exercises
-				</td>
-			</tr>
-		</table>
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="page-content">
+					<page-hero title="Writing records to a Sequential File" eyebrow="COBOL Exercise"></page-hero>
+					<p class="center-block">
+						<code class="language-cobol">ACCEPT</code>, <code class="language-cobol">DISPLAY</code>,
+						<code class="language-cobol">WRITE</code>, <code class="language-cobol">PERFORM..UNTIL</code>
+					</p>
+					<hr />
+
+					<section>
+						<h2>Introduction</h2>
+						<p>
+							Using Seqread.Cbl as a starting point, write a program called SeqWrite.Cbl to accept student
+							records from the user and write them to a file (MyStudents.Dat). The program should keep
+							accepting records from the user until spaces are entered instead of a record (i.e. the Enter
+							key is pressed without having entered any data). No error checking on the data entered is
+							required.
+						</p>
+						<p>
+							The program should prompt the user for each record and should provide a template to make it
+							more easy to enter the data correctly (see Example Run below).
+						</p>
+					</section>
+
+					<section>
+						<h2>Output File</h2>
+						<p>
+							The student records accepted from the user must be written to a file. Each record will have
+							the following description.
+						</p>
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Field</th>
+									<th>Type</th>
+									<th>Length</th>
+									<th>Value</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Student Id</td>
+									<td>9</td>
+									<td>7</td>
+									<td>0-9999999</td>
+								</tr>
+								<tr>
+									<td>Student Name</td>
+									<td>.</td>
+									<td>.</td>
+									<td>Group</td>
+								</tr>
+								<tr>
+									<td>Surname</td>
+									<td>X</td>
+									<td>8</td>
+									<td>-</td>
+								</tr>
+								<tr>
+									<td>Initials</td>
+									<td>X</td>
+									<td>2</td>
+									<td>-</td>
+								</tr>
+								<tr>
+									<td>Gender</td>
+									<td>X</td>
+									<td>1</td>
+									<td>M/F</td>
+								</tr>
+							</tbody>
+						</table>
+						<figure class="example-run">
+							<figcaption>Example run</figcaption>
+							<pre><samp>Please enter the student record using the template below.
+Press the Enter key with no data to stop.
+nnnnnnnSSSSSSSSiiG
+<kbd>9765321COUGHLANMSM</kbd>
+<kbd>9787654RYAN    GTF</kbd>
+<kbd>9734563POWER   RGM</kbd>
+<kbd>9734562SMITH   WBM</kbd>
+<kbd>9765341KENNEDY DSF</kbd>
+   <kbd>enter</kbd></samp></pre>
+						</figure>
+					</section>
+
+					<section>
+						<h2>Further Work</h2>
+						<p>
+							Add code to your program to read the file you have just created and display the records.
+							Display the records as shown in the example run below.
+						</p>
+						<figure class="example-run">
+							<figcaption>Example run</figcaption>
+							<pre><samp>Stud-Id  Student Name Gender
+9765321  COUGHLAN MS    M
+9787654  RYAN     GT    F
+9734563  POWER    RG    M
+9734562  SMITH    WB    M
+9765341  KENNEDY  DS    F</samp></pre>
+						</figure>
+					</section>
+
+					<section>
+						<h2>Example Program</h2>
+						<p>
+							When you have written your program and have compiled it and have it working correctly, you
+							may wish to compare it with this
+							<a href="../examples/SeqWrite/SEQWRITE.CBL">sample solution</a>.
+						</p>
+						<p class="center-block">
+							<b><span style="color: #ff0000">WARNING</span></b>
+						</p>
+						<p>
+							Do not look at the solution until you have finished your own or at least have made a
+							substantial effort to complete it.
+						</p>
+					</section>
+
+					<back-to-top></back-to-top>
+					<copyright-notice type="exercises"></copyright-notice>
+					<p class="center-block"><a href="index.html">&larr; Back to COBOL Exercises</a></p>
+				</div>
+			</div>
+		</main>
 	</body>
 </html>
