@@ -12,16 +12,59 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
             - uses: actions/setup-node@v4
               with:
                   node-version: "20"
                   cache: "npm"
             - run: npm ci
-            - run: npm run format:check
+            # Skip on non-fork PRs: the auto-format workflow commits prettier
+            # fixes back to the branch, so format:check would race it and fail.
+            # For fork PRs and direct pushes to master, auto-format doesn't run,
+            # so the check is still needed.
+            - if: |
+                  github.event_name == 'push' ||
+                  github.event.pull_request.head.repo.full_name != github.repository
+              run: npm run format:check
             - run: npm run validate
             - run: npm run check:assets
             - run: npm run links
-            - run: npm run a11y
+            - name: Accessibility check
+              run: |
+                  # On push to master there is no PR base; run the full scan.
+                  if [ -z "${{ github.base_ref }}" ]; then
+                    echo "Direct push — running full a11y scan"
+                    npm run a11y
+                    exit
+                  fi
+
+                  BASE="origin/${{ github.base_ref }}"
+
+                  # Full scan if any shared assets changed (they affect every page).
+                  if git diff --name-only "$BASE"...HEAD \
+                      | grep -qE '^(components/|course/Resources/)'; then
+                    echo "Shared assets changed — running full a11y scan"
+                    npm run a11y
+                    exit
+                  fi
+
+                  # Partial scan: only the HTML files touched in this PR.
+                  mapfile -t URLS < <(
+                    git diff --name-only "$BASE"...HEAD \
+                      | grep '\.html$' \
+                      | sed 's|^|http://localhost:8000/|'
+                  )
+
+                  if [ ${#URLS[@]} -eq 0 ]; then
+                    echo "No HTML files changed — skipping a11y"
+                    exit
+                  fi
+
+                  echo "Running a11y on ${#URLS[@]} changed file(s):"
+                  printf '  %s\n' "${URLS[@]}"
+                  npx start-server-and-test 'npm run serve' http://localhost:8000 \
+                    "npx pa11y-ci --config .pa11yci.json ${URLS[*]}"
 
     typos:
         name: Spell check (typos)
@@ -29,4 +72,4 @@ jobs:
         continue-on-error: true
         steps:
             - uses: actions/checkout@v4
-            - uses: crate-ci/typos-action@v1
+            - uses: crate-ci/typos@v1.46.1
