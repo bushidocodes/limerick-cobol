@@ -16,8 +16,7 @@ const FILES = [
 
 // Match a <select aria-label="Click for answer" ...> ... </select> block,
 // preceded by optional whitespace on the same line (to recover indentation).
-const SELECT_RE =
-	/([ \t]*)(<select\s+aria-label="Click for answer"[^>]*>([\s\S]*?)<\/select>)/g;
+const SELECT_RE = /([ \t]*)(<select\s+aria-label="Click for answer"[^>]*>([\s\S]*?)<\/select>)/g;
 
 // Match individual <option> elements (content may span lines).
 const OPTION_RE = /<option([^>]*)>([\s\S]*?)<\/option>/g;
