@@ -7,6 +7,39 @@
 	text-align: center;
 }
 
+/* Eyebrow label in page-hero — replaces t-CobolTut.gif word-art badge.
+   Uses site maroon in light mode; warm orange in dark mode so it stays
+   legible without the img invert filter. */
+.page-hero-eyebrow {
+	margin: 0 0 0.25em;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.85em;
+	font-weight: bold;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: #993300;
+}
+
+@media (prefers-color-scheme: dark) {
+	.page-hero-eyebrow {
+		color: #ff9966;
+	}
+}
+
+/* Decorative disc bullet — replaces BallBlueG.gif (13×13 px) used inline
+   in h3 headings on lectures/index.html. Sized and coloured to match the
+   original blue ball. Inline-block so it sits on the text baseline. */
+.ball-blue {
+	display: inline-block;
+	width: 13px;
+	height: 13px;
+	border-radius: 50%;
+	background-color: #0066cc;
+	vertical-align: middle;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
 .center-block {
 	text-align: center;
 }
@@ -103,7 +136,7 @@
 /* COBOLIntro.html */
 
 ul.construct-list {
-	list-style-image: url(../pics/BallRedG.gif);
+	list-style-type: disc;
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	color: var(--color-emphasis);
