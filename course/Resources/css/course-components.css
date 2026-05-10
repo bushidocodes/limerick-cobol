@@ -21,9 +21,13 @@
 }
 
 @media (prefers-color-scheme: dark) {
-	.page-hero-eyebrow {
+	:root:not([data-theme="light"]) .page-hero-eyebrow {
 		color: #ff9966;
 	}
+}
+
+:root[data-theme="dark"] .page-hero-eyebrow {
+	color: #ff9966;
 }
 
 /* Decorative disc bullet — replaces BallBlueG.gif (13×13 px) used inline
@@ -120,9 +124,13 @@
 }
 
 @media (prefers-color-scheme: dark) {
-	.lesson-nav {
+	:root:not([data-theme="light"]) .lesson-nav {
 		border-top-color: var(--color-border-soft, #444);
 	}
+}
+
+:root[data-theme="dark"] .lesson-nav {
+	border-top-color: var(--color-border-soft, #444);
 }
 
 /* ============================================================================
@@ -526,10 +534,66 @@ body pre[class*="language-"] {
 }
 
 @media (prefers-color-scheme: dark) {
-	.copy-button {
+	:root:not([data-theme="light"]) .copy-button {
 		background-color: #2e2e2e;
 		color: #ddd;
 		border-color: #555;
+	}
+}
+
+:root[data-theme="dark"] .copy-button {
+	background-color: #2e2e2e;
+	color: #ddd;
+	border-color: #555;
+}
+
+/* ============================================================================
+   Theme-toggle button group (components/theme-toggle.js)
+   Three side-by-side buttons: Light | Auto | Dark. The active button uses a
+   filled style derived from the site's header palette so it's distinct without
+   needing a separate accent color.
+   ============================================================================ */
+
+.theme-toggle {
+	display: inline-flex;
+	border: 1px solid var(--color-border-mute);
+	border-radius: 4px;
+	overflow: hidden;
+	margin-top: 0.5em;
+}
+
+.theme-toggle__btn {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.7em;
+	font-weight: bold;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	padding: 0.3em 0.7em;
+	background: transparent;
+	color: inherit;
+	border: none;
+	border-right: 1px solid var(--color-border-mute);
+	cursor: pointer;
+	line-height: 1.4;
+}
+
+.theme-toggle__btn:last-child {
+	border-right: none;
+}
+
+.theme-toggle__btn:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: -2px;
+}
+
+.theme-toggle__btn--active {
+	background-color: var(--color-header-bg);
+	color: var(--color-header-text);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.theme-toggle__btn {
+		transition: background-color 0.15s, color 0.15s;
 	}
 }
 

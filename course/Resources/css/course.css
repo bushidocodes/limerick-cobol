@@ -22,8 +22,14 @@
 	--color-border-mute: #999999;
 }
 
+/* Tighten color-scheme when the user has explicitly chosen a theme so the
+   browser's built-in UI (scrollbars, form controls) follows the override. */
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
+
 @media (prefers-color-scheme: dark) {
-	:root {
+	/* :not([data-theme="light"]) lets a manual Light override beat the OS. */
+	:root:not([data-theme="light"]) {
 		--color-bg: #1a1a1a;
 		--color-text: #e6e6e6;
 
@@ -43,6 +49,28 @@
 		--color-border-soft: #444444;
 		--color-border-mute: #666666;
 	}
+}
+
+/* Manual dark override — same tokens, applied regardless of OS preference. */
+:root[data-theme="dark"] {
+	--color-bg: #1a1a1a;
+	--color-text: #e6e6e6;
+
+	--color-link: #6ea8ff;
+	--color-link-visited: #ff8a8a;
+	--color-link-active: #6ee06e;
+
+	--color-header-bg: #6b2400;
+	--color-header-text: #ffe066;
+	--color-panel-bg: #3a3520;
+	--color-panel-text: #ffb3b3;
+	--color-code-bg: #1f2e1f;
+	--color-results-bg: #1a2e2e;
+	--color-cell-label-bg: #2d2d2d;
+	--color-emphasis: #8aa8ff;
+
+	--color-border-soft: #444444;
+	--color-border-mute: #666666;
 }
 
 body {
@@ -390,66 +418,70 @@ td[bgcolor="#ffffcc"] h4 {
    the vendor stylesheet), light-background images that need inversion, and
    inline `style="color: #..."` highlights baked into legacy code samples.
    ============================================================================ */
+/* Dark-mode non-token overrides shared between system-dark and manual-dark.
+   Defined as a ruleset that is applied under both conditions below. */
 @media (prefers-color-scheme: dark) {
+	/* :not([data-theme="light"]) lets a manual Light override beat the OS. */
+
 	/* Prism syntax highlighting — re-color the vendor light theme. The `body`
 	   prefix lifts specificity to (0,1,2) so these win against prism.min.css's
 	   (0,1,1) selectors despite the vendor sheet loading after course.css. */
-	body pre[class*="language-"],
-	body code[class*="language-"] {
+	:root:not([data-theme="light"]) body pre[class*="language-"],
+	:root:not([data-theme="light"]) body code[class*="language-"] {
 		background: #1f1f1f;
 		color: #e6e6e6;
 		text-shadow: none;
 	}
 
-	body :not(pre) > code[class*="language-"] {
+	:root:not([data-theme="light"]) body :not(pre) > code[class*="language-"] {
 		background: #1f1f1f;
 	}
 
-	body .token.comment,
-	body .token.prolog,
-	body .token.doctype,
-	body .token.cdata {
+	:root:not([data-theme="light"]) body .token.comment,
+	:root:not([data-theme="light"]) body .token.prolog,
+	:root:not([data-theme="light"]) body .token.doctype,
+	:root:not([data-theme="light"]) body .token.cdata {
 		color: #8a8a8a;
 	}
 
-	body .token.punctuation {
+	:root:not([data-theme="light"]) body .token.punctuation {
 		color: #c8c8c8;
 	}
 
-	body .token.keyword,
-	body .token.tag,
-	body .token.selector,
-	body .token.atrule {
+	:root:not([data-theme="light"]) body .token.keyword,
+	:root:not([data-theme="light"]) body .token.tag,
+	:root:not([data-theme="light"]) body .token.selector,
+	:root:not([data-theme="light"]) body .token.atrule {
 		color: #ff9d6e;
 	}
 
-	body .token.string,
-	body .token.attr-value,
-	body .token.char,
-	body .token.builtin,
-	body .token.inserted {
+	:root:not([data-theme="light"]) body .token.string,
+	:root:not([data-theme="light"]) body .token.attr-value,
+	:root:not([data-theme="light"]) body .token.char,
+	:root:not([data-theme="light"]) body .token.builtin,
+	:root:not([data-theme="light"]) body .token.inserted {
 		color: #b5e8a3;
 	}
 
-	body .token.number,
-	body .token.boolean,
-	body .token.constant,
-	body .token.symbol,
-	body .token.deleted {
+	:root:not([data-theme="light"]) body .token.number,
+	:root:not([data-theme="light"]) body .token.boolean,
+	:root:not([data-theme="light"]) body .token.constant,
+	:root:not([data-theme="light"]) body .token.symbol,
+	:root:not([data-theme="light"]) body .token.deleted {
 		color: #f8d57e;
 	}
 
-	body .token.function,
-	body .token.class-name {
+	:root:not([data-theme="light"]) body .token.function,
+	:root:not([data-theme="light"]) body .token.class-name {
 		color: #90c8ff;
 	}
 
-	body .token.operator,
-	body .token.entity,
-	body .token.url,
-	body .token.variable,
-	body .language-css .token.string,
-	body .style .token.string {
+	:root:not([data-theme="light"]) body .token.operator,
+	:root:not([data-theme="light"]) body .token.entity,
+	:root:not([data-theme="light"]) body .token.url,
+	:root:not([data-theme="light"]) body .token.variable,
+	:root:not([data-theme="light"]) body .language-css .token.string,
+	:root:not([data-theme="light"]) body .style .token.string {
 		color: #d8a0ff;
 		background: transparent;
 	}
@@ -458,73 +490,196 @@ td[bgcolor="#ffffcc"] h4 {
 	   `0.92` keeps blacks just shy of pure white so they merge into the page;
 	   `hue-rotate(180deg)` recovers reds/greens. Photos opt out by extension
 	   or by adding `class="no-invert"` to the <img>. */
-	img {
+	:root:not([data-theme="light"]) img {
 		filter: invert(0.92) hue-rotate(180deg);
 	}
 
-	img.no-invert,
-	img[src$=".jpg"],
-	img[src$=".jpeg"],
-	img[src$=".JPG"],
-	img[src$=".JPEG"] {
+	:root:not([data-theme="light"]) img.no-invert,
+	:root:not([data-theme="light"]) img[src$=".jpg"],
+	:root:not([data-theme="light"]) img[src$=".jpeg"],
+	:root:not([data-theme="light"]) img[src$=".JPG"],
+	:root:not([data-theme="light"]) img[src$=".JPEG"] {
 		filter: none;
 	}
 
 	/* Override inline `style="color: #..."` spans baked into legacy code
 	   samples. These attribute selectors target the raw inline value, so
 	   `!important` is required to beat the inline declaration. */
-	[style*="color:#0000ff"],
-	[style*="color: #0000ff"],
-	[style*="color:#0000FF"],
-	[style*="color: #0000FF"] {
+	:root:not([data-theme="light"]) [style*="color:#0000ff"],
+	:root:not([data-theme="light"]) [style*="color: #0000ff"],
+	:root:not([data-theme="light"]) [style*="color:#0000FF"],
+	:root:not([data-theme="light"]) [style*="color: #0000FF"] {
 		color: var(--color-link) !important;
 	}
 
-	[style*="color:#993300"],
-	[style*="color: #993300"] {
+	:root:not([data-theme="light"]) [style*="color:#993300"],
+	:root:not([data-theme="light"]) [style*="color: #993300"] {
 		color: #ff9966 !important;
 	}
 
-	[style*="color:#000099"],
-	[style*="color: #000099"] {
+	:root:not([data-theme="light"]) [style*="color:#000099"],
+	:root:not([data-theme="light"]) [style*="color: #000099"] {
 		color: var(--color-emphasis) !important;
 	}
 
-	[style*="color:#800000"],
-	[style*="color: #800000"] {
+	:root:not([data-theme="light"]) [style*="color:#800000"],
+	:root:not([data-theme="light"]) [style*="color: #800000"] {
 		color: var(--color-panel-text) !important;
 	}
 
-	[style*="color:#ff0000"],
-	[style*="color: #ff0000"],
-	[style*="color:#FF0000"],
-	[style*="color: #FF0000"] {
+	:root:not([data-theme="light"]) [style*="color:#ff0000"],
+	:root:not([data-theme="light"]) [style*="color: #ff0000"],
+	:root:not([data-theme="light"]) [style*="color:#FF0000"],
+	:root:not([data-theme="light"]) [style*="color: #FF0000"] {
 		color: #ff8a8a !important;
 	}
 
-	[style*="color:#006600"],
-	[style*="color: #006600"] {
+	:root:not([data-theme="light"]) [style*="color:#006600"],
+	:root:not([data-theme="light"]) [style*="color: #006600"] {
 		color: #7ec47e !important;
 	}
 
-	[style*="color:#cccccc"],
-	[style*="color: #cccccc"],
-	[style*="color:#CCCCCC"],
-	[style*="color: #CCCCCC"] {
+	:root:not([data-theme="light"]) [style*="color:#cccccc"],
+	:root:not([data-theme="light"]) [style*="color: #cccccc"],
+	:root:not([data-theme="light"]) [style*="color:#CCCCCC"],
+	:root:not([data-theme="light"]) [style*="color: #CCCCCC"] {
 		color: #888888 !important;
 	}
 
 	/* #CCCCCC has no matching light-mode token (only used as decorative
 	   spacer cells), so it's remapped only in dark mode. Uses the same
 	   --color-cell-label-bg as #E8E8E8 since both are gray. */
-	table[bgcolor="#CCCCCC"],
-	table[bgcolor="#cccccc"],
-	tr[bgcolor="#CCCCCC"],
-	tr[bgcolor="#cccccc"],
-	td[bgcolor="#CCCCCC"],
-	td[bgcolor="#cccccc"] {
+	:root:not([data-theme="light"]) table[bgcolor="#CCCCCC"],
+	:root:not([data-theme="light"]) table[bgcolor="#cccccc"],
+	:root:not([data-theme="light"]) tr[bgcolor="#CCCCCC"],
+	:root:not([data-theme="light"]) tr[bgcolor="#cccccc"],
+	:root:not([data-theme="light"]) td[bgcolor="#CCCCCC"],
+	:root:not([data-theme="light"]) td[bgcolor="#cccccc"] {
 		background-color: var(--color-cell-label-bg);
 	}
+}
+
+/* Manual dark override — same non-token rules, applied regardless of OS. */
+:root[data-theme="dark"] body pre[class*="language-"],
+:root[data-theme="dark"] body code[class*="language-"] {
+	background: #1f1f1f;
+	color: #e6e6e6;
+	text-shadow: none;
+}
+
+:root[data-theme="dark"] body :not(pre) > code[class*="language-"] {
+	background: #1f1f1f;
+}
+
+:root[data-theme="dark"] body .token.comment,
+:root[data-theme="dark"] body .token.prolog,
+:root[data-theme="dark"] body .token.doctype,
+:root[data-theme="dark"] body .token.cdata {
+	color: #8a8a8a;
+}
+
+:root[data-theme="dark"] body .token.punctuation {
+	color: #c8c8c8;
+}
+
+:root[data-theme="dark"] body .token.keyword,
+:root[data-theme="dark"] body .token.tag,
+:root[data-theme="dark"] body .token.selector,
+:root[data-theme="dark"] body .token.atrule {
+	color: #ff9d6e;
+}
+
+:root[data-theme="dark"] body .token.string,
+:root[data-theme="dark"] body .token.attr-value,
+:root[data-theme="dark"] body .token.char,
+:root[data-theme="dark"] body .token.builtin,
+:root[data-theme="dark"] body .token.inserted {
+	color: #b5e8a3;
+}
+
+:root[data-theme="dark"] body .token.number,
+:root[data-theme="dark"] body .token.boolean,
+:root[data-theme="dark"] body .token.constant,
+:root[data-theme="dark"] body .token.symbol,
+:root[data-theme="dark"] body .token.deleted {
+	color: #f8d57e;
+}
+
+:root[data-theme="dark"] body .token.function,
+:root[data-theme="dark"] body .token.class-name {
+	color: #90c8ff;
+}
+
+:root[data-theme="dark"] body .token.operator,
+:root[data-theme="dark"] body .token.entity,
+:root[data-theme="dark"] body .token.url,
+:root[data-theme="dark"] body .token.variable,
+:root[data-theme="dark"] body .language-css .token.string,
+:root[data-theme="dark"] body .style .token.string {
+	color: #d8a0ff;
+	background: transparent;
+}
+
+:root[data-theme="dark"] img {
+	filter: invert(0.92) hue-rotate(180deg);
+}
+
+:root[data-theme="dark"] img.no-invert,
+:root[data-theme="dark"] img[src$=".jpg"],
+:root[data-theme="dark"] img[src$=".jpeg"],
+:root[data-theme="dark"] img[src$=".JPG"],
+:root[data-theme="dark"] img[src$=".JPEG"] {
+	filter: none;
+}
+
+:root[data-theme="dark"] [style*="color:#0000ff"],
+:root[data-theme="dark"] [style*="color: #0000ff"],
+:root[data-theme="dark"] [style*="color:#0000FF"],
+:root[data-theme="dark"] [style*="color: #0000FF"] {
+	color: var(--color-link) !important;
+}
+
+:root[data-theme="dark"] [style*="color:#993300"],
+:root[data-theme="dark"] [style*="color: #993300"] {
+	color: #ff9966 !important;
+}
+
+:root[data-theme="dark"] [style*="color:#000099"],
+:root[data-theme="dark"] [style*="color: #000099"] {
+	color: var(--color-emphasis) !important;
+}
+
+:root[data-theme="dark"] [style*="color:#800000"],
+:root[data-theme="dark"] [style*="color: #800000"] {
+	color: var(--color-panel-text) !important;
+}
+
+:root[data-theme="dark"] [style*="color:#ff0000"],
+:root[data-theme="dark"] [style*="color: #ff0000"],
+:root[data-theme="dark"] [style*="color:#FF0000"],
+:root[data-theme="dark"] [style*="color: #FF0000"] {
+	color: #ff8a8a !important;
+}
+
+:root[data-theme="dark"] [style*="color:#006600"],
+:root[data-theme="dark"] [style*="color: #006600"] {
+	color: #7ec47e !important;
+}
+
+:root[data-theme="dark"] [style*="color:#cccccc"],
+:root[data-theme="dark"] [style*="color: #cccccc"],
+:root[data-theme="dark"] [style*="color:#CCCCCC"],
+:root[data-theme="dark"] [style*="color: #CCCCCC"] {
+	color: #888888 !important;
+}
+
+:root[data-theme="dark"] table[bgcolor="#CCCCCC"],
+:root[data-theme="dark"] table[bgcolor="#cccccc"],
+:root[data-theme="dark"] tr[bgcolor="#CCCCCC"],
+:root[data-theme="dark"] tr[bgcolor="#cccccc"],
+:root[data-theme="dark"] td[bgcolor="#CCCCCC"],
+:root[data-theme="dark"] td[bgcolor="#cccccc"] {
+	background-color: var(--color-cell-label-bg);
 }
 
 /* ============================================================================
@@ -564,6 +719,7 @@ td[bgcolor="#ffffcc"] h4 {
 	.hero img,
 	.back-to-top,
 	.skip-link,
+	theme-toggle,
 	ul.toc {
 		display: none !important;
 	}
