@@ -10,7 +10,7 @@ class PageHero extends HTMLElement {
 		const title = this.getAttribute("title") || "";
 		this.innerHTML = `
 			<div class="hero">
-				<p id="top"><img src="Resources/pics/t-CobolTut.gif" width="173" height="59" alt="" /></p>
+				<p id="top" class="page-hero-eyebrow">COBOL Tutorial</p>
 				<h1></h1>
 			</div>
 		`;

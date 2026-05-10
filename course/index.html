@@ -49,7 +49,7 @@
 			property="og:description"
 			content="On-line COBOL programming course - includes tutorials, example programs and exercises."
 		/>
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/T-Dept.gif" />
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
 		<!-- Twitter Card -->
 		<meta name="twitter:card" content="summary" />
 		<meta name="twitter:title" content="COBOL Programming Course" />
@@ -88,10 +88,6 @@
 				max-width: 100%;
 				margin-left: auto;
 				margin-right: auto;
-			}
-
-			.course-header-icon {
-				flex: 0 0 48px;
 			}
 
 			.course-header-title {
@@ -170,10 +166,6 @@
 					flex-wrap: wrap;
 				}
 
-				.course-header-icon {
-					flex: 0 0 48px;
-				}
-
 				.course-header-title {
 					flex: 1 1 auto;
 				}
@@ -227,6 +219,54 @@
 				}
 			}
 
+			/* Department banner — replaces T-Dept.gif */
+			.dept-banner {
+				display: inline-block;
+				font-family: Arial, Helvetica, sans-serif;
+				font-size: 1.5rem;
+				font-weight: bold;
+				letter-spacing: 0.04em;
+				color: #993300;
+			}
+
+			/* Decorative disc bullet — replaces BallRedG.gif (13×13 px) */
+			.ball-red {
+				display: inline-block;
+				width: 13px;
+				height: 13px;
+				border-radius: 50%;
+				background-color: #cc3300;
+				vertical-align: middle;
+				margin-left: 4px;
+				margin-right: 4px;
+			}
+
+			/* Course content link icons — replace i-Tut.gif, i-exercise.gif, i-SAQ.gif */
+			.icon-tut,
+			.icon-exercise,
+			.icon-saq {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				width: 22px;
+				height: 21px;
+				border-radius: 3px;
+				font-family: Arial, Helvetica, sans-serif;
+				font-size: 12px;
+				font-weight: bold;
+				color: #fff;
+				vertical-align: middle;
+				flex-shrink: 0;
+				margin: 4px 5px;
+			}
+			.icon-tut { background-color: #1565c0; }
+			.icon-exercise { background-color: #2e7d32; }
+			.icon-saq { background-color: #e65100; }
+
+			@media (prefers-color-scheme: dark) {
+				.dept-banner { color: #ff9966; }
+			}
+
 			/* Skip-to-content link */
 			.skip-link {
 				position: absolute;
@@ -258,12 +298,9 @@
 		<main id="main-content">
 			<!-- Header: flex row replaces 3-column layout table -->
 			<div class="course-header">
-				<div class="course-header-icon">
-					<img src="../pics/I-TEACHER.GIF" width="40" height="42" style="margin: 4px" alt="" />
-				</div>
 				<div class="course-header-title">
 					<h1>
-						<img src="../pics/T-Dept.gif" width="297" height="36" alt="" /><br />
+						<span class="dept-banner">Department of CSIS</span><br />
 						&nbsp;COBOL Programming Course
 					</h1>
 					<p class="center-block">
@@ -283,35 +320,19 @@
 						</tr>
 						<tr>
 							<td width="14%" height="15">
-								<img
-									src="Resources/pics/i-Tuts.gif"
-									width="22"
-									height="21"
-									alt=""
-									style="margin-left: 2px; margin-right: 2px; margin-top: 1px; margin-bottom: 1px"
-								/>
+								<span class="icon-tut" style="margin: 1px 2px" aria-hidden="true">T</span>
 							</td>
 							<td width="86%" height="15">COBOL tutorial</td>
 						</tr>
 						<tr>
 							<td width="14%">
-								<img
-									src="Resources/pics/i-exercises.gif"
-									width="21"
-									height="21"
-									alt=""
-									style="margin-left: 2px; margin-right: 2px; margin-top: 1px; margin-bottom: 1px"
-								/>
+								<span class="icon-exercise" style="margin: 1px 2px" aria-hidden="true">E</span>
 							</td>
 							<td width="86%">COBOL programming exercise</td>
 						</tr>
 						<tr>
 							<td width="14%" height="8">
-								<img
-									src="Resources/pics/i-SAQ.gif"
-									alt=""
-									style="margin-left: 2px; margin-right: 2px"
-								/>
+								<span class="icon-saq" style="margin: 0 2px" aria-hidden="true">?</span>
 							</td>
 							<td width="86%" height="8">Self assessment questions</td>
 						</tr>
@@ -325,66 +346,27 @@
 				<div class="course-topics">
 					<!-- Introduction to COBOL -->
 					<div class="topic-label">
-						<img
-							src="../pics/BallRedG.gif"
-							height="13"
-							width="13"
-							alt=""
-							style="margin-left: 4px; margin-right: 4px"
-						/><b>Introduction to COBOL</b>
+						<span class="ball-red" aria-hidden="true"></span><b>Introduction to COBOL</b>
 					</div>
 					<div class="topic-links">
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-Tut.gif"
-									width="22"
-									height="21"
-									alt="COBOL tutorial"
-									style="margin-left: 5px; margin-right: 5px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span>
 							<a href="COBOLIntro.html">The structure of COBOL programs</a>
 						</div>
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-Tut.gif"
-									width="22"
-									height="21"
-									alt="COBOL tutorial"
-									style="margin-left: 5px; margin-right: 5px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span>
 							<a href="DataDeclaration.html">Declaring data in COBOL</a>
 						</div>
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-Tut.gif"
-									width="22"
-									height="21"
-									alt="COBOL tutorial"
-									style="margin-left: 5px; margin-right: 5px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span>
 							<a href="COBOLcommands.html">Basic Procedure Division commands</a>
 						</div>
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-exercise.gif"
-									width="21"
-									height="21"
-									alt=""
-									style="margin-left: 5px; margin-right: 5px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-exercise" aria-hidden="true">E</span></span>
 							<a href="../exercises/GettingStarted.html">Getting Started</a>
 						</div>
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-SAQ.gif"
-									alt=""
-									style="margin-left: 5px; margin-right: 5px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-saq" aria-hidden="true">?</span></span>
 							<a href="../exercises/GettingStarted.html">These will be self assessment questions</a>
 						</div>
 					</div>
@@ -392,55 +374,23 @@
 
 					<!-- COBOL Control structures -->
 					<div class="topic-label">
-						<img
-							src="../pics/BallRedG.gif"
-							height="13"
-							width="13"
-							alt=""
-							style="margin-left: 4px; margin-right: 4px"
-						/><b>COBOL Control structures</b>
+						<span class="ball-red" aria-hidden="true"></span><b>COBOL Control structures</b>
 					</div>
 					<div class="topic-links">
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-Tut.gif"
-									width="22"
-									height="21"
-									alt="COBOL tutorial"
-									style="margin-left: 5px; margin-right: 5px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span>
 							<a href="Selection.html">Selection in COBOL</a>
 						</div>
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-Tut.gif"
-									width="22"
-									height="21"
-									alt="COBOL tutorial"
-									style="margin-left: 5px; margin-right: 5px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span>
 							<a href="Iteration.html">Iteration in COBOL</a>
 						</div>
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-exercise.gif"
-									width="21"
-									height="21"
-									alt=""
-									style="margin-left: 5px; margin-right: 5px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-exercise" aria-hidden="true">E</span></span>
 							<a href="../exercises/CountDown.html">The Calculator and Countdown exercise</a>
 						</div>
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-SAQ.gif"
-									alt=""
-									style="margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-saq" aria-hidden="true">?</span></span>
 							<a href="../exercises/GettingStarted.html">These will be self assessment questions</a>
 						</div>
 					</div>
@@ -448,57 +398,23 @@
 
 					<!-- Simple Sequential Files -->
 					<div class="topic-label">
-						<img
-							src="../pics/BallRedG.gif"
-							height="13"
-							width="13"
-							alt=""
-							style="margin-left: 4px; margin-right: 4px"
-						/><b>Simple Sequential Files</b>
+						<span class="ball-red" aria-hidden="true"></span><b>Simple Sequential Files</b>
 					</div>
 					<div class="topic-links">
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-Tut.gif"
-									width="22"
-									height="21"
-									alt="COBOL tutorial"
-									style="margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span>
 							<a href="SequentialFiles1.html">Introduction to Sequential files</a>
 						</div>
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-Tut.gif"
-									width="22"
-									height="21"
-									alt="COBOL tutorial"
-									style="margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span>
 							<a href="SequentialFiles2.html">Processing Sequential files</a>
 						</div>
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-exercise.gif"
-									width="21"
-									height="21"
-									alt=""
-									style="margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-exercise" aria-hidden="true">E</span></span>
 							<a href="../exercises/SeqRead.html">Reading Sequential Files</a>
 						</div>
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-exercise.gif"
-									width="21"
-									height="21"
-									alt=""
-									style="margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-exercise" aria-hidden="true">E</span></span>
 							<a href="../exercises/SeqReadIf.html">Counting records in a Sequential File</a>
 						</div>
 					</div>
@@ -506,57 +422,23 @@
 
 					<!-- Advanced data declaration -->
 					<div class="topic-label">
-						<img
-							src="../pics/BallRedG.gif"
-							height="13"
-							width="13"
-							alt=""
-							style="margin-left: 4px; margin-right: 4px"
-						/><b>Advanced data declaration</b>
+						<span class="ball-red" aria-hidden="true"></span><b>Advanced data declaration</b>
 					</div>
 					<div class="topic-links">
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-Tut.gif"
-									width="22"
-									height="21"
-									alt="COBOL tutorial"
-									style="margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span>
 							<a href="EditedPics.html">Edited Pictures</a>
 						</div>
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-Tut.gif"
-									width="22"
-									height="21"
-									alt="COBOL tutorial"
-									style="margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span>
 							<a href="Usage.html">The USAGE clause</a>
 						</div>
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-exercise.gif"
-									width="21"
-									height="21"
-									alt=""
-									style="margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-exercise" aria-hidden="true">E</span></span>
 							<a href="../exercises/SeqWrite.html">Writing records to a Sequential File</a>
 						</div>
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-exercise.gif"
-									width="21"
-									height="21"
-									alt=""
-									style="margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-exercise" aria-hidden="true">E</span></span>
 							<a href="../exercises/SeqInsert.html">Inserting records in a Sequential File</a>
 						</div>
 					</div>
@@ -564,68 +446,27 @@
 
 					<!-- Advanced Sequential Files -->
 					<div class="topic-label">
-						<img
-							src="../pics/BallRedG.gif"
-							height="13"
-							width="13"
-							alt=""
-							style="margin-left: 4px; margin-right: 4px"
-						/><b>Advanced Sequential Files</b>
+						<span class="ball-red" aria-hidden="true"></span><b>Advanced Sequential Files</b>
 					</div>
 					<div class="topic-links">
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-Tut.gif"
-									width="22"
-									height="21"
-									alt="COBOL tutorial"
-									style="margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span>
 							<a href="SequentialFiles3.html">COBOL print files and variable-length records</a>
 						</div>
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-Tut.gif"
-									width="22"
-									height="21"
-									alt="COBOL tutorial"
-									style="margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span>
 							<a href="SortMerge.html">Sorting and Merging</a>
 						</div>
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-Tut.gif"
-									width="22"
-									height="21"
-									alt="COBOL tutorial"
-									style="margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span>
 							<a href="COBOLcommands.html">Basic Procedure Division commands</a>
 						</div>
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-exercise.gif"
-									width="21"
-									height="21"
-									alt=""
-									style="margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-exercise" aria-hidden="true">E</span></span>
 							<a href="../exercises/SeqUpdate.html">Updating a Sequential File</a>
 						</div>
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-exercise.gif"
-									width="21"
-									height="21"
-									alt=""
-									style="margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-exercise" aria-hidden="true">E</span></span>
 							<a href="../exercises/SortIP.html">Sorting a Sequential File</a>
 						</div>
 					</div>
@@ -633,46 +474,19 @@
 
 					<!-- Direct access files -->
 					<div class="topic-label">
-						<img
-							src="../pics/BallRedG.gif"
-							height="13"
-							width="13"
-							alt=""
-							style="margin-left: 4px; margin-right: 4px"
-						/><b>Direct access files</b>
+						<span class="ball-red" aria-hidden="true"></span><b>Direct access files</b>
 					</div>
 					<div class="topic-links">
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-Tut.gif"
-									width="22"
-									height="21"
-									alt="COBOL tutorial"
-									style="margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span>
 							<a href="Intro2DirectAccess.html">Introduction to direct access files</a>
 						</div>
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-Tut.gif"
-									width="22"
-									height="21"
-									alt="COBOL tutorial"
-									style="margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span>
 							<a href="RelativeFiles.html">Relative Files</a>
 						</div>
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-Tut.gif"
-									width="22"
-									height="21"
-									alt="COBOL tutorial"
-									style="margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span>
 							<a href="IndexedFiles.html">Indexed Files</a>
 						</div>
 					</div>
@@ -680,57 +494,23 @@
 
 					<!-- COBOL tables -->
 					<div class="topic-label">
-						<img
-							src="../pics/BallRedG.gif"
-							height="13"
-							width="13"
-							alt=""
-							style="margin-left: 4px; margin-right: 4px"
-						/><b>COBOL tables</b>
+						<span class="ball-red" aria-hidden="true"></span><b>COBOL tables</b>
 					</div>
 					<div class="topic-links">
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-Tut.gif"
-									width="22"
-									height="21"
-									alt="COBOL tutorial"
-									style="margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span>
 							<a href="Tables1.html">Using tables</a>
 						</div>
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-Tut.gif"
-									width="22"
-									height="21"
-									alt="COBOL tutorial"
-									style="margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span>
 							<a href="Tables2.html">Creating tables - syntax and semantics</a>
 						</div>
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-Tut.gif"
-									width="22"
-									height="21"
-									alt="COBOL tutorial"
-									style="margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span>
 							<a href="Search.html">Searching tables</a>
 						</div>
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-exercise.gif"
-									width="21"
-									height="21"
-									alt=""
-									style="margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-exercise" aria-hidden="true">E</span></span>
 							<a href="../exercises/MonthTable.html">Using Tables</a>
 						</div>
 					</div>
@@ -738,35 +518,15 @@
 
 					<!-- Constructing large systems -->
 					<div class="topic-label">
-						<img
-							src="../pics/BallRedG.gif"
-							height="13"
-							width="13"
-							alt=""
-							style="margin-left: 4px; margin-right: 4px"
-						/><b>Constructing large systems</b>
+						<span class="ball-red" aria-hidden="true"></span><b>Constructing large systems</b>
 					</div>
 					<div class="topic-links">
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-Tut.gif"
-									width="22"
-									height="21"
-									alt="COBOL tutorial"
-									style="margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span>
 							<a href="Subprograms.html">Contained and external sub-programs</a>
 						</div>
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-Tut.gif"
-									width="22"
-									height="21"
-									alt="COBOL tutorial"
-									style="margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span>
 							<a href="Copy.html">The COPY verb</a>
 						</div>
 					</div>
@@ -774,57 +534,23 @@
 
 					<!-- COBOL string handling -->
 					<div class="topic-label">
-						<img
-							src="../pics/BallRedG.gif"
-							height="13"
-							width="13"
-							alt=""
-							style="margin-left: 4px; margin-right: 4px"
-						/><b>COBOL string handling</b>
+						<span class="ball-red" aria-hidden="true"></span><b>COBOL string handling</b>
 					</div>
 					<div class="topic-links">
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-Tut.gif"
-									width="22"
-									height="21"
-									alt="COBOL tutorial"
-									style="margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span>
 							<a href="Inspect.html">Inspect</a>
 						</div>
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-Tut.gif"
-									width="22"
-									height="21"
-									alt="COBOL tutorial"
-									style="margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span>
 							<a href="String.html">String</a>
 						</div>
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-Tut.gif"
-									width="22"
-									height="21"
-									alt="COBOL tutorial"
-									style="margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span>
 							<a href="Unstring.html">Unstring</a>
 						</div>
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-Tut.gif"
-									width="22"
-									height="21"
-									alt="COBOL tutorial"
-									style="margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span>
 							<a href="RefMod.html">Reference modification and Intrinsic Functions</a>
 						</div>
 					</div>
@@ -832,35 +558,15 @@
 
 					<!-- The COBOL Report Writer -->
 					<div class="topic-label">
-						<img
-							src="../pics/BallRedG.gif"
-							height="13"
-							width="13"
-							alt=""
-							style="margin-left: 4px; margin-right: 4px"
-						/><b>The COBOL Report Writer</b>
+						<span class="ball-red" aria-hidden="true"></span><b>The COBOL Report Writer</b>
 					</div>
 					<div class="topic-links">
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-Tut.gif"
-									width="22"
-									height="21"
-									alt="COBOL tutorial"
-									style="margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span>
 							<a href="ReportWriter.html">Report Writer by example</a>
 						</div>
 						<div class="course-link">
-							<span class="course-link-icon"
-								><img
-									src="Resources/pics/i-Tut.gif"
-									width="22"
-									height="21"
-									alt="COBOL tutorial"
-									style="margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px"
-							/></span>
+							<span class="course-link-icon"><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span>
 							<a href="ReportWriterSS.html">Report Writer syntax and semantics</a>
 						</div>
 					</div>
