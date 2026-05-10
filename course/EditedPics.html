@@ -18,1379 +18,1374 @@
 	</head>
 
 	<body>
-		<div class="page-wrapper">
-			<div class="page-content">
-				<page-hero title="Edited Pictures"></page-hero>
-				<hr />
-				<ul class="toc">
-					<li>
-						<a href="#intro">Introduction</a><br />
-						Unit aims, objectives, prerequisites.
-					</li>
-					<li>
-						<a href="#part1">What is an Edited Picture?</a><br />
-						This section introduces Edited Pictures, the types of edited pictures, and the edit symbols
-						used.
-					</li>
-					<li>
-						<a href="#part2">Insertion Editing</a><br />
-						This section introduces the four types of Insertion Editing - Simple Insertion, Special
-						Insertion, Fixed Insertion, and Floating Insertion
-					</li>
-					<li>
-						<a href="#part3">Suppression and Replacement Editing</a><br />
-						This section introduces the two types Suppresion and Replacement Editng - suppression of leading
-						zeros and replacement with spaces, and suppresion and replacement with asterisks.
-					</li>
-				</ul>
-				<hr />
-			</div>
-
-			<div class="section-grid">
-				<div class="section-header">
-					<h2 id="intro">Introduction</h2>
-				</div>
-
-				<div class="section-sidebar">
-					<h3>Aims</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						In a business-programming environment, the ability to print reports is an important property
-						for a programming language. COBOL allows programmers to write to the printer, either
-						directly or through an intermediate print file.
-					</p>
-					<p>
-						But there would be little point in being able to write to the printer, if the output could
-						not be formatted properly. COBOL allows sophisticated formatting of output through its
-						Edited Picture clauses.
-					</p>
-					<p>
-						This tutorial introduces the additional symbols required for edited pictures and shows how
-						they may be used to format data for output to screen or printer.
-					</p>
-					<hr width="50%" />
-				</div>
-
-				<div class="section-sidebar">
-					<h3>Objectives</h3>
-				</div>
-				<div class="section-content">
-					<p>By the end of this unit you should -</p>
-					<ol>
-						<li>Know what an Edited Picture is.</li>
-						<li>Know and be able to use the different kinds of Edited Picture.</li>
-					</ol>
-					<hr width="50%" />
-				</div>
-
-				<div class="section-sidebar">
-					<h3>Prerequisites</h3>
-				</div>
-				<div class="section-content">
-					<ul>
-						<li>Introduction to COBOL</li>
-						<li>Declaring data in COBOL</li>
-						<li>Basic Procedure Division Commands</li>
-						<li>Selection Constructs</li>
-						<li>Iteration Constructs</li>
-						<li>Introduction to Sequential files</li>
-						<li>Processing Sequential files</li>
-					</ul>
-				</div>
-
-				<div class="section-full">
-					<div>
-						<hr />
-						<back-to-top></back-to-top>
-					</div>
-				</div>
-			</div>
-
-			<div class="section-grid">
-				<div class="section-header">
-					<h2 id="part1">What is an Edited Picture?</h2>
-				</div>
-
-				<div class="section-sidebar">
-					<h3>Introduction</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						Most users of the data produced by COBOL programs are not content with the simple raw data. They
-						often want it presented in a particular way. Some people like to have the thousands, in numeric
-						values, separated by commas, others may want leading zeros suppressed while still others may
-						require that the currency symbol "floats" up against the first non-zero digit. In COBOL these
-						things can be achieved using Edited Pictures.
-					</p>
-					<table style="margin:0 auto" bgcolor="#E1FFE1" border="1" cellpadding="10" width="72%">
-						<tr>
-							<td bgcolor="#FFFFCC" width="60%">Original value</td>
-							<td width="40%">
-								<div class="center-block">00023456.78</div>
-							</td>
-						</tr>
-						<tr>
-							<td bgcolor="#FFFFCC" width="60%">
-								With commas inserted
-							</td>
-							<td width="40%">
-								<div class="center-block">00,023,456.78</div>
-							</td>
-						</tr>
-						<tr>
-							<td bgcolor="#FFFFCC" width="60%">
-								Plus zero suppression
-							</td>
-							<td width="40%">
-								<div class="center-block">23,456.78</div>
-							</td>
-						</tr>
-						<tr>
-							<td bgcolor="#FFFFCC" height="4" width="60%">Plus floating currency symbol</td>
-							<td height="4" width="40%">
-								<div class="center-block">$23,456.78</div>
-							</td>
-						</tr>
-						<tr>
-							<td bgcolor="#FFFFCC" height="4" width="60%">
-								With anti-fraud printing
-							</td>
-							<td height="4" width="40%">
-								<div class="center-block">$***23,456.78</div>
-							</td>
-						</tr>
-					</table>
-					<hr width="50%" />
-				</div>
-
-				<div class="section-sidebar">
-					<h3>Edit Symbols</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						Edited Pictures, are <code class="language-cobol">PICTURE</code> clauses that format data
-						intended for output to screen or printer. To enable the data items to be formatted, COBOL
-						provides additional picture symbols to supplement the basic 9, X, A, V and S.
-					</p>
-					<p>
-						The additional symbols are referred to as "Edit Symbols," and
-						<code class="language-cobol">PICTURE</code> clauses that include edit symbols are called
-						"Edited Pictures".
-					</p>
-					<p>
-						The term edit is used, because the edit symbols have the effect of changing, or editing, the
-						data inserted into the edited item.
-					</p>
-					<p>
-						Edited items cannot be used as operands in a computation, but they may be used as the result
-						or destination of a computation (they can be used in items placed to the right of the word
-						<code class="language-cobol">GIVING</code>).
-					</p>
-					<hr width="50%" />
-				</div>
-
-				<div class="section-sidebar">
-					<h3>Types of editing picture</h3>
-				</div>
-				<div class="section-content">
-					<p>COBOL permits two basic types of editing picture:</p>
-					<ol>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="page-content">
+					<page-hero title="Edited Pictures"></page-hero>
+					<hr />
+					<ul class="toc">
 						<li>
-							<b>Insertion Editing</b><br />
-							This type of editing modifies a value by including additional items and has the following
-							sub-categories:
-							<ul>
-								<li>Simple Insertion</li>
-								<li>Special Insertion</li>
-								<li>Fixed Insertion</li>
-								<li>Floating Insertion</li>
-							</ul>
+							<a href="#intro">Introduction</a><br />
+							Unit aims, objectives, prerequisites.
 						</li>
 						<li>
-							<b>Suppression and Replacement Editing</b><br />
-							This type of editing suppresses and replaces leading zeros and has the following
-							sub-categories:
-							<ul>
-								<li>Zero suppression and replacement with spaces</li>
-								<li>Zero suppression and replacement with asterisks</li>
-							</ul>
+							<a href="#part1">What is an Edited Picture?</a><br />
+							This section introduces Edited Pictures, the types of edited pictures, and the edit symbols
+							used.
 						</li>
-					</ol>
-					<hr width="50%" />
+						<li>
+							<a href="#part2">Insertion Editing</a><br />
+							This section introduces the four types of Insertion Editing - Simple Insertion, Special
+							Insertion, Fixed Insertion, and Floating Insertion
+						</li>
+						<li>
+							<a href="#part3">Suppression and Replacement Editing</a><br />
+							This section introduces the two types Suppresion and Replacement Editng - suppression of
+							leading zeros and replacement with spaces, and suppresion and replacement with asterisks.
+						</li>
+					</ul>
+					<hr />
 				</div>
 
-				<div class="section-sidebar">
-					<h3>Editing symbols</h3>
-				</div>
-				<div class="section-content">
-					<p>COBOL permits two basic types of editing picture:&gt;</p>
-					<table style="margin:0 auto" bgcolor="#E1FFE1" border cellpadding="7" cellspacing="1" width="338">
-						<tr bgcolor="#FFFFCC">
-							<td valign="top" width="32%">
-								<p class="center-block"><b>Edit Symbol</b></p>
-							</td>
-							<td valign="top" width="68%">
-								<p class="center-block"><b>Editing Type</b></p>
-							</td>
-						</tr>
-						<tr>
-							<td valign="top" width="32%">
-								<p class="center-block"><b>, B 0 /</b></p>
-							</td>
-							<td valign="top" width="68%">
-								<p>Simple Insertion</p>
-							</td>
-						</tr>
-						<tr>
-							<td valign="top" width="32%">
-								<p class="center-block"><b>.</b></p>
-							</td>
-							<td valign="top" width="68%">
-								<p>Special Insertion</p>
-							</td>
-						</tr>
-						<tr>
-							<td valign="top" width="32%">
-								<p class="center-block"><b>+ - CR DB $</b></p>
-							</td>
-							<td valign="top" width="68%">
-								<p>Fixed Insertion</p>
-							</td>
-						</tr>
-						<tr>
-							<td valign="top" width="32%">
-								<p class="center-block"><b>+ - $</b></p>
-							</td>
-							<td valign="top" width="68%">
-								<p>Floating Insertion</p>
-							</td>
-						</tr>
-						<tr>
-							<td valign="top" width="32%">
-								<p class="center-block"><b>Z *</b></p>
-							</td>
-							<td valign="top" width="68%">
-								<p>Suppression and Replacement</p>
-							</td>
-						</tr>
-					</table>
-					<hr width="50%" />
-				</div>
+				<div class="section-grid">
+					<div class="section-header">
+						<h2 id="intro">Introduction</h2>
+					</div>
 
-				<div class="section-full">
-					<div>
-						<hr />
-						<back-to-top></back-to-top>
+					<div class="section-sidebar">
+						<h3>Aims</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							In a business-programming environment, the ability to print reports is an important property
+							for a programming language. COBOL allows programmers to write to the printer, either
+							directly or through an intermediate print file.
+						</p>
+						<p>
+							But there would be little point in being able to write to the printer, if the output could
+							not be formatted properly. COBOL allows sophisticated formatting of output through its
+							Edited Picture clauses.
+						</p>
+						<p>
+							This tutorial introduces the additional symbols required for edited pictures and shows how
+							they may be used to format data for output to screen or printer.
+						</p>
+						<hr width="50%" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Objectives</h3>
+					</div>
+					<div class="section-content">
+						<p>By the end of this unit you should -</p>
+						<ol>
+							<li>Know what an Edited Picture is.</li>
+							<li>Know and be able to use the different kinds of Edited Picture.</li>
+						</ol>
+						<hr width="50%" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Prerequisites</h3>
+					</div>
+					<div class="section-content">
+						<ul>
+							<li>Introduction to COBOL</li>
+							<li>Declaring data in COBOL</li>
+							<li>Basic Procedure Division Commands</li>
+							<li>Selection Constructs</li>
+							<li>Iteration Constructs</li>
+							<li>Introduction to Sequential files</li>
+							<li>Processing Sequential files</li>
+						</ul>
+					</div>
+
+					<div class="section-full">
+						<div>
+							<hr />
+							<back-to-top></back-to-top>
+						</div>
 					</div>
 				</div>
-			</div>
 
-			<div class="section-grid">
-				<div class="section-header">
-					<h2 id="part2">Insertion Editing</h2>
-				</div>
+				<div class="section-grid">
+					<div class="section-header">
+						<h2 id="part1">What is an Edited Picture?</h2>
+					</div>
 
-				<div class="section-sidebar">
-					<h3>Introduction</h3>
-				</div>
-				<div class="section-content">
-					<p>There are four types of Insertion Editing:-</p>
-					<ul>
-						<li>Simple Insertion</li>
-						<li>Special Insertion</li>
-						<li>Fixed Insertion</li>
-						<li>Floating Insertion</li>
-					</ul>
-					<p>
-						Insertion Editing is so called because the edit symbol is inserted into the data item at the
-						same position it occupies in the picture clause.
-					</p>
-					<hr width="50%" />
-				</div>
+					<div class="section-sidebar">
+						<h3>Introduction</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							Most users of the data produced by COBOL programs are not content with the simple raw data.
+							They often want it presented in a particular way. Some people like to have the thousands, in
+							numeric values, separated by commas, others may want leading zeros suppressed while still
+							others may require that the currency symbol "floats" up against the first non-zero digit. In
+							COBOL these things can be achieved using Edited Pictures.
+						</p>
+						<table style="margin: 0 auto" bgcolor="#E1FFE1" border="1" cellpadding="10" width="72%">
+							<tr>
+								<td bgcolor="#FFFFCC" width="60%">Original value</td>
+								<td width="40%">
+									<div class="center-block">00023456.78</div>
+								</td>
+							</tr>
+							<tr>
+								<td bgcolor="#FFFFCC" width="60%">With commas inserted</td>
+								<td width="40%">
+									<div class="center-block">00,023,456.78</div>
+								</td>
+							</tr>
+							<tr>
+								<td bgcolor="#FFFFCC" width="60%">Plus zero suppression</td>
+								<td width="40%">
+									<div class="center-block">23,456.78</div>
+								</td>
+							</tr>
+							<tr>
+								<td bgcolor="#FFFFCC" height="4" width="60%">Plus floating currency symbol</td>
+								<td height="4" width="40%">
+									<div class="center-block">$23,456.78</div>
+								</td>
+							</tr>
+							<tr>
+								<td bgcolor="#FFFFCC" height="4" width="60%">With anti-fraud printing</td>
+								<td height="4" width="40%">
+									<div class="center-block">$***23,456.78</div>
+								</td>
+							</tr>
+						</table>
+						<hr width="50%" />
+					</div>
 
-				<div class="section-sidebar">
-					<h3>Simple Insertion editing</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						Simple Insertion editing consists of specifying the relevant insertion character(s) in the
-						<code class="language-cobol">PICTURE</code> string. When a value is moved into the edited item,
-						the insertion characters are inserted into the item at the position specified in the
-						<code class="language-cobol">PICTURE</code>.
-					</p>
-					<p>The comma, the B, the 0, and the slash (/) are the Simple Insertion editing symbols.</p>
-					<p>
-						All Simple Insertion symbols count toward the number of characters printed or displayed. For
-						instance, an item described as PIC 99/99/9999 will occupy 10 character positions when printed.
-					</p>
-					<p>
-						<b>The comma (,) symbol</b><br />
-						The comma symbol (,) instructs the computer to insert a comma at the character position where
-						the symbol occurs. The comma counts towards the size of the printed item. The comma symbol
-						cannot be the first symbol in the
-						<code class="language-cobol">PICTURE</code> string.
-					</p>
-					<p>
-						If all characters to the left of the comma are zeros and zero-suppression is called for, the
-						comma is replaced by the replacement symbol (asterisk or space).
-					</p>
-					<p>
-						<b>The space or blank (B) symbol</b><br />
-						A space is inserted where the blank symbol (B) occurs.
-					</p>
-					<p>
-						<b>The slash and zero symbols (/ and 0)</b><br />
-						A slash is inserted where the slash symbol (/) occurs, and a 0 is inserted where the zero symbol
-						(0) occurs.
-					</p>
-				</div>
+					<div class="section-sidebar">
+						<h3>Edit Symbols</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							Edited Pictures, are <code class="language-cobol">PICTURE</code> clauses that format data
+							intended for output to screen or printer. To enable the data items to be formatted, COBOL
+							provides additional picture symbols to supplement the basic 9, X, A, V and S.
+						</p>
+						<p>
+							The additional symbols are referred to as "Edit Symbols," and
+							<code class="language-cobol">PICTURE</code> clauses that include edit symbols are called
+							"Edited Pictures".
+						</p>
+						<p>
+							The term edit is used, because the edit symbols have the effect of changing, or editing, the
+							data inserted into the edited item.
+						</p>
+						<p>
+							Edited items cannot be used as operands in a computation, but they may be used as the result
+							or destination of a computation (they can be used in items placed to the right of the word
+							<code class="language-cobol">GIVING</code>).
+						</p>
+						<hr width="50%" />
+					</div>
 
-				<div class="section-sidebar">
-					<h3>Simple Insertion examples</h3>
-					<p class="center-block"><img height="46" src="Resources/pics/i-SAQ2.gif" width="32" alt="" /></p>
-				</div>
-				<div class="section-content">
-					<p>
-						In the examples/questions below, see if you can figure out what result will be produced when we
-						move the value in the Sending item to the editied picture in the Receiving item. The description
-						of the Sending item is shown in the Picture column and its current value is shown in the Data
-						column.
-					</p>
-					<table style="margin:0 auto" bgcolor="#FFFFCC" border="1" cellpadding="0" cellspacing="0" width="94%">
-						<tr bgcolor="#FFFFCC">
-							<th colspan="2" id="ep-t1-sg" scope="colgroup">Sending item</th>
-							<th colspan="2" id="ep-t1-ri" scope="colgroup">Receiving item</th>
-						</tr>
-						<tr bgcolor="#FFFFCC">
-							<th id="ep-t1-sp" scope="col" width="20%">Picture</th>
-							<th id="ep-t1-sd" scope="col" width="15%">Data</th>
-							<th id="ep-t1-rp" scope="col" width="24%">Picture</th>
-							<th id="ep-t1-rr" scope="col" width="41%">Result</th>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t1-sg ep-t1-sp" width="20%">
-								PIC 999999
-							</td>
-							<td headers="ep-t1-sg ep-t1-sd" width="15%">
-								<div class="center-block">123456</div>
-							</td>
-							<td headers="ep-t1-ri ep-t1-rp" width="24%">
-								PIC 999,999
-							</td>
-							<td headers="ep-t1-ri ep-t1-rr" width="41%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = 123,456</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t1-sg ep-t1-sp" width="20%">
-								PIC 9(6)
-							</td>
-							<td headers="ep-t1-sg ep-t1-sd" width="15%">
-								<div class="center-block">000078</div>
-							</td>
-							<td headers="ep-t1-ri ep-t1-rp" width="24%">
-								PIC 9(3),9(3)
-							</td>
-							<td headers="ep-t1-ri ep-t1-rr" width="41%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select2">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = 000,078</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t1-sg ep-t1-sp" width="20%">PIC 9(6)</td>
-							<td headers="ep-t1-sg ep-t1-sd" width="15%">
-								<div class="center-block">000078</div>
-							</td>
-							<td headers="ep-t1-ri ep-t1-rp" width="24%">PIC ZZZ,ZZZ</td>
-							<td headers="ep-t1-ri ep-t1-rr" width="41%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select3">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = sssss78</option>
-										<option>s - indicates a space.</option>
-										<option>The Z suppresses</option>
-										<option>leading zeros, replacing</option>
-										<option>them with spaces. Since</option>
-										<option>there are only zeros to</option>
-										<option>the left of the comma, it</option>
-										<option>is replaced by a space.</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t1-sg ep-t1-sp" width="20%">PIC 9(6)</td>
-							<td headers="ep-t1-sg ep-t1-sd" width="15%">
-								<div class="center-block">000178</div>
-							</td>
-							<td headers="ep-t1-ri ep-t1-rp" width="24%">PIC ***,***</td>
-							<td headers="ep-t1-ri ep-t1-rr" width="41%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select4">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = ****178</option>
-										<option>Since only zeros are</option>
-										<option>to the left of the comma</option>
-										<option>it is replaced by the</option>
-										<option>replacement symbol *.</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t1-sg ep-t1-sp" width="20%">PIC 9(6)</td>
-							<td headers="ep-t1-sg ep-t1-sd" width="15%">
-								<div class="center-block">002178</div>
-							</td>
-							<td headers="ep-t1-ri ep-t1-rp" width="24%">PIC ***,***</td>
-							<td headers="ep-t1-ri ep-t1-rr" width="41%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select8">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = **2,178</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t1-sg ep-t1-sp" width="20%">
-								PIC 9(6)
-							</td>
-							<td headers="ep-t1-sg ep-t1-sd" width="15%">
-								<div class="center-block">120183</div>
-							</td>
-							<td headers="ep-t1-ri ep-t1-rp" width="24%">
-								PIC 99B99B99
-							</td>
-							<td headers="ep-t1-ri ep-t1-rr" width="41%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select9">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = 12s01s83</option>
-										<option>s - indicates a space</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t1-sg ep-t1-sp" width="20%">
-								PIC 9(6)
-							</td>
-							<td headers="ep-t1-sg ep-t1-sd" width="15%">
-								<div class="center-block">120183</div>
-							</td>
-							<td headers="ep-t1-ri ep-t1-rp" width="24%">
-								PIC 99/99/99
-							</td>
-							<td headers="ep-t1-ri ep-t1-rr" width="41%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select10">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = 12/01/83</option>
-										<option>As in this case,</option>
-										<option>the slash is often</option>
-										<option>used to edit dates.</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t1-sg ep-t1-sp" height="2" width="20%">
-								PIC 9(6)
-							</td>
-							<td headers="ep-t1-sg ep-t1-sd" height="2" width="15%">
-								<div class="center-block">031245</div>
-							</td>
-							<td headers="ep-t1-ri ep-t1-rp" height="2" width="24%">
-								PIC 990099
-							</td>
-							<td headers="ep-t1-ri ep-t1-rr" height="2" width="41%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select11">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = 120045</option>
-										<option>Decimal point alignment</option>
-										<option>means that 45 will be</option>
-										<option>placed in the rightmost</option>
-										<option>two digits, then the zeros</option>
-										<option>will be inserted and then</option>
-										<option>the 12 will be placed in</option>
-										<option>the last two positions.</option>
-										<option>The 3 will be truncated.</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-					</table>
-					<hr width="50%" />
+					<div class="section-sidebar">
+						<h3>Types of editing picture</h3>
+					</div>
+					<div class="section-content">
+						<p>COBOL permits two basic types of editing picture:</p>
+						<ol>
+							<li>
+								<b>Insertion Editing</b><br />
+								This type of editing modifies a value by including additional items and has the
+								following sub-categories:
+								<ul>
+									<li>Simple Insertion</li>
+									<li>Special Insertion</li>
+									<li>Fixed Insertion</li>
+									<li>Floating Insertion</li>
+								</ul>
+							</li>
+							<li>
+								<b>Suppression and Replacement Editing</b><br />
+								This type of editing suppresses and replaces leading zeros and has the following
+								sub-categories:
+								<ul>
+									<li>Zero suppression and replacement with spaces</li>
+									<li>Zero suppression and replacement with asterisks</li>
+								</ul>
+							</li>
+						</ol>
+						<hr width="50%" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Editing symbols</h3>
+					</div>
+					<div class="section-content">
+						<p>COBOL permits two basic types of editing picture:&gt;</p>
+						<table
+							style="margin: 0 auto"
+							bgcolor="#E1FFE1"
+							border
+							cellpadding="7"
+							cellspacing="1"
+							width="338"
+						>
+							<tr bgcolor="#FFFFCC">
+								<td valign="top" width="32%">
+									<p class="center-block"><b>Edit Symbol</b></p>
+								</td>
+								<td valign="top" width="68%">
+									<p class="center-block"><b>Editing Type</b></p>
+								</td>
+							</tr>
+							<tr>
+								<td valign="top" width="32%">
+									<p class="center-block"><b>, B 0 /</b></p>
+								</td>
+								<td valign="top" width="68%">
+									<p>Simple Insertion</p>
+								</td>
+							</tr>
+							<tr>
+								<td valign="top" width="32%">
+									<p class="center-block"><b>.</b></p>
+								</td>
+								<td valign="top" width="68%">
+									<p>Special Insertion</p>
+								</td>
+							</tr>
+							<tr>
+								<td valign="top" width="32%">
+									<p class="center-block"><b>+ - CR DB $</b></p>
+								</td>
+								<td valign="top" width="68%">
+									<p>Fixed Insertion</p>
+								</td>
+							</tr>
+							<tr>
+								<td valign="top" width="32%">
+									<p class="center-block"><b>+ - $</b></p>
+								</td>
+								<td valign="top" width="68%">
+									<p>Floating Insertion</p>
+								</td>
+							</tr>
+							<tr>
+								<td valign="top" width="32%">
+									<p class="center-block"><b>Z *</b></p>
+								</td>
+								<td valign="top" width="68%">
+									<p>Suppression and Replacement</p>
+								</td>
+							</tr>
+						</table>
+						<hr width="50%" />
+					</div>
+
+					<div class="section-full">
+						<div>
+							<hr />
+							<back-to-top></back-to-top>
+						</div>
+					</div>
 				</div>
 
-				<div class="section-sidebar">
-					<h3>Special Insertion</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						The decimal point is the only Special Insertion symbol. A decimal point is inserted in the
-						character position where the symbol occurs.
-					</p>
-					<p>
-						<b>Notes</b><br />
-						When a numeric data-item is moved into an edited data-item containing the decimal point symbol,
-						alignment occurs along the position of the decimal point symbol, with zero-filling and
-						truncation as necessary.
-					</p>
-					<p>There may be only one decimal point in each edited picture clause.</p>
-					<p>
-						The decimal point symbol cannot be mixed with either the V (assumed decimal point) or the P
-						(scaling position) symbol.
-					</p>
-				</div>
+				<div class="section-grid">
+					<div class="section-header">
+						<h2 id="part2">Insertion Editing</h2>
+					</div>
 
-				<div class="section-sidebar">
-					<h3>Special Insertion examples</h3>
-					<p class="center-block"><img height="46" src="Resources/pics/i-SAQ2.gif" width="32" alt="" /></p>
-				</div>
-				<div class="section-content">
-					<p>
-						In the examples/questions below, see if you can figure out what result will be produced when
-						the value in the Sending item is moved to the editied picture in the Receiving item. The
-						description of the Sending item is shown in the Picture column and its current value is
-						shown in the Data column.
-					</p>
-					<table
-						style="margin:0 auto"
-						bgcolor="#FFFFCC"
-						border="1"
-						bordercolorlight="#FFFFFF"
-						cellpadding="0"
-						cellspacing="0"
-						width="88%"
-					>
-						<tr bgcolor="#FFFFCC">
-							<th colspan="2" id="ep-t2-sg" scope="colgroup">Sending item</th>
-							<th colspan="2" id="ep-t2-ri" scope="colgroup">Receiving item</th>
-						</tr>
-						<tr bgcolor="#FFFFCC">
-							<th id="ep-t2-sp" scope="col" width="23%">Picture</th>
-							<th id="ep-t2-sd" scope="col" width="11%">Data</th>
-							<th id="ep-t2-rp" scope="col" width="22%">Picture</th>
-							<th id="ep-t2-rr" scope="col" width="44%">Result</th>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t2-sg ep-t2-sp" height="13" width="23%">
-								PIC 999V99
-							</td>
-							<td headers="ep-t2-sg ep-t2-sd" height="13" width="11%">
-								<div class="center-block">12345</div>
-							</td>
-							<td headers="ep-t2-ri ep-t2-rp" height="13" width="22%">
-								PIC 999.99
-							</td>
-							<td headers="ep-t2-ri ep-t2-rr" height="13" width="44%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select12" size="1">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = 123.45</option>
-										<option>The assumed decimal</option>
-										<option>point (V) aligns with the</option>
-										<option>actual decimal point (.)</option>
-										<option>so 45 goes after the</option>
-										<option>decimal point and 123</option>
-										<option>before it.</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t2-sg ep-t2-sp" height="16" width="23%">
-								PIC 999V99
-							</td>
-							<td headers="ep-t2-sg ep-t2-sd" height="16" width="11%">
-								<div class="center-block">02345</div>
-							</td>
-							<td headers="ep-t2-ri ep-t2-rp" height="16" width="22%">
-								PIC 999.9
-							</td>
-							<td headers="ep-t2-ri ep-t2-rr" height="16" width="44%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select12b" size="1">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = 023.4</option>
-										<option>The receiving field only</option>
-										<option>allows one digit after the</option>
-										<option>decimal point so after</option>
-										<option>decimal point alignment</option>
-										<option>the 5 will be lost.</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t2-sg ep-t2-sp" height="16" width="23%">PIC 999V99</td>
-							<td headers="ep-t2-sg ep-t2-sd" height="16" width="11%">
-								<div class="center-block">71234</div>
-							</td>
-							<td headers="ep-t2-ri ep-t2-rp" height="16" width="22%">PIC 99.99</td>
-							<td headers="ep-t2-ri ep-t2-rr" height="16" width="44%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select12c" size="1">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = 12.34</option>
-										<option>In this case decimal</option>
-										<option>point alignment causes</option>
-										<option>most significant digit (7) to</option>
-										<option>be lost.</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t2-sg ep-t2-sp" width="23%">PIC 9(4)</td>
-							<td headers="ep-t2-sg ep-t2-sd" width="11%">
-								<div class="center-block">2456</div>
-							</td>
-							<td headers="ep-t2-ri ep-t2-rp" width="22%">PIC 999.99</td>
-							<td headers="ep-t2-ri ep-t2-rr" width="44%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select12d" size="1">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = 456.00</option>
-										<option>Decimal point alignment</option>
-										<option>means that, the most</option>
-										<option>significant digit (2) will be</option>
-										<option>lost, and the positions</option>
-										<option>after the decimal point</option>
-										<option>will be filled with zeros</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-					</table>
-					<hr width="50%" />
-				</div>
+					<div class="section-sidebar">
+						<h3>Introduction</h3>
+					</div>
+					<div class="section-content">
+						<p>There are four types of Insertion Editing:-</p>
+						<ul>
+							<li>Simple Insertion</li>
+							<li>Special Insertion</li>
+							<li>Fixed Insertion</li>
+							<li>Floating Insertion</li>
+						</ul>
+						<p>
+							Insertion Editing is so called because the edit symbol is inserted into the data item at the
+							same position it occupies in the picture clause.
+						</p>
+						<hr width="50%" />
+					</div>
 
-				<div class="section-sidebar">
-					<h3>Fixed Insertion</h3>
-					<aside>
+					<div class="section-sidebar">
+						<h3>Simple Insertion editing</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							Simple Insertion editing consists of specifying the relevant insertion character(s) in the
+							<code class="language-cobol">PICTURE</code> string. When a value is moved into the edited
+							item, the insertion characters are inserted into the item at the position specified in the
+							<code class="language-cobol">PICTURE</code>.
+						</p>
+						<p>The comma, the B, the 0, and the slash (/) are the Simple Insertion editing symbols.</p>
+						<p>
+							All Simple Insertion symbols count toward the number of characters printed or displayed. For
+							instance, an item described as PIC 99/99/9999 will occupy 10 character positions when
+							printed.
+						</p>
+						<p>
+							<b>The comma (,) symbol</b><br />
+							The comma symbol (,) instructs the computer to insert a comma at the character position
+							where the symbol occurs. The comma counts towards the size of the printed item. The comma
+							symbol cannot be the first symbol in the
+							<code class="language-cobol">PICTURE</code> string.
+						</p>
+						<p>
+							If all characters to the left of the comma are zeros and zero-suppression is called for, the
+							comma is replaced by the replacement symbol (asterisk or space).
+						</p>
+						<p>
+							<b>The space or blank (B) symbol</b><br />
+							A space is inserted where the blank symbol (B) occurs.
+						</p>
+						<p>
+							<b>The slash and zero symbols (/ and 0)</b><br />
+							A slash is inserted where the slash symbol (/) occurs, and a 0 is inserted where the zero
+							symbol (0) occurs.
+						</p>
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Simple Insertion examples</h3>
 						<p class="center-block">
-							<span class="i-detail" aria-hidden="true">🔍</span>
+							<img height="46" src="Resources/pics/i-SAQ2.gif" width="32" alt="" />
+						</p>
+					</div>
+					<div class="section-content">
+						<p>
+							In the examples/questions below, see if you can figure out what result will be produced when
+							we move the value in the Sending item to the editied picture in the Receiving item. The
+							description of the Sending item is shown in the Picture column and its current value is
+							shown in the Data column.
+						</p>
+						<table
+							style="margin: 0 auto"
+							bgcolor="#FFFFCC"
+							border="1"
+							cellpadding="0"
+							cellspacing="0"
+							width="94%"
+						>
+							<tr bgcolor="#FFFFCC">
+								<th colspan="2" id="ep-t1-sg" scope="colgroup">Sending item</th>
+								<th colspan="2" id="ep-t1-ri" scope="colgroup">Receiving item</th>
+							</tr>
+							<tr bgcolor="#FFFFCC">
+								<th id="ep-t1-sp" scope="col" width="20%">Picture</th>
+								<th id="ep-t1-sd" scope="col" width="15%">Data</th>
+								<th id="ep-t1-rp" scope="col" width="24%">Picture</th>
+								<th id="ep-t1-rr" scope="col" width="41%">Result</th>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t1-sg ep-t1-sp" width="20%">PIC 999999</td>
+								<td headers="ep-t1-sg ep-t1-sd" width="15%">
+									<div class="center-block">123456</div>
+								</td>
+								<td headers="ep-t1-ri ep-t1-rp" width="24%">PIC 999,999</td>
+								<td headers="ep-t1-ri ep-t1-rr" width="41%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = 123,456</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t1-sg ep-t1-sp" width="20%">PIC 9(6)</td>
+								<td headers="ep-t1-sg ep-t1-sd" width="15%">
+									<div class="center-block">000078</div>
+								</td>
+								<td headers="ep-t1-ri ep-t1-rp" width="24%">PIC 9(3),9(3)</td>
+								<td headers="ep-t1-ri ep-t1-rr" width="41%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select2">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = 000,078</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t1-sg ep-t1-sp" width="20%">PIC 9(6)</td>
+								<td headers="ep-t1-sg ep-t1-sd" width="15%">
+									<div class="center-block">000078</div>
+								</td>
+								<td headers="ep-t1-ri ep-t1-rp" width="24%">PIC ZZZ,ZZZ</td>
+								<td headers="ep-t1-ri ep-t1-rr" width="41%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select3">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = sssss78</option>
+											<option>s - indicates a space.</option>
+											<option>The Z suppresses</option>
+											<option>leading zeros, replacing</option>
+											<option>them with spaces. Since</option>
+											<option>there are only zeros to</option>
+											<option>the left of the comma, it</option>
+											<option>is replaced by a space.</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t1-sg ep-t1-sp" width="20%">PIC 9(6)</td>
+								<td headers="ep-t1-sg ep-t1-sd" width="15%">
+									<div class="center-block">000178</div>
+								</td>
+								<td headers="ep-t1-ri ep-t1-rp" width="24%">PIC ***,***</td>
+								<td headers="ep-t1-ri ep-t1-rr" width="41%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select4">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = ****178</option>
+											<option>Since only zeros are</option>
+											<option>to the left of the comma</option>
+											<option>it is replaced by the</option>
+											<option>replacement symbol *.</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t1-sg ep-t1-sp" width="20%">PIC 9(6)</td>
+								<td headers="ep-t1-sg ep-t1-sd" width="15%">
+									<div class="center-block">002178</div>
+								</td>
+								<td headers="ep-t1-ri ep-t1-rp" width="24%">PIC ***,***</td>
+								<td headers="ep-t1-ri ep-t1-rr" width="41%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select8">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = **2,178</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t1-sg ep-t1-sp" width="20%">PIC 9(6)</td>
+								<td headers="ep-t1-sg ep-t1-sd" width="15%">
+									<div class="center-block">120183</div>
+								</td>
+								<td headers="ep-t1-ri ep-t1-rp" width="24%">PIC 99B99B99</td>
+								<td headers="ep-t1-ri ep-t1-rr" width="41%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select9">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = 12s01s83</option>
+											<option>s - indicates a space</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t1-sg ep-t1-sp" width="20%">PIC 9(6)</td>
+								<td headers="ep-t1-sg ep-t1-sd" width="15%">
+									<div class="center-block">120183</div>
+								</td>
+								<td headers="ep-t1-ri ep-t1-rp" width="24%">PIC 99/99/99</td>
+								<td headers="ep-t1-ri ep-t1-rr" width="41%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select10">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = 12/01/83</option>
+											<option>As in this case,</option>
+											<option>the slash is often</option>
+											<option>used to edit dates.</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t1-sg ep-t1-sp" height="2" width="20%">PIC 9(6)</td>
+								<td headers="ep-t1-sg ep-t1-sd" height="2" width="15%">
+									<div class="center-block">031245</div>
+								</td>
+								<td headers="ep-t1-ri ep-t1-rp" height="2" width="24%">PIC 990099</td>
+								<td headers="ep-t1-ri ep-t1-rr" height="2" width="41%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select11">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = 120045</option>
+											<option>Decimal point alignment</option>
+											<option>means that 45 will be</option>
+											<option>placed in the rightmost</option>
+											<option>two digits, then the zeros</option>
+											<option>will be inserted and then</option>
+											<option>the 12 will be placed in</option>
+											<option>the last two positions.</option>
+											<option>The 3 will be truncated.</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+						</table>
+						<hr width="50%" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Special Insertion</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							The decimal point is the only Special Insertion symbol. A decimal point is inserted in the
+							character position where the symbol occurs.
 						</p>
 						<p>
-							The default currency symbol is the dollar sign ($) but it may be changed to a different
-							symbol by the <code class="language-cobol">CURRENCY SIGN IS</code> clause, in the
-							<code class="language-cobol">SPECIAL-NAMES</code> paragraph, of the
-							<code class="language-cobol">CONFIGURATION SECTION</code>, in the
-							<code class="language-cobol">ENVIRONMENT DIVISION</code>.
+							<b>Notes</b><br />
+							When a numeric data-item is moved into an edited data-item containing the decimal point
+							symbol, alignment occurs along the position of the decimal point symbol, with zero-filling
+							and truncation as necessary.
 						</p>
-					</aside>
-				</div>
-				<div class="section-content">
-					<p>Fixed Insertion editing inserts the symbol at the beginning or end of the edited item.</p>
-					<p>The Fixed Insertion editing symbols are:</p>
-					<ul>
-						<li>the plus (+) and minus (-) signs,</li>
-						<li>the letters CR and DB representing credit and debit,</li>
-						<li>and the currency symbol usually the $ sign.</li>
-					</ul>
-					<p>All symbols count toward the size of the printed item.</p>
-					<p>
-						<b>Plus and minus symbols</b><br />
-						These must appear in the leftmost or rightmost character positions and they count towards the
-						size of the data item. They must be the first or last character in the
-						<code class="language-cobol">PICTURE</code> string.
-					</p>
-					<blockquote>
+						<p>There may be only one decimal point in each edited picture clause.</p>
 						<p>
-							<b>Minus</b><br />
-							If the sending item is negative, a minus sign is printed. If the sending item is positive, a
-							space is printed instead. Use this to highlight negative values only.
+							The decimal point symbol cannot be mixed with either the V (assumed decimal point) or the P
+							(scaling position) symbol.
+						</p>
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Special Insertion examples</h3>
+						<p class="center-block">
+							<img height="46" src="Resources/pics/i-SAQ2.gif" width="32" alt="" />
+						</p>
+					</div>
+					<div class="section-content">
+						<p>
+							In the examples/questions below, see if you can figure out what result will be produced when
+							the value in the Sending item is moved to the editied picture in the Receiving item. The
+							description of the Sending item is shown in the Picture column and its current value is
+							shown in the Data column.
+						</p>
+						<table
+							style="margin: 0 auto"
+							bgcolor="#FFFFCC"
+							border="1"
+							bordercolorlight="#FFFFFF"
+							cellpadding="0"
+							cellspacing="0"
+							width="88%"
+						>
+							<tr bgcolor="#FFFFCC">
+								<th colspan="2" id="ep-t2-sg" scope="colgroup">Sending item</th>
+								<th colspan="2" id="ep-t2-ri" scope="colgroup">Receiving item</th>
+							</tr>
+							<tr bgcolor="#FFFFCC">
+								<th id="ep-t2-sp" scope="col" width="23%">Picture</th>
+								<th id="ep-t2-sd" scope="col" width="11%">Data</th>
+								<th id="ep-t2-rp" scope="col" width="22%">Picture</th>
+								<th id="ep-t2-rr" scope="col" width="44%">Result</th>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t2-sg ep-t2-sp" height="13" width="23%">PIC 999V99</td>
+								<td headers="ep-t2-sg ep-t2-sd" height="13" width="11%">
+									<div class="center-block">12345</div>
+								</td>
+								<td headers="ep-t2-ri ep-t2-rp" height="13" width="22%">PIC 999.99</td>
+								<td headers="ep-t2-ri ep-t2-rr" height="13" width="44%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select12" size="1">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = 123.45</option>
+											<option>The assumed decimal</option>
+											<option>point (V) aligns with the</option>
+											<option>actual decimal point (.)</option>
+											<option>so 45 goes after the</option>
+											<option>decimal point and 123</option>
+											<option>before it.</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t2-sg ep-t2-sp" height="16" width="23%">PIC 999V99</td>
+								<td headers="ep-t2-sg ep-t2-sd" height="16" width="11%">
+									<div class="center-block">02345</div>
+								</td>
+								<td headers="ep-t2-ri ep-t2-rp" height="16" width="22%">PIC 999.9</td>
+								<td headers="ep-t2-ri ep-t2-rr" height="16" width="44%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select12b" size="1">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = 023.4</option>
+											<option>The receiving field only</option>
+											<option>allows one digit after the</option>
+											<option>decimal point so after</option>
+											<option>decimal point alignment</option>
+											<option>the 5 will be lost.</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t2-sg ep-t2-sp" height="16" width="23%">PIC 999V99</td>
+								<td headers="ep-t2-sg ep-t2-sd" height="16" width="11%">
+									<div class="center-block">71234</div>
+								</td>
+								<td headers="ep-t2-ri ep-t2-rp" height="16" width="22%">PIC 99.99</td>
+								<td headers="ep-t2-ri ep-t2-rr" height="16" width="44%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select12c" size="1">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = 12.34</option>
+											<option>In this case decimal</option>
+											<option>point alignment causes</option>
+											<option>most significant digit (7) to</option>
+											<option>be lost.</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t2-sg ep-t2-sp" width="23%">PIC 9(4)</td>
+								<td headers="ep-t2-sg ep-t2-sd" width="11%">
+									<div class="center-block">2456</div>
+								</td>
+								<td headers="ep-t2-ri ep-t2-rp" width="22%">PIC 999.99</td>
+								<td headers="ep-t2-ri ep-t2-rr" width="44%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select12d" size="1">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = 456.00</option>
+											<option>Decimal point alignment</option>
+											<option>means that, the most</option>
+											<option>significant digit (2) will be</option>
+											<option>lost, and the positions</option>
+											<option>after the decimal point</option>
+											<option>will be filled with zeros</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+						</table>
+						<hr width="50%" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Fixed Insertion</h3>
+						<aside>
+							<p class="center-block">
+								<span class="i-detail" aria-hidden="true">🔍</span>
+							</p>
+							<p>
+								The default currency symbol is the dollar sign ($) but it may be changed to a different
+								symbol by the <code class="language-cobol">CURRENCY SIGN IS</code> clause, in the
+								<code class="language-cobol">SPECIAL-NAMES</code> paragraph, of the
+								<code class="language-cobol">CONFIGURATION SECTION</code>, in the
+								<code class="language-cobol">ENVIRONMENT DIVISION</code>.
+							</p>
+						</aside>
+					</div>
+					<div class="section-content">
+						<p>Fixed Insertion editing inserts the symbol at the beginning or end of the edited item.</p>
+						<p>The Fixed Insertion editing symbols are:</p>
+						<ul>
+							<li>the plus (+) and minus (-) signs,</li>
+							<li>the letters CR and DB representing credit and debit,</li>
+							<li>and the currency symbol usually the $ sign.</li>
+						</ul>
+						<p>All symbols count toward the size of the printed item.</p>
+						<p>
+							<b>Plus and minus symbols</b><br />
+							These must appear in the leftmost or rightmost character positions and they count towards
+							the size of the data item. They must be the first or last character in the
+							<code class="language-cobol">PICTURE</code> string.
+						</p>
+						<blockquote>
+							<p>
+								<b>Minus</b><br />
+								If the sending item is negative, a minus sign is printed. If the sending item is
+								positive, a space is printed instead. Use this to highlight negative values only.
+							</p>
+							<p>
+								<b>Plus<br /></b> If the sending item is negative, a minus in printed and if the sending
+								item is positive, a plus is inserted. Use this to when you always want the sign printed.
+							</p>
+						</blockquote>
+						<p>
+							<b>CR and DB</b><br />
+							CR and DB count towards the data item size and occupy two character positions. They may only
+							appear in the rightmost position. Both are only printed if the sending item is negative.
+							Otherwise two spaces are printed.
 						</p>
 						<p>
-							<b>Plus<br /></b> If the sending item is negative, a minus in printed and if the sending
-							item is positive, a plus is inserted. Use this to when you always want the sign printed.
+							<b>The currency symbol (usually $).</b><br />
+							The currency symbol must be the leftmost character and it counts towards the size of the
+							item. It may be preceded by a plus or a minus sign.
 						</p>
-					</blockquote>
-					<p>
-						<b>CR and DB</b><br />
-						CR and DB count towards the data item size and occupy two character positions. They may only
-						appear in the rightmost position. Both are only printed if the sending item is negative.
-						Otherwise two spaces are printed.
-					</p>
-					<p>
-						<b>The currency symbol (usually $).</b><br />
-						The currency symbol must be the leftmost character and it counts towards the size of the item.
-						It may be preceded by a plus or a minus sign.
-					</p>
-				</div>
+					</div>
 
-				<div class="section-sidebar">
-					<h3>Fixed Insertion examples</h3>
-					<p class="center-block"><img height="46" src="Resources/pics/i-SAQ2.gif" width="32" alt="" /></p>
-				</div>
-				<div class="section-content">
-					<p>
-						Like the previous examples/questions above, see if you can figure out what result will be
-						produced when the value in the Sending item is moved to the editied picture in the Receiving
-						item.
-					</p>
-					<table style="margin:0 auto" bgcolor="#FFFFCC" border="1" cellpadding="0" cellspacing="0" width="87%">
-						<tr bgcolor="#FFFFCC">
-							<th colspan="2" id="ep-t3-sg" scope="colgroup">Sending item</th>
-							<th colspan="2" id="ep-t3-ri" scope="colgroup">Receiving item</th>
-						</tr>
-						<tr bgcolor="#FFFFCC">
-							<th id="ep-t3-sp" scope="col" width="18%">Picture</th>
-							<th id="ep-t3-sd" scope="col" width="16%">Data</th>
-							<th id="ep-t3-rp" scope="col" width="20%">Picture</th>
-							<th id="ep-t3-rr" scope="col" width="46%">Result</th>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t3-sg ep-t3-sp" height="15" width="18%">
-								PIC S999
-							</td>
-							<td headers="ep-t3-sg ep-t3-sd" height="15" width="16%">
-								<div class="center-block">-123</div>
-							</td>
-							<td headers="ep-t3-ri ep-t3-rp" height="15" width="20%">
-								PIC -999
-							</td>
-							<td headers="ep-t3-ri ep-t3-rr" height="15" width="46%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select13">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = -123</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t3-sg ep-t3-sp" height="16" width="18%">
-								PIC S999
-							</td>
-							<td headers="ep-t3-sg ep-t3-sd" height="16" width="16%">
-								<div class="center-block">-123</div>
-							</td>
-							<td headers="ep-t3-ri ep-t3-rp" height="16" width="20%">
-								PIC 999-
-							</td>
-							<td headers="ep-t3-ri ep-t3-rr" height="16" width="46%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select13b">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = 123-</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t3-sg ep-t3-sp" height="16" width="18%">PIC S999</td>
-							<td headers="ep-t3-sg ep-t3-sd" height="16" width="16%">
-								<div class="center-block">+123</div>
-							</td>
-							<td headers="ep-t3-ri ep-t3-rp" height="16" width="20%">PIC -999</td>
-							<td headers="ep-t3-ri ep-t3-rr" height="16" width="46%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select14">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = s123</option>
-										<option>s - indicates a space</option>
-										<option>The - symbol only</option>
-										<option>highlights negative</option>
-										<option>values. If the value is</option>
-										<option>positive, a space is</option>
-										<option>printed instead of the</option>
-										<option>sign.</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t3-sg ep-t3-sp" height="16" width="18%">PIC S9(5)</td>
-							<td headers="ep-t3-sg ep-t3-sd" height="16" width="16%">
-								<div class="center-block">+12345</div>
-							</td>
-							<td headers="ep-t3-ri ep-t3-rp" height="16" width="20%">PIC +9(5)</td>
-							<td headers="ep-t3-ri ep-t3-rr" height="16" width="46%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select15">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = +12345</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t3-sg ep-t3-sp" height="16" width="18%">PIC S9(3)</td>
-							<td headers="ep-t3-sg ep-t3-sd" height="16" width="16%">
-								<div class="center-block">-123</div>
-							</td>
-							<td headers="ep-t3-ri ep-t3-rp" height="16" width="20%">PIC +9(3)</td>
-							<td headers="ep-t3-ri ep-t3-rr" height="16" width="46%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select16">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = -123</option>
-										<option>If a + symbol is used, a +</option>
-										<option>is printed if the value is</option>
-										<option>positive and a - is printed</option>
-										<option>if the value is negative.</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t3-sg ep-t3-sp" height="16" width="18%">PIC S9(3)</td>
-							<td headers="ep-t3-sg ep-t3-sd" height="16" width="16%">
-								<div class="center-block">-123</div>
-							</td>
-							<td headers="ep-t3-ri ep-t3-rp" height="16" width="20%">PIC 999+</td>
-							<td headers="ep-t3-ri ep-t3-rr" height="16" width="46%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select13c">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = 123-</option>
-										<option>In this case decimal</option>
-										<option>point alignment causes</option>
-										<option>most significant digit (7)</option>
-										<option>to be lost.</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t3-sg ep-t3-sp" height="16" width="18%">PIC S9(4)</td>
-							<td headers="ep-t3-sg ep-t3-sd" height="16" width="16%">
-								<div class="center-block">+1234</div>
-							</td>
-							<td headers="ep-t3-ri ep-t3-rp" height="16" width="20%">PIC 9(4)CR</td>
-							<td headers="ep-t3-ri ep-t3-rr" height="16" width="46%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select17">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = 1234ss</option>
-										<option>s- indicates a space</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t3-sg ep-t3-sp" height="16" width="18%">PIC S9(4)</td>
-							<td headers="ep-t3-sg ep-t3-sd" height="16" width="16%">
-								<div class="center-block">-1234</div>
-							</td>
-							<td headers="ep-t3-ri ep-t3-rp" height="16" width="20%">PIC 9(4)CR</td>
-							<td headers="ep-t3-ri ep-t3-rr" height="16" width="46%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select18">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = 1234CR</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t3-sg ep-t3-sp" height="16" width="18%">PIC S9(4)</td>
-							<td headers="ep-t3-sg ep-t3-sd" height="16" width="16%">
-								<div class="center-block">+1234</div>
-							</td>
-							<td headers="ep-t3-ri ep-t3-rp" height="16" width="20%">PIC 9(4)DB</td>
-							<td headers="ep-t3-ri ep-t3-rr" height="16" width="46%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select19">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = 1223ss</option>
-										<option>s - indicates a space</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t3-sg ep-t3-sp" height="16" width="18%">PIC S9(4)</td>
-							<td headers="ep-t3-sg ep-t3-sd" height="16" width="16%">
-								<div class="center-block">-1234</div>
-							</td>
-							<td headers="ep-t3-ri ep-t3-rp" height="16" width="20%">PIC 9(4)DB</td>
-							<td headers="ep-t3-ri ep-t3-rr" height="16" width="46%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select20">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = 1234DB</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t3-sg ep-t3-sp" height="16" width="18%">PIC 9(4)</td>
-							<td headers="ep-t3-sg ep-t3-sd" height="16" width="16%">
-								<div class="center-block">1234</div>
-							</td>
-							<td headers="ep-t3-ri ep-t3-rp" height="16" width="20%">PIC $99999</td>
-							<td headers="ep-t3-ri ep-t3-rr" height="16" width="46%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select21">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = $01234</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t3-sg ep-t3-sp" height="16" width="18%">PIC 9(4)</td>
-							<td headers="ep-t3-sg ep-t3-sd" height="16" width="16%">
-								<div class="center-block">0000</div>
-							</td>
-							<td headers="ep-t3-ri ep-t3-rp" height="16" width="20%">PIC $ZZZZZ</td>
-							<td headers="ep-t3-ri ep-t3-rr" height="16" width="46%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select22">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = $sssss</option>
-										<option>s - indicates a space</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-					</table>
-					<hr width="50%" />
-				</div>
+					<div class="section-sidebar">
+						<h3>Fixed Insertion examples</h3>
+						<p class="center-block">
+							<img height="46" src="Resources/pics/i-SAQ2.gif" width="32" alt="" />
+						</p>
+					</div>
+					<div class="section-content">
+						<p>
+							Like the previous examples/questions above, see if you can figure out what result will be
+							produced when the value in the Sending item is moved to the editied picture in the Receiving
+							item.
+						</p>
+						<table
+							style="margin: 0 auto"
+							bgcolor="#FFFFCC"
+							border="1"
+							cellpadding="0"
+							cellspacing="0"
+							width="87%"
+						>
+							<tr bgcolor="#FFFFCC">
+								<th colspan="2" id="ep-t3-sg" scope="colgroup">Sending item</th>
+								<th colspan="2" id="ep-t3-ri" scope="colgroup">Receiving item</th>
+							</tr>
+							<tr bgcolor="#FFFFCC">
+								<th id="ep-t3-sp" scope="col" width="18%">Picture</th>
+								<th id="ep-t3-sd" scope="col" width="16%">Data</th>
+								<th id="ep-t3-rp" scope="col" width="20%">Picture</th>
+								<th id="ep-t3-rr" scope="col" width="46%">Result</th>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t3-sg ep-t3-sp" height="15" width="18%">PIC S999</td>
+								<td headers="ep-t3-sg ep-t3-sd" height="15" width="16%">
+									<div class="center-block">-123</div>
+								</td>
+								<td headers="ep-t3-ri ep-t3-rp" height="15" width="20%">PIC -999</td>
+								<td headers="ep-t3-ri ep-t3-rr" height="15" width="46%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select13">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = -123</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t3-sg ep-t3-sp" height="16" width="18%">PIC S999</td>
+								<td headers="ep-t3-sg ep-t3-sd" height="16" width="16%">
+									<div class="center-block">-123</div>
+								</td>
+								<td headers="ep-t3-ri ep-t3-rp" height="16" width="20%">PIC 999-</td>
+								<td headers="ep-t3-ri ep-t3-rr" height="16" width="46%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select13b">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = 123-</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t3-sg ep-t3-sp" height="16" width="18%">PIC S999</td>
+								<td headers="ep-t3-sg ep-t3-sd" height="16" width="16%">
+									<div class="center-block">+123</div>
+								</td>
+								<td headers="ep-t3-ri ep-t3-rp" height="16" width="20%">PIC -999</td>
+								<td headers="ep-t3-ri ep-t3-rr" height="16" width="46%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select14">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = s123</option>
+											<option>s - indicates a space</option>
+											<option>The - symbol only</option>
+											<option>highlights negative</option>
+											<option>values. If the value is</option>
+											<option>positive, a space is</option>
+											<option>printed instead of the</option>
+											<option>sign.</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t3-sg ep-t3-sp" height="16" width="18%">PIC S9(5)</td>
+								<td headers="ep-t3-sg ep-t3-sd" height="16" width="16%">
+									<div class="center-block">+12345</div>
+								</td>
+								<td headers="ep-t3-ri ep-t3-rp" height="16" width="20%">PIC +9(5)</td>
+								<td headers="ep-t3-ri ep-t3-rr" height="16" width="46%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select15">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = +12345</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t3-sg ep-t3-sp" height="16" width="18%">PIC S9(3)</td>
+								<td headers="ep-t3-sg ep-t3-sd" height="16" width="16%">
+									<div class="center-block">-123</div>
+								</td>
+								<td headers="ep-t3-ri ep-t3-rp" height="16" width="20%">PIC +9(3)</td>
+								<td headers="ep-t3-ri ep-t3-rr" height="16" width="46%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select16">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = -123</option>
+											<option>If a + symbol is used, a +</option>
+											<option>is printed if the value is</option>
+											<option>positive and a - is printed</option>
+											<option>if the value is negative.</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t3-sg ep-t3-sp" height="16" width="18%">PIC S9(3)</td>
+								<td headers="ep-t3-sg ep-t3-sd" height="16" width="16%">
+									<div class="center-block">-123</div>
+								</td>
+								<td headers="ep-t3-ri ep-t3-rp" height="16" width="20%">PIC 999+</td>
+								<td headers="ep-t3-ri ep-t3-rr" height="16" width="46%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select13c">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = 123-</option>
+											<option>In this case decimal</option>
+											<option>point alignment causes</option>
+											<option>most significant digit (7)</option>
+											<option>to be lost.</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t3-sg ep-t3-sp" height="16" width="18%">PIC S9(4)</td>
+								<td headers="ep-t3-sg ep-t3-sd" height="16" width="16%">
+									<div class="center-block">+1234</div>
+								</td>
+								<td headers="ep-t3-ri ep-t3-rp" height="16" width="20%">PIC 9(4)CR</td>
+								<td headers="ep-t3-ri ep-t3-rr" height="16" width="46%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select17">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = 1234ss</option>
+											<option>s- indicates a space</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t3-sg ep-t3-sp" height="16" width="18%">PIC S9(4)</td>
+								<td headers="ep-t3-sg ep-t3-sd" height="16" width="16%">
+									<div class="center-block">-1234</div>
+								</td>
+								<td headers="ep-t3-ri ep-t3-rp" height="16" width="20%">PIC 9(4)CR</td>
+								<td headers="ep-t3-ri ep-t3-rr" height="16" width="46%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select18">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = 1234CR</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t3-sg ep-t3-sp" height="16" width="18%">PIC S9(4)</td>
+								<td headers="ep-t3-sg ep-t3-sd" height="16" width="16%">
+									<div class="center-block">+1234</div>
+								</td>
+								<td headers="ep-t3-ri ep-t3-rp" height="16" width="20%">PIC 9(4)DB</td>
+								<td headers="ep-t3-ri ep-t3-rr" height="16" width="46%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select19">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = 1223ss</option>
+											<option>s - indicates a space</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t3-sg ep-t3-sp" height="16" width="18%">PIC S9(4)</td>
+								<td headers="ep-t3-sg ep-t3-sd" height="16" width="16%">
+									<div class="center-block">-1234</div>
+								</td>
+								<td headers="ep-t3-ri ep-t3-rp" height="16" width="20%">PIC 9(4)DB</td>
+								<td headers="ep-t3-ri ep-t3-rr" height="16" width="46%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select20">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = 1234DB</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t3-sg ep-t3-sp" height="16" width="18%">PIC 9(4)</td>
+								<td headers="ep-t3-sg ep-t3-sd" height="16" width="16%">
+									<div class="center-block">1234</div>
+								</td>
+								<td headers="ep-t3-ri ep-t3-rp" height="16" width="20%">PIC $99999</td>
+								<td headers="ep-t3-ri ep-t3-rr" height="16" width="46%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select21">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = $01234</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t3-sg ep-t3-sp" height="16" width="18%">PIC 9(4)</td>
+								<td headers="ep-t3-sg ep-t3-sd" height="16" width="16%">
+									<div class="center-block">0000</div>
+								</td>
+								<td headers="ep-t3-ri ep-t3-rp" height="16" width="20%">PIC $ZZZZZ</td>
+								<td headers="ep-t3-ri ep-t3-rr" height="16" width="46%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select22">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = $sssss</option>
+											<option>s - indicates a space</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+						</table>
+						<hr width="50%" />
+					</div>
 
-				<div class="section-sidebar">
-					<h3>Floating Insertion</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						The problem with using the fixed insertion symbols is that they can be somewhat unsightly.
-						Values like $0045,345.56 or -0012 are more acceptablely presented as $45,345.56 and -12.
-					</p>
-					<p>
-						What makes these formats more presentable is that the leading zeros have been suppressed and the
-						editing symbol has been "floated" up against the first non-zero digit. In COBOL this is achieved
-						using Floating Insertion.
-					</p>
-					<p>
-						Floating Insertion suppresses leading zeros, and "floats" the insertion symbol up against the
-						first non-zero digit.
-					</p>
-					<p>The Floating Insertion symbols are;</p>
-					<ul>
-						<li>The plus and minus signs</li>
-						<li>and the currency symbol.</li>
-					</ul>
-					<p>Every floating symbol counts toward the size of the printed item.</p>
-					<p>
-						Except for the left-most one, which is always printed, each Floating Insertion symbol is a
-						placeholder that may be replaced by a digit. Accordingly, there will always be at least one
-						symbol printed, even though this may be at the cost of truncating the number (see the fourth row
-						in the example below.)
-					</p>
-				</div>
+					<div class="section-sidebar">
+						<h3>Floating Insertion</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							The problem with using the fixed insertion symbols is that they can be somewhat unsightly.
+							Values like $0045,345.56 or -0012 are more acceptablely presented as $45,345.56 and -12.
+						</p>
+						<p>
+							What makes these formats more presentable is that the leading zeros have been suppressed and
+							the editing symbol has been "floated" up against the first non-zero digit. In COBOL this is
+							achieved using Floating Insertion.
+						</p>
+						<p>
+							Floating Insertion suppresses leading zeros, and "floats" the insertion symbol up against
+							the first non-zero digit.
+						</p>
+						<p>The Floating Insertion symbols are;</p>
+						<ul>
+							<li>The plus and minus signs</li>
+							<li>and the currency symbol.</li>
+						</ul>
+						<p>Every floating symbol counts toward the size of the printed item.</p>
+						<p>
+							Except for the left-most one, which is always printed, each Floating Insertion symbol is a
+							placeholder that may be replaced by a digit. Accordingly, there will always be at least one
+							symbol printed, even though this may be at the cost of truncating the number (see the fourth
+							row in the example below.)
+						</p>
+					</div>
 
-				<div class="section-sidebar">
-					<h3>Floating Insertion examples</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						Like the previous examples/questions above, see if you can figure out what result will be
-						produced when the value in the Sending item is moved to the editied picture in the Receiving
-						item.
-					</p>
-					<table style="margin:0 auto" bgcolor="#FFFFCC" border="1" cellpadding="0" cellspacing="0" width="83%">
-						<tr bgcolor="#FFFFCC">
-							<th colspan="2" id="ep-t4-sg" scope="colgroup">Sending item</th>
-							<th colspan="2" id="ep-t4-ri" scope="colgroup">Receiving item</th>
-						</tr>
-						<tr bgcolor="#FFFFCC">
-							<th id="ep-t4-sp" scope="col" width="18%">Picture</th>
-							<th id="ep-t4-sd" scope="col" width="16%">Data</th>
-							<th id="ep-t4-rp" scope="col" width="23%">Picture</th>
-							<th id="ep-t4-rr" scope="col" width="43%">Result</th>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t4-sg ep-t4-sp" height="15" width="18%">
-								PIC 9(4)
-							</td>
-							<td headers="ep-t4-sg ep-t4-sd" height="15" width="16%">
-								<div class="center-block">0000</div>
-							</td>
-							<td headers="ep-t4-ri ep-t4-rp" height="15" width="23%">
-								PIC $$,$$9.99
-							</td>
-							<td headers="ep-t4-ri ep-t4-rr" height="15" width="43%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select5">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = ssss$0.00</option>
-										<option>s - indicates a space</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t4-sg ep-t4-sp" height="16" width="18%">
-								PIC 9(4)
-							</td>
-							<td headers="ep-t4-sg ep-t4-sd" height="16" width="16%">
-								<div class="center-block">0080</div>
-							</td>
-							<td headers="ep-t4-ri ep-t4-rp" height="16" width="23%">
-								PIC $$,$$9.00
-							</td>
-							<td headers="ep-t4-ri ep-t4-rr" height="16" width="43%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select5b">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = sss$80.00</option>
-										<option>s - indicates a space</option>
-										<option>The fixed insertion zeros</option>
-										<option>are added to the end.</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t4-sg ep-t4-sp" height="16" width="18%">PIC 9(4)</td>
-							<td headers="ep-t4-sg ep-t4-sd" height="16" width="16%">
-								<div class="center-block">0128</div>
-							</td>
-							<td headers="ep-t4-ri ep-t4-rp" height="16" width="23%">PIC $$,$$9.99</td>
-							<td headers="ep-t4-ri ep-t4-rr" height="16" width="43%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select5c">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = ss$128.00</option>
-										<option>s - indicates a space</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t4-sg ep-t4-sp" height="16" width="18%">PIC 9(5)</td>
-							<td headers="ep-t4-sg ep-t4-sd" height="16" width="16%">
-								<div class="center-block"><b>5</b>7397</div>
-							</td>
-							<td headers="ep-t4-ri ep-t4-rp" height="16" width="23%">PIC $$,$$9</td>
-							<td headers="ep-t4-ri ep-t4-rr" height="16" width="43%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select5d">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = $7,397</option>
-										<option>Although the receiving</option>
-										<option>field appears to have</option>
-										<option>enough room for the</option>
-										<option>value, the programmer</option>
-										<option>forgot that the left-most</option>
-										<option>floating symbol cannot</option>
-										<option>be replaced by a digit.</option>
-										<option>This causes the digit (5)</option>
-										<option>to be lost.</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t4-sg ep-t4-sp" height="16" width="18%">PIC S9(4)</td>
-							<td headers="ep-t4-sg ep-t4-sd" height="16" width="16%">
-								<div class="center-block">-0005</div>
-							</td>
-							<td headers="ep-t4-ri ep-t4-rp" height="16" width="23%">PIC ++++9</td>
-							<td headers="ep-t4-ri ep-t4-rr" height="16" width="43%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select5e">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = sss-5</option>
-										<option>s - indicates a space</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t4-sg ep-t4-sp" height="16" width="18%">PIC S9(4)</td>
-							<td headers="ep-t4-sg ep-t4-sd" height="16" width="16%">
-								<div class="center-block">+0080</div>
-							</td>
-							<td headers="ep-t4-ri ep-t4-rp" height="16" width="23%">PIC ++++9</td>
-							<td headers="ep-t4-ri ep-t4-rr" height="16" width="43%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select5f">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = sss+80</option>
-										<option>s - indicates a space</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t4-sg ep-t4-sp" height="20" width="18%">
-								<p>PIC S9(4)</p>
-							</td>
-							<td headers="ep-t4-sg ep-t4-sd" height="20" width="16%">
-								<div class="center-block">-0080</div>
-							</td>
-							<td headers="ep-t4-ri ep-t4-rp" height="20" width="23%">PIC - - - - 9</td>
-							<td headers="ep-t4-ri ep-t4-rr" height="20" valign="top" width="43%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select5g">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = sss-80</option>
-										<option>s- indicates a space</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t4-sg ep-t4-sp" height="16" width="18%">PIC S9(5)</td>
-							<td headers="ep-t4-sg ep-t4-sd" height="16" width="16%">
-								<div class="center-block">+<b>7</b>1234</div>
-							</td>
-							<td headers="ep-t4-ri ep-t4-rp" height="16" width="23%">PIC - - - - 9</td>
-							<td headers="ep-t4-ri ep-t4-rr" height="16" width="43%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select5h">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = s1234</option>
-										<option>s- indicates a space</option>
-										<option>The left-most sign cannot</option>
-										<option>be replaced by a digit,</option>
-										<option>so the most significant</option>
-										<option>digit (7) is truncated.</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-					</table>
-				</div>
+					<div class="section-sidebar">
+						<h3>Floating Insertion examples</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							Like the previous examples/questions above, see if you can figure out what result will be
+							produced when the value in the Sending item is moved to the editied picture in the Receiving
+							item.
+						</p>
+						<table
+							style="margin: 0 auto"
+							bgcolor="#FFFFCC"
+							border="1"
+							cellpadding="0"
+							cellspacing="0"
+							width="83%"
+						>
+							<tr bgcolor="#FFFFCC">
+								<th colspan="2" id="ep-t4-sg" scope="colgroup">Sending item</th>
+								<th colspan="2" id="ep-t4-ri" scope="colgroup">Receiving item</th>
+							</tr>
+							<tr bgcolor="#FFFFCC">
+								<th id="ep-t4-sp" scope="col" width="18%">Picture</th>
+								<th id="ep-t4-sd" scope="col" width="16%">Data</th>
+								<th id="ep-t4-rp" scope="col" width="23%">Picture</th>
+								<th id="ep-t4-rr" scope="col" width="43%">Result</th>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t4-sg ep-t4-sp" height="15" width="18%">PIC 9(4)</td>
+								<td headers="ep-t4-sg ep-t4-sd" height="15" width="16%">
+									<div class="center-block">0000</div>
+								</td>
+								<td headers="ep-t4-ri ep-t4-rp" height="15" width="23%">PIC $$,$$9.99</td>
+								<td headers="ep-t4-ri ep-t4-rr" height="15" width="43%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select5">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = ssss$0.00</option>
+											<option>s - indicates a space</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t4-sg ep-t4-sp" height="16" width="18%">PIC 9(4)</td>
+								<td headers="ep-t4-sg ep-t4-sd" height="16" width="16%">
+									<div class="center-block">0080</div>
+								</td>
+								<td headers="ep-t4-ri ep-t4-rp" height="16" width="23%">PIC $$,$$9.00</td>
+								<td headers="ep-t4-ri ep-t4-rr" height="16" width="43%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select5b">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = sss$80.00</option>
+											<option>s - indicates a space</option>
+											<option>The fixed insertion zeros</option>
+											<option>are added to the end.</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t4-sg ep-t4-sp" height="16" width="18%">PIC 9(4)</td>
+								<td headers="ep-t4-sg ep-t4-sd" height="16" width="16%">
+									<div class="center-block">0128</div>
+								</td>
+								<td headers="ep-t4-ri ep-t4-rp" height="16" width="23%">PIC $$,$$9.99</td>
+								<td headers="ep-t4-ri ep-t4-rr" height="16" width="43%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select5c">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = ss$128.00</option>
+											<option>s - indicates a space</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t4-sg ep-t4-sp" height="16" width="18%">PIC 9(5)</td>
+								<td headers="ep-t4-sg ep-t4-sd" height="16" width="16%">
+									<div class="center-block"><b>5</b>7397</div>
+								</td>
+								<td headers="ep-t4-ri ep-t4-rp" height="16" width="23%">PIC $$,$$9</td>
+								<td headers="ep-t4-ri ep-t4-rr" height="16" width="43%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select5d">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = $7,397</option>
+											<option>Although the receiving</option>
+											<option>field appears to have</option>
+											<option>enough room for the</option>
+											<option>value, the programmer</option>
+											<option>forgot that the left-most</option>
+											<option>floating symbol cannot</option>
+											<option>be replaced by a digit.</option>
+											<option>This causes the digit (5)</option>
+											<option>to be lost.</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t4-sg ep-t4-sp" height="16" width="18%">PIC S9(4)</td>
+								<td headers="ep-t4-sg ep-t4-sd" height="16" width="16%">
+									<div class="center-block">-0005</div>
+								</td>
+								<td headers="ep-t4-ri ep-t4-rp" height="16" width="23%">PIC ++++9</td>
+								<td headers="ep-t4-ri ep-t4-rr" height="16" width="43%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select5e">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = sss-5</option>
+											<option>s - indicates a space</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t4-sg ep-t4-sp" height="16" width="18%">PIC S9(4)</td>
+								<td headers="ep-t4-sg ep-t4-sd" height="16" width="16%">
+									<div class="center-block">+0080</div>
+								</td>
+								<td headers="ep-t4-ri ep-t4-rp" height="16" width="23%">PIC ++++9</td>
+								<td headers="ep-t4-ri ep-t4-rr" height="16" width="43%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select5f">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = sss+80</option>
+											<option>s - indicates a space</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t4-sg ep-t4-sp" height="20" width="18%">
+									<p>PIC S9(4)</p>
+								</td>
+								<td headers="ep-t4-sg ep-t4-sd" height="20" width="16%">
+									<div class="center-block">-0080</div>
+								</td>
+								<td headers="ep-t4-ri ep-t4-rp" height="20" width="23%">PIC - - - - 9</td>
+								<td headers="ep-t4-ri ep-t4-rr" height="20" valign="top" width="43%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select5g">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = sss-80</option>
+											<option>s- indicates a space</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t4-sg ep-t4-sp" height="16" width="18%">PIC S9(5)</td>
+								<td headers="ep-t4-sg ep-t4-sd" height="16" width="16%">
+									<div class="center-block">+<b>7</b>1234</div>
+								</td>
+								<td headers="ep-t4-ri ep-t4-rp" height="16" width="23%">PIC - - - - 9</td>
+								<td headers="ep-t4-ri ep-t4-rr" height="16" width="43%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select5h">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = s1234</option>
+											<option>s- indicates a space</option>
+											<option>The left-most sign cannot</option>
+											<option>be replaced by a digit,</option>
+											<option>so the most significant</option>
+											<option>digit (7) is truncated.</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</div>
 
-				<div class="section-full">
-					<div>
-						<hr />
-						<back-to-top></back-to-top>
+					<div class="section-full">
+						<div>
+							<hr />
+							<back-to-top></back-to-top>
+						</div>
 					</div>
 				</div>
-			</div>
 
-			<div class="section-grid">
-				<div class="section-header">
-					<h2 id="part3">Suppression and Replacement Editing</h2>
-				</div>
+				<div class="section-grid">
+					<div class="section-header">
+						<h2 id="part3">Suppression and Replacement Editing</h2>
+					</div>
 
-				<div class="section-sidebar">
-					<h3>Introduction</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						Suppression and replacement editing is used to remove leading zeroes from the value to be
-						edited. There are two varieties of suppression and replacement editing-
-					</p>
-					<ul>
-						<li>Suppression of leading zeros and replacement with spaces</li>
-						<li>Suppression of leading zeros and replacement with asterisks</li>
-					</ul>
-					<p>
-						<b>Notes<br /></b> The characters <b>Z</b> and <b>*</b> are the suppression symbols.
-					</p>
-					<p>
-						Using Z in an editing picture, instructs the computer to suppress a leading zero in that
-						character position and replace it with a space.
-					</p>
-					<p>
-						Using an * in an editing picture, instructs the computer to suppress a leading zero in that
-						character position and replace it with an *.
-					</p>
-					<p>
-						If all the character positions in a data item are Z editing symbols and the sending item is 0
-						then only spaces will be printed.
-					</p>
-					<p>If a Z or * is used, the picture clause symbol 9, cannot appear to the left of it.</p>
-				</div>
+					<div class="section-sidebar">
+						<h3>Introduction</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							Suppression and replacement editing is used to remove leading zeroes from the value to be
+							edited. There are two varieties of suppression and replacement editing-
+						</p>
+						<ul>
+							<li>Suppression of leading zeros and replacement with spaces</li>
+							<li>Suppression of leading zeros and replacement with asterisks</li>
+						</ul>
+						<p>
+							<b>Notes<br /></b> The characters <b>Z</b> and <b>*</b> are the suppression symbols.
+						</p>
+						<p>
+							Using Z in an editing picture, instructs the computer to suppress a leading zero in that
+							character position and replace it with a space.
+						</p>
+						<p>
+							Using an * in an editing picture, instructs the computer to suppress a leading zero in that
+							character position and replace it with an *.
+						</p>
+						<p>
+							If all the character positions in a data item are Z editing symbols and the sending item is
+							0 then only spaces will be printed.
+						</p>
+						<p>If a Z or * is used, the picture clause symbol 9, cannot appear to the left of it.</p>
+					</div>
 
-				<div class="section-sidebar">
-					<h3>Suppression and Replacement editing examples</h3>
-					<p class="center-block"><img height="46" src="Resources/pics/i-SAQ2.gif" width="32" alt="" /></p>
-				</div>
-				<div class="section-content">
-					<table style="margin:0 auto" bgcolor="#FFFFCC" border="1" cellpadding="0" cellspacing="0" width="93%">
-						<tr bgcolor="#FFFFCC">
-							<th colspan="2" id="ep-t5-sg" scope="colgroup">Sending item</th>
-							<th colspan="2" id="ep-t5-ri" scope="colgroup">Receiving item</th>
-						</tr>
-						<tr bgcolor="#FFFFCC">
-							<th id="ep-t5-sp" scope="col" width="21%">Picture</th>
-							<th id="ep-t5-sd" scope="col" width="13%">Data</th>
-							<th id="ep-t5-rp" scope="col" width="25%">Picture</th>
-							<th id="ep-t5-rr" scope="col" width="41%">Result</th>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t5-sg ep-t5-sp" height="15" width="21%">
-								PIC 9(5)
-							</td>
-							<td headers="ep-t5-sg ep-t5-sd" height="15" width="13%">
-								<div class="center-block">12345</div>
-							</td>
-							<td headers="ep-t5-ri ep-t5-rp" height="15" width="25%">
-								PIC ZZ,999
-							</td>
-							<td headers="ep-t5-ri ep-t5-rr" height="15" width="41%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select27">
-										<option selected value="none">Click arrow for the answer</option>
-										<option value="none">Ans = 12,345</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t5-sg ep-t5-sp" height="16" width="21%">
-								PIC 9(5)
-							</td>
-							<td headers="ep-t5-sg ep-t5-sd" height="16" width="13%">
-								<div class="center-block">01234</div>
-							</td>
-							<td headers="ep-t5-ri ep-t5-rp" height="16" width="25%">
-								PIC ZZ,999
-							</td>
-							<td headers="ep-t5-ri ep-t5-rr" height="16" width="41%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select23" size="1">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = s1,234</option>
-										<option>s - indicates a space</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t5-sg ep-t5-sp" height="16" width="21%">PIC 9(5)</td>
-							<td headers="ep-t5-sg ep-t5-sd" height="16" width="13%">
-								<div class="center-block">00123</div>
-							</td>
-							<td headers="ep-t5-ri ep-t5-rp" height="16" width="25%">PIC ZZ,999</td>
-							<td headers="ep-t5-ri ep-t5-rr" height="16" width="41%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select23b">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = sss123</option>
-										<option>s - indicates a space</option>
-										<option>Because there are only</option>
-										<option>zeros to the left of the</option>
-										<option>comma, it is replaced by</option>
-										<option>the replacement symbol</option>
-										<option>space.</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t5-sg ep-t5-sp" height="16" width="21%">PIC 9(5)</td>
-							<td headers="ep-t5-sg ep-t5-sd" height="16" width="13%">
-								<div class="center-block">00012</div>
-							</td>
-							<td headers="ep-t5-ri ep-t5-rp" height="16" width="25%">PIC ZZ,999</td>
-							<td headers="ep-t5-ri ep-t5-rr" height="16" width="41%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select23c">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = sss012</option>
-										<option>s - indicates a space</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t5-sg ep-t5-sp" height="16" width="21%">PIC 9(5)</td>
-							<td headers="ep-t5-sg ep-t5-sd" height="16" width="13%">
-								<div class="center-block">05678</div>
-							</td>
-							<td headers="ep-t5-ri ep-t5-rp" height="16" width="25%">PIC **,**9</td>
-							<td headers="ep-t5-ri ep-t5-rr" height="16" width="41%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select23d">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = *5,678</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t5-sg ep-t5-sp" height="16" width="21%">PIC 9(5)</td>
-							<td headers="ep-t5-sg ep-t5-sd" height="16" width="13%">
-								<div class="center-block">00567</div>
-							</td>
-							<td headers="ep-t5-ri ep-t5-rp" height="16" width="25%">PIC **,**9</td>
-							<td headers="ep-t5-ri ep-t5-rr" height="16" width="41%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select23e">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = ***567</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t5-sg ep-t5-sp" height="20" width="21%">PIC 9(5)</td>
-							<td headers="ep-t5-sg ep-t5-sd" height="20" width="13%">
-								<div class="center-block">00000</div>
-							</td>
-							<td headers="ep-t5-ri ep-t5-rp" height="20" width="25%">PIC **,***</td>
-							<td headers="ep-t5-ri ep-t5-rr" height="20" valign="top" width="41%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select25">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = ******</option>
-										<option>s- indicates a space</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr bgcolor="#E1FFE1">
-							<td headers="ep-t5-sg ep-t5-sp" height="20" width="21%">
-								<p>PIC 9(5)V99</p>
-							</td>
-							<td headers="ep-t5-sg ep-t5-sd" height="20" width="13%">
-								<div class="center-block">00043.45</div>
-							</td>
-							<td headers="ep-t5-ri ep-t5-rp" height="20" width="25%">PIC $**,**9.99</td>
-							<td headers="ep-t5-ri ep-t5-rr" bgcolor="#E1FFE1" height="20" valign="top" width="41%">
-								<div class="center-block">
-									<select aria-label="Click for answer" name="select26">
-										<option selected>Click arrow for the answer</option>
-										<option>Ans = $****43.45</option>
-										<option>Helps to prevent fraud</option>
-										<option>when printing cheques.</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-					</table>
-					<hr width="50%" />
-				</div>
+					<div class="section-sidebar">
+						<h3>Suppression and Replacement editing examples</h3>
+						<p class="center-block">
+							<img height="46" src="Resources/pics/i-SAQ2.gif" width="32" alt="" />
+						</p>
+					</div>
+					<div class="section-content">
+						<table
+							style="margin: 0 auto"
+							bgcolor="#FFFFCC"
+							border="1"
+							cellpadding="0"
+							cellspacing="0"
+							width="93%"
+						>
+							<tr bgcolor="#FFFFCC">
+								<th colspan="2" id="ep-t5-sg" scope="colgroup">Sending item</th>
+								<th colspan="2" id="ep-t5-ri" scope="colgroup">Receiving item</th>
+							</tr>
+							<tr bgcolor="#FFFFCC">
+								<th id="ep-t5-sp" scope="col" width="21%">Picture</th>
+								<th id="ep-t5-sd" scope="col" width="13%">Data</th>
+								<th id="ep-t5-rp" scope="col" width="25%">Picture</th>
+								<th id="ep-t5-rr" scope="col" width="41%">Result</th>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t5-sg ep-t5-sp" height="15" width="21%">PIC 9(5)</td>
+								<td headers="ep-t5-sg ep-t5-sd" height="15" width="13%">
+									<div class="center-block">12345</div>
+								</td>
+								<td headers="ep-t5-ri ep-t5-rp" height="15" width="25%">PIC ZZ,999</td>
+								<td headers="ep-t5-ri ep-t5-rr" height="15" width="41%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select27">
+											<option selected value="none">Click arrow for the answer</option>
+											<option value="none">Ans = 12,345</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t5-sg ep-t5-sp" height="16" width="21%">PIC 9(5)</td>
+								<td headers="ep-t5-sg ep-t5-sd" height="16" width="13%">
+									<div class="center-block">01234</div>
+								</td>
+								<td headers="ep-t5-ri ep-t5-rp" height="16" width="25%">PIC ZZ,999</td>
+								<td headers="ep-t5-ri ep-t5-rr" height="16" width="41%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select23" size="1">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = s1,234</option>
+											<option>s - indicates a space</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t5-sg ep-t5-sp" height="16" width="21%">PIC 9(5)</td>
+								<td headers="ep-t5-sg ep-t5-sd" height="16" width="13%">
+									<div class="center-block">00123</div>
+								</td>
+								<td headers="ep-t5-ri ep-t5-rp" height="16" width="25%">PIC ZZ,999</td>
+								<td headers="ep-t5-ri ep-t5-rr" height="16" width="41%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select23b">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = sss123</option>
+											<option>s - indicates a space</option>
+											<option>Because there are only</option>
+											<option>zeros to the left of the</option>
+											<option>comma, it is replaced by</option>
+											<option>the replacement symbol</option>
+											<option>space.</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t5-sg ep-t5-sp" height="16" width="21%">PIC 9(5)</td>
+								<td headers="ep-t5-sg ep-t5-sd" height="16" width="13%">
+									<div class="center-block">00012</div>
+								</td>
+								<td headers="ep-t5-ri ep-t5-rp" height="16" width="25%">PIC ZZ,999</td>
+								<td headers="ep-t5-ri ep-t5-rr" height="16" width="41%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select23c">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = sss012</option>
+											<option>s - indicates a space</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t5-sg ep-t5-sp" height="16" width="21%">PIC 9(5)</td>
+								<td headers="ep-t5-sg ep-t5-sd" height="16" width="13%">
+									<div class="center-block">05678</div>
+								</td>
+								<td headers="ep-t5-ri ep-t5-rp" height="16" width="25%">PIC **,**9</td>
+								<td headers="ep-t5-ri ep-t5-rr" height="16" width="41%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select23d">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = *5,678</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t5-sg ep-t5-sp" height="16" width="21%">PIC 9(5)</td>
+								<td headers="ep-t5-sg ep-t5-sd" height="16" width="13%">
+									<div class="center-block">00567</div>
+								</td>
+								<td headers="ep-t5-ri ep-t5-rp" height="16" width="25%">PIC **,**9</td>
+								<td headers="ep-t5-ri ep-t5-rr" height="16" width="41%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select23e">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = ***567</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t5-sg ep-t5-sp" height="20" width="21%">PIC 9(5)</td>
+								<td headers="ep-t5-sg ep-t5-sd" height="20" width="13%">
+									<div class="center-block">00000</div>
+								</td>
+								<td headers="ep-t5-ri ep-t5-rp" height="20" width="25%">PIC **,***</td>
+								<td headers="ep-t5-ri ep-t5-rr" height="20" valign="top" width="41%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select25">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = ******</option>
+											<option>s- indicates a space</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr bgcolor="#E1FFE1">
+								<td headers="ep-t5-sg ep-t5-sp" height="20" width="21%">
+									<p>PIC 9(5)V99</p>
+								</td>
+								<td headers="ep-t5-sg ep-t5-sd" height="20" width="13%">
+									<div class="center-block">00043.45</div>
+								</td>
+								<td headers="ep-t5-ri ep-t5-rp" height="20" width="25%">PIC $**,**9.99</td>
+								<td headers="ep-t5-ri ep-t5-rr" bgcolor="#E1FFE1" height="20" valign="top" width="41%">
+									<div class="center-block">
+										<select aria-label="Click for answer" name="select26">
+											<option selected>Click arrow for the answer</option>
+											<option>Ans = $****43.45</option>
+											<option>Helps to prevent fraud</option>
+											<option>when printing cheques.</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+						</table>
+						<hr width="50%" />
+					</div>
 
-				<div class="section-sidebar">
-					<h3>Picture string restrictions</h3>
-				</div>
-				<div class="section-content">
-					<p>
-						Some combinations of picture symbols are not permitted. The table below shows the combination of
-						symbols that is allowed.
-					</p>
-					<table style="margin:0 auto" bgcolor="#E1FFE1" border="1" cellpadding="5" height="69" width="47%">
-						<tr bgcolor="#FFFFCC">
-							<th scope="col" width="15%">Character</th>
-							<th scope="col" width="85%">May be followed by</th>
-						</tr>
-						<tr>
-							<td bgcolor="#FFFFCC" height="192" valign="top" width="15%">
-								<div class="center-block">
-									<pre class="language-cobol"><code class="language-cobol">P
+					<div class="section-sidebar">
+						<h3>Picture string restrictions</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							Some combinations of picture symbols are not permitted. The table below shows the
+							combination of symbols that is allowed.
+						</p>
+						<table
+							style="margin: 0 auto"
+							bgcolor="#E1FFE1"
+							border="1"
+							cellpadding="5"
+							height="69"
+							width="47%"
+						>
+							<tr bgcolor="#FFFFCC">
+								<th scope="col" width="15%">Character</th>
+								<th scope="col" width="85%">May be followed by</th>
+							</tr>
+							<tr>
+								<td bgcolor="#FFFFCC" height="192" valign="top" width="15%">
+									<div class="center-block">
+										<pre class="language-cobol"><code class="language-cobol">P
 B
 0
 /
@@ -1402,10 +1397,10 @@ CR or DB
 $
 9
 V</code></pre>
-								</div>
-							</td>
-							<td height="192" valign="top" width="85%">
-								<pre class="language-cobol"><code class="language-cobol">P B 0 / , + - CR DB 9 V
+									</div>
+								</td>
+								<td height="192" valign="top" width="85%">
+									<pre class="language-cobol"><code class="language-cobol">P B 0 / , + - CR DB 9 V
 P B 0 / , . + - CR DB 9 V
 P B 0 / , . + - CR DB 9 V
 P B 0 / , . + - CR DB 9 V
@@ -1417,18 +1412,19 @@ Nothing at all
 P B 0 / , . + - CR DB $ 9 V
 P B 0 / , . + - CR DB 9 V
 B 0 / , + - CR DB 9</code></pre>
-							</td>
-						</tr>
-					</table>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+
+				<div class="page-footer">
+					<hr />
+					<lesson-nav></lesson-nav>
+					<back-to-top></back-to-top>
+					<copyright-notice></copyright-notice>
 				</div>
 			</div>
-
-			<div class="page-footer">
-				<hr />
-				<lesson-nav></lesson-nav>
-				<back-to-top></back-to-top>
-				<copyright-notice></copyright-notice>
-			</div>
-		</div>
+		</main>
 	</body>
 </html>

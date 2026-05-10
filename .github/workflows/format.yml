@@ -1,0 +1,38 @@
+name: auto-format
+
+# Runs prettier on every PR and commits any reformatting back to the PR branch.
+# Skips PRs from forks because GITHUB_TOKEN can't push to forked repos —
+# fork contributors will see `format:check` fail and need to run `npm run
+# format:write` locally before pushing.
+
+on:
+    pull_request:
+        branches: [master]
+
+permissions:
+    contents: write
+
+jobs:
+    prettier:
+        if: github.event.pull_request.head.repo.full_name == github.repository
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  ref: ${{ github.head_ref }}
+                  token: ${{ secrets.GITHUB_TOKEN }}
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: "20"
+                  cache: "npm"
+            - run: npm ci
+            - run: npx prettier --write .
+            - name: Commit and push if changed
+              run: |
+                  if [[ -n "$(git status --porcelain)" ]]; then
+                    git config user.name "github-actions[bot]"
+                    git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+                    git add -A
+                    git commit -m "style: auto-format with prettier"
+                    git push
+                  fi

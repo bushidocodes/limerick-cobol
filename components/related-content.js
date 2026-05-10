@@ -14,8 +14,8 @@
 class RelatedContent extends HTMLElement {
 	connectedCallback() {
 		const groups = [
-			{ attr: "lectures",  label: "Lecture" },
-			{ attr: "examples",  label: "Example programs" },
+			{ attr: "lectures", label: "Lecture" },
+			{ attr: "examples", label: "Example programs" },
 			{ attr: "exercises", label: "Exercises" },
 		];
 
@@ -55,7 +55,7 @@ class RelatedContent extends HTMLElement {
 			.map((entry) => {
 				const pipe = entry.indexOf("|");
 				if (pipe === -1) return null;
-				const href  = entry.slice(0, pipe).trim();
+				const href = entry.slice(0, pipe).trim();
 				const title = entry.slice(pipe + 1).trim();
 				if (!href || !title) return null;
 				return { href, title };
