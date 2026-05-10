@@ -505,3 +505,68 @@ td[bgcolor="#ffffcc"] h4 {
 		background-color: var(--color-cell-label-bg);
 	}
 }
+
+/* ============================================================================
+   Print stylesheet
+   Produces a clean, single-column, light-on-white layout when the user
+   prints or saves as PDF — regardless of the screen color scheme.
+   ============================================================================ */
+@media print {
+	/* Force light theme so dark-mode users don't waste ink on dark backgrounds */
+	:root {
+		--color-bg: #fff;
+		--color-text: #000;
+		--color-link: #00c;
+		--color-link-visited: #609;
+		--color-link-active: #009b00;
+		--color-header-bg: #993300;
+		--color-header-text: #ffff00;
+		--color-panel-bg: #ffffcc;
+		--color-panel-text: #800000;
+		--color-code-bg: #e1ffe1;
+		--color-results-bg: #ddffff;
+		--color-cell-label-bg: #e8e8e8;
+		--color-emphasis: #000099;
+		--color-border-soft: #cccccc;
+		--color-border-mute: #999999;
+	}
+
+	/* Base print typography */
+	body {
+		font-size: 11pt;
+		line-height: 1.4;
+		color: #000;
+		background: #fff;
+	}
+
+	/* Hide decorative chrome that doesn't belong on a printed page */
+	.hero img,
+	.back-to-top,
+	.skip-link,
+	ul.toc {
+		display: none !important;
+	}
+
+	/* Expand multi-column section grid to a single column */
+	.section-grid {
+		display: block;
+		grid-template-columns: none;
+	}
+
+	/* Reveal external link URLs after the anchor text */
+	a[href^="http"]::after {
+		content: " (" attr(href) ")";
+		font-size: 90%;
+	}
+
+	/* Prevent code samples from splitting across page breaks */
+	pre,
+	.code-record {
+		break-inside: avoid;
+	}
+
+	/* Undo any dark-mode invert filter on images */
+	img {
+		filter: none !important;
+	}
+}
