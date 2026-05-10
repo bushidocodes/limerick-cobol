@@ -1,0 +1,76 @@
+[files]
+extend-exclude = [
+    # Minified third-party vendor assets — not our content
+    "course/Resources/vendor/**",
+    # Raw data/fixture files with user-entered content and fixed-width structured records
+    "**/*.dat",
+    "**/*.DAT",
+    "**/*.Dat",
+    "**/*.txt",
+    "**/*.TXT",
+    # COBOL source — identifiers use intentional abbreviations; prose typos are caught via HTML listings
+    "**/*.CBL",
+    "**/*.cbl",
+    "**/*.Cbl",
+    "**/*.COB",
+    "**/*.cob",
+    # Report output files
+    "**/*.RPT",
+    "**/*.rpt",
+    # Binary presentation files
+    "**/*.ppt",
+    "**/*.PPT",
+    # COBOL copybook files — abbreviations in identifiers are intentional
+    "**/*.cpy",
+    "**/*.CPY",
+    # Generated / non-prose files
+    "**/*.xml",
+    "**/*.svg",
+    "package-lock.json",
+]
+
+[default]
+extend-ignore-re = [
+    # Google site-verification tokens contain arbitrary character sequences
+    "content=\"[A-Za-z0-9_-]{20,}\"",
+    # Abbreviated HTML anchor IDs (e.g. href="#declar", id="declar")
+    "(?:href|id)=\"#?(?:declar|[a-z]{1,5})\"",
+    # Bold-tagged single letters split real words: <b>I</b>nformation
+    ">[A-Z]</b>",
+]
+
+[default.extend-words]
+# Niklaus Wirth — famous CS figure; name used in exercise fiction (WirthMemLib)
+Wirth = "Wirth"
+# COBOL DISPLAY keyword appears as DISPLAYed/DISPLAYing in prose and code comments
+DISPLA = "DISPLA"
+# COBOL RELEASE keyword appears as RELEASEs in prose and code comments
+RELEAS = "RELEAS"
+# COBOL FILLER keyword appears as FILLERs / FILLERh in code listings
+FILLE = "FILLE"
+# File-Stati — COBOL abbreviated identifier (short for File-Statuses)
+Stati = "Stati"
+# PRFILE — abbreviated SELECT filename (Purchase Request FILE)
+PRFILE = "PRFILE"
+# Not-ENd-Of-Books — COBOL compound identifier; typos misreads "Nd" from "ENd"
+Nd = "Nd"
+# ODF — Oil Details File, a COBOL exercise file acronym used throughout identifiers
+ODF = "ODF"
+# CountMilage — COBOL procedure name in MileageCount example (fixing would rename a working program's entrypoint)
+Milage = "Milage"
+# CurruptDate — COBOL data-item name in ValiDate exercise; renaming would break the working program
+Currupt = "Currupt"
+# Bold-tagged single letters split real words in acronym displays: <b>I</b>nformation, <b>L</b>anguage, <b>O</b>ther
+nformation = "nformation"
+anguage = "anguage"
+ther = "ther"
+# Thr — three-letter Thursday abbreviation used intentionally in DayTable code example
+Thr = "Thr"
+# Alph — COBOL parameter name used as a formal argument in RefMod intrinsic function examples
+Alph = "Alph"
+# PERFOR — from PERFORMs (COBOL keyword with English plural suffix causes a false split)
+PERFOR = "PERFOR"
+# Sring — in FullSringLength COBOL identifier; renaming would break the working example
+Sring = "Sring"
+# cpy — COBOL copybook file extension (.cpy); appears in href attributes and inline filenames
+cpy = "cpy"
