@@ -42,7 +42,7 @@ Begin.
 
     MOVE "VALUE OVERWRITTEN" TO StrA
     MOVE "VALUE OVERWRITTEN" TO StrB
-*>   This is done to demonstrate the differece between passing
+*>   This is done to demonstrate the difference between passing
 *>   BY CONTENT and passing BY REFERENCE.  If you pass BY REFERENCE
 *>   you give the called program the opportunity to corrupt your data. 
 *>   You should only pass BY REFERENCE if you require the called

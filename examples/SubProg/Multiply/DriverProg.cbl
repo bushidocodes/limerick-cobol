@@ -27,7 +27,7 @@ WORKING-STORAGE SECTION.
 *> need not be declared.
   
 
-*> Parameters must be either 01-level's or elementry
+*> Parameters must be either 01-level's or elementary
 *> data-items. 
 01 Parameters.
    02 Number1         PIC 9(3).
