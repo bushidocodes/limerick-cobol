@@ -1,16 +1,16 @@
-       >>SOURCE FORMAT IS FREE
+﻿       >>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  SeqReadNo88.
 AUTHOR.  Michael Coughlan.
 *> An example showing how to read a sequential file without
 *> using condition names.
-*> See SeqRead.CBL for the definitive example.
+*> See Seqread.cbl for the definitive example.
 
 
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
-    SELECT StudentFile ASSIGN TO "STUDENTS.DAT"
+    SELECT StudentFile ASSIGN TO "STUDENTS.dat"
 		ORGANIZATION IS LINE SEQUENTIAL.
 
 DATA DIVISION.

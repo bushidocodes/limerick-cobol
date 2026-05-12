@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -36,26 +36,26 @@ IDENTIFICATION DIVISION.
 PROGRAM-ID. MergeFiles.
 AUTHOR. MICHAEL COUGHLAN.
 *&gt; Example program demonstrating the use of the MERGE.
-*&gt; The program merges the file Students.Dat and 
-*&gt; Transins.Dat to create a new file Students.New.
+*&gt; The program merges the file Students.dat and 
+*&gt; Transins.dat to create a new file Students.New.
 *&gt; A problem with using the MERGE for inserting records is that 
 *&gt; duplicate records are not detected.
-*&gt; See the example program - SeqInsert.cbl - for a more traditional 
+*&gt; See the example program - InsertRecords.cbl - for a more traditional 
 *&gt; approach to inserting records in a Sequential File.
 
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
-    SELECT StudentFile ASSIGN TO "STUDENTS.DAT"
+    SELECT StudentFile ASSIGN TO "STUDENTS.dat"
              ORGANIZATION IS LINE SEQUENTIAL.
 
-    SELECT InsertionsFile ASSIGN TO "TRANSINS.DAT"
+    SELECT InsertionsFile ASSIGN TO "TRANSINS.dat"
              ORGANIZATION IS LINE SEQUENTIAL.
 
-    SELECT NewStudentFile    ASSIGN TO "STUDENTS.NEW"
+    SELECT NewStudentFile    ASSIGN TO "STUDENTS.new"
              ORGANIZATION IS LINE SEQUENTIAL.
 
-    SELECT WorkFile ASSIGN TO "WORK.TMP".
+    SELECT WorkFile ASSIGN TO "WORK.tmp".
 
 DATA DIVISION.
 FILE SECTION.

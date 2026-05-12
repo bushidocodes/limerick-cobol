@@ -1,9 +1,9 @@
-       >>SOURCE FORMAT IS FREE
+﻿       >>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. SeqUpdate.
 AUTHOR. Michael Coughlan.
-*> This program updates the Students.Dat file using the
-*> course-transfer transactions in Transfer.Dat to create
+*> This program updates the Students.dat file using the
+*> course-transfer transactions in Transfer.dat to create
 *> a new file - Students.New - which contains the updated
 *> records.
 *>
@@ -20,7 +20,7 @@ AUTHOR. Michael Coughlan.
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
-    SELECT StudentFile ASSIGN TO "STUDENTS.DAT"
+    SELECT StudentFile ASSIGN TO "STUDENTS.dat"
         ORGANIZATION IS LINE SEQUENTIAL.
 
     SELECT TransferFile ASSIGN TO "Transfer.dat"
