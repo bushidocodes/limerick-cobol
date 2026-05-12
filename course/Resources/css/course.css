@@ -415,6 +415,44 @@ td[bgcolor="#ffffcc"] h4 {
 	}
 }
 
+/* Inline style colour corrections — light mode.
+   Legacy <span style="color: #cccccc"> fails 4.5:1 against any light
+   background. Remap to a dark grey that passes without the rule being
+   visible in dark mode (the dark-mode block below uses higher-specificity
+   :root:not([data-theme="light"]) selectors and overrides this). */
+[style*="color:#cccccc"],
+[style*="color: #cccccc"],
+[style*="color:#CCCCCC"],
+[style*="color: #CCCCCC"] {
+	color: #6a6a6a !important;
+}
+
+/* ============================================================================
+   Prism token colour corrections — light mode
+   Overrides the default Prism theme to meet WCAG 2.1 AA (≥ 4.5:1) against
+   Prism's #f5f2f0 code-block background. The `body` prefix raises specificity
+   to (0,2,1), beating prism.min.css's (0,2,0). Dark-mode overrides below use
+   (0,3,1) selectors and are unaffected.
+   ============================================================================ */
+body .token.atrule,
+body .token.attr-value,
+body .token.keyword {
+	color: #006fa1;
+}
+
+body .token.attr-name,
+body .token.builtin,
+body .token.char,
+body .token.inserted,
+body .token.selector,
+body .token.string {
+	color: #447a00;
+}
+
+body .token.punctuation {
+	color: #6a6a6a;
+}
+
 /* ============================================================================
    Dark-mode overrides
    The :root token swap above handles backgrounds and text. The rules below
@@ -547,7 +585,17 @@ td[bgcolor="#ffffcc"] h4 {
 	:root:not([data-theme="light"]) [style*="color: #cccccc"],
 	:root:not([data-theme="light"]) [style*="color:#CCCCCC"],
 	:root:not([data-theme="light"]) [style*="color: #CCCCCC"] {
-		color: #888888 !important;
+		color: #a0a0a0 !important;
+	}
+
+	/* Inline background-color: #ffffff stays white in dark mode, leaving light
+	   inherited text on a white canvas — very low contrast. Map to the dark
+	   page background so normal dark-mode text colours apply. */
+	:root:not([data-theme="light"]) [style*="background-color: #ffffff"],
+	:root:not([data-theme="light"]) [style*="background-color:#ffffff"],
+	:root:not([data-theme="light"]) [style*="background-color: #FFFFFF"],
+	:root:not([data-theme="light"]) [style*="background-color:#FFFFFF"] {
+		background-color: var(--color-bg) !important;
 	}
 
 	/* #CCCCCC has no matching light-mode token (only used as decorative
@@ -674,7 +722,14 @@ td[bgcolor="#ffffcc"] h4 {
 :root[data-theme="dark"] [style*="color: #cccccc"],
 :root[data-theme="dark"] [style*="color:#CCCCCC"],
 :root[data-theme="dark"] [style*="color: #CCCCCC"] {
-	color: #888888 !important;
+	color: #a0a0a0 !important;
+}
+
+:root[data-theme="dark"] [style*="background-color: #ffffff"],
+:root[data-theme="dark"] [style*="background-color:#ffffff"],
+:root[data-theme="dark"] [style*="background-color: #FFFFFF"],
+:root[data-theme="dark"] [style*="background-color:#FFFFFF"] {
+	background-color: var(--color-bg) !important;
 }
 
 :root[data-theme="dark"] table[bgcolor="#CCCCCC"],
