@@ -13,6 +13,7 @@ const REPO_ROOT = path.resolve(__dirname, "..");
 const OUTPUT_PATH = path.join(REPO_ROOT, "sitemap.xml");
 
 const SKIP_DIRS = new Set([".playwright-mcp", "node_modules", ".claude", "scripts"]);
+const SKIP_FILES = new Set(["404.html"]);
 
 /**
  * Recursively collect all .html files under `dir`, skipping SKIP_DIRS.
@@ -26,7 +27,7 @@ function collectHtmlFiles(dir) {
 			if (!SKIP_DIRS.has(entry.name)) {
 				results.push(...collectHtmlFiles(path.join(dir, entry.name)));
 			}
-		} else if (entry.isFile() && entry.name.endsWith(".html")) {
+		} else if (entry.isFile() && entry.name.endsWith(".html") && !SKIP_FILES.has(entry.name)) {
 			results.push(path.join(dir, entry.name));
 		}
 	}
