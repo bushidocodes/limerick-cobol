@@ -9,7 +9,7 @@ FILE-CONTROL.
        SELECT Sales-File ASSIGN TO "SALES.dat"
                  ORGANIZATION IS LINE SEQUENTIAL.
 
-       SELECT Work-File ASSIGN TO "SORT.TMP".
+       SELECT Work-File ASSIGN TO "SORT.tmp".
 
        SELECT Summary-Report ASSIGN TO "AROMASALES.rpt"
                  ORGANIZATION IS LINE SEQUENTIAL.

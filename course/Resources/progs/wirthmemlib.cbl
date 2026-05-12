@@ -23,7 +23,7 @@ FILE-CONTROL.
                           WITH DUPLICATES
         FILE STATUS IS AuthorErrorStatus.
 
-    SELECT PrintFile ASSIGN TO "REPORT.EXM".
+    SELECT PrintFile ASSIGN TO "REPORT.exm".
 
 
 DATA DIVISION.

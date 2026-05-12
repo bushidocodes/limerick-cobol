@@ -10,7 +10,7 @@ FILE-CONTROL.
        SELECT DueSubsFile ASSIGN TO "DUESUBS.dat"
                  ORGANIZATION IS LINE SEQUENTIAL.
 
-       SELECT WorkFile ASSIGN TO "SORT.TMP".
+       SELECT WorkFile ASSIGN TO "SORT.tmp".
 
        SELECT DueSubsReport ASSIGN TO "DUESUBS.rpt"
                  ORGANIZATION IS LINE SEQUENTIAL.
