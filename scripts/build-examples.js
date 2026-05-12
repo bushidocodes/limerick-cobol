@@ -360,11 +360,7 @@ function escapeHtml(str) {
 }
 
 function escapeAttr(str) {
-	return str
-		.replace(/&/g, "&amp;")
-		.replace(/</g, "&lt;")
-		.replace(/>/g, "&gt;")
-		.replace(/"/g, "&quot;");
+	return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
 /** Truncate description to ≤155 chars, breaking at a word boundary. */
