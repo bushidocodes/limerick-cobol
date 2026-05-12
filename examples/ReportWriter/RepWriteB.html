@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,7 +11,7 @@
 		<title>No Declaratives version of full Report Writer example program</title>
 		<meta
 			name="description"
-			content="A simplified version of ReportExampleFull.cbl containing all the control breaks but not using Declaratives. All four of these Report Writer programs use the"
+			content="A simplified version of the full report program containing all the control breaks but not using Declaratives. Uses the GBsales.dat data file."
 		/>
 		<link
 			rel="canonical"
@@ -26,7 +26,7 @@
 		<meta property="og:title" content="No Declaratives version of full Report Writer example program" />
 		<meta
 			property="og:description"
-			content="A simplified version of ReportExampleFull.cbl containing all the control breaks but not using Declaratives. All four of these Report Writer programs use the"
+			content="A simplified version of the full report program containing all the control breaks but not using Declaratives. Uses the GBsales.dat data file."
 		/>
 		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
 		<!-- Twitter Card -->
@@ -34,7 +34,7 @@
 		<meta name="twitter:title" content="No Declaratives version of full Report Writer example program" />
 		<meta
 			name="twitter:description"
-			content="A simplified version of ReportExampleFull.cbl containing all the control breaks but not using Declaratives. All four of these Report Writer programs use the"
+			content="A simplified version of the full report program containing all the control breaks but not using Declaratives. Uses the GBsales.dat data file."
 		/>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="../../course/Resources/css/course.css" rel="stylesheet" />
@@ -145,8 +145,8 @@ RD  SalesReport
                         SOURCE CityName(CityCode) GROUP INDICATE.
        03 COLUMN 15     PIC 9
                         SOURCE SalesPersonNum  GROUP INDICATE.
-       03 COLUMN 25     PIC $,$$.99 SOURCE ValueOfSale.
-                
+       03 COLUMN 25     PIC $$,$$$.99 SOURCE ValueOfSale.
+		
 
 01  SalesPersonGrp
     TYPE IS CONTROL FOOTING SalesPersonNum  NEXT GROUP PLUS 2.
@@ -154,7 +154,7 @@ RD  SalesReport
        03 COLUMN 15     PIC X(21) VALUE "Sales for salesperson".
        03 COLUMN 37     PIC 9 SOURCE SalesPersonNum.
        03 COLUMN 43     PIC X VALUE "=".
-       03 SMS COLUMN 45 PIC $$$,$$.99 SUM ValueOfSale.
+       03 SMS COLUMN 45 PIC $$$$$,$$$.99 SUM ValueOfSale.
 
 
 01  CityGrp TYPE IS CONTROL FOOTING CityCode NEXT GROUP PLUS 2.
@@ -162,7 +162,7 @@ RD  SalesReport
        03 COLUMN 15     PIC X(9) VALUE "Sales for".
        03 COLUMN 25     PIC X(9) SOURCE CityName(CityCode).
        03 COLUMN 43     PIC X VALUE "=".
-       03 CS COLUMN 45  PIC $$$,$$.99 SUM SMS.
+       03 CS COLUMN 45  PIC $$$$$,$$$.99 SUM SMS.
 
 
 01  TotalSalesGrp TYPE IS CONTROL FOOTING FINAL.
@@ -170,7 +170,7 @@ RD  SalesReport
        03 COLUMN 15     PIC X(11)
                         VALUE "Total sales".
        03 COLUMN 43     PIC X VALUE "=".
-       03 COLUMN 45     PIC $$$,$$.99 SUM CS.
+       03 COLUMN 45     PIC $$$$$,$$$.99 SUM CS.
 
 
 01  TYPE IS PAGE FOOTING.
@@ -200,9 +200,7 @@ PrintSalaryReport.
     READ SalesFile
           AT END SET EndOfFile TO TRUE
     END-READ.
-
-
-        </code></pre>
+</code></pre>
 					</div>
 				</div>
 			</div>

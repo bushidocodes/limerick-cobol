@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,7 +11,7 @@
 		<title>Full Report Writer example program - includes Declaratives</title>
 		<meta
 			name="description"
-			content="The full version of the report program containing all the control breaks and using Declaratives to calculate the salesperson salary and commission. All"
+			content="The full version of the report program containing all the control breaks and using Declaratives to calculate the salesperson salary and commission."
 		/>
 		<link
 			rel="canonical"
@@ -26,7 +26,7 @@
 		<meta property="og:title" content="Full Report Writer example program - includes Declaratives" />
 		<meta
 			property="og:description"
-			content="The full version of the report program containing all the control breaks and using Declaratives to calculate the salesperson salary and commission. All"
+			content="The full version of the report program containing all the control breaks and using Declaratives to calculate the salesperson salary and commission."
 		/>
 		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
 		<!-- Twitter Card -->
@@ -34,7 +34,7 @@
 		<meta name="twitter:title" content="Full Report Writer example program - includes Declaratives" />
 		<meta
 			name="twitter:description"
-			content="The full version of the report program containing all the control breaks and using Declaratives to calculate the salesperson salary and commission. All"
+			content="The full version of the report program containing all the control breaks and using Declaratives to calculate the salesperson salary and commission."
 		/>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="../../course/Resources/css/course.css" rel="stylesheet" />
@@ -176,8 +176,8 @@ RD  SalesReport
                         SOURCE CityName(CityCode) GROUP INDICATE.
        03 COLUMN 15     PIC 9
                         SOURCE SalesPersonNum  GROUP INDICATE.
-       03 COLUMN 25     PIC $,$$.99 SOURCE ValueOfSale.
-                
+       03 COLUMN 25     PIC $$,$$$.99 SOURCE ValueOfSale.
+		
 
 01  SalesPersonGrp
     TYPE IS CONTROL FOOTING SalesPersonNum  NEXT GROUP PLUS 2.
@@ -185,17 +185,17 @@ RD  SalesReport
        03 COLUMN 15     PIC X(21) VALUE "Sales for salesperson".
        03 COLUMN 37     PIC 9 SOURCE SalesPersonNum.
        03 COLUMN 43     PIC X VALUE "=".
-       03 SMS COLUMN 45 PIC $$$,$$.99 SUM ValueOfSale.
+       03 SMS COLUMN 45 PIC $$$$$,$$$.99 SUM ValueOfSale.
 
     02 LINE IS PLUS 1.
        03 COLUMN 15     PIC X(19) VALUE "Sales commission is".
        03 COLUMN 43     PIC X VALUE "=".
-       03 COLUMN 45     PIC $$$,$$.99 SOURCE Commission.
+       03 COLUMN 45     PIC $$$$$,$$$.99 SOURCE Commission.
 
     02 LINE IS PLUS 1.
        03 COLUMN 15     PIC X(22) VALUE "Salesperson salary is".
        03 COLUMN 43     PIC X VALUE "=".
-       03 COLUMN 45     PIC $$$,$$.99 SOURCE Salary.
+       03 COLUMN 45     PIC $$$$$,$$$.99 SOURCE Salary.
 
     02 LINE IS PLUS 1.
        03 COLUMN 15     PIC X(30)
@@ -214,7 +214,7 @@ RD  SalesReport
        03 COLUMN 15     PIC X(9) VALUE "Sales for".
        03 COLUMN 25     PIC X(9) SOURCE CityName(CityCode).
        03 COLUMN 43     PIC X VALUE "=".
-       03 CS COLUMN 45  PIC $$$,$$.99 SUM SMS.
+       03 CS COLUMN 45  PIC $$$$$,$$$.99 SUM SMS.
 
     02 LINE IS PLUS 1.
        03 COLUMN 15     PIC X(12)
@@ -234,7 +234,7 @@ RD  SalesReport
        03 COLUMN 15     PIC X(11)
                         VALUE "Total sales".
        03 COLUMN 43     PIC X VALUE "=".
-       03 COLUMN 45     PIC $$$,$$.99 SUM CS.
+       03 COLUMN 45     PIC $$$$$,$$$.99 SUM CS.
 
 
 01  TYPE IS PAGE FOOTING.
@@ -277,9 +277,7 @@ PrintSalaryReport.
     READ SalesFile
           AT END SET EndOfFile TO TRUE
     END-READ.
-
-
-        </code></pre>
+</code></pre>
 					</div>
 				</div>
 			</div>

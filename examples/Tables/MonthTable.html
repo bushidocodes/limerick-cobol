@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,7 +11,7 @@
 		<title>Tables - Counts number of students born in each month</title>
 		<meta
 			name="description"
-			content="This program counts the number of students born in each month and displays the result. The program uses a pre-filled table of month names. This program is"
+			content="Counts the number of students born in each month using a pre-filled table of month names and displays the result."
 		/>
 		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/examples/Tables/MonthTable.html" />
 		<!-- Open Graph -->
@@ -23,7 +23,7 @@
 		<meta property="og:title" content="Tables - Counts number of students born in each month" />
 		<meta
 			property="og:description"
-			content="This program counts the number of students born in each month and displays the result. The program uses a pre-filled table of month names. This program is"
+			content="Counts the number of students born in each month using a pre-filled table of month names and displays the result."
 		/>
 		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
 		<!-- Twitter Card -->
@@ -31,7 +31,7 @@
 		<meta name="twitter:title" content="Tables - Counts number of students born in each month" />
 		<meta
 			name="twitter:description"
-			content="This program counts the number of students born in each month and displays the result. The program uses a pre-filled table of month names. This program is"
+			content="Counts the number of students born in each month using a pre-filled table of month names and displays the result."
 		/>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="../../course/Resources/css/course.css" rel="stylesheet" />
@@ -70,14 +70,14 @@
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  MonthTable.
 AUTHOR.  Michael Coughlan.
-*&gt; This program counts the number of students born in each month and 
+*&gt; This program counts the number of students born in each month and
 *&gt; displays the result.
 
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
     SELECT StudentFile ASSIGN TO "STUDENTS.dat"
-                ORGANIZATION IS LINE SEQUENTIAL.
+		ORGANIZATION IS LINE SEQUENTIAL.
 
 DATA DIVISION.
 FILE SECTION.
@@ -104,7 +104,7 @@ WORKING-STORAGE SECTION.
       03 FILLER       PIC X(18) VALUE "July     August".
       03 FILLER       PIC X(18) VALUE "SeptemberOctober".
       03 FILLER       PIC X(18) VALUE "November December".
-   02 FILLERh REDEFINES TableValues.
+   02 FILLER REDEFINES TableValues.
       03 Month OCCURS 12 TIMES PIC X(9).
 
 01 MonthCount OCCURS 12 TIMES PIC 999 VALUE ZEROS.
@@ -117,7 +117,7 @@ WORKING-STORAGE SECTION.
    02 PrnMonth          PIC X(9).
    02 FILLER            PIC X(4) VALUE SPACES.
    02 PrnStudentCount   PIC ZZ9.
- 
+
 
 PROCEDURE DIVISION.
 Begin.
@@ -140,7 +140,8 @@ Begin.
    END-PERFORM.
 
    CLOSE StudentFile
-   STOP RUN.</code></pre>
+   STOP RUN.
+</code></pre>
 					</div>
 				</div>
 			</div>
