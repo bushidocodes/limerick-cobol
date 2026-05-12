@@ -22,6 +22,8 @@
 			}
 		</script>
 		<title>COBOL Course</title>
+		<link rel="stylesheet" href="Resources/css/course.css" />
+		<link rel="stylesheet" href="Resources/css/course-components.css" />
 		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
 		<script src="Resources/vendor/prism/prism.min.js" charset="utf-8" defer></script>
 		<script src="Resources/vendor/prism/components/prism-cobol.min.js" charset="utf-8" defer></script>
@@ -58,28 +60,6 @@
 			content="On-line COBOL programming course - includes tutorials, example programs and exercises."
 		/>
 		<style type="text/css">
-			:root {
-				color-scheme: light dark;
-			}
-			body {
-				color: #000000;
-				background-color: #ffffff;
-			}
-			a:link {
-				color: #1d4ed8;
-			}
-			a:visited {
-				color: #6366cc;
-			}
-			a:active {
-				color: #0b1f5e;
-			}
-
-			h1 img {
-				max-width: 100%;
-				height: auto;
-			}
-
 			/* Header: flexbox replaces the 3-column layout table */
 			.course-header {
 				display: flex;
@@ -125,12 +105,12 @@
 			}
 
 			.topic-label {
-				background-color: #ffffcc;
+				background-color: var(--color-panel-bg);
 				padding: 4px;
 			}
 
 			.topic-links {
-				background-color: #ffffff;
+				background-color: var(--color-bg);
 				display: flex;
 				flex-direction: column;
 			}
@@ -152,81 +132,14 @@
 				background-color: #990033;
 			}
 
-			@media (max-width: 600px) {
-				body {
-					margin: 4px;
-					padding-bottom: 65px;
-				}
-
-				h1 font {
-					font-size: medium;
-				}
-
-				.course-header {
-					flex-wrap: wrap;
-				}
-
-				.course-header-title {
-					flex: 1 1 auto;
-				}
-
-				/* Legend wraps to its own row on narrow screens */
-				.course-header-legend {
-					flex: 0 0 100%;
-					margin-top: 8px;
-				}
-
-				/* Topic sections stack vertically on mobile */
-				.course-topics {
-					grid-template-columns: 1fr;
-				}
-			}
-
-			/* Preliminary dark mode. Token values mirror course.css so this page
-			   feels consistent with the rest of the dark-themed lessons. */
 			@media (prefers-color-scheme: dark) {
-				body {
-					color: #e6e6e6;
-					background-color: #1a1a1a;
-				}
-				a:link {
-					color: #93c5fd;
-				}
-				a:visited {
-					color: #a5b4fc;
-				}
-				a:active {
-					color: #bfdbfe;
-				}
-				.topic-label {
-					background-color: #3a3520;
-				}
-				.topic-links {
-					background-color: #1a1a1a;
-				}
-				.topic-divider {
+				:root:not([data-theme="light"]) .topic-divider {
 					background-color: #b3334d;
 				}
-				img {
-					filter: invert(0.92) hue-rotate(180deg);
-				}
-				img.no-invert,
-				img[src$=".jpg"],
-				img[src$=".jpeg"],
-				img[src$=".JPG"],
-				img[src$=".JPEG"] {
-					filter: none;
-				}
 			}
 
-			/* Department banner — replaces T-Dept.gif */
-			.dept-banner {
-				display: inline-block;
-				font-family: Arial, Helvetica, sans-serif;
-				font-size: 1.5rem;
-				font-weight: bold;
-				letter-spacing: 0.04em;
-				color: #993300;
+			:root[data-theme="dark"] .topic-divider {
+				background-color: #b3334d;
 			}
 
 			/* Decorative disc bullet — replaces BallRedG.gif (13×13 px) */
@@ -259,45 +172,42 @@
 				flex-shrink: 0;
 				margin: 4px 5px;
 			}
+
 			.icon-tut {
 				background-color: #1565c0;
 			}
+
 			.icon-exercise {
 				background-color: #2e7d32;
 			}
+
 			.icon-saq {
 				background-color: #e65100;
 			}
 
-			@media (prefers-color-scheme: dark) {
-				.dept-banner {
-					color: #ff9966;
+			@media (max-width: 600px) {
+				body {
+					padding-bottom: 65px;
 				}
-			}
 
-			/* Skip-to-content link */
-			.skip-link {
-				position: absolute;
-				left: -9999px;
-				top: auto;
-				width: 1px;
-				height: 1px;
-				overflow: hidden;
-			}
+				.course-header {
+					flex-wrap: wrap;
+				}
 
-			.skip-link:focus {
-				position: fixed;
-				top: 0;
-				left: 0;
-				width: auto;
-				height: auto;
-				overflow: visible;
-				padding: 0.5em 1em;
-				background-color: #993300;
-				color: #ffff00;
-				font-weight: bold;
-				z-index: 9999;
-				text-decoration: none;
+				.course-header-title {
+					flex: 1 1 auto;
+				}
+
+				/* Legend wraps to its own row on narrow screens */
+				.course-header-legend {
+					flex: 0 0 100%;
+					margin-top: 8px;
+				}
+
+				/* Topic sections stack vertically on mobile */
+				.course-topics {
+					grid-template-columns: 1fr;
+				}
 			}
 		</style>
 	</head>
@@ -320,7 +230,7 @@
 				</div>
 				<div class="course-header-legend">
 					<!-- Legend table: real tabular data (icon → meaning), kept as <table> -->
-					<table width="100%" class="data-table" height="100" cellpadding="2" cellspacing="0">
+					<table width="100%" height="100" cellpadding="2" cellspacing="0">
 						<tr>
 							<td colspan="2" height="29">
 								<div class="center-block">
