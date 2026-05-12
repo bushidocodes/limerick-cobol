@@ -13,7 +13,7 @@ WORKING-STORAGE SECTION.
             OCCURS 12 TIMES PIC 99.
 
 
-01 CurruptDate              PIC 9(8).
+01 CorruptDate              PIC 9(8).
 
 01 LeapQuot                 PIC 9(4).
 01 LeapRemain               PIC 9(4).

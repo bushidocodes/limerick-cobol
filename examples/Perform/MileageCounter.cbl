@@ -20,7 +20,7 @@ PROCEDURE DIVISION.
 Begin.
    DISPLAY "Using an out-of-line Perform".
    DISPLAY "About to start mileage counter simulation".
-   PERFORM CountMilage
+   PERFORM CountMileage
       VARYING HundredsCount FROM 0 BY 1 UNTIL HundredsCount > 9
       AFTER   TensCount FROM 0 BY 1 UNTIL TensCount > 9
       AFTER   UnitsCount FROM 0 BY 1 UNTIL UnitsCount > 9
@@ -43,7 +43,7 @@ Begin.
 
 
 
-CountMilage.
+CountMileage.
    MOVE HundredsCount TO PrnHunds
    MOVE TensCount     TO  PrnTens
    MOVE UnitsCount    TO PrnUnits

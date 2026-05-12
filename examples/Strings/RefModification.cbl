@@ -50,7 +50,7 @@ Begin.
 *>   Use the REVERSE intrinsic function to reverse the string
 *>   then use the INSPECT tallying to count the number of spaces at the
 *>   begining of the reversed string.  The substring length is then the
-*>   FullSringLength - CharCount.
+*>   FullStringLength - CharCount.
 *>   Use reference modification of get the substring.
     DISPLAY "Task4 Before = " xStr "<<<<<<"
     MOVE 0 TO CharCount
