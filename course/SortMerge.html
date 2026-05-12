@@ -223,7 +223,7 @@
 								in question).
 							</p>
 							<p>
-								The program will use as input, the file CALLS.DAT. This file contains a record of all
+								The program will use as input, the file CALLS.dat. This file contains a record of all
 								the calls made that month. The cost per unit is 0.10.
 							</p>
 							<p>The calls file in an unordered Sequential file. The record description is as follows;</p>
@@ -427,11 +427,11 @@ SORT WorkFile ON ASCENDING ProvinceCode
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
    SELECT CallsFile
-          ASSIGN TO CALLS.DAT
+          ASSIGN TO CALLS.dat
           ORGANIZATION IS LINE SEQUENTIAL.
 
    SELECT SortedCallsFile
-          ASSIGN TO SORTEDCALLS.DAT
+          ASSIGN TO SORTEDCALLS.dat
           ORGANIZATION IS LINE SEQUENTIAL.
 
    SELECT WorkFile
@@ -879,18 +879,18 @@ ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
    SELECT GuestBookFile
-          ASSIGN TO "GuestBook.Dat"
+          ASSIGN TO "GuestBook.dat"
           ORGANIZATION IS LINE SEQUENTIAL.
 
    SELECT WorkFile
           ASSIGN TO "Work.Tmp".
 
    SELECT SortedGuestsFile
-          ASSIGN TO "SortedGuests.Dat"
+          ASSIGN TO "SortedGuests.dat"
           ORGANIZATION IS LINE SEQUENTIAL.
 
    SELECT ForeignGuestReport
-          ASSIGN TO "ForeignGuest.Rpt"
+          ASSIGN TO "ForeignGuest.rpt"
           ORGANIZATION IS LINE SEQUENTIAL.
 
 DATA DIVISION.
@@ -1027,7 +1027,7 @@ AUTHOR.  Michael Coughlan.
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
-    SELECT StudentFile ASSIGN TO "SORTSTUD.DAT"
+    SELECT StudentFile ASSIGN TO "SORTSTUD.dat"
            ORGANIZATION IS LINE SEQUENTIAL.
 
     SELECT WorkFile ASSIGN TO "WORK.TMP".
@@ -1277,10 +1277,10 @@ INPUT-OUTPUT SECTION.
 FILE-CONTROL.
     SELECT WorkFile ASSIGN TO "WORK.TMP".
 
-    SELECT SalesFile ASSIGN TO "SALES.DAT"
+    SELECT SalesFile ASSIGN TO "SALES.dat"
            ORGANIZATION IS LINE SEQUENTIAL.
 
-    SELECT SalesSummaryFile ASSIGN TO "SUMMARY.DAT"
+    SELECT SalesSummaryFile ASSIGN TO "SUMMARY.dat"
            ORGANIZATION IS LINE SEQUENTIAL.
 
 DATA DIVISION.
@@ -1355,14 +1355,14 @@ ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
    SELECT GuestBookFile
-          ASSIGN TO "GuestBook.Dat"
+          ASSIGN TO "GuestBook.dat"
           ORGANIZATION IS LINE SEQUENTIAL.
 
    SELECT WorkFile
           ASSIGN TO "Work.Tmp".
 
    SELECT ForeignGuestReport
-          ASSIGN TO "ForeignGuest.Rpt"
+          ASSIGN TO "ForeignGuest.rpt"
           ORGANIZATION IS LINE SEQUENTIAL.
 
 DATA DIVISION.
@@ -1568,16 +1568,16 @@ IDENTIFICATION DIVISION.
 PROGRAM-ID. MergeFiles.
 AUTHOR. MICHAEL COUGHLAN.
 *&gt; Example program demonstrating the use of the MERGE.
-*&gt; The program merges the file Students.Dat and
-*&gt; Transins.Dat to create a new file Students.New
+*&gt; The program merges the file Students.dat and
+*&gt; Transins.dat to create a new file Students.New
 
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
-    SELECT StudentFile ASSIGN TO "STUDENTS.DAT"
+    SELECT StudentFile ASSIGN TO "STUDENTS.dat"
              ORGANIZATION IS LINE SEQUENTIAL.
 
-    SELECT InsertionsFile ASSIGN TO "TRANSINS.DAT"
+    SELECT InsertionsFile ASSIGN TO "TRANSINS.dat"
              ORGANIZATION IS LINE SEQUENTIAL.
 
     SELECT NewStudentFile    ASSIGN TO "STUDENTS.NEW"

@@ -1,4 +1,4 @@
-       >>SOURCE FORMAT IS FREE
+﻿       >>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  SFbyMail.
 AUTHOR.  Michael Coughlan.
@@ -6,7 +6,7 @@ ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
 
-    SELECT BookStockFile ASSIGN TO "BookStock.DAT"
+    SELECT BookStockFile ASSIGN TO "BookStock.dat"
         ORGANIZATION IS INDEXED
         ACCESS MODE IS DYNAMIC
         RECORD KEY IS Book-Id-BSF
@@ -15,10 +15,10 @@ FILE-CONTROL.
                   WITH DUPLICATES
         FILE STATUS IS BookStatus.
 
-    SELECT ProcessedOrdersFile ASSIGN TO "ProcessedOrders.DAT"
+    SELECT ProcessedOrdersFile ASSIGN TO "ProcessedOrders.dat"
         ORGANIZATION IS LINE SEQUENTIAL.
 
-    SELECT OrdersFile ASSIGN TO "Orders.DAT"
+    SELECT OrdersFile ASSIGN TO "Orders.dat"
         ORGANIZATION IS LINE SEQUENTIAL.
 
 DATA DIVISION.
