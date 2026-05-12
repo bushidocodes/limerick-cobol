@@ -2,6 +2,12 @@
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
 		<title>Reading a Sequential File</title>
 		<meta
 			name="description"
@@ -26,12 +32,35 @@
 		/>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="../../course/Resources/css/course.css" rel="stylesheet" />
+		<link href="../../course/Resources/css/course-components.css" rel="stylesheet" />
 		<link href="../../course/Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
 		<script src="../../course/Resources/vendor/prism/prism.min.js" defer></script>
 		<script src="../../course/Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
+		<script src="../../components/theme-toggle.js" defer></script>
+		<script src="../../components/page-hero.js" defer></script>
+		<script src="../../components/related-content.js" defer></script>
+		<script src="../../components/copy-button.js" defer></script>
 	</head>
-	<body bgcolor="#FFFFFF" background="../../lectures/Code.gif">
-		<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="section-grid">
+					<div class="section-full">
+						<page-hero title="Reading a Sequential File" eyebrow="COBOL Example"></page-hero>
+						<nav aria-label="Breadcrumb">
+							<a href="../default.html">Example programs</a> ›
+							<span>Sequential Read</span>
+						</nav>
+						<p>
+							An example program that reads a sequential file and displays the records. Uses the Condition
+							Name (level 88) "EndOfFile" to signal when the end of the file has been reached.
+						</p>
+						<p><a href="Seqread.cbl" download>Download Seqread.cbl</a></p>
+						<related-content
+							lectures="../../course/SequentialFiles1.html|Introduction to Sequential Files"
+						></related-content>
+						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  SeqRead.
 AUTHOR.  Michael Coughlan.
@@ -74,5 +103,9 @@ Begin.
    END-PERFORM
    CLOSE StudentFile
    STOP RUN.</code></pre>
+					</div>
+				</div>
+			</div>
+		</main>
 	</body>
 </html>
