@@ -1,16 +1,11 @@
+// Light-DOM custom element. Shadow DOM removed (issue #257) so the element
+// inherits theme tokens (--color-text, --color-border-soft) and the body
+// font from course.css. The .copyright-notice class hooks rules in
+// course-components.css.
 class CopyrightNotice extends HTMLElement {
 	connectedCallback() {
 		const type = this.getAttribute("type") || "course";
-		const shadow = this.attachShadow({ mode: "open" });
-		shadow.innerHTML = `
-			<style>
-				:host { display: block; font-family: Times New Roman, Times, serif; font-size: 1em; }
-				hr { border: none; border-top: 1px solid #000; margin: 0.75em 0; }
-				h3 { text-align: center; margin: 0.5em 0; }
-				p { margin: 0.5em 1em; }
-				.center { text-align: center; }
-				.left { text-align: left; }
-			</style>
+		this.innerHTML = `
 			<hr>
 			${this._getContent(type)}
 		`;
