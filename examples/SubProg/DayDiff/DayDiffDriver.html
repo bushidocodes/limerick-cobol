@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,7 +11,7 @@
 		<title>Get difference between dates driver program</title>
 		<meta
 			name="description"
-			content="A driver program that accepts two dates from the user and displays the difference in days between them. This program uses the Validate.cbl sub-program"
+			content="A driver program that accepts two dates from the user and displays the difference in days between them. Uses the Validate sub-program and also contains a"
 		/>
 		<link
 			rel="canonical"
@@ -26,7 +26,7 @@
 		<meta property="og:title" content="Get difference between dates driver program" />
 		<meta
 			property="og:description"
-			content="A driver program that accepts two dates from the user and displays the difference in days between them. This program uses the Validate.cbl sub-program"
+			content="A driver program that accepts two dates from the user and displays the difference in days between them. Uses the Validate sub-program and also contains a"
 		/>
 		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
 		<!-- Twitter Card -->
@@ -34,7 +34,7 @@
 		<meta name="twitter:title" content="Get difference between dates driver program" />
 		<meta
 			name="twitter:description"
-			content="A driver program that accepts two dates from the user and displays the difference in days between them. This program uses the Validate.cbl sub-program"
+			content="A driver program that accepts two dates from the user and displays the difference in days between them. Uses the Validate sub-program and also contains a"
 		/>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="../../../course/Resources/css/course.css" rel="stylesheet" />
@@ -112,7 +112,7 @@ WORKING-STORAGE SECTION.
             
 
 PROCEDURE DIVISION.
-10START.
+Begin.
     SET DateIsNotValid TO TRUE.
     PERFORM GetValidFirstDate UNTIL DateIsValid.
 
@@ -196,7 +196,7 @@ LINKAGE SECTION.
 01  YYYYDDMMDate                   PIC X(8).
 
 PROCEDURE DIVISION USING DDMMYYYYDate, YYYYDDMMDate.
-10Start.
+Begin.
     MOVE DDMMDay      TO YYYYDay.
     MOVE DDMMMonth    TO YYYYMonth.
     MOVE DDMMYear     TO YYYYYear.
@@ -229,7 +229,7 @@ LINKAGE SECTION.
 01  DDMMYYYYDate                   PIC X(8).
 
 PROCEDURE DIVISION USING YYYYDDMMDate, DDMMYYYYDate.
-10Start.
+Begin.
     MOVE YYYYDay      TO DDMMDay.
     MOVE YYYYMonth    TO DDMMMonth.
     MOVE YYYYYear     TO DDMMYear.

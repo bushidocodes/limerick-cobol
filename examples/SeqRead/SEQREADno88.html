@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,7 +9,10 @@
 			})();
 		</script>
 		<title>Reading a Sequential File</title>
-		<meta name="description" content="COBOL example program: Reading a Sequential File." />
+		<meta
+			name="description"
+			content="An example program that reads a sequential file and displays the records. This version does not use level 88's to signal when the end of the file has been"
+		/>
 		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/examples/SeqRead/SEQREADno88.html" />
 		<!-- Open Graph -->
 		<meta property="og:type" content="website" />
@@ -18,12 +21,18 @@
 			content="https://bushidocodes.github.io/limerick-cobol/examples/SeqRead/SEQREADno88.html"
 		/>
 		<meta property="og:title" content="Reading a Sequential File" />
-		<meta property="og:description" content="COBOL example program: Reading a Sequential File." />
+		<meta
+			property="og:description"
+			content="An example program that reads a sequential file and displays the records. This version does not use level 88's to signal when the end of the file has been"
+		/>
 		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
 		<!-- Twitter Card -->
 		<meta name="twitter:card" content="summary" />
 		<meta name="twitter:title" content="Reading a Sequential File" />
-		<meta name="twitter:description" content="COBOL example program: Reading a Sequential File." />
+		<meta
+			name="twitter:description"
+			content="An example program that reads a sequential file and displays the records. This version does not use level 88's to signal when the end of the file has been"
+		/>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="../../course/Resources/css/course.css" rel="stylesheet" />
 		<link href="../../course/Resources/css/course-components.css" rel="stylesheet" />
@@ -60,14 +69,14 @@ PROGRAM-ID.  SeqReadNo88.
 AUTHOR.  Michael Coughlan.
 *&gt; An example showing how to read a sequential file without
 *&gt; using condition names.
-*&gt; See SeqRead.cbl for the definitive example.
+*&gt; See Seqread.cbl for the definitive example.
 
 
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
     SELECT StudentFile ASSIGN TO "STUDENTS.dat"
-                ORGANIZATION IS LINE SEQUENTIAL.
+		ORGANIZATION IS LINE SEQUENTIAL.
 
 DATA DIVISION.
 FILE SECTION.
@@ -97,7 +106,8 @@ Begin.
       END-READ
    END-PERFORM
    CLOSE StudentFile
-   STOP RUN.</code></pre>
+   STOP RUN.
+</code></pre>
 					</div>
 				</div>
 			</div>
