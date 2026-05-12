@@ -262,8 +262,11 @@ ul.toc a {
    theme tokens drive colors on pages that haven't been migrated to component
    classes. */
 table[bgcolor="#993300"],
+table[bgcolor="#990000"],
 tr[bgcolor="#993300"],
-td[bgcolor="#993300"] {
+tr[bgcolor="#990000"],
+td[bgcolor="#993300"],
+td[bgcolor="#990000"] {
 	background-color: var(--color-header-bg);
 }
 
@@ -326,7 +329,10 @@ td[bgcolor="#e8e8e8"] {
 	background-color: var(--color-cell-label-bg);
 }
 
-td[bgcolor="#993300"] h2 {
+td[bgcolor="#993300"] h2,
+td[bgcolor="#990000"] h2,
+tr[bgcolor="#993300"] h2,
+tr[bgcolor="#990000"] h2 {
 	color: var(--color-header-text);
 	font-family: Arial, Helvetica, sans-serif;
 }
@@ -413,6 +419,67 @@ td[bgcolor="#ffffcc"] h4 {
 	.section-sidebar p {
 		margin: 0.2em 0;
 	}
+}
+
+/* Inline style colour corrections — light mode.
+   Legacy <span style="color: #cccccc"> fails 4.5:1 against any light
+   background. Remap to a dark grey that passes without the rule being
+   visible in dark mode (the dark-mode block below uses higher-specificity
+   :root:not([data-theme="light"]) selectors and overrides this). */
+[style*="color:#cccccc"],
+[style*="color: #cccccc"],
+[style*="color:#CCCCCC"],
+[style*="color: #CCCCCC"] {
+	color: #6a6a6a !important;
+}
+
+/* Legacy <span style="color: #ff0000"> fails 4.5:1 against light backgrounds
+   (#E1FFE1 gives 3.73:1, #FFFFCC gives 3.89:1, white gives 4:1). Remap to a
+   darker red. Dark-mode override below uses higher-specificity selectors and
+   maps to #ff8a8a for legibility on dark panel backgrounds. */
+[style*="color:#ff0000"],
+[style*="color: #ff0000"],
+[style*="color:#FF0000"],
+[style*="color: #FF0000"] {
+	color: #c00000 !important;
+}
+
+/* ============================================================================
+   Prism token colour corrections — light mode
+   Overrides the default Prism theme to meet WCAG 2.1 AA (≥ 4.5:1) against
+   Prism's #f5f2f0 code-block background. The `body` prefix raises specificity
+   to (0,2,1), beating prism.min.css's (0,2,0). Dark-mode overrides below use
+   (0,3,1) selectors and are unaffected.
+   ============================================================================ */
+body .token.atrule,
+body .token.attr-value,
+body .token.keyword {
+	color: #006fa1;
+}
+
+body .token.attr-name,
+body .token.builtin,
+body .token.char,
+body .token.inserted,
+body .token.selector,
+body .token.string {
+	color: #447a00;
+}
+
+body .token.punctuation {
+	color: #6a6a6a;
+}
+
+body .token.comment,
+body .token.prolog,
+body .token.doctype,
+body .token.cdata {
+	color: #546e7a;
+}
+
+body .token.class-name,
+body .token.function {
+	color: #c03a58;
 }
 
 /* ============================================================================
@@ -547,7 +614,17 @@ td[bgcolor="#ffffcc"] h4 {
 	:root:not([data-theme="light"]) [style*="color: #cccccc"],
 	:root:not([data-theme="light"]) [style*="color:#CCCCCC"],
 	:root:not([data-theme="light"]) [style*="color: #CCCCCC"] {
-		color: #888888 !important;
+		color: #a0a0a0 !important;
+	}
+
+	/* Inline background-color: #ffffff stays white in dark mode, leaving light
+	   inherited text on a white canvas — very low contrast. Map to the dark
+	   page background so normal dark-mode text colours apply. */
+	:root:not([data-theme="light"]) [style*="background-color: #ffffff"],
+	:root:not([data-theme="light"]) [style*="background-color:#ffffff"],
+	:root:not([data-theme="light"]) [style*="background-color: #FFFFFF"],
+	:root:not([data-theme="light"]) [style*="background-color:#FFFFFF"] {
+		background-color: var(--color-bg) !important;
 	}
 
 	/* #CCCCCC has no matching light-mode token (only used as decorative
@@ -674,7 +751,14 @@ td[bgcolor="#ffffcc"] h4 {
 :root[data-theme="dark"] [style*="color: #cccccc"],
 :root[data-theme="dark"] [style*="color:#CCCCCC"],
 :root[data-theme="dark"] [style*="color: #CCCCCC"] {
-	color: #888888 !important;
+	color: #a0a0a0 !important;
+}
+
+:root[data-theme="dark"] [style*="background-color: #ffffff"],
+:root[data-theme="dark"] [style*="background-color:#ffffff"],
+:root[data-theme="dark"] [style*="background-color: #FFFFFF"],
+:root[data-theme="dark"] [style*="background-color:#FFFFFF"] {
+	background-color: var(--color-bg) !important;
 }
 
 :root[data-theme="dark"] table[bgcolor="#CCCCCC"],
