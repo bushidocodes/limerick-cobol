@@ -2,6 +2,12 @@
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
 		<title>Perform - Format 3 example program</title>
 		<meta
 			name="description"
@@ -29,12 +35,33 @@
 		/>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="../../course/Resources/css/course.css" rel="stylesheet" />
+		<link href="../../course/Resources/css/course-components.css" rel="stylesheet" />
 		<link href="../../course/Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
 		<script src="../../course/Resources/vendor/prism/prism.min.js" defer></script>
 		<script src="../../course/Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
+		<script src="../../components/theme-toggle.js" defer></script>
+		<script src="../../components/page-hero.js" defer></script>
+		<script src="../../components/related-content.js" defer></script>
+		<script src="../../components/copy-button.js" defer></script>
 	</head>
-	<body bgcolor="#FFFFFF" background="../../lectures/Code.gif">
-		<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="section-grid">
+					<div class="section-full">
+						<page-hero title="Perform - Format 3 example program" eyebrow="COBOL Example"></page-hero>
+						<nav aria-label="Breadcrumb">
+							<a href="../default.html">Example programs</a> ›
+							<span>PERFORM Format 3</span>
+						</nav>
+						<p>
+							Demonstrates how the PERFORM..UNTIL (third format) may be used to process a stream of values
+							where the length of the stream cannot be determined in advance.
+						</p>
+						<p><a href="PerformFormat3.cbl" download>Download PerformFormat3.cbl</a></p>
+						<related-content lectures="../../course/Iteration.html|Iteration in COBOL"></related-content>
+						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  PerformFormat3.
 AUTHOR.  Michael Coughlan.
@@ -91,5 +118,9 @@ GetUserInput.
     DISPLAY "Count so far is - " IterCount
     DISPLAY "Enter number :- " WITH NO ADVANCING
     ACCEPT UserInput.</code></pre>
+					</div>
+				</div>
+			</div>
+		</main>
 	</body>
 </html>

@@ -2,6 +2,12 @@
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
 		<title>String handling - Reference Modification examples</title>
 		<meta
 			name="description"
@@ -26,12 +32,39 @@
 		/>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="../../course/Resources/css/course.css" rel="stylesheet" />
+		<link href="../../course/Resources/css/course-components.css" rel="stylesheet" />
 		<link href="../../course/Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
 		<script src="../../course/Resources/vendor/prism/prism.min.js" defer></script>
 		<script src="../../course/Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
+		<script src="../../components/theme-toggle.js" defer></script>
+		<script src="../../components/page-hero.js" defer></script>
+		<script src="../../components/related-content.js" defer></script>
+		<script src="../../components/copy-button.js" defer></script>
 	</head>
-	<body bgcolor="#FFFFFF" background="../../lectures/Code.gif">
-		<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="section-grid">
+					<div class="section-full">
+						<page-hero
+							title="String handling - Reference Modification examples"
+							eyebrow="COBOL Example"
+						></page-hero>
+						<nav aria-label="Breadcrumb">
+							<a href="../default.html">Example programs</a> ›
+							<span>Reference Modification</span>
+						</nav>
+						<p>
+							Solves a number of string handling tasks such as extracting substrings, removing leading or
+							trailing blanks, and finding the location of the first occurrence of a character in a
+							string.
+						</p>
+						<p><a href="RefModification.cbl" download>Download RefModification.cbl</a></p>
+						<related-content
+							lectures="../../course/RefMod.html|Reference Modification and Intrinsic Functions"
+						></related-content>
+						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  RefModification.
 AUTHOR.  Michael Coughlan.
@@ -139,5 +172,9 @@ Begin.
     DISPLAY "The character is " xStr(EndCount:1)
     STOP RUN.
 </code></pre>
+					</div>
+				</div>
+			</div>
+		</main>
 	</body>
 </html>

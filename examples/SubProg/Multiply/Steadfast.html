@@ -2,6 +2,12 @@
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
 		<title>The Steadfast sub-program demonstrates the IS INITIAL phrase</title>
 		<meta
 			name="description"
@@ -32,12 +38,38 @@
 		/>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="../../../course/Resources/css/course.css" rel="stylesheet" />
+		<link href="../../../course/Resources/css/course-components.css" rel="stylesheet" />
 		<link href="../../../course/Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
 		<script src="../../../course/Resources/vendor/prism/prism.min.js" defer></script>
 		<script src="../../../course/Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
+		<script src="../../../components/theme-toggle.js" defer></script>
+		<script src="../../../components/page-hero.js" defer></script>
+		<script src="../../../components/related-content.js" defer></script>
+		<script src="../../../components/copy-button.js" defer></script>
 	</head>
-	<body bgcolor="#FFFFFF" background="../../../lectures/Code.gif">
-		<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="section-grid">
+					<div class="section-full">
+						<page-hero
+							title="The Steadfast sub-program demonstrates the IS INITIAL phrase"
+							eyebrow="COBOL Example"
+						></page-hero>
+						<nav aria-label="Breadcrumb">
+							<a href="../../default.html">Example programs</a> ›
+							<span>Steadfast Sub-program</span>
+						</nav>
+						<p>
+							A sub-program identical to Fickle except that it uses the IS INITIAL phrase to avoid State
+							Memory — it always produces the same result for the same input.
+						</p>
+						<p><a href="Steadfast.cbl" download>Download Steadfast.cbl</a></p>
+						<related-content
+							lectures="../../../course/Subprograms.html|Contained and External Sub-programs"
+						></related-content>
+						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. Steadfast IS INITIAL.
 AUTHOR. Michael Coughlan.
@@ -62,5 +94,9 @@ Begin.
 
     EXIT PROGRAM.
 </code></pre>
+					</div>
+				</div>
+			</div>
+		</main>
 	</body>
 </html>

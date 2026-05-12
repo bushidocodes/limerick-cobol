@@ -2,6 +2,12 @@
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
 		<title>No Declaratives version of full Report Writer example program</title>
 		<meta
 			name="description"
@@ -32,12 +38,38 @@
 		/>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="../../course/Resources/css/course.css" rel="stylesheet" />
+		<link href="../../course/Resources/css/course-components.css" rel="stylesheet" />
 		<link href="../../course/Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
 		<script src="../../course/Resources/vendor/prism/prism.min.js" defer></script>
 		<script src="../../course/Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
+		<script src="../../components/theme-toggle.js" defer></script>
+		<script src="../../components/page-hero.js" defer></script>
+		<script src="../../components/related-content.js" defer></script>
+		<script src="../../components/copy-button.js" defer></script>
 	</head>
-	<body bgcolor="#FFFFFF" background="../../lectures/Code.gif">
-		<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="section-grid">
+					<div class="section-full">
+						<page-hero
+							title="No Declaratives version of full Report Writer example program"
+							eyebrow="COBOL Example"
+						></page-hero>
+						<nav aria-label="Breadcrumb">
+							<a href="../default.html">Example programs</a> ›
+							<span>Report Writer Example B</span>
+						</nav>
+						<p>
+							A simplified version of the full report program containing all the control breaks but not
+							using Declaratives. Uses the GBsales.dat data file.
+						</p>
+						<p><a href="ReportExampleB.cbl" download>Download ReportExampleB.cbl</a></p>
+						<related-content
+							lectures="../../course/ReportWriter.html|Report Writer by Example, ../../course/ReportWriterSS.html|Report Writer Syntax and Semantics"
+						></related-content>
+						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  ReportExampleB.
 AUTHOR.  Michael Coughlan.
@@ -113,7 +145,7 @@ RD  SalesReport
                         SOURCE CityName(CityCode) GROUP INDICATE.
        03 COLUMN 15     PIC 9
                         SOURCE SalesPersonNum  GROUP INDICATE.
-       03 COLUMN 25     PIC $$,$$$.99 SOURCE ValueOfSale.
+       03 COLUMN 25     PIC $,$$.99 SOURCE ValueOfSale.
                 
 
 01  SalesPersonGrp
@@ -122,7 +154,7 @@ RD  SalesReport
        03 COLUMN 15     PIC X(21) VALUE "Sales for salesperson".
        03 COLUMN 37     PIC 9 SOURCE SalesPersonNum.
        03 COLUMN 43     PIC X VALUE "=".
-       03 SMS COLUMN 45 PIC $$$$$,$$$.99 SUM ValueOfSale.
+       03 SMS COLUMN 45 PIC $$$,$$.99 SUM ValueOfSale.
 
 
 01  CityGrp TYPE IS CONTROL FOOTING CityCode NEXT GROUP PLUS 2.
@@ -130,7 +162,7 @@ RD  SalesReport
        03 COLUMN 15     PIC X(9) VALUE "Sales for".
        03 COLUMN 25     PIC X(9) SOURCE CityName(CityCode).
        03 COLUMN 43     PIC X VALUE "=".
-       03 CS COLUMN 45  PIC $$$$$,$$$.99 SUM SMS.
+       03 CS COLUMN 45  PIC $$$,$$.99 SUM SMS.
 
 
 01  TotalSalesGrp TYPE IS CONTROL FOOTING FINAL.
@@ -138,7 +170,7 @@ RD  SalesReport
        03 COLUMN 15     PIC X(11)
                         VALUE "Total sales".
        03 COLUMN 43     PIC X VALUE "=".
-       03 COLUMN 45     PIC $$$$$,$$$.99 SUM CS.
+       03 COLUMN 45     PIC $$$,$$.99 SUM CS.
 
 
 01  TYPE IS PAGE FOOTING.
@@ -171,5 +203,9 @@ PrintSalaryReport.
 
 
         </code></pre>
+					</div>
+				</div>
+			</div>
+		</main>
 	</body>
 </html>
