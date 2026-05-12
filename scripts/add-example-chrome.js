@@ -73,8 +73,7 @@ const MANIFEST = [
 		cbl: "Iteration-If.cbl",
 		crumb: "Iteration with IF",
 		desc: "An example program that implements a primitive calculator. The calculator only does additions and multiplications.",
-		lectures:
-			"../../course/Selection.html|Selection in COBOL, ../../course/Iteration.html|Iteration in COBOL",
+		lectures: "../../course/Selection.html|Selection in COBOL, ../../course/Iteration.html|Iteration in COBOL",
 	},
 	// ── Indexed ─────────────────────────────────────────────────────────────
 	{
@@ -389,12 +388,8 @@ function transform(entry) {
 	// 6. Build the new <body> content.
 	const defPath = defaultHtmlPath(entry.file);
 
-	const relatedAttr = entry.lectures
-		? `\n\t\t\t\t\t\tlectures="${entry.lectures}"\n\t\t\t\t\t`
-		: "";
-	const relatedEl = entry.lectures
-		? `\n\t\t\t\t\t\t<related-content${relatedAttr}></related-content>`
-		: "";
+	const relatedAttr = entry.lectures ? `\n\t\t\t\t\t\tlectures="${entry.lectures}"\n\t\t\t\t\t` : "";
+	const relatedEl = entry.lectures ? `\n\t\t\t\t\t\t<related-content${relatedAttr}></related-content>` : "";
 
 	const newBody = `<body>
 \t\t<a class="skip-link" href="#main-content">Skip to main content</a>
