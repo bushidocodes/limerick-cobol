@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>COBOL animation viewer</title>
+		<meta name="description" content="Click-through viewer for COBOL course animation build steps." />
+		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/Resources/build-viewer.html" />
+		<!-- Open Graph -->
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/Resources/build-viewer.html" />
+		<meta property="og:title" content="COBOL animation viewer" />
+		<meta property="og:description" content="Click-through viewer for COBOL course animation build steps." />
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content="COBOL animation viewer" />
+		<meta name="twitter:description" content="Click-through viewer for COBOL course animation build steps." />
+		<style>
+			html,
+			body {
+				margin: 0;
+				padding: 0;
+				height: 100%;
+				background: #2a2a2a;
+				color: #eee;
+				font-family: Arial, Helvetica, sans-serif;
+				overflow: hidden;
+			}
+
+			body {
+				display: flex;
+				flex-direction: column;
+			}
+
+			#stage {
+				flex: 1 1 auto;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				overflow: hidden;
+				min-height: 0;
+				cursor: pointer;
+				position: relative;
+			}
+
+			#frame {
+				display: block;
+				max-width: 100%;
+				max-height: 100%;
+				background: #fff;
+				box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+				user-select: none;
+				-webkit-user-drag: none;
+			}
+
+			#controls {
+				flex: 0 0 auto;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 10px;
+				padding: 6px 8px;
+				background: #1d1d1d;
+				border-top: 1px solid #444;
+				font-size: 12px;
+				user-select: none;
+			}
+
+			#controls button {
+				background: #444;
+				color: #eee;
+				border: 1px solid #666;
+				border-radius: 3px;
+				padding: 3px 10px;
+				cursor: pointer;
+				font: inherit;
+			}
+
+			#controls button:hover:not(:disabled) {
+				background: #555;
+			}
+
+			#controls button:disabled {
+				opacity: 0.4;
+				cursor: default;
+			}
+
+			#stepInfo {
+				min-width: 80px;
+				text-align: center;
+			}
+
+			#status {
+				position: absolute;
+				inset: 0;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				pointer-events: none;
+				font-size: 14px;
+				background: rgba(42, 42, 42, 0.85);
+			}
+
+			/* Hide controls in very narrow embeds — click-to-advance still works */
+			@media (max-height: 200px) {
+				#controls {
+					display: none;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="stage" role="button" tabindex="0" aria-label="Click to advance to next step">
+			<img id="frame" alt="" />
+			<div id="status" role="status">Loading…</div>
+		</div>
+		<div id="controls">
+			<button id="prev" type="button" aria-label="Previous step">◀ Prev</button>
+			<span id="stepInfo">– / –</span>
+			<button id="next" type="button" aria-label="Next step">Next ▶</button>
+		</div>
+		<script>
+			(function () {
+				const params = new URLSearchParams(location.search);
+				const deck = params.get("deck");
+				const startStep = Math.max(1, parseInt(params.get("step") || "1", 10) || 1);
+				const stage = document.getElementById("stage");
+				const frame = document.getElementById("frame");
+				const status = document.getElementById("status");
+				const prevBtn = document.getElementById("prev");
+				const nextBtn = document.getElementById("next");
+				const stepInfo = document.getElementById("stepInfo");
+
+				if (!deck) {
+					showStatus("Missing ?deck= parameter");
+					return;
+				}
+
+				const baseDir = "ppz/frames/" + encodeURIComponent(deck) + "/";
+
+				let manifest = null;
+				let currentStep = startStep;
+				const preloaded = new Map();
+
+				function showStatus(msg) {
+					status.textContent = msg;
+					status.style.display = "flex";
+				}
+
+				function hideStatus() {
+					status.style.display = "none";
+				}
+
+				function preload(idx) {
+					if (!manifest || idx < 0 || idx >= manifest.frames.length) return;
+					const file = manifest.frames[idx];
+					if (preloaded.has(file)) return;
+					const img = new Image();
+					img.src = baseDir + file;
+					preloaded.set(file, img);
+				}
+
+				function render() {
+					if (!manifest) return;
+					const idx = currentStep - 1;
+					const file = manifest.frames[idx];
+					frame.src = baseDir + file;
+					frame.alt = "Step " + currentStep + " of " + manifest.frames.length;
+					stepInfo.textContent = currentStep + " / " + manifest.frames.length;
+					prevBtn.disabled = currentStep <= 1;
+					nextBtn.disabled = currentStep >= manifest.frames.length;
+					// Preload neighbors
+					preload(idx + 1);
+					preload(idx + 2);
+				}
+
+				function go(delta) {
+					if (!manifest) return;
+					const next = Math.min(manifest.frames.length, Math.max(1, currentStep + delta));
+					if (next === currentStep) return;
+					currentStep = next;
+					render();
+				}
+
+				stage.addEventListener("click", () => go(1));
+				prevBtn.addEventListener("click", (e) => {
+					e.stopPropagation();
+					go(-1);
+				});
+				nextBtn.addEventListener("click", (e) => {
+					e.stopPropagation();
+					go(1);
+				});
+
+				document.addEventListener("keydown", (e) => {
+					if (e.key === "ArrowLeft" || e.key === "PageUp") {
+						go(-1);
+						e.preventDefault();
+					} else if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " " || e.key === "Enter") {
+						go(1);
+						e.preventDefault();
+					} else if (e.key === "Home") {
+						currentStep = 1;
+						render();
+						e.preventDefault();
+					} else if (e.key === "End" && manifest) {
+						currentStep = manifest.frames.length;
+						render();
+						e.preventDefault();
+					}
+				});
+
+				fetch(baseDir + "manifest.json")
+					.then((r) => {
+						if (!r.ok) throw new Error("HTTP " + r.status);
+						return r.json();
+					})
+					.then((m) => {
+						if (!m.frames || !m.frames.length) throw new Error("Empty frame list");
+						manifest = m;
+						currentStep = Math.min(currentStep, manifest.frames.length);
+						// Preload the first few frames
+						for (let i = 0; i < Math.min(5, manifest.frames.length); i++) preload(i);
+						hideStatus();
+						render();
+					})
+					.catch((err) => {
+						showStatus("Failed to load animation: " + (err && err.message ? err.message : err));
+					});
+			})();
+		</script>
+	</body>
+</html>
