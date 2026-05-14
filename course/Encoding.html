@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+		<title>EBCDIC, ASCII, and code pages</title>
+		<meta
+			name="description"
+			content="How character encoding affects COBOL: collating sequence, ALPHABET clause, packed-decimal portability, file interchange, and Unicode support."
+		/>
+		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/Encoding.html" />
+		<!-- Open Graph -->
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/Encoding.html" />
+		<meta property="og:title" content="EBCDIC, ASCII, and code pages" />
+		<meta
+			property="og:description"
+			content="How character encoding affects COBOL: collating sequence, ALPHABET clause, packed-decimal portability, file interchange, and Unicode support."
+		/>
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content="EBCDIC, ASCII, and code pages" />
+		<meta
+			name="twitter:description"
+			content="How character encoding affects COBOL: collating sequence, ALPHABET clause, packed-decimal portability, file interchange, and Unicode support."
+		/>
+		<link href="Resources/css/course.css" rel="stylesheet" />
+		<link href="Resources/css/course-components.css" rel="stylesheet" />
+		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
+		<script src="Resources/vendor/prism/prism.min.js" defer></script>
+		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
+		<style type="text/css">
+			.section-grid > * {
+				padding: 4px;
+			}
+
+			@media (max-width: 600px) {
+				.page-wrapper {
+					border: none;
+				}
+			}
+		</style>
+		<script src="../components/theme-toggle.js" defer></script>
+		<script src="../components/page-hero.js" defer></script>
+		<script src="../components/back-to-top.js" defer></script>
+		<script src="../components/lesson-progress.js" defer></script>
+		<script src="../components/lesson-nav.js" defer></script>
+		<script src="../components/lesson-checkbox.js" defer></script>
+		<script src="../components/copyright-notice.js" defer></script>
+		<script src="../components/related-content.js" defer></script>
+		<script src="../components/copy-button.js" defer></script>
+	</head>
+
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="section-grid">
+					<!-- Header -->
+					<div class="section-full">
+						<page-hero title="EBCDIC, ASCII, and code pages"></page-hero>
+						<hr />
+						<ul class="toc">
+							<li>
+								<a href="#intro">Introduction</a><br />
+								Why a COBOL programmer cares about character encoding.
+							</li>
+							<li>
+								<a href="#part1">What a character encoding is</a><br />
+								The conceptual mapping from bytes to characters.
+							</li>
+							<li>
+								<a href="#part2">EBCDIC vs ASCII at a glance</a><br />
+								Short comparison of the two encodings COBOL programmers actually meet.
+							</li>
+							<li>
+								<a href="#part3">Collating sequence</a><br />
+								Why <code>IF KEY1 &lt; KEY2</code> can produce different answers on different platforms.
+								A concrete <code class="language-cobol">SORT</code> example.
+							</li>
+							<li>
+								<a href="#part4">The ALPHABET clause</a><br />
+								Forcing a specific collation regardless of the host encoding.
+							</li>
+							<li>
+								<a href="#part5">Packed-decimal portability</a><br />
+								What survives a binary FTP and what doesn't.
+							</li>
+							<li>
+								<a href="#part6">File interchange in practice</a><br />
+								When to use text-mode transfer, when to keep it binary, and when you need
+								<code>iconv</code>.
+							</li>
+							<li>
+								<a href="#part7">Unicode and national data</a><br />
+								<code class="language-cobol">PIC N</code>,
+								<code class="language-cobol">USAGE NATIONAL</code>, and where COBOL's Unicode story sits
+								in 2026.
+							</li>
+						</ul>
+						<hr />
+					</div>
+
+					<!-- Introduction -->
+					<div class="section-header">
+						<h2 id="intro">Introduction</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Aims</h3>
+					</div>
+					<div>
+						<p>
+							The course teaches <code class="language-cobol">PIC X</code> character data, alphabetic
+							comparisons, and <code class="language-cobol">INSPECT</code> /
+							<code class="language-cobol">STRING</code> operations without ever mentioning the elephant
+							in the room: <b>mainframe COBOL runs in EBCDIC; everything else runs in ASCII or UTF-8.</b>
+							Two consequences a learner will hit immediately when they leave the classroom:
+						</p>
+						<ol>
+							<li>
+								<b>Collating sequences differ.</b>
+								<code>'A' &lt; 'a'</code> in ASCII; <code>'a' &lt; 'A'</code> in EBCDIC.
+								<code>'A' &lt; '1'</code> in EBCDIC; <code>'1' &lt; 'A'</code> in ASCII.
+								<code class="language-cobol">SORT</code> results and condition-name ordering depend on
+								this.
+							</li>
+							<li>
+								<b>File interchange.</b> A flat file written on a z/OS host and FTP'd in binary mode is
+								unreadable on a Linux box, and vice versa. Packed-decimal fields encode digit nibbles
+								identically in both &mdash; but signed-decimal sign nibbles differ.
+							</li>
+						</ol>
+						<p>Modernisation projects routinely founder on this. This unit gives you the model.</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Objectives</h3>
+					</div>
+					<div>
+						<p>By the end of this unit you should &mdash;</p>
+						<ol>
+							<li>
+								Understand what an encoding is and why two systems with different defaults can disagree
+								about the same byte.<br /><br />
+							</li>
+							<li>
+								Be able to predict whether a <code class="language-cobol">SORT</code> result will be the
+								same on a mainframe and a Linux box, and override it if needed.<br /><br />
+							</li>
+							<li>
+								Know what binary FTP between EBCDIC and ASCII systems preserves and what it breaks.<br /><br />
+							</li>
+							<li>
+								Recognise <code class="language-cobol">PIC N</code> and
+								<code class="language-cobol">USAGE NATIONAL</code> and know what their role is in modern
+								COBOL.
+							</li>
+						</ol>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Prerequisites</h3>
+					</div>
+					<div>
+						<ul>
+							<li><a href="DataDeclaration.html">Declaring data in COBOL</a></li>
+							<li><a href="Selection.html">Selection in COBOL</a></li>
+							<li><a href="SortMerge.html">Sorting and Merging</a></li>
+							<li>Helpful: <a href="Usage.html">The USAGE clause</a> for packed-decimal context.</li>
+						</ul>
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- What encoding is -->
+					<div class="section-header">
+						<h2 id="part1">What a character encoding is</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Bytes are not characters</h3>
+					</div>
+					<div>
+						<p>
+							On disk and in memory, a string of characters is stored as a sequence of bytes. The
+							<i>encoding</i> is the mapping from byte values to characters: which byte represents capital
+							A, which represents lowercase a, which represents the digit 0.
+						</p>
+						<p>
+							If you write a file on one machine in one encoding and read it on another machine in a
+							different encoding, the bytes are the same but the characters they represent are different.
+							In the worst case the program runs without error and silently produces wrong output &mdash;
+							by the time someone notices, the corruption may already be downstream.
+						</p>
+						<p>
+							The COBOL platforms a working programmer will meet use two main encodings: <b>EBCDIC</b> on
+							IBM mainframes (z/OS, z/VSE, AS/400), and <b>ASCII</b> &mdash; or its UTF-8 superset &mdash;
+							on everything else.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- EBCDIC vs ASCII -->
+					<div class="section-header">
+						<h2 id="part2">EBCDIC vs ASCII at a glance</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Selected code points</h3>
+						<aside>
+							<p class="center-block">
+								<span class="i-detail" aria-hidden="true">🔍</span>
+							</p>
+							<p>
+								The full mapping has 256 entries and several variant code pages (CP037 for US English,
+								CP285 for UK, CP1047 for OS/390 Java, &hellip;). The table below shows the printable
+								characters whose ordering matters most.
+							</p>
+						</aside>
+					</div>
+					<div>
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Character</th>
+									<th>ASCII (hex)</th>
+									<th>EBCDIC CP037 (hex)</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>space</td>
+									<td>20</td>
+									<td>40</td>
+								</tr>
+								<tr>
+									<td>'0' (digit zero)</td>
+									<td>30</td>
+									<td>F0</td>
+								</tr>
+								<tr>
+									<td>'9'</td>
+									<td>39</td>
+									<td>F9</td>
+								</tr>
+								<tr>
+									<td>'A'</td>
+									<td>41</td>
+									<td>C1</td>
+								</tr>
+								<tr>
+									<td>'Z'</td>
+									<td>5A</td>
+									<td>E9</td>
+								</tr>
+								<tr>
+									<td>'a'</td>
+									<td>61</td>
+									<td>81</td>
+								</tr>
+								<tr>
+									<td>'z'</td>
+									<td>7A</td>
+									<td>A9</td>
+								</tr>
+								<tr>
+									<td>'$'</td>
+									<td>24</td>
+									<td>5B</td>
+								</tr>
+								<tr>
+									<td>'#'</td>
+									<td>23</td>
+									<td>7B</td>
+								</tr>
+							</tbody>
+						</table>
+						<p>
+							The pattern to notice: within each encoding, digits and letters are contiguous and ordered,
+							but the
+							<i>ordering of digits relative to letters and of uppercase relative to lowercase differs</i
+							>.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Collating sequence -->
+					<div class="section-header">
+						<h2 id="part3">Collating sequence</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>The same condition, two different answers</h3>
+					</div>
+					<div>
+						<p>
+							Comparisons between alphanumeric fields use the host's native collating sequence. Consider:
+						</p>
+						<pre><code class="language-cobol">01  WS-A   PIC X VALUE "A".
+01  WS-1   PIC X VALUE "1".
+
+IF WS-A &gt; WS-1
+    DISPLAY "Letters sort after digits"
+ELSE
+    DISPLAY "Digits sort after letters"
+END-IF.</code></pre>
+						<p>
+							On a z/OS host (EBCDIC) the program prints "Digits sort after letters" &mdash; the byte for
+							'A' is <code>C1</code>, the byte for '1' is <code>F1</code>, and 'A' &lt; '1'.
+						</p>
+						<p>
+							On a Linux host (ASCII) the same program prints "Letters sort after digits" &mdash; 'A' =
+							<code>41</code>, '1' = <code>31</code>, so '1' &lt; 'A'.
+						</p>
+						<p>
+							This is exactly the kind of difference that survives unit tests and breaks in production. A
+							<code class="language-cobol">SORT</code> on a part number field that mixes letters and
+							digits will reorder records when moved between platforms; a condition name on a two-letter
+							status code will pick a different branch.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>A concrete SORT example</h3>
+					</div>
+					<div>
+						<pre><code class="language-cobol">*&gt; Input records (in the order they were written):
+A100
+1234
+B200
+4567
+
+*&gt; After SORT ASCENDING on a key field, on z/OS:
+A100
+B200
+1234
+4567
+
+*&gt; The same SORT on Linux / Windows:
+1234
+4567
+A100
+B200</code></pre>
+						<p>
+							Same program, same data, different output. If a downstream consumer expects a specific
+							order, that's a defect introduced by the platform change alone.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- ALPHABET clause -->
+					<div class="section-header">
+						<h2 id="part4">The ALPHABET clause</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Forcing a specific collation</h3>
+					</div>
+					<div>
+						<p>
+							COBOL lets you declare a named collating sequence and apply it either to the whole program
+							or to a specific <code class="language-cobol">SORT</code>:
+						</p>
+						<pre><code class="language-cobol">ENVIRONMENT DIVISION.
+CONFIGURATION SECTION.
+OBJECT-COMPUTER. IBM-Z
+    PROGRAM COLLATING SEQUENCE IS ASCII-Order.
+
+SPECIAL-NAMES.
+    ALPHABET ASCII-Order IS STANDARD-1.</code></pre>
+						<p>
+							<code>STANDARD-1</code> is the COBOL standard's name for ASCII; <code>STANDARD-2</code> is
+							ISO-7-bit; <code>NATIVE</code> is the host default; <code>EBCDIC</code> is explicit. With
+							the <code class="language-cobol">PROGRAM COLLATING SEQUENCE</code> clause, every comparison
+							and every implicit <code class="language-cobol">SORT</code> uses the named alphabet
+							regardless of the host.
+						</p>
+						<p>
+							For a one-off override, attach the alphabet to a specific
+							<code class="language-cobol">SORT</code>:
+						</p>
+						<pre><code class="language-cobol">SORT WorkFile
+     ASCENDING KEY WK-PartNumber
+     COLLATING SEQUENCE IS ASCII-Order
+     USING InputFile
+     GIVING OutputFile.</code></pre>
+						<p>
+							This is the standard tool for taming the "the report is in a different order on the cloud
+							than on the mainframe" surprise. Pick one collation, declare it explicitly, and the platform
+							stops mattering.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Packed decimal -->
+					<div class="section-header">
+						<h2 id="part5">Packed-decimal portability</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>The (mostly) good news</h3>
+					</div>
+					<div>
+						<p>
+							<code class="language-cobol">COMP-3</code> packed-decimal storage is identical on EBCDIC and
+							ASCII platforms in the digit nibbles. A field declared
+							<code class="language-cobol">PIC S9(7) COMP-3</code> with value <code>+1234567</code> is
+							stored as the byte sequence <code>01 23 45 6C</code> on both. The first nibble of each byte
+							holds a decimal digit; the final nibble is the sign.
+						</p>
+						<p>
+							So if you FTP a file of packed-decimal numbers between systems in binary mode, the values
+							come through correctly &hellip; <i>almost</i>.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>The sign nibble differs</h3>
+					</div>
+					<div>
+						<p>The conventions for the sign-byte nibble are:</p>
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Encoding</th>
+									<th>Positive</th>
+									<th>Negative</th>
+									<th>Unsigned</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>EBCDIC (z/OS)</td>
+									<td><code>C</code></td>
+									<td><code>D</code></td>
+									<td><code>F</code></td>
+								</tr>
+								<tr>
+									<td>ASCII (GnuCOBOL, Visual COBOL)</td>
+									<td><code>C</code></td>
+									<td><code>D</code></td>
+									<td><code>F</code></td>
+								</tr>
+							</tbody>
+						</table>
+						<p>
+							The values happen to match across modern implementations because both follow the IBM
+							convention. <i>Older</i> compilers and some embedded systems use <code>A</code>/<code
+								>B</code
+							>
+							or <code>E</code>/<code>F</code>. If a file is mysteriously failing arithmetic operations on
+							its <code class="language-cobol">COMP-3</code> fields after a platform move, suspect the
+							sign nibble.
+						</p>
+						<p>
+							Zoned decimal (<code class="language-cobol">PIC S9(7)</code> stored as
+							<code class="language-cobol">DISPLAY</code> usage with an overpunched sign) is much worse
+							&mdash; the sign is encoded into the high nibble of the last digit byte, which differs
+							between EBCDIC and ASCII. Don't FTP zoned-decimal fields between platforms in binary mode
+							without conversion.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- File interchange -->
+					<div class="section-header">
+						<h2 id="part6">File interchange in practice</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Decision matrix</h3>
+					</div>
+					<div>
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>File contents</th>
+									<th>Recommended transfer</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Pure text (e.g. CSV, fixed-width report)</td>
+									<td>
+										FTP <i>text</i> mode. The gateway translates EBCDIC&harr;ASCII as it copies.
+									</td>
+								</tr>
+								<tr>
+									<td>Pure binary (e.g. zipped data, compiled load module)</td>
+									<td>FTP <i>binary</i> mode. No translation.</td>
+								</tr>
+								<tr>
+									<td>Mixed (text + COMP / COMP-3 fields)</td>
+									<td>
+										Binary, then run <code>iconv</code> or a custom convert step on the text fields
+										only. Or design the file as pure text from the start.
+									</td>
+								</tr>
+								<tr>
+									<td>Zoned-decimal fields</td>
+									<td>
+										Avoid. If unavoidable, convert with <code>dd conv=ascii</code> /
+										<code>dd conv=ebcdic</code> at the boundary.
+									</td>
+								</tr>
+								<tr>
+									<td>Variable-length records with length prefixes</td>
+									<td>Binary; the length prefixes are not text and must not be translated.</td>
+								</tr>
+							</tbody>
+						</table>
+						<p>
+							The general rule: if any field in a record is a non-text type (binary, packed decimal, zoned
+							decimal), you cannot use text-mode transfer for the file as a whole. Either redesign the
+							file to be pure text, or carry the binary across with a custom conversion step at the
+							boundary.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>The <code>iconv</code> command</h3>
+					</div>
+					<div>
+						<p>
+							On Linux/macOS, <code>iconv</code> is the standard tool for converting between code pages:
+						</p>
+						<pre><code class="language-bash">iconv -f IBM-037 -t UTF-8  mainframe-report.txt &gt; ascii-report.txt
+iconv -f UTF-8   -t IBM-037 ascii-input.txt        &gt; mainframe-input.txt</code></pre>
+						<p>
+							On z/OS, the equivalent is the <code>iconv</code> Unix System Services command or, in batch,
+							the <code>DFSORT</code> <code>INREC</code> / <code>OUTREC</code> with <code>CONVERT</code>.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Unicode -->
+					<div class="section-header">
+						<h2 id="part7">Unicode and national data</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>PIC N and USAGE NATIONAL</h3>
+					</div>
+					<div>
+						<p>
+							COBOL 2002 added a "national" data type intended for Unicode-style characters. The picture
+							character is <code class="language-cobol">N</code>; the usage clause is
+							<code class="language-cobol">USAGE NATIONAL</code>.
+						</p>
+						<pre><code class="language-cobol">01  WS-Greeting    PIC N(20) USAGE NATIONAL.
+
+MOVE NX"30533066306B0061" TO WS-Greeting    *&gt; "こんにちは"</code></pre>
+						<p>
+							Internally, national data is UTF-16 on IBM Enterprise COBOL and on Visual COBOL. Each
+							national character is two bytes, regardless of how many "characters" it represents in
+							grapheme terms.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>The honest scope of Unicode support</h3>
+					</div>
+					<div>
+						<p>National data exists, but as of 2026 the experience is uneven:</p>
+						<ul>
+							<li>
+								<b>UTF-16 fixed two bytes per code unit.</b> No support for surrogate pairs in most
+								operations &mdash; characters outside the Basic Multilingual Plane are truncated or
+								mangled in <code class="language-cobol">INSPECT</code> and
+								<code class="language-cobol">STRING</code>.
+							</li>
+							<li>
+								<b>UTF-8 has no first-class support.</b> You can store UTF-8 in a
+								<code class="language-cobol">PIC X</code> field but the character count and byte count
+								disagree and string operations work on bytes only.
+							</li>
+							<li>
+								<b>JSON / XML parse and generate</b> (see
+								<a href="ModernCOBOL.html">Modern COBOL features</a>) handle UTF-8 internally regardless
+								of the surrounding data type, which is convenient when integrating with web services.
+							</li>
+						</ul>
+						<p>
+							For new code that needs full Unicode handling, the pragmatic approach is to keep the COBOL
+							core working on canonical 7-bit ASCII or single-byte EBCDIC, and to handle Unicode at the
+							edges (web service, file import) with a separate component.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Where to go next</h3>
+					</div>
+					<div>
+						<p>
+							The <a href="FileStatus.html">File STATUS code reference</a> covers <code>04</code> &mdash;
+							a record length mismatch &mdash; which often surfaces after a platform move when conversion
+							stretched or shortened the records.
+						</p>
+						<p>
+							IBM publishes a detailed <i>Enterprise COBOL Programming Guide</i> chapter on national data;
+							OpenText's <i>Visual COBOL Reference</i> covers their Unicode handling in detail.
+						</p>
+					</div>
+				</div>
+				<!-- Footer -->
+				<div class="page-footer">
+					<related-content></related-content>
+					<hr />
+					<lesson-checkbox lesson="Encoding"></lesson-checkbox>
+					<lesson-nav></lesson-nav>
+					<back-to-top></back-to-top>
+					<copyright-notice></copyright-notice>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>
