@@ -1034,6 +1034,129 @@ related-content {
 }
 
 /* ============================================================================
+   page-toc custom element (issue #255).
+   Sticky in-page sidebar table-of-contents for long course pages. Opt-in
+   per page by adding <page-toc></page-toc> inside .page-wrapper. The
+   element is hidden below the desktop breakpoint so the existing
+   top-of-page ul.toc handles mobile/tablet navigation unchanged.
+   ============================================================================ */
+
+page-toc {
+	display: none;
+}
+
+.page-toc {
+	font-size: 0.85em;
+	line-height: 1.4;
+}
+
+.page-toc-heading {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.9em;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	margin: 0 0 0.5em;
+	padding-bottom: 0.3em;
+	border-bottom: 1px solid var(--color-border-soft);
+}
+
+.page-toc-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.page-toc-list li {
+	margin: 0;
+	padding: 0;
+}
+
+.page-toc-list a {
+	display: block;
+	padding: 0.25em 0 0.25em 0.7em;
+	border-left: 2px solid transparent;
+	text-decoration: none;
+	line-height: 1.3;
+}
+
+.page-toc-list a:hover {
+	border-left-color: var(--color-border-soft);
+}
+
+.page-toc-list a[data-active] {
+	border-left-color: var(--color-header-bg);
+	font-weight: bold;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) .page-toc-list a[data-active] {
+		border-left-color: #ff9966;
+	}
+}
+
+:root[data-theme="dark"] .page-toc-list a[data-active] {
+	border-left-color: #ff9966;
+}
+
+.page-toc-h3 a {
+	padding-left: 1.5em;
+	font-size: 0.95em;
+}
+
+/* Desktop layout: page-wrapper becomes a two-column grid when it contains a
+   page-toc. The TOC occupies column 1, spanning every row of the wrapper,
+   while page-content / section-grid / page-footer siblings flow down
+   column 2. The grid wrapper drops its 1px border so the sidebar and
+   content don't share a single visual frame. The narrower top-of-page
+   ul.toc inside .page-content is hidden in this layout because the
+   sidebar covers the same role. */
+@media (min-width: 1100px) {
+	.page-wrapper:has(page-toc) {
+		display: grid;
+		grid-template-columns: 200px minmax(0, 715px);
+		column-gap: 2em;
+		max-width: 947px;
+		border: none;
+	}
+
+	.page-wrapper:has(page-toc) > *:not(page-toc) {
+		grid-column: 2;
+		min-width: 0;
+	}
+
+	.page-wrapper:has(page-toc) > page-toc {
+		display: block;
+		grid-column: 1;
+		grid-row: 1 / -1;
+		position: sticky;
+		top: 1em;
+		align-self: start;
+		max-height: calc(100vh - 2em);
+		overflow-y: auto;
+		padding: 0.5em 0.25em;
+		box-sizing: border-box;
+	}
+
+	/* Hide the top-of-page ul.toc on desktop when the sidebar is present —
+	   the sidebar covers the same role. Selector matches both layout
+	   shapes used across course pages: `ul.toc` inside .page-content
+	   (Iteration-style) and inside a .section-grid > .section-full
+	   (COBOLIntro-style). The trailing <hr /> sibling is hidden too so
+	   the empty divider doesn't leave a stray rule. */
+	.page-wrapper:has(page-toc) ul.toc,
+	.page-wrapper:has(page-toc) ul.toc + hr {
+		display: none;
+	}
+}
+
+@media print {
+	page-toc {
+		display: none !important;
+	}
+}
+
+/* ============================================================================
    copyright-notice custom element (issue #257).
    Light DOM — inherits theme tokens and body font from course.css. The hr
    border uses currentColor so it tracks --color-text in both light and dark
