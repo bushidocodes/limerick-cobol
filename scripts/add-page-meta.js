@@ -17,7 +17,12 @@ const fs = require("fs");
 const path = require("path");
 
 const BASE_URL = "https://bushidocodes.github.io/limerick-cobol/";
-const OG_IMAGE = "https://bushidocodes.github.io/limerick-cobol/favicon.svg";
+const OG_IMAGE_BASE = "https://bushidocodes.github.io/limerick-cobol/pics/og/";
+
+function ogImageUrl(pageType) {
+	const section = ["course", "exercises", "lectures"].includes(pageType) ? pageType : "site";
+	return OG_IMAGE_BASE + section + ".png";
+}
 const REPO_ROOT = path.resolve(__dirname, "..");
 const CONTENT_DIRS = ["course", "exercises", "examples", "lectures"];
 const SKIP_NAMES = new Set(["index.html", "default.html"]);
@@ -150,7 +155,7 @@ function fallback(type, title) {
 }
 
 // ── Metadata block builder ─────────────────────────────────────────────────────
-function buildMetaBlock(title, description, canonical, ogType, indent) {
+function buildMetaBlock(title, description, canonical, ogType, pageType, indent) {
 	const d = escapeAttr(description);
 	const t = escapeAttr(title);
 	const c = escapeAttr(canonical);
@@ -162,9 +167,9 @@ function buildMetaBlock(title, description, canonical, ogType, indent) {
 		`<meta property="og:url" content="${c}" />`,
 		`<meta property="og:title" content="${t}" />`,
 		`<meta property="og:description" content="${d}" />`,
-		`<meta property="og:image" content="${OG_IMAGE}" />`,
+		`<meta property="og:image" content="${ogImageUrl(pageType)}" />`,
 		`<!-- Twitter Card -->`,
-		`<meta name="twitter:card" content="summary" />`,
+		`<meta name="twitter:card" content="summary_large_image" />`,
 		`<meta name="twitter:title" content="${t}" />`,
 		`<meta name="twitter:description" content="${d}" />`,
 	];
@@ -187,11 +192,27 @@ function collectLeafHtmlFiles(dir) {
 
 // ── Per-file processing ────────────────────────────────────────────────────────
 function processFile(filePath, exampleMap) {
-	const html = fs.readFileSync(filePath, "utf8");
-	if (alreadyTagged(html)) return null;
-
+	let html = fs.readFileSync(filePath, "utf8");
 	const relPath = path.relative(REPO_ROOT, filePath).replace(/\\/g, "/");
 	const pageType = relPath.split("/")[0];
+
+	if (alreadyTagged(html)) {
+		// Repair stale SVG og:image (and matching twitter:card) left by earlier runs.
+		const staleOgImage = /og:image["'][^>]*favicon\.svg/i.test(html);
+		if (!staleOgImage) return null;
+
+		html = html.replace(
+			/<meta\s+property="og:image"\s+content="[^"]*favicon\.svg"\s*\/>/i,
+			`<meta property="og:image" content="${ogImageUrl(pageType)}" />`,
+		);
+		html = html.replace(
+			/<meta\s+name="twitter:card"\s+content="summary"\s*\/>/i,
+			`<meta name="twitter:card" content="summary_large_image" />`,
+		);
+		fs.writeFileSync(filePath, html, "utf8");
+		return { relPath, description: null, ogFixed: true };
+	}
+
 	const title = extractTitle(html);
 	const canonical = BASE_URL + relPath;
 	const ogType = pageType === "course" ? "article" : "website";
@@ -205,7 +226,7 @@ function processFile(filePath, exampleMap) {
 		(pageType === "lectures" && fromLecture(title)) ||
 		fallback(pageType, title);
 
-	const metaBlock = buildMetaBlock(title, description, canonical, ogType, indent);
+	const metaBlock = buildMetaBlock(title, description, canonical, ogType, pageType, indent);
 	const updated = html.replace(/(<\/title>)/, "$1\n" + metaBlock);
 	fs.writeFileSync(filePath, updated, "utf8");
 	return { relPath, description };
@@ -229,6 +250,9 @@ function main() {
 				const result = processFile(file, exampleMap);
 				if (!result) {
 					skipped++;
+				} else if (result.ogFixed) {
+					updated++;
+					console.log(`✓ ${result.relPath} (og:image fixed)`);
 				} else {
 					updated++;
 					console.log(`✓ ${result.relPath}`);

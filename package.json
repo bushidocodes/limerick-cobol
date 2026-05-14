@@ -3,6 +3,7 @@
 	"private": true,
 	"description": "Static-site checks for the Limerick COBOL tutorial.",
 	"scripts": {
+		"build:og-images": "node scripts/generate-og-images.js",
 		"build:sitemap": "node scripts/build-sitemap.js",
 		"build:search-index": "node scripts/build-search-index.js && prettier --write search-index.json",
 		"check:search-index": "node scripts/build-search-index.js && prettier --write search-index.json && git diff --exit-code search-index.json",
@@ -21,6 +22,7 @@
 		"check": "npm run check:examples && npm run check:search-index && npm run validate && npm run check:assets && npm run check:img-dims && npm run links && npm run a11y"
 	},
 	"devDependencies": {
+		"@resvg/resvg-js": "^2.6.2",
 		"html-validate": "^10.15.0",
 		"http-server": "^14.1.1",
 		"linkinator": "^7.6.1",

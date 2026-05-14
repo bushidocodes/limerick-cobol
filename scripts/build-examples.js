@@ -17,7 +17,7 @@ const path = require("path");
 const ROOT = path.resolve(__dirname, "..");
 const EXAMPLES_DIR = path.join(ROOT, "examples");
 const BASE_URL = "https://bushidocodes.github.io/limerick-cobol/";
-const OG_IMAGE = "https://bushidocodes.github.io/limerick-cobol/favicon.svg";
+const OG_IMAGE = "https://bushidocodes.github.io/limerick-cobol/pics/og/examples.png";
 const CROSS_LINKS = JSON.parse(fs.readFileSync(path.join(__dirname, "cross-links.json"), "utf8"));
 const MAX_RELATED_PER_GROUP = 4;
 
@@ -446,7 +446,7 @@ function buildPage(entry) {
 \t\t<meta property="og:description" content="${metaDesc}" />
 \t\t<meta property="og:image" content="${OG_IMAGE}" />
 \t\t<!-- Twitter Card -->
-\t\t<meta name="twitter:card" content="summary" />
+\t\t<meta name="twitter:card" content="summary_large_image" />
 \t\t<meta name="twitter:title" content="${metaTitle}" />
 \t\t<meta name="twitter:description" content="${metaDesc}" />
 \t\t<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
