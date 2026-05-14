@@ -4,12 +4,26 @@
 // .lesson-nav rule from course-components.css apply without any extra
 // piercing selectors.
 //
-// Reads the lesson sequence from window.COBOL_LESSONS (lesson-progress.js),
-// which is loaded earlier in the page. If that script is missing we render
-// nothing — the lesson list lives in one place.
+// Reads the lesson sequence from window.COBOL_LESSONS, populated by
+// lesson-progress.js via a fetch. If the fetch hasn't completed when the
+// element connects, waits for the "lc-lessons-ready" event before rendering.
 
 class LessonNav extends HTMLElement {
 	connectedCallback() {
+		if (window.COBOL_LESSONS) {
+			this._render();
+		} else {
+			window.addEventListener(
+				window.LessonProgress?.READY_EVENT ?? "lc-lessons-ready",
+				() => {
+					if (this.isConnected) this._render();
+				},
+				{ once: true },
+			);
+		}
+	}
+
+	_render() {
 		const LESSONS = window.COBOL_LESSONS;
 		if (!LESSONS) return;
 

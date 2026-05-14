@@ -20,47 +20,23 @@ const path = require("path");
 const REPO_ROOT = path.resolve(__dirname, "..");
 const COURSE_DIR = path.join(REPO_ROOT, "course");
 const META_PATH = path.join(COURSE_DIR, "lesson-meta.json");
+const MANIFEST_PATH = path.join(COURSE_DIR, "lesson-manifest.json");
 
 const COURSE_URL = "https://bushidocodes.github.io/limerick-cobol/course/index.html";
 
-// Lesson sequence — mirrors the array in components/lesson-progress.js.
-// Titles here are the canonical lesson titles used for the LearningResource name.
-const LESSON_SEQUENCE = [
-	{ file: "COBOLIntro.html", title: "The structure of COBOL programs" },
-	{ file: "DataDeclaration.html", title: "Declaring data in COBOL" },
-	{ file: "COBOLcommands.html", title: "Basic Procedure Division commands" },
-	{ file: "Selection.html", title: "Selection in COBOL" },
-	{ file: "Iteration.html", title: "Iteration in COBOL" },
-	{ file: "SequentialFiles1.html", title: "Introduction to Sequential files" },
-	{ file: "SequentialFiles2.html", title: "Processing Sequential files" },
-	{ file: "EditedPics.html", title: "Edited Pictures" },
-	{ file: "Usage.html", title: "The USAGE clause" },
-	{
-		file: "SequentialFiles3.html",
-		title: "COBOL print files and variable-length records",
-	},
-	{ file: "SortMerge.html", title: "Sorting and Merging" },
-	{
-		file: "Intro2DirectAccess.html",
-		title: "Introduction to direct access files",
-	},
-	{ file: "RelativeFiles.html", title: "Relative Files" },
-	{ file: "IndexedFiles.html", title: "Indexed Files" },
-	{ file: "Tables1.html", title: "Using tables" },
-	{ file: "Tables2.html", title: "Creating tables - syntax and semantics" },
-	{ file: "Search.html", title: "Searching tables" },
-	{ file: "Subprograms.html", title: "Contained and external sub-programs" },
-	{ file: "Copy.html", title: "The COPY verb" },
-	{ file: "Inspect.html", title: "Inspect" },
-	{ file: "String.html", title: "String" },
-	{ file: "Unstring.html", title: "Unstring" },
-	{
-		file: "RefMod.html",
-		title: "Reference modification and Intrinsic Functions",
-	},
-	{ file: "ReportWriter.html", title: "Report Writer by example" },
-	{ file: "ReportWriterSS.html", title: "Report Writer syntax and semantics" },
-];
+// Derive the ordered tutorial sequence from lesson-manifest.json, deduplicating
+// any file that appears in multiple topic groups.
+const manifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, "utf8"));
+const _seen = new Set();
+const LESSON_SEQUENCE = [];
+for (const topic of manifest.topics) {
+	for (const link of topic.links) {
+		if (link.type === "tutorial" && !_seen.has(link.file)) {
+			_seen.add(link.file);
+			LESSON_SEQUENCE.push({ file: link.file, title: link.title });
+		}
+	}
+}
 
 /** Extract <meta name="description" content="..."> value from raw HTML. */
 function extractDescription(html) {
