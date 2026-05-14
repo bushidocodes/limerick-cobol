@@ -4,7 +4,8 @@
  *
  * Walk every *.html file in the repo (skipping node_modules, .git, .claude,
  * .playwright-mcp) and verify that every src/href attribute that points to a
- * local file actually exists on disk.
+ * local file actually exists on disk, and that every intra-page #fragment
+ * target resolves to an id= attribute on the same page.
  *
  * Exit code 0  – no broken references found.
  * Exit code 1  – one or more broken references found.
@@ -24,7 +25,7 @@ const REPO_ROOT = path.resolve(__dirname, "..");
 const SKIP_DIRS = new Set(["node_modules", ".git", ".claude", ".playwright-mcp"]);
 
 // Patterns that should never be treated as local file references.
-const SKIP_PREFIXES = ["http://", "https://", "ftp://", "mailto:", "data:", "//", "#"];
+const SKIP_PREFIXES = ["http://", "https://", "ftp://", "mailto:", "data:", "//"];
 
 // ---------------------------------------------------------------------------
 // Walk the directory tree and collect *.html files
@@ -68,12 +69,25 @@ function extractRefs(html) {
 	return refs;
 }
 
+// Match id="..." and id='...' attributes.
+const ID_RE = /\bid\s*=\s*(?:"([^"]+)"|'([^']+)')/gi;
+
+function extractIds(html) {
+	const ids = new Set();
+	let match;
+	ID_RE.lastIndex = 0;
+	while ((match = ID_RE.exec(html)) !== null) {
+		ids.add(match[1] ?? match[2]);
+	}
+	return ids;
+}
+
 function isLocalRef(ref) {
 	for (const prefix of SKIP_PREFIXES) {
 		if (ref.startsWith(prefix)) return false;
 	}
-	// Empty string
-	if (!ref.trim()) return false;
+	// Empty string or bare/intra-page fragment (handled separately)
+	if (!ref.trim() || ref.startsWith("#")) return false;
 	return true;
 }
 
@@ -112,9 +126,19 @@ for (const htmlFile of htmlFiles) {
 	}
 
 	const refs = extractRefs(html);
+	const ids = extractIds(html);
 	const broken = [];
 
 	for (const rawRef of refs) {
+		// Validate intra-page anchor fragments (#target).
+		if (rawRef.startsWith("#")) {
+			const fragment = rawRef.slice(1);
+			if (fragment && !ids.has(fragment)) {
+				broken.push({ ref: rawRef, note: "anchor not found in page" });
+			}
+			continue;
+		}
+
 		if (!isLocalRef(rawRef)) continue;
 
 		const cleanRef = stripQueryAndFragment(decodeHtmlEntities(rawRef));
@@ -141,8 +165,8 @@ console.error(`check-assets: found ${totalBroken} broken asset reference(s).\n`)
 
 for (const { file, broken } of report) {
 	console.error(`  ${file}`);
-	for (const { ref } of broken) {
-		console.error(`    ✗ ${ref}`);
+	for (const { ref, note } of broken) {
+		console.error(`    ✗ ${ref}${note ? `  (${note})` : ""}`);
 	}
 	console.error("");
 }
