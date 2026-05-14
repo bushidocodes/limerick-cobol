@@ -1,0 +1,715 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+		<title>Debugging COBOL programs</title>
+		<meta
+			name="description"
+			content="How to debug COBOL: compiler listings, DISPLAY discipline, source-level debuggers, reading ABEND codes, and modern local workflows."
+		/>
+		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/Debugging.html" />
+		<!-- Open Graph -->
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/Debugging.html" />
+		<meta property="og:title" content="Debugging COBOL programs" />
+		<meta
+			property="og:description"
+			content="How to debug COBOL: compiler listings, DISPLAY discipline, source-level debuggers, reading ABEND codes, and modern local workflows."
+		/>
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content="Debugging COBOL programs" />
+		<meta
+			name="twitter:description"
+			content="How to debug COBOL: compiler listings, DISPLAY discipline, source-level debuggers, reading ABEND codes, and modern local workflows."
+		/>
+		<link href="Resources/css/course.css" rel="stylesheet" />
+		<link href="Resources/css/course-components.css" rel="stylesheet" />
+		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
+		<script src="Resources/vendor/prism/prism.min.js" defer></script>
+		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
+		<style type="text/css">
+			.section-grid > * {
+				padding: 4px;
+			}
+
+			@media (max-width: 600px) {
+				.page-wrapper {
+					border: none;
+				}
+			}
+		</style>
+		<script src="../components/theme-toggle.js" defer></script>
+		<script src="../components/page-hero.js" defer></script>
+		<script src="../components/back-to-top.js" defer></script>
+		<script src="../components/lesson-progress.js" defer></script>
+		<script src="../components/lesson-nav.js" defer></script>
+		<script src="../components/lesson-checkbox.js" defer></script>
+		<script src="../components/copyright-notice.js" defer></script>
+		<script src="../components/related-content.js" defer></script>
+		<script src="../components/copy-button.js" defer></script>
+	</head>
+
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="section-grid">
+					<!-- Header -->
+					<div class="section-full">
+						<page-hero title="Debugging COBOL programs"></page-hero>
+						<hr />
+						<ul class="toc">
+							<li>
+								<a href="#intro">Introduction</a><br />
+								Unit aims, objectives, prerequisites.
+							</li>
+							<li>
+								<a href="#part1">The compiler is your first debugger</a><br />
+								<code>LIST</code>, <code>MAP</code>, <code>XREF</code>, <code>SSRANGE</code>,
+								<code>FLAG</code> &mdash; what each produces.
+							</li>
+							<li>
+								<a href="#part2">DISPLAY-driven debugging</a><br />
+								When and how to add tracing. Discipline that keeps the noise manageable.
+							</li>
+							<li>
+								<a href="#part3">DEBUGGING MODE and DEBUG-ITEM</a><br />
+								The legacy in-language debugger; why it is rarely used today.
+							</li>
+							<li>
+								<a href="#part4">Source-level debuggers</a><br />
+								GnuCOBOL + gdb; IBM Debug Tool / Z Open Debugger; CEDF for CICS.
+							</li>
+							<li>
+								<a href="#part5">Reading an ABEND</a><br />
+								Common system completion codes and what to do with each.
+							</li>
+							<li>
+								<a href="#part6">Working with dumps</a><br />
+								<code>SYSUDUMP</code>, <code>SYSABEND</code>, and pairing a dump with the compiler
+								listing.
+							</li>
+							<li>
+								<a href="#part7">A worked example</a><br />
+								Take a buggy 10-line program and walk through diagnosing it.
+							</li>
+							<li>
+								<a href="#part8">Modern local workflows</a><br />
+								Running batch logic under GnuCOBOL with <code>printf</code> debugging, then porting
+								back.
+							</li>
+						</ul>
+						<hr />
+					</div>
+
+					<!-- Introduction -->
+					<div class="section-header">
+						<h2 id="intro">Introduction</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Aims</h3>
+					</div>
+					<div>
+						<p>
+							The rest of this course teaches you how to <i>write</i> COBOL. This unit teaches you how to
+							<i>fix</i> it when it doesn't work. The toolset is different from the modern languages a
+							learner may already know: there is no <code>console.log</code> equivalent that just works,
+							no IDE that magically attaches to a running mainframe job. But there is a workflow that
+							every working COBOL programmer follows, and once you have it, COBOL is no harder to debug
+							than anything else.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Objectives</h3>
+					</div>
+					<div>
+						<p>By the end of this unit you should &mdash;</p>
+						<ol>
+							<li>
+								Know which compiler options produce useful listings and what to do with them.<br /><br />
+							</li>
+							<li>
+								Be able to add <code class="language-cobol">DISPLAY</code>-based tracing in a way that
+								scales beyond a handful of statements.<br /><br />
+							</li>
+							<li>
+								Know the source-level debuggers available for your compiler and how to start one.<br /><br />
+							</li>
+							<li>
+								Recognise the most common z/OS ABEND codes (<code>S0C7</code>, <code>S0C4</code>,
+								<code>S322</code>, <code>S013</code>, <code>S806</code>) and start diagnosing them.<br /><br />
+							</li>
+							<li>Be able to take a buggy program, diagnose it, and have a plan for fixing it.</li>
+						</ol>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Prerequisites</h3>
+					</div>
+					<div>
+						<ul>
+							<li><a href="Setup.html">Setting up a COBOL development environment</a></li>
+							<li><a href="COBOLIntro.html">The structure of COBOL programs</a></li>
+							<li><a href="COBOLcommands.html">Basic Procedure Division commands</a></li>
+							<li>
+								Optional but useful: <a href="JCL.html">An introduction to JCL</a> for the ABEND and
+								dump sections.
+							</li>
+						</ul>
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Compiler listings -->
+					<div class="section-header">
+						<h2 id="part1">The compiler is your first debugger</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Compiler options that produce useful output</h3>
+					</div>
+					<div>
+						<p>
+							Long before any runtime debugger, the compiler can tell you a lot about your program. The
+							relevant options on IBM Enterprise COBOL, with the GnuCOBOL equivalents:
+						</p>
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Option</th>
+									<th>What it produces</th>
+									<th>GnuCOBOL equivalent</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><code>LIST</code></td>
+									<td>
+										An assembler listing of the generated code, with COBOL statement numbers in the
+										margin.
+									</td>
+									<td>Implicit in <code>-S</code> (emits assembler).</td>
+								</tr>
+								<tr>
+									<td><code>SOURCE</code></td>
+									<td>A formatted listing of the source code with sequence numbers.</td>
+									<td><code>-fsource-listing</code></td>
+								</tr>
+								<tr>
+									<td><code>MAP</code></td>
+									<td>
+										A map of every data item, its level, offset, and length. Indispensable for
+										diagnosing record-layout bugs.
+									</td>
+									<td><code>-fsource-listing</code> plus inspecting the generated header.</td>
+								</tr>
+								<tr>
+									<td><code>XREF</code></td>
+									<td>
+										A cross-reference: every identifier with all source lines where it is read or
+										written.
+									</td>
+									<td><code>-fcross-reference</code></td>
+								</tr>
+								<tr>
+									<td><code>SSRANGE</code></td>
+									<td>
+										Runtime bounds-checking on every
+										<code class="language-cobol">OCCURS</code> reference. Costs a little
+										performance; catches "subscript out of bounds" cleanly.
+									</td>
+									<td><code>-fbounds-check</code></td>
+								</tr>
+								<tr>
+									<td><code>FLAG(I)</code></td>
+									<td>Informational diagnostics in addition to warnings and errors.</td>
+									<td><code>-W</code> and <code>-Wextra</code></td>
+								</tr>
+							</tbody>
+						</table>
+						<p>
+							On z/OS, the listings come back as part of the compile-step output, on a DD named
+							<code>SYSPRINT</code>. Bookmark the <code>MAP</code> section &mdash; you will look at it
+							every time a data item appears in the wrong place.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- DISPLAY debugging -->
+					<div class="section-header">
+						<h2 id="part2">DISPLAY-driven debugging</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>The COBOL equivalent of printf</h3>
+					</div>
+					<div>
+						<p>
+							When the program runs but produces wrong output, the simplest tool is to add
+							<code class="language-cobol">DISPLAY</code> statements at the suspect points and watch the
+							values flow through.
+						</p>
+						<pre><code class="language-cobol">DISPLAY "DEBUG: Entered Calculate-Totals, count=" WS-Count
+DISPLAY "DEBUG: After fetch, EmpId=" WS-EmpId " Salary=" WS-Salary</code></pre>
+						<p>This is fine for a handful of statements. To keep it manageable in a larger program:</p>
+						<ul>
+							<li>
+								<b>Prefix every trace string with a marker</b> (above: <code>DEBUG:</code>). Then you
+								can grep them out of the production output, or remove them all later with one editor
+								pass.
+							</li>
+							<li>
+								<b>Use a gate.</b> Declare an 88-level flag and check it before every DISPLAY:
+								<pre><code class="language-cobol">01  WS-Trace-Flag    PIC X VALUE "N".
+    88  Trace-On         VALUE "Y".
+
+IF Trace-On
+    DISPLAY "DEBUG: Entered Calculate-Totals, count=" WS-Count
+END-IF</code></pre>
+								&hellip; and set <code>WS-Trace-Flag</code> from the
+								<code class="language-cobol">PARM</code> string or an environment variable.
+							</li>
+							<li>
+								<b>Display the structured form, not the field.</b>
+								<code class="language-cobol">DISPLAY "EmpRec=" EmpRec</code> dumps the whole record's
+								bytes; if the record contains numeric fields the display will be garbled. Reference the
+								individual fields by name and add a separator.
+							</li>
+							<li>
+								<b>Display values just <i>before</i> the operation that uses them.</b> A
+								<code class="language-cobol">DISPLAY</code> after a
+								<code class="language-cobol">COMPUTE</code> tells you the result; one before tells you
+								the inputs &mdash; usually more useful.
+							</li>
+						</ul>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- DEBUGGING MODE -->
+					<div class="section-header">
+						<h2 id="part3">DEBUGGING MODE and DEBUG-ITEM</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>The legacy in-language debugger</h3>
+					</div>
+					<div>
+						<p>
+							COBOL 85 included a built-in debugging mechanism: code in a special
+							<code class="language-cobol">DECLARATIVES</code> section, activated by
+							<code class="language-cobol">SOURCE-COMPUTER ... WITH DEBUGGING MODE</code>, that the
+							runtime calls back into when chosen paragraphs are entered or chosen data items are
+							modified. The handler reads diagnostic information out of the predefined
+							<code>DEBUG-ITEM</code> record.
+						</p>
+						<p>
+							The feature exists in every standards-compliant compiler. It is also, in practice, almost
+							never used. The reasons:
+						</p>
+						<ul>
+							<li>The mechanism is verbose for what it provides.</li>
+							<li>It was deprecated in COBOL 2002.</li>
+							<li>Modern compilers and shops use source-level debuggers (next section) instead.</li>
+						</ul>
+						<p>
+							You should be able to recognise it in legacy code, but you have no reason to add new uses.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Source-level debuggers -->
+					<div class="section-header">
+						<h2 id="part4">Source-level debuggers</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>GnuCOBOL on a desktop</h3>
+					</div>
+					<div>
+						<p>
+							Compile with <code>-g</code> to retain debug symbols, then run under <code>gdb</code> or
+							<code>cobcd</code>:
+						</p>
+						<pre><code class="language-bash">cobc -x -g -o mybug mybug.cob
+gdb ./mybug
+
+(gdb) break MAIN-PARAGRAPH
+(gdb) run
+(gdb) print ws-count
+(gdb) next
+(gdb) continue</code></pre>
+						<p>
+							COBOL identifiers are lowercased on the way through the C compiler, so use
+							<code>ws-count</code> rather than <code>WS-Count</code> in <code>gdb</code> commands. Most
+							other things just work: breakpoints, single-stepping, variable inspection, backtraces.
+						</p>
+						<p>
+							The VS Code COBOL extension also bundles a debug adapter that drives GnuCOBOL via
+							<code>cobcd</code> &mdash; the same capability, with a graphical front end.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>IBM Debug Tool / Z Open Debugger</h3>
+					</div>
+					<div>
+						<p>
+							On z/OS, IBM ships a debugger product called <i>IBM Z Open Debugger</i> (formerly Debug
+							Tool). It runs on the mainframe and presents a UI via either an ISPF green screen, a
+							web-based debugger, or VS Code through the IBM Z Open Editor extension.
+						</p>
+						<p>
+							The COBOL program needs to be compiled with <code>TEST(SOURCE)</code> so the debugger has
+							access to source-line mapping. Once attached, you have breakpoints, watchpoints, variable
+							display, and step-into/over for batch programs.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>CEDF for CICS</h3>
+					</div>
+					<div>
+						<p>
+							CICS has its own built-in debugger called <b>CEDF</b> (CICS Execution Diagnostic Facility).
+							It is invoked by typing <code>CEDF</code> on a terminal and then running the transaction you
+							want to trace. CEDF stops before and after every
+							<code class="language-cobol">EXEC CICS</code> command, displays the command and its
+							parameters, and lets you inspect and modify the COMMAREA and other state.
+						</p>
+						<p>
+							CEDF is the default starting point for diagnosing a misbehaving CICS transaction in
+							production. See <a href="CICS.html">An introduction to CICS programming in COBOL</a> for the
+							surrounding context.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Reading an ABEND -->
+					<div class="section-header">
+						<h2 id="part5">Reading an ABEND</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>The codes you will hit most often</h3>
+					</div>
+					<div>
+						<p>
+							A z/OS ABEND is the kernel saying "your program died unexpectedly." Each ABEND has a system
+							completion code starting with <code>S</code> for system or <code>U</code> for
+							user-requested. The codes you will hit most often, repeated from the
+							<a href="JCL.html">JCL chapter</a> for completeness:
+						</p>
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Code</th>
+									<th>Meaning</th>
+									<th>Most-likely cause in COBOL</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><code>S0C7</code></td>
+									<td>Data exception</td>
+									<td>
+										Arithmetic on a numeric field that contains non-numeric data. Almost always: a
+										field declared <code class="language-cobol">PIC 9</code> was never initialised
+										and contains spaces.
+									</td>
+								</tr>
+								<tr>
+									<td><code>S0C4</code></td>
+									<td>Storage protection / addressing</td>
+									<td>
+										Subscript out of range on an
+										<code class="language-cobol">OCCURS</code>. Following an uninitialised pointer.
+										Writing past the end of a record.
+									</td>
+								</tr>
+								<tr>
+									<td><code>S0C1</code></td>
+									<td>Operation exception</td>
+									<td>Branched into garbage. Usually a corrupted control flow elsewhere.</td>
+								</tr>
+								<tr>
+									<td><code>S322</code></td>
+									<td>CPU time exceeded</td>
+									<td>
+										Infinite <code class="language-cobol">PERFORM</code> loop, or a job that needs
+										more time than the JCL allows.
+									</td>
+								</tr>
+								<tr>
+									<td><code>S013</code></td>
+									<td>OPEN error</td>
+									<td>
+										Dataset RECFM / LRECL / BLKSIZE doesn't match the
+										<code class="language-cobol">FD</code>.
+									</td>
+								</tr>
+								<tr>
+									<td><code>S806</code></td>
+									<td>Module not found</td>
+									<td>
+										Load module named on <code>EXEC PGM=</code> isn't on <code>STEPLIB</code> or
+										<code>LNKLST</code>.
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>The first three things to check</h3>
+					</div>
+					<div>
+						<p>When an ABEND happens, before reading anything fancy:</p>
+						<ol>
+							<li>
+								What's the system completion code? Look it up in the table above &mdash; that narrows
+								the cause to a category.
+							</li>
+							<li>
+								What's the offset shown in the JES log? Compare against the
+								<code>LIST</code> output to find the COBOL statement number.
+							</li>
+							<li>
+								What did the <code class="language-cobol">DISPLAY</code> output show before the ABEND?
+								Usually a clue is in the last few lines.
+							</li>
+						</ol>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Dumps -->
+					<div class="section-header">
+						<h2 id="part6">Working with dumps</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>SYSUDUMP and SYSABEND</h3>
+					</div>
+					<div>
+						<p>
+							When a step abends, z/OS can produce a dump of the program's memory at the moment of
+							failure. The dump is routed through one of two DDs:
+						</p>
+						<ul>
+							<li>
+								<code>SYSUDUMP</code> &mdash; a "user" dump, containing the program's working storage
+								and a summary of the program-status word.
+							</li>
+							<li>
+								<code>SYSABEND</code> &mdash; a much larger system dump that also includes control
+								blocks, JES queues, and system trace data. Useful for diagnosing system-level
+								interactions; usually overkill for an application bug.
+							</li>
+						</ul>
+						<p>Add one or the other to your JCL so the runtime has somewhere to put the dump:</p>
+						<pre><code class="language-text">//SYSUDUMP DD SYSOUT=*</code></pre>
+						<p>
+							The key technique is pairing the dump with the compiler's <code>LIST</code> output: the dump
+							shows the failed instruction's offset; the listing's "STATEMENT NUMBER vs OFFSET" map turns
+							the offset into a specific COBOL line. The two together tell you exactly which line of
+							source code died.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Worked example -->
+					<div class="section-header">
+						<h2 id="part7">A worked example</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>The buggy program</h3>
+					</div>
+					<div>
+						<p>Consider this program:</p>
+						<pre><code class="language-cobol">       IDENTIFICATION DIVISION.
+       PROGRAM-ID. AvgPay.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  WS-Salaries.
+           05  WS-Salary OCCURS 5 TIMES   PIC 9(6)V99.
+       01  WS-Idx              PIC S9(4) COMP.
+       01  WS-Count            PIC 9(4).
+       01  WS-Total            PIC 9(8)V99 VALUE ZERO.
+       01  WS-Average          PIC 9(7)V99.
+
+       PROCEDURE DIVISION.
+           MOVE 50000.00 TO WS-Salary(1)
+           MOVE 60000.00 TO WS-Salary(2)
+           MOVE 55000.00 TO WS-Salary(3)
+           PERFORM VARYING WS-Idx FROM 1 BY 1 UNTIL WS-Idx &gt; WS-Count
+               ADD WS-Salary(WS-Idx) TO WS-Total
+           END-PERFORM
+           COMPUTE WS-Average = WS-Total / WS-Count
+           DISPLAY "Average salary: " WS-Average
+           STOP RUN.</code></pre>
+						<p>Run it. On z/OS you get:</p>
+						<pre><code class="language-text">CEE3207S The system detected a data exception (System Completion Code=0C7).
+IGZ0163W The runtime environment is being terminated.</code></pre>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Diagnose it</h3>
+					</div>
+					<div>
+						<p>
+							<b>Step 1: classify.</b> <code>S0C7</code> = data exception, almost certainly uninitialised
+							numeric.
+						</p>
+						<p>
+							<b>Step 2: find the suspect statement.</b> The only line that does arithmetic with a value
+							that depends on uninitialised input is the loop bound:
+							<code class="language-cobol">PERFORM VARYING ... UNTIL WS-Idx &gt; WS-Count</code>.
+							<code>WS-Count</code> is declared <code class="language-cobol">PIC 9(4)</code> but never
+							assigned, so it contains spaces &mdash; non-numeric.
+						</p>
+						<p>
+							<b>Step 3: confirm.</b> Add a
+							<code class="language-cobol">DISPLAY "WS-Count=" WS-Count</code> immediately before the
+							<code class="language-cobol">PERFORM</code>. On a system that survives the bad data long
+							enough to print, you will see spaces; on most systems the
+							<code class="language-cobol">DISPLAY</code> itself succeeds because it doesn't do
+							arithmetic.
+						</p>
+						<p>
+							<b>Step 4: fix.</b> Either give <code>WS-Count</code> an explicit
+							<code class="language-cobol">VALUE 3</code> at declaration, or assign it before the loop
+							(here, set it to 3 to match the three populated <code>WS-Salary</code> values). Better
+							still, derive the count rather than hand-coding it.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>The same bug under GnuCOBOL</h3>
+					</div>
+					<div>
+						<p>Running the same program locally under GnuCOBOL:</p>
+						<pre><code class="language-text">libcob: numeric field value invalid
+libcob: Aborting</code></pre>
+						<p>
+							Same diagnosis. The error message is more direct than the z/OS
+							<code>S0C7</code>, and the program location is reported as a line number in your source file
+							rather than as a hex offset. GnuCOBOL is by far the friendliest environment for learning to
+							read this class of error.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Local workflow -->
+					<div class="section-header">
+						<h2 id="part8">Modern local workflows</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Develop locally, deploy to mainframe</h3>
+					</div>
+					<div>
+						<p>
+							Many shops have moved to a workflow where the developer writes and debugs the program
+							against <b>GnuCOBOL on a desktop</b>, then ships the working source to z/OS for compile,
+							bind, and production deployment. The advantages:
+						</p>
+						<ul>
+							<li>Iteration is seconds, not minutes (no JCL submit / wait / read SDSF cycle).</li>
+							<li>Modern editor, modern debugger, modern git workflow.</li>
+							<li>Tests can be run locally in CI alongside any other language's tests.</li>
+						</ul>
+						<p>The constraints:</p>
+						<ul>
+							<li>
+								Anything mainframe-specific (CICS, JCL, DB2 bind, EBCDIC quirks) cannot be tested
+								locally. Either mock it out or accept that the last leg of testing is on the mainframe.
+							</li>
+							<li>
+								Compiler-specific extensions don't port either way &mdash; stick to the standard so code
+								that runs locally also runs on z/OS.
+							</li>
+							<li>
+								See <a href="Encoding.html">EBCDIC, ASCII, and code pages</a> for the collating-sequence
+								and packed-decimal gotchas that hide behind this workflow.
+							</li>
+						</ul>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Where to go next</h3>
+					</div>
+					<div>
+						<p>
+							For depth, IBM's <i>Enterprise COBOL Programming Guide</i> has a chapter on "Debugging your
+							program." The GnuCOBOL documentation covers <code>cobcd</code> and the runtime trace flags.
+						</p>
+						<p>
+							If you are debugging a mainframe job whose failure starts in the JCL rather than the program
+							itself, return to <a href="JCL.html">An introduction to JCL</a> &mdash; the "common
+							failures" section is the matching reference.
+						</p>
+					</div>
+				</div>
+				<!-- Footer -->
+				<div class="page-footer">
+					<related-content></related-content>
+					<hr />
+					<lesson-checkbox lesson="Debugging"></lesson-checkbox>
+					<lesson-nav></lesson-nav>
+					<back-to-top></back-to-top>
+					<copyright-notice></copyright-notice>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>
