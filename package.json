@@ -4,6 +4,8 @@
 	"description": "Static-site checks for the Limerick COBOL tutorial.",
 	"scripts": {
 		"build:sitemap": "node scripts/build-sitemap.js",
+		"build:search-index": "node scripts/build-search-index.js && prettier --write search-index.json",
+		"check:search-index": "node scripts/build-search-index.js && prettier --write search-index.json && git diff --exit-code search-index.json",
 		"build:examples": "node scripts/build-examples.js && prettier --write \"examples/**/*.html\"",
 		"check:examples": "node scripts/build-examples.js && prettier --write \"examples/**/*.html\" && git diff --exit-code examples/",
 		"serve": "http-server . --cors -c-1 -p 8000 --silent",
@@ -16,7 +18,7 @@
 		"check:assets": "node scripts/check-assets.js",
 		"format:check": "prettier --check .",
 		"format:write": "prettier --write .",
-		"check": "npm run check:examples && npm run validate && npm run check:assets && npm run check:img-dims && npm run links && npm run a11y"
+		"check": "npm run check:examples && npm run check:search-index && npm run validate && npm run check:assets && npm run check:img-dims && npm run links && npm run a11y"
 	},
 	"devDependencies": {
 		"html-validate": "^10.15.0",
