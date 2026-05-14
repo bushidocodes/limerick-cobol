@@ -8,9 +8,15 @@
 // already done by the time connectedCallback fires.
 class ThemeToggle extends HTMLElement {
 	static #KEY = "lc-theme";
+	#abort;
 
 	connectedCallback() {
+		this.#abort = new AbortController();
 		this.#render();
+	}
+
+	disconnectedCallback() {
+		this.#abort?.abort();
 	}
 
 	#render() {
@@ -21,7 +27,9 @@ class ThemeToggle extends HTMLElement {
 			</div>
 		`;
 		this.querySelectorAll("[data-theme-value]").forEach((btn) => {
-			btn.addEventListener("click", () => this.#set(btn.dataset.themeValue));
+			btn.addEventListener("click", () => this.#set(btn.dataset.themeValue), {
+				signal: this.#abort.signal,
+			});
 		});
 	}
 
