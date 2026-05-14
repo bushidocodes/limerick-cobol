@@ -810,6 +810,54 @@ details[open].saq-reveal summary::before {
 }
 
 /* ============================================================================
+   Code toolbar — Download / Copy / Run buttons grouped above a code block.
+   Used on example pages; the .code-toolbar div sits immediately before <pre>.
+   ============================================================================ */
+
+.code-toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5em;
+	align-items: center;
+	margin-bottom: 0;
+}
+
+.download-btn {
+	display: inline-block;
+	padding: 0.4em 0.85em;
+	font-size: 0.9em;
+	line-height: 1.4;
+	cursor: pointer;
+	border-radius: 3px;
+	background-color: #f0f0f0;
+	color: #333;
+	border: 1px solid #bbb;
+	text-decoration: none;
+	transition: opacity 0.15s;
+}
+
+.download-btn:hover,
+.download-btn:focus {
+	opacity: 0.85;
+	outline: 2px solid currentColor;
+	outline-offset: 1px;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) .download-btn {
+		background-color: #2e2e2e;
+		color: #ddd;
+		border-color: #555;
+	}
+}
+
+:root[data-theme="dark"] .download-btn {
+	background-color: #2e2e2e;
+	color: #ddd;
+	border-color: #555;
+}
+
+/* ============================================================================
    Copy-to-clipboard button (components/copy-button.js)
    The host <pre> gets position:relative so the button can sit top-right.
    The body prefix matches the specificity of the adjacent Prism overrides so
