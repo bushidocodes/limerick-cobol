@@ -1,0 +1,797 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+		<title>An introduction to CICS programming in COBOL</title>
+		<meta
+			name="description"
+			content="The mental model for CICS transaction-processing COBOL: pseudo-conversational programming, COMMAREA, EXEC CICS, BMS maps, EIBRESP."
+		/>
+		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/CICS.html" />
+		<!-- Open Graph -->
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/CICS.html" />
+		<meta property="og:title" content="An introduction to CICS programming in COBOL" />
+		<meta
+			property="og:description"
+			content="The mental model for CICS transaction-processing COBOL: pseudo-conversational programming, COMMAREA, EXEC CICS, BMS maps, EIBRESP."
+		/>
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content="An introduction to CICS programming in COBOL" />
+		<meta
+			name="twitter:description"
+			content="The mental model for CICS transaction-processing COBOL: pseudo-conversational programming, COMMAREA, EXEC CICS, BMS maps, EIBRESP."
+		/>
+		<link href="Resources/css/course.css" rel="stylesheet" />
+		<link href="Resources/css/course-components.css" rel="stylesheet" />
+		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
+		<script src="Resources/vendor/prism/prism.min.js" defer></script>
+		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
+		<style type="text/css">
+			.section-grid > * {
+				padding: 4px;
+			}
+
+			@media (max-width: 600px) {
+				.page-wrapper {
+					border: none;
+				}
+			}
+		</style>
+		<script src="../components/theme-toggle.js" defer></script>
+		<script src="../components/page-hero.js" defer></script>
+		<script src="../components/back-to-top.js" defer></script>
+		<script src="../components/lesson-progress.js" defer></script>
+		<script src="../components/lesson-nav.js" defer></script>
+		<script src="../components/lesson-checkbox.js" defer></script>
+		<script src="../components/copyright-notice.js" defer></script>
+		<script src="../components/related-content.js" defer></script>
+		<script src="../components/copy-button.js" defer></script>
+	</head>
+
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="section-grid">
+					<!-- Header -->
+					<div class="section-full">
+						<page-hero title="An introduction to CICS programming in COBOL"></page-hero>
+						<hr />
+						<ul class="toc">
+							<li>
+								<a href="#intro">Introduction</a><br />
+								Unit aims, objectives, prerequisites. Why CICS matters even if you only write batch.
+							</li>
+							<li>
+								<a href="#part1">What CICS is</a><br />
+								The transaction monitor &mdash; what it does for you and what it expects of your
+								program.
+							</li>
+							<li>
+								<a href="#part2">Pseudo-conversational programming</a><br />
+								The mental model that confuses every newcomer: programs that end, then start again.
+							</li>
+							<li>
+								<a href="#part3">The COMMAREA</a><br />
+								How a pseudo-conversational program remembers anything between invocations.
+							</li>
+							<li>
+								<a href="#part4">EXEC CICS commands</a><br />
+								<code>SEND MAP</code>, <code>RECEIVE MAP</code>, <code>READ FILE</code>,
+								<code>LINK</code>, <code>XCTL</code>, <code>RETURN</code>. The verbs you will see most.
+							</li>
+							<li>
+								<a href="#part5">BMS maps</a><br />
+								Where the screen layout actually comes from, and how it links back to COBOL data items.
+							</li>
+							<li>
+								<a href="#part6">EIBRESP and error handling</a><br />
+								The CICS analogue of <code class="language-cobol">SQLCODE</code> /
+								<code class="language-cobol">FILE STATUS</code>.
+							</li>
+							<li>
+								<a href="#part7">What this chapter does not cover</a><br />
+								Honest scope &mdash; what to go read next if you need more.
+							</li>
+						</ul>
+						<hr />
+					</div>
+
+					<!-- Introduction -->
+					<div class="section-header">
+						<h2 id="intro">Introduction</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Aims</h3>
+					</div>
+					<div>
+						<p>
+							The rest of this course teaches the <i>batch</i> style of COBOL &mdash; programs that open
+							files, process records, and exit. That is half of the COBOL world. The other half is
+							<i>online transaction processing</i>: short-lived programs that handle a single screen
+							interaction at a time, run thousands of concurrent users, and are coordinated by a
+							transaction monitor called <b>CICS</b> (Customer Information Control System).
+						</p>
+						<p>
+							This unit gives you the mental model. It will not make you a CICS programmer &mdash; that
+							takes longer than one chapter &mdash; but after reading it you should be able to read CICS
+							source code and understand the shape of the program.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Objectives</h3>
+					</div>
+					<div>
+						<p>By the end of this unit you should &mdash;</p>
+						<ol>
+							<li>
+								Understand what a transaction monitor is and what role CICS plays on z/OS.<br /><br />
+							</li>
+							<li>
+								Be able to explain pseudo-conversational programming and contrast it with batch and
+								conversational designs.<br /><br />
+							</li>
+							<li>
+								Recognise the core <code class="language-cobol">EXEC CICS</code> commands and what they
+								correspond to in your existing COBOL vocabulary.<br /><br />
+							</li>
+							<li>
+								Understand the role of BMS maps and how they connect to COBOL data structures.<br /><br />
+							</li>
+							<li>
+								Know to check <code>EIBRESP</code> after every CICS call, and recognise common return
+								values.
+							</li>
+						</ol>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Prerequisites</h3>
+					</div>
+					<div>
+						<ul>
+							<li><a href="COBOLIntro.html">The structure of COBOL programs</a></li>
+							<li><a href="DataDeclaration.html">Declaring data in COBOL</a></li>
+							<li><a href="COBOLcommands.html">Basic Procedure Division commands</a></li>
+							<li><a href="Subprograms.html">Contained and external sub-programs</a></li>
+							<li>
+								Optional but useful: <a href="JCL.html">An introduction to JCL</a> for the surrounding
+								mainframe context.
+							</li>
+						</ul>
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: What CICS is -->
+					<div class="section-header">
+						<h2 id="part1">What CICS is</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>The transaction monitor</h3>
+					</div>
+					<div>
+						<p>
+							CICS is a long-running server program (or set of programs called <i>regions</i>) that sits
+							between the network and your COBOL code. It provides services that batch COBOL doesn't need:
+						</p>
+						<ul>
+							<li>
+								<b>Multitasking.</b> A single CICS region runs many concurrent transactions. Each
+								transaction is a short-lived invocation of a COBOL program.
+							</li>
+							<li>
+								<b>Screen I/O.</b> CICS owns the connection to the terminal (or, today, the web client).
+								Your COBOL program does not call sockets or 3270 protocol; it asks CICS to send and
+								receive screens.
+							</li>
+							<li>
+								<b>Resource locking and recovery.</b> CICS coordinates access to shared files and
+								databases. If a transaction abends, CICS rolls back the changes it made.
+							</li>
+							<li>
+								<b>Security.</b> CICS authenticates users and authorises each transaction against site
+								security profiles.
+							</li>
+							<li>
+								<b>Performance.</b> CICS keeps program load modules in memory, pools threads, and
+								generally avoids the per-request startup cost a batch design would pay.
+							</li>
+						</ul>
+						<p>
+							In modern shops the front-end may be a web browser, a mobile app, or an API client &mdash;
+							but the COBOL program on the back end still looks like a CICS transaction, just with the
+							screen replaced by JSON or XML.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>A CICS transaction</h3>
+					</div>
+					<div>
+						<p>
+							At the user's end a <i>transaction</i> is one unit of work &mdash; press Enter, see a
+							response. At the system's end it is one invocation of a CICS-aware program, identified by a
+							four-character <b>transaction ID</b>.
+						</p>
+						<p>
+							The CICS administrator configures, in the system tables, that transaction ID
+							<code>EMPS</code> runs program <code>EMPSRCH</code>. When a user types <code>EMPS</code> on
+							a 3270 screen, CICS:
+						</p>
+						<ol>
+							<li>Looks up the transaction ID in its tables.</li>
+							<li>Loads program <code>EMPSRCH</code> if it isn't already in memory.</li>
+							<li>Sets up the execution environment (<code>EIB</code>, COMMAREA pointer, &hellip;).</li>
+							<li>Branches into the program's entry point.</li>
+						</ol>
+						<p>
+							When the program runs <code class="language-cobol">EXEC CICS RETURN</code>, the transaction
+							ends and CICS goes back to waiting for input. The program is unloaded (or just released back
+							to the pool); the next invocation starts from scratch.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: Pseudo-conversational programming -->
+					<div class="section-header">
+						<h2 id="part2">Pseudo-conversational programming</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Three styles</h3>
+					</div>
+					<div>
+						<p>There are three ways a CICS program can interact with the user:</p>
+						<ul>
+							<li>
+								<b>Non-conversational.</b> The program never waits for the user. It runs once, produces
+								output, and returns. Like a one-shot batch job, just dispatched by CICS instead of JCL.
+							</li>
+							<li>
+								<b>Conversational.</b> The program sends a screen, calls
+								<code class="language-cobol">EXEC CICS RECEIVE</code> to block until the user replies,
+								and continues running. While waiting, it holds memory and locks.
+								<b>Don't write these.</b>
+								They scale badly and are almost always wrong.
+							</li>
+							<li>
+								<b>Pseudo-conversational.</b> The program sends a screen and immediately returns &mdash;
+								it does <i>not</i> wait. When the user presses Enter, CICS starts a fresh invocation of
+								the program (or a different program), which reads the response and continues from the
+								logical next step.
+							</li>
+						</ul>
+						<p>Pseudo-conversational is the one you write. Almost all production CICS COBOL uses it.</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>The shape of a pseudo-conversational program</h3>
+						<aside>
+							<p class="center-block">
+								<span class="i-detail" aria-hidden="true">🔍</span>
+							</p>
+							<p>
+								This is the mental shift. Each invocation of the program is independent. To remember
+								anything across invocations you must explicitly save it in storage that CICS preserves
+								&mdash; the COMMAREA (Part 3) or a temporary storage queue.
+							</p>
+						</aside>
+					</div>
+					<div>
+						<p>A typical program looks like this:</p>
+						<pre><code class="language-cobol">       PROCEDURE DIVISION.
+       BEGIN-RUN.
+           IF EIBCALEN = 0
+               PERFORM First-Time-Through
+           ELSE
+               PERFORM Subsequent-Pass
+           END-IF
+           PERFORM Return-To-Cics.
+
+       First-Time-Through.
+           * &gt; Show the initial empty form.
+           EXEC CICS SEND MAP("EMPMAP") MAPSET("EMPSET") ERASE END-EXEC
+           MOVE "DISPLAY" TO WS-Next-Step.
+
+       Subsequent-Pass.
+           EXEC CICS RECEIVE MAP("EMPMAP") MAPSET("EMPSET") END-EXEC
+           EVALUATE WS-Next-Step
+               WHEN "DISPLAY"  PERFORM Look-Up-Employee
+               WHEN "EDIT"     PERFORM Save-Changes
+               WHEN OTHER      PERFORM Show-Error
+           END-EVALUATE.
+
+       Return-To-Cics.
+           EXEC CICS RETURN
+               TRANSID("EMPS")
+               COMMAREA(WS-Commarea)
+               LENGTH(LENGTH OF WS-Commarea)
+           END-EXEC.</code></pre>
+						<p>
+							<code>EIBCALEN</code> is "EIB COMMAREA length" &mdash; it is zero on the very first
+							invocation, non-zero on every subsequent one because the previous invocation passed a
+							COMMAREA when it returned.
+						</p>
+						<p>
+							The <code>TRANSID</code> parameter on
+							<code class="language-cobol">EXEC CICS RETURN</code> tells CICS "next time this user presses
+							Enter, dispatch transaction <code>EMPS</code> &mdash; that is, run me again." Without it the
+							user's terminal goes back to the application menu.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: COMMAREA -->
+					<div class="section-header">
+						<h2 id="part3">The COMMAREA</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>The forget-me-not</h3>
+					</div>
+					<div>
+						<p>
+							A <b>COMMAREA</b> (communication area) is a block of memory the program declares in its
+							<code class="language-cobol">LINKAGE SECTION</code>. When the program issues
+							<code class="language-cobol">EXEC CICS RETURN</code> with a COMMAREA parameter, CICS saves
+							the block. When the next invocation of the same transaction ID starts, CICS hands it back to
+							the new instance.
+						</p>
+						<pre><code class="language-cobol">       LINKAGE SECTION.
+       01  DFHCOMMAREA.
+           05  WS-Next-Step          PIC X(10).
+           05  WS-Selected-Emp       PIC 9(7).
+           05  WS-Filter-Text        PIC X(40).
+
+       PROCEDURE DIVISION.
+           IF EIBCALEN = 0
+               INITIALIZE DFHCOMMAREA
+           END-IF
+           ...
+           EXEC CICS RETURN
+               TRANSID("EMPS")
+               COMMAREA(DFHCOMMAREA)
+               LENGTH(LENGTH OF DFHCOMMAREA)
+           END-EXEC.</code></pre>
+						<p>
+							The name <code>DFHCOMMAREA</code> is conventional &mdash; CICS sets up the addressability
+							for you. You declare the structure under it in the
+							<code class="language-cobol">LINKAGE SECTION</code>.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>What goes in the COMMAREA</h3>
+					</div>
+					<div>
+						<p>Practical rules of thumb:</p>
+						<ul>
+							<li>
+								<b>State the next invocation needs to do its job.</b> Which step we are on, which row
+								the user selected, any field they typed that hasn't been saved yet.
+							</li>
+							<li>
+								<b>Not large blobs.</b> COMMAREAs are bounded (~32 KB in older CICS, larger in newer
+								versions). Large state goes into a temporary storage queue, not the COMMAREA.
+							</li>
+							<li>
+								<b>Not anything secret you couldn't store on the wire.</b> COMMAREA passes through CICS
+								memory; on traditional 3270 setups it doesn't leak, but in modern Web Services scenarios
+								it can. Treat it as transport.
+							</li>
+						</ul>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: EXEC CICS commands -->
+					<div class="section-header">
+						<h2 id="part4">EXEC CICS commands</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>The core set</h3>
+					</div>
+					<div>
+						<p>
+							CICS exposes its services to your program through
+							<code class="language-cobol">EXEC CICS ... END-EXEC</code> blocks, processed by a
+							preprocessor analogous to the SQL precompiler (see
+							<a href="EmbeddedSQL.html">Embedded SQL in COBOL</a>). The verbs cluster by responsibility:
+						</p>
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Category</th>
+									<th>Verb</th>
+									<th>What it does</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td rowspan="2">Screen</td>
+									<td><code>SEND MAP</code></td>
+									<td>Push a formatted screen out to the terminal.</td>
+								</tr>
+								<tr>
+									<td><code>RECEIVE MAP</code></td>
+									<td>Read user input from a formatted screen into COBOL data items.</td>
+								</tr>
+								<tr>
+									<td rowspan="4">File / VSAM</td>
+									<td><code>READ FILE</code></td>
+									<td>Random read by key.</td>
+								</tr>
+								<tr>
+									<td><code>WRITE FILE</code></td>
+									<td>Insert a record.</td>
+								</tr>
+								<tr>
+									<td><code>REWRITE</code></td>
+									<td>Update a record previously <code>READ FOR UPDATE</code>.</td>
+								</tr>
+								<tr>
+									<td><code>DELETE</code></td>
+									<td>Delete by key.</td>
+								</tr>
+								<tr>
+									<td rowspan="3">Program flow</td>
+									<td><code>LINK</code></td>
+									<td>Call another program, then return here. Like a COBOL <code>CALL</code>.</td>
+								</tr>
+								<tr>
+									<td><code>XCTL</code></td>
+									<td>
+										Transfer control to another program; do not return. Like a chained
+										<code>GOTO</code> across programs.
+									</td>
+								</tr>
+								<tr>
+									<td><code>RETURN</code></td>
+									<td>End this invocation. Pass a COMMAREA back if the transaction continues.</td>
+								</tr>
+								<tr>
+									<td rowspan="2">Recovery</td>
+									<td><code>SYNCPOINT</code></td>
+									<td>Commit changes made so far.</td>
+								</tr>
+								<tr>
+									<td><code>SYNCPOINT ROLLBACK</code></td>
+									<td>Roll back changes made so far.</td>
+								</tr>
+								<tr>
+									<td rowspan="2">Storage</td>
+									<td><code>GETMAIN</code></td>
+									<td>Allocate working storage at runtime.</td>
+								</tr>
+								<tr>
+									<td><code>FREEMAIN</code></td>
+									<td>Release storage allocated with <code>GETMAIN</code>.</td>
+								</tr>
+							</tbody>
+						</table>
+						<p>
+							The <code>FILE</code> verbs are functionally similar to native COBOL file I/O verbs (<a
+								href="IndexedFiles.html"
+								>indexed files</a
+							>) but go through CICS so the I/O participates in transaction recovery.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: BMS maps -->
+					<div class="section-header">
+						<h2 id="part5">BMS maps</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Where the screen lives</h3>
+					</div>
+					<div>
+						<p>
+							A CICS COBOL program does not contain the text of the screens it sends. The screen layout
+							lives in a separate <b>BMS</b> (Basic Mapping Support) map source file, processed by an
+							assembler macro pass that produces two outputs:
+						</p>
+						<ul>
+							<li>
+								<b>A physical map</b> &mdash; a load module the CICS region uses at runtime to send and
+								receive the screen.
+							</li>
+							<li>
+								<b>A symbolic map</b> &mdash; a COBOL <code>COPY</code> book of data items that mirror
+								each field on the screen.
+							</li>
+						</ul>
+						<p>The program <code>COPY</code>s the symbolic map and then references its fields directly:</p>
+						<pre><code class="language-cobol">       WORKING-STORAGE SECTION.
+       01  WS-Emp-Map.
+           COPY EMPSET.            *&gt; symbolic map
+
+       PROCEDURE DIVISION.
+           EXEC CICS RECEIVE MAP("EMPMAP") MAPSET("EMPSET")
+                              INTO(WS-Emp-Map)
+           END-EXEC.
+
+           IF EMPIDI &gt; "0000000"
+              MOVE EMPIDI TO WS-Search-Key
+              ...
+           END-IF.</code></pre>
+						<p>
+							Field names follow a convention: a field called <code>EMPID</code> on the map produces
+							<code>EMPIDI</code> (input value), <code>EMPIDO</code> (output value),
+							<code>EMPIDA</code> (attribute byte), and <code>EMPIDL</code> (entered length) in the
+							symbolic map. The <code>O</code> suffix is what you set before <code>SEND MAP</code>; the
+							<code>I</code> suffix is what comes back from <code>RECEIVE MAP</code>.
+						</p>
+						<p>
+							The BMS source itself is assembler macros, not COBOL, and a full discussion is beyond this
+							chapter. The important point: the screen layout is a separate artifact that the program
+							references by name.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: EIBRESP -->
+					<div class="section-header">
+						<h2 id="part6">EIBRESP and error handling</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>The EIB</h3>
+					</div>
+					<div>
+						<p>
+							CICS gives every program a free <b>EIB</b> (Exec Interface Block) &mdash; a record of
+							information about the current transaction. The most useful fields:
+						</p>
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Field</th>
+									<th>Meaning</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><code>EIBCALEN</code></td>
+									<td>Length of the COMMAREA passed in (0 on first invocation).</td>
+								</tr>
+								<tr>
+									<td><code>EIBRESP</code></td>
+									<td>Return code from the most recent <code>EXEC CICS</code> command.</td>
+								</tr>
+								<tr>
+									<td><code>EIBRESP2</code></td>
+									<td>Sub-code refining <code>EIBRESP</code>.</td>
+								</tr>
+								<tr>
+									<td><code>EIBTRNID</code></td>
+									<td>The transaction ID currently running.</td>
+								</tr>
+								<tr>
+									<td><code>EIBTASKN</code></td>
+									<td>The task number CICS assigned. Useful for logs.</td>
+								</tr>
+								<tr>
+									<td><code>EIBTRMID</code></td>
+									<td>Terminal ID the user is on.</td>
+								</tr>
+							</tbody>
+						</table>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Checking <code>EIBRESP</code></h3>
+					</div>
+					<div>
+						<p>
+							The discipline mirrors what you already know from
+							<a href="EmbeddedSQL.html"><code>SQLCODE</code></a> and
+							<a href="FileStatus.html"><code>FILE STATUS</code></a
+							>: check <code>EIBRESP</code> after every <code>EXEC CICS</code>.
+						</p>
+						<pre><code class="language-cobol">EXEC CICS READ
+    FILE("EMPMAST")
+    INTO(WS-Emp-Rec)
+    RIDFLD(WS-Search-Key)
+    RESP(WS-Resp) RESP2(WS-Resp2)
+END-EXEC.
+
+EVALUATE WS-Resp
+    WHEN DFHRESP(NORMAL)
+        PERFORM Display-Employee
+    WHEN DFHRESP(NOTFND)
+        PERFORM Show-Not-Found-Message
+    WHEN OTHER
+        PERFORM Critical-Error-Handler
+END-EVALUATE.</code></pre>
+						<p>
+							The <code>DFHRESP(NORMAL)</code> macro expands to the integer constant for
+							<code>NORMAL</code>. Using the macros instead of bare numbers is the convention &mdash; it
+							makes the code legible and survives any future renumbering.
+						</p>
+						<p>
+							If you don't pass <code>RESP</code> on the verb, CICS will instead raise a condition handled
+							by the most recent <code class="language-cobol">EXEC CICS HANDLE CONDITION</code>
+							or trigger the default abend. Most modern code uses the explicit
+							<code>RESP</code> style.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Common <code>RESP</code> codes</h3>
+					</div>
+					<div>
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Symbol</th>
+									<th>Meaning</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><code>NORMAL</code></td>
+									<td>Success.</td>
+								</tr>
+								<tr>
+									<td><code>NOTFND</code></td>
+									<td><code>READ</code>: no record matches the key.</td>
+								</tr>
+								<tr>
+									<td><code>DUPREC</code></td>
+									<td><code>WRITE</code>: duplicate key.</td>
+								</tr>
+								<tr>
+									<td><code>MAPFAIL</code></td>
+									<td>
+										<code>RECEIVE MAP</code>: the user pressed Enter on an empty screen, or the map
+										name is wrong.
+									</td>
+								</tr>
+								<tr>
+									<td><code>PGMIDERR</code></td>
+									<td>
+										<code>LINK</code> / <code>XCTL</code>: target program not defined in CICS
+										tables.
+									</td>
+								</tr>
+								<tr>
+									<td><code>FILENOTFOUND</code></td>
+									<td><code>READ</code>: the file is not defined in CICS tables.</td>
+								</tr>
+								<tr>
+									<td><code>NOSPACE</code></td>
+									<td><code>WRITE</code>: file is full.</td>
+								</tr>
+								<tr>
+									<td><code>NOTAUTH</code></td>
+									<td>The transaction user is not authorised for this operation.</td>
+								</tr>
+								<tr>
+									<td><code>QIDERR</code></td>
+									<td>Temporary-storage queue not found.</td>
+								</tr>
+							</tbody>
+						</table>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: What this doesn't cover -->
+					<div class="section-header">
+						<h2 id="part7">What this chapter does not cover</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Honest scope</h3>
+					</div>
+					<div>
+						<p>
+							CICS is a deep subject. The topics deliberately left out of this primer, and where to read
+							them:
+						</p>
+						<ul>
+							<li>
+								<b>Full BMS map authoring.</b> The assembler-macro syntax, field attributes, MDT
+								handling, and physical-map versus symbolic-map mechanics. See IBM's
+								<i>CICS Application Programming Guide</i>.
+							</li>
+							<li>
+								<b>Resource Definition Online (RDO).</b> How transactions, programs, files, and queues
+								are actually defined in the CICS region tables. Usually a CICS sysprog's job, not the
+								application programmer's.
+							</li>
+							<li>
+								<b>CICS Web Services.</b> Exposing a CICS COBOL program as a SOAP or REST service via
+								<code>z/OS Connect</code>. Increasingly the way modern CICS applications are accessed.
+							</li>
+							<li>
+								<b>Channels and containers.</b> The modern alternative to the COMMAREA for passing
+								larger and more structured data between linked programs.
+							</li>
+							<li>
+								<b>Transaction recovery details.</b> Sync points, recoverable resources, in-doubt
+								transactions, two-phase commit with DB2.
+							</li>
+						</ul>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Where to go next</h3>
+					</div>
+					<div>
+						<p>
+							Once the mental model is in place, the most useful follow-up reads are IBM's free
+							<i>CICS Application Programming Guide</i> and Doug Lowe's
+							<i>Murach's CICS Desk Reference</i>.
+						</p>
+						<p>
+							If you came here from the COBOL chapters and want to ground the transaction model in batch
+							terms, the most analogous pair is
+							<a href="EmbeddedSQL.html">Embedded SQL in COBOL</a> &mdash; the same
+							<code>EXEC X ... END-EXEC</code> shape, the same return-code discipline, the same role for a
+							precompiler.
+						</p>
+					</div>
+				</div>
+				<!-- Footer -->
+				<div class="page-footer">
+					<related-content></related-content>
+					<hr />
+					<lesson-checkbox lesson="CICS"></lesson-checkbox>
+					<lesson-nav></lesson-nav>
+					<back-to-top></back-to-top>
+					<copyright-notice></copyright-notice>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>
