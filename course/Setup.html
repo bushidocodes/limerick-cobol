@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+		<title>Setting up a COBOL development environment</title>
+		<meta
+			name="description"
+			content="How to install a COBOL compiler, configure an editor, and compile and run your first program."
+		/>
+		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/Setup.html" />
+		<!-- Open Graph -->
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/Setup.html" />
+		<meta property="og:title" content="Setting up a COBOL development environment" />
+		<meta
+			property="og:description"
+			content="How to install a COBOL compiler, configure an editor, and compile and run your first program."
+		/>
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content="Setting up a COBOL development environment" />
+		<meta
+			name="twitter:description"
+			content="How to install a COBOL compiler, configure an editor, and compile and run your first program."
+		/>
+		<link href="Resources/css/course.css" rel="stylesheet" />
+		<link href="Resources/css/course-components.css" rel="stylesheet" />
+		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
+		<script src="Resources/vendor/prism/prism.min.js" defer></script>
+		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
+		<style type="text/css">
+			.section-grid > * {
+				padding: 4px;
+			}
+
+			@media (max-width: 600px) {
+				.page-wrapper {
+					border: none;
+				}
+			}
+		</style>
+		<script src="../components/theme-toggle.js" defer></script>
+		<script src="../components/page-hero.js" defer></script>
+		<script src="../components/back-to-top.js" defer></script>
+		<script src="../components/lesson-progress.js" defer></script>
+		<script src="../components/lesson-nav.js" defer></script>
+		<script src="../components/lesson-checkbox.js" defer></script>
+		<script src="../components/copyright-notice.js" defer></script>
+		<script src="../components/related-content.js" defer></script>
+		<script src="../components/copy-button.js" defer></script>
+	</head>
+
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="section-grid">
+					<!-- Header -->
+					<div class="section-full">
+						<page-hero title="Setting up a COBOL development environment"></page-hero>
+						<hr />
+						<ul class="toc">
+							<li>
+								<a href="#intro">Introduction</a><br />
+								Unit aims, objectives, prerequisites.
+							</li>
+							<li>
+								<a href="#part1">Choosing a compiler</a><br />
+								A short comparison of GnuCOBOL, OpenText (Micro Focus) Visual COBOL, IBM Enterprise
+								COBOL, and the in-browser TutorialsPoint compiler. When to choose each.
+							</li>
+							<li>
+								<a href="#part2">Installing GnuCOBOL</a><br />
+								Concrete install instructions for Windows, macOS, and Linux. How to verify the install.
+							</li>
+							<li>
+								<a href="#part3">Choosing an editor</a><br />
+								The recommended editor (Visual Studio Code) and the COBOL extension. Notes on
+								alternative editors.
+							</li>
+							<li>
+								<a href="#part4">Hello, World</a><br />
+								Your first COBOL program: the source code, the
+								<code class="language-cobol">cobc</code> command line to compile it, and the expected
+								output.
+							</li>
+							<li>
+								<a href="#part5">When it doesn't work</a><br />
+								The errors a first-time COBOL programmer is most likely to hit, and how to read them.
+							</li>
+							<li>
+								<a href="#part6">Where to go next</a><br />
+								Pointer into the rest of the course.
+							</li>
+						</ul>
+						<hr />
+					</div>
+					<!-- Section: Introduction -->
+					<div class="section-header">
+						<h2 id="intro">Introduction</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Aims</h3>
+					</div>
+					<div>
+						<p>
+							The remainder of this course teaches the COBOL language. Before you can usefully read any of
+							it, you need to be able to compile and run a COBOL program on your own machine.
+						</p>
+						<p>
+							This unit walks you through three choices &mdash; <i>which compiler</i>,
+							<i>which editor</i>, and <i>which platform</i> &mdash; and then has you compile and run a
+							short complete program end-to-end.
+						</p>
+						<p>
+							If you already have a working COBOL toolchain you can skim this page and jump to
+							<a href="COBOLIntro.html">The structure of COBOL programs</a>.
+						</p>
+						<hr size="1" />
+					</div>
+					<div class="section-sidebar">
+						<h3>Objectives</h3>
+					</div>
+					<div>
+						<p>By the end of this unit you should &mdash;</p>
+						<ol>
+							<li>
+								Be able to choose a COBOL compiler appropriate to your platform and goals.<br /><br />
+							</li>
+							<li>
+								Have GnuCOBOL (or an equivalent) installed and verified on your machine.<br /><br />
+							</li>
+							<li>Be able to compile and run a short COBOL program from a terminal.<br /><br /></li>
+							<li>Recognise the most common first-run errors and know how to fix them.</li>
+						</ol>
+						<hr size="1" />
+					</div>
+					<div class="section-sidebar">
+						<h3>Prerequisites</h3>
+					</div>
+					<div>
+						<ul>
+							<li>None &mdash; this is the entry point of the course.</li>
+							<li>
+								Comfort using a terminal (PowerShell on Windows; Terminal on macOS; any shell on Linux)
+								is helpful but not required.
+							</li>
+						</ul>
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: Choosing a compiler -->
+					<div class="section-header">
+						<h2 id="part1">Choosing a compiler</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Why this choice matters</h3>
+					</div>
+					<div>
+						<p>
+							COBOL is a standardised language &mdash; the latest published standard is
+							<i>ISO/IEC 1989:2023</i> &mdash; but no two compilers implement exactly the same subset. The
+							compiler you pick determines:
+						</p>
+						<ul>
+							<li>Which platforms you can target (Windows, macOS, Linux, z/OS, AIX, &hellip;).</li>
+							<li>
+								Which language features are available (free-format source, intrinsic functions,
+								<code class="language-cobol">JSON PARSE</code>, object-oriented COBOL, &hellip;).
+							</li>
+							<li>How you compile and link (`cobc`, IBM JCL, Visual Studio, &hellip;).</li>
+							<li>The cost &mdash; some compilers are free; others are commercial.</li>
+						</ul>
+						<p>
+							For the purposes of this course any standards-compliant compiler will work. The example
+							programs are written against COBOL 85 with a small number of COBOL 2002 extensions
+							(free-format source, intrinsic functions), and they compile cleanly on every compiler listed
+							below.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>The shortlist</h3>
+					</div>
+					<div>
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Compiler</th>
+									<th>Platforms</th>
+									<th>Cost</th>
+									<th>Best for</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><b>GnuCOBOL</b> (formerly OpenCOBOL)</td>
+									<td>Windows, macOS, Linux, BSD</td>
+									<td>Free, open-source (GPL)</td>
+									<td>
+										Learning, hobby projects, anything off-mainframe. <b>Recommended</b> for this
+										course.
+									</td>
+								</tr>
+								<tr>
+									<td><b>OpenText (Micro Focus) Visual COBOL</b></td>
+									<td>Windows, Linux, AIX, .NET, JVM</td>
+									<td>Commercial; free trial available</td>
+									<td>
+										Enterprise development outside z/OS &mdash; banks and insurance shops that have
+										moved off-mainframe.
+									</td>
+								</tr>
+								<tr>
+									<td><b>IBM Enterprise COBOL for z/OS</b></td>
+									<td>z/OS only</td>
+									<td>Commercial; bundled with z/OS</td>
+									<td>
+										Anything you intend to run on a real mainframe in production. The dominant
+										compiler in banking, insurance, and government.
+									</td>
+								</tr>
+								<tr>
+									<td><b>TutorialsPoint online compiler</b></td>
+									<td>Browser</td>
+									<td>Free</td>
+									<td>
+										Quickly trying a snippet without installing anything. Not appropriate for
+										multi-file programs or file I/O.
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<p>
+							If you are not sure which to use, install <b>GnuCOBOL</b>. It is free, it runs on every
+							desktop platform, and the rest of this page assumes it.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: Installing GnuCOBOL -->
+					<div class="section-header">
+						<h2 id="part2">Installing GnuCOBOL</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Windows</h3>
+					</div>
+					<div>
+						<p>
+							The most reliable way to get GnuCOBOL on Windows is via <b>MSYS2</b>, which provides a
+							Unix-like environment and a package manager.
+						</p>
+						<ol>
+							<li>
+								Install MSYS2 from
+								<a href="https://www.msys2.org/">https://www.msys2.org/</a>. Accept the default install
+								path.
+							</li>
+							<li>Open the <b>MSYS2 UCRT64</b> shell from the Start menu.</li>
+							<li>
+								Update the package database:
+								<pre><code class="language-bash">pacman -Syu</code></pre>
+								Close and re-open the shell if prompted.
+							</li>
+							<li>
+								Install GnuCOBOL:
+								<pre><code class="language-bash">pacman -S mingw-w64-ucrt-x86_64-gnucobol</code></pre>
+							</li>
+							<li>
+								Verify:
+								<pre><code class="language-bash">cobc --version</code></pre>
+								You should see something like <code>cobc (GnuCOBOL) 3.2</code>.
+							</li>
+						</ol>
+						<p>
+							<b>Alternative on Windows:</b> the <a href="https://chocolatey.org/">Chocolatey</a> package
+							manager has a <code>gnucobol</code> package (<code class="language-bash"
+								>choco install gnucobol</code
+							>) but it tends to lag behind the MSYS2 build.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>macOS</h3>
+					</div>
+					<div>
+						<p>The Homebrew formula is the simplest path.</p>
+						<ol>
+							<li>
+								Install Homebrew if you don't have it &mdash; instructions at
+								<a href="https://brew.sh/">https://brew.sh/</a>.
+							</li>
+							<li>
+								Install GnuCOBOL:
+								<pre><code class="language-bash">brew install gnu-cobol</code></pre>
+							</li>
+							<li>
+								Verify:
+								<pre><code class="language-bash">cobc --version</code></pre>
+							</li>
+						</ol>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Linux</h3>
+					</div>
+					<div>
+						<p>Most distributions ship GnuCOBOL in their default repositories.</p>
+						<p><b>Debian / Ubuntu / Mint:</b></p>
+						<pre><code class="language-bash">sudo apt update
+sudo apt install gnucobol</code></pre>
+						<p><b>Fedora / RHEL / Rocky:</b></p>
+						<pre><code class="language-bash">sudo dnf install gnucobol</code></pre>
+						<p><b>Arch / Manjaro:</b> available via the AUR as <code>gnucobol</code>.</p>
+						<p>Verify the install the same way:</p>
+						<pre><code class="language-bash">cobc --version</code></pre>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>What you just installed</h3>
+					</div>
+					<div>
+						<p>The GnuCOBOL package gives you three things:</p>
+						<ul>
+							<li>
+								<code>cobc</code> &mdash; the COBOL compiler driver. This is the command you will run to
+								turn <code>.cob</code> files into executables.
+							</li>
+							<li>
+								<code>cobcrun</code> &mdash; a small program that loads and runs a compiled COBOL
+								module. You will use this less often than <code>cobc</code>.
+							</li>
+							<li>
+								A runtime library (<code>libcob</code>) that your compiled COBOL programs link against.
+							</li>
+						</ul>
+						<p>
+							You do not need to install anything else specific to COBOL. The compiler emits C code under
+							the hood and uses your system C compiler (GCC on Linux, Clang on macOS, MinGW-w64 on
+							Windows) to produce the final executable &mdash; all of this is invoked automatically by
+							<code>cobc</code>.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: Choosing an editor -->
+					<div class="section-header">
+						<h2 id="part3">Choosing an editor</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Recommended: VS Code + COBOL extension</h3>
+					</div>
+					<div>
+						<p>
+							<a href="https://code.visualstudio.com/">Visual Studio Code</a> with the
+							<b>COBOL</b> extension by <i>bitlang</i> is the simplest modern editor setup. To install:
+						</p>
+						<ol>
+							<li>
+								Install VS Code from <a href="https://code.visualstudio.com/">code.visualstudio.com</a>.
+							</li>
+							<li>
+								Open VS Code, press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd>
+								(<kbd>&#8984;</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd> on macOS) to open the Extensions
+								panel.
+							</li>
+							<li>Search for <b>COBOL</b> and install the extension by <i>bitlang</i>.</li>
+						</ol>
+						<p>The extension provides:</p>
+						<ul>
+							<li>
+								Syntax highlighting for <code>.cob</code>, <code>.cbl</code>, and
+								<code>.cpy</code> files.
+							</li>
+							<li>Outline view showing divisions, sections, and paragraphs.</li>
+							<li>
+								Snippets for common patterns (<code class="language-cobol">PERFORM UNTIL</code>, file
+								SELECT clauses, &hellip;).
+							</li>
+							<li>Folding by COBOL block.</li>
+						</ul>
+						<p>
+							For source-level debugging on Windows or Linux, also install the companion
+							<b>GnuCOBOL Debugger</b> extension; on macOS use <code>gdb</code> manually as the debugger
+							story for COBOL on Apple Silicon is still maturing.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Alternative editors</h3>
+					</div>
+					<div>
+						<p>
+							Anything with adjustable tab stops and a monospaced font will work. The lessons in this
+							course use fixed-format COBOL, where columns 1&ndash;6, 7, 8&ndash;11, and 12&ndash;72 each
+							have a defined meaning &mdash; so a text editor that can show a column ruler helps.
+						</p>
+						<ul>
+							<li>
+								<b>JetBrains IntelliJ IDEA / Rider</b> &mdash; the
+								<a href="https://plugins.jetbrains.com/plugin/16345-bitlang-cobol"
+									>bitlang-cobol plugin</a
+								>
+								gives a similar experience to VS Code.
+							</li>
+							<li>
+								<b>Vim / Neovim</b> &mdash; built-in <code>cobol</code> filetype with syntax
+								highlighting.
+							</li>
+							<li><b>Emacs</b> &mdash; <code>cobol-mode</code> from the Emacs package archives.</li>
+							<li><b>Notepad++</b> &mdash; ships with a COBOL lexer.</li>
+						</ul>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: Hello, World -->
+					<div class="section-header">
+						<h2 id="part4">Hello, World</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>The program</h3>
+						<aside>
+							<p class="center-block">
+								<span class="i-detail" aria-hidden="true">🔍</span>
+							</p>
+							<p>
+								The leading blank columns in this example are significant. COBOL in
+								<i>fixed format</i> (the default) reserves columns 1&ndash;6 for an optional sequence
+								number and column 7 for a status indicator (<code>*</code> for a comment,
+								<code>-</code> for a continuation line, blank for a normal line). Code starts at column
+								8.
+							</p>
+						</aside>
+					</div>
+					<div>
+						<p>
+							Open your editor and create a file named <code>hello.cob</code> with the following contents:
+						</p>
+						<pre><code class="language-cobol">       IDENTIFICATION DIVISION.
+       PROGRAM-ID. Hello.
+
+       PROCEDURE DIVISION.
+           DISPLAY "Hello, World!".
+           STOP RUN.</code></pre>
+						<p>
+							There are seven leading spaces before each line &mdash; this puts the first character of
+							code in column 8, which is what fixed-format COBOL requires. If you accidentally start in
+							column 1, the compiler will read your code as a sequence number and fail.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Compile and run</h3>
+					</div>
+					<div>
+						<p>Open a terminal in the directory containing <code>hello.cob</code> and run:</p>
+						<pre><code class="language-bash">cobc -x -o hello hello.cob</code></pre>
+						<p>This produces an executable named <code>hello</code> in the current directory. The flags:</p>
+						<ul>
+							<li>
+								<code>-x</code> &mdash; build an <i>executable</i> (the default is a loadable module).
+							</li>
+							<li><code>-o hello</code> &mdash; name the output file <code>hello</code>.</li>
+						</ul>
+						<p>Run it:</p>
+						<pre><code class="language-bash">./hello</code></pre>
+						<p>
+							(On Windows from a regular cmd or PowerShell prompt, the executable is called
+							<code>hello.exe</code> and you can run it with just <code>hello</code>.) Expected output:
+						</p>
+						<pre><code class="language-text">Hello, World!</code></pre>
+						<p>
+							If you see that line, your toolchain is working and you are ready to start the course
+							proper.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Try free format</h3>
+						<aside>
+							<p class="center-block">
+								<span class="i-detail" aria-hidden="true">🔍</span>
+							</p>
+							<p>
+								Most of the example programs later in the course use free-format source &mdash;
+								indicated by the
+								<code class="language-cobol">&gt;&gt;SOURCE FORMAT IS FREE</code> directive at the top
+								of the file. Free format removes the column 7&ndash;72 restriction and lets you start
+								code anywhere on the line.
+							</p>
+						</aside>
+					</div>
+					<div>
+						<p>For a free-format version of the same program, create <code>hello-free.cob</code>:</p>
+						<pre><code class="language-cobol">&gt;&gt;SOURCE FORMAT IS FREE
+IDENTIFICATION DIVISION.
+PROGRAM-ID. Hello.
+
+PROCEDURE DIVISION.
+    DISPLAY "Hello, World!".
+    STOP RUN.</code></pre>
+						<p>And compile the same way:</p>
+						<pre><code class="language-bash">cobc -x -o hello-free hello-free.cob</code></pre>
+						<p>
+							Free format is easier to read and edit, especially in a modern editor. The course mixes the
+							two formats to give you exposure to both.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: When it doesn't work -->
+					<div class="section-header">
+						<h2 id="part5">When it doesn't work</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Common first-run errors</h3>
+					</div>
+					<div>
+						<p>
+							Here are the errors you are statistically most likely to hit on your first program, and what
+							each one means.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3><code>cobc: command not found</code></h3>
+					</div>
+					<div>
+						<p>
+							The compiler installed, but the directory containing <code>cobc</code> is not on your
+							<code>PATH</code>. Check the install steps above for the right shell to use (MSYS2 UCRT64 on
+							Windows; a fresh terminal session on Linux/macOS to pick up shell init changes).
+						</p>
+						<p>
+							On Windows specifically: the <code>cobc</code> binary lives inside the MSYS2 install
+							directory and is only on your <code>PATH</code> when you open one of MSYS2's shells. Either
+							use that shell for development, or add the binary directory to your system
+							<code>PATH</code>.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3><code>syntax error, unexpected ...</code> on line 1</h3>
+					</div>
+					<div>
+						<p>Almost always a column-alignment problem in fixed-format source. Common causes:</p>
+						<ul>
+							<li>
+								Code starts in column 1 instead of column 8. (The first 6 columns are reserved for an
+								optional sequence number and the 7th is a status indicator.)
+							</li>
+							<li>
+								The file was edited in an editor that converted tabs to a different width &mdash;
+								something that looks aligned visually may not be aligned in actual columns.
+							</li>
+						</ul>
+						<p>
+							If you don't want to think about columns, add
+							<code class="language-cobol">&gt;&gt;SOURCE FORMAT IS FREE</code> as the first line of your
+							source file. With free format the column rules go away.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3><code>PROGRAM-ID is required</code> / division order errors</h3>
+					</div>
+					<div>
+						<p>
+							A COBOL source file has a fixed structure: every program must start with the
+							<code class="language-cobol">IDENTIFICATION DIVISION</code> and a
+							<code class="language-cobol">PROGRAM-ID</code> entry. Even <i>Hello, World</i> is required
+							to declare those two things.
+						</p>
+						<p>
+							If you see an error about a missing division or about divisions being out of order, the fix
+							is almost always to add the boilerplate at the top of the file shown in the
+							<i>Hello, World</i> section above.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>The compile succeeded but there is no output</h3>
+					</div>
+					<div>
+						<p>
+							If you forgot the <code>-x</code> flag, <code>cobc</code> produced a loadable module (<code
+								>hello.so</code
+							>
+							on Linux/macOS, <code>hello.dll</code> on Windows) rather than an executable. Run it with
+							<code>cobcrun hello</code>, or recompile with <code>-x</code> to get a standalone
+							executable.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Numeric errors (later in the course)</h3>
+						<aside>
+							<p class="center-block">
+								<span class="i-detail" aria-hidden="true">🔍</span>
+							</p>
+							<p>Save these for later, but worth knowing they exist before you hit them.</p>
+						</aside>
+					</div>
+					<div>
+						<p>When you start using arithmetic and numeric edited fields, two errors show up regularly:</p>
+						<ul>
+							<li>
+								<b>libcob: numeric field value invalid</b> &mdash; a field declared as
+								<code class="language-cobol">PIC 9</code> or similar contains non-numeric data (often
+								spaces, often because the field was never initialised). Initialise with
+								<code class="language-cobol">VALUE ZEROS</code> at declaration time and the problem goes
+								away.
+							</li>
+							<li>
+								<b>libcob: subscript out of bounds</b> &mdash; an
+								<code class="language-cobol">OCCURS</code> reference indexed past the end of the table.
+								Compile with <code>-fdebugging-line</code> and <code>-fbounds-check</code> while
+								developing to surface these earlier.
+							</li>
+						</ul>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: Where to go next -->
+					<div class="section-header">
+						<h2 id="part6">Where to go next</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Continue the course</h3>
+					</div>
+					<div>
+						<p>
+							With a working toolchain in place, head to
+							<a href="COBOLIntro.html">The structure of COBOL programs</a> &mdash; the first conceptual
+							chapter &mdash; and from there work through the course index in order.
+						</p>
+						<p>
+							Each chapter introduces a small number of new constructs and finishes with example programs
+							you can compile and run with the <code>cobc -x</code> command line above.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Beyond GnuCOBOL</h3>
+					</div>
+					<div>
+						<p>
+							If your goal is to work on a real mainframe, two further chapters of this course will be
+							especially relevant once you have the language under your fingers:
+						</p>
+						<ul>
+							<li>
+								<b>JCL</b> &mdash; the job-control language that wraps batch COBOL programs on z/OS.
+								Without JCL you cannot run COBOL on the mainframe.
+							</li>
+							<li>
+								<b>Embedded SQL / DB2</b> &mdash; the standard way commercial COBOL talks to a
+								relational database.
+							</li>
+						</ul>
+						<p>
+							Neither of those topics is needed for the language tutorials. Tackle them when you have a
+							specific reason to.
+						</p>
+					</div>
+				</div>
+				<!-- Footer -->
+				<div class="page-footer">
+					<related-content></related-content>
+					<hr />
+					<lesson-checkbox lesson="Setup"></lesson-checkbox>
+					<lesson-nav></lesson-nav>
+					<back-to-top></back-to-top>
+					<copyright-notice></copyright-notice>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>

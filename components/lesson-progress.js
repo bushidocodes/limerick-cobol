@@ -11,6 +11,7 @@
 // the `lesson` attribute of <lesson-checkbox>.
 
 window.COBOL_LESSONS = Object.freeze([
+	{ id: "Setup", file: "Setup.html", title: "Setting up a COBOL development environment" },
 	{ id: "COBOLIntro", file: "COBOLIntro.html", title: "The structure of COBOL programs" },
 	{ id: "DataDeclaration", file: "DataDeclaration.html", title: "Declaring data in COBOL" },
 	{ id: "COBOLcommands", file: "COBOLcommands.html", title: "Basic Procedure Division commands" },
