@@ -6,6 +6,19 @@
 // paint and sets data-theme on <html>, preventing a flash of wrong theme.
 // This component handles the interactive UI only — the initial application is
 // already done by the time connectedCallback fires.
+function storageAvailable() {
+	try {
+		const k = "__lc_test__";
+		localStorage.setItem(k, k);
+		localStorage.removeItem(k);
+		return true;
+	} catch {
+		return false;
+	}
+}
+
+const HAS_STORAGE = storageAvailable();
+
 class ThemeToggle extends HTMLElement {
 	static #KEY = "lc-theme";
 	#abort;
@@ -20,7 +33,7 @@ class ThemeToggle extends HTMLElement {
 	}
 
 	#render() {
-		const current = localStorage.getItem(ThemeToggle.#KEY) || "auto";
+		const current = (HAS_STORAGE && localStorage.getItem(ThemeToggle.#KEY)) || "auto";
 		this.innerHTML = `
 			<div class="theme-toggle" role="group" aria-label="Color theme">
 				<button class="theme-toggle__btn${current === "light" ? " theme-toggle__btn--active" : ""}" data-theme-value="light" aria-pressed="${current === "light"}" type="button">Light</button><button class="theme-toggle__btn${current === "auto" ? " theme-toggle__btn--active" : ""}" data-theme-value="auto" aria-pressed="${current === "auto"}" type="button">Auto</button><button class="theme-toggle__btn${current === "dark" ? " theme-toggle__btn--active" : ""}" data-theme-value="dark" aria-pressed="${current === "dark"}" type="button">Dark</button>
@@ -35,10 +48,10 @@ class ThemeToggle extends HTMLElement {
 
 	#set(value) {
 		if (value === "auto") {
-			localStorage.removeItem(ThemeToggle.#KEY);
+			if (HAS_STORAGE) localStorage.removeItem(ThemeToggle.#KEY);
 			document.documentElement.removeAttribute("data-theme");
 		} else {
-			localStorage.setItem(ThemeToggle.#KEY, value);
+			if (HAS_STORAGE) localStorage.setItem(ThemeToggle.#KEY, value);
 			document.documentElement.setAttribute("data-theme", value);
 		}
 		this.#render();
