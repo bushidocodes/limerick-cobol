@@ -2,37 +2,14 @@
 /**
  * build-sitemap.js
  * Walks the repo, finds every *.html file, and emits sitemap.xml at the repo root.
- * Skips .playwright-mcp/, node_modules/, and .claude/ directories.
  */
 
 const fs = require("fs");
 const path = require("path");
+const { collectHtmlFiles, REPO_ROOT } = require("./collect-html");
 
 const BASE_URL = "https://bushidocodes.github.io/limerick-cobol/";
-const REPO_ROOT = path.resolve(__dirname, "..");
 const OUTPUT_PATH = path.join(REPO_ROOT, "sitemap.xml");
-
-const SKIP_DIRS = new Set([".playwright-mcp", "node_modules", ".claude", "scripts"]);
-const SKIP_FILES = new Set(["404.html"]);
-
-/**
- * Recursively collect all .html files under `dir`, skipping SKIP_DIRS.
- * @param {string} dir
- * @returns {string[]} absolute file paths
- */
-function collectHtmlFiles(dir) {
-	const results = [];
-	for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-		if (entry.isDirectory()) {
-			if (!SKIP_DIRS.has(entry.name)) {
-				results.push(...collectHtmlFiles(path.join(dir, entry.name)));
-			}
-		} else if (entry.isFile() && entry.name.endsWith(".html") && !SKIP_FILES.has(entry.name)) {
-			results.push(path.join(dir, entry.name));
-		}
-	}
-	return results;
-}
 
 /**
  * Get ISO-8601 last-modified date for a file via git log.
@@ -70,7 +47,7 @@ function toUrl(filePath) {
 }
 
 function buildSitemap() {
-	const htmlFiles = collectHtmlFiles(REPO_ROOT).sort();
+	const htmlFiles = collectHtmlFiles().sort();
 
 	const urls = htmlFiles.map((file) => {
 		const url = toUrl(file);
