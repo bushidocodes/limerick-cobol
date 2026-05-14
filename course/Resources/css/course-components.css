@@ -130,6 +130,19 @@ nav[aria-label="Breadcrumb"] {
 	font-size: 0.95em;
 }
 
+/* "Lesson X of N" indicator centred between Prev and Next. flex: 0 0 auto so
+   the surrounding space-between layout keeps the indicator centred when both
+   neighbour links are present; text-align stays inside in case the row wraps. */
+.lesson-nav-position {
+	font-size: 0.85em;
+	font-family: Arial, Helvetica, sans-serif;
+	color: var(--color-panel-text);
+	font-weight: bold;
+	letter-spacing: 0.04em;
+	text-align: center;
+	flex: 0 0 auto;
+}
+
 @media (prefers-color-scheme: dark) {
 	:root:not([data-theme="light"]) .lesson-nav {
 		border-top-color: var(--color-border-soft, #444);
@@ -138,6 +151,133 @@ nav[aria-label="Breadcrumb"] {
 
 :root[data-theme="dark"] .lesson-nav {
 	border-top-color: var(--color-border-soft, #444);
+}
+
+/* ============================================================================
+   Lesson-progress UI (components/lesson-checkbox.js, components/course-progress.js).
+   `lc-progress.<id>` flags in localStorage drive both the per-lesson checkbox
+   and the index-page summary + per-link checkmarks. Light DOM throughout, so
+   these rules apply directly without piercing selectors.
+   ============================================================================ */
+
+.lesson-checkbox {
+	margin: 1em 0;
+	padding: 0.75em 1em;
+	border: 1px solid var(--color-border-soft);
+	background-color: var(--color-panel-bg);
+	color: var(--color-panel-text);
+	border-radius: 3px;
+}
+
+.lesson-checkbox-label {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5em;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.lesson-checkbox-input {
+	width: 1.1em;
+	height: 1.1em;
+	cursor: pointer;
+	margin: 0;
+}
+
+.lesson-checkbox-meta {
+	margin-top: 0.4em;
+	font-size: 0.9em;
+}
+
+.lesson-checkbox-position {
+	font-weight: bold;
+}
+
+.lesson-checkbox-position:not(:empty) + .lesson-checkbox-count:not(:empty)::before {
+	content: " — ";
+}
+
+.lesson-checkbox-note {
+	margin: 0.4em 0 0;
+	font-size: 0.8em;
+	font-style: italic;
+	opacity: 0.8;
+}
+
+/* Index-page progress summary + reset button. Sized to match the .course-content
+   block above it so the strip lines up with the topic table. */
+.course-progress {
+	width: 605px;
+	max-width: 100%;
+	margin: 1em auto;
+	padding: 0.6em 1em;
+	border: 1px solid var(--color-border-soft);
+	background-color: var(--color-panel-bg);
+	color: var(--color-panel-text);
+	border-radius: 3px;
+	box-sizing: border-box;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.5em 1em;
+}
+
+.course-progress-summary {
+	font-weight: bold;
+	flex: 1 1 auto;
+}
+
+.course-progress-reset {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.8em;
+	font-weight: bold;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	padding: 0.35em 0.8em;
+	cursor: pointer;
+	background-color: var(--color-bg);
+	color: var(--color-text);
+	border: 1px solid var(--color-border-mute);
+	border-radius: 3px;
+	flex: 0 0 auto;
+}
+
+.course-progress-reset:hover,
+.course-progress-reset:focus-visible {
+	background-color: var(--color-cell-label-bg);
+}
+
+.course-progress-reset:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 1px;
+}
+
+.course-progress-note {
+	flex: 1 0 100%;
+	margin: 0;
+	font-size: 0.8em;
+	font-style: italic;
+	opacity: 0.8;
+}
+
+/* Green ✓ inserted by course-progress.js next to each completed lesson link
+   in the course-topics nav. Rendered as a sibling of the <a> (not a child) so
+   the visited-link colour does not bleed onto the checkmark. */
+.lesson-completed-mark {
+	display: inline-block;
+	margin-left: 0.4em;
+	font-weight: bold;
+	color: #2e7d32;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) .lesson-completed-mark {
+		color: #66bb6a;
+	}
+}
+
+:root[data-theme="dark"] .lesson-completed-mark {
+	color: #66bb6a;
 }
 
 /* ============================================================================
@@ -577,6 +717,47 @@ body pre[class*="language-"] {
 }
 
 /* ============================================================================
+   "Run on Compiler Explorer" link button (components/run-in-ce.js)
+   Visually mirrors .copy-button but rendered inline in document flow rather than
+   absolutely positioned over a code block.
+   ============================================================================ */
+
+.run-in-ce {
+	display: inline-block;
+	padding: 0.4em 0.85em;
+	font-size: 0.9em;
+	line-height: 1.4;
+	cursor: pointer;
+	border-radius: 3px;
+	background-color: #f0f0f0;
+	color: #333;
+	border: 1px solid #bbb;
+	text-decoration: none;
+	transition: opacity 0.15s;
+}
+
+.run-in-ce:hover,
+.run-in-ce:focus {
+	opacity: 0.85;
+	outline: 2px solid currentColor;
+	outline-offset: 1px;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) .run-in-ce {
+		background-color: #2e2e2e;
+		color: #ddd;
+		border-color: #555;
+	}
+}
+
+:root[data-theme="dark"] .run-in-ce {
+	background-color: #2e2e2e;
+	color: #ddd;
+	border-color: #555;
+}
+
+/* ============================================================================
    Theme-toggle button group (components/theme-toggle.js)
    Three side-by-side buttons: Light | Auto | Dark. The active button uses a
    filled style derived from the site's header palette so it's distinct without
@@ -1005,4 +1186,31 @@ copyright-notice .center {
 
 copyright-notice .left {
 	text-align: left;
+}
+
+/* ============================================================================
+   edit-on-github custom element (issue #402).
+   Subtle "Edit this page on GitHub" footer affordance. Sits below the
+   copyright-notice block on content pages; standalone on index pages.
+   Light DOM — link colours come from course.css.
+   ============================================================================ */
+
+edit-on-github {
+	display: block;
+}
+
+.edit-on-github {
+	text-align: center;
+	font-size: 0.85em;
+	margin: 1em 0 0.25em;
+	opacity: 0.75;
+}
+
+.edit-on-github a {
+	text-decoration: underline;
+}
+
+.edit-on-github:hover,
+.edit-on-github:focus-within {
+	opacity: 1;
 }
