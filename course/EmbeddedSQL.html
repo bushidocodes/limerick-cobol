@@ -1,0 +1,933 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+		<title>Embedded SQL in COBOL</title>
+		<meta
+			name="description"
+			content="Calling a relational database from COBOL with EXEC SQL: host variables, cursors, SQLCODE error handling, and DB2 BIND."
+		/>
+		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/EmbeddedSQL.html" />
+		<!-- Open Graph -->
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/EmbeddedSQL.html" />
+		<meta property="og:title" content="Embedded SQL in COBOL" />
+		<meta
+			property="og:description"
+			content="Calling a relational database from COBOL with EXEC SQL: host variables, cursors, SQLCODE error handling, and DB2 BIND."
+		/>
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content="Embedded SQL in COBOL" />
+		<meta
+			name="twitter:description"
+			content="Calling a relational database from COBOL with EXEC SQL: host variables, cursors, SQLCODE error handling, and DB2 BIND."
+		/>
+		<link href="Resources/css/course.css" rel="stylesheet" />
+		<link href="Resources/css/course-components.css" rel="stylesheet" />
+		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
+		<script src="Resources/vendor/prism/prism.min.js" defer></script>
+		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
+		<style type="text/css">
+			.section-grid > * {
+				padding: 4px;
+			}
+
+			@media (max-width: 600px) {
+				.page-wrapper {
+					border: none;
+				}
+			}
+		</style>
+		<script src="../components/theme-toggle.js" defer></script>
+		<script src="../components/page-hero.js" defer></script>
+		<script src="../components/back-to-top.js" defer></script>
+		<script src="../components/lesson-progress.js" defer></script>
+		<script src="../components/lesson-nav.js" defer></script>
+		<script src="../components/lesson-checkbox.js" defer></script>
+		<script src="../components/copyright-notice.js" defer></script>
+		<script src="../components/related-content.js" defer></script>
+		<script src="../components/copy-button.js" defer></script>
+	</head>
+
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="section-grid">
+					<!-- Header -->
+					<div class="section-full">
+						<page-hero title="Embedded SQL in COBOL"></page-hero>
+						<hr />
+						<ul class="toc">
+							<li>
+								<a href="#intro">Introduction</a><br />
+								Unit aims, objectives, prerequisites. Why every commercial COBOL programmer needs SQL.
+							</li>
+							<li>
+								<a href="#part1">What embedded SQL is</a><br />
+								The precompile step. Host variables and the
+								<code class="language-cobol">SQLCA</code> communication area.
+							</li>
+							<li>
+								<a href="#part2">EXEC SQL syntax</a><br />
+								<code>SELECT INTO</code>, <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>
+								&mdash; the singleton statements you will write the most.
+							</li>
+							<li>
+								<a href="#part3">Cursors</a><br />
+								<code>DECLARE</code>, <code>OPEN</code>, <code>FETCH</code>, <code>CLOSE</code> for
+								multi-row results. Comparing them to sequential file reading.
+							</li>
+							<li>
+								<a href="#part4">Error handling</a><br />
+								Checking <code>SQLCODE</code> after every call. The <code>WHENEVER</code> directive. The
+								codes you will see most often.
+							</li>
+							<li>
+								<a href="#part5">Indicator variables and nulls</a><br />
+								Working with nullable columns from a language that does not have nulls.
+							</li>
+							<li>
+								<a href="#part6">A complete example</a><br />
+								CREATE TABLE, INSERT rows, declare a cursor, loop through results &mdash; end-to-end.
+							</li>
+							<li>
+								<a href="#part7">DB2 specifics</a><br />
+								The BIND step, plans, packages. How the same syntax maps to Oracle Pro*COBOL.
+							</li>
+						</ul>
+						<hr />
+					</div>
+
+					<!-- Section: Introduction -->
+					<div class="section-header">
+						<h2 id="intro">Introduction</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Aims</h3>
+					</div>
+					<div>
+						<p>
+							The file-handling chapters of this course teach you to read and write records in sequential,
+							relative, and indexed files. That covers the disk-as-data-store role of COBOL, but it leaves
+							out the most common backing store in commercial COBOL: a <i>relational database</i>,
+							accessed via <b>embedded SQL</b>.
+						</p>
+						<p>
+							If you take a job maintaining COBOL at a bank, an insurance company, or a government agency,
+							you will see <code class="language-cobol">EXEC SQL ... END-EXEC</code> blocks on day one.
+							This unit gives you the model for reading and writing them.
+						</p>
+						<hr size="1" />
+					</div>
+					<div class="section-sidebar">
+						<h3>Objectives</h3>
+					</div>
+					<div>
+						<p>By the end of this unit you should &mdash;</p>
+						<ol>
+							<li>
+								Understand what the SQL precompiler does, and how host variables bridge COBOL data items
+								and SQL placeholders.<br /><br />
+							</li>
+							<li>
+								Be able to write singleton SQL statements (<code>SELECT INTO</code>,
+								<code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>) embedded in COBOL.<br /><br />
+							</li>
+							<li>Be able to write a cursor loop to iterate over a multi-row result set.<br /><br /></li>
+							<li>
+								Know to check <code>SQLCODE</code> after every call, and recognise the common return
+								codes.<br /><br />
+							</li>
+							<li>Understand the role of <code>BIND</code>, plans, and packages in a DB2 deployment.</li>
+						</ol>
+						<hr size="1" />
+					</div>
+					<div class="section-sidebar">
+						<h3>Prerequisites</h3>
+					</div>
+					<div>
+						<ul>
+							<li><a href="COBOLIntro.html">The structure of COBOL programs</a></li>
+							<li><a href="DataDeclaration.html">Declaring data in COBOL</a></li>
+							<li><a href="COBOLcommands.html">Basic Procedure Division commands</a></li>
+							<li><a href="Selection.html">Selection in COBOL</a></li>
+							<li><a href="Iteration.html">Iteration in COBOL</a></li>
+							<li>Basic familiarity with SQL (CREATE TABLE, SELECT, INSERT, UPDATE, DELETE).</li>
+						</ul>
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: What embedded SQL is -->
+					<div class="section-header">
+						<h2 id="part1">What embedded SQL is</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>The precompile step</h3>
+					</div>
+					<div>
+						<p>
+							COBOL has no native notion of SQL. The way SQL gets into a COBOL source file is by way of a
+							<b>precompiler</b> &mdash; a separate tool that runs <i>before</i> the COBOL compiler.
+						</p>
+						<p>
+							The precompiler reads your <code>.cob</code> source, finds every
+							<code class="language-cobol">EXEC SQL ... END-EXEC</code> block, and rewrites them into
+							plain COBOL <code class="language-cobol">CALL</code>s to the database client library. It
+							also adds the data declarations the database calls need (the <code>SQLCA</code>, indicator
+							variables, &hellip;). The resulting plain-COBOL file is what the COBOL compiler sees.
+						</p>
+						<p>So a typical DB2-on-z/OS compile flow has four steps, not two:</p>
+						<ol>
+							<li>
+								<code>DSNHPC</code> &mdash; the DB2 precompiler. Reads source, emits DBRM + processed
+								source.
+							</li>
+							<li>The COBOL compiler. Reads the processed source, emits an object module.</li>
+							<li>The linkage editor. Combines object module with DB2 stubs to produce a load module.</li>
+							<li>
+								<code>BIND</code> &mdash; binds the DBRM into a DB2 package or plan, choosing access
+								paths.
+							</li>
+						</ol>
+						<p>
+							Step 4 is the unusual one &mdash; the database holds a stored, optimised plan for your
+							program's SQL, and rebinding can change performance even when no source code changed.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Host variables</h3>
+					</div>
+					<div>
+						<p>
+							SQL needs to read values from and write values into your COBOL program. The bridge is a
+							<i>host variable</i> &mdash; an ordinary COBOL data item, declared inside a special
+							<b>BEGIN/END DECLARE SECTION</b> so the precompiler knows about it, and referenced inside
+							SQL with a leading colon.
+						</p>
+						<pre><code class="language-cobol">DATA DIVISION.
+WORKING-STORAGE SECTION.
+
+EXEC SQL BEGIN DECLARE SECTION END-EXEC.
+01  WS-EMP-ID            PIC S9(9) COMP.
+01  WS-EMP-NAME          PIC X(40).
+01  WS-EMP-SALARY        PIC S9(7)V99 COMP-3.
+EXEC SQL END DECLARE SECTION END-EXEC.</code></pre>
+						<p>And the SQL that uses them:</p>
+						<pre><code class="language-sql">EXEC SQL
+    SELECT EMPNAME, SALARY
+      INTO :WS-EMP-NAME, :WS-EMP-SALARY
+      FROM EMPLOYEE
+     WHERE EMPID = :WS-EMP-ID
+END-EXEC.</code></pre>
+						<p>
+							The colon prefix is what tells the precompiler "this is a COBOL data name, not an SQL
+							identifier." Without the colon, <code>EMPID = WS-EMP-ID</code> would try to match a column
+							called <code>WS-EMP-ID</code> &mdash; not what you want.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>The <code>SQLCA</code></h3>
+					</div>
+					<div>
+						<p>
+							Every SQL call returns its outcome through the <b>SQL Communication Area</b> &mdash; a
+							record with fields for the return code, the number of rows affected, and a textual error
+							message. The precompiler inserts the declaration for you:
+						</p>
+						<pre><code class="language-cobol">EXEC SQL INCLUDE SQLCA END-EXEC.</code></pre>
+						<p>The two fields you check after almost every call:</p>
+						<ul>
+							<li>
+								<code>SQLCODE</code> &mdash; the return code. <code>0</code> is success; positive values
+								are warnings; negative values are errors. <code>+100</code> means "no rows found / end
+								of cursor."
+							</li>
+							<li>
+								<code>SQLERRD(3)</code> &mdash; the number of rows affected by the previous
+								INSERT/UPDATE/DELETE.
+							</li>
+						</ul>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: EXEC SQL syntax -->
+					<div class="section-header">
+						<h2 id="part2">EXEC SQL syntax</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Singleton <code>SELECT INTO</code></h3>
+					</div>
+					<div>
+						<p>
+							When you know the query will return at most one row, use
+							<code class="language-sql">SELECT INTO</code> &mdash; the result columns go straight into
+							host variables, no cursor needed.
+						</p>
+						<pre><code class="language-cobol">EXEC SQL
+    SELECT EMPNAME, SALARY
+      INTO :WS-EMP-NAME, :WS-EMP-SALARY
+      FROM EMPLOYEE
+     WHERE EMPID = :WS-EMP-ID
+END-EXEC.
+
+IF SQLCODE = 0
+    DISPLAY "Employee: " WS-EMP-NAME " salary " WS-EMP-SALARY
+ELSE IF SQLCODE = 100
+    DISPLAY "No employee with that ID"
+ELSE
+    DISPLAY "DB error: " SQLCODE
+END-IF.</code></pre>
+						<p>
+							If the query returns more than one row, you get <code>SQLCODE = -811</code> &mdash; "row not
+							unique." If that's actually possible, you need a cursor (see Part 3).
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3><code>INSERT</code></h3>
+					</div>
+					<div>
+						<pre><code class="language-cobol">EXEC SQL
+    INSERT INTO EMPLOYEE (EMPID, EMPNAME, SALARY)
+    VALUES (:WS-EMP-ID, :WS-EMP-NAME, :WS-EMP-SALARY)
+END-EXEC.
+
+IF SQLCODE NOT = 0
+    DISPLAY "Insert failed: " SQLCODE
+END-IF.</code></pre>
+						<p>
+							<code>SQLERRD(3)</code> will be 1 on success. The two non-zero codes you will see most
+							often:
+						</p>
+						<ul>
+							<li><code>-803</code> &mdash; duplicate key.</li>
+							<li><code>-530</code> &mdash; foreign-key violation (parent row doesn't exist).</li>
+						</ul>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3><code>UPDATE</code> and <code>DELETE</code></h3>
+					</div>
+					<div>
+						<pre><code class="language-cobol">EXEC SQL
+    UPDATE EMPLOYEE
+       SET SALARY = SALARY * 1.05
+     WHERE DEPT = :WS-DEPT
+END-EXEC.
+
+DISPLAY SQLERRD(3) " rows updated."</code></pre>
+						<pre><code class="language-cobol">EXEC SQL
+    DELETE FROM EMPLOYEE
+     WHERE EMPID = :WS-EMP-ID
+END-EXEC.
+
+IF SQLERRD(3) = 0
+    DISPLAY "No matching row."
+END-IF.</code></pre>
+						<p>
+							For both verbs, <code>SQLCODE = 0</code> with <code>SQLERRD(3) = 0</code> means "the SQL ran
+							fine, but no rows matched the WHERE clause." That is usually a logic problem in the caller,
+							so check for it.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: Cursors -->
+					<div class="section-header">
+						<h2 id="part3">Cursors</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Why cursors</h3>
+						<aside>
+							<p class="center-block">
+								<span class="i-detail" aria-hidden="true">🔍</span>
+							</p>
+							<p>
+								Notice the shape: <code>OPEN</code> / <code>FETCH</code> in a loop until end-of-data /
+								<code>CLOSE</code>. It is the same pattern you already know from
+								<a href="SequentialFiles2.html">Processing Sequential files</a>
+								&mdash;
+								<code class="language-cobol">OPEN INPUT</code> /
+								<code class="language-cobol">READ ... AT END</code> /
+								<code class="language-cobol">CLOSE</code>.
+							</p>
+						</aside>
+					</div>
+					<div>
+						<p>
+							A cursor is the SQL equivalent of opening a sequential file: it represents a result set you
+							can iterate over a row at a time. The four steps are
+							<code>DECLARE</code>, <code>OPEN</code>, <code>FETCH</code>, <code>CLOSE</code>.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3><code>DECLARE</code></h3>
+					</div>
+					<div>
+						<p>
+							<code>DECLARE</code> names the cursor and associates it with a query. The query is not
+							executed yet.
+						</p>
+						<pre><code class="language-cobol">EXEC SQL
+    DECLARE EMP-CURSOR CURSOR FOR
+        SELECT EMPID, EMPNAME, SALARY
+          FROM EMPLOYEE
+         WHERE DEPT = :WS-DEPT
+         ORDER BY EMPID
+END-EXEC.</code></pre>
+						<p>
+							The <code>DECLARE</code> is processed by the precompiler &mdash; it does not generate a
+							runtime call. You can put it in <code>WORKING-STORAGE</code> alongside the host variable
+							declarations.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3><code>OPEN</code> / <code>FETCH</code> / <code>CLOSE</code></h3>
+					</div>
+					<div>
+						<pre><code class="language-cobol">PROCEDURE DIVISION.
+    MOVE "ENG" TO WS-DEPT
+
+    EXEC SQL OPEN EMP-CURSOR END-EXEC
+    IF SQLCODE NOT = 0
+        DISPLAY "OPEN failed: " SQLCODE
+        STOP RUN
+    END-IF
+
+    PERFORM UNTIL SQLCODE = 100
+        EXEC SQL
+            FETCH EMP-CURSOR
+             INTO :WS-EMP-ID, :WS-EMP-NAME, :WS-EMP-SALARY
+        END-EXEC
+
+        IF SQLCODE = 0
+            DISPLAY WS-EMP-ID " " WS-EMP-NAME " " WS-EMP-SALARY
+        END-IF
+    END-PERFORM
+
+    EXEC SQL CLOSE EMP-CURSOR END-EXEC
+
+    STOP RUN.</code></pre>
+						<p>
+							Inside the loop, <code>SQLCODE = 100</code> means "end of cursor" &mdash; the same role as
+							<code class="language-cobol">AT END</code> on a file read. After <code>CLOSE</code>, the
+							cursor can be reopened with a fresh <code>OPEN</code>; this is how shops re-run the same
+							query with different parameters.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Updatable cursors</h3>
+					</div>
+					<div>
+						<p>
+							A cursor declared <code>FOR UPDATE</code> can be used to update or delete the row currently
+							positioned on:
+						</p>
+						<pre><code class="language-cobol">EXEC SQL
+    DECLARE EMP-CURSOR CURSOR FOR
+        SELECT EMPID, SALARY
+          FROM EMPLOYEE
+         WHERE DEPT = :WS-DEPT
+         FOR UPDATE OF SALARY
+END-EXEC.
+
+* &gt; inside the FETCH loop:
+EXEC SQL
+    UPDATE EMPLOYEE
+       SET SALARY = SALARY * 1.05
+     WHERE CURRENT OF EMP-CURSOR
+END-EXEC.</code></pre>
+						<p>
+							This is more efficient than a separate <code>UPDATE ... WHERE EMPID = :WS-EMP-ID</code>
+							because the database already has the row latched.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: Error handling -->
+					<div class="section-header">
+						<h2 id="part4">Error handling</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Check <code>SQLCODE</code> after every call</h3>
+					</div>
+					<div>
+						<p>
+							This is the single most important habit. Every <code>EXEC SQL</code> sets
+							<code>SQLCODE</code>, and ignoring it lets a quiet failure cascade into a much louder one
+							several statements later.
+						</p>
+						<p>The classification:</p>
+						<ul>
+							<li><code>SQLCODE = 0</code> &mdash; success.</li>
+							<li>
+								<code>SQLCODE &gt; 0</code> &mdash; warning. <code>+100</code> means "no rows / end of
+								cursor."
+							</li>
+							<li><code>SQLCODE &lt; 0</code> &mdash; error. The operation did not complete.</li>
+						</ul>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>The codes you will hit most often</h3>
+					</div>
+					<div>
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Code</th>
+									<th>Meaning</th>
+									<th>Typical cause</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><code>0</code></td>
+									<td>Success</td>
+									<td>Operation completed normally.</td>
+								</tr>
+								<tr>
+									<td><code>+100</code></td>
+									<td>No rows / end of data</td>
+									<td>
+										<code>SELECT INTO</code> matched no rows; or <code>FETCH</code> walked off the
+										end of a cursor.
+									</td>
+								</tr>
+								<tr>
+									<td><code>-180</code> / <code>-181</code></td>
+									<td>Invalid datetime</td>
+									<td>
+										Host variable does not contain a valid date/time string for its target column.
+									</td>
+								</tr>
+								<tr>
+									<td><code>-530</code></td>
+									<td>Foreign key violation</td>
+									<td>
+										<code>INSERT</code> or <code>UPDATE</code> referenced a parent row that doesn't
+										exist.
+									</td>
+								</tr>
+								<tr>
+									<td><code>-803</code></td>
+									<td>Duplicate key</td>
+									<td>
+										<code>INSERT</code> or <code>UPDATE</code> would create a duplicate value in a
+										unique index.
+									</td>
+								</tr>
+								<tr>
+									<td><code>-805</code></td>
+									<td>Package not found</td>
+									<td>
+										Program was not bound to this database. Run <code>BIND PACKAGE</code> and try
+										again.
+									</td>
+								</tr>
+								<tr>
+									<td><code>-811</code></td>
+									<td>Row not unique</td>
+									<td>
+										<code>SELECT INTO</code> returned more than one row. Add a more specific
+										<code>WHERE</code>, or convert to a cursor.
+									</td>
+								</tr>
+								<tr>
+									<td><code>-911</code></td>
+									<td>Deadlock / timeout, rolled back</td>
+									<td>
+										Another transaction held the row. DB2 chose your transaction as the victim and
+										rolled it back. Retry.
+									</td>
+								</tr>
+								<tr>
+									<td><code>-913</code></td>
+									<td>Deadlock / timeout, not rolled back</td>
+									<td>
+										Same situation as -911 but only the current statement was rolled back. Retry.
+									</td>
+								</tr>
+								<tr>
+									<td><code>-922</code></td>
+									<td>Authorization failure</td>
+									<td>The runtime user does not have privilege for the operation.</td>
+								</tr>
+							</tbody>
+						</table>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>The <code>WHENEVER</code> directive</h3>
+					</div>
+					<div>
+						<p>
+							Writing <code>IF SQLCODE NOT = 0</code> after every call gets repetitive. The
+							<code>WHENEVER</code> directive lets you set a default branch for each condition class:
+						</p>
+						<pre><code class="language-cobol">EXEC SQL WHENEVER SQLERROR GOTO ERR-HANDLER END-EXEC.
+EXEC SQL WHENEVER NOT FOUND CONTINUE END-EXEC.
+EXEC SQL WHENEVER SQLWARNING CONTINUE END-EXEC.</code></pre>
+						<p>
+							<code>WHENEVER</code> is a precompiler directive, not a runtime statement &mdash; it
+							generates the equivalent <code>IF SQLCODE ... GO TO</code> after every subsequent
+							<code>EXEC SQL</code>. Best practice is to use it sparingly; explicit checks are easier to
+							trace.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: Indicator variables and nulls -->
+					<div class="section-header">
+						<h2 id="part5">Indicator variables and nulls</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>The problem</h3>
+					</div>
+					<div>
+						<p>
+							SQL has a notion of <code>NULL</code> &mdash; a tri-valued logic separate from the column's
+							declared type. COBOL has no such concept; a numeric field is always some specific number, a
+							character field is always some specific string of characters.
+						</p>
+						<p>
+							If a SQL column may be <code>NULL</code> and you fetch it directly into a COBOL host
+							variable, the database has no way to tell you "this row's value is NULL." The result is
+							<code>SQLCODE = -305</code> (null value without indicator) and the host variable is
+							untouched, which is a footgun &mdash; the COBOL variable now holds whatever it held before
+							the FETCH.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>The fix: an indicator variable</h3>
+					</div>
+					<div>
+						<p>
+							An <i>indicator variable</i> is a small COBOL field paired with each host variable. After
+							the FETCH the database fills it in with:
+						</p>
+						<ul>
+							<li><code>0</code> &mdash; the column value is in the host variable.</li>
+							<li><code>-1</code> &mdash; the column was NULL; the host variable was not touched.</li>
+							<li>
+								<code>-2</code> &mdash; the column was NULL because of a function failure (e.g. divide
+								by zero).
+							</li>
+							<li>positive &mdash; the value was truncated to fit (string columns).</li>
+						</ul>
+						<p>Declared in the same DECLARE SECTION, named with the colon-comma-colon syntax in SQL:</p>
+						<pre><code class="language-cobol">EXEC SQL BEGIN DECLARE SECTION END-EXEC.
+01  WS-EMP-COMMISSION    PIC S9(7)V99 COMP-3.
+01  WS-COMM-IND          PIC S9(4)    COMP.
+EXEC SQL END DECLARE SECTION END-EXEC.
+
+EXEC SQL
+    SELECT COMMISSION
+      INTO :WS-EMP-COMMISSION :WS-COMM-IND
+      FROM EMPLOYEE
+     WHERE EMPID = :WS-EMP-ID
+END-EXEC.
+
+IF WS-COMM-IND = -1
+    DISPLAY "Employee has no commission rate."
+ELSE
+    DISPLAY "Commission: " WS-EMP-COMMISSION
+END-IF.</code></pre>
+						<p>
+							For <code>INSERT</code> in the other direction, set the indicator to <code>-1</code> to
+							write a NULL.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: A complete example -->
+					<div class="section-header">
+						<h2 id="part6">A complete example</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>The table</h3>
+					</div>
+					<div>
+						<p>
+							Run this once in your database to set the stage. The syntax is plain SQL, no COBOL involved.
+						</p>
+						<pre><code class="language-sql">CREATE TABLE EMPLOYEE (
+    EMPID      INTEGER       NOT NULL PRIMARY KEY,
+    EMPNAME    VARCHAR(40)   NOT NULL,
+    DEPT       CHAR(3)       NOT NULL,
+    SALARY     DECIMAL(9,2)  NOT NULL,
+    COMMISSION DECIMAL(9,2)
+);
+
+INSERT INTO EMPLOYEE VALUES (1001, 'Alice Smith',   'ENG', 75000.00, 5000.00);
+INSERT INTO EMPLOYEE VALUES (1002, 'Bob Jones',     'ENG', 82000.00, NULL);
+INSERT INTO EMPLOYEE VALUES (1003, 'Carol Khan',    'FIN', 95000.00, 8000.00);
+INSERT INTO EMPLOYEE VALUES (1004, 'Dan Murphy',    'ENG', 65000.00, NULL);
+
+COMMIT;</code></pre>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>The program</h3>
+						<aside>
+							<p class="center-block">
+								<span class="i-detail" aria-hidden="true">🔍</span>
+							</p>
+							<p>
+								Reads every employee in the <code>ENG</code> department, applies a 5% raise to those
+								earning under 80,000, and writes a summary line for each. Demonstrates singleton
+								<code>SELECT</code>, cursor iteration, positioned <code>UPDATE</code>, and an indicator
+								variable on a nullable column.
+							</p>
+						</aside>
+					</div>
+					<div>
+						<pre><code class="language-cobol">       IDENTIFICATION DIVISION.
+       PROGRAM-ID. SALRAISE.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+
+       EXEC SQL INCLUDE SQLCA END-EXEC.
+
+       EXEC SQL BEGIN DECLARE SECTION END-EXEC.
+       01  WS-EMP-ID          PIC S9(9)   COMP.
+       01  WS-EMP-NAME        PIC X(40).
+       01  WS-DEPT            PIC X(3).
+       01  WS-SALARY          PIC S9(7)V99 COMP-3.
+       01  WS-COMMISSION      PIC S9(7)V99 COMP-3.
+       01  WS-COMM-IND        PIC S9(4)    COMP.
+       EXEC SQL END DECLARE SECTION END-EXEC.
+
+       EXEC SQL
+           DECLARE EMP-CURSOR CURSOR FOR
+               SELECT EMPID, EMPNAME, SALARY, COMMISSION
+                 FROM EMPLOYEE
+                WHERE DEPT = :WS-DEPT
+                ORDER BY EMPID
+                FOR UPDATE OF SALARY
+       END-EXEC.
+
+       PROCEDURE DIVISION.
+       BEGIN-RUN.
+           MOVE "ENG" TO WS-DEPT
+
+           EXEC SQL OPEN EMP-CURSOR END-EXEC
+           IF SQLCODE NOT = 0
+               DISPLAY "OPEN failed, SQLCODE=" SQLCODE
+               STOP RUN
+           END-IF
+
+           PERFORM UNTIL SQLCODE = 100
+               EXEC SQL
+                   FETCH EMP-CURSOR
+                    INTO :WS-EMP-ID, :WS-EMP-NAME,
+                         :WS-SALARY,
+                         :WS-COMMISSION :WS-COMM-IND
+               END-EXEC
+
+               EVALUATE TRUE
+                   WHEN SQLCODE = 100
+                       CONTINUE
+                   WHEN SQLCODE NOT = 0
+                       DISPLAY "FETCH error " SQLCODE
+                       EXIT PERFORM
+                   WHEN WS-SALARY &lt; 80000
+                       EXEC SQL
+                           UPDATE EMPLOYEE
+                              SET SALARY = SALARY * 1.05
+                            WHERE CURRENT OF EMP-CURSOR
+                       END-EXEC
+                       DISPLAY WS-EMP-NAME " raised."
+                   WHEN OTHER
+                       DISPLAY WS-EMP-NAME " held."
+               END-EVALUATE
+           END-PERFORM
+
+           EXEC SQL CLOSE EMP-CURSOR END-EXEC
+           EXEC SQL COMMIT END-EXEC
+           STOP RUN.</code></pre>
+						<p>The points to notice:</p>
+						<ul>
+							<li>
+								The cursor is declared in <code>WORKING-STORAGE</code> &mdash; that is the convention
+								even though it reads like a procedural statement.
+							</li>
+							<li>
+								<code>FOR UPDATE OF SALARY</code> lets us use
+								<code>WHERE CURRENT OF EMP-CURSOR</code> inside the loop &mdash; a positioned update.
+							</li>
+							<li>
+								The indicator variable on <code>COMMISSION</code> means we can fetch the column without
+								crashing on NULL rows.
+							</li>
+							<li>
+								The explicit <code>COMMIT</code> at the end persists the updates. Without it the
+								database may roll them back at program termination depending on the runtime.
+							</li>
+						</ul>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: DB2 specifics -->
+					<div class="section-header">
+						<h2 id="part7">DB2 specifics</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>The <code>BIND</code> step</h3>
+					</div>
+					<div>
+						<p>
+							The DB2 precompiler emits two things: a processed COBOL source file (input to the compiler)
+							and a <b>DBRM</b> (DataBase Request Module) containing the SQL text. After the program is
+							compiled and linked, you <code>BIND</code> the DBRM into the database.
+						</p>
+						<p>
+							<code>BIND</code> is where DB2 picks access paths: which index to use for each query, in
+							what order to join tables, when to materialise results. The optimiser does this work once,
+							at bind time, not every time the program runs. The output is a <i>package</i> stored in the
+							database.
+						</p>
+						<pre><code class="language-text">BIND PACKAGE(MYPKG) MEMBER(SALRAISE) ACTION(REPLACE) -
+     ISOLATION(CS) RELEASE(COMMIT) VALIDATE(BIND)</code></pre>
+						<p>When the program runs, it loads the package by name and uses the pre-built access paths.</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Plans and packages</h3>
+					</div>
+					<div>
+						<p>Two concepts you will see in DB2 documentation:</p>
+						<ul>
+							<li><b>Package</b> &mdash; the bound form of one program's SQL. One per program.</li>
+							<li>
+								<b>Plan</b> &mdash; a named collection of packages that a runtime connection uses.
+								Modern shops use trivial plans that contain a single package list.
+							</li>
+						</ul>
+						<p>The runtime invocation specifies a plan; the plan resolves package names to actual SQL.</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>What about Oracle?</h3>
+					</div>
+					<div>
+						<p>
+							Oracle's equivalent is <b>Pro*COBOL</b>. The <code>EXEC SQL ... END-EXEC</code>,
+							<code>DECLARE SECTION</code>, cursor lifecycle, and host-variable syntax are essentially
+							identical &mdash; this is what the ANSI standard for embedded SQL guarantees. The
+							differences are:
+						</p>
+						<ul>
+							<li>
+								<b>No BIND step.</b> Oracle parses the SQL at runtime (with a statement cache) instead
+								of binding it ahead of time.
+							</li>
+							<li>
+								<b>Slightly different error codes.</b> Oracle has its own <code>ORA-xxxxx</code> series.
+								The <i>shape</i> of the checks (<code>SQLCODE &lt; 0</code>) is the same.
+							</li>
+							<li>
+								<b><code>SQLCA</code> is essentially the same.</b> Use it the same way.
+							</li>
+						</ul>
+						<p>
+							If you can read DB2 embedded SQL you can read Pro*COBOL after about an hour of looking up
+							the deltas.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Where to go next</h3>
+					</div>
+					<div>
+						<p>
+							For DB2 depth, IBM's <i>DB2 for z/OS Application Programming and SQL Guide</i> is the
+							authoritative reference. For Oracle, the <i>Pro*COBOL Programmer's Guide</i> is the
+							equivalent.
+						</p>
+						<p>
+							The <a href="Intro2DirectAccess.html">direct access files</a> chapter introduces COBOL's
+							native equivalent (<a href="IndexedFiles.html">indexed files</a>) &mdash; useful context for
+							understanding what databases improve on.
+						</p>
+					</div>
+				</div>
+				<!-- Footer -->
+				<div class="page-footer">
+					<related-content></related-content>
+					<hr />
+					<lesson-checkbox lesson="EmbeddedSQL"></lesson-checkbox>
+					<lesson-nav></lesson-nav>
+					<back-to-top></back-to-top>
+					<copyright-notice></copyright-notice>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>
