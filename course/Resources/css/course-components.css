@@ -824,7 +824,11 @@ body pre[class*="language-"] {
 	color: #333;
 	border: 1px solid #bbb;
 	opacity: 0.8;
-	transition: opacity 0.15s;
+	transition:
+		opacity 0.15s,
+		background-color 0.15s,
+		color 0.15s,
+		border-color 0.15s;
 }
 
 .copy-button:hover,
@@ -834,11 +838,24 @@ body pre[class*="language-"] {
 	outline-offset: 1px;
 }
 
+.copy-button.is-success {
+	background-color: #e8f5e9;
+	color: #2e7d32;
+	border-color: #a5d6a7;
+	opacity: 1;
+}
+
 @media (prefers-color-scheme: dark) {
 	:root:not([data-theme="light"]) .copy-button {
 		background-color: #2e2e2e;
 		color: #ddd;
 		border-color: #555;
+	}
+
+	:root:not([data-theme="light"]) .copy-button.is-success {
+		background-color: #1b3a1e;
+		color: #66bb6a;
+		border-color: #388e3c;
 	}
 }
 
@@ -846,6 +863,12 @@ body pre[class*="language-"] {
 	background-color: #2e2e2e;
 	color: #ddd;
 	border-color: #555;
+}
+
+:root[data-theme="dark"] .copy-button.is-success {
+	background-color: #1b3a1e;
+	color: #66bb6a;
+	border-color: #388e3c;
 }
 
 /* ============================================================================
