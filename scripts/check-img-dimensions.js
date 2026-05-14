@@ -44,7 +44,7 @@ for (const dir of SCAN_DIRS) {
 }
 
 if (violations > 0) {
-	console.error(`\n${violations} <img> tag(s) missing width/height. Run: node scripts/add-img-dimensions.js`);
+	console.error(`\n${violations} <img> tag(s) missing width/height. Run: npm run fix:img-dims`);
 	process.exit(1);
 } else {
 	console.log("OK: all <img> tags have width and height.");
