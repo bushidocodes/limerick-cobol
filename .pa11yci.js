@@ -3,11 +3,7 @@ const { collectHtmlFiles, REPO_ROOT } = require("./scripts/collect-html");
 
 const BASE_URL = "http://localhost:8000/";
 
-const urls = collectHtmlFiles()
-	.map((file) => BASE_URL + path.relative(REPO_ROOT, file).replace(/\\/g, "/"))
-	.sort();
-
-module.exports = {
+const config = {
 	defaults: {
 		standard: "WCAG2AA",
 		timeout: 30000,
@@ -21,5 +17,15 @@ module.exports = {
 			args: ["--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu", "--no-zygote"],
 		},
 	},
-	urls,
 };
+
+// pa11y-ci concatenates CLI URLs onto config urls. For partial PR scans we
+// want only the CLI URLs, so the workflow sets PA11Y_PARTIAL=1 to skip this
+// list. Without that, every "partial" scan would silently run the full suite.
+if (!process.env.PA11Y_PARTIAL) {
+	config.urls = collectHtmlFiles()
+		.map((file) => BASE_URL + path.relative(REPO_ROOT, file).replace(/\\/g, "/"))
+		.sort();
+}
+
+module.exports = config;
