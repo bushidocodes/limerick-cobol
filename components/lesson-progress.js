@@ -40,6 +40,7 @@ window.COBOL_LESSONS = Object.freeze([
 	{ id: "RefMod", file: "RefMod.html", title: "Reference modification and Intrinsic Functions" },
 	{ id: "ReportWriter", file: "ReportWriter.html", title: "Report Writer by example" },
 	{ id: "ReportWriterSS", file: "ReportWriterSS.html", title: "Report Writer syntax and semantics" },
+	{ id: "CICS", file: "CICS.html", title: "An introduction to CICS programming in COBOL" },
 ]);
 
 (function () {
