@@ -115,7 +115,7 @@
 	</head>
 	<body>
 		<div id="stage" role="button" tabindex="0" aria-label="Click to advance to next step">
-			<img id="frame" alt="" />
+			<img id="frame" alt="" width="1000" height="640" />
 			<div id="status" role="status">Loading…</div>
 		</div>
 		<div id="controls">
@@ -222,6 +222,8 @@
 					.then((m) => {
 						if (!m.frames || !m.frames.length) throw new Error("Empty frame list");
 						manifest = m;
+						if (manifest.width) frame.width = manifest.width;
+						if (manifest.height) frame.height = manifest.height;
 						currentStep = Math.min(currentStep, manifest.frames.length);
 						// Preload the first few frames
 						for (let i = 0; i < Math.min(5, manifest.frames.length); i++) preload(i);
