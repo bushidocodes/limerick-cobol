@@ -1,0 +1,715 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+		<title>Modern COBOL: 2002, 2014, and 2023 features</title>
+		<meta
+			name="description"
+			content="Headline additions since COBOL 85: free-format source, user-defined functions, JSON and XML parse/generate, dynamic-length items, expanded intrinsics."
+		/>
+		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/ModernCOBOL.html" />
+		<!-- Open Graph -->
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/ModernCOBOL.html" />
+		<meta property="og:title" content="Modern COBOL: 2002, 2014, and 2023 features" />
+		<meta
+			property="og:description"
+			content="Headline additions since COBOL 85: free-format source, user-defined functions, JSON and XML parse/generate, dynamic-length items, expanded intrinsics."
+		/>
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content="Modern COBOL: 2002, 2014, and 2023 features" />
+		<meta
+			name="twitter:description"
+			content="Headline additions since COBOL 85: free-format source, user-defined functions, JSON and XML parse/generate, dynamic-length items, expanded intrinsics."
+		/>
+		<link href="Resources/css/course.css" rel="stylesheet" />
+		<link href="Resources/css/course-components.css" rel="stylesheet" />
+		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
+		<script src="Resources/vendor/prism/prism.min.js" defer></script>
+		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
+		<style type="text/css">
+			.section-grid > * {
+				padding: 4px;
+			}
+
+			@media (max-width: 600px) {
+				.page-wrapper {
+					border: none;
+				}
+			}
+		</style>
+		<script src="../components/theme-toggle.js" defer></script>
+		<script src="../components/page-hero.js" defer></script>
+		<script src="../components/back-to-top.js" defer></script>
+		<script src="../components/lesson-progress.js" defer></script>
+		<script src="../components/lesson-nav.js" defer></script>
+		<script src="../components/lesson-checkbox.js" defer></script>
+		<script src="../components/copyright-notice.js" defer></script>
+		<script src="../components/related-content.js" defer></script>
+		<script src="../components/copy-button.js" defer></script>
+	</head>
+
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="section-grid">
+					<!-- Header -->
+					<div class="section-full">
+						<page-hero title="Modern COBOL: 2002, 2014, and 2023 features"></page-hero>
+						<hr />
+						<ul class="toc">
+							<li>
+								<a href="#intro">Introduction</a><br />
+								Unit aims, objectives, prerequisites. Why this chapter exists.
+							</li>
+							<li>
+								<a href="#part1">Free-format source</a><br />
+								No more columns 7&ndash;72. Side-by-side fixed-vs-free example.
+							</li>
+							<li>
+								<a href="#part2">User-defined functions</a><br />
+								<code class="language-cobol">FUNCTION-ID</code> /
+								<code class="language-cobol">END-FUNCTION</code> &mdash; functions as a first-class
+								alternative to subprograms.
+							</li>
+							<li>
+								<a href="#part3">JSON PARSE and JSON GENERATE</a><br />
+								Reading and writing JSON without an external library.
+							</li>
+							<li>
+								<a href="#part4">XML PARSE and XML GENERATE</a><br />
+								The XML equivalent of the JSON verbs.
+							</li>
+							<li>
+								<a href="#part5">DYNAMIC LENGTH items</a><br />
+								Variable-length strings without
+								<code class="language-cobol">OCCURS DEPENDING ON</code> gymnastics.
+							</li>
+							<li>
+								<a href="#part6">New intrinsic functions</a><br />
+								<code class="language-cobol">TRIM</code>,
+								<code class="language-cobol">SUBSTITUTE</code>,
+								<code class="language-cobol">CONVERT</code>, and other additions since 85.
+							</li>
+							<li>
+								<a href="#part7">Compiler support matrix</a><br />
+								Which compiler implements which standard. Where the surprises are.
+							</li>
+						</ul>
+						<hr />
+					</div>
+
+					<!-- Introduction -->
+					<div class="section-header">
+						<h2 id="intro">Introduction</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Aims</h3>
+					</div>
+					<div>
+						<p>
+							The earlier chapters of this course target the 1985 ANSI standard. Three standards revisions
+							later, the language has acquired features that real production code now uses: free-format
+							source, intrinsic JSON and XML parsing, user-defined functions, variable-length strings
+							without ceremony, and a considerably enlarged intrinsic function library.
+						</p>
+						<p>
+							A learner who reads only the existing chapters will be surprised by modern code at any
+							21st-century shop. This unit closes that gap.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Objectives</h3>
+					</div>
+					<div>
+						<p>By the end of this unit you should &mdash;</p>
+						<ol>
+							<li>Recognise free-format source and know when to enable it.<br /><br /></li>
+							<li>
+								Be able to declare and call a user-defined function with
+								<code class="language-cobol">FUNCTION-ID</code>.<br /><br />
+							</li>
+							<li>
+								Be able to parse a JSON document into a COBOL record and generate JSON from a record,
+								and do the same for XML.<br /><br />
+							</li>
+							<li>
+								Understand the role of <code class="language-cobol">DYNAMIC LENGTH</code> items and the
+								problem they replace.<br /><br />
+							</li>
+							<li>
+								Know which compiler supports which standard so that you can size feature requests before
+								writing them.
+							</li>
+						</ol>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Prerequisites</h3>
+					</div>
+					<div>
+						<ul>
+							<li><a href="COBOLIntro.html">The structure of COBOL programs</a></li>
+							<li><a href="DataDeclaration.html">Declaring data in COBOL</a></li>
+							<li><a href="Subprograms.html">Contained and external sub-programs</a></li>
+							<li><a href="RefMod.html">Reference modification and Intrinsic Functions</a></li>
+						</ul>
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: Free-format source -->
+					<div class="section-header">
+						<h2 id="part1">Free-format source</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Why this exists</h3>
+					</div>
+					<div>
+						<p>
+							Fixed-format COBOL reserves columns 1&ndash;6 for an optional sequence number, column 7 for
+							a status indicator (<code>*</code> comment, <code>-</code> continuation), columns 8&ndash;11
+							for the "A area" (division/section/paragraph names, level 01s, FDs), and columns 12&ndash;72
+							for the "B area" (everything else). Anything past column 72 is silently ignored.
+						</p>
+						<p>
+							This made sense in 1959 when source code was punched on cards. In 2026 it is a constant
+							footgun: code that looks fine in your editor doesn't compile because a tab landed in the
+							wrong column.
+						</p>
+						<p>
+							COBOL 2002 added <b>free-format source</b>: the column rules are gone. Code starts wherever
+							you like; comments start with <code>*&gt;</code> in place of column-7 <code>*</code>; lines
+							can be any length.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Side by side</h3>
+					</div>
+					<div>
+						<p>The same program in both formats:</p>
+						<pre><code class="language-cobol">      *&gt; ----- Fixed format -----
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. Greet.
+
+       PROCEDURE DIVISION.
+           DISPLAY "Hello, World!"
+           STOP RUN.</code></pre>
+						<pre><code class="language-cobol">&gt;&gt;SOURCE FORMAT IS FREE
+*&gt; ----- Free format -----
+IDENTIFICATION DIVISION.
+PROGRAM-ID. Greet.
+
+PROCEDURE DIVISION.
+    DISPLAY "Hello, World!"
+    STOP RUN.</code></pre>
+						<p>
+							<code class="language-cobol">&gt;&gt;SOURCE FORMAT IS FREE</code> is a compiler directive
+							that flips the parser into free-format mode. Many compilers also have a command-line switch
+							that does the same thing globally (for GnuCOBOL, <code>cobc -free</code>; for IBM Enterprise
+							COBOL, <code>SOURCE(FREE)</code>).
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: User-defined functions -->
+					<div class="section-header">
+						<h2 id="part2">User-defined functions</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Declaration and call</h3>
+					</div>
+					<div>
+						<p>
+							COBOL 2002 added <code class="language-cobol">FUNCTION-ID</code>: a separately compilable
+							function that takes typed parameters and returns a value. Functions complement (but do not
+							replace) <a href="Subprograms.html">subprograms</a>.
+						</p>
+						<pre><code class="language-cobol">&gt;&gt;SOURCE FORMAT IS FREE
+IDENTIFICATION DIVISION.
+FUNCTION-ID. Celsius-To-Fahrenheit.
+
+DATA DIVISION.
+LINKAGE SECTION.
+01  LK-Celsius           PIC S999V99 COMP-3.
+01  LK-Fahrenheit        PIC S999V99 COMP-3.
+
+PROCEDURE DIVISION USING LK-Celsius RETURNING LK-Fahrenheit.
+    COMPUTE LK-Fahrenheit = LK-Celsius * 9 / 5 + 32.
+
+END FUNCTION Celsius-To-Fahrenheit.</code></pre>
+						<p>Caller side:</p>
+						<pre><code class="language-cobol">&gt;&gt;SOURCE FORMAT IS FREE
+IDENTIFICATION DIVISION.
+PROGRAM-ID. ConvertTemp.
+
+ENVIRONMENT DIVISION.
+CONFIGURATION SECTION.
+REPOSITORY.
+    FUNCTION Celsius-To-Fahrenheit.
+
+DATA DIVISION.
+WORKING-STORAGE SECTION.
+01  WS-Body-Temp         PIC S999V99 COMP-3 VALUE 37.0.
+01  WS-Body-Temp-F       PIC S999V99 COMP-3.
+
+PROCEDURE DIVISION.
+    MOVE FUNCTION Celsius-To-Fahrenheit(WS-Body-Temp) TO WS-Body-Temp-F
+    DISPLAY "Body temperature in F: " WS-Body-Temp-F
+    STOP RUN.</code></pre>
+						<p>The points to notice:</p>
+						<ul>
+							<li>
+								The <code class="language-cobol">REPOSITORY</code> paragraph names every user-defined
+								function the program will call. This is COBOL's nearest equivalent to an
+								<code>import</code> statement.
+							</li>
+							<li>
+								<code class="language-cobol">FUNCTION Celsius-To-Fahrenheit(WS-Body-Temp)</code> calls
+								the function inline as an expression &mdash; no separate
+								<code class="language-cobol">CALL</code> statement needed.
+							</li>
+							<li>
+								Functions get type-checked. Mismatched argument types produce compile-time errors,
+								unlike <code class="language-cobol">CALL</code>'s by-reference passing where you might
+								not notice until runtime.
+							</li>
+						</ul>
+						<p>
+							For a single arithmetic helper, a user-defined function is cleaner than a subprogram. For
+							something that does I/O or holds state across calls, a subprogram is still the right shape.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: JSON PARSE / GENERATE -->
+					<div class="section-header">
+						<h2 id="part3">JSON PARSE and JSON GENERATE</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3><code>JSON PARSE</code></h3>
+					</div>
+					<div>
+						<p>
+							COBOL 2023 (and as a vendor extension in IBM Enterprise COBOL 6.x since the mid-2010s) lets
+							you parse JSON directly into a COBOL group item without an external library. Names in the
+							JSON map to field names in the record.
+						</p>
+						<pre><code class="language-cobol">&gt;&gt;SOURCE FORMAT IS FREE
+WORKING-STORAGE SECTION.
+01  WS-Json-Doc    PIC X(500).
+01  WS-Order.
+    05  OrderId        PIC X(10).
+    05  CustomerName   PIC X(40).
+    05  Total          PIC S9(7)V99 COMP-3.
+
+PROCEDURE DIVISION.
+    MOVE '{"OrderId":"PO12345","CustomerName":"Alice","Total":99.50}' TO WS-Json-Doc
+
+    JSON PARSE WS-Json-Doc INTO WS-Order
+        ON EXCEPTION
+            DISPLAY "JSON parse failed"
+        NOT ON EXCEPTION
+            DISPLAY "Got order " OrderId " from " CustomerName
+                    " total " Total
+    END-JSON.</code></pre>
+						<p>
+							The matching is by name. <code>OrderId</code> in the JSON binds to <code>OrderId</code> in
+							<code>WS-Order</code>; case-insensitive by default. To override the mapping (e.g. for JSON
+							names that aren't valid COBOL identifiers), use <code>NAME OF</code> phrase:
+						</p>
+						<pre><code class="language-cobol">JSON PARSE WS-Json-Doc INTO WS-Order
+    NAME OF OrderId IS "order-id"
+            CustomerName IS "customer_name"
+END-JSON.</code></pre>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3><code>JSON GENERATE</code></h3>
+					</div>
+					<div>
+						<p>The inverse direction: emit a JSON document from a COBOL group item.</p>
+						<pre><code class="language-cobol">JSON GENERATE WS-Json-Doc FROM WS-Order
+    COUNT IN WS-Json-Length
+    ON EXCEPTION
+        DISPLAY "JSON generate failed"
+END-JSON.
+
+DISPLAY WS-Json-Doc(1:WS-Json-Length).</code></pre>
+						<p>
+							<code>COUNT IN</code> stores the byte count of the generated document, since the receiving
+							field is fixed-size and the actual content is shorter.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: XML PARSE / GENERATE -->
+					<div class="section-header">
+						<h2 id="part4">XML PARSE and XML GENERATE</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>The XML equivalents</h3>
+					</div>
+					<div>
+						<p>
+							Symmetric with the JSON verbs. <code class="language-cobol">XML PARSE</code> was added in
+							COBOL 2002 (well before JSON); <code class="language-cobol">XML GENERATE</code> came in
+							2014.
+						</p>
+						<pre><code class="language-cobol">&gt;&gt;SOURCE FORMAT IS FREE
+WORKING-STORAGE SECTION.
+01  WS-Xml-Doc     PIC X(500).
+01  WS-Order.
+    05  OrderId        PIC X(10).
+    05  CustomerName   PIC X(40).
+    05  Total          PIC S9(7)V99 COMP-3.
+
+PROCEDURE DIVISION.
+    XML GENERATE WS-Xml-Doc FROM WS-Order
+        COUNT IN WS-Xml-Length
+        XML-DECLARATION
+        TYPE OF OrderId IS ATTRIBUTE
+    END-XML.
+
+    DISPLAY WS-Xml-Doc(1:WS-Xml-Length).
+    *&gt; Produces:
+    *&gt; &lt;?xml version="1.0"?&gt;
+    *&gt; &lt;WS-Order OrderId="PO12345"&gt;
+    *&gt;   &lt;CustomerName&gt;Alice&lt;/CustomerName&gt;
+    *&gt;   &lt;Total&gt;99.50&lt;/Total&gt;
+    *&gt; &lt;/WS-Order&gt;</code></pre>
+						<p>
+							<code class="language-cobol">XML PARSE</code> is event-driven rather than tree-based: you
+							declare a handler paragraph that the runtime calls back for each open tag, close tag, and
+							character data. That's more verbose than the JSON equivalent &mdash; if you have a choice,
+							JSON is friendlier in modern COBOL.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: DYNAMIC LENGTH -->
+					<div class="section-header">
+						<h2 id="part5">DYNAMIC LENGTH items</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>The old way</h3>
+					</div>
+					<div>
+						<p>
+							In COBOL 85, variable-length data required
+							<code class="language-cobol">OCCURS DEPENDING ON</code>:
+						</p>
+						<pre><code class="language-cobol">01  WS-Name.
+    05  WS-Name-Len     PIC S9(4) COMP.
+    05  WS-Name-Chars   PIC X OCCURS 0 TO 200 TIMES
+                                     DEPENDING ON WS-Name-Len.</code></pre>
+						<p>
+							This works but is awkward: every reference is via the subordinate fields, the length lives
+							next to the data, and string operations have to be coded manually around the
+							<code>OCCURS</code>.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>The new way</h3>
+					</div>
+					<div>
+						<p>
+							COBOL 2014 added <code class="language-cobol">DYNAMIC LENGTH</code>. The item behaves like a
+							normal alphanumeric field but its length grows and shrinks as needed:
+						</p>
+						<pre><code class="language-cobol">01  WS-Name        PIC X DYNAMIC LENGTH.
+01  WS-Greeting    PIC X DYNAMIC LENGTH.
+
+MOVE "Alice"     TO WS-Name
+MOVE "Hello, "   TO WS-Greeting
+STRING WS-Greeting WS-Name "!" INTO WS-Greeting
+DISPLAY WS-Greeting    *&gt; "Hello, Alice!"</code></pre>
+						<p>
+							The runtime manages the underlying storage;
+							<code class="language-cobol">FUNCTION LENGTH</code> returns the current length;
+							<code class="language-cobol">MOVE</code> automatically grows or shrinks the receiving item.
+							Use it for any field whose length isn't known at compile time &mdash; user-entered names,
+							parsed tokens, JSON values, &hellip;.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: New intrinsic functions -->
+					<div class="section-header">
+						<h2 id="part6">New intrinsic functions</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>The headlines</h3>
+					</div>
+					<div>
+						<p>
+							The 85 standard had a small intrinsic library. The 2002 / 2014 / 2023 revisions added a
+							large number of functions that are now in every modern compiler. The ones you will reach for
+							most often:
+						</p>
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Function</th>
+									<th>What it does</th>
+									<th>Standard</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><code>TRIM</code></td>
+									<td>Strips leading and/or trailing spaces.</td>
+									<td>2002</td>
+								</tr>
+								<tr>
+									<td><code>SUBSTITUTE</code></td>
+									<td>String find-and-replace.</td>
+									<td>2002</td>
+								</tr>
+								<tr>
+									<td><code>SUBSTITUTE-CASE</code></td>
+									<td>Case-insensitive find-and-replace.</td>
+									<td>2002</td>
+								</tr>
+								<tr>
+									<td><code>CONVERT</code></td>
+									<td>Value conversion between numeric and string forms.</td>
+									<td>2023</td>
+								</tr>
+								<tr>
+									<td><code>STANDARD-COMPARE</code></td>
+									<td>Locale-aware string comparison.</td>
+									<td>2002</td>
+								</tr>
+								<tr>
+									<td><code>BIT-OF</code> / <code>BIT-TO-CHAR</code></td>
+									<td>Bit-string manipulation.</td>
+									<td>2014</td>
+								</tr>
+								<tr>
+									<td><code>FORMATTED-CURRENT-DATE</code></td>
+									<td>
+										ISO 8601 timestamp without manually concatenating
+										<code class="language-cobol">CURRENT-DATE</code> components.
+									</td>
+									<td>2014</td>
+								</tr>
+								<tr>
+									<td><code>FORMATTED-DATE</code> / <code>FORMATTED-TIME</code></td>
+									<td>Parse / format date and time strings.</td>
+									<td>2014</td>
+								</tr>
+								<tr>
+									<td><code>HEX-OF</code> / <code>HEX-TO-CHAR</code></td>
+									<td>Hex encoding helpers.</td>
+									<td>2014</td>
+								</tr>
+								<tr>
+									<td><code>LOCALE-COMPARE</code></td>
+									<td>Comparison under a named locale.</td>
+									<td>2002</td>
+								</tr>
+								<tr>
+									<td><code>LOWER-CASE</code> / <code>UPPER-CASE</code></td>
+									<td>Case folding. (Existed in 85 but expanded for national/Unicode in 2002.)</td>
+									<td>85 / 2002</td>
+								</tr>
+							</tbody>
+						</table>
+						<p>A short example combining a few of them:</p>
+						<pre><code class="language-cobol">&gt;&gt;SOURCE FORMAT IS FREE
+WORKING-STORAGE SECTION.
+01  WS-In         PIC X(60) VALUE "  Hello, world!  ".
+01  WS-Out        PIC X(60).
+
+PROCEDURE DIVISION.
+    MOVE FUNCTION SUBSTITUTE-CASE(
+             FUNCTION TRIM(WS-In),
+             "WORLD", "COBOL")
+         TO WS-Out
+    DISPLAY WS-Out   *&gt; "Hello, COBOL!"
+    STOP RUN.</code></pre>
+						<p>
+							Older code achieves the same with <code class="language-cobol">INSPECT</code> and reference
+							modification (see <a href="Inspect.html">Inspect</a> and
+							<a href="RefMod.html">Reference modification</a>). The function-style is shorter, more
+							readable, and easier to chain.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: Compiler support matrix -->
+					<div class="section-header">
+						<h2 id="part7">Compiler support matrix</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Which compiler does what</h3>
+					</div>
+					<div>
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Feature</th>
+									<th>IBM Enterprise<br />COBOL 6.x</th>
+									<th>OpenText Visual<br />COBOL</th>
+									<th>GnuCOBOL 3.x</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Free-format source</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+								</tr>
+								<tr>
+									<td>User-defined functions</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+								</tr>
+								<tr>
+									<td><code>JSON PARSE</code></td>
+									<td>Yes (since 6.2)</td>
+									<td>Yes</td>
+									<td>Partial</td>
+								</tr>
+								<tr>
+									<td><code>JSON GENERATE</code></td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Partial</td>
+								</tr>
+								<tr>
+									<td><code>XML PARSE</code></td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Partial</td>
+								</tr>
+								<tr>
+									<td><code>XML GENERATE</code></td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>No</td>
+								</tr>
+								<tr>
+									<td><code>DYNAMIC LENGTH</code></td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+								</tr>
+								<tr>
+									<td>2002 intrinsic functions</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+								</tr>
+								<tr>
+									<td>2014 intrinsic functions</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Mostly</td>
+								</tr>
+								<tr>
+									<td>2023 intrinsic functions</td>
+									<td>Partial</td>
+									<td>Yes</td>
+									<td>No</td>
+								</tr>
+								<tr>
+									<td>Object-oriented dialect</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Partial</td>
+								</tr>
+							</tbody>
+						</table>
+						<p>
+							If you are writing portable code across all three, "free format + 2002 intrinsics + UDF +
+							DYNAMIC LENGTH" is the safe baseline. Anything from 2014 onward needs to be checked against
+							your target compiler.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Where to go next</h3>
+					</div>
+					<div>
+						<p>
+							Each major compiler publishes a "What's New" appendix describing exactly which features they
+							implement and at what version. IBM Enterprise COBOL's <i>Language Reference</i>, OpenText's
+							<i>Visual COBOL Reference</i>, and the GnuCOBOL release notes are the authoritative sources.
+						</p>
+						<p>
+							To see the 85-era equivalents these features replace, the
+							<a href="Inspect.html">Inspect</a> and <a href="RefMod.html">Reference modification</a>
+							chapters cover the older idioms.
+						</p>
+					</div>
+				</div>
+				<!-- Footer -->
+				<div class="page-footer">
+					<related-content></related-content>
+					<hr />
+					<lesson-checkbox lesson="ModernCOBOL"></lesson-checkbox>
+					<lesson-nav></lesson-nav>
+					<back-to-top></back-to-top>
+					<copyright-notice></copyright-notice>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>
