@@ -666,6 +666,138 @@ details[open].saq-reveal summary::before {
 	border-left: 1px solid;
 }
 
+/* index.html */
+
+/* Header: flexbox replaces the 3-column layout table */
+.course-header {
+	display: flex;
+	align-items: flex-start;
+	width: 605px;
+	max-width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.course-header-title {
+	flex: 1 1 0;
+	min-width: 0;
+}
+
+.course-header-legend {
+	flex: 0 0 207px;
+}
+
+.course-hr {
+	width: 605px;
+	max-width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Main content box replaces outer border layout table */
+.course-content {
+	width: 605px;
+	max-width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid;
+	padding: 1px;
+	box-sizing: border-box;
+}
+
+/* CSS grid replaces the inner 2-column topic layout table */
+.course-topics {
+	display: grid;
+	grid-template-columns: 225px 1fr;
+	width: 100%;
+}
+
+.topic-label {
+	background-color: var(--color-panel-bg);
+	padding: 4px;
+}
+
+.topic-links {
+	background-color: var(--color-bg);
+	display: flex;
+	flex-direction: column;
+}
+
+/* Flexbox rows replace each icon+link layout table */
+.course-link {
+	display: flex;
+	align-items: center;
+}
+
+.course-link-icon {
+	flex: 0 0 auto;
+}
+
+/* Maroon divider spanning both grid columns */
+.topic-divider {
+	grid-column: 1 / -1;
+	height: 1px;
+	background-color: #990033;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) .topic-divider {
+		background-color: #b3334d;
+	}
+}
+
+:root[data-theme="dark"] .topic-divider {
+	background-color: #b3334d;
+}
+
+/* Decorative disc bullet — replaces BallRedG.gif (13×13 px) */
+.ball-red {
+	display: inline-block;
+	width: 13px;
+	height: 13px;
+	border-radius: 50%;
+	background-color: #cc3300;
+	vertical-align: middle;
+	margin-left: 4px;
+	margin-right: 4px;
+}
+
+/* Course content link icons — replace i-Tut.gif, i-exercise.gif, i-SAQ.gif */
+.icon-tut,
+.icon-exercise,
+.icon-saq,
+.icon-ref {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 22px;
+	height: 21px;
+	border-radius: 3px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #fff;
+	vertical-align: middle;
+	flex-shrink: 0;
+	margin: 4px 5px;
+}
+
+.icon-tut {
+	background-color: #1565c0;
+}
+
+.icon-exercise {
+	background-color: #2e7d32;
+}
+
+.icon-saq {
+	background-color: #c84a00;
+}
+
+.icon-ref {
+	background-color: #6a1b9a;
+}
+
 /* ============================================================================
    Copy-to-clipboard button (components/copy-button.js)
    The host <pre> gets position:relative so the button can sit top-right.
@@ -905,6 +1037,26 @@ body pre[class*="language-"] {
 	.code-run-pair .run-part {
 		border-left: none;
 		border-top: 1px solid;
+	}
+
+	/* index.html */
+	.course-header {
+		flex-wrap: wrap;
+	}
+
+	.course-header-title {
+		flex: 1 1 auto;
+	}
+
+	/* Legend wraps to its own row on narrow screens */
+	.course-header-legend {
+		flex: 0 0 100%;
+		margin-top: 8px;
+	}
+
+	/* Topic sections stack vertically on mobile */
+	.course-topics {
+		grid-template-columns: 1fr;
 	}
 }
 
