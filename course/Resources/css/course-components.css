@@ -1068,6 +1068,142 @@ copyright-notice .left {
 	text-align: left;
 }
 
+/* Visually hide an element while keeping it readable by screen readers.
+   Used by site-search for its aria-live status announcer. */
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+/* Site search — header search input + ranked dropdown rendered by
+   site-search.js. The container is positioned relative so the absolutely-
+   positioned dropdown anchors to the input below it. Sizing keeps the field
+   compact inside .hero (≤ 360px) but stretches to full width on mobile. */
+.site-search {
+	position: relative;
+	display: inline-block;
+	margin-top: 0.6em;
+	width: min(360px, 100%);
+	text-align: left;
+}
+
+.site-search__label {
+	display: block;
+	font-size: 0.75em;
+	font-weight: bold;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	color: var(--color-emphasis);
+	margin-bottom: 0.2em;
+}
+
+.site-search__input {
+	width: 100%;
+	box-sizing: border-box;
+	font-family: inherit;
+	font-size: 0.95em;
+	padding: 0.4em 0.6em;
+	border: 1px solid var(--color-border-mute);
+	border-radius: 4px;
+	background-color: var(--color-bg);
+	color: var(--color-text);
+}
+
+.site-search__input:focus {
+	outline: 2px solid var(--color-emphasis);
+	outline-offset: 1px;
+}
+
+.site-search__results {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 100%;
+	margin-top: 4px;
+	max-height: 60vh;
+	overflow-y: auto;
+	background-color: var(--color-bg);
+	border: 1px solid var(--color-border-mute);
+	border-radius: 4px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	z-index: 100;
+}
+
+.site-search__results[hidden] {
+	display: none;
+}
+
+.site-search__result {
+	display: block;
+	padding: 0.5em 0.7em;
+	text-decoration: none;
+	color: var(--color-text);
+	border-bottom: 1px solid var(--color-border-soft);
+}
+
+.site-search__result:last-child {
+	border-bottom: none;
+}
+
+.site-search__result:hover,
+.site-search__result--active {
+	background-color: var(--color-panel-bg);
+}
+
+.site-search__result-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	gap: 0.5em;
+}
+
+.site-search__result-title {
+	font-weight: bold;
+	color: var(--color-link);
+}
+
+.site-search__result-section {
+	font-size: 0.8em;
+	color: var(--color-emphasis);
+	white-space: nowrap;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+}
+
+.site-search__result-desc {
+	display: block;
+	margin-top: 0.2em;
+	font-size: 0.85em;
+	color: var(--color-text);
+	opacity: 0.85;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+.site-search__empty {
+	margin: 0;
+	padding: 0.7em;
+	font-style: italic;
+	color: var(--color-text);
+	opacity: 0.8;
+}
+
+@media (max-width: 600px) {
+	.site-search {
+		width: 100%;
+	}
+}
+
 /* ============================================================================
    edit-on-github custom element (issue #402).
    Subtle "Edit this page on GitHub" footer affordance. Sits below the
