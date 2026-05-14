@@ -21,8 +21,7 @@ const REPO_ROOT = path.resolve(__dirname, "..");
 const COURSE_DIR = path.join(REPO_ROOT, "course");
 const META_PATH = path.join(COURSE_DIR, "lesson-meta.json");
 
-const COURSE_URL =
-	"https://bushidocodes.github.io/limerick-cobol/course/index.html";
+const COURSE_URL = "https://bushidocodes.github.io/limerick-cobol/course/index.html";
 
 // Lesson sequence — mirrors the array in components/lesson-progress.js.
 // Titles here are the canonical lesson titles used for the LearningResource name.
@@ -122,7 +121,7 @@ function injectJsonLd(html, block) {
 	// Strip existing LearningResource block (idempotency).
 	html = html.replace(
 		/\t\t<script type="application\/ld\+json">\n\t\t\t\{[\s\S]*?"@type": "LearningResource"[\s\S]*?<\/script>\n/,
-		""
+		"",
 	);
 
 	// Insert after <link rel="icon" ...>.
