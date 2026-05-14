@@ -63,7 +63,7 @@ jobs:
 
                   echo "Running a11y on ${#URLS[@]} changed file(s):"
                   printf '  %s\n' "${URLS[@]}"
-                  npx start-server-and-test 'npm run serve' http://localhost:8000 \
+                  PA11Y_PARTIAL=1 npx start-server-and-test 'npm run serve' http://localhost:8000 \
                     "npx pa11y-ci --config .pa11yci.js ${URLS[*]}"
 
     typos:
