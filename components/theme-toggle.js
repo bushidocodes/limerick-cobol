@@ -54,7 +54,11 @@ class ThemeToggle extends HTMLElement {
 			if (HAS_STORAGE) localStorage.setItem(ThemeToggle.#KEY, value);
 			document.documentElement.setAttribute("data-theme", value);
 		}
-		this.#render();
+		this.querySelectorAll("[data-theme-value]").forEach((btn) => {
+			const active = btn.dataset.themeValue === value;
+			btn.setAttribute("aria-pressed", active);
+			btn.classList.toggle("theme-toggle__btn--active", active);
+		});
 	}
 }
 
