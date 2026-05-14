@@ -4,6 +4,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
 		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
 		<title>COBOL example programs</title>
@@ -40,6 +46,8 @@
 			name="twitter:description"
 			content="These pages contain a large number of example COBOL programs. The example COBOL programs may be downloaded or viewed in your browser. Test data for the example COBOL programs is also provided."
 		/>
+		<script src="../components/theme-toggle.js" defer></script>
+		<script src="../components/page-hero.js" defer></script>
 		<script src="../components/copyright-notice.js" defer></script>
 		<script src="../components/back-to-top.js" defer></script>
 		<script src="../components/site-search.js" defer></script>
@@ -48,11 +56,7 @@
 	<body>
 		<a class="skip-link" href="#main-content">Skip to main content</a>
 		<main id="main-content">
-			<p class="dept-banner">Department of CSIS</p>
-			<h2>COBOL Example Programs</h2>
-			<div class="center-block">
-				<site-search></site-search>
-			</div>
+			<page-hero title="COBOL Example Programs" eyebrow="Department of CSIS"></page-hero>
 			<hr />
 			<table style="margin: 0 auto" width="700">
 				<tr>
