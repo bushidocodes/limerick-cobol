@@ -1,0 +1,1545 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+		<title>COBOL Glossary - Limerick COBOL</title>
+		<meta
+			name="description"
+			content="Alphabetical glossary of COBOL keywords and concepts taught in the Limerick COBOL course. Each entry links to the lesson where the term is first introduced."
+		/>
+		<meta
+			name="keywords"
+			content="COBOL glossary, COBOL keywords, COBOL terminology, COBOL reference, PERFORM, EVALUATE, OCCURS, REDEFINES, PIC, LINKAGE SECTION"
+		/>
+		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/glossary.html" />
+		<link rel="stylesheet" href="Resources/css/course.css" />
+		<link rel="stylesheet" href="Resources/css/course-components.css" />
+		<link rel="stylesheet" href="Resources/vendor/prism/themes/prism.min.css" />
+		<script src="Resources/vendor/prism/prism.min.js" defer></script>
+		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
+		<!-- Open Graph -->
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/glossary.html" />
+		<meta property="og:title" content="COBOL Glossary - Limerick COBOL" />
+		<meta
+			property="og:description"
+			content="Alphabetical glossary of COBOL keywords and concepts. Each entry links to the lesson where the term is first introduced."
+		/>
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content="COBOL Glossary - Limerick COBOL" />
+		<meta
+			name="twitter:description"
+			content="Alphabetical glossary of COBOL keywords and concepts. Each entry links to the lesson where the term is first introduced."
+		/>
+		<style type="text/css">
+			.glossary-intro {
+				max-width: 760px;
+				margin: 0 auto 1em;
+				padding: 0 4px;
+			}
+
+			.glossary-toolbar {
+				max-width: 760px;
+				margin: 0.5em auto 1em;
+				padding: 0 4px;
+				display: flex;
+				flex-wrap: wrap;
+				align-items: baseline;
+				gap: 0.6em;
+			}
+
+			.glossary-toolbar label {
+				font-weight: bold;
+			}
+
+			.glossary-toolbar input[type="search"] {
+				flex: 1 1 220px;
+				min-width: 160px;
+				padding: 0.3em 0.5em;
+				font: inherit;
+				border: 1px solid var(--color-border-mute);
+				border-radius: 3px;
+				background-color: var(--color-bg);
+				color: var(--color-text);
+			}
+
+			.glossary-toolbar input[type="search"]:focus-visible {
+				outline: 2px solid var(--color-link);
+				outline-offset: 1px;
+			}
+
+			.glossary-filter-status {
+				font-size: 0.9em;
+				font-style: italic;
+				color: var(--color-panel-text);
+			}
+
+			nav.glossary-toc {
+				max-width: 760px;
+				margin: 0 auto 1.5em;
+				padding: 0 4px;
+			}
+
+			ul.glossary-toc-list {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.4em 0.8em;
+			}
+
+			ul.glossary-toc-list li {
+				font-size: 0.95em;
+			}
+
+			ul.glossary-toc-list a {
+				font-weight: bold;
+			}
+
+			.glossary-section {
+				max-width: 760px;
+				margin: 0 auto 1.5em;
+				padding: 0 4px;
+			}
+
+			.glossary-section h2 {
+				font-family: Arial, Helvetica, sans-serif;
+				color: var(--color-panel-text);
+				border-bottom: 1px solid var(--color-border-soft);
+				padding-bottom: 0.2em;
+				margin-bottom: 0.5em;
+			}
+
+			table.glossary-table {
+				width: 100%;
+				border-collapse: separate;
+				border-spacing: 1px;
+				border: 1px solid;
+			}
+
+			table.glossary-table th,
+			table.glossary-table td {
+				border: 1px solid;
+				padding: 5px 7px;
+				text-align: left;
+				vertical-align: top;
+			}
+
+			table.glossary-table thead th {
+				background-color: var(--color-panel-bg);
+				color: var(--color-panel-text);
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			table.glossary-table tbody tr:nth-child(even) td {
+				background-color: var(--color-cell-label-bg);
+			}
+
+			/* Term column: monospace and slightly narrower so definitions get room. */
+			table.glossary-table td.term {
+				font-family: ui-monospace, "SF Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+				font-weight: bold;
+				white-space: nowrap;
+				width: 22%;
+			}
+
+			table.glossary-table td.def {
+				width: 60%;
+			}
+
+			table.glossary-table td.ref {
+				width: 18%;
+				font-size: 0.9em;
+			}
+
+			/* When the filter has hidden every row in a section, the section
+			   itself is hidden via [hidden]; CSS only needs the row case. */
+			table.glossary-table tbody tr[hidden] {
+				display: none;
+			}
+
+			@media (max-width: 600px) {
+				table.glossary-table,
+				table.glossary-table thead,
+				table.glossary-table tbody,
+				table.glossary-table tr,
+				table.glossary-table th,
+				table.glossary-table td {
+					display: block;
+					width: auto !important;
+				}
+
+				table.glossary-table thead {
+					/* Header row is meaningless once the table is stacked. */
+					position: absolute;
+					left: -9999px;
+				}
+
+				table.glossary-table tbody tr {
+					border: 1px solid var(--color-border-soft);
+					margin: 0 0 0.6em;
+					padding: 4px 6px;
+				}
+
+				table.glossary-table td {
+					border: none;
+					padding: 2px 0;
+					white-space: normal;
+				}
+
+				table.glossary-table td.term {
+					white-space: normal;
+					font-size: 1.05em;
+				}
+
+				table.glossary-table td.def::before {
+					content: "Definition: ";
+					font-weight: bold;
+					font-family: Arial, Helvetica, sans-serif;
+					color: var(--color-panel-text);
+				}
+
+				table.glossary-table td.ref::before {
+					content: "Introduced in: ";
+					font-weight: bold;
+					font-family: Arial, Helvetica, sans-serif;
+					color: var(--color-panel-text);
+				}
+
+				table.glossary-table tbody tr:nth-child(even) td {
+					background-color: transparent;
+				}
+			}
+		</style>
+		<script src="../components/theme-toggle.js" defer></script>
+		<script src="../components/page-hero.js" defer></script>
+		<script src="../components/back-to-top.js" defer></script>
+		<script src="../components/copyright-notice.js" defer></script>
+	</head>
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<page-hero title="COBOL Glossary" eyebrow="Reference"></page-hero>
+			<hr />
+			<div class="glossary-intro">
+				<p>
+					An alphabetical reference for the COBOL keywords and concepts taught across the
+					<a href="index.html">Limerick COBOL course</a>. Each entry has a one or two sentence definition and
+					a link to the lesson where the term is first introduced — useful when you've landed on a mid-course
+					page and need a quick refresher on a term used in passing.
+				</p>
+				<p>
+					Entries are grouped by topic and ordered alphabetically within each group. Use the
+					<b>Filter terms</b> box to narrow the list as you type, or jump straight to a section using the
+					links below.
+				</p>
+			</div>
+
+			<div class="glossary-toolbar">
+				<label for="glossary-filter">Filter terms:</label>
+				<input
+					type="search"
+					id="glossary-filter"
+					placeholder="e.g. PERFORM, level number, intrinsic"
+					autocomplete="off"
+				/>
+				<span
+					id="glossary-filter-status"
+					class="glossary-filter-status"
+					role="status"
+					aria-live="polite"
+				></span>
+			</div>
+
+			<nav class="glossary-toc" aria-label="Glossary sections">
+				<ul class="glossary-toc-list">
+					<li><a href="#program-structure">Program structure &amp; divisions</a></li>
+					<li><a href="#data-declaration">Data declaration</a></li>
+					<li><a href="#procedure-verbs">Procedure Division verbs</a></li>
+					<li><a href="#control-flow">Control flow &amp; conditions</a></li>
+					<li><a href="#files">Files</a></li>
+					<li><a href="#sort-merge">Sort &amp; merge</a></li>
+					<li><a href="#tables">Tables</a></li>
+					<li><a href="#subprograms">Subprograms &amp; libraries</a></li>
+					<li><a href="#string-handling">String handling</a></li>
+					<li><a href="#report-writer">Report Writer</a></li>
+				</ul>
+			</nav>
+
+			<hr />
+
+			<section class="glossary-section" id="program-structure" aria-labelledby="program-structure-h">
+				<h2 id="program-structure-h">Program structure &amp; divisions</h2>
+				<table class="glossary-table data-table">
+					<thead>
+						<tr>
+							<th scope="col">Term</th>
+							<th scope="col">Definition</th>
+							<th scope="col">First introduced in</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="term"><code class="language-cobol">AUTHOR</code></td>
+							<td class="def">
+								Optional paragraph in the
+								<code class="language-cobol">IDENTIFICATION DIVISION</code> that names the program's
+								author. Considered obsolete in modern COBOL but commonly seen in teaching examples.
+							</td>
+							<td class="ref"><a href="COBOLIntro.html#part4">Four Divisions</a></td>
+						</tr>
+						<tr>
+							<td class="term">COBOL</td>
+							<td class="def">
+								Common Business-Oriented Language. A business-oriented programming language standardised
+								since 1959, prominent in financial, government, and insurance systems.
+							</td>
+							<td class="ref"><a href="COBOLIntro.html#part1">What is COBOL?</a></td>
+						</tr>
+						<tr>
+							<td class="term">coding rules / Area A / Area B</td>
+							<td class="def">
+								COBOL source has a column-based format: columns 1-6 are reserved for sequence numbers,
+								column 7 for indicators, Area A (columns 8-11) holds division, section, paragraph, and
+								<code class="language-cobol">01</code>-level headers, and Area B (columns 12-72) holds
+								everything else.
+							</td>
+							<td class="ref"><a href="COBOLIntro.html#part3">COBOL basics</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">DATA DIVISION</code></td>
+							<td class="def">
+								One of COBOL's four divisions; declares every data item the program uses, organised into
+								FILE, WORKING-STORAGE, LOCAL-STORAGE, and LINKAGE sections.
+							</td>
+							<td class="ref"><a href="COBOLIntro.html#part4">Four Divisions</a></td>
+						</tr>
+						<tr>
+							<td class="term">division</td>
+							<td class="def">
+								Top-level partition of a COBOL program. The four divisions are
+								<code class="language-cobol">IDENTIFICATION</code>,
+								<code class="language-cobol">ENVIRONMENT</code>,
+								<code class="language-cobol">DATA</code>, and
+								<code class="language-cobol">PROCEDURE</code>.
+							</td>
+							<td class="ref"><a href="COBOLIntro.html#part4">Four Divisions</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">ENVIRONMENT DIVISION</code></td>
+							<td class="def">
+								Division that describes the computer environment — most importantly the
+								<code class="language-cobol">FILE-CONTROL</code> paragraph mapping logical files to
+								external storage.
+							</td>
+							<td class="ref"><a href="COBOLIntro.html#part4">Four Divisions</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">FILE-CONTROL</code></td>
+							<td class="def">
+								Paragraph in the <code class="language-cobol">ENVIRONMENT DIVISION</code> where each
+								external file is associated with an internal file name via
+								<code class="language-cobol">SELECT … ASSIGN</code>.
+							</td>
+							<td class="ref"><a href="SequentialFiles1.html#part2">Declaring files</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">IDENTIFICATION DIVISION</code></td>
+							<td class="def">
+								Division that names the program with <code class="language-cobol">PROGRAM-ID</code> and
+								supplies metadata such as <code class="language-cobol">AUTHOR</code> or
+								<code class="language-cobol">DATE-WRITTEN</code>.
+							</td>
+							<td class="ref"><a href="COBOLIntro.html#part4">Four Divisions</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">INPUT-OUTPUT SECTION</code></td>
+							<td class="def">
+								Section of the <code class="language-cobol">ENVIRONMENT DIVISION</code> that contains
+								<code class="language-cobol">FILE-CONTROL</code>.
+							</td>
+							<td class="ref"><a href="SequentialFiles1.html#part2">Declaring files</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">LINKAGE SECTION</code></td>
+							<td class="def">
+								Section of the <code class="language-cobol">DATA DIVISION</code> that declares data
+								items received from a calling program through
+								<code class="language-cobol">PROCEDURE DIVISION USING</code>.
+							</td>
+							<td class="ref"><a href="Subprograms.html#part1">The CALL verb</a></td>
+						</tr>
+						<tr>
+							<td class="term">paragraph</td>
+							<td class="def">
+								A named block of one or more sentences in the
+								<code class="language-cobol">PROCEDURE DIVISION</code>. Paragraphs are the unit targeted
+								by <code class="language-cobol">PERFORM</code> and
+								<code class="language-cobol">GO TO</code>.
+							</td>
+							<td class="ref"><a href="Iteration.html#part1">PERFORM..Proc</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">PROCEDURE DIVISION</code></td>
+							<td class="def">
+								Division that contains the executable statements that make up the program logic.
+							</td>
+							<td class="ref"><a href="COBOLIntro.html#part4">Four Divisions</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">PROGRAM-ID</code></td>
+							<td class="def">
+								Required paragraph in the <code class="language-cobol">IDENTIFICATION DIVISION</code>
+								that gives the program its name.
+							</td>
+							<td class="ref"><a href="COBOLIntro.html#part4">Four Divisions</a></td>
+						</tr>
+						<tr>
+							<td class="term">section</td>
+							<td class="def">
+								A named group of paragraphs in the
+								<code class="language-cobol">PROCEDURE DIVISION</code>; also the partitioning unit
+								inside <code class="language-cobol">DATA</code> and
+								<code class="language-cobol">ENVIRONMENT</code> divisions (e.g.
+								<code class="language-cobol">WORKING-STORAGE SECTION</code>).
+							</td>
+							<td class="ref"><a href="COBOLIntro.html#part4">Four Divisions</a></td>
+						</tr>
+						<tr>
+							<td class="term">sentence</td>
+							<td class="def">One or more COBOL statements terminated by a period.</td>
+							<td class="ref"><a href="COBOLIntro.html#part3">COBOL basics</a></td>
+						</tr>
+						<tr>
+							<td class="term">statement</td>
+							<td class="def">
+								A single instruction such as <code class="language-cobol">MOVE A TO B</code>; multiple
+								statements together form a sentence.
+							</td>
+							<td class="ref"><a href="COBOLIntro.html#part3">COBOL basics</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">WORKING-STORAGE SECTION</code></td>
+							<td class="def">
+								Section of the <code class="language-cobol">DATA DIVISION</code> that declares variables
+								that persist for the life of the program.
+							</td>
+							<td class="ref"><a href="DataDeclaration.html#part2">Declaring data</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section class="glossary-section" id="data-declaration" aria-labelledby="data-declaration-h">
+				<h2 id="data-declaration-h">Data declaration</h2>
+				<table class="glossary-table data-table">
+					<thead>
+						<tr>
+							<th scope="col">Term</th>
+							<th scope="col">Definition</th>
+							<th scope="col">First introduced in</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="term">01-level</td>
+							<td class="def">
+								Top-level data item; introduces a record and may contain subordinate items at higher
+								level numbers (02-49).
+							</td>
+							<td class="ref"><a href="DataDeclaration.html#part3">Group / elementary items</a></td>
+						</tr>
+						<tr>
+							<td class="term">88-level</td>
+							<td class="def">
+								Condition-name entry that gives a meaningful name to one or more values that its parent
+								item can take, testable in <code class="language-cobol">IF</code>,
+								<code class="language-cobol">EVALUATE</code>, and
+								<code class="language-cobol">PERFORM UNTIL</code>.
+							</td>
+							<td class="ref"><a href="Selection.html#part2">Condition Names</a></td>
+						</tr>
+						<tr>
+							<td class="term">alphanumeric</td>
+							<td class="def">
+								Data item declared with picture symbol <code class="language-cobol">X</code>, holding
+								any character. Items are also classified as alphabetic (<code class="language-cobol"
+									>A</code
+								>) or numeric (<code class="language-cobol">9</code>).
+							</td>
+							<td class="ref"><a href="DataDeclaration.html#part1">Categories of data</a></td>
+						</tr>
+						<tr>
+							<td class="term">
+								<code class="language-cobol">COMP</code> /
+								<code class="language-cobol">COMPUTATIONAL</code>
+							</td>
+							<td class="def">
+								<code class="language-cobol">USAGE</code> that stores numeric data in the machine's
+								native binary form, more compact and faster than
+								<code class="language-cobol">DISPLAY</code> for arithmetic.
+							</td>
+							<td class="ref"><a href="Usage.html#part1">The USAGE clause</a></td>
+						</tr>
+						<tr>
+							<td class="term">
+								<code class="language-cobol">COMP-3</code> /
+								<code class="language-cobol">PACKED-DECIMAL</code>
+							</td>
+							<td class="def">
+								<code class="language-cobol">USAGE</code> storing decimal digits two-per-byte with a
+								sign half-byte. Common in mainframe data interchange.
+							</td>
+							<td class="ref"><a href="Usage.html#part1">The USAGE clause</a></td>
+						</tr>
+						<tr>
+							<td class="term">edited picture</td>
+							<td class="def">
+								A <code class="language-cobol">PIC</code> string containing insertion or replacement
+								characters (e.g. <code class="language-cobol">Z</code>,
+								<code class="language-cobol">$</code>, comma, slash) that format a numeric or
+								alphanumeric item for display.
+							</td>
+							<td class="ref"><a href="EditedPics.html#part1">Edited Pictures</a></td>
+						</tr>
+						<tr>
+							<td class="term">elementary item</td>
+							<td class="def">
+								A data item with a <code class="language-cobol">PIC</code> clause that cannot be further
+								subdivided.
+							</td>
+							<td class="ref"><a href="DataDeclaration.html#part3">Group / elementary items</a></td>
+						</tr>
+						<tr>
+							<td class="term">figurative constant</td>
+							<td class="def">
+								Reserved word that stands in for a literal value, automatically sized to the receiving
+								item. Examples: <code class="language-cobol">ZERO</code>,
+								<code class="language-cobol">SPACE</code>,
+								<code class="language-cobol">HIGH-VALUE</code>,
+								<code class="language-cobol">LOW-VALUE</code>,
+								<code class="language-cobol">QUOTE</code>.
+							</td>
+							<td class="ref"><a href="DataDeclaration.html#part2">Declaring data</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">FILLER</code></td>
+							<td class="def">
+								Reserved word used as a data-name for an item whose contents the program never
+								references — typically padding bytes or constant column text in a record.
+							</td>
+							<td class="ref"><a href="DataDeclaration.html#part2">Declaring data</a></td>
+						</tr>
+						<tr>
+							<td class="term">group item</td>
+							<td class="def">
+								A composite data item that has subordinate items but no
+								<code class="language-cobol">PIC</code> clause of its own.
+							</td>
+							<td class="ref"><a href="DataDeclaration.html#part3">Group / elementary items</a></td>
+						</tr>
+						<tr>
+							<td class="term">
+								<code class="language-cobol">HIGH-VALUE</code> /
+								<code class="language-cobol">LOW-VALUE</code>
+							</td>
+							<td class="def">
+								Figurative constants representing the highest and lowest characters in the host's
+								collating sequence — useful sentinel values for sequential search and indexed-file
+								boundaries.
+							</td>
+							<td class="ref"><a href="DataDeclaration.html#part2">Declaring data</a></td>
+						</tr>
+						<tr>
+							<td class="term">level number</td>
+							<td class="def">
+								Two-digit number from 01 to 49 (plus the specials 66, 77, 88) preceding a data-name that
+								expresses the hierarchical position of the item within its record.
+							</td>
+							<td class="ref"><a href="DataDeclaration.html#part3">Group / elementary items</a></td>
+						</tr>
+						<tr>
+							<td class="term">numeric</td>
+							<td class="def">
+								Data item declared with picture symbols <code class="language-cobol">9</code> (digits)
+								and optional <code class="language-cobol">S</code> (sign) and
+								<code class="language-cobol">V</code> (assumed decimal point); can be used in
+								arithmetic.
+							</td>
+							<td class="ref"><a href="DataDeclaration.html#part1">Categories of data</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">OCCURS</code></td>
+							<td class="def">
+								Clause that makes a data item a table by declaring it repeats <i>N</i> times. See also
+								the <a href="#tables">tables section</a>.
+							</td>
+							<td class="ref"><a href="Tables2.html#part1">Declaring a table</a></td>
+						</tr>
+						<tr>
+							<td class="term">
+								<code class="language-cobol">PICTURE</code> / <code class="language-cobol">PIC</code>
+							</td>
+							<td class="def">
+								Clause that declares an elementary item's category and size — for example
+								<code class="language-cobol">PIC X(10)</code> or
+								<code class="language-cobol">PIC 9(5)V99</code>.
+							</td>
+							<td class="ref"><a href="DataDeclaration.html#part2">Declaring data</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">REDEFINES</code></td>
+							<td class="def">
+								Clause that lets a second data item occupy the same storage as an existing item, viewing
+								the bytes through a different <code class="language-cobol">PIC</code>. Used to create
+								pre-filled tables and union types.
+							</td>
+							<td class="ref"><a href="Tables2.html#part4">Pre-filled tables</a></td>
+						</tr>
+						<tr>
+							<td class="term">
+								<code class="language-cobol">SPACE</code> / <code class="language-cobol">SPACES</code>
+							</td>
+							<td class="def">
+								Figurative constants whose value is the space character, repeated to fill the receiving
+								item.
+							</td>
+							<td class="ref"><a href="DataDeclaration.html#part2">Declaring data</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">USAGE</code></td>
+							<td class="def">
+								Clause that declares the internal representation of a data item — typically
+								<code class="language-cobol">DISPLAY</code>, <code class="language-cobol">COMP</code>,
+								<code class="language-cobol">COMP-3</code>, <code class="language-cobol">INDEX</code>,
+								or <code class="language-cobol">POINTER</code>.
+							</td>
+							<td class="ref"><a href="Usage.html#part1">The USAGE clause</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">VALUE</code></td>
+							<td class="def">Clause that gives a data item an initial value at program start.</td>
+							<td class="ref"><a href="DataDeclaration.html#part2">Declaring data</a></td>
+						</tr>
+						<tr>
+							<td class="term">
+								<code class="language-cobol">ZERO</code> / <code class="language-cobol">ZEROS</code> /
+								<code class="language-cobol">ZEROES</code>
+							</td>
+							<td class="def">
+								Figurative constants whose value is the digit zero (or the character "0" for
+								alphanumeric items), repeated to fill the receiving item.
+							</td>
+							<td class="ref"><a href="DataDeclaration.html#part2">Declaring data</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section class="glossary-section" id="procedure-verbs" aria-labelledby="procedure-verbs-h">
+				<h2 id="procedure-verbs-h">Procedure Division verbs</h2>
+				<table class="glossary-table data-table">
+					<thead>
+						<tr>
+							<th scope="col">Term</th>
+							<th scope="col">Definition</th>
+							<th scope="col">First introduced in</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="term"><code class="language-cobol">ACCEPT</code></td>
+							<td class="def">
+								Reads data from the console (or, in some dialects, a system source such as
+								<code class="language-cobol">DATE</code> or <code class="language-cobol">TIME</code>)
+								into a data item.
+							</td>
+							<td class="ref"><a href="COBOLcommands.html#part1">User Input and Output</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">ADD</code></td>
+							<td class="def">
+								Adds one or more operands to a receiving item (<code class="language-cobol"
+									>ADD A TO B</code
+								>; <code class="language-cobol">ADD A, B GIVING C</code>).
+							</td>
+							<td class="ref"><a href="COBOLcommands.html#part3">Arithmetic</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">COMPUTE</code></td>
+							<td class="def">
+								Evaluates an arithmetic expression and stores the result in one or more items.
+							</td>
+							<td class="ref"><a href="COBOLcommands.html#part3">Arithmetic</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">DISPLAY</code></td>
+							<td class="def">Writes data items and literals to the console.</td>
+							<td class="ref"><a href="COBOLcommands.html#part1">User Input and Output</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">DIVIDE</code></td>
+							<td class="def">
+								Performs division between operands; supports
+								<code class="language-cobol">GIVING</code> and
+								<code class="language-cobol">REMAINDER</code> phrases.
+							</td>
+							<td class="ref"><a href="COBOLcommands.html#part3">Arithmetic</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">INITIALIZE</code></td>
+							<td class="def">
+								Resets a data item (and its subordinates) to category-appropriate defaults: zero for
+								numeric, spaces for alphanumeric.
+							</td>
+							<td class="ref"><a href="DataDeclaration.html#part2">Declaring data</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">MOVE</code></td>
+							<td class="def">Copies the value of one data item or literal into another.</td>
+							<td class="ref"><a href="COBOLcommands.html#part2">The MOVE verb</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">MULTIPLY</code></td>
+							<td class="def">
+								Multiplies operands; supports <code class="language-cobol">MULTIPLY A BY B</code> and
+								<code class="language-cobol">GIVING</code> forms.
+							</td>
+							<td class="ref"><a href="COBOLcommands.html#part3">Arithmetic</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">STOP RUN</code></td>
+							<td class="def">Ends program execution and returns control to the operating system.</td>
+							<td class="ref"><a href="COBOLIntro.html#part2">Intro to programming</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">SUBTRACT</code></td>
+							<td class="def">
+								Subtracts one or more operands from a receiving item; supports
+								<code class="language-cobol">GIVING</code>.
+							</td>
+							<td class="ref"><a href="COBOLcommands.html#part3">Arithmetic</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section class="glossary-section" id="control-flow" aria-labelledby="control-flow-h">
+				<h2 id="control-flow-h">Control flow &amp; conditions</h2>
+				<table class="glossary-table data-table">
+					<thead>
+						<tr>
+							<th scope="col">Term</th>
+							<th scope="col">Definition</th>
+							<th scope="col">First introduced in</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="term">class condition</td>
+							<td class="def">
+								Tests whether a data item's value is wholly
+								<code class="language-cobol">NUMERIC</code>,
+								<code class="language-cobol">ALPHABETIC</code>,
+								<code class="language-cobol">ALPHABETIC-UPPER</code>, or
+								<code class="language-cobol">ALPHABETIC-LOWER</code>.
+							</td>
+							<td class="ref"><a href="Selection.html#part1">Selection using IF</a></td>
+						</tr>
+						<tr>
+							<td class="term">condition name</td>
+							<td class="def">
+								An <code class="language-cobol">88</code>-level entry that gives a true/false name to
+								one or more values of its parent data item — for example
+								<code class="language-cobol">88 EndOfFile VALUE 'Y'</code>.
+							</td>
+							<td class="ref"><a href="Selection.html#part2">Condition Names</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">CONTINUE</code></td>
+							<td class="def">
+								A no-op statement used as a placeholder where the syntax requires a statement, such as
+								an empty branch of <code class="language-cobol">IF</code>.
+							</td>
+							<td class="ref"><a href="Selection.html#part1">Selection using IF</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">EVALUATE</code></td>
+							<td class="def">
+								Multi-way decision verb resembling <i>switch/case</i> but able to test several subjects
+								at once.
+							</td>
+							<td class="ref"><a href="Selection.html#part4">The EVALUATE verb</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">EXIT</code></td>
+							<td class="def">
+								Statement that marks the end of a paragraph, typically the target of
+								<code class="language-cobol">PERFORM..THRU</code>.
+							</td>
+							<td class="ref"><a href="Iteration.html#part2">PERFORM..THRU</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">GO TO</code></td>
+							<td class="def">
+								Unconditional jump to a named paragraph; broadly considered bad style today except
+								inside Sort or Merge input / output procedures where it returns control to the verb.
+							</td>
+							<td class="ref"><a href="Iteration.html#part1">PERFORM..Proc</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">IF</code></td>
+							<td class="def">
+								Selection verb that executes one branch when the condition is true and an optional
+								<code class="language-cobol">ELSE</code> branch otherwise; terminated by a period or
+								<code class="language-cobol">END-IF</code>.
+							</td>
+							<td class="ref"><a href="Selection.html#part1">Selection using IF</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">PERFORM</code></td>
+							<td class="def">
+								Iteration verb that runs a paragraph (out-of-line) or an in-line block; combines with
+								<code class="language-cobol">THRU</code>, <code class="language-cobol">TIMES</code>,
+								<code class="language-cobol">UNTIL</code>, and
+								<code class="language-cobol">VARYING</code>.
+							</td>
+							<td class="ref"><a href="Iteration.html#part1">PERFORM..Proc</a></td>
+						</tr>
+						<tr>
+							<td class="term">PERFORM (in-line)</td>
+							<td class="def">
+								<code class="language-cobol">PERFORM</code> written as
+								<code class="language-cobol">PERFORM … END-PERFORM</code> that executes the statement
+								block directly rather than naming a paragraph.
+							</td>
+							<td class="ref"><a href="Iteration.html#part3">PERFORM..TIMES</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">PERFORM..THRU</code></td>
+							<td class="def">
+								Executes every paragraph from the first named through the second, in source order.
+							</td>
+							<td class="ref"><a href="Iteration.html#part2">PERFORM..THRU</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">PERFORM..TIMES</code></td>
+							<td class="def">Runs the body a fixed number of times.</td>
+							<td class="ref"><a href="Iteration.html#part3">PERFORM..TIMES</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">PERFORM..UNTIL</code></td>
+							<td class="def">Runs the body repeatedly until the named condition becomes true.</td>
+							<td class="ref"><a href="Iteration.html#part4">PERFORM..UNTIL</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">PERFORM..VARYING</code></td>
+							<td class="def">
+								<code class="language-cobol">PERFORM</code> with a controlled counter (<code
+									class="language-cobol"
+									>FROM…BY…UNTIL</code
+								>) — COBOL's counted loop.
+							</td>
+							<td class="ref"><a href="Iteration.html#part5">PERFORM..VARYING</a></td>
+						</tr>
+						<tr>
+							<td class="term">relation condition</td>
+							<td class="def">
+								Comparison such as <code class="language-cobol">A &gt; B</code> or
+								<code class="language-cobol">X = ZERO</code>.
+							</td>
+							<td class="ref"><a href="Selection.html#part1">Selection using IF</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">SET</code> (condition)</td>
+							<td class="def">
+								Sets a condition-name's parent to the appropriate value — for example
+								<code class="language-cobol">SET EndOfFile TO TRUE</code> stores
+								<code class="language-cobol">'Y'</code> in the parent item.
+							</td>
+							<td class="ref"><a href="Selection.html#part3">SET with Condition Names</a></td>
+						</tr>
+						<tr>
+							<td class="term">sign condition</td>
+							<td class="def">
+								Tests whether a numeric item is <code class="language-cobol">POSITIVE</code>,
+								<code class="language-cobol">NEGATIVE</code>, or
+								<code class="language-cobol">ZERO</code>.
+							</td>
+							<td class="ref"><a href="Selection.html#part1">Selection using IF</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section class="glossary-section" id="files" aria-labelledby="files-h">
+				<h2 id="files-h">Files</h2>
+				<table class="glossary-table data-table">
+					<thead>
+						<tr>
+							<th scope="col">Term</th>
+							<th scope="col">Definition</th>
+							<th scope="col">First introduced in</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="term">access mode</td>
+							<td class="def">
+								The manner in which records are processed:
+								<code class="language-cobol">SEQUENTIAL</code>,
+								<code class="language-cobol">RANDOM</code>, or
+								<code class="language-cobol">DYNAMIC</code>. Declared in
+								<code class="language-cobol">SELECT … ACCESS MODE IS …</code>.
+							</td>
+							<td class="ref"><a href="Intro2DirectAccess.html#comp">File organization</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">ASSIGN</code></td>
+							<td class="def">
+								<code class="language-cobol">SELECT</code> clause that maps the internal file name to
+								the external file (a path, a device, or an implementation-defined name).
+							</td>
+							<td class="ref"><a href="SequentialFiles1.html#part2">Declaring files</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">AT END</code></td>
+							<td class="def">
+								Phrase on <code class="language-cobol">READ</code> (and
+								<code class="language-cobol">SEARCH</code>) that runs when no more records are
+								available.
+							</td>
+							<td class="ref"><a href="SequentialFiles1.html#part3">File handling verbs</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">CLOSE</code></td>
+							<td class="def">Disassociates a file from the program and flushes buffers.</td>
+							<td class="ref"><a href="SequentialFiles1.html#part3">File handling verbs</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">DECLARATIVES</code></td>
+							<td class="def">
+								Optional section at the top of the
+								<code class="language-cobol">PROCEDURE DIVISION</code> whose paragraphs run only when a
+								<code class="language-cobol">USE</code>-named event occurs — usually I/O errors.
+							</td>
+							<td class="ref"><a href="RelativeFiles.html#declaratives">Declaratives</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">FD</code></td>
+							<td class="def">
+								<i>File Description</i> entry in the <code class="language-cobol">FILE SECTION</code>
+								that names a file's record layout(s) and characteristics.
+							</td>
+							<td class="ref"><a href="SequentialFiles1.html#part2">Declaring files</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">FILE SECTION</code></td>
+							<td class="def">
+								Section of the <code class="language-cobol">DATA DIVISION</code> where each opened
+								file's records are described via <code class="language-cobol">FD</code> entries.
+							</td>
+							<td class="ref"><a href="SequentialFiles1.html#part2">Declaring files</a></td>
+						</tr>
+						<tr>
+							<td class="term">file status</td>
+							<td class="def">
+								Two-character data item set by every I/O operation, indicating success or the kind of
+								failure. Declared in <code class="language-cobol">SELECT … FILE STATUS IS …</code>.
+							</td>
+							<td class="ref"><a href="RelativeFiles.html#declar">Relative file declarations</a></td>
+						</tr>
+						<tr>
+							<td class="term">indexed file</td>
+							<td class="def">
+								File organised on a key (and optional alternate keys) so a record can be read directly
+								by its key value.
+							</td>
+							<td class="ref"><a href="IndexedFiles.html#org">Indexed file organization</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">INVALID KEY</code></td>
+							<td class="def">
+								Phrase on <code class="language-cobol">READ</code>,
+								<code class="language-cobol">WRITE</code>, <code class="language-cobol">REWRITE</code>,
+								<code class="language-cobol">DELETE</code>, or
+								<code class="language-cobol">START</code> for keyed files that runs when the operation
+								fails because of a key problem.
+							</td>
+							<td class="ref"><a href="RelativeFiles.html#verbs">Relative file verbs</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">OPEN</code></td>
+							<td class="def">
+								Establishes an <code class="language-cobol">INPUT</code>,
+								<code class="language-cobol">OUTPUT</code>, <code class="language-cobol">I-O</code>, or
+								<code class="language-cobol">EXTEND</code> link to a file.
+							</td>
+							<td class="ref"><a href="SequentialFiles1.html#part3">File handling verbs</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">READ</code></td>
+							<td class="def">
+								Retrieves the next (or, for keyed files, a specifically positioned) record from a file
+								into its <code class="language-cobol">FD</code> record layout.
+							</td>
+							<td class="ref"><a href="SequentialFiles1.html#part3">File handling verbs</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">RECORD KEY</code></td>
+							<td class="def">
+								Field within an indexed file's record that uniquely identifies it; declared in
+								<code class="language-cobol">SELECT … RECORD KEY IS …</code>.
+							</td>
+							<td class="ref"><a href="IndexedFiles.html#declar">Indexed file declarations</a></td>
+						</tr>
+						<tr>
+							<td class="term">relative file</td>
+							<td class="def">
+								File whose records are addressed by their position number (1, 2, 3, …) rather than by a
+								key value.
+							</td>
+							<td class="ref"><a href="RelativeFiles.html#declar">Relative file declarations</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">REWRITE</code></td>
+							<td class="def">Replaces the most recently read record in a file.</td>
+							<td class="ref"><a href="SequentialFiles1.html#part3">File handling verbs</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">SELECT</code></td>
+							<td class="def">
+								<code class="language-cobol">ENVIRONMENT DIVISION</code> clause that introduces a file's
+								name and its <code class="language-cobol">ASSIGN</code>,
+								<code class="language-cobol">ORGANIZATION</code>,
+								<code class="language-cobol">ACCESS MODE</code>, and other attributes.
+							</td>
+							<td class="ref"><a href="SequentialFiles1.html#part2">Declaring files</a></td>
+						</tr>
+						<tr>
+							<td class="term">sequential file</td>
+							<td class="def">
+								File whose records are read or written one after another, in the order they were stored.
+							</td>
+							<td class="ref"><a href="SequentialFiles1.html#part1">Record-based files</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">START</code></td>
+							<td class="def">
+								Positions a keyed file at a specified record (or one matching a relational test) before
+								reading.
+							</td>
+							<td class="ref"><a href="IndexedFiles.html#verbs">Indexed file verbs</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">WRITE</code></td>
+							<td class="def">Adds a new record to a file.</td>
+							<td class="ref"><a href="SequentialFiles1.html#part3">File handling verbs</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section class="glossary-section" id="sort-merge" aria-labelledby="sort-merge-h">
+				<h2 id="sort-merge-h">Sort &amp; merge</h2>
+				<table class="glossary-table data-table">
+					<thead>
+						<tr>
+							<th scope="col">Term</th>
+							<th scope="col">Definition</th>
+							<th scope="col">First introduced in</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="term">
+								<code class="language-cobol">ASCENDING</code> /
+								<code class="language-cobol">DESCENDING</code>
+							</td>
+							<td class="def">
+								Key-direction phrases on <code class="language-cobol">SORT</code>,
+								<code class="language-cobol">MERGE</code>, and
+								<code class="language-cobol">OCCURS</code>.
+							</td>
+							<td class="ref"><a href="SortMerge.html#part1">Simple Sorting</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">GIVING</code> (Sort/Merge)</td>
+							<td class="def">
+								Phrase on <code class="language-cobol">SORT</code> /
+								<code class="language-cobol">MERGE</code> that names the output file when no
+								<code class="language-cobol">OUTPUT PROCEDURE</code> is supplied.
+							</td>
+							<td class="ref"><a href="SortMerge.html#part1">Simple Sorting</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">INPUT PROCEDURE</code></td>
+							<td class="def">
+								Paragraph (or section) executed by <code class="language-cobol">SORT</code> to feed
+								records via <code class="language-cobol">RELEASE</code> rather than from a
+								<code class="language-cobol">USING</code> file.
+							</td>
+							<td class="ref"><a href="SortMerge.html#part2">SORT with INPUT PROCEDURE</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">MERGE</code></td>
+							<td class="def">
+								Combines two or more pre-sorted input files into one output stream in key order.
+							</td>
+							<td class="ref"><a href="SortMerge.html#part4">MERGEing files</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">OUTPUT PROCEDURE</code></td>
+							<td class="def">
+								Paragraph (or section) executed by <code class="language-cobol">SORT</code> /
+								<code class="language-cobol">MERGE</code> to consume sorted records via
+								<code class="language-cobol">RETURN</code> rather than writing a
+								<code class="language-cobol">GIVING</code> file.
+							</td>
+							<td class="ref"><a href="SortMerge.html#part3">SORT with OUTPUT PROCEDURE</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">RELEASE</code></td>
+							<td class="def">
+								Statement used inside an <code class="language-cobol">INPUT PROCEDURE</code> to push a
+								record into the sort.
+							</td>
+							<td class="ref"><a href="SortMerge.html#part2">SORT with INPUT PROCEDURE</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">RETURN</code></td>
+							<td class="def">
+								Statement used inside an <code class="language-cobol">OUTPUT PROCEDURE</code> to fetch
+								the next sorted record.
+							</td>
+							<td class="ref"><a href="SortMerge.html#part3">SORT with OUTPUT PROCEDURE</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">SORT</code></td>
+							<td class="def">Reorders the records of a file or input stream into key order.</td>
+							<td class="ref"><a href="SortMerge.html#part1">Simple Sorting</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">USING</code> (Sort/Merge)</td>
+							<td class="def">
+								Phrase on <code class="language-cobol">SORT</code> /
+								<code class="language-cobol">MERGE</code> that names the input file(s) when no
+								<code class="language-cobol">INPUT PROCEDURE</code> is supplied.
+							</td>
+							<td class="ref"><a href="SortMerge.html#part1">Simple Sorting</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section class="glossary-section" id="tables" aria-labelledby="tables-h">
+				<h2 id="tables-h">Tables</h2>
+				<table class="glossary-table data-table">
+					<thead>
+						<tr>
+							<th scope="col">Term</th>
+							<th scope="col">Definition</th>
+							<th scope="col">First introduced in</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="term">index (table)</td>
+							<td class="def">
+								A specialised pointer associated with a table; the
+								<code class="language-cobol">SEARCH</code> verb walks an index, and
+								<code class="language-cobol">SET</code> assigns to one.
+							</td>
+							<td class="ref"><a href="Search.html#part1">OCCURS clause extensions</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">INDEXED BY</code></td>
+							<td class="def">
+								<code class="language-cobol">OCCURS</code> phrase that names an index for the table;
+								required for <code class="language-cobol">SEARCH</code> and
+								<code class="language-cobol">SEARCH ALL</code>.
+							</td>
+							<td class="ref"><a href="Search.html#part1">OCCURS clause extensions</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">OCCURS DEPENDING ON</code></td>
+							<td class="def">
+								Variant of <code class="language-cobol">OCCURS</code> that lets a table's length vary at
+								run time, based on the value of another data item.
+							</td>
+							<td class="ref"><a href="Search.html#part1">OCCURS clause extensions</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">SEARCH</code></td>
+							<td class="def">
+								Linear search through a table using an index; runs an action when a
+								<code class="language-cobol">WHEN</code> condition matches.
+							</td>
+							<td class="ref"><a href="Search.html#part2">The SEARCH verb</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">SEARCH ALL</code></td>
+							<td class="def">
+								Binary search through a table sorted on its key; faster than
+								<code class="language-cobol">SEARCH</code> but requires the table to be in key order.
+							</td>
+							<td class="ref"><a href="Search.html#part4">The SEARCH ALL verb</a></td>
+						</tr>
+						<tr>
+							<td class="term">subscript</td>
+							<td class="def">
+								An integer (literal or data item) in parentheses after a table name that selects an
+								occurrence — for example <code class="language-cobol">Months (3)</code>.
+							</td>
+							<td class="ref"><a href="Tables1.html#part2">Using a table</a></td>
+						</tr>
+						<tr>
+							<td class="term">table</td>
+							<td class="def">
+								A repeating data structure declared with <code class="language-cobol">OCCURS</code> —
+								COBOL's equivalent of an array.
+							</td>
+							<td class="ref"><a href="Tables1.html#part1">Why use tables?</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section class="glossary-section" id="subprograms" aria-labelledby="subprograms-h">
+				<h2 id="subprograms-h">Subprograms &amp; libraries</h2>
+				<table class="glossary-table data-table">
+					<thead>
+						<tr>
+							<th scope="col">Term</th>
+							<th scope="col">Definition</th>
+							<th scope="col">First introduced in</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="term"><code class="language-cobol">BY CONTENT</code></td>
+							<td class="def">
+								<code class="language-cobol">CALL USING</code> phrase that passes a copy of the argument
+								so the called program cannot change the caller's data.
+							</td>
+							<td class="ref"><a href="Subprograms.html#part1">The CALL verb</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">BY REFERENCE</code></td>
+							<td class="def">
+								Default <code class="language-cobol">CALL USING</code> mode; the called program operates
+								directly on the caller's storage.
+							</td>
+							<td class="ref"><a href="Subprograms.html#part1">The CALL verb</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">BY VALUE</code></td>
+							<td class="def">
+								<code class="language-cobol">CALL USING</code> phrase that passes a numeric or pointer
+								value rather than a storage address.
+							</td>
+							<td class="ref"><a href="Subprograms.html#part1">The CALL verb</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">CALL</code></td>
+							<td class="def">
+								Invokes a separately compiled or contained subprogram, optionally passing arguments via
+								<code class="language-cobol">USING</code>.
+							</td>
+							<td class="ref"><a href="Subprograms.html#part1">The CALL verb</a></td>
+						</tr>
+						<tr>
+							<td class="term">contained subprogram</td>
+							<td class="def">
+								A subprogram nested inside another program's source, sharing the host's environment.
+							</td>
+							<td class="ref"><a href="Subprograms.html#part2">Contained Subprograms</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">COPY</code></td>
+							<td class="def">
+								Compile-time directive that splices the contents of a copybook into the source at the
+								<code class="language-cobol">COPY</code> point.
+							</td>
+							<td class="ref"><a href="Copy.html#part1">Using the COPY verb</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">COPY..REPLACING</code></td>
+							<td class="def">
+								<code class="language-cobol">COPY</code> variant that performs textual substitution as
+								the copybook is included.
+							</td>
+							<td class="ref"><a href="Copy.html#part2">COPY..REPLACING</a></td>
+						</tr>
+						<tr>
+							<td class="term">copybook</td>
+							<td class="def">
+								A file of reusable COBOL source brought in with
+								<code class="language-cobol">COPY</code>.
+							</td>
+							<td class="ref"><a href="Copy.html#part1">Using the COPY verb</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">EXIT PROGRAM</code></td>
+							<td class="def">Returns control from a subprogram to its caller.</td>
+							<td class="ref"><a href="Subprograms.html#part1">The CALL verb</a></td>
+						</tr>
+						<tr>
+							<td class="term">external subprogram</td>
+							<td class="def">
+								A separately compiled program invoked with
+								<code class="language-cobol">CALL "name"</code>.
+							</td>
+							<td class="ref"><a href="Subprograms.html#part1">The CALL verb</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">GOBACK</code></td>
+							<td class="def">
+								Returns control to the caller, behaving as
+								<code class="language-cobol">STOP RUN</code> when used in the main program and as
+								<code class="language-cobol">EXIT PROGRAM</code>
+								when used in a subprogram.
+							</td>
+							<td class="ref"><a href="Subprograms.html#part1">The CALL verb</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">USING</code> (subprograms)</td>
+							<td class="def">
+								<code class="language-cobol">PROCEDURE DIVISION</code> phrase that lists the parameters
+								a program expects from <code class="language-cobol">CALL … USING</code>; the
+								corresponding items live in the <code class="language-cobol">LINKAGE SECTION</code>.
+							</td>
+							<td class="ref"><a href="Subprograms.html#part1">The CALL verb</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section class="glossary-section" id="string-handling" aria-labelledby="string-handling-h">
+				<h2 id="string-handling-h">String handling</h2>
+				<table class="glossary-table data-table">
+					<thead>
+						<tr>
+							<th scope="col">Term</th>
+							<th scope="col">Definition</th>
+							<th scope="col">First introduced in</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="term"><code class="language-cobol">DELIMITED BY</code></td>
+							<td class="def">
+								<code class="language-cobol">STRING</code> /
+								<code class="language-cobol">UNSTRING</code>
+								phrase that names the character(s) that bound the substring being moved.
+							</td>
+							<td class="ref"><a href="String.html#verb">The STRING verb</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">INSPECT</code></td>
+							<td class="def">
+								Examines a string and either tallies character counts, replaces characters, or converts
+								characters in place.
+							</td>
+							<td class="ref"><a href="Inspect.html#inspect">Using the INSPECT</a></td>
+						</tr>
+						<tr>
+							<td class="term">intrinsic function</td>
+							<td class="def">
+								Built-in function called as <code class="language-cobol">FUNCTION name (args)</code>
+								that returns a numeric, alphanumeric, or date value (e.g.
+								<code class="language-cobol">FUNCTION UPPER-CASE</code>,
+								<code class="language-cobol">FUNCTION CURRENT-DATE</code>).
+							</td>
+							<td class="ref"><a href="RefMod.html#part2">Intrinsic Functions</a></td>
+						</tr>
+						<tr>
+							<td class="term">reference modification</td>
+							<td class="def">
+								Slice notation that extracts a substring by start position and length:
+								<code class="language-cobol">Field (2:5)</code>.
+							</td>
+							<td class="ref"><a href="RefMod.html#part1">Reference Modification</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">STRING</code> (verb)</td>
+							<td class="def">
+								Concatenates one or more source items into a single destination item under
+								<code class="language-cobol">DELIMITED BY</code> rules.
+							</td>
+							<td class="ref"><a href="String.html#verb">The STRING verb</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">UNSTRING</code></td>
+							<td class="def">
+								Splits a source string at delimiters into a list of destination items, optionally
+								counting and tallying.
+							</td>
+							<td class="ref"><a href="Unstring.html#verb">The UNSTRING verb</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section class="glossary-section" id="report-writer" aria-labelledby="report-writer-h">
+				<h2 id="report-writer-h">Report Writer</h2>
+				<table class="glossary-table data-table">
+					<thead>
+						<tr>
+							<th scope="col">Term</th>
+							<th scope="col">Definition</th>
+							<th scope="col">First introduced in</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="term"><code class="language-cobol">CONTROL</code></td>
+							<td class="def">
+								<code class="language-cobol">RD</code> clause that names data items whose changes
+								trigger control breaks (headings / footings).
+							</td>
+							<td class="ref"><a href="ReportWriterSS.html#part2">RD Entries</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">FOOTING</code></td>
+							<td class="def">
+								Report-group <code class="language-cobol">TYPE</code> that emits at the end of a control
+								group or page.
+							</td>
+							<td class="ref"><a href="ReportWriterSS.html#part3">Report Group entries</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">GENERATE</code></td>
+							<td class="def">
+								<code class="language-cobol">PROCEDURE DIVISION</code> verb that produces a detail (or
+								summary) report line and triggers any required headings or footings.
+							</td>
+							<td class="ref"><a href="ReportWriterSS.html#part6">Procedure Division verbs</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">HEADING</code></td>
+							<td class="def">
+								Report-group <code class="language-cobol">TYPE</code> that emits at the start of a
+								control group or page.
+							</td>
+							<td class="ref"><a href="ReportWriterSS.html#part3">Report Group entries</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">INITIATE</code></td>
+							<td class="def">
+								Begins reporting on a Report Writer report; resets counters and page numbers.
+							</td>
+							<td class="ref"><a href="ReportWriterSS.html#part6">Procedure Division verbs</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">LINE-COUNTER</code></td>
+							<td class="def">Special register tracking the current line on the printed page.</td>
+							<td class="ref"><a href="ReportWriterSS.html#part5">Special registers</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">PAGE-COUNTER</code></td>
+							<td class="def">Special register tracking the current page number.</td>
+							<td class="ref"><a href="ReportWriterSS.html#part5">Special registers</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">RD</code></td>
+							<td class="def">
+								<i>Report Description</i> entry in the
+								<code class="language-cobol">REPORT SECTION</code> that defines a report's
+								<code class="language-cobol">CONTROL</code>s,
+								<code class="language-cobol">PAGE</code> layout, and report groups.
+							</td>
+							<td class="ref"><a href="ReportWriterSS.html#part2">RD Entries</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">REPORT SECTION</code></td>
+							<td class="def">
+								<code class="language-cobol">DATA DIVISION</code> section where each report's
+								<code class="language-cobol">RD</code> and report groups are declared.
+							</td>
+							<td class="ref"><a href="ReportWriterSS.html#part1">Report File entries</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">SUPPRESS</code></td>
+							<td class="def">
+								Verb used inside a <code class="language-cobol">USE BEFORE REPORTING</code>
+								declarative to skip generating a group occurrence.
+							</td>
+							<td class="ref"><a href="ReportWriterSS.html#part7">Declaratives</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">TERMINATE</code></td>
+							<td class="def">Concludes a Report Writer report, emitting final control footings.</td>
+							<td class="ref"><a href="ReportWriterSS.html#part6">Procedure Division verbs</a></td>
+						</tr>
+						<tr>
+							<td class="term"><code class="language-cobol">USE BEFORE REPORTING</code></td>
+							<td class="def">
+								<code class="language-cobol">DECLARATIVES</code> phrase that runs a paragraph just
+								before a given report group is generated.
+							</td>
+							<td class="ref"><a href="ReportWriterSS.html#part7">Declaratives</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<hr />
+
+			<back-to-top></back-to-top>
+			<copyright-notice></copyright-notice>
+		</main>
+
+		<script>
+			(function () {
+				var input = document.getElementById("glossary-filter");
+				if (!input) return;
+				var status = document.getElementById("glossary-filter-status");
+				var sections = Array.prototype.slice.call(document.querySelectorAll(".glossary-section"));
+
+				function filter() {
+					var q = input.value.trim().toLowerCase();
+					var matches = 0;
+					var total = 0;
+					sections.forEach(function (section) {
+						var sectionMatches = 0;
+						var rows = section.querySelectorAll("tbody tr");
+						rows.forEach(function (row) {
+							total++;
+							var text = row.textContent.toLowerCase();
+							var match = !q || text.indexOf(q) !== -1;
+							row.hidden = !match;
+							if (match) {
+								matches++;
+								sectionMatches++;
+							}
+						});
+						section.hidden = q && sectionMatches === 0;
+					});
+					if (status) {
+						if (!q) {
+							status.textContent = "";
+						} else if (matches === 0) {
+							status.textContent = "No terms match.";
+						} else {
+							status.textContent = matches + " of " + total + " terms match.";
+						}
+					}
+				}
+
+				input.addEventListener("input", filter);
+			})();
+		</script>
+	</body>
+</html>
