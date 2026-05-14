@@ -18,6 +18,8 @@ class BackToTop extends HTMLElement {
 			</div>
 		`;
 	}
+
+	disconnectedCallback() {}
 }
 
 customElements.define("back-to-top", BackToTop);

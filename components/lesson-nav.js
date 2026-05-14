@@ -39,6 +39,8 @@ class LessonNav extends HTMLElement {
 
 		this.innerHTML = `<nav class="lesson-nav" aria-label="Lesson navigation">${prevHTML}${positionHTML}${nextHTML}</nav>`;
 	}
+
+	disconnectedCallback() {}
 }
 
 customElements.define("lesson-nav", LessonNav);
