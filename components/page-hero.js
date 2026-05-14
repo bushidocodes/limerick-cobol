@@ -13,16 +13,21 @@ class PageHero extends HTMLElement {
 	connectedCallback() {
 		const title = this.getAttribute("title") || "";
 		const eyebrow = this.getAttribute("eyebrow") || "COBOL Tutorial";
+		const readingTime = this.getAttribute("reading-time") || "";
 		this.innerHTML = `
 			<div class="hero">
 				<p id="top" class="page-hero-eyebrow"></p>
 				<h1></h1>
+				${readingTime ? `<p class="page-hero-reading-time"></p>` : ""}
 				<theme-toggle></theme-toggle>
 				<site-search></site-search>
 			</div>
 		`;
 		this.querySelector(".page-hero-eyebrow").textContent = eyebrow;
 		this.querySelector("h1").textContent = title;
+		if (readingTime) {
+			this.querySelector(".page-hero-reading-time").textContent = `~${readingTime} read`;
+		}
 	}
 
 	disconnectedCallback() {}
