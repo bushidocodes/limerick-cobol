@@ -73,3 +73,12 @@ message should mention which phase is being applied, e.g. `Apply Phase 4 moderni
 1. Run `npm run check` — fix any failures before opening the PR.
 2. Fill in the PR template (screenshots encouraged for visual changes).
 3. The CI suite runs `validate`, `links`, `a11y`, and `format:check` automatically.
+
+## Dependencies and CVEs
+
+Dependency CVEs are handled by [Dependabot](.github/dependabot.yml), which
+opens weekly npm update PRs and additional PRs for GitHub security advisories.
+CI does **not** run `npm audit` — all dev dependencies (`html-validate`,
+`linkinator`, `pa11y-ci`, `prettier`, `http-server`, `start-server-and-test`)
+are build-time tools that never ship to users, so a failing audit shouldn't
+gate PRs. If you want a local check, run `npm audit` manually.
