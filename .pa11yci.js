@@ -17,6 +17,8 @@ const config = {
 			args: ["--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu", "--no-zygote"],
 		},
 	},
+	// Debt ledger: each entry is a known pre-existing violation with an open issue tracking its removal.
+	ignore: [],
 };
 
 // pa11y-ci concatenates CLI URLs onto config urls. For partial PR scans we
