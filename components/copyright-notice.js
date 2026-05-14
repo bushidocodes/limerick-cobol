@@ -2,12 +2,38 @@
 // inherits theme tokens (--color-text, --color-border-soft) and the body
 // font from course.css. The .copyright-notice class hooks rules in
 // course-components.css.
+//
+// Also hosts the "Edit this page on GitHub" affordance (issue #402): the
+// element renders an <edit-on-github> sibling after its copyright block and
+// dynamically loads components/edit-on-github.js if it isn't already on the
+// page, so the 73 content pages that already include <copyright-notice> get
+// the edit link without per-page <script> additions. COMPONENTS_DIR is
+// captured at script-tag execution time so the dynamic import resolves
+// correctly from any depth (course/, exercises/Exm-.../, etc.).
+const COMPONENTS_DIR = (() => {
+	const me = document.currentScript;
+	return me?.src ? new URL("./", me.src).href : null;
+})();
+
+function ensureEditOnGithubLoaded() {
+	if (customElements.get("edit-on-github")) return;
+	if (!COMPONENTS_DIR) return;
+	if (document.querySelector('script[data-component="edit-on-github"]')) return;
+	const s = document.createElement("script");
+	s.src = COMPONENTS_DIR + "edit-on-github.js";
+	s.defer = true;
+	s.dataset.component = "edit-on-github";
+	document.head.appendChild(s);
+}
+
 class CopyrightNotice extends HTMLElement {
 	connectedCallback() {
+		ensureEditOnGithubLoaded();
 		const type = this.getAttribute("type") || "course";
 		this.innerHTML = `
 			<hr>
 			${this._getContent(type)}
+			<edit-on-github></edit-on-github>
 		`;
 	}
 
