@@ -1,0 +1,799 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+		<title>File STATUS code reference</title>
+		<meta
+			name="description"
+			content="Reference table of every standard ANSI/ISO FILE STATUS code, grouped by category, with typical causes and best-practice usage."
+		/>
+		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/FileStatus.html" />
+		<!-- Open Graph -->
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/FileStatus.html" />
+		<meta property="og:title" content="File STATUS code reference" />
+		<meta
+			property="og:description"
+			content="Reference table of every standard ANSI/ISO FILE STATUS code, grouped by category, with typical causes and best-practice usage."
+		/>
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content="File STATUS code reference" />
+		<meta
+			name="twitter:description"
+			content="Reference table of every standard ANSI/ISO FILE STATUS code, grouped by category, with typical causes and best-practice usage."
+		/>
+		<link href="Resources/css/course.css" rel="stylesheet" />
+		<link href="Resources/css/course-components.css" rel="stylesheet" />
+		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
+		<script src="Resources/vendor/prism/prism.min.js" defer></script>
+		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
+		<style type="text/css">
+			.section-grid > * {
+				padding: 4px;
+			}
+
+			@media (max-width: 600px) {
+				.page-wrapper {
+					border: none;
+				}
+			}
+		</style>
+		<script src="../components/theme-toggle.js" defer></script>
+		<script src="../components/page-hero.js" defer></script>
+		<script src="../components/back-to-top.js" defer></script>
+		<script src="../components/lesson-progress.js" defer></script>
+		<script src="../components/lesson-nav.js" defer></script>
+		<script src="../components/lesson-checkbox.js" defer></script>
+		<script src="../components/copyright-notice.js" defer></script>
+		<script src="../components/related-content.js" defer></script>
+		<script src="../components/copy-button.js" defer></script>
+	</head>
+
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="section-grid">
+					<!-- Header -->
+					<div class="section-full">
+						<page-hero title="File STATUS code reference"></page-hero>
+						<hr />
+						<ul class="toc">
+							<li>
+								<a href="#intro">Introduction</a><br />
+								What the two-byte file status field means; how to declare it on a
+								<code class="language-cobol">SELECT</code>.
+							</li>
+							<li>
+								<a href="#successful">Category 0x &mdash; successful completion</a><br />
+								Including the "successful but worth knowing" sub-codes.
+							</li>
+							<li>
+								<a href="#atend">Category 1x &mdash; at end</a>
+							</li>
+							<li>
+								<a href="#invalidkey">Category 2x &mdash; invalid key</a>
+							</li>
+							<li>
+								<a href="#permanent">Category 3x &mdash; permanent error</a>
+							</li>
+							<li>
+								<a href="#logic">Category 4x &mdash; logic error</a>
+							</li>
+							<li>
+								<a href="#implementor">Category 9x &mdash; implementor-defined</a>
+							</li>
+							<li>
+								<a href="#common">Common scenarios</a><br />
+								Quick lookups: "I got code <i>nn</i> doing <i>X</i> &mdash; what happened?"
+							</li>
+							<li>
+								<a href="#bestpractice">Best practice</a><br />
+								The canonical pattern of declaring <code>FILE STATUS</code>, checking after every I/O,
+								and abending cleanly.
+							</li>
+						</ul>
+						<hr />
+					</div>
+
+					<!-- Section: Introduction -->
+					<div class="section-header">
+						<h2 id="intro">Introduction</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>What this page is</h3>
+					</div>
+					<div>
+						<p>
+							The file-handling chapters (<a href="SequentialFiles1.html">sequential</a>,
+							<a href="RelativeFiles.html">relative</a>, <a href="IndexedFiles.html">indexed</a>)
+							introduce <code class="language-cobol">FILE STATUS</code> and discuss the two codes you will
+							see most often: <code>00</code> (success) and <code>10</code> (end of file). This page is
+							the lookup table for everything else.
+						</p>
+						<p>
+							It is reference material, not a tutorial. Bookmark it for the next time your program returns
+							<code>35</code>.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Declaring <code>FILE STATUS</code></h3>
+					</div>
+					<div>
+						<p>
+							You opt in to file-status reporting by adding a
+							<code class="language-cobol">FILE STATUS IS</code> clause to the
+							<code class="language-cobol">SELECT</code>:
+						</p>
+						<pre><code class="language-cobol">SELECT StudentFile  ASSIGN TO "STUDENTS.DAT"
+                    ORGANIZATION IS SEQUENTIAL
+                    FILE STATUS IS WS-Stud-Status.
+
+WORKING-STORAGE SECTION.
+01  WS-Stud-Status      PIC X(2).</code></pre>
+						<p>
+							After every I/O verb (<code class="language-cobol">OPEN</code>,
+							<code class="language-cobol">READ</code>, <code class="language-cobol">WRITE</code>,
+							<code class="language-cobol">REWRITE</code>, <code class="language-cobol">DELETE</code>,
+							<code class="language-cobol">CLOSE</code>, <code class="language-cobol">START</code>), the
+							runtime stores a two-character status into <code>WS-Stud-Status</code>. The first byte is
+							the major category; the second byte is a sub-status that refines the meaning.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>How to read the tables</h3>
+					</div>
+					<div>
+						<p>
+							Each major category section below contains a table with three columns: the two-character
+							code, the standard meaning, and the typical cause. Codes are listed in numerical order
+							within each category. Where compilers commonly differ I have noted it.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: 0x successful -->
+					<div class="section-header">
+						<h2 id="successful">Category 0x &mdash; successful completion</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>The good news</h3>
+						<aside>
+							<p class="center-block">
+								<span class="i-detail" aria-hidden="true">🔍</span>
+							</p>
+							<p>
+								The first byte <code>0</code> means the operation succeeded. A non-zero second byte is a
+								warning rather than a failure &mdash; the operation completed, but there is something
+								worth knowing.
+							</p>
+						</aside>
+					</div>
+					<div>
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Code</th>
+									<th>Meaning</th>
+									<th>Typical cause</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><code>00</code></td>
+									<td>Successful completion</td>
+									<td>No warnings &mdash; the verb completed normally.</td>
+								</tr>
+								<tr>
+									<td><code>02</code></td>
+									<td>Duplicate alternate key</td>
+									<td>
+										On an indexed file: the verb succeeded, but the record matches another record on
+										a non-primary key declared <code class="language-cobol">WITH DUPLICATES</code>.
+									</td>
+								</tr>
+								<tr>
+									<td><code>04</code></td>
+									<td>Record length mismatch</td>
+									<td>
+										On <code class="language-cobol">READ</code>: the verb succeeded, but the
+										record's actual length doesn't match the
+										<code class="language-cobol">FD</code> entry's. Often indicates a corrupted file
+										or a wrong record layout.
+									</td>
+								</tr>
+								<tr>
+									<td><code>05</code></td>
+									<td>OPEN: file did not exist</td>
+									<td>
+										On <code class="language-cobol">OPEN OUTPUT</code> /
+										<code class="language-cobol">OPEN I-O</code>
+										/ <code class="language-cobol">OPEN EXTEND</code>: the file was created. Not an
+										error; informational.
+									</td>
+								</tr>
+								<tr>
+									<td><code>07</code></td>
+									<td>OPEN: device incompatible</td>
+									<td>
+										The file was opened, but the
+										<code class="language-cobol">ASSIGN</code> target is a non-reel-mountable device
+										(typical for a printer assigned as a tape). Rarely seen on modern systems.
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: 1x at end -->
+					<div class="section-header">
+						<h2 id="atend">Category 1x &mdash; at end</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>End-of-data conditions</h3>
+					</div>
+					<div>
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Code</th>
+									<th>Meaning</th>
+									<th>Typical cause</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><code>10</code></td>
+									<td>End of file</td>
+									<td>
+										On <code class="language-cobol">READ</code>: there are no more records. The
+										equivalent of the <code class="language-cobol">AT END</code> clause being
+										triggered.
+									</td>
+								</tr>
+								<tr>
+									<td><code>14</code></td>
+									<td>Relative key too large</td>
+									<td>
+										On a relative-file
+										<code class="language-cobol">READ NEXT</code>: the relative key would exceed the
+										declared size. Effectively also an "at end" but specific to relative.
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: 2x invalid key -->
+					<div class="section-header">
+						<h2 id="invalidkey">Category 2x &mdash; invalid key</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Indexed and relative file key problems</h3>
+					</div>
+					<div>
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Code</th>
+									<th>Meaning</th>
+									<th>Typical cause</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><code>21</code></td>
+									<td>Sequence error</td>
+									<td>
+										On a sequentially-accessed indexed file: a
+										<code class="language-cobol">WRITE</code> or
+										<code class="language-cobol">REWRITE</code> would produce records out of key
+										order.
+									</td>
+								</tr>
+								<tr>
+									<td><code>22</code></td>
+									<td>Duplicate key on a unique key</td>
+									<td>
+										<code class="language-cobol">WRITE</code> on an indexed file would create a
+										duplicate value on the primary key (or on an alternate key not declared
+										<code class="language-cobol">WITH DUPLICATES</code>).
+									</td>
+								</tr>
+								<tr>
+									<td><code>23</code></td>
+									<td>Record not found</td>
+									<td>
+										On <code class="language-cobol">READ</code>,
+										<code class="language-cobol">START</code>,
+										<code class="language-cobol">REWRITE</code>,
+										<code class="language-cobol">DELETE</code>: no record matches the key. By far
+										the most common <code>2x</code> code in practice.
+									</td>
+								</tr>
+								<tr>
+									<td><code>24</code></td>
+									<td>Boundary violation</td>
+									<td>
+										<code class="language-cobol">WRITE</code> on a relative file: the relative key
+										exceeds the configured maximum. Or, on an indexed file: the file's allocated
+										space has been exhausted.
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: 3x permanent error -->
+					<div class="section-header">
+						<h2 id="permanent">Category 3x &mdash; permanent error</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>I/O system errors</h3>
+					</div>
+					<div>
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Code</th>
+									<th>Meaning</th>
+									<th>Typical cause</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><code>30</code></td>
+									<td>Permanent error, unspecified</td>
+									<td>
+										A catch-all when the runtime cannot map the underlying I/O error to a more
+										specific code. Look in the system log.
+									</td>
+								</tr>
+								<tr>
+									<td><code>34</code></td>
+									<td>Boundary violation, sequential</td>
+									<td>
+										On a sequential file: the
+										<code class="language-cobol">WRITE</code> would exceed the file's allocated
+										space. The mainframe equivalent is an <code>S001</code> abend.
+									</td>
+								</tr>
+								<tr>
+									<td><code>35</code></td>
+									<td>File not found</td>
+									<td>
+										On <code class="language-cobol">OPEN INPUT</code> /
+										<code class="language-cobol">OPEN I-O</code>: the file does not exist. Almost
+										always: wrong path, wrong ddname, or a missing JCL allocation.
+									</td>
+								</tr>
+								<tr>
+									<td><code>37</code></td>
+									<td>Permission / device error</td>
+									<td>
+										<code class="language-cobol">OPEN</code> failed because of an underlying device
+										or permission error. Check the system log and dataset RACF profile if on z/OS.
+									</td>
+								</tr>
+								<tr>
+									<td><code>38</code></td>
+									<td>OPEN of a closed-with-lock file</td>
+									<td>
+										A previous step closed the file with
+										<code class="language-cobol">CLOSE WITH LOCK</code>; this step is not allowed to
+										reopen it.
+									</td>
+								</tr>
+								<tr>
+									<td><code>39</code></td>
+									<td>File attribute mismatch</td>
+									<td>
+										On <code class="language-cobol">OPEN</code>: the file's actual record format,
+										record length, or block size does not match the COBOL
+										<code class="language-cobol">FD</code> declaration. On z/OS this is the most
+										common cause of an <code>S013</code> abend.
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: 4x logic error -->
+					<div class="section-header">
+						<h2 id="logic">Category 4x &mdash; logic error</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Program-level mistakes</h3>
+					</div>
+					<div>
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Code</th>
+									<th>Meaning</th>
+									<th>Typical cause</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><code>41</code></td>
+									<td>OPEN on an already-open file</td>
+									<td>
+										The program issued
+										<code class="language-cobol">OPEN</code> twice without an intervening
+										<code class="language-cobol">CLOSE</code>.
+									</td>
+								</tr>
+								<tr>
+									<td><code>42</code></td>
+									<td>CLOSE on an unopened file</td>
+									<td>
+										Often the result of a control-flow bug where the
+										<code class="language-cobol">OPEN</code> path didn't run.
+									</td>
+								</tr>
+								<tr>
+									<td><code>43</code></td>
+									<td>REWRITE / DELETE without a preceding READ</td>
+									<td>
+										On a sequentially-accessed file you must
+										<code class="language-cobol">READ</code> a record before you can
+										<code class="language-cobol">REWRITE</code> or
+										<code class="language-cobol">DELETE</code> it.
+									</td>
+								</tr>
+								<tr>
+									<td><code>44</code></td>
+									<td>REWRITE record length mismatch</td>
+									<td>
+										On a variable-length file:
+										<code class="language-cobol">REWRITE</code> with a record whose length differs
+										from the original. Some compilers allow this; the standard does not.
+									</td>
+								</tr>
+								<tr>
+									<td><code>46</code></td>
+									<td>READ on a file at end</td>
+									<td>
+										Another <code class="language-cobol">READ</code> was issued after
+										<code>10</code> had already been returned, without a re-positioning
+										<code class="language-cobol">START</code>.
+									</td>
+								</tr>
+								<tr>
+									<td><code>47</code></td>
+									<td>READ on a file not opened for input</td>
+									<td>
+										The file was opened
+										<code class="language-cobol">OPEN OUTPUT</code> or
+										<code class="language-cobol">OPEN EXTEND</code>; you cannot
+										<code class="language-cobol">READ</code> from it.
+									</td>
+								</tr>
+								<tr>
+									<td><code>48</code></td>
+									<td>WRITE on a file not opened for output</td>
+									<td>
+										Mirror of <code>47</code>: the file was opened
+										<code class="language-cobol">OPEN INPUT</code>; you cannot
+										<code class="language-cobol">WRITE</code> to it.
+									</td>
+								</tr>
+								<tr>
+									<td><code>49</code></td>
+									<td>DELETE / REWRITE on a file not opened I-O</td>
+									<td>
+										Both verbs require
+										<code class="language-cobol">OPEN I-O</code>.
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: 9x implementor -->
+					<div class="section-header">
+						<h2 id="implementor">Category 9x &mdash; implementor-defined</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Vendor-specific</h3>
+					</div>
+					<div>
+						<p>
+							The <code>9x</code> codes are explicitly carved out by the COBOL standard for compiler
+							vendors to use. Values and meanings differ between IBM Enterprise COBOL, OpenText (Micro
+							Focus) Visual COBOL, GnuCOBOL, and Fujitsu. The common patterns:
+						</p>
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Code</th>
+									<th>IBM Enterprise COBOL</th>
+									<th>GnuCOBOL</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><code>90</code></td>
+									<td>Unspecified runtime error</td>
+									<td>(reserved)</td>
+								</tr>
+								<tr>
+									<td><code>91</code></td>
+									<td>VSAM password / RACF failure</td>
+									<td>File not available (locked by another process)</td>
+								</tr>
+								<tr>
+									<td><code>92</code></td>
+									<td>Logic error (variant of <code>41</code>-<code>49</code>)</td>
+									<td>Logic error</td>
+								</tr>
+								<tr>
+									<td><code>93</code></td>
+									<td>Resource not available</td>
+									<td>(varies)</td>
+								</tr>
+								<tr>
+									<td><code>94</code></td>
+									<td>VSAM logic error</td>
+									<td>(varies)</td>
+								</tr>
+								<tr>
+									<td><code>95</code></td>
+									<td>File-info inconsistency</td>
+									<td>(varies)</td>
+								</tr>
+								<tr>
+									<td><code>96</code></td>
+									<td>No DD statement</td>
+									<td>(N/A)</td>
+								</tr>
+								<tr>
+									<td><code>97</code></td>
+									<td>OPEN successful, file integrity verified</td>
+									<td>(varies)</td>
+								</tr>
+								<tr>
+									<td><code>98</code></td>
+									<td>File-locking failure</td>
+									<td>(varies)</td>
+								</tr>
+								<tr>
+									<td><code>99</code></td>
+									<td>Record-locking failure</td>
+									<td>(varies)</td>
+								</tr>
+							</tbody>
+						</table>
+						<p>
+							If you are working against a specific compiler, its manual will have the authoritative list.
+							For IBM the reference is the <i>Enterprise COBOL for z/OS Language Reference</i>; for
+							GnuCOBOL it is the runtime documentation under <code>cob_fcd_status_codes</code>.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: Common scenarios -->
+					<div class="section-header">
+						<h2 id="common">Common scenarios</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>"What does this code mean for me?"</h3>
+					</div>
+					<div>
+						<p>Reverse-lookup of the codes you will hit most often, by the verb that produced them:</p>
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Verb</th>
+									<th>Code</th>
+									<th>Most likely cause</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><code>OPEN INPUT</code></td>
+									<td><code>35</code></td>
+									<td>File doesn't exist at the configured path / ddname.</td>
+								</tr>
+								<tr>
+									<td><code>OPEN INPUT</code></td>
+									<td><code>37</code></td>
+									<td>Permission denied (on z/OS: RACF dataset profile).</td>
+								</tr>
+								<tr>
+									<td><code>OPEN INPUT</code></td>
+									<td><code>39</code></td>
+									<td>RECFM/LRECL/BLKSIZE on the file don't match the COBOL FD.</td>
+								</tr>
+								<tr>
+									<td><code>READ</code> (sequential)</td>
+									<td><code>10</code></td>
+									<td>End of file. Trigger the <code>AT END</code> branch.</td>
+								</tr>
+								<tr>
+									<td><code>READ</code> (indexed, random)</td>
+									<td><code>23</code></td>
+									<td>No record with that key.</td>
+								</tr>
+								<tr>
+									<td><code>WRITE</code> (indexed)</td>
+									<td><code>22</code></td>
+									<td>Duplicate key on a unique-key index.</td>
+								</tr>
+								<tr>
+									<td><code>WRITE</code> (sequential)</td>
+									<td><code>34</code></td>
+									<td>Output dataset ran out of space.</td>
+								</tr>
+								<tr>
+									<td><code>REWRITE</code> / <code>DELETE</code></td>
+									<td><code>43</code></td>
+									<td>Sequential access mode &mdash; no preceding <code>READ</code>.</td>
+								</tr>
+								<tr>
+									<td><code>REWRITE</code> / <code>DELETE</code></td>
+									<td><code>49</code></td>
+									<td>
+										File was opened <code>INPUT</code> or <code>OUTPUT</code>, not <code>I-O</code>.
+									</td>
+								</tr>
+								<tr>
+									<td><code>START</code></td>
+									<td><code>23</code></td>
+									<td>No record matches the search condition.</td>
+								</tr>
+							</tbody>
+						</table>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: Best practice -->
+					<div class="section-header">
+						<h2 id="bestpractice">Best practice</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>The canonical pattern</h3>
+					</div>
+					<div>
+						<p>
+							The discipline is: declare <code class="language-cobol">FILE STATUS</code> on every
+							<code class="language-cobol">SELECT</code>, check it after every I/O verb, and abend with a
+							clear message if anything other than the expected value comes back.
+						</p>
+						<pre><code class="language-cobol">       ENVIRONMENT DIVISION.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+           SELECT EmpFile  ASSIGN TO EMPLOYEE
+                           ORGANIZATION IS INDEXED
+                           ACCESS MODE  IS DYNAMIC
+                           RECORD KEY   IS EmpId
+                           FILE STATUS  IS WS-FS.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  WS-FS                PIC X(2).
+           88  FS-OK            VALUE "00".
+           88  FS-EOF           VALUE "10".
+           88  FS-DUP-KEY       VALUE "22".
+           88  FS-NOT-FOUND     VALUE "23".
+           88  FS-FILE-MISSING  VALUE "35".
+
+       PROCEDURE DIVISION.
+       BEGIN-RUN.
+           OPEN INPUT EmpFile
+           EVALUATE TRUE
+               WHEN FS-OK
+                   CONTINUE
+               WHEN FS-FILE-MISSING
+                   DISPLAY "EMPLOYEE file not found - check JCL"
+                   MOVE 8 TO RETURN-CODE
+                   GOBACK
+               WHEN OTHER
+                   DISPLAY "OPEN failed with status " WS-FS
+                   MOVE 12 TO RETURN-CODE
+                   GOBACK
+           END-EVALUATE.
+
+           READ EmpFile
+           PERFORM UNTIL FS-EOF
+               IF FS-OK
+                   PERFORM Process-Record
+               ELSE
+                   DISPLAY "READ failed with status " WS-FS
+                   MOVE 12 TO RETURN-CODE
+                   GOBACK
+               END-IF
+               READ EmpFile
+           END-PERFORM
+
+           CLOSE EmpFile
+           STOP RUN.</code></pre>
+						<p>The two patterns worth absorbing:</p>
+						<ul>
+							<li>
+								<b>88-level condition names</b> on the status field. Reading
+								<code class="language-cobol">IF FS-OK</code> is much easier than
+								<code class="language-cobol">IF WS-FS = "00"</code>, and the names self-document.
+							</li>
+							<li>
+								<b>Set the RETURN-CODE</b> before <code class="language-cobol">GOBACK</code> when you
+								abort on an unexpected status. On z/OS this is what <code>COND=</code> in subsequent JCL
+								steps will branch on. See <a href="JCL.html">An introduction to JCL</a> for the JCL
+								side.
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- Footer -->
+				<div class="page-footer">
+					<related-content></related-content>
+					<hr />
+					<lesson-checkbox lesson="FileStatus"></lesson-checkbox>
+					<lesson-nav></lesson-nav>
+					<back-to-top></back-to-top>
+					<copyright-notice></copyright-notice>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>
