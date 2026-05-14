@@ -10,7 +10,7 @@
  * keyed by the repo-root-relative path, e.g.:
  *   { "course/Arithmetic.html": "Custom description here." }
  *
- * Run: node scripts/add-page-meta.js
+ * Run: node scripts/migrations/add-page-meta.js
  */
 
 const fs = require("fs");
@@ -23,12 +23,12 @@ function ogImageUrl(pageType) {
 	const section = ["course", "exercises", "lectures"].includes(pageType) ? pageType : "site";
 	return OG_IMAGE_BASE + section + ".png";
 }
-const REPO_ROOT = path.resolve(__dirname, "..");
+const REPO_ROOT = path.resolve(__dirname, "../..");
 const CONTENT_DIRS = ["course", "exercises", "examples", "lectures"];
 const SKIP_NAMES = new Set(["index.html", "default.html"]);
 
 // ── Optional manual override map ──────────────────────────────────────────────
-const OVERRIDES_PATH = path.join(__dirname, "page-descriptions.json");
+const OVERRIDES_PATH = path.join(__dirname, "..", "page-descriptions.json");
 const OVERRIDES = fs.existsSync(OVERRIDES_PATH) ? JSON.parse(fs.readFileSync(OVERRIDES_PATH, "utf8")) : {};
 
 // ── Text utilities ─────────────────────────────────────────────────────────────
