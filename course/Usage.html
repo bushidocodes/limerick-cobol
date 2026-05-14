@@ -60,11 +60,11 @@
 						<hr />
 						<ul class="toc">
 							<li>
-								<a href="#intro">Introduction</a><br />
+								<a href="#intro">Introduction</a>
 								Unit aims, objectives, prerequisites.
 							</li>
 							<li>
-								<a href="#part1">The USAGE clause</a><br />
+								<a href="#part1">The USAGE clause</a>
 								Subprograms, the syntax and semantics of the
 								<code class="language-cobol">CALL</code> verb and parameter passing mechanisms. State
 								memory, the <code class="language-cobol">IS INITIAL</code> clause and the
@@ -107,18 +107,11 @@
 					<div class="section-content">
 						<p>By the end of this unit you should -</p>
 						<ol>
-							<li>
-								Know that text is stored in a computer using some encoding sequence.<br />
-								<br />
-							</li>
-							<li>
-								Understand the problems caused by storing numeric data as ASCII digits.<br />
-								<br />
-							</li>
+							<li>Know that text is stored in a computer using some encoding sequence.</li>
+							<li>Understand the problems caused by storing numeric data as ASCII digits.</li>
 							<li>
 								Be able to use use the <code class="language-cobol">USAGE</code> clause to change the
-								way numeric data is stored in the computer.<br />
-								<br />
+								way numeric data is stored in the computer.
 							</li>
 							<li>
 								Know when and how to use the
@@ -153,19 +146,12 @@
 					<div class="section-sidebar">
 						<h3><b>Introduction</b></h3>
 						<span class="i-detail" aria-hidden="true">🔍</span>
-						<p>
-							<br />
-							<b>ASCII</b><br />
-							<b>A</b>merican <b>S</b>tandard <b>C</b>ode for <b>I</b>nformation <b>I</b>nterchange
-						</p>
-						<p>
-							<b>EBCDIC<br /></b>
-							<b>E</b>xtended <b>B</b>inary <b>C</b>oded <b>D</b>ecimal <b>I</b>nterchange <b>C</b>ode
-						</p>
-						<p>
-							<b>BCD</b><br />
-							<b>B</b>inary <b>C</b>oded <b>D</b>ecimal
-						</p>
+						<h4>ASCII</h4>
+						<p><b>A</b>merican <b>S</b>tandard <b>C</b>ode for <b>I</b>nformation <b>I</b>nterchange</p>
+						<h4>EBCDIC</h4>
+						<p><b>E</b>xtended <b>B</b>inary <b>C</b>oded <b>D</b>ecimal <b>I</b>nterchange <b>C</b>ode</p>
+						<h4>BCD</h4>
+						<p><b>B</b>inary <b>C</b>oded <b>D</b>ecimal</p>
 					</div>
 					<div class="section-content">
 						<p>
@@ -2182,13 +2168,10 @@ Begin.
 							<p class="center-block">
 								For instance, suppose we had a statement like -<br />
 								<code class="language-cobol">MOVE ZEROS TO GROUP2</code>.<br />
-								in the program opposite.<br />
-								<br />
-								On the surface it looks as if this statement is moving the numeric value 0 to NumItem1
-								and NumItem2 but what is actually moved into these items is the ASCII digit "0".<br />
-								<br />
-								When an attempt is made to use NumItem1 or NumItem2 in a calculation the program will
-								crash because these data-items contain non-numeric data.
+								in the program opposite. On the surface it looks as if this statement is moving the
+								numeric value 0 to NumItem1 and NumItem2 but what is actually moved into these items is
+								the ASCII digit "0". When an attempt is made to use NumItem1 or NumItem2 in a
+								calculation the program will crash because these data-items contain non-numeric data.
 							</p>
 						</aside>
 					</div>
@@ -2205,20 +2188,17 @@ Begin.
 						<ul>
 							<li>
 								The <code class="language-cobol">USAGE</code> clause may be used with any data
-								description entry except those with level numbers of 66 or 88.<br />
-								<br />
+								description entry except those with level numbers of 66 or 88.
 							</li>
 							<li>
 								When the <code class="language-cobol">USAGE</code> clause is declared for a group item,
 								the usage specified is applied to every item in the group. The group item itself is
-								still treated as an alphanumeric data-item (see example program below).<br />
-								<br />
+								still treated as an alphanumeric data-item (see example program below).
 							</li>
 							<li>
 								<code class="language-cobol">USAGE IS COMPUTATIONAL</code> or
 								<code class="language-cobol">COMP</code> or
-								<code class="language-cobol">BINARY</code> are synonyms of one another.<br />
-								<br />
+								<code class="language-cobol">BINARY</code> are synonyms of one another.
 							</li>
 							<li>
 								The <code class="language-cobol">USAGE IS INDEX</code> clause is used to provide an
@@ -2227,10 +2207,7 @@ Begin.
 								item (see the Search Tutorial).
 							</li>
 						</ul>
-						<p>
-							<br />
-							<b>USAGE rules</b><br />
-						</p>
+						<h4>USAGE rules</h4>
 						<ol>
 							<li>
 								Any item declared with <code class="language-cobol">USAGE IS INDEX</code> can only
@@ -2241,18 +2218,16 @@ Begin.
 								- The <code class="language-cobol">USING</code> phrase of the
 								<code class="language-cobol">PROCEDURE DIVISION</code><br />
 								- The <code class="language-cobol">USING</code> phrase of the
-								<code class="language-cobol">CALL</code> statement<br />
-								<br />
+								<code class="language-cobol">CALL</code> statement
 							</li>
 							<li>
 								The picture string of a <code class="language-cobol">COMP</code> or
 								<code class="language-cobol">PACKED-DECIMAL</code> item can contain only the symbols 9,
-								S, V and/or P.<br />
-								<br />
+								S, V and/or P.
 							</li>
 							<li>
 								The picture clause used for <code class="language-cobol">COMP</code> or
-								<code class="language-cobol">PACKED-DECIMAL</code> items must be numeric.<br />
+								<code class="language-cobol">PACKED-DECIMAL</code> items must be numeric.
 							</li>
 						</ol>
 						<p><b>USAGE examples</b></p>
@@ -2270,8 +2245,8 @@ Begin.
    02 NumItem1 PIC 9(3)V99 USAGE IS COMP.
    02 NumItem2 PIC 99V99   USAGE IS COMP.
 </code></pre>
+						<h4>COMP/COMPUTATIONAL/BINARY</h4>
 						<p>
-							<b>COMP/COMPUTATIONAL/BINARY</b><br />
 							<code class="language-cobol">COMP</code> items are held in memory as pure binary two's
 							complement numbers. The storage requirements for fields described as
 							<code class="language-cobol">COMP</code> are as follows:
@@ -2294,10 +2269,8 @@ Begin.
 								<td width="166">1QuadWord (8 Bytes)</td>
 							</tr>
 						</table>
+						<h4>PACKED-DECIMAL</h4>
 						<p>
-							<br />
-							<br />
-							<b>PACKED-DECIMAL</b><br />
 							Data-items declared as <code class="language-cobol">PACKED-DECIMAL</code> are held in
 							binary-coded-decimal (BCD) form.<br />
 							Instead of representing the value as a single binary number, the binary value of each digit
@@ -2312,9 +2285,8 @@ Begin.
 								alt="PACKED-DECIMAL (BCD) storage format diagram showing digit nibbles and sign nibble"
 							/>
 						</p>
+						<h4>General USAGE notes</h4>
 						<p>
-							<br />
-							<b>General USAGE notes</b><br />
 							The <code class="language-cobol">USAGE</code> clause is one of the areas where many vendors
 							have introduced extensions to the COBOL standard. It is not uncommon to see
 							<code class="language-cobol">COMP-1</code>, <code class="language-cobol">COMP-2</code>,

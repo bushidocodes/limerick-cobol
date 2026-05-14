@@ -59,16 +59,16 @@
 					<hr />
 					<ul class="toc">
 						<li>
-							<a href="#intro">Introduction</a><br />
+							<a href="#intro">Introduction</a>
 							Unit aims, objectives, prerequisites.
 						</li>
 						<li>
-							<a href="#part1">The CALL verb</a><br />
+							<a href="#part1">The CALL verb</a>
 							Subprograms, the syntax and semantics of the CALL verb and parameter passing mechanisms.
 							State memory, the IS INITIAL clause and the CANCEL command.
 						</li>
 						<li>
-							<a href="#part2">Contained Subprograms</a><br />
+							<a href="#part2">Contained Subprograms</a>
 							Contained subprogram defined. Sharing data with the IS GLOBAL and IS EXTERNAL clause. Using
 							the IS COMMON PROGRAM clause. Measuring the quality of subprograms.
 						</li>
@@ -118,31 +118,24 @@
 					<div class="section-content">
 						<p>By the end of this unit you should -</p>
 						<ol>
-							<li>
-								Understand the difference between a subprogram and a contained subprogram<br />
-								<br />
-							</li>
+							<li>Understand the difference between a subprogram and a contained subprogram</li>
 							<li>
 								Be able to use the <code class="language-cobol">CALL</code> verb to transfer control to
-								a subprogram and to pass parameter values to it.<br />
-								<br />
+								a subprogram and to pass parameter values to it.
 							</li>
 							<li>
 								Understand the difference between the
 								<code class="language-cobol">BY REFERENCE</code> and
-								<code class="language-cobol">BY CONTENT</code> parameter passing mechanisms.<br />
-								<br />
+								<code class="language-cobol">BY CONTENT</code> parameter passing mechanisms.
 							</li>
 							<li>
 								Understand what "state memory" is and be able to create subprograms that do, or do not,
-								exhibit "state memory".<br />
-								<br />
+								exhibit "state memory".
 							</li>
 							<li>
 								Understand the <code class="language-cobol">IS COMMON</code>,
 								<code class="language-cobol">IS GLOBAL</code> and
-								<code class="language-cobol">IS EXTERNAL</code> clauses.<br />
-								<br />
+								<code class="language-cobol">IS EXTERNAL</code> clauses.
 							</li>
 							<li>Be able to create subprograms of good quality.</li>
 						</ol>
@@ -209,7 +202,7 @@
 						<p>
 							One purpose of the Linker is to resolve the subprogram names (given in the
 							<code class="language-cobol">PROGRAM-ID</code> clause) into actual physical addresses so
-							that the computer can find a particular subprogram when it is invoked.<br />
+							that the computer can find a particular subprogram when it is invoked.
 						</p>
 						<p>
 							In a system consisting of a main program and linked subprograms, there must be a mechanism
@@ -271,61 +264,51 @@
 								If the <code class="language-cobol">CALL</code> passes parameters, then the called
 								program must have a <code class="language-cobol">USING</code> phrase after the
 								<code class="language-cobol">PROCEDURE DIVISION</code> header and a
-								<code class="language-cobol">LINKAGE SECTION</code> to describe the parameters
-								passed.<br />
-								<br />
+								<code class="language-cobol">LINKAGE SECTION</code> to describe the parameters passed.
 							</li>
 							<li>
 								The <code class="language-cobol">CALL</code> statement has a
 								<code class="language-cobol">USING</code> phrase only if a
 								<code class="language-cobol">USING</code> phrase is used in the
-								<code class="language-cobol">PROCEDURE DIVISION</code> header of the called program.<br />
-								<br />
+								<code class="language-cobol">PROCEDURE DIVISION</code> header of the called program.
 							</li>
 							<li>
 								Both <code class="language-cobol">USING</code> phrases must have the same number of
-								parameters.<br />
-								<br />
+								parameters.
 							</li>
 							<li>
 								Unlike languages like Modula-2, COBOL does not check the type of the parameters passed
 								to a called program. It is the programmer's responsibility to make sure that only
-								parameters of the correct type and size are passed.<br />
-								<br />
+								parameters of the correct type and size are passed.
 							</li>
 							<li>
 								Parameters passed from the calling program to the called program correspond by position,
 								not by name. That is, the first parameter in the
 								<code class="language-cobol">USING</code> phrase of the
 								<code class="language-cobol">CALL</code> corresponds to the first in the
-								<code class="language-cobol">USING</code> phase of the called program, and so on.<br />
-								<br />
+								<code class="language-cobol">USING</code> phase of the called program, and so on.
 								<img
 									height="354"
 									src="Resources/pics/Call2.gif"
 									width="524"
 									alt="Diagram showing parameter correspondence by position between calling and called programs"
-								/><br />
-								<br />
-								<br />
+								/>
 							</li>
 							<li>
 								If the program being called has not been linked (does not exist in the executable
 								image,) the statement block following the
 								<code class="language-cobol">ON EXCEPTION/OVERFLOW</code> will execute. Otherwise, the
-								program will terminate abnormally.<br />
-								<br />
+								program will terminate abnormally.
 							</li>
 							<li>
 								<code class="language-cobol">BY REFERENCE</code> is the default passing mechanism, and
-								so is sometimes omitted.<br />
-								<br />
+								so is sometimes omitted.
 							</li>
 							<li>
 								Note that vendors often extend the <code class="language-cobol">CALL</code> by
 								introducing <code class="language-cobol">BY VALUE</code> parameter passing, and by
 								including a <code class="language-cobol">GIVING</code> phrase. These are non-standard
-								extensions.<br />
+								extensions.
 							</li>
 						</ol>
 						<hr size="1" />
@@ -343,8 +326,7 @@
 						<ul>
 							<li>
 								<code class="language-cobol">BY REFERENCE</code> is used when the called program needs
-								to pass data back to the caller.<br />
-								<br />
+								to pass data back to the caller.
 							</li>
 							<li>
 								<b>
@@ -354,8 +336,8 @@
 							</li>
 						</ul>
 						<p>The diagrams and explanations below show how these mechanisms work.</p>
+						<h4>CALL..BY REFERENCE</h4>
 						<p>
-							<b>CALL..BY REFERENCE</b><br />
 							When data is passed <code class="language-cobol">BY REFERENCE</code>, the address of the
 							data-item is supplied to the called subprogram. So any changes made to the data-item in the
 							subprogram are also made to the data-item in the main program because both items refer to
@@ -369,8 +351,9 @@
 								alt="Diagram showing BY REFERENCE parameter passing where both programs share the same memory address"
 							/>
 						</p>
+						<h4>CALL..BY CONTENT</h4>
 						<p>
-							<b>CALL..BY CONTENT<br /></b> When a parameter is passed
+							When a parameter is passed
 							<code class="language-cobol">BY CONTENT</code> a copy of the data-item is made and the
 							address of the copy is supplied to subprogram. Any changes made to the data-item in the
 							subprogram affect only the copy.
@@ -421,8 +404,9 @@ Begin.
        ? ? ? ? ? ? ? ? ? ? ? ?</code></pre>
 						<div class="center-block">
 							<p>Outline of the called program</p>
+							<h4>Notes</h4>
 							<p>
-								<b>Notes<br /></b> Note that the name given in the
+								Note that the name given in the
 								<code class="language-cobol">CALL</code> statement (i.e. "DateValidate") corresponds
 								with the name given in the <code class="language-cobol">PROGRAM-ID</code> of the called
 								program. The main purpose of the <code class="language-cobol">PROGRAM-ID</code> clause
@@ -479,8 +463,8 @@ Begin.
 						<b>State memory and the IS INITIAL clause</b>
 					</div>
 					<div class="section-content">
+						<h4>The IS INITIAL phrase</h4>
 						<p>
-							<b>The IS INITIAL phrase</b><br />
 							The first time a subprogram is called, it is in its initial state: all files are closed and
 							the data-items are initialized to their
 							<code class="language-cobol">VALUE</code> clauses.
@@ -694,7 +678,7 @@ Begin.
 						><code class="language-cobol">CALL "Fickle" USING BY CONTENT IncValue.
 CANCEL "Fickle"
 CALL "Fickle" USING BY CONTENT IncValue.</code></pre>
-						<p>we can force "Fickle" to act like "Steadfast".<br /></p>
+						<p>we can force "Fickle" to act like "Steadfast".</p>
 						<hr size="1" />
 					</div>
 					<div class="section-sidebar">
@@ -710,20 +694,17 @@ CALL "Fickle" USING BY CONTENT IncValue.</code></pre>
 							<li>
 								The <code class="language-cobol">PROGRAM-ID</code> may take the
 								<code class="language-cobol">IS INITIAL</code> and
-								<code class="language-cobol">IS COMMON PROGRAM</code> clauses.<br />
-								<br />
+								<code class="language-cobol">IS COMMON PROGRAM</code> clauses.
 							</li>
 							<li>
 								When parameters are passed to the subprogram, the
 								<code class="language-cobol">PROCEDURE DIVISION</code> header of the subprogram must
-								have the <code class="language-cobol">USING</code> phrase.<br />
-								<br />
+								have the <code class="language-cobol">USING</code> phrase.
 							</li>
 							<li>
 								When there are parameters, the <code class="language-cobol">DATA DIVISION</code> of the
 								subprogram must have a <code class="language-cobol">LINKAGE SECTION</code> where the
-								items specified in the <code class="language-cobol">USING</code> phrase are declared.<br />
-								<br />
+								items specified in the <code class="language-cobol">USING</code> phrase are declared.
 							</li>
 							<li>
 								The <code class="language-cobol">EXIT PROGRAM</code> statement is used where the
@@ -734,13 +715,12 @@ CALL "Fickle" USING BY CONTENT IncValue.</code></pre>
 								The difference between a <code class="language-cobol">STOP RUN</code> and an
 								<code class="language-cobol">EXIT PROGRAM</code> statement is that the
 								<code class="language-cobol">STOP RUN</code> causes the whole run-unit to stop (even if
-								it is encountered in a subprogram) instead of just the subprogram<br />
-								<br />
+								it is encountered in a subprogram) instead of just the subprogram
 							</li>
 							<li>
 								Contained subprograms. must end with the
 								<code class="language-cobol">END PROGRAM</code> statement. The END PROGRAM statement
-								delimits the scope of a contained subprogram<br />
+								delimits the scope of a contained subprogram
 							</li>
 						</ol>
 					</div>
@@ -771,13 +751,12 @@ CALL "Fickle" USING BY CONTENT IncValue.</code></pre>
 						<ol>
 							<li>
 								In the procedures used in other languages all external data-items are visible within the
-								procedure unless they are explicitly redeclared as local data-items.<br />
-								<br />
+								procedure unless they are explicitly redeclared as local data-items.
 							</li>
 							<li>
 								In COBOL's contained subprograms, no external data-items are visible within the
 								contained subprogram, unless this has been explicitly permitted by using the
-								<code class="language-cobol">IS GLOBAL</code> clause in the data declaration.<br />
+								<code class="language-cobol">IS GLOBAL</code> clause in the data declaration.
 							</li>
 						</ol>
 						<hr size="1" />
@@ -794,19 +773,17 @@ CALL "Fickle" USING BY CONTENT IncValue.</code></pre>
 						<p class="center-block">
 							<b>END PROGRAM ProgramIdName.</b>
 						</p>
-						<b>Contained subprogram restrictions</b>
-						<b><br /></b> Contained subprograms have the following restrictions:<br />
+						<h4>Contained subprogram restrictions</h4>
+						<p>Contained subprograms have the following restrictions:</p>
 						<ol>
 							<li>
 								Although contained subprograms can be nested, a contained subprogram can only be called
-								by the immediate containing program or by a subprogram at the same level.<br />
-								<br />
+								by the immediate containing program or by a subprogram at the same level.
 							</li>
 							<li>
 								Contained subprograms. can only call a subprogram at the same level if the called
 								program uses the <code class="language-cobol">IS COMMON PROGRAM</code> clause in its
-								<code class="language-cobol">PROGRAM-ID</code>.<br />
-								<br />
+								<code class="language-cobol">PROGRAM-ID</code>.
 							</li>
 						</ol>
 						<hr size="1" />
@@ -1246,19 +1223,17 @@ Value - 0</code></pre>
 						<ul>
 							<li>
 								A subprogram should perform a single specific function or should co-ordinate its
-								subordinate subprograms such that they perform a single function.<br />
-								<br />
+								subordinate subprograms such that they perform a single function.
 							</li>
 							<li>
 								A subprogram should only be given access to the data it actually requires to do its job.
 								Even then, the type of access (Read-Only or Read-Write) allowed on the data should be
-								restricted.<br />
-								<br />
+								restricted.
 							</li>
 							<li>
 								The data passed to and from the subprogram should be passed through the parameter list
 								in as transparent a manner as possible - there should be no hidden method of data
-								transfer.<br />
+								transfer.
 							</li>
 						</ul>
 					</div>

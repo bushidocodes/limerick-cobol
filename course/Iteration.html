@@ -74,33 +74,33 @@
 					<hr />
 					<ul class="toc">
 						<li>
-							<a href="#intro">Introduction</a><br />
+							<a href="#intro">Introduction</a>
 							Unit aims, objectives, prerequisites.
 						</li>
 						<li>
-							<a href="#part1">PERFORM..Proc</a><br />
+							<a href="#part1">PERFORM..Proc</a>
 							This section introduces the format of the
 							<code class="language-cobol">PERFORM</code> that is used to transfer control to a paragraph
 							or section.
 						</li>
 						<li>
-							<a href="#part2">Using the PERFORM..THRU</a><br />
+							<a href="#part2">Using the PERFORM..THRU</a>
 							This section demonstrates how the <code class="language-cobol">PERFORM..THRU</code> can be
 							used to implement an emergency exit from a paragraph.
 						</li>
 						<li>
-							<a href="#part3">PERFORM..TIMES</a><br />
+							<a href="#part3">PERFORM..TIMES</a>
 							This section introduces the <code class="language-cobol">PERFORM..TIMES</code> which allow
 							us to create an iteration that executes x number of times. Also discusses the use of in-line
 							versus out-of-line <code class="language-cobol">PERFORM</code>s
 						</li>
 						<li>
-							<a href="#part4">PERFORM..UNTIL</a><br />
+							<a href="#part4">PERFORM..UNTIL</a>
 							In this section <code class="language-cobol">PERFORM..UNTIL</code>, COBOL's version of the
 							while and do/repeat loops, is introduced.
 						</li>
 						<li>
-							<a href="#part5">PERFORM..VARYING</a><br />
+							<a href="#part5">PERFORM..VARYING</a>
 							This section demonstrates <code class="language-cobol">PERFORM..VARYING</code>, COBOL's
 							version of the for loop.
 						</li>
@@ -254,8 +254,8 @@
 								If the language you learned was C or Modula-2, you are probably familiar with closed
 								subroutines. If you learned BASIC, you may be familiar with open subroutines.
 							</p>
+							<h4>Open subroutines.</h4>
 							<p>
-								<b>Open subroutines.</b><br />
 								An open subroutine., is a named block of code that control can fall into, or through. An
 								open subroutine., usually has access to all the data-items declared in the main program
 								and it can't declare any data-items of its own.
@@ -265,8 +265,8 @@
 								possible, unless the programmer is careful, to fall into it from the main program. In
 								BASIC, the GOSUB command allows programmers to implement open subroutines.
 							</p>
+							<h4>Closed subroutines.</h4>
 							<p>
-								<b>Closed subroutines.</b><br />
 								A closed subroutine., is a named block of code that can only be executed by invoking it
 								by name. Usually a closed subroutine. can declare its own local data which cannot be
 								accessed outside the subroutine. In a closed subroutine., data is usually passed between
@@ -274,8 +274,8 @@
 								when it is invoked.
 							</p>
 							<p>In C and Modula-2, Procedures and Functions implement closed subroutines.</p>
+							<h4>COBOL subroutines.</h4>
 							<p>
-								<b>COBOL subroutines.</b><br />
 								COBOL supports both open and closed subroutines. Open subroutines, are implemented using
 								the first format of the <code class="language-cobol">PERFORM</code> verb. Closed
 								subroutines., are implemented using the <code class="language-cobol">CALL</code> verb
@@ -398,22 +398,22 @@
 						</div>
 						<blockquote>
 							<div>
+								<h4>PERFORMs may be nested.</h4>
 								<p>
-									<b> PERFORMs may be nested. </b><br />
 									That is, a PERFORM may execute a paragraph that contains a
 									<code class="language-cobol">PERFORM</code> which in turn may execute a paragraph
 									that contains another <code class="language-cobol">PERFORM</code>. As control
 									reaches the end of each paragraph it returns to the statement following the perform
 									which cause the paragraph to be executed.
 								</p>
+								<h4>Order of execution independent of physical placement</h4>
 								<p>
-									<b>Order of execution independent of physical placement</b><br />
 									The order of execution of the paragraphs is independent of their physical placement.
 									So it doesn't matter where in the Procedure Division we put our paragraphs the
 									<code class="language-cobol">PERFORM</code> will find and execute them
 								</p>
+								<h4>Recursion not allowed.</h4>
 								<p>
-									<b>Recursion not allowed.</b><br />
 									Although Performs can be nested, neither direct nor indirect recursion is allowed.
 									This means that a paragraph must not contain a
 									<code class="language-cobol">PERFORM</code> that invokes itself or any ancestor
@@ -777,8 +777,8 @@ SumSalesExit.
 						<h3>In-line vs Out-of-line</h3>
 					</div>
 					<div class="section-content">
+						<h4>In-line execution</h4>
 						<p>
-							<b>In-line execution</b><br />
 							In-line execution will be familiar to programmers who have used the iteration constructs
 							(while,do/repeat, for) of most other programming languages. In an in-line
 							<code class="language-cobol">PERFORM</code>, the block of code to be iteratively executed is
@@ -790,14 +790,14 @@ SumSalesExit.
 							<code class="language-cobol">PERFORM</code> and ends at the keyword
 							<code class="language-cobol">END-PERFORM</code> (see example program below).
 						</p>
+						<h4>Out-of-line execution</h4>
 						<p>
-							<b>Out-of-line execution</b><br />
 							In an out-of-line PERFORM the loop body is a separate paragraph or section. It is the
 							equivalent of having a Procedure or Function call inside the loop body of a while or for
 							construct.
 						</p>
+						<h4>Some guidelines</h4>
 						<p>
-							<b>Some guidelines</b><br />
 							In general, where a loop is needed but only a few statements are involved, an in-line
 							<code class="language-cobol">PERFORM</code> should be used.
 						</p>
@@ -903,10 +903,11 @@ Back in Begin. About to stop</pre>
 								alt="PERFORM..UNTIL syntax diagram"
 							/>
 						</p>
+						<h4>Notes</h4>
 						<p>
-							<b>Notes<br /></b> If the <code class="language-cobol">WITH TEST BEFORE</code> phrase is
-							used, the <code class="language-cobol">PERFORM</code> behaves like a <i>while</i> loop and
-							the condition is tested before the loop body is entered.
+							If the <code class="language-cobol">WITH TEST BEFORE</code> phrase is used, the
+							<code class="language-cobol">PERFORM</code> behaves like a <i>while</i> loop and the
+							condition is tested before the loop body is entered.
 						</p>
 						<p>
 							The <code class="language-cobol">WITH TEST AFTER</code> phrase causes the
@@ -1081,8 +1082,8 @@ END-PERFORM</code></pre>
 								alt="PERFORM..VARYING syntax diagram"
 							/>
 						</p>
+						<h4>Notes</h4>
 						<p>
-							N<b>otes</b><br />
 							The <code class="language-cobol">AFTER</code> phrase cannot be used in an in-line
 							<code class="language-cobol">PERFORM</code>. This means that only one counter may be used
 							with an in-line <code class="language-cobol">PERFORM</code>.

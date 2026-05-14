@@ -60,29 +60,29 @@
 						<hr />
 						<ul class="toc">
 							<li>
-								<a href="#intro">Introduction</a><br />
+								<a href="#intro">Introduction</a>
 								Unit aims, objectives, prerequisites.
 							</li>
 							<li>
-								<a href="#part1">Simple SORTing</a><br />
+								<a href="#part1">Simple SORTing</a>
 								This section introduces a simplified version of
 								<code class="language-cobol">SORT</code> verb syntax, and discusses why we might need to
 								sort a file as part of a solution to a programming problem..
 							</li>
 							<li>
-								<a href="#part2">Sorting with an INPUT PROCEDURE</a><br />
+								<a href="#part2">Sorting with an INPUT PROCEDURE</a>
 								This section introduces a <code class="language-cobol">SORT</code> with an
 								<code class="language-cobol">INPUT PROCEDURE</code> and demonstrates how an INPUT
 								PROCEDURE may be used to filter, or alter, records before they are supplied to the sort
 								process.
 							</li>
 							<li>
-								<a href="#part3">Sorting with an OUTPUT PROCEDURE</a><br />
+								<a href="#part3">Sorting with an OUTPUT PROCEDURE</a>
 								This section shows how an <code class="language-cobol">OUTPUT PROCEDURE</code> may be
 								used to filter, or alter, records after they have been sorted.
 							</li>
 							<li>
-								<a href="#part4">MERGEing files</a><br />
+								<a href="#part4">MERGEing files</a>
 								In this section the <code class="language-cobol">MERGE</code> verb is introduced. The
 								<code class="language-cobol">MERGE</code> verb may be used to merge two or more ordered
 								files.
@@ -350,8 +350,8 @@ SORT WorkFile ON ASCENDING ProvinceCode
                  USING SalesFile
                  GIVING SortedSalesFile.</code></pre>
 						</blockquote>
+						<h4><code class="language-cobol">SORT</code> notes</h4>
 						<p>
-							<b> <code class="language-cobol">SORT</code> notes </b><br />
 							The <i>SDWorkFileName</i> identifies a temporary work file that the
 							<code class="language-cobol">SORT</code> process uses for the sort. It is defined in the
 							<code class="language-cobol">FILE SECTION</code> using an
@@ -696,8 +696,8 @@ SORT WorkFile ON ASCENDING CountryNameWF, CustomerNameWF
               INPUT PROCEDURE IS RestructureRecords
               GIVING SortedSubscriptionsFile.
 </code></pre>
+						<h4>INPUT PROCEDURE notes</h4>
 						<p>
-							<b>INPUT PROCEDURE notes</b><br />
 							When an <code class="language-cobol">INPUT PROCEDURE</code> is used, it replaces the
 							<code class="language-cobol">USING</code> phrase. The <i>ProcName</i> in the
 							<code class="language-cobol">INPUT PROCEDURE</code> phrase, identifies a block of code, that
@@ -1145,8 +1145,8 @@ GetStudentDetails.
 SORT WorkFile ON ASCENDING KEY SalespersonNumWF
      USING SalesFile
      OUTPUT PROCEDURE IS SummariseSales.</code></pre>
+						<h4>OUTPUT PROCEDURE notes</h4>
 						<p>
-							<b>OUTPUT PROCEDURE notes</b><br />
 							An <code class="language-cobol">OUTPUT PROCEDURE</code> is used to retrieve sorted records
 							from the work file using the <code class="language-cobol">RETURN</code> verb.
 						</p>
@@ -1504,8 +1504,8 @@ PrintReportBody.
    ON ASCENDING KEY TransDateWF, TransCodeWF, StudentIdWF
    USING InsertTransFile, DeleteTransFile, UpdateTransFile
    GIVING CombinedTransFile. </code></pre>
+						<h4><code class="language-cobol">MERGE</code> notes</h4>
 						<p>
-							<code class="language-cobol">MERGE</code> <b>notes</b><br />
 							The results of the <code class="language-cobol">MERGE</code> verb are predictable only when
 							the records in the input files are ordered as described in the
 							<code class="language-cobol">KEY</code> clause associated with the
