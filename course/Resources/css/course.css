@@ -36,6 +36,11 @@
 	--prism-function: #c03a58;
 	--prism-number: currentColor;
 	--prism-operator: currentColor;
+
+	/* Dark-mode image inversion. Light/print leave it at `none`; the dark
+	   rulesets override it to actually invert. Routing through a custom
+	   property lets the print stylesheet reset it without `!important`. */
+	--img-filter: none;
 }
 
 /* Tighten color-scheme when the user has explicitly chosen a theme so the
@@ -145,6 +150,19 @@ a:active {
 img {
 	max-width: 100%;
 	height: auto;
+	filter: var(--img-filter);
+}
+
+/* Photos and explicit opt-outs skip the dark-mode invert. Setting the custom
+   property on the element itself (rather than a high-specificity `img { filter
+   }` rule) means the same selectors work in light, dark, and print without
+   needing to be repeated under each theme. */
+img.no-invert,
+img[src$=".jpg"],
+img[src$=".jpeg"],
+img[src$=".JPG"],
+img[src$=".JPEG"] {
+	--img-filter: none;
 }
 
 table {
@@ -186,17 +204,21 @@ body {
 		word-wrap: break-word;
 	}
 
+	/* These attribute selectors override HTML width="..." / height="..."
+	   presentation attributes, which the cascade treats as having specificity
+	   0 — so any author CSS selector wins without `!important`. Confirmed no
+	   page sets an inline `style="width:..."` on these tags. */
 	table[width] {
-		width: 100% !important;
-		height: auto !important;
+		width: 100%;
+		height: auto;
 	}
 
 	td[width],
 	th[width],
 	td[height],
 	th[height] {
-		width: auto !important;
-		height: auto !important;
+		width: auto;
+		height: auto;
 	}
 
 	td[bgcolor="#993300"] > h2,
@@ -210,7 +232,7 @@ body {
 	}
 
 	hr[width] {
-		width: 100% !important;
+		width: 100%;
 	}
 
 	img,
@@ -218,12 +240,12 @@ body {
 	video,
 	embed,
 	object {
-		max-width: min(100%, calc(100vw - 16px)) !important;
+		max-width: min(100%, calc(100vw - 16px));
 		height: auto;
 	}
 
 	pre {
-		max-width: min(100%, calc(100vw - 16px)) !important;
+		max-width: min(100%, calc(100vw - 16px));
 	}
 
 	pre[class*="language-"] {
@@ -238,7 +260,7 @@ body {
 	#layout-table > tbody > tr,
 	#layout-table > tbody > tr > td {
 		display: block;
-		width: auto !important;
+		width: auto;
 	}
 }
 
@@ -468,7 +490,11 @@ td[bgcolor="#ffffcc"] h4 {
    Legacy <span style="color: #cccccc"> fails 4.5:1 against any light
    background. Remap to a dark grey that passes without the rule being
    visible in dark mode (the dark-mode block below uses higher-specificity
-   :root:not([data-theme="light"]) selectors and overrides this). */
+   :root:not([data-theme="light"]) selectors and overrides this).
+   `!important` is required: attribute selectors only see the raw inline
+   value, but the actual `color` declaration sits in the element's `style`
+   attribute, whose specificity (1,0,0,0) outranks any author selector
+   without `!important`. */
 [style*="color:#cccccc"],
 [style*="color: #cccccc"],
 [style*="color:#CCCCCC"],
@@ -479,7 +505,9 @@ td[bgcolor="#ffffcc"] h4 {
 /* Legacy <span style="color: #ff0000"> fails 4.5:1 against light backgrounds
    (#E1FFE1 gives 3.73:1, #FFFFCC gives 3.89:1, white gives 4:1). Remap to a
    darker red. Dark-mode override below uses higher-specificity selectors and
-   maps to #ff8a8a for legibility on dark panel backgrounds. */
+   maps to #ff8a8a for legibility on dark panel backgrounds. `!important` is
+   required for the same reason as the #cccccc rule above — we're overriding
+   an inline `style="color:..."` declaration. */
 [style*="color:#ff0000"],
 [style*="color: #ff0000"],
 [style*="color:#FF0000"],
@@ -602,18 +630,11 @@ body .token.function {
 
 	/* Light-background diagrams and decorative GIFs invert to read on dark.
 	   `0.92` keeps blacks just shy of pure white so they merge into the page;
-	   `hue-rotate(180deg)` recovers reds/greens. Photos opt out by extension
-	   or by adding `class="no-invert"` to the <img>. */
-	:root:not([data-theme="light"]) img {
-		filter: invert(0.92) hue-rotate(180deg);
-	}
-
-	:root:not([data-theme="light"]) img.no-invert,
-	:root:not([data-theme="light"]) img[src$=".jpg"],
-	:root:not([data-theme="light"]) img[src$=".jpeg"],
-	:root:not([data-theme="light"]) img[src$=".JPG"],
-	:root:not([data-theme="light"]) img[src$=".JPEG"] {
-		filter: none;
+	   `hue-rotate(180deg)` recovers reds/greens. The photo / no-invert opt-out
+	   lives at the base `img.no-invert` rule above, which resets the variable
+	   on the element itself. */
+	:root:not([data-theme="light"]) {
+		--img-filter: invert(0.92) hue-rotate(180deg);
 	}
 
 	/* Override inline `style="color: #..."` spans baked into legacy code
@@ -683,7 +704,12 @@ body .token.function {
 	}
 }
 
-/* Manual dark override — same non-token rules, applied regardless of OS. */
+/* Manual dark override — same non-token rules as the @media block above,
+   applied regardless of OS preference. The `[style*="..."]` overrides below
+   need `!important` for the same reason as their @media-dark twins: they
+   target the raw inline-style attribute, but the actual `color` /
+   `background-color` declaration sits in `style=""` at specificity (1,0,0,0)
+   and can't be beaten without it. */
 :root[data-theme="dark"] body pre[class*="language-"],
 :root[data-theme="dark"] body code[class*="language-"] {
 	background: var(--prism-bg);
@@ -744,16 +770,8 @@ body .token.function {
 	background: transparent;
 }
 
-:root[data-theme="dark"] img {
-	filter: invert(0.92) hue-rotate(180deg);
-}
-
-:root[data-theme="dark"] img.no-invert,
-:root[data-theme="dark"] img[src$=".jpg"],
-:root[data-theme="dark"] img[src$=".jpeg"],
-:root[data-theme="dark"] img[src$=".JPG"],
-:root[data-theme="dark"] img[src$=".JPEG"] {
-	filter: none;
+:root[data-theme="dark"] {
+	--img-filter: invert(0.92) hue-rotate(180deg);
 }
 
 :root[data-theme="dark"] [style*="color:#0000ff"],
@@ -846,13 +864,15 @@ body .token.function {
 		background: #fff;
 	}
 
-	/* Hide decorative chrome that doesn't belong on a printed page */
+	/* Hide decorative chrome that doesn't belong on a printed page. None of
+	   these elements have a competing `display` rule elsewhere in course.css,
+	   so source order alone wins. */
 	.hero img,
 	.back-to-top,
 	.skip-link,
 	theme-toggle,
 	ul.toc {
-		display: none !important;
+		display: none;
 	}
 
 	/* Expand multi-column section grid to a single column */
@@ -873,8 +893,14 @@ body .token.function {
 		break-inside: avoid;
 	}
 
-	/* Undo any dark-mode invert filter on images */
-	img {
-		filter: none !important;
+	/* Undo any dark-mode invert filter on images. The dark-mode rulesets set
+	   `--img-filter` on `:root[data-theme="dark"]` or
+	   `:root:not([data-theme="light"])` (both specificity 0,2,0). Resetting on
+	   the same selectors here matches that specificity, and source order
+	   makes the print declarations win — no `!important` required. */
+	:root,
+	:root[data-theme="dark"],
+	:root:not([data-theme="light"]) {
+		--img-filter: none;
 	}
 }
