@@ -1138,11 +1138,14 @@ page-toc {
 		box-sizing: border-box;
 	}
 
-	.page-wrapper:has(page-toc) > .page-content > ul.toc {
-		display: none;
-	}
-
-	.page-wrapper:has(page-toc) > .page-content > ul.toc + hr {
+	/* Hide the top-of-page ul.toc on desktop when the sidebar is present —
+	   the sidebar covers the same role. Selector matches both layout
+	   shapes used across course pages: `ul.toc` inside .page-content
+	   (Iteration-style) and inside a .section-grid > .section-full
+	   (COBOLIntro-style). The trailing <hr /> sibling is hidden too so
+	   the empty divider doesn't leave a stray rule. */
+	.page-wrapper:has(page-toc) ul.toc,
+	.page-wrapper:has(page-toc) ul.toc + hr {
 		display: none;
 	}
 }
