@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+		<title>Setting up a COBOL development environment</title>
+		<meta
+			name="description"
+			content="Install GnuCOBOL on Windows, macOS or Linux, configure an editor, and compile and run a first Hello, World COBOL program."
+		/>
+		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/Setup.html" />
+		<!-- Open Graph -->
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/Setup.html" />
+		<meta property="og:title" content="Setting up a COBOL development environment" />
+		<meta
+			property="og:description"
+			content="Install GnuCOBOL on Windows, macOS or Linux, configure an editor, and compile and run a first Hello, World COBOL program."
+		/>
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content="Setting up a COBOL development environment" />
+		<meta
+			name="twitter:description"
+			content="Install GnuCOBOL on Windows, macOS or Linux, configure an editor, and compile and run a first Hello, World COBOL program."
+		/>
+		<link href="Resources/css/course.css" rel="stylesheet" />
+		<link href="Resources/css/course-components.css" rel="stylesheet" />
+		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
+		<script src="Resources/vendor/prism/prism.min.js" defer></script>
+		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
+		<style type="text/css">
+			/* Page-scoped overrides. Setup.html keeps its compiler-comparison table
+			   compact and lets the install-instruction blocks breathe a little. */
+			.compiler-table {
+				width: 100%;
+				max-width: 560px;
+				margin: 0.5em auto;
+			}
+
+			.compiler-table th {
+				background-color: var(--color-panel-bg);
+				color: var(--color-panel-text);
+				text-align: left;
+			}
+
+			.install-block + .install-block {
+				margin-top: 0.6em;
+			}
+
+			.install-block h4 {
+				margin: 0.3em 0;
+			}
+
+			@media (max-width: 600px) {
+				.page-wrapper {
+					border: none;
+				}
+			}
+		</style>
+		<script src="../components/theme-toggle.js" defer></script>
+		<script src="../components/page-hero.js" defer></script>
+		<script src="../components/back-to-top.js" defer></script>
+		<script src="../components/lesson-nav.js" defer></script>
+		<script src="../components/copyright-notice.js" defer></script>
+		<script src="../components/copy-button.js" defer></script>
+	</head>
+
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="section-grid">
+					<!-- Header -->
+					<div class="section-full">
+						<page-hero title="Setting up a COBOL development environment"></page-hero>
+						<hr />
+						<ul class="toc">
+							<li>
+								<a href="#intro">Introduction</a><br />
+								Unit aims, objectives, prerequisites.
+							</li>
+							<li>
+								<a href="#part1">Pick a compiler</a><br />
+								Comparison of the main COBOL compilers available today and why this course uses
+								GnuCOBOL.
+							</li>
+							<li>
+								<a href="#part2">Install GnuCOBOL</a><br />
+								Concrete install steps for Windows (MSYS2), macOS (Homebrew) and Linux (apt / dnf).
+							</li>
+							<li>
+								<a href="#part3">Pick an editor</a><br />
+								Setting up Visual Studio Code with the COBOL extension for syntax highlighting and
+								IntelliSense.
+							</li>
+							<li>
+								<a href="#part4">Compile and run Hello, World</a><br />
+								A complete short program, the exact <code>cobc</code> command, and the expected output.
+							</li>
+							<li>
+								<a href="#part5">What can go wrong</a><br />
+								Common first-run errors: missing <code>cobc</code>, source format mistakes, file
+								extensions.
+							</li>
+							<li>
+								<a href="#part6">Where to go next</a><br />
+								Continue to <i>The structure of COBOL programs</i>.
+							</li>
+						</ul>
+						<hr />
+					</div>
+
+					<!-- Section: Introduction -->
+					<div class="section-header">
+						<h2 id="intro">Introduction</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Aims</h3>
+					</div>
+					<div>
+						<p>
+							The rest of this course is a read-only experience until you can actually compile and run a
+							COBOL program on your own machine. This unit walks you through choosing a compiler,
+							installing it, configuring an editor, and compiling a short
+							<i>Hello, World</i> program end-to-end.
+						</p>
+						<p>
+							The course standardises on <b>GnuCOBOL</b>, an open-source COBOL compiler that runs on
+							Windows, macOS and Linux. Every code example later in the course is intended to compile
+							under GnuCOBOL without modification.
+						</p>
+						<hr size="1" />
+					</div>
+					<div class="section-sidebar">
+						<h3>Objectives</h3>
+					</div>
+					<div>
+						<p>By the end of this unit you should be able to -</p>
+						<ol>
+							<li>
+								Explain why GnuCOBOL is a good default choice for learning COBOL.<br />
+								<br />
+							</li>
+							<li>
+								Install GnuCOBOL on your operating system and verify the install from the command
+								line.<br />
+								<br />
+							</li>
+							<li>
+								Configure Visual Studio Code so COBOL source files have syntax highlighting and basic
+								editor assistance.<br />
+								<br />
+							</li>
+							<li>
+								Compile and run a short COBOL program with the
+								<code>cobc</code> compiler driver.<br />
+								<br />
+							</li>
+							<li>Recognise and recover from the most common first-run errors.</li>
+						</ol>
+						<hr size="1" />
+					</div>
+					<div class="section-sidebar">
+						<h3>Prerequisites</h3>
+					</div>
+					<div>
+						<ul>
+							<li>A computer running Windows 10/11, macOS or a recent Linux distribution.</li>
+							<li>
+								Administrator (or <code>sudo</code>) access so a package manager can install GnuCOBOL.
+							</li>
+							<li>
+								Basic familiarity with opening a terminal (PowerShell, Terminal.app or a Linux shell)
+								and running commands.
+							</li>
+						</ul>
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: Pick a compiler -->
+					<div class="section-header">
+						<h2 id="part1">Pick a compiler</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>The current landscape</h3>
+					</div>
+					<div>
+						<p>
+							COBOL is an ISO standard, but there is no single canonical compiler. The three options a
+							learner is most likely to encounter today are summarised below.
+						</p>
+						<table class="data-table compiler-table">
+							<thead>
+								<tr>
+									<th>Compiler</th>
+									<th>Cost</th>
+									<th>Runs on</th>
+									<th>Best for</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><b>GnuCOBOL</b></td>
+									<td>Free / open source</td>
+									<td>Windows, macOS, Linux, BSD</td>
+									<td>Learning COBOL, running this course's examples locally.</td>
+								</tr>
+								<tr>
+									<td>IBM Enterprise COBOL</td>
+									<td>Commercial</td>
+									<td>z/OS mainframe only</td>
+									<td>
+										Production mainframe work. Out of reach without access to an IBM system or a
+										hosted z/OS sandbox.
+									</td>
+								</tr>
+								<tr>
+									<td>TutorialsPoint online compiler</td>
+									<td>Free, browser-based</td>
+									<td>Anywhere with a browser</td>
+									<td>
+										Trying a single snippet without installing anything. Not suitable for the
+										file-handling chapters later in the course.
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<p>
+							<b>GnuCOBOL is the right default for this course.</b> It is free, runs everywhere, and
+							supports enough of the COBOL 85 / 2002 / 2014 standards to handle every example you will see
+							in later units, including the sequential and indexed file chapters that the online compilers
+							cannot run.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: Install GnuCOBOL -->
+					<div class="section-header">
+						<h2 id="part2">Install GnuCOBOL</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Windows</h3>
+						<aside>
+							<p>
+								The recommended path on Windows is <b>MSYS2</b>, a Unix-like environment that ships
+								precompiled GnuCOBOL packages. Native Windows binaries also exist (e.g. arnoldtrembley's
+								builds), but MSYS2 keeps the toolchain — compiler, headers, libraries — coherent in one
+								place.
+							</p>
+							<p>
+								If you already use the Windows Subsystem for Linux, follow the Linux instructions inside
+								your WSL distribution instead.
+							</p>
+						</aside>
+					</div>
+					<div>
+						<div class="install-block">
+							<h4>1. Install MSYS2</h4>
+							<p>
+								Download the MSYS2 installer from
+								<a href="https://www.msys2.org/">https://www.msys2.org/</a> and run it. Accept the
+								default install location.
+							</p>
+						</div>
+						<div class="install-block">
+							<h4>2. Install GnuCOBOL inside the MSYS2 shell</h4>
+							<p>Open the <b>MSYS2 MINGW64</b> shell from the Start menu and run:</p>
+							<pre><code>pacman -Syu
+pacman -S mingw-w64-x86_64-gnucobol</code></pre>
+						</div>
+						<div class="install-block">
+							<h4>3. Verify the install</h4>
+							<p>Still inside the MINGW64 shell, run:</p>
+							<pre><code>cobc --version</code></pre>
+							<p>
+								You should see a line beginning with <code>cobc (GnuCOBOL)</code> followed by a version
+								number.
+							</p>
+						</div>
+						<hr size="1" />
+					</div>
+					<div class="section-sidebar">
+						<h3>macOS</h3>
+						<aside>
+							<p>
+								<a href="https://brew.sh/">Homebrew</a> is the easiest way to install GnuCOBOL on macOS.
+								The formula is named <code>gnu-cobol</code>.
+							</p>
+						</aside>
+					</div>
+					<div>
+						<div class="install-block">
+							<h4>1. Install Homebrew (if you do not already have it)</h4>
+							<pre><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
+						</div>
+						<div class="install-block">
+							<h4>2. Install GnuCOBOL</h4>
+							<pre><code>brew install gnu-cobol</code></pre>
+						</div>
+						<div class="install-block">
+							<h4>3. Verify the install</h4>
+							<pre><code>cobc --version</code></pre>
+						</div>
+						<hr size="1" />
+					</div>
+					<div class="section-sidebar">
+						<h3>Linux</h3>
+						<aside>
+							<p>
+								Every mainstream distribution packages GnuCOBOL under either the
+								<code>gnucobol</code> or <code>open-cobol</code> name. The two commands below cover
+								Debian/Ubuntu and Fedora/RHEL-derived systems.
+							</p>
+						</aside>
+					</div>
+					<div>
+						<div class="install-block">
+							<h4>Debian / Ubuntu</h4>
+							<pre><code>sudo apt update
+sudo apt install gnucobol</code></pre>
+						</div>
+						<div class="install-block">
+							<h4>Fedora / RHEL / Rocky / Alma</h4>
+							<pre><code>sudo dnf install gnucobol</code></pre>
+						</div>
+						<div class="install-block">
+							<h4>Verify the install</h4>
+							<pre><code>cobc --version</code></pre>
+						</div>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: Pick an editor -->
+					<div class="section-header">
+						<h2 id="part3">Pick an editor</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Visual Studio Code</h3>
+						<aside>
+							<p>
+								Any plain-text editor will compile COBOL — including Notepad, vim or nano — but Visual
+								Studio Code with a COBOL extension gives you syntax highlighting, IntelliSense
+								(autocomplete) and column-aware formatting, all of which materially shorten the feedback
+								loop while you are learning.
+							</p>
+						</aside>
+					</div>
+					<div>
+						<ol>
+							<li>
+								Install <b>Visual Studio Code</b> from
+								<a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a>.<br />
+								<br />
+							</li>
+							<li>
+								Open the Extensions panel (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd> on Windows and
+								Linux, <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd> on macOS).<br />
+								<br />
+							</li>
+							<li>
+								Search for <b>COBOL</b> and install the extension by <i>bitlang</i> (its identifier is
+								<code>bitlang.cobol</code>). This is the most widely used community extension and works
+								without needing a paid licence.<br />
+								<br />
+							</li>
+							<li>
+								Open a folder, create a file ending in <code>.cob</code> or <code>.cbl</code>, and VS
+								Code will activate the COBOL language mode automatically. You should see keywords like
+								<code class="language-cobol">IDENTIFICATION DIVISION</code> render in colour.
+							</li>
+						</ol>
+						<p>
+							If you prefer a different editor, both <b>Vim</b> (<code>cobol.vim</code>) and
+							<b>Emacs</b> (<code>cobol-mode</code>) have community-maintained modes that provide at
+							minimum syntax highlighting.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: Hello, World -->
+					<div class="section-header">
+						<h2 id="part4">Compile and run Hello, World</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>The program</h3>
+						<aside>
+							<p>
+								The directive <code>&gt;&gt;SOURCE FORMAT IS FREE</code> tells GnuCOBOL to use the
+								modern free-format source layout instead of the historical fixed columns. The rest of
+								the course uses the same convention.
+							</p>
+						</aside>
+					</div>
+					<div>
+						<p>Save the listing below into a file called <code>hello.cob</code>:</p>
+						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+IDENTIFICATION DIVISION.
+PROGRAM-ID. Hello.
+
+PROCEDURE DIVISION.
+    DISPLAY "Hello, World!"
+    STOP RUN.</code></pre>
+						<hr size="1" />
+					</div>
+					<div class="section-sidebar">
+						<h3>Compile</h3>
+						<aside>
+							<p>
+								The <code>-x</code> flag tells <code>cobc</code> to build a standalone executable.
+								Without it, <code>cobc</code> defaults to producing a callable module instead.
+							</p>
+						</aside>
+					</div>
+					<div>
+						<p>From the same directory as <code>hello.cob</code>, run:</p>
+						<pre><code>cobc -x hello.cob</code></pre>
+						<p>
+							If the compile succeeds you will see no output at all. <code>cobc</code> will produce an
+							executable named <code>hello</code> (or <code>hello.exe</code> on Windows) next to the
+							source file.
+						</p>
+						<hr size="1" />
+					</div>
+					<div class="section-sidebar">
+						<h3>Run</h3>
+					</div>
+					<div>
+						<p>On macOS and Linux:</p>
+						<pre><code>./hello</code></pre>
+						<p>On Windows (MSYS2 MINGW64 shell):</p>
+						<pre><code>./hello.exe</code></pre>
+						<figure class="example-run">
+							<figcaption>Expected output</figcaption>
+							<pre>Hello, World!</pre>
+						</figure>
+						<p>If that line appears, your toolchain is working end-to-end and you are ready to move on.</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: What can go wrong -->
+					<div class="section-header">
+						<h2 id="part5">What can go wrong</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Common first-run errors</h3>
+						<aside>
+							<p>
+								The five items below cover roughly all of the failures a learner will hit in the first
+								hour. Skim them now so the error messages look familiar when you see them.
+							</p>
+						</aside>
+					</div>
+					<div>
+						<dl>
+							<dt>
+								<b><code>cobc: command not found</code></b>
+							</dt>
+							<dd>
+								<p>
+									Your shell cannot find the GnuCOBOL compiler. On Windows, make sure you are running
+									the <b>MSYS2 MINGW64</b> shell rather than a regular Command Prompt or PowerShell
+									window. On macOS, run <code>brew doctor</code> to check that the Homebrew binary
+									directory is on your <code>PATH</code>. On Linux, confirm the package is installed
+									with <code>which cobc</code>.
+								</p>
+							</dd>
+							<dt>
+								<b
+									><code>error: PROGRAM-ID header missing</code> or unexpected
+									<code>IDENTIFICATION</code></b
+								>
+							</dt>
+							<dd>
+								<p>
+									Almost always a source-format mismatch. GnuCOBOL defaults to <b>fixed format</b>,
+									where columns 1-6 are a sequence area, column 7 is an indicator, area A runs columns
+									8-11 and area B runs columns 12-72. If you typed the program flush against the left
+									margin and did not include <code>&gt;&gt;SOURCE FORMAT IS FREE</code> at the top,
+									the compiler will read your code as sequence numbers and reject it. Either add the
+									directive (recommended) or pass <code>-free</code> on the command line:
+								</p>
+								<pre><code>cobc -x -free hello.cob</code></pre>
+							</dd>
+							<dt><b>Code past column 72 in fixed format</b></dt>
+							<dd>
+								<p>
+									In fixed format, anything in columns 73 and beyond is silently ignored by the
+									compiler — it is the historical card-image identification area. If a statement in
+									fixed format appears to be missing its tail (for example a
+									<code>DISPLAY</code> stops mid-string), check that you have not wrapped past column
+									72.
+								</p>
+							</dd>
+							<dt><b>Wrong file extension</b></dt>
+							<dd>
+								<p>
+									GnuCOBOL recognises <code>.cob</code>, <code>.cbl</code> and <code>.cpy</code> (for
+									COPY library files) by default. A file called <code>hello.txt</code> will compile
+									only if you explicitly tell <code>cobc</code> the source format. Stick to
+									<code>.cob</code> while learning.
+								</p>
+							</dd>
+							<dt>
+								<b><code>libcob.so: cannot open shared object file</code> at run time</b>
+							</dt>
+							<dd>
+								<p>
+									On Linux, the GnuCOBOL runtime library was found at compile time but not at run
+									time. This usually means the binary built with one GnuCOBOL package and you are
+									running it from an environment that no longer sees the runtime — for example running
+									from a different shell after a partial uninstall. Re-running
+									<code>sudo apt install gnucobol</code> (or your distribution's equivalent) restores
+									it.
+								</p>
+							</dd>
+						</dl>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: Where to go next -->
+					<div class="section-header">
+						<h2 id="part6">Where to go next</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Continue the course</h3>
+					</div>
+					<div>
+						<p>
+							With a working compiler you are ready to read COBOL code in context. The next unit,
+							<a href="COBOLIntro.html">The structure of COBOL programs</a>, introduces the four divisions
+							every COBOL program is built from and walks through several short examples you can now
+							compile yourself.
+						</p>
+						<p>
+							If you would like a reference for the
+							<code>cobc</code> command-line options as you go, run <code>cobc --help</code> from your
+							shell, or read the manual page (<code>man cobc</code>
+							on macOS and Linux).
+						</p>
+					</div>
+				</div>
+				<!-- Footer -->
+				<div class="page-footer">
+					<hr />
+					<lesson-nav></lesson-nav>
+					<back-to-top></back-to-top>
+					<copyright-notice></copyright-notice>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>

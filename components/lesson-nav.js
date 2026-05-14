@@ -6,6 +6,7 @@
 // The lesson sequence below is derived from the ordered tutorial links in
 // course/index.html (exercises and SAQ links are intentionally excluded).
 const LESSONS = [
+	{ file: "Setup.html", title: "Setting up a COBOL development environment" },
 	{ file: "COBOLIntro.html", title: "The structure of COBOL programs" },
 	{ file: "DataDeclaration.html", title: "Declaring data in COBOL" },
 	{ file: "COBOLcommands.html", title: "Basic Procedure Division commands" },
