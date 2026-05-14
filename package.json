@@ -19,6 +19,8 @@
 		"a11y": "start-server-and-test serve http://localhost:8000 a11y:run",
 		"build:lesson-jsonld": "node scripts/generate-lesson-jsonld.js && prettier --write \"course/**/*.html\"",
 		"check:lesson-jsonld": "node scripts/generate-lesson-jsonld.js && prettier --write \"course/**/*.html\" && git diff --exit-code course/lesson-meta.json \"course/**/*.html\"",
+		"build:reading-time": "node scripts/add-reading-time.js && prettier --write \"course/**/*.html\"",
+		"check:reading-time": "node scripts/add-reading-time.js && prettier --write \"course/**/*.html\" && git diff --exit-code \"course/**/*.html\"",
 		"check:assets": "node scripts/check-assets.js",
 		"format:check": "prettier --check .",
 		"format:write": "prettier --write .",
