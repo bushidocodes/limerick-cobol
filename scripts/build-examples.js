@@ -441,7 +441,7 @@ function buildPage(entry) {
 	const relatedEl = relatedContentHtml(entry.file);
 
 	const runInCeScript = entry.runInCe ? `\t\t<script src="${pfx}components/run-in-ce.js" defer></script>\n` : "";
-	const runInCeEl = entry.runInCe ? `\t\t\t\t\t\t<p><run-in-ce></run-in-ce></p>\n` : "";
+	const runInCeToolbarEl = entry.runInCe ? `\t\t\t\t\t\t\t<run-in-ce></run-in-ce>\n` : "";
 
 	return `<!doctype html>
 <html lang="en">
@@ -491,10 +491,12 @@ ${runInCeScript}\t</head>
 \t\t\t\t\t\t\t<span>${entry.crumb}</span>
 \t\t\t\t\t\t</nav>
 \t\t\t\t\t\t<p>${entry.desc}</p>
-\t\t\t\t\t\t<p><a href="${entry.cbl}" download>Download ${entry.cbl}</a></p>
-${runInCeEl}${relatedEl}\t\t\t\t\t\t<pre class="language-cobol"><code class="language-cobol">${escapedSource}
+\t\t\t\t\t\t\t<div class="code-toolbar">
+\t\t\t\t\t\t\t<a href="${entry.cbl}" download class="download-btn">Download ${entry.cbl}</a>
+${runInCeToolbarEl}\t\t\t\t\t\t</div>
+\t\t\t\t\t\t<pre class="language-cobol"><code class="language-cobol">${escapedSource}
 </code></pre>
-\t\t\t\t\t</div>
+${relatedEl}\t\t\t\t\t</div>
 \t\t\t\t</div>
 \t\t\t</div>
 \t\t</main>
