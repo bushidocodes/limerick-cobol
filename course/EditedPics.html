@@ -55,21 +55,21 @@
 					<hr />
 					<ul class="toc">
 						<li>
-							<a href="#intro">Introduction</a><br />
+							<a href="#intro">Introduction</a>
 							Unit aims, objectives, prerequisites.
 						</li>
 						<li>
-							<a href="#part1">What is an Edited Picture?</a><br />
+							<a href="#part1">What is an Edited Picture?</a>
 							This section introduces Edited Pictures, the types of edited pictures, and the edit symbols
 							used.
 						</li>
 						<li>
-							<a href="#part2">Insertion Editing</a><br />
+							<a href="#part2">Insertion Editing</a>
 							This section introduces the four types of Insertion Editing - Simple Insertion, Special
 							Insertion, Fixed Insertion, and Floating Insertion
 						</li>
 						<li>
-							<a href="#part3">Suppression and Replacement Editing</a><br />
+							<a href="#part3">Suppression and Replacement Editing</a>
 							This section introduces the two types Suppression and Replacement Editng - suppression of
 							leading zeros and replacement with spaces, and suppression and replacement with asterisks.
 						</li>
@@ -222,7 +222,7 @@
 						<p>COBOL permits two basic types of editing picture:</p>
 						<ol>
 							<li>
-								<b>Insertion Editing</b><br />
+								<b>Insertion Editing</b>
 								This type of editing modifies a value by including additional items and has the
 								following sub-categories:
 								<ul>
@@ -233,7 +233,7 @@
 								</ul>
 							</li>
 							<li>
-								<b>Suppression and Replacement Editing</b><br />
+								<b>Suppression and Replacement Editing</b>
 								This type of editing suppresses and replaces leading zeros and has the following
 								sub-categories:
 								<ul>
@@ -357,8 +357,8 @@
 							instance, an item described as PIC 99/99/9999 will occupy 10 character positions when
 							printed.
 						</p>
+						<h4>The comma (,) symbol</h4>
 						<p>
-							<b>The comma (,) symbol</b><br />
 							The comma symbol (,) instructs the computer to insert a comma at the character position
 							where the symbol occurs. The comma counts towards the size of the printed item. The comma
 							symbol cannot be the first symbol in the
@@ -368,12 +368,10 @@
 							If all characters to the left of the comma are zeros and zero-suppression is called for, the
 							comma is replaced by the replacement symbol (asterisk or space).
 						</p>
+						<h4>The space or blank (B) symbol</h4>
+						<p>A space is inserted where the blank symbol (B) occurs.</p>
+						<h4>The slash and zero symbols (/ and 0)</h4>
 						<p>
-							<b>The space or blank (B) symbol</b><br />
-							A space is inserted where the blank symbol (B) occurs.
-						</p>
-						<p>
-							<b>The slash and zero symbols (/ and 0)</b><br />
 							A slash is inserted where the slash symbol (/) occurs, and a 0 is inserted where the zero
 							symbol (0) occurs.
 						</p>
@@ -555,8 +553,8 @@
 							The decimal point is the only Special Insertion symbol. A decimal point is inserted in the
 							character position where the symbol occurs.
 						</p>
+						<h4>Notes</h4>
 						<p>
-							<b>Notes</b><br />
 							When a numeric data-item is moved into an edited data-item containing the decimal point
 							symbol, alignment occurs along the position of the decimal point symbol, with zero-filling
 							and truncation as necessary.
@@ -701,31 +699,32 @@
 							<li>and the currency symbol usually the $ sign.</li>
 						</ul>
 						<p>All symbols count toward the size of the printed item.</p>
+						<h4>Plus and minus symbols</h4>
 						<p>
-							<b>Plus and minus symbols</b><br />
 							These must appear in the leftmost or rightmost character positions and they count towards
 							the size of the data item. They must be the first or last character in the
 							<code class="language-cobol">PICTURE</code> string.
 						</p>
 						<blockquote>
+							<h4>Minus</h4>
 							<p>
-								<b>Minus</b><br />
 								If the sending item is negative, a minus sign is printed. If the sending item is
 								positive, a space is printed instead. Use this to highlight negative values only.
 							</p>
+							<h4>Plus</h4>
 							<p>
-								<b>Plus<br /></b> If the sending item is negative, a minus in printed and if the sending
-								item is positive, a plus is inserted. Use this to when you always want the sign printed.
+								If the sending item is negative, a minus in printed and if the sending item is positive,
+								a plus is inserted. Use this to when you always want the sign printed.
 							</p>
 						</blockquote>
+						<h4>CR and DB</h4>
 						<p>
-							<b>CR and DB</b><br />
 							CR and DB count towards the data item size and occupy two character positions. They may only
 							appear in the rightmost position. Both are only printed if the sending item is negative.
 							Otherwise two spaces are printed.
 						</p>
+						<h4>The currency symbol (usually $).</h4>
 						<p>
-							<b>The currency symbol (usually $).</b><br />
 							The currency symbol must be the leftmost character and it counts towards the size of the
 							item. It may be preceded by a plus or a minus sign.
 						</p>
@@ -1173,9 +1172,8 @@
 							<li>Suppression of leading zeros and replacement with spaces</li>
 							<li>Suppression of leading zeros and replacement with asterisks</li>
 						</ul>
-						<p>
-							<b>Notes<br /></b> The characters <b>Z</b> and <b>*</b> are the suppression symbols.
-						</p>
+						<h4>Notes</h4>
+						<p>The characters <b>Z</b> and <b>*</b> are the suppression symbols.</p>
 						<p>
 							Using Z in an editing picture, instructs the computer to suppress a leading zero in that
 							character position and replace it with a space.

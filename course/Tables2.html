@@ -92,27 +92,27 @@
 						<hr />
 						<ul class="toc">
 							<li>
-								<a href="#intro">Introduction</a><br />
+								<a href="#intro">Introduction</a>
 								Unit aims, objectives, prerequisites.
 							</li>
 							<li>
-								<a href="#part1">Declaring a single dimension table</a><br />
+								<a href="#part1">Declaring a single dimension table</a>
 								In this section we demonstrate how the
 								<code class="language-cobol">OCCURS</code> clause is used to declare a single dimension
 								table. We also show how it may be used to declare a variable length table.
 							</li>
 							<li>
-								<a href="#part2">Group items as elements</a><br />
+								<a href="#part2">Group items as elements</a>
 								The elements of a table do not have to be elementary items - they can be group items.
 								This section demonstrates how to create a table, the elements of which, are group items.
 							</li>
 							<li>
-								<a href="#part3">Declaring multi-dimension tables</a><br />
+								<a href="#part3">Declaring multi-dimension tables</a>
 								This section demonstrates how nested <code class="language-cobol">OCCURS</code> clauses
 								are used to create multi-dimension tables.
 							</li>
 							<li>
-								<a href="#part4">Creating pre-filled tables with the REDEFINES clause.</a><br />
+								<a href="#part4">Creating pre-filled tables with the REDEFINES clause.</a>
 								This section first demonstrates non-table related uses for the REDEFINES clause and then
 								shows how it may be used to create pre-filled tables. The new COBOL'85 approaches to
 								creating pre-filled tables and to initialising tables are also demonstrated.
@@ -1098,12 +1098,13 @@ ADD 56 TO PopTotal(12,3,2)</code></pre>
 						<h3>Non-tables uses for the REDEFINES clause - some examples</h3>
 					</div>
 					<div class="section-content">
+						<h4>Example 1</h4>
 						<p>
-							<b>Example 1<br /></b> Some COBOL statements, like the UNSTRING, require their receiving
-							fields to be alphanumeric (PIC X) data-items. This is inconvenient if the value of the
-							data-item is actually numeric because then a <code class="language-cobol">MOVE</code> is
-							required to place the value into a numeric item. If the value contains a decimal point then
-							this creates even more difficulties.
+							Some COBOL statements, like the UNSTRING, require their receiving fields to be alphanumeric
+							(PIC X) data-items. This is inconvenient if the value of the data-item is actually numeric
+							because then a <code class="language-cobol">MOVE</code> is required to place the value into
+							a numeric item. If the value contains a decimal point then this creates even more
+							difficulties.
 						</p>
 						<p>
 							For example, suppose an <code class="language-cobol">UNSTRING</code> statement has just
@@ -1120,10 +1121,11 @@ ADD 56 TO PopTotal(12,3,2)</code></pre>
 						</p>
 						<pre class="language-cobol"><code class="language-cobol">01  TextValue    PIC X(7).
 01  NumericValue REDEFINES TextValue PIC 9(5)V99.</code></pre>
+						<h4>Example 2</h4>
 						<p>
-							<b>Example 2<br /></b> The <code class="language-cobol">REDEFINES</code> clause is not just
-							used to create pre-filled tables. It is used whenever a programmer needs to give different
-							data descriptions to the same area of storage.
+							The <code class="language-cobol">REDEFINES</code> clause is not just used to create
+							pre-filled tables. It is used whenever a programmer needs to give different data
+							descriptions to the same area of storage.
 						</p>
 						<p>
 							For instance, suppose we accept a date from the user and that sometimes the date has the
@@ -1178,12 +1180,12 @@ ADD 56 TO PopTotal(12,3,2)</code></pre>
            DISPLAY  USMonth "-" USDay "-" USYear
 END-EVALUATE </code></pre>
 						<p>- and still get the correct values displayed.</p>
+						<h4>Example 3</h4>
 						<p>
-							<b>Example 3<br /></b> The <code class="language-cobol">REDEFINES</code> clause is also
-							useful when we need to treat a numeric item as if it had its decimal point in different
-							places. For instance the value 12345 is treated as if it were 12.345 if we refer to
-							<i>10Rate</i>, 123.45 if we refer to <i>100Rate</i>, and 1234.5 if we refer to
-							<i>1000Rate</i>.
+							The <code class="language-cobol">REDEFINES</code> clause is also useful when we need to
+							treat a numeric item as if it had its decimal point in different places. For instance the
+							value 12345 is treated as if it were 12.345 if we refer to <i>10Rate</i>, 123.45 if we refer
+							to <i>100Rate</i>, and 1234.5 if we refer to <i>1000Rate</i>.
 						</p>
 						<pre class="language-cobol"><code class="language-cobol">01 Rates.
    02 10Rate                    PIC 99V999.

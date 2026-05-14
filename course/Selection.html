@@ -68,26 +68,26 @@
 					<hr />
 					<ul class="toc">
 						<li>
-							<a href="#intro">Introduction</a><br />
+							<a href="#intro">Introduction</a>
 							Unit aims, objectives, prerequisites.
 						</li>
 						<li>
-							<a href="#part1">Selection using IF</a><br />
+							<a href="#part1">Selection using IF</a>
 							This section demonstrates selection using the IF statement. It introduces Relation
 							Conditions, Class Condition, Sign Condition and Complex Conditions. It also covers Implied
 							Subjects and Nested IFs.
 						</li>
 						<li>
-							<a href="#part2">Condition Names</a><br />
+							<a href="#part2">Condition Names</a>
 							In this section the concept of a Condition Name is explained.
 						</li>
 						<li>
-							<a href="#part3">Using the SET verb with Condition Names</a><br />
+							<a href="#part3">Using the SET verb with Condition Names</a>
 							This section demonstrates how the <code class="language-cobol">SET</code> verb may be used
 							to set a Condition Name to true.
 						</li>
 						<li>
-							<a href="#part4">The EVALUATE verb</a><br />
+							<a href="#part4">The EVALUATE verb</a>
 							In this section COBOL's version of Case/Switch is introduced.
 						</li>
 					</ul>
@@ -381,11 +381,11 @@ Statement6.</code></pre>
 							<code class="language-cobol">ENVIRONMENT DIVISION</code>, to assign a class name to a set of
 							characters.
 						</p>
+						<h4>Rules</h4>
 						<p>
-							<b>Rules<br /></b> The target of a class test must be a data-item whose usage is explicitly
-							or implicitly, <code class="language-cobol">DISPLAY</code>. In the case of numeric tests,
-							data items with a usage of <code class="language-cobol">PACKED-DECIMAL</code> may also be
-							tested.
+							The target of a class test must be a data-item whose usage is explicitly or implicitly,
+							<code class="language-cobol">DISPLAY</code>. In the case of numeric tests, data items with a
+							usage of <code class="language-cobol">PACKED-DECIMAL</code> may also be tested.
 						</p>
 						<p>
 							The numeric test may not be used with data items described as alphabetic (PIC A) or with
@@ -431,9 +431,9 @@ END-IF</code></pre>
 							</p>
 							<p>
 								You can see from the <code class="language-cobol">IF Amnt1</code> example, that figuring
-								out how a complex condition will be evaluated is not straightforward.<br />
-								Always use brackets to make the order of evaluation explicit.
+								out how a complex condition will be evaluated is not straightforward.
 							</p>
+							<p>Always use brackets to make the order of evaluation explicit.</p>
 						</aside>
 					</div>
 					<div class="section-content">
@@ -505,9 +505,10 @@ IF NOT Amnt1 &lt; 10 OR Amnt2 = 50 AND Amnt3 &gt; 150 THEN
    DISPLAY "Done"
 END-IF
 </code></pre>
+						<h4>The effect of bracketing</h4>
 						<p>
-							<b>The effect of bracketing<br /></b> Let's examine the last example above to see what
-							difference bracketing makes to the order of evaluation.
+							Let's examine the last example above to see what difference bracketing makes to the order of
+							evaluation.
 						</p>
 						<p>
 							First consider how the statement would be bracketed to make explicit what is actually
@@ -676,8 +677,8 @@ END-IF
 							class="language-cobol"
 						><code class="language-cobol">IF Row &gt; 0 AND &lt; 26 THEN etc</code></pre>
 						<p>the Implied Subject here is Row.</p>
+						<h4>Examples</h4>
 						<p>
-							<b>Examples</b><br />
 							In these examples the full condition is shown first and is followed by the condition using
 							Implied Subjects
 						</p>
@@ -1179,8 +1180,8 @@ Begin.
 								alt="EVALUATE statement syntax diagram"
 							/>
 						</p>
+						<h4>EVALUATE notes</h4>
 						<p>
-							<b>EVALUATE notes</b><br />
 							The items immediately after the word <code class="language-cobol">EVALUATE</code> and before
 							the first <code class="language-cobol">WHEN</code> are called <i>subjects</i>.
 						</p>
@@ -1271,8 +1272,8 @@ Begin.
    WHEN OTHER PERFORM DisplayErrorMessage
 END-EVALUATE
 </code></pre>
+						<h4>How does this <code class="language-cobol">EVALUATE</code> work?</h4>
 						<p>
-							<b>How does this <code class="language-cobol">EVALUATE</code> work?</b><br />
 							The <b>subjects</b> are <code class="language-cobol">TRUE</code> and Position. So the first
 							<b>object</b> after the <code class="language-cobol">WHEN</code> clause must specify a
 							condition to be compatible. with its <b>subject</b>, and the second must specify a value or
@@ -1450,9 +1451,10 @@ END-EVALUATE
  WHEN 17 THRU 99 ALSO VOP &gt; 2000 ALSO "N"  MOVE 28 TO Discount
 END-EVALUATE
 </code></pre>
+						<h4>Comments</h4>
 						<p>
-							<b>Comments<br /></b> Notice how easily and clearly the decision table is implemented using
-							an <code class="language-cobol">EVALUATE</code>. Not only is the
+							Notice how easily and clearly the decision table is implemented using an
+							<code class="language-cobol">EVALUATE</code>. Not only is the
 							<code class="language-cobol">EVALUATE</code> clear but there is no temptation to take
 							shortcuts which may cause problems later. For instance, at the moment, a discount of 23% is
 							offered in two places in the table. A programmer writing in C might be tempted to take

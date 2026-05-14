@@ -60,28 +60,28 @@
 					<hr />
 					<ul class="toc">
 						<li>
-							<a href="#intro">Introduction</a><br />
+							<a href="#intro">Introduction</a>
 							Unit aims, objectives and prerequisites.
 						</li>
 						<li>
-							<a href="#progs">A look at some programs that use Indexed files</a><br />
+							<a href="#progs">A look at some programs that use Indexed files</a>
 							We begin with three example programs. The first creates an Indexed file from a Sequential
 							file, the second reads the Indexed file sequentially or either the primary or the alternate
 							key, and the third reads the file directly on either key.
 						</li>
 						<li>
-							<a href="#org">Indexed file organization</a><br />
+							<a href="#org">Indexed file organization</a>
 							Explains by means of an animated diagram how the index of the primary key is organized and
 							shows how it is used to read a record directly. Explains how the alternate key index is
 							organized and shows how it is used to read a record directly.
 						</li>
 						<li>
-							<a href="#declar">Indexed file - declarations</a><br />
+							<a href="#declar">Indexed file - declarations</a>
 							Examines the <code class="language-cobol">SELECT</code> and
 							<code class="language-cobol">ASSIGN</code> clause declarations required for an Indexed file.
 						</li>
 						<li>
-							<a href="#verbs">Indexed file - file processing verbs</a><br />
+							<a href="#verbs">Indexed file - file processing verbs</a>
 							Examines the Procedure Division verbs used to process Indexed files -
 							<code class="language-cobol">OPEN</code>, <code class="language-cobol">CLOSE</code>,
 							<code class="language-cobol">READ</code>, <code class="language-cobol">WRITE</code>,
@@ -89,7 +89,7 @@
 							<code class="language-cobol">START</code>
 						</li>
 						<li>
-							<a href="#example">A comprehensive example</a><br />
+							<a href="#example">A comprehensive example</a>
 							We end with a comprehensive problem specification and solution.
 						</li>
 					</ul>
@@ -118,13 +118,9 @@
 								<li>
 									Be able to write the
 									<code class="language-cobol">ENVIRONMENT DIVISION</code> and Data Division
-									declarations required for a Indexed file.<br />
-									<br />
+									declarations required for a Indexed file.
 								</li>
-								<li>
-									Understand how the primary key and alternate key indexes are organized.<br />
-									<br />
-								</li>
+								<li>Understand how the primary key and alternate key indexes are organized.</li>
 								<li>
 									Be able to used the use the
 									<code class="language-cobol">START</code>, <code class="language-cobol">OPEN</code>,
@@ -132,10 +128,9 @@
 									<code class="language-cobol">WRITE</code>,
 									<code class="language-cobol">REWRITE</code> and
 									<code class="language-cobol">DELETE</code>
-									Procedure Division verbs required to process Indexed files.<br />
-									<br />
+									Procedure Division verbs required to process Indexed files.
 								</li>
-								<li>Be able to process an Indexed file directly or sequentially.<br /></li>
+								<li>Be able to process an Indexed file directly or sequentially.</li>
 							</ol>
 						</div>
 						<div class="section-sidebar">
@@ -591,9 +586,10 @@ END-IF</code></pre>
 									height="81"
 								/>
 							</p>
+							<h4>Notes</h4>
 							<p>
-								<b>Notes</b><b><br /></b> This format is used when the ACCESS MODE is DYNAMIC and we
-								wish to read the file sequentially.
+								This format is used when the ACCESS MODE is DYNAMIC and we wish to read the file
+								sequentially.
 							</p>
 							<p>
 								This format will read the file in ascending sequence on the key that has been
@@ -604,10 +600,8 @@ END-IF</code></pre>
 								will be the current record if positioned by the START and the next record if positioned
 								by a direct READ).
 							</p>
-							<p>
-								<b>Operation<br /></b> To read a record sequentially from an Indexed file that has an
-								ACCESS MODE of DYNAMIC
-							</p>
+							<h4>Operation</h4>
+							<p>To read a record sequentially from an Indexed file that has an ACCESS MODE of DYNAMIC</p>
 							<ol>
 								<li>
 									First, if the default is not satisfactory, one of the keys must be established as
@@ -632,9 +626,8 @@ END-IF</code></pre>
 								The syntax of the direct READ is the same as that for Relative files but the semantics
 								are somewhat different
 							</p>
-							<p>
-								<b>Operation<br /></b> To read a record directly from an Indexed file
-							</p>
+							<h4>Operation</h4>
+							<p>To read a record directly from an Indexed file</p>
 							<ol>
 								<li>
 									The key value must be placed in the <i>KeyName</i> data item (the
@@ -647,9 +640,10 @@ END-IF</code></pre>
 								When the READ is executed the record with the key value equal to the present value of
 								<i>KeyName</i> will be read.
 							</p>
+							<h4>Notes</h4>
 							<p>
-								<b>Notes<br /></b> If the record does not exist the INVALID KEY clause will activate and
-								the statement block following the clause will be executed.
+								If the record does not exist the INVALID KEY clause will activate and the statement
+								block following the clause will be executed.
 							</p>
 							<p>If the KEY IS clause is omitted, the key used will be the primary key.</p>
 							<p>
@@ -719,9 +713,10 @@ END-IF</code></pre>
 									height="198"
 								/>
 							</p>
+							<h4>Operation</h4>
 							<p>
-								<b>Operation<br /></b> To establish a key as the Key of Reference and position the Next
-								Record Pointer at a particular record
+								To establish a key as the Key of Reference and position the Next Record Pointer at a
+								particular record
 							</p>
 							<ol>
 								<li>
@@ -743,9 +738,10 @@ END-IF</code></pre>
 								</li>
 								<li>Execute the START..KEY IS GREATER THAN</li>
 							</ol>
+							<h4>Notes</h4>
 							<p>
-								<b>Notes<br /></b> <i>KeyName</i> is the primary key or one of the alternate keys. It is
-								the key of comparison.
+								<i>KeyName</i> is the primary key or one of the alternate keys. It is the key of
+								comparison.
 							</p>
 							<p>Before the START is executed some value must be moved to the <i>KeyName</i>.</p>
 							<p>Using the START with some key establishes that key as the Key Of Reference.</p>
@@ -776,8 +772,8 @@ END-IF</code></pre>
 						</div>
 						<div class="section-content">
 							<p class="center-block">ROYALTY PAYMENT REPORT PROGRAM.</p>
+							<h4>Introduction</h4>
 							<p>
-								<b>Introduction</b><br />
 								Each time a book is borrowed, the Niklaus Wirth Memorial Library pays the author a small
 								sum of money as royalty. Because the sum owed for each "borrowing" is very small,
 								royalties are only paid once every quarter. Royalties are paid to authors through their
@@ -894,8 +890,8 @@ END-IF</code></pre>
 									<td width="18%" style="text-align: center">-</td>
 								</tr>
 							</table>
+							<h4>Program Procedure</h4>
 							<p>
-								<b>Program Procedure</b><br />
 								Some fields required in the report do not appear in either of the Indexed files and must
 								be calculated. The following describes these fields and how to calculate them;
 							</p>

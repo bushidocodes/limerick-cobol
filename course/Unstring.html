@@ -54,21 +54,21 @@
 					<hr />
 					<ul class="toc">
 						<li>
-							<a href="#intro">Introduction</a><br />
+							<a href="#intro">Introduction</a>
 							Unit aims, objectives and prerequisites.
 						</li>
 						<li>
-							<a href="#verb">The UNSTRING verb</a><br />
+							<a href="#verb">The UNSTRING verb</a>
 							This section examines the syntax, functioning and rules of the
 							<code class="language-cobol">UNSTRING</code>.
 						</li>
 						<li>
-							<a href="#examples">UNSTRING examples</a><br />
+							<a href="#examples">UNSTRING examples</a>
 							This section starts with some abstract examples, goes on to a more practical example and
 							ends with a example program
 						</li>
 						<li>
-							<a href="#combined">A combined example</a><br />
+							<a href="#combined">A combined example</a>
 							The unit ends with a practical example that uses the
 							<code class="language-cobol">STRING</code> and
 							<code class="language-cobol">UNSTRING</code> verbs in combination.
@@ -271,22 +271,14 @@ END-UNSTRING.</code></pre>
 						<ol>
 							<li>
 								Where a literal can be used any figurative constant can be used except the ALL
-								(literal).<br />
-								<br />
+								(literal).
 							</li>
-							<li>
-								When a figurative constant is used then its length is one character.<br />
-								<br />
-							</li>
+							<li>When a figurative constant is used then its length is one character.</li>
 							<li>
 								Characters are moved from the source string to the destination strings according to the
-								rules for the MOVE, with space filling if required.<br />
-								<br />
+								rules for the MOVE, with space filling if required.
 							</li>
-							<li>
-								The delimiter is moved into HoldDelim$i according to the rules for the MOVE.<br />
-								<br />
-							</li>
+							<li>The delimiter is moved into HoldDelim$i according to the rules for the MOVE.</li>
 							<li>
 								The DELIMITER IN and COUNT IN phrases may be specified only if the DELIMITED BY phrase
 								is used.
@@ -298,10 +290,8 @@ END-UNSTRING.</code></pre>
 						<h3>UNSTRING clauses</h3>
 					</div>
 					<div class="section-content">
-						<p>
-							<b>ON OVERFLOW</b><br />
-							The ON OVERFLOW is activated if :-
-						</p>
+						<h4>ON OVERFLOW</h4>
+						<p>The ON OVERFLOW is activated if :-</p>
 						<ul>
 							<li>
 								The unstring pointer (Pointer#i) is not pointing to a character position within the
@@ -316,18 +306,18 @@ END-UNSTRING.</code></pre>
 							The statements following the NOT ON OVERFLOW are executed if the UNSTRING is about to
 							terminate successfully.
 						</p>
+						<h4>COUNT IN</h4>
 						<p>
-							<b>COUNT IN</b><br />
 							The COUNT IN clause is associated with a particular destination string and holds a count of
 							the number of characters passed to the destination string.
 						</p>
+						<h4>TALLYING IN</h4>
 						<p>
-							<b>TALLYING IN</b><br />
 							Only one TALLYING clause can be used with each UNSTRING . It holds a count of the number of
 							destination strings affected by the UNSTRING operation.
 						</p>
+						<h4>WITH POINTER</h4>
 						<p>
-							<b>WITH POINTER</b><br />
 							When the WITH POINTER clause is used the Pointer#i holds the position of the next
 							non-delimiter character to be examined in the source string.
 						</p>
@@ -335,18 +325,17 @@ END-UNSTRING.</code></pre>
 							Pointer#i must be large enough to hold a value one greater than the size of the source
 							string.
 						</p>
+						<h4>ALL</h4>
 						<p>
-							<b>ALL<br /></b>
 							When the ALL phrase is used, contiguous delimiters are treated as if only one delimiter had
-							been encountered. <b></b>
-							<b><br /></b>
+							been encountered.
 						</p>
 						<p>
 							If the ALL is not used, contiguous delimiters will result in spaces being sent to some of
 							the destination strings
 						</p>
+						<h4>DELIMITER IN</h4>
 						<p>
-							<b>DELIMITER IN</b><br />
 							A DELIMITER IN clause is associated with a particular destination string. HoldDelim$i holds
 							the delimiter that was encountered in the source string.
 						</p>
@@ -354,8 +343,8 @@ END-UNSTRING.</code></pre>
 							If the DELIMITER IN phrase is used with the ALL phrase then only one occurrence of the
 							delimiter will be moved to HoldDelim$i.
 						</p>
+						<h4>DELIMITED BY</h4>
 						<p>
-							<b>DELIMITED BY<br /></b>
 							When the DELIMITED BY phrase is used, characters are examined in the source string and
 							transferred to the current destination string until one of the specified delimiters is
 							encountered or the end the source string is reached.

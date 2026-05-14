@@ -54,26 +54,26 @@
 					<hr />
 					<ul class="toc">
 						<li>
-							<a href="#intro">Introduction</a><br />
+							<a href="#intro">Introduction</a>
 							Unit aims, objectives and prerequisites.
 						</li>
 						<li>
-							<a href="#progs">A look at some programs that use Relative files</a><br />
+							<a href="#progs">A look at some programs that use Relative files</a>
 							We begin with two example programs. The first creates a Relative File from a Sequential file
 							and the second reads and displays records from the Relative file.
 						</li>
 						<li>
-							<a href="#declar">Relative file - declarations</a><br />
+							<a href="#declar">Relative file - declarations</a>
 							Examines the declarations required for a Relative file including the SELECT and ASSIGN
 							clause and the key.
 						</li>
 						<li>
-							<a href="#verbs">Relative file - file processing verbs</a><br />
+							<a href="#verbs">Relative file - file processing verbs</a>
 							Examines the Procedure Division verbs used to process Relative files - OPEN, CLOSE, READ,
 							WRITE, REWRITE, DELETE, START
 						</li>
 						<li>
-							<a href="#declaratives">Introduction to Declaratives</a><br />
+							<a href="#declaratives">Introduction to Declaratives</a>
 							Introduces Declaratives, showing when and how to use them.
 						</li>
 					</ul>
@@ -377,9 +377,8 @@ Enter supplier key (2 digits)-&gt; 05
 								height="97"
 							/>
 						</p>
-						<p>
-							<b>Notes<br /></b> If the file is opened for input then only READ and START will be allowed.
-						</p>
+						<h4>Notes</h4>
+						<p>If the file is opened for input then only READ and START will be allowed.</p>
 						<p>If the file is opened for output then only WRITE will be allowed.</p>
 						<p>
 							If the file is opened for I-O then READ, WRITE, START, REWRITE and DELETE will be
@@ -421,9 +420,8 @@ Enter supplier key (2 digits)-&gt; 05
 								height="111"
 							/>
 						</p>
-						<p>
-							<b>Operation<br /></b> To read a record directly from a Relative file
-						</p>
+						<h4>Operation</h4>
+						<p>To read a record directly from a Relative file</p>
 						<ol>
 							<li>
 								The key value must be placed in the <i>KeyName</i> data item (the <i>KeyName</i> data
@@ -445,9 +443,10 @@ Enter supplier key (2 digits)-&gt; 05
 							After the record has been read the next record pointer will be pointing to the next record
 							in the file.
 						</p>
+						<h4>Notes</h4>
 						<p>
-							<b>Notes<br /></b> The file must have an ACCESS MODE declaration for the file specifying an
-							ACCESS MODE DYNAMIC or RANDOM.
+							The file must have an ACCESS MODE declaration for the file specifying an ACCESS MODE DYNAMIC
+							or RANDOM.
 						</p>
 						<p>The file must be opened for I-O or INPUT.&nbsp;</p>
 					</div>
@@ -471,9 +470,10 @@ Enter supplier key (2 digits)-&gt; 05
 								height="81"
 							/>
 						</p>
+						<h4>Notes</h4>
 						<p>
-							<b>Notes<br /></b> This format is used to access a Relative file sequentially when the
-							ACCESS MODE has been declared as DYNAMIC and the file has been opened for INPUT or I-O.
+							This format is used to access a Relative file sequentially when the ACCESS MODE has been
+							declared as DYNAMIC and the file has been opened for INPUT or I-O.
 						</p>
 						<p>
 							For Relative files the next record pointer may be positioned by the START verb or by doing a
@@ -506,9 +506,8 @@ Enter supplier key (2 digits)-&gt; 05
 								height="82"
 							/>
 						</p>
-						<p>
-							<b>Operation<br /></b> To write a record directly to a Relative file
-						</p>
+						<h4>Operation</h4>
+						<p>To write a record directly to a Relative file</p>
 						<ol>
 							<li>The record value must be placed in the files record buffer.</li>
 							<li>The key value must be placed in the file's relative key.</li>
@@ -518,11 +517,11 @@ Enter supplier key (2 digits)-&gt; 05
 							When the WRITE is executed the data in the record buffer is written to the record position
 							with a Relative Record Number equal to the present value of the key.
 						</p>
+						<h4>Notes</h4>
 						<p>
-							<b>Notes<br /></b> The INVALID KEY clause must be used for direct access to Relative files.
-							If the record being written already 'exists' the INVALID KEY clause will be activate and the
-							statement following the clause will be done. Any other I-O error will also activate the
-							INVALID KEY clause.
+							The INVALID KEY clause must be used for direct access to Relative files. If the record being
+							written already 'exists' the INVALID KEY clause will be activate and the statement following
+							the clause will be done. Any other I-O error will also activate the INVALID KEY clause.
 						</p>
 						<hr />
 					</div>
@@ -544,9 +543,8 @@ Enter supplier key (2 digits)-&gt; 05
 								height="81"
 							/>
 						</p>
-						<p>
-							<b>Operation<br /></b> The REWRITE is normally used in the following way;
-						</p>
+						<h4>Operation</h4>
+						<p>The REWRITE is normally used in the following way;</p>
 						<ol>
 							<li>
 								The record we wish to update is read directly into the record buffer (place the key
@@ -555,10 +553,11 @@ Enter supplier key (2 digits)-&gt; 05
 							<li>The required changes are made to the record in the buffer.</li>
 							<li>The record in the buffer is rewritten to the file.</li>
 						</ol>
+						<h4>Notes</h4>
 						<p>
-							<b>Notes<br /></b> If the file has an ACCESS MODE of SEQUENTIAL then the INVALID KEY clause
-							cannot be used but if the ACCESS MODE is RANDOM or DYNAMIC the INVALID KEY clause must be
-							present (unless declaratives are being used).
+							If the file has an ACCESS MODE of SEQUENTIAL then the INVALID KEY clause cannot be used but
+							if the ACCESS MODE is RANDOM or DYNAMIC the INVALID KEY clause must be present (unless
+							declaratives are being used).
 						</p>
 						<p>
 							When the file has ACCESS MODE IS SEQUENTIAL the record that is replaced must have been the
@@ -581,9 +580,8 @@ Enter supplier key (2 digits)-&gt; 05
 								height="73"
 							/>
 						</p>
-						<p>
-							<b>Operation<br /></b> To delete a record
-						</p>
+						<h4>Operation</h4>
+						<p>To delete a record</p>
 						<ol>
 							<li>
 								The Relative Record Number of the record to be deleted must be placed in the file's
@@ -595,9 +593,8 @@ Enter supplier key (2 digits)-&gt; 05
 							The record with the Relative Record number equal to the current value of the key are will be
 							deleted.
 						</p>
-						<p>
-							<b>Notes<br /></b> To use the DELETE, the file must have been opened for I-O.
-						</p>
+						<h4>Notes</h4>
+						<p>To use the DELETE, the file must have been opened for I-O.</p>
 						<p>When the ACCESS MODE IS SEQUENTIAL a READ statement must access the record to be deleted.</p>
 						<p>
 							When the ACCESS MODE IS RANDOM or DYNAMIC the record to be deleted is identified by the
@@ -626,9 +623,8 @@ Enter supplier key (2 digits)-&gt; 05
 								height="198"
 							/>
 						</p>
-						<p>
-							<b>Operation<br /></b> To position the Next Record Pointer at a particular record
-						</p>
+						<h4>Operation</h4>
+						<p>To position the Next Record Pointer at a particular record</p>
 						<ol>
 							<li>Move the Relative Record Number of the record to the file's relative key.</li>
 							<li>Execute the START..KEY IS EQUAL TO</li>
@@ -643,10 +639,8 @@ Enter supplier key (2 digits)-&gt; 05
 							<li>Move all 9's to the file's relative key.</li>
 							<li>Execute the START..KEY IS LESS THAN</li>
 						</ol>
-						<p>
-							<b>Notes<br /></b> <i>KeyDataName</i> is the file's relative key. It is the key of
-							comparison.
-						</p>
+						<h4>Notes</h4>
+						<p><i>KeyDataName</i> is the file's relative key. It is the key of comparison.</p>
 						<p>The file must be opened for INPUT or I-O when the START is executed.</p>
 						<p>
 							Execution of the START statement does not change the contents of the record area (i.e. the

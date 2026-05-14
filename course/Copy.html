@@ -60,23 +60,23 @@
 						<hr />
 						<ul class="toc">
 							<li>
-								<a href="#intro">Introduction</a><br />
+								<a href="#intro">Introduction</a>
 								Unit aims, objectives, prerequisites.
 							</li>
 							<li>
-								<a href="#part1">Using COPY statements</a><br />
+								<a href="#part1">Using COPY statements</a>
 								Introduction to the <code class="language-cobol">COPY</code> verb. Using the
 								<code class="language-cobol">COPY</code> verb when creating large software systems
 							</li>
 							<li>
-								<a href="#part2">The COPY verb - Syntax and Semantics</a><br />
+								<a href="#part2">The COPY verb - Syntax and Semantics</a>
 								The <code class="language-cobol">COPY</code> syntax. How the
 								<code class="language-cobol">COPY</code> works. How the
 								<code class="language-cobol">REPLACING</code> phrase works.
 								<code class="language-cobol">COPY</code> rules.
 							</li>
 							<li>
-								<a href="#part3">COPY examples</a><br />
+								<a href="#part3">COPY examples</a>
 								Four example programs showing the program source text before processing the
 								<code class="language-cobol">COPY</code> statements, the copy library text, and the
 								program source text after processing the
@@ -124,14 +124,8 @@
 					<div>
 						<p>By the end of this unit you should -</p>
 						<ol>
-							<li>
-								Be aware of some of the advantages of using the COPY verb.<br />
-								<br />
-							</li>
-							<li>
-								Understand what a text word and be able to identify text words in library text.<br />
-								<br />
-							</li>
+							<li>Be aware of some of the advantages of using the COPY verb.</li>
+							<li>Understand what a text word and be able to identify text words in library text.</li>
 							<li>
 								Be able to use the COPY.. REPLACING to copy source text from a library file and replace
 								sections of it as required.
@@ -180,7 +174,7 @@
 						<p>
 							<code class="language-cobol">COPY</code> statements in a COBOL program are very different
 							from other COBOL statements. While other statements are executed at run time,
-							<code class="language-cobol">COPY</code> statements are executed at compile time.<br />
+							<code class="language-cobol">COPY</code> statements are executed at compile time.
 						</p>
 						<p>
 							A <code class="language-cobol">COPY</code> statement is similar to the "Include" used in
@@ -238,8 +232,7 @@
 							file, record and table descriptions, to be kept and updated centrally in a copy library,
 							often under the control of a copy librarian. This makes it more difficult for programmers to
 							make ad hoc changes to file and record formats. Such changes generally have to be approved
-							by the COPY librarian.<br />
-							<br />
+							by the COPY librarian.
 						</p>
 						<p>
 							In a large software system using the COPY verb makes some maintenance tasks easier and
@@ -283,23 +276,20 @@
 								alt="COPY statement syntax diagram"
 							/>
 						</p>
+						<h4>Text Words</h4>
 						<p>
-							<b>Text Words<br /></b> The matching procedure in the
-							<code class="language-cobol">REPLACING</code> phrase operates on text words.<br />
+							The matching procedure in the
+							<code class="language-cobol">REPLACING</code> phrase operates on text words.
 						</p>
-						<p>A text word is defined as ;<br /></p>
+						<p>A text word is defined as ;</p>
 						<div>
 							<ul>
 								<li>
 									Any COBOL text enclosed in double equal signs (e.g. ==ADD 1==). This text is known
 									as PseudoText and it allows us to replace a series of words or characters as opposed
-									to an individual identifier, literal or word.<br />
-									<br />
+									to an individual identifier, literal or word.
 								</li>
-								<li>
-									Any literal including opening and closing quotes<br />
-									<br />
-								</li>
+								<li>Any literal including opening and closing quotes</li>
 								<li>
 									Any separator other than;<br />
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A space<br />
@@ -308,25 +298,20 @@
 								</li>
 							</ul>
 							<ul>
-								<li>
-									Any COBOL reserved word<br />
-									<br />
-								</li>
-								<li>Any Identifier.<br /></li>
+								<li>Any COBOL reserved word</li>
+								<li>Any Identifier.</li>
 							</ul>
 							<ul>
-								<li>
-									Any other sequence of contiguous characters bounded by separators.<br />
-									<br />
-								</li>
+								<li>Any other sequence of contiguous characters bounded by separators.</li>
 							</ul>
 
 							<p><b>Text Word examples</b></p>
 							<blockquote>
 								<p>
 									<b>MOVE</b><br />
-									1 Text Word<br />
-									<br />
+									1 Text Word
+								</p>
+								<p>
 									<b>MOVE Total TO Print-Total</b><br />
 									4 Text Words - <span style="color: #0000ff"><b>MOVE</b></span>
 									<b>
@@ -361,8 +346,7 @@
 								</p>
 								<p>
 									<b>"PIC S9(4)V9(6)"</b><br />
-									1 Text word - <span style="color: #0000ff"><b>"PIC S9(4)V9(6)"</b></span
-									><br />
+									1 Text word - <span style="color: #0000ff"><b>"PIC S9(4)V9(6)"</b></span>
 								</p>
 							</blockquote>
 						</div>
@@ -376,7 +360,7 @@
 					<div>
 						<p>
 							If the <code class="language-cobol">REPLACING</code> phrase is not used the compiler simply
-							copies the text into the client program without change.<br />
+							copies the text into the client program without change.
 						</p>
 						<p>
 							If the <code class="language-cobol">COPY</code> does use the
@@ -419,37 +403,30 @@ COPY CopyFile4 IN EGLIB.</code></pre>
 						<ol>
 							<li>
 								When TextWord1 is PseudoText it must not be null, nor can it consist solely of either
-								the character space(s) or comment lines.<br />
-								<br />
+								the character space(s) or comment lines.
 							</li>
 							<li>
 								When TextWord2 is PseudoText it can be null. Null PseudoText is indicated by four equal
-								signs (e.g. ====)<br />
-								<br />
+								signs (e.g. ====)
 							</li>
 							<li>
 								A <code class="language-cobol">COPY</code> statement can occur anywhere a
 								character-string or a separator can occur except that a
 								<code class="language-cobol">COPY</code> statement must not occur within another
-								<code class="language-cobol">COPY</code> statement.<br />
-								<br />
+								<code class="language-cobol">COPY</code> statement.
 							</li>
 							<li>
 								TextName defines a unique external filename which conforms to the rules for user defined
-								words.<br />
-								<br />
+								words.
 							</li>
 							<li>
 								If the word <code class="language-cobol">COPY</code> appears in a comment-entry or in
-								the place where a comment entry can appear, it is considered part of the
-								comment-entry.<br />
-								<br />
+								the place where a comment entry can appear, it is considered part of the comment-entry.
 							</li>
 							<li>
 								The text produced as a result of the complete processing of a
 								<code class="language-cobol">COPY</code> statement must not contain a
-								<code class="language-cobol">COPY</code> statement.<br />
-								<br />
+								<code class="language-cobol">COPY</code> statement.
 							</li>
 							<li>
 								Normally a textword in the copy text is replaced by a textword in the replacement text
@@ -471,9 +448,7 @@ COPY CopyFile4 IN EGLIB.</code></pre>
 					</div>
 					<!-- Example 1 -->
 					<div class="section-sidebar">
-						<p>
-							<b>COPY Example1</b>
-						</p>
+						<h3>COPY Example1</h3>
 						<p class="center-block">
 							<b>
 								<img height="62" src="Resources/pics/aai-Legend.gif" width="65" alt="" />
@@ -538,8 +513,7 @@ BeginProg.
 </code></pre>
 						</div>
 						<div class="code-section white-bg">
-							<b>Text in COPYFILE1</b><br />
-							<br />
+							<h4>Text in COPYFILE1</h4>
 
 							<pre class="language-cobol"><code class="language-cobol">
 01  StudentRec.
@@ -551,7 +525,7 @@ BeginProg.
     02  AmountPaid                   PIC 9(4)V99.</code></pre>
 						</div>
 						<div class="code-section">
-							<b>Source Text after processing<br /> </b>
+							<h4>Source Text after processing</h4>
 
 							<pre class="language-cobol"><code class="language-cobol">
        &gt;&gt;SOURCE FORMAT IS FREE
@@ -595,44 +569,36 @@ BeginProg.
 					</div>
 					<!-- Example 2 -->
 					<div class="section-sidebar">
-						<p>
-							<b>COPY Example2</b>
-						</p>
+						<h3>COPY Example2</h3>
 						<aside>
 							<p class="center-block">
 								<span class="i-detail" aria-hidden="true">🔍</span>
 							</p>
+							<h4>Note1</h4>
+							<p>The TextWord XYZ in the library text is replaced by 120.</p>
+							<h4>Note2</h4>
 							<p>
-								<b>Note1</b><br />
-								The TextWord XYZ in the library text is replaced by 120.
-							</p>
-							<p>
-								<b>Note2</b><br />
 								The PseudoText symbols tell us that we are looking for the text word R in the library
 								text. Other R's in the text which might be part of a word are not matched because they
 								are not text words. The replaced R is a text word because it is bounded by two other
 								text words i.e. the parentheses ( and ).
 							</p>
+							<h4>Note3</h4>
+							<p>The PseudoText ==V99== is replaced by nothing; effectively deleting it.</p>
+							<h4>Note4</h4>
+							<p>The literal "KEY" in the library text is replaced by "ABC"</p>
+							<h4>Note5</h4>
 							<p>
-								<b>Note3</b><br />
-								The PseudoText ==V99== is replaced by nothing; effectively deleting it.
-							</p>
-							<p>
-								<b>Note4</b><br />
-								The literal "KEY" in the library text is replaced by "ABC"
-							</p>
-							<p>
-								<b>Note5</b><br />
 								In this case the library text is copied without change because the literal "KEY" in the
 								library text is not the same as the word <i>KEY</i> in TextWord2.
 							</p>
+							<h4>Note6</h4>
 							<p>
-								<b>Note6</b><br />
 								Similar to the previous example demonstrates the difference between CustKey and the
 								literal "CustKey". A literal text word includes the opening and closing quotes.
 							</p>
+							<h4>Note7</h4>
 							<p>
-								<b>Note7</b><br />
 								Replaces "KEY" by two lines of text. Note that we are only replacing the literal "KEY"
 								in the library text. So the full stop after "KEY" is not replaced and that is why there
 								is no full stop after the PIC 9(8) in the TextWord2 replacement text.
@@ -684,35 +650,31 @@ BeginProg.
 STOP RUN.</code></pre>
 						</div>
 						<div class="code-section white-bg">
-							<b>Text in CopyFile2</b><br />
-							<br />
+							<h4>Text in CopyFile2</h4>
 
 							<pre class="language-cobol"><code class="language-cobol">
     02 StudName PIC X(20) OCCURS XYZ TIMES.</code></pre>
 						</div>
 						<div class="code-section white-bg">
-							<b>Text in CopyFile3</b><br />
-							<br />
+							<h4>Text in CopyFile3</h4>
 
 							<pre class="language-cobol"><code class="language-cobol">
     02  CustOrder           PIC 9(R).</code></pre>
 						</div>
 						<div class="code-section white-bg">
-							<b>Text in CopyFile4</b><br />
-							<br />
+							<h4>Text in CopyFile4</h4>
 
 							<pre class="language-cobol"><code class="language-cobol">
     02 CustOrder2           PIC 9(6)V99.</code></pre>
 						</div>
 						<div class="code-section white-bg">
-							<b>Text in CopyFile5</b><br />
-							<br />
+							<h4>Text in CopyFile5</h4>
 
 							<pre class="language-cobol"><code class="language-cobol">
     02 CustKey              PIC X(3) VALUE "KEY".</code></pre>
 						</div>
 						<div class="code-section">
-							<b>Source Text after processing<br /> </b>
+							<h4>Source Text after processing</h4>
 
 							<pre class="language-cobol"><code class="language-cobol">
        &gt;&gt;SOURCE FORMAT IS FREE
@@ -767,9 +729,7 @@ STOP RUN.
 					</div>
 					<!-- Example 3 -->
 					<div class="section-sidebar">
-						<p>
-							<b>COPY Example3</b>
-						</p>
+						<h3>COPY Example3</h3>
 						<aside>
 							<p class="center-block">
 								<span class="i-detail" aria-hidden="true">🔍</span>
@@ -779,47 +739,36 @@ STOP RUN.
 								statements which cause syntax errors. This is a clear indication that COPY statements
 								are processed before the resulting program is compiled.
 							</p>
+							<h4>Note1</h4>
 							<p>
-								<b>Note1</b><br />
 								The text word ( in the library text is replaced by @. Demonstrates that ( is a text
 								word.
 							</p>
+							<h4>Note2</h4>
+							<p>Demonstrates that the 3 between ( and ) is a text word.</p>
+							<h4>Note3</h4>
+							<p>Demonstrates that ) is a textword.</p>
+							<h4>Note4</h4>
 							<p>
-								<b>Note2</b><br />
-								Demonstrates that the 3 between ( and ) is a text word.
-							</p>
-							<p>
-								Note3<br />
-								Demonstrates that ) is a textword.
-							</p>
-							<p>
-								<b>Note4</b><br />
 								Demonstrates that the X before (3) is a textword and is replaced by the PseudoText
 								"Replace the X"
 							</p>
+							<h4>Note5</h4>
+							<p>The PseudoText X(3) is replaced by X(19)</p>
+							<h4>Note6</h4>
 							<p>
-								<b>Note5</b><br />
-								The PseudoText X(3) is replaced by X(19)
-							</p>
-							<p>
-								<b>Note6</b><br />
 								This looks the same as number 5 but what is actually happening is that the series of
 								textwords<br />
 								<b>X</b> and <b>(</b> and <b>3</b> and <b>)</b> is replaced by the series
 								<b>X ( 19 )</b>
 							</p>
+							<h4>Note7</h4>
 							<p>
-								<b>Note7</b><br />
 								The textword PIC (bounded by separator spaces) is replaced by the PseudoText
 								<i>Pic is Replaced</i>
 							</p>
-							<p>
-								<b>Note8</b><br />
-								But the letter P in PIC is not a textword by itself and so is not replaced.
-							</p>
-							<p>
-								<br />
-							</p>
+							<h4>Note8</h4>
+							<p>But the letter P in PIC is not a textword by itself and so is not replaced.</p>
 						</aside>
 					</div>
 					<div>
@@ -866,14 +815,13 @@ BeginProg.
    STOP RUN.</code></pre>
 						</div>
 						<div class="code-section white-bg">
-							<b>Library Text in CopyFile5</b><br />
-							<br />
+							<h4>Library Text in CopyFile5</h4>
 
 							<pre class="language-cobol"><code class="language-cobol">
     02 CustKey              PIC X(3) VALUE "KEY".</code></pre>
 						</div>
 						<div class="code-section">
-							<b>Source Text after processing<br /> </b>
+							<h4>Source Text after processing</h4>
 
 							<pre class="language-cobol"><code class="language-cobol">
        &gt;&gt;SOURCE FORMAT IS FREE
@@ -927,22 +875,18 @@ BeginProg.
 					</div>
 					<!-- Example 4 -->
 					<div class="section-sidebar">
-						<p>
-							<b>COPY Example4</b>
-						</p>
+						<h3>COPY Example4</h3>
 						<aside>
 							<p class="center-block">
 								<span class="i-detail" aria-hidden="true">🔍</span>
 							</p>
+							<h4>Note1</h4>
 							<p>
-								<b>Note1</b><br />
 								This example demonstrates that a single COPY statement can be used to replace more than
 								one set of items.
 							</p>
-							<p>
-								<b>Note2</b><br />
-								As above.
-							</p>
+							<h4>Note2</h4>
+							<p>As above.</p>
 						</aside>
 					</div>
 					<div>
@@ -977,22 +921,20 @@ COPY CopyFile7 REPLACING N1 BY Num1
 </code></pre>
 						</div>
 						<div class="code-section white-bg">
-							<b>Library Text in CopyFile6</b><br />
-							<br />
+							<h4>Library Text in CopyFile6</h4>
 
 							<pre class="language-cobol"><code class="language-cobol">
     02 CustKey              PIC X(4) VALUE "Mike".
 01  NameTable               PIC X(10)  OCCURS ?? TIMES.</code></pre>
 						</div>
 						<div class="code-section white-bg">
-							<b>Library Text in CopyFile7</b><br />
-							<br />
+							<h4>Library Text in CopyFile7</h4>
 
 							<pre class="language-cobol"><code class="language-cobol">
     ADD N1, N2 GIVING R1.</code></pre>
 						</div>
 						<div class="code-section">
-							<b>Source Text after processing<br /> </b>
+							<h4>Source Text after processing</h4>
 
 							<pre class="language-cobol"><code class="language-cobol">
        &gt;&gt;SOURCE FORMAT IS FREE
