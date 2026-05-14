@@ -1,9 +1,10 @@
 name: auto-format
 
-# Runs prettier on every PR and commits any reformatting back to the PR branch.
-# Skips PRs from forks because GITHUB_TOKEN can't push to forked repos —
-# fork contributors will see `format:check` fail and need to run `npm run
-# format:write` locally before pushing.
+# Regenerates derived files (sitemap, examples HTML, search index, image
+# dimensions) and runs prettier on every PR, committing any changes back to the
+# PR branch. Skips PRs from forks because GITHUB_TOKEN can't push to forked
+# repos — fork contributors will see `format:check` fail and need to run
+# `npm run format:write` locally before pushing.
 
 on:
     pull_request:
@@ -13,7 +14,7 @@ permissions:
     contents: write
 
 jobs:
-    sitemap:
+    regenerate:
         if: github.event.pull_request.head.repo.full_name == github.repository
         runs-on: ubuntu-latest
         steps:
@@ -26,37 +27,54 @@ jobs:
                   node-version: "20"
                   cache: "npm"
             - run: npm ci
+
+            - name: Configure git
+              run: |
+                  git config user.name "github-actions[bot]"
+                  git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
             - run: npm run build:sitemap
-            - name: Commit and push if changed
+            - name: Commit sitemap if changed
               run: |
                   if [[ -n "$(git status --porcelain)" ]]; then
-                    git config user.name "github-actions[bot]"
-                    git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
                     git add sitemap.xml
                     git commit -m "chore: auto-regenerate sitemap.xml"
-                    git push
                   fi
 
-    prettier:
-        if: github.event.pull_request.head.repo.full_name == github.repository
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v4
-              with:
-                  ref: ${{ github.head_ref }}
-                  token: ${{ secrets.GITHUB_TOKEN }}
-            - uses: actions/setup-node@v4
-              with:
-                  node-version: "20"
-                  cache: "npm"
-            - run: npm ci
-            - run: npx prettier --write .
-            - name: Commit and push if changed
+            # build:examples must run before build:search-index (the index reads
+            # titles/descriptions from examples HTML) and before
+            # add-img-dimensions (which patches missing <img> dims).
+            - run: npm run build:examples
+            - name: Commit examples if changed
               run: |
                   if [[ -n "$(git status --porcelain)" ]]; then
-                    git config user.name "github-actions[bot]"
-                    git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+                    git add examples/
+                    git commit -m "chore: auto-regenerate examples HTML from .cbl sources"
+                  fi
+
+            - run: npm run build:search-index
+            - name: Commit search index if changed
+              run: |
+                  if [[ -n "$(git status --porcelain)" ]]; then
+                    git add search-index.json
+                    git commit -m "chore: auto-regenerate search-index.json"
+                  fi
+
+            - run: node scripts/add-img-dimensions.js
+            - name: Commit image dimensions if changed
+              run: |
+                  if [[ -n "$(git status --porcelain)" ]]; then
+                    git add -A
+                    git commit -m "chore: auto-add missing <img> width/height"
+                  fi
+
+            - run: npx prettier --write .
+            - name: Commit prettier changes if any
+              run: |
+                  if [[ -n "$(git status --porcelain)" ]]; then
                     git add -A
                     git commit -m "style: auto-format with prettier"
-                    git push
                   fi
+
+            - name: Push
+              run: git push
