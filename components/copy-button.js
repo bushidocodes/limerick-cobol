@@ -18,8 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
 		btn.addEventListener("click", () => {
 			navigator.clipboard.writeText(code.textContent).then(() => {
 				btn.textContent = "Copied!";
+				btn.classList.add("is-success");
 				setTimeout(() => {
 					btn.textContent = "Copy";
+					btn.classList.remove("is-success");
 				}, 1500);
 			});
 		});
