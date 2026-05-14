@@ -1,0 +1,879 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+		<title>An introduction to JCL</title>
+		<meta
+			name="description"
+			content="How JCL wraps batch COBOL programs on z/OS: JOB, EXEC, and DD statements, return codes, and common JCL errors."
+		/>
+		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/JCL.html" />
+		<!-- Open Graph -->
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/JCL.html" />
+		<meta property="og:title" content="An introduction to JCL" />
+		<meta
+			property="og:description"
+			content="How JCL wraps batch COBOL programs on z/OS: JOB, EXEC, and DD statements, return codes, and common JCL errors."
+		/>
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content="An introduction to JCL" />
+		<meta
+			name="twitter:description"
+			content="How JCL wraps batch COBOL programs on z/OS: JOB, EXEC, and DD statements, return codes, and common JCL errors."
+		/>
+		<link href="Resources/css/course.css" rel="stylesheet" />
+		<link href="Resources/css/course-components.css" rel="stylesheet" />
+		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
+		<script src="Resources/vendor/prism/prism.min.js" defer></script>
+		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
+		<style type="text/css">
+			.section-grid > * {
+				padding: 4px;
+			}
+
+			@media (max-width: 600px) {
+				.page-wrapper {
+					border: none;
+				}
+			}
+		</style>
+		<script src="../components/theme-toggle.js" defer></script>
+		<script src="../components/page-hero.js" defer></script>
+		<script src="../components/back-to-top.js" defer></script>
+		<script src="../components/lesson-progress.js" defer></script>
+		<script src="../components/lesson-nav.js" defer></script>
+		<script src="../components/lesson-checkbox.js" defer></script>
+		<script src="../components/copyright-notice.js" defer></script>
+		<script src="../components/related-content.js" defer></script>
+		<script src="../components/copy-button.js" defer></script>
+	</head>
+
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="section-grid">
+					<!-- Header -->
+					<div class="section-full">
+						<page-hero title="An introduction to JCL"></page-hero>
+						<hr />
+						<ul class="toc">
+							<li>
+								<a href="#intro">Introduction</a><br />
+								Unit aims, objectives, prerequisites. Why a COBOL programmer cares about JCL.
+							</li>
+							<li>
+								<a href="#part1">What JCL is</a><br />
+								The job-control language interpreted by JES on z/OS. What it does and what it doesn't
+								do.
+							</li>
+							<li>
+								<a href="#part2">The three core statement types</a><br />
+								<code>//JOB</code>, <code>//EXEC</code>, and <code>//DD</code> &mdash; the only
+								statements you need to read 80% of real-world JCL.
+							</li>
+							<li>
+								<a href="#part3">DD statements in depth</a><br />
+								<code>DSN=</code>, <code>DISP=</code>, <code>SPACE=</code>, <code>DCB=</code>,
+								<code>SYSOUT=</code>. How each maps onto a COBOL
+								<code class="language-cobol">SELECT ... ASSIGN</code> clause.
+							</li>
+							<li>
+								<a href="#part4">A walkthrough job</a><br />
+								JCL that compiles, link-edits, and runs a small COBOL program with an input and output
+								dataset. What JES output looks like.
+							</li>
+							<li>
+								<a href="#part5">Common failures</a><br />
+								JCL errors, ABENDs, return codes. <code>S0C7</code>, <code>S013</code>,
+								<code>S322</code>. How to read a job that failed.
+							</li>
+							<li>
+								<a href="#part6">Procedures (PROCs)</a><br />
+								Cataloged and instream procedures &mdash; how shops bundle compile/link/run steps so
+								each programmer doesn't reinvent them.
+							</li>
+							<li>
+								<a href="#part7">Modern alternatives to TSO/ISPF</a><br />
+								Zowe CLI and VS Code's IBM Z Open Editor &mdash; editing and submitting JCL from a
+								modern desktop.
+							</li>
+						</ul>
+						<hr />
+					</div>
+
+					<!-- Section: Introduction -->
+					<div class="section-header">
+						<h2 id="intro">Introduction</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Aims</h3>
+					</div>
+					<div>
+						<p>
+							Every program in the rest of this course is taught as a standalone executable: you compile
+							it, you run it, you see its output. On a mainframe that is <i>not</i> how COBOL runs. The
+							program is wrapped in <b>JCL</b> &mdash; Job Control Language &mdash; that allocates the
+							datasets it reads and writes, sets its parameters, and submits it to the operating system
+							for execution.
+						</p>
+						<p>
+							JCL is not COBOL, and it is not pretty. But you cannot run COBOL on a z/OS mainframe without
+							it, and a learner who finishes the language chapters and steps onto a real system will hit a
+							wall without at least a working mental model.
+						</p>
+						<p>This unit gives you that model.</p>
+						<hr size="1" />
+					</div>
+					<div class="section-sidebar">
+						<h3>Objectives</h3>
+					</div>
+					<div>
+						<p>By the end of this unit you should &mdash;</p>
+						<ol>
+							<li>
+								Recognise the three core statement types (<code>//JOB</code>, <code>//EXEC</code>,
+								<code>//DD</code>) and understand what each one does.<br /><br />
+							</li>
+							<li>
+								Be able to read a piece of production JCL and explain how each
+								<code>//DD</code> statement maps onto the COBOL
+								<code class="language-cobol">SELECT ... ASSIGN</code> clauses in the program.<br /><br />
+							</li>
+							<li>
+								Be able to recognise the most common JCL errors and z/OS ABEND codes, and know where to
+								look to start diagnosing them.<br /><br />
+							</li>
+							<li>
+								Understand the role of cataloged procedures and how a shop typically bundles a
+								compile/link/run flow.
+							</li>
+						</ol>
+						<hr size="1" />
+					</div>
+					<div class="section-sidebar">
+						<h3>Prerequisites</h3>
+					</div>
+					<div>
+						<ul>
+							<li><a href="COBOLIntro.html">The structure of COBOL programs</a></li>
+							<li><a href="SequentialFiles1.html">Introduction to Sequential files</a></li>
+							<li>
+								Helpful but not required: any of the file-handling chapters that follow Sequential
+								Files.
+							</li>
+						</ul>
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: What JCL is -->
+					<div class="section-header">
+						<h2 id="part1">What JCL is</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>The job-control language</h3>
+					</div>
+					<div>
+						<p>
+							On a z/OS mainframe, programs are executed as <b>jobs</b> &mdash; units of work submitted to
+							a subsystem called <b>JES</b> (Job Entry Subsystem; usually JES2, sometimes JES3). A job is
+							described by a small text file written in JCL. The file says:
+						</p>
+						<ul>
+							<li>Who is running this job, and what accounting / priority information goes with it.</li>
+							<li>
+								Which programs make up the job, and the order in which they run. Each one is called a
+								<i>step</i>.
+							</li>
+							<li>
+								Which datasets each step reads from and writes to, and how those datasets are allocated
+								(existing? new? temporary? how much space?).
+							</li>
+						</ul>
+						<p>
+							JES reads the JCL, schedules the job, runs each step, and writes the output back to a spool
+							dataset that the user can inspect afterwards. The COBOL program itself does not know about
+							the JCL &mdash; it just opens files using the
+							<code class="language-cobol">SELECT</code> name, and the operating system uses the JCL to
+							resolve that name to an actual dataset.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>What JCL is not</h3>
+					</div>
+					<div>
+						<p>JCL is <b>not</b> a programming language in the usual sense:</p>
+						<ul>
+							<li>
+								No expressions, no variables, no arithmetic. (Symbolic parameters exist, but they are
+								string substitution, not computation.)
+							</li>
+							<li>
+								No looping. Every step is listed explicitly in the JCL; if you want a step to run a
+								hundred times, the JCL lists it a hundred times (or you write a program that does the
+								looping internally).
+							</li>
+							<li>
+								No real conditional logic beyond <code>COND=</code> codes that suppress steps based on
+								the return code of earlier steps.
+							</li>
+						</ul>
+						<p>
+							It is much closer in spirit to a shell script that runs
+							<code>./program input.dat output.dat</code>, except that the dataset allocation is far more
+							elaborate and the syntax is much older.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: The three core statement types -->
+					<div class="section-header">
+						<h2 id="part2">The three core statement types</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Syntax shape</h3>
+					</div>
+					<div>
+						<p>
+							Every JCL statement starts in column 1, begins with two forward slashes, and is followed by
+							an optional name and a statement type:
+						</p>
+						<pre><code class="language-text">//NAME TYPE  parameter,parameter,parameter
+//          parameter,parameter   (continuation)</code></pre>
+						<p>The three types you will see in nearly every job:</p>
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Type</th>
+									<th>What it does</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><code>//JOB</code></td>
+									<td>
+										Declares the start of the job. Appears once at the top, names the job, and
+										carries accounting information.
+									</td>
+								</tr>
+								<tr>
+									<td><code>//EXEC</code></td>
+									<td>
+										Starts a step. Either runs a program directly (<code>EXEC PGM=name</code>) or
+										invokes a cataloged procedure (<code>EXEC PROCNAME</code>).
+									</td>
+								</tr>
+								<tr>
+									<td><code>//DD</code></td>
+									<td>
+										A Data Definition. Each one names a dataset the current step's program will use,
+										and tells z/OS how to allocate it. One <code>//DD</code> per file the program
+										opens.
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<p>
+							There are a handful of other statement types (<code>//PROC</code> to start a procedure,
+							<code>//IF</code> for conditional execution, <code>//SET</code> for symbolic parameters) but
+							you can read most JCL with only the three above.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>The <code>//JOB</code> statement</h3>
+					</div>
+					<div>
+						<p>The job statement looks like this:</p>
+						<pre><code class="language-text">//PAYROLL  JOB (ACCT123),'JANE SMITH',CLASS=A,MSGCLASS=H,
+//             REGION=0M,NOTIFY=&amp;SYSUID</code></pre>
+						<p>The key parameters:</p>
+						<ul>
+							<li>
+								<code>(ACCT123)</code> &mdash; positional accounting field. Site-dependent. Often a cost
+								centre or project code.
+							</li>
+							<li><code>'JANE SMITH'</code> &mdash; programmer name, also positional.</li>
+							<li>
+								<code>CLASS=A</code> &mdash; the job class, used to route the job to the right
+								initiator.
+							</li>
+							<li>
+								<code>MSGCLASS=H</code> &mdash; the output class for JES messages. <code>H</code> is
+								often a "hold for review" class.
+							</li>
+							<li>
+								<code>REGION=0M</code> &mdash; how much memory the job can use. <code>0M</code> means
+								"as much as the system allows."
+							</li>
+							<li>
+								<code>NOTIFY=&amp;SYSUID</code> &mdash; send the submitter a message when the job
+								completes.
+							</li>
+						</ul>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>The <code>//EXEC</code> statement</h3>
+					</div>
+					<div>
+						<p>An EXEC statement names the program (or procedure) to run for this step.</p>
+						<pre><code class="language-text">//STEP1   EXEC PGM=PAYCALC,PARM='RUN-DATE=20260513',REGION=4M</code></pre>
+						<p>The parameters:</p>
+						<ul>
+							<li>
+								<code>PGM=PAYCALC</code> &mdash; the program to run. This corresponds to the
+								<code class="language-cobol">PROGRAM-ID. PAYCALC.</code> in the COBOL source after it
+								has been compiled and link-edited into a load library.
+							</li>
+							<li>
+								<code>PARM='...'</code> &mdash; up to 100 characters of parameter string passed to the
+								program. The COBOL program receives it via
+								<code class="language-cobol">PROCEDURE DIVISION USING ...</code> in its
+								<code class="language-cobol">LINKAGE SECTION</code>.
+							</li>
+							<li><code>REGION=4M</code> &mdash; step-level override of the job's region.</li>
+						</ul>
+						<p>
+							The alternative form, <code>EXEC PROCNAME</code>, invokes a cataloged procedure &mdash; more
+							on these in Part 6.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>The <code>//DD</code> statement</h3>
+					</div>
+					<div>
+						<p>
+							Each <code>//DD</code> statement allocates one dataset for the current step. The name after
+							the slashes is the <i>ddname</i> &mdash; the symbolic name the COBOL program will use to
+							refer to the dataset.
+						</p>
+						<pre><code class="language-text">//EMPLOYEE DD DSN=PROD.PAYROLL.EMPMAST,DISP=SHR
+//OUTPUT   DD DSN=PROD.PAYROLL.RUNLOG(+1),
+//             DISP=(NEW,CATLG,DELETE),
+//             SPACE=(TRK,(10,5),RLSE),
+//             DCB=(RECFM=FB,LRECL=80,BLKSIZE=27920)
+//SYSOUT   DD SYSOUT=*</code></pre>
+						<p>
+							A COBOL program connects to a DD via the
+							<code class="language-cobol">SELECT</code> clause:
+						</p>
+						<pre><code class="language-cobol">SELECT EmpFile  ASSIGN TO EMPLOYEE
+                ORGANIZATION IS SEQUENTIAL.
+SELECT LogFile  ASSIGN TO OUTPUT
+                ORGANIZATION IS SEQUENTIAL.</code></pre>
+						<p>
+							So the JCL says "the ddname <code>EMPLOYEE</code> refers to dataset
+							<code>PROD.PAYROLL.EMPMAST</code>" and the COBOL says "the file I call
+							<code>EmpFile</code> lives at ddname <code>EMPLOYEE</code>." When the program runs an
+							<code class="language-cobol">OPEN INPUT EmpFile</code>, z/OS resolves the chain.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: DD statements in depth -->
+					<div class="section-header">
+						<h2 id="part3">DD statements in depth</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3><code>DSN=</code> &mdash; the dataset name</h3>
+					</div>
+					<div>
+						<p>
+							The dataset name is the mainframe equivalent of a file path. It is dot-separated and at most
+							44 characters in total, with each segment up to 8 characters.
+						</p>
+						<pre><code class="language-text">DSN=PROD.PAYROLL.EMPMAST
+DSN=USER.JSMITH.JOBS(COMPILE)        for a member of a PDS
+DSN=&amp;&amp;TEMPWORK                       for a temporary dataset (only lives for the job)</code></pre>
+						<p>
+							Datasets named in JCL are normally cataloged, so JES knows which volume they live on. Sites
+							use a naming convention so the high-level qualifier identifies the application
+							(<code>PROD</code>, <code>USER</code>, <code>SYS1</code>, &hellip;).
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3><code>DISP=</code> &mdash; disposition</h3>
+					</div>
+					<div>
+						<p>
+							The disposition is a three-part tuple controlling the dataset's state at three moments:
+							before the step, after a successful step, and after a failed step.
+						</p>
+						<pre><code class="language-text">DISP=(status,normal-disposition,abnormal-disposition)</code></pre>
+						<p>Status (what the dataset is before the step starts):</p>
+						<ul>
+							<li><code>NEW</code> &mdash; create it.</li>
+							<li><code>OLD</code> &mdash; it exists; lock it for exclusive use.</li>
+							<li><code>SHR</code> &mdash; it exists; share with other jobs.</li>
+							<li><code>MOD</code> &mdash; it may or may not exist; append if it does.</li>
+						</ul>
+						<p>Normal / abnormal disposition (what to do after the step):</p>
+						<ul>
+							<li><code>KEEP</code> &mdash; leave it on the volume; uncatalog if it was temporary.</li>
+							<li><code>CATLG</code> &mdash; keep it and add an entry to the catalog.</li>
+							<li><code>UNCATLG</code> &mdash; keep it but remove from the catalog.</li>
+							<li><code>DELETE</code> &mdash; remove it.</li>
+							<li><code>PASS</code> &mdash; keep it allocated for the next step in the same job.</li>
+						</ul>
+						<p>A common pair you will see everywhere:</p>
+						<ul>
+							<li><code>DISP=SHR</code> &mdash; read an existing master file.</li>
+							<li>
+								<code>DISP=(NEW,CATLG,DELETE)</code> &mdash; create a new output file; catalog it on
+								success; delete it on failure.
+							</li>
+						</ul>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3><code>SPACE=</code> &mdash; allocation</h3>
+					</div>
+					<div>
+						<p>
+							For a <code>NEW</code> dataset you must tell z/OS how much room to set aside. Space is
+							requested in tracks, cylinders, or blocks of a given size.
+						</p>
+						<pre><code class="language-text">SPACE=(TRK,(10,5),RLSE)
+        unit  primary,secondary  release-unused-on-close</code></pre>
+						<p>
+							So that example asks for 10 tracks primary, up to 5 additional tracks per extent if more
+							space is needed, and releases any unused space when the dataset is closed.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3><code>DCB=</code> &mdash; record characteristics</h3>
+					</div>
+					<div>
+						<p>The Data Control Block subparameters describe how the records inside the dataset look.</p>
+						<pre><code class="language-text">DCB=(RECFM=FB,LRECL=80,BLKSIZE=27920)</code></pre>
+						<ul>
+							<li>
+								<code>RECFM=FB</code> &mdash; fixed-length, blocked. Common alternatives:
+								<code>VB</code> (variable-length, blocked), <code>F</code> (fixed, unblocked),
+								<code>U</code> (undefined / direct-access).
+							</li>
+							<li>
+								<code>LRECL=80</code> &mdash; logical record length in bytes. Must match the COBOL
+								<code class="language-cobol">FD</code> definition.
+							</li>
+							<li>
+								<code>BLKSIZE=27920</code> &mdash; the physical block size on disk. Most modern shops
+								set this to <code>0</code> and let the system choose an optimum.
+							</li>
+						</ul>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3><code>SYSOUT=</code> &mdash; print and spool</h3>
+					</div>
+					<div>
+						<p>
+							<code>SYSOUT=*</code> sends the dataset to the job's default output class &mdash; usually
+							the JES spool, where the submitter can read it after the job ends. This is how COBOL
+							<code class="language-cobol">DISPLAY</code> output is captured: the program writes to a
+							ddname called <code>SYSOUT</code>, which the JCL allocates as <code>SYSOUT=*</code>.
+						</p>
+						<pre><code class="language-text">//SYSOUT   DD SYSOUT=*
+//SYSPRINT DD SYSOUT=*</code></pre>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: A walkthrough job -->
+					<div class="section-header">
+						<h2 id="part4">A walkthrough job</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Run an already-compiled program</h3>
+					</div>
+					<div>
+						<p>
+							Here is a complete, working job that runs an existing program named
+							<code>PAYRPT</code> from a load library, reads an employee master file, and writes a report
+							to the spool.
+						</p>
+						<pre><code class="language-text">//PAYRPT01 JOB (ACCT123),'JANE SMITH',CLASS=A,MSGCLASS=H,
+//             NOTIFY=&amp;SYSUID
+//*
+//* Run the payroll report against this month's employee master.
+//*
+//RUNRPT   EXEC PGM=PAYRPT,REGION=4M
+//STEPLIB  DD DSN=PROD.PAYROLL.LOADLIB,DISP=SHR
+//EMPLOYEE DD DSN=PROD.PAYROLL.EMPMAST,DISP=SHR
+//REPORT   DD SYSOUT=*
+//SYSOUT   DD SYSOUT=*</code></pre>
+						<p>Reading top to bottom:</p>
+						<ol>
+							<li>
+								The <code>//JOB</code> card names the job <code>PAYRPT01</code> and identifies the
+								submitter.
+							</li>
+							<li>Lines starting with <code>//*</code> are comments.</li>
+							<li>The single step <code>RUNRPT</code> executes program <code>PAYRPT</code>.</li>
+							<li>
+								<code>STEPLIB</code> tells z/OS where to find the <code>PAYRPT</code> load module
+								&mdash; in the load library <code>PROD.PAYROLL.LOADLIB</code>.
+							</li>
+							<li>
+								<code>EMPLOYEE</code> is the input file; the COBOL program's
+								<code class="language-cobol">SELECT EmpFile ASSIGN TO EMPLOYEE</code> binds to this.
+							</li>
+							<li>
+								<code>REPORT</code> and <code>SYSOUT</code> both go to the spool so the user can read
+								them after the job ends.
+							</li>
+						</ol>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Reading JES output</h3>
+					</div>
+					<div>
+						<p>
+							After submitting the job, you will see something like the following in SDSF (the standard
+							JES output viewer):
+						</p>
+						<pre><code class="language-text">JES2  JOB LOG -- SYSTEM PROD -- NODE NYORK1
+ ICH70001I JSMITH   LAST ACCESS AT 14:21:35 ON SUNDAY, MAY 13, 2026
+ IEF236I ALLOC. FOR PAYRPT01 RUNRPT
+ IEF237I 0890 ALLOCATED TO STEPLIB
+ IEF237I 0892 ALLOCATED TO EMPLOYEE
+ IEF237I JES2 ALLOCATED TO REPORT
+ IEF237I JES2 ALLOCATED TO SYSOUT
+ IEF142I PAYRPT01 RUNRPT - STEP WAS EXECUTED - COND CODE 0000
+ IEF285I   PROD.PAYROLL.EMPMAST                          KEPT
+ IEF373I STEP/RUNRPT  /START 2026133.1421
+ IEF374I STEP/RUNRPT  /STOP  2026133.1421 CPU    0MIN 00.18SEC SRB</code></pre>
+						<p>The lines you actually care about as a programmer:</p>
+						<ul>
+							<li>
+								<code>COND CODE 0000</code> &mdash; the program ended with return code 0. Anything else
+								is worth investigating.
+							</li>
+							<li>
+								Per-DD allocation lines (<code>IEF237I</code>) &mdash; useful when a job fails because a
+								dataset doesn't exist or is locked.
+							</li>
+							<li>CPU / elapsed time &mdash; for performance tuning.</li>
+						</ul>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: Common failures -->
+					<div class="section-header">
+						<h2 id="part5">Common failures</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>JCL errors vs. ABENDs vs. return codes</h3>
+					</div>
+					<div>
+						<p>A job can fail in three meaningfully different ways:</p>
+						<ul>
+							<li>
+								<b>JCL error</b> &mdash; the JCL itself is malformed, or refers to a dataset that
+								doesn't exist. The job never starts running. Look for <code>IEFC*</code> messages in the
+								JES log.
+							</li>
+							<li>
+								<b>ABEND</b> &mdash; the program ran and then died abnormally. The system catches the
+								failure, terminates the step, and produces a <i>system completion code</i> like
+								<code>S0C7</code> or <code>U1234</code>. There is usually a dump.
+							</li>
+							<li>
+								<b>Non-zero return code</b> &mdash; the program ran to completion but
+								<code class="language-cobol">STOP RUN</code> returned a non-zero value, or the program
+								set <code>RETURN-CODE</code> deliberately. The job logs the code; later steps may run or
+								skip based on <code>COND=</code>.
+							</li>
+						</ul>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>System completion codes you will hit</h3>
+					</div>
+					<div>
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Code</th>
+									<th>Meaning</th>
+									<th>Typical cause</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><code>S0C7</code></td>
+									<td>Data exception</td>
+									<td>
+										Almost always: arithmetic on a numeric field that contains non-numeric data
+										(usually spaces, because the field was never initialised).
+									</td>
+								</tr>
+								<tr>
+									<td><code>S0C4</code></td>
+									<td>Storage protection / addressing</td>
+									<td>
+										Reading or writing past the end of a table; following an uninitialised pointer;
+										subscript out of range.
+									</td>
+								</tr>
+								<tr>
+									<td><code>S322</code></td>
+									<td>CPU time exceeded</td>
+									<td>
+										Step ran for longer than the time limit specified in the JOB or step. Often an
+										accidental infinite <code class="language-cobol">PERFORM</code> loop.
+									</td>
+								</tr>
+								<tr>
+									<td><code>S013</code></td>
+									<td>OPEN error</td>
+									<td>
+										Dataset DCB attributes (record format, record length) don't match the COBOL
+										<code class="language-cobol">FD</code>. Or the dataset doesn't exist.
+									</td>
+								</tr>
+								<tr>
+									<td><code>S806</code></td>
+									<td>Module not found</td>
+									<td>
+										The load module named on <code>EXEC PGM=</code> is not on
+										<code>STEPLIB</code> or the system <code>LNKLST</code>. Check the
+										<code>STEPLIB</code> DD.
+									</td>
+								</tr>
+								<tr>
+									<td><code>U-codes</code></td>
+									<td>User abend</td>
+									<td>
+										The program called <code>ILBOABN</code> or similar to terminate itself with a
+										chosen code. Look in the program source for the abend reason.
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>The JCL error message</h3>
+					</div>
+					<div>
+						<p>When the JCL itself is bad you get a focused error message, e.g.:</p>
+						<pre><code class="language-text">IEFC605I UNIDENTIFIED OPERATION FIELD
+IEFC662I INVALID LABEL
+IEFC663I UNBALANCED PARENS</code></pre>
+						<p>
+							Treat these like compiler syntax errors &mdash; the line number is usually accurate, and the
+							message names the specific problem.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: Procedures -->
+					<div class="section-header">
+						<h2 id="part6">Procedures (PROCs)</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Why procedures exist</h3>
+					</div>
+					<div>
+						<p>
+							A real compile/link/run flow for a single COBOL program takes three or four steps and a
+							dozen <code>//DD</code> statements. Repeating that JCL in every job would be a maintenance
+							disaster. So shops <i>bundle</i> the compile/link/run JCL into a
+							<b>cataloged procedure</b> &mdash; the JCL equivalent of a function.
+						</p>
+						<p>A typical user-facing job then collapses to just a few lines:</p>
+						<pre><code class="language-text">//COMPRUN  JOB (ACCT123),'JANE',CLASS=A,MSGCLASS=H
+//STEP1   EXEC IGYWCLG,SOURCE=PAYRPT
+//COBOL.SYSIN   DD DSN=USER.JSMITH.SOURCE(PAYRPT),DISP=SHR
+//GO.EMPLOYEE   DD DSN=PROD.PAYROLL.EMPMAST,DISP=SHR
+//GO.REPORT    DD SYSOUT=*</code></pre>
+						<p>
+							<code>IGYWCLG</code> is IBM's standard "compile, link, go" procedure for Enterprise COBOL.
+							The procedure's <code>COBOL</code> step takes the source on <code>//COBOL.SYSIN</code>; the
+							<code>LKED</code> step link-edits the result; the <code>GO</code> step runs it, and
+							<code>//GO.EMPLOYEE</code> and <code>//GO.REPORT</code> add DDs to that final step.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Common shop procedures</h3>
+					</div>
+					<div>
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>PROC</th>
+									<th>What it does</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><code>IGYWC</code></td>
+									<td>Compile only.</td>
+								</tr>
+								<tr>
+									<td><code>IGYWCL</code></td>
+									<td>Compile and link.</td>
+								</tr>
+								<tr>
+									<td><code>IGYWCLG</code></td>
+									<td>Compile, link, and "go" (run the resulting program).</td>
+								</tr>
+							</tbody>
+						</table>
+						<p>
+							Most large shops also define their own procedures with site-specific defaults (target load
+							library, default region size, audit DDs). Ask a colleague which procedure you should use.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: Modern alternatives -->
+					<div class="section-header">
+						<h2 id="part7">Modern alternatives to TSO/ISPF</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Why this matters</h3>
+					</div>
+					<div>
+						<p>
+							For most of the last fifty years, the way to edit and submit JCL has been TSO/ISPF: a
+							green-screen editor on the mainframe itself. It still works, and lots of shops still use it,
+							but a learner who only knows VS Code has two good alternatives.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>VS Code + IBM Z Open Editor</h3>
+					</div>
+					<div>
+						<p>IBM publishes a free extension called <b>IBM Z Open Editor</b> that gives VS Code:</p>
+						<ul>
+							<li>Syntax highlighting for JCL, COBOL, PL/I, and HLASM.</li>
+							<li>Outline view of jobs, steps, and DDs.</li>
+							<li>Code completion for JCL keywords and DD parameters.</li>
+							<li>Integration with the Zowe CLI (below) for submitting jobs and editing datasets.</li>
+						</ul>
+						<p>
+							Install from the VS Code marketplace by searching for <i>IBM Z Open Editor</i>. Pair it with
+							the <i>Zowe Explorer</i> extension to browse and edit z/OS datasets from VS Code.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Zowe CLI</h3>
+					</div>
+					<div>
+						<p>
+							<b>Zowe</b> is an open-source project that puts a modern REST API and command-line interface
+							in front of z/OS. With the Zowe CLI installed you can:
+						</p>
+						<pre><code class="language-bash">zowe jobs submit local-file payrpt.jcl
+zowe jobs list jobs --owner JSMITH
+zowe jobs view job-status-by-jobid J1234567
+zowe files upload file-to-data-set src.cob "USER.JSMITH.SOURCE(PAYRPT)"</code></pre>
+						<p>
+							This is the same surface area as TSO commands but scriptable from any operating system.
+							Modern CI pipelines for mainframe code (e.g. GitLab pipelines that compile COBOL on z/OS)
+							are built on Zowe.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Where to go next</h3>
+					</div>
+					<div>
+						<p>
+							This chapter is a primer, not a reference. For depth, IBM's <i>z/OS MVS JCL Reference</i> is
+							the authoritative document, and Mike Murach's <i>OS/390 and z/OS JCL</i> is the standard
+							textbook.
+						</p>
+						<p>
+							If you have read this far you can return to the file-handling chapters (<a
+								href="SequentialFiles1.html"
+								>Sequential Files</a
+							>, <a href="RelativeFiles.html">Relative Files</a>,
+							<a href="IndexedFiles.html">Indexed Files</a>) and now have a mental model for how a real
+							mainframe job would invoke them.
+						</p>
+					</div>
+				</div>
+				<!-- Footer -->
+				<div class="page-footer">
+					<related-content></related-content>
+					<hr />
+					<lesson-checkbox lesson="JCL"></lesson-checkbox>
+					<lesson-nav></lesson-nav>
+					<back-to-top></back-to-top>
+					<copyright-notice></copyright-notice>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>
