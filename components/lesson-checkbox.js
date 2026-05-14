@@ -15,6 +15,20 @@
 
 class LessonCheckbox extends HTMLElement {
 	connectedCallback() {
+		if (window.COBOL_LESSONS) {
+			this._render();
+		} else {
+			window.addEventListener(
+				window.LessonProgress?.READY_EVENT ?? "lc-lessons-ready",
+				() => {
+					if (this.isConnected) this._render();
+				},
+				{ once: true },
+			);
+		}
+	}
+
+	_render() {
 		const lessonId = this.getAttribute("lesson");
 		if (!lessonId || !window.LessonProgress) {
 			return;
