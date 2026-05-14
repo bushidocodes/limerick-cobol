@@ -2,6 +2,12 @@
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
 		<meta content="COBOL,lectures, tutorials" name="keywords" />
@@ -25,19 +31,16 @@
 		/>
 		<link href="../course/Resources/css/course.css" rel="stylesheet" />
 		<link href="../course/Resources/css/course-components.css" rel="stylesheet" />
+		<script src="../components/theme-toggle.js" defer></script>
+		<script src="../components/page-hero.js" defer></script>
 		<script src="../components/site-search.js" defer></script>
+		<script src="../components/edit-on-github.js" defer></script>
 	</head>
 
 	<body>
 		<a class="skip-link" href="#main-content">Skip to main content</a>
 		<main id="main-content">
-			<h2>
-				<span class="dept-banner">Department of CSIS</span><br />
-				COBOL lectures and tutorials
-			</h2>
-			<div class="center-block">
-				<site-search></site-search>
-			</div>
+			<page-hero title="COBOL Lectures and Tutorials" eyebrow="Department of CSIS"></page-hero>
 			<hr />
 			<p>
 				These pages contain the COBOL programming lectures and tutorials for CS4312 - Software Engineering 2.
@@ -223,6 +226,7 @@
 					</td>
 				</tr>
 			</table>
+			<edit-on-github></edit-on-github>
 		</main>
 	</body>
 </html>

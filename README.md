@@ -38,4 +38,4 @@ The starting `html-validate` ruleset is intentionally permissive — it catches 
 
 `linkinator.config.json` only skips external URLs and `mailto:` links — internal refs are all expected to resolve.
 
-`pa11y-ci` uses `.pa11yci.json` for its configuration. Known pre-existing violations are listed in the `ignore` array as an explicit debt ledger — each entry should reference an open issue tracking its eventual removal. New violations will block PRs.
+`pa11y-ci` uses `.pa11yci.js` for its configuration; the URL list is auto-derived from the same filesystem walk that builds `sitemap.xml` (see `scripts/collect-html.js`), so new pages are picked up automatically. Known pre-existing violations are listed in the `ignore` array as an explicit debt ledger — each entry should reference an open issue tracking its eventual removal. New violations will block PRs.
