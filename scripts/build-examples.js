@@ -430,6 +430,8 @@ function buildPage(entry) {
 <html lang="en">
 \t<head>
 \t\t<meta name="viewport" content="width=device-width, initial-scale=1" />
+\t\t<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+\t\t<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
 \t\t<script>
 \t\t\t(function () {
 \t\t\t\tvar t = localStorage.getItem("lc-theme");
