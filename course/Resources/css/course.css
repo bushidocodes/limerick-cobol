@@ -21,6 +21,22 @@
 	--color-border-soft: #cccccc;
 	--color-border-mute: #999999;
 
+	--color-text-muted: #6a6a6a;
+	--color-danger: #c00000;
+	--color-inline-warm: #993300;
+	--color-inline-green: #006600;
+	--color-toc-marker: #2e7d32;
+
+	--prism-bg: #f5f2f0;
+	--prism-text: #000000;
+	--prism-keyword: #006fa1;
+	--prism-string: #447a00;
+	--prism-punctuation: #6a6a6a;
+	--prism-comment: #546e7a;
+	--prism-function: #c03a58;
+	--prism-number: currentColor;
+	--prism-operator: currentColor;
+
 	/* Dark-mode image inversion. Light/print leave it at `none`; the dark
 	   rulesets override it to actually invert. Routing through a custom
 	   property lets the print stylesheet reset it without `!important`. */
@@ -57,6 +73,22 @@
 
 		--color-border-soft: #444444;
 		--color-border-mute: #666666;
+
+		--color-text-muted: #a0a0a0;
+		--color-danger: #ff8a8a;
+		--color-inline-warm: #ff9966;
+		--color-inline-green: #7ec47e;
+		--color-toc-marker: #66bb6a;
+
+		--prism-bg: #1f1f1f;
+		--prism-text: #e6e6e6;
+		--prism-keyword: #ff9d6e;
+		--prism-string: #b5e8a3;
+		--prism-punctuation: #c8c8c8;
+		--prism-comment: #8a8a8a;
+		--prism-function: #90c8ff;
+		--prism-number: #f8d57e;
+		--prism-operator: #d8a0ff;
 	}
 }
 
@@ -80,6 +112,22 @@
 
 	--color-border-soft: #444444;
 	--color-border-mute: #666666;
+
+	--color-text-muted: #a0a0a0;
+	--color-danger: #ff8a8a;
+	--color-inline-warm: #ff9966;
+	--color-inline-green: #7ec47e;
+	--color-toc-marker: #66bb6a;
+
+	--prism-bg: #1f1f1f;
+	--prism-text: #e6e6e6;
+	--prism-keyword: #ff9d6e;
+	--prism-string: #b5e8a3;
+	--prism-punctuation: #c8c8c8;
+	--prism-comment: #8a8a8a;
+	--prism-function: #90c8ff;
+	--prism-number: #f8d57e;
+	--prism-operator: #d8a0ff;
 }
 
 body {
@@ -248,7 +296,7 @@ ul.toc {
 }
 
 ul.toc ::marker {
-	color: #2e7d32;
+	color: var(--color-toc-marker);
 }
 
 ul.toc > li {
@@ -266,18 +314,12 @@ ul.toc a {
 /* Department banner — replaces T-Dept.gif word-art on index pages.
    Maroon matches the original word-art hue; orange for dark mode. */
 .dept-banner {
-	display: inline-block;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 1.5rem;
 	font-weight: bold;
 	letter-spacing: 0.04em;
-	color: #993300;
-}
-
-@media (prefers-color-scheme: dark) {
-	.dept-banner {
-		color: #ff9966;
-	}
+	color: var(--color-inline-warm);
+	margin: 0;
 }
 
 /* Recolor legacy <table>/<tr>/<td> bgcolor="..." attribute markup via CSS
@@ -457,7 +499,7 @@ td[bgcolor="#ffffcc"] h4 {
 [style*="color: #cccccc"],
 [style*="color:#CCCCCC"],
 [style*="color: #CCCCCC"] {
-	color: #6a6a6a !important;
+	color: var(--color-text-muted) !important;
 }
 
 /* Legacy <span style="color: #ff0000"> fails 4.5:1 against light backgrounds
@@ -470,7 +512,7 @@ td[bgcolor="#ffffcc"] h4 {
 [style*="color: #ff0000"],
 [style*="color:#FF0000"],
 [style*="color: #FF0000"] {
-	color: #c00000 !important;
+	color: var(--color-danger) !important;
 }
 
 /* ============================================================================
@@ -483,7 +525,7 @@ td[bgcolor="#ffffcc"] h4 {
 body .token.atrule,
 body .token.attr-value,
 body .token.keyword {
-	color: #006fa1;
+	color: var(--prism-keyword);
 }
 
 body .token.attr-name,
@@ -492,23 +534,23 @@ body .token.char,
 body .token.inserted,
 body .token.selector,
 body .token.string {
-	color: #447a00;
+	color: var(--prism-string);
 }
 
 body .token.punctuation {
-	color: #6a6a6a;
+	color: var(--prism-punctuation);
 }
 
 body .token.comment,
 body .token.prolog,
 body .token.doctype,
 body .token.cdata {
-	color: #546e7a;
+	color: var(--prism-comment);
 }
 
 body .token.class-name,
 body .token.function {
-	color: #c03a58;
+	color: var(--prism-function);
 }
 
 /* ============================================================================
@@ -528,31 +570,31 @@ body .token.function {
 	   (0,1,1) selectors despite the vendor sheet loading after course.css. */
 	:root:not([data-theme="light"]) body pre[class*="language-"],
 	:root:not([data-theme="light"]) body code[class*="language-"] {
-		background: #1f1f1f;
-		color: #e6e6e6;
+		background: var(--prism-bg);
+		color: var(--prism-text);
 		text-shadow: none;
 	}
 
 	:root:not([data-theme="light"]) body :not(pre) > code[class*="language-"] {
-		background: #1f1f1f;
+		background: var(--prism-bg);
 	}
 
 	:root:not([data-theme="light"]) body .token.comment,
 	:root:not([data-theme="light"]) body .token.prolog,
 	:root:not([data-theme="light"]) body .token.doctype,
 	:root:not([data-theme="light"]) body .token.cdata {
-		color: #8a8a8a;
+		color: var(--prism-comment);
 	}
 
 	:root:not([data-theme="light"]) body .token.punctuation {
-		color: #c8c8c8;
+		color: var(--prism-punctuation);
 	}
 
 	:root:not([data-theme="light"]) body .token.keyword,
 	:root:not([data-theme="light"]) body .token.tag,
 	:root:not([data-theme="light"]) body .token.selector,
 	:root:not([data-theme="light"]) body .token.atrule {
-		color: #ff9d6e;
+		color: var(--prism-keyword);
 	}
 
 	:root:not([data-theme="light"]) body .token.string,
@@ -560,7 +602,7 @@ body .token.function {
 	:root:not([data-theme="light"]) body .token.char,
 	:root:not([data-theme="light"]) body .token.builtin,
 	:root:not([data-theme="light"]) body .token.inserted {
-		color: #b5e8a3;
+		color: var(--prism-string);
 	}
 
 	:root:not([data-theme="light"]) body .token.number,
@@ -568,12 +610,12 @@ body .token.function {
 	:root:not([data-theme="light"]) body .token.constant,
 	:root:not([data-theme="light"]) body .token.symbol,
 	:root:not([data-theme="light"]) body .token.deleted {
-		color: #f8d57e;
+		color: var(--prism-number);
 	}
 
 	:root:not([data-theme="light"]) body .token.function,
 	:root:not([data-theme="light"]) body .token.class-name {
-		color: #90c8ff;
+		color: var(--prism-function);
 	}
 
 	:root:not([data-theme="light"]) body .token.operator,
@@ -582,7 +624,7 @@ body .token.function {
 	:root:not([data-theme="light"]) body .token.variable,
 	:root:not([data-theme="light"]) body .language-css .token.string,
 	:root:not([data-theme="light"]) body .style .token.string {
-		color: #d8a0ff;
+		color: var(--prism-operator);
 		background: transparent;
 	}
 
@@ -607,7 +649,7 @@ body .token.function {
 
 	:root:not([data-theme="light"]) [style*="color:#993300"],
 	:root:not([data-theme="light"]) [style*="color: #993300"] {
-		color: #ff9966 !important;
+		color: var(--color-inline-warm) !important;
 	}
 
 	:root:not([data-theme="light"]) [style*="color:#000099"],
@@ -624,19 +666,19 @@ body .token.function {
 	:root:not([data-theme="light"]) [style*="color: #ff0000"],
 	:root:not([data-theme="light"]) [style*="color:#FF0000"],
 	:root:not([data-theme="light"]) [style*="color: #FF0000"] {
-		color: #ff8a8a !important;
+		color: var(--color-danger) !important;
 	}
 
 	:root:not([data-theme="light"]) [style*="color:#006600"],
 	:root:not([data-theme="light"]) [style*="color: #006600"] {
-		color: #7ec47e !important;
+		color: var(--color-inline-green) !important;
 	}
 
 	:root:not([data-theme="light"]) [style*="color:#cccccc"],
 	:root:not([data-theme="light"]) [style*="color: #cccccc"],
 	:root:not([data-theme="light"]) [style*="color:#CCCCCC"],
 	:root:not([data-theme="light"]) [style*="color: #CCCCCC"] {
-		color: #a0a0a0 !important;
+		color: var(--color-text-muted) !important;
 	}
 
 	/* Inline background-color: #ffffff stays white in dark mode, leaving light
@@ -670,31 +712,31 @@ body .token.function {
    and can't be beaten without it. */
 :root[data-theme="dark"] body pre[class*="language-"],
 :root[data-theme="dark"] body code[class*="language-"] {
-	background: #1f1f1f;
-	color: #e6e6e6;
+	background: var(--prism-bg);
+	color: var(--prism-text);
 	text-shadow: none;
 }
 
 :root[data-theme="dark"] body :not(pre) > code[class*="language-"] {
-	background: #1f1f1f;
+	background: var(--prism-bg);
 }
 
 :root[data-theme="dark"] body .token.comment,
 :root[data-theme="dark"] body .token.prolog,
 :root[data-theme="dark"] body .token.doctype,
 :root[data-theme="dark"] body .token.cdata {
-	color: #8a8a8a;
+	color: var(--prism-comment);
 }
 
 :root[data-theme="dark"] body .token.punctuation {
-	color: #c8c8c8;
+	color: var(--prism-punctuation);
 }
 
 :root[data-theme="dark"] body .token.keyword,
 :root[data-theme="dark"] body .token.tag,
 :root[data-theme="dark"] body .token.selector,
 :root[data-theme="dark"] body .token.atrule {
-	color: #ff9d6e;
+	color: var(--prism-keyword);
 }
 
 :root[data-theme="dark"] body .token.string,
@@ -702,7 +744,7 @@ body .token.function {
 :root[data-theme="dark"] body .token.char,
 :root[data-theme="dark"] body .token.builtin,
 :root[data-theme="dark"] body .token.inserted {
-	color: #b5e8a3;
+	color: var(--prism-string);
 }
 
 :root[data-theme="dark"] body .token.number,
@@ -710,12 +752,12 @@ body .token.function {
 :root[data-theme="dark"] body .token.constant,
 :root[data-theme="dark"] body .token.symbol,
 :root[data-theme="dark"] body .token.deleted {
-	color: #f8d57e;
+	color: var(--prism-number);
 }
 
 :root[data-theme="dark"] body .token.function,
 :root[data-theme="dark"] body .token.class-name {
-	color: #90c8ff;
+	color: var(--prism-function);
 }
 
 :root[data-theme="dark"] body .token.operator,
@@ -724,7 +766,7 @@ body .token.function {
 :root[data-theme="dark"] body .token.variable,
 :root[data-theme="dark"] body .language-css .token.string,
 :root[data-theme="dark"] body .style .token.string {
-	color: #d8a0ff;
+	color: var(--prism-operator);
 	background: transparent;
 }
 
@@ -741,7 +783,7 @@ body .token.function {
 
 :root[data-theme="dark"] [style*="color:#993300"],
 :root[data-theme="dark"] [style*="color: #993300"] {
-	color: #ff9966 !important;
+	color: var(--color-inline-warm) !important;
 }
 
 :root[data-theme="dark"] [style*="color:#000099"],
@@ -758,19 +800,19 @@ body .token.function {
 :root[data-theme="dark"] [style*="color: #ff0000"],
 :root[data-theme="dark"] [style*="color:#FF0000"],
 :root[data-theme="dark"] [style*="color: #FF0000"] {
-	color: #ff8a8a !important;
+	color: var(--color-danger) !important;
 }
 
 :root[data-theme="dark"] [style*="color:#006600"],
 :root[data-theme="dark"] [style*="color: #006600"] {
-	color: #7ec47e !important;
+	color: var(--color-inline-green) !important;
 }
 
 :root[data-theme="dark"] [style*="color:#cccccc"],
 :root[data-theme="dark"] [style*="color: #cccccc"],
 :root[data-theme="dark"] [style*="color:#CCCCCC"],
 :root[data-theme="dark"] [style*="color: #CCCCCC"] {
-	color: #a0a0a0 !important;
+	color: var(--color-text-muted) !important;
 }
 
 :root[data-theme="dark"] [style*="background-color: #ffffff"],
