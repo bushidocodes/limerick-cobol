@@ -2,6 +2,12 @@
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
 		<title>COBOL Programming Exercises</title>
@@ -68,31 +74,9 @@
 				margin-right: 4px;
 			}
 
-			/* Skip-to-content link */
-			.skip-link {
-				position: absolute;
-				left: -9999px;
-				top: auto;
-				width: 1px;
-				height: 1px;
-				overflow: hidden;
-			}
-
-			.skip-link:focus {
-				position: fixed;
-				top: 0;
-				left: 0;
-				width: auto;
-				height: auto;
-				overflow: visible;
-				padding: 0.5em 1em;
-				background-color: #993300;
-				color: #ffff00;
-				font-weight: bold;
-				z-index: 9999;
-				text-decoration: none;
-			}
 		</style>
+		<script src="../components/theme-toggle.js" defer></script>
+		<script src="../components/page-hero.js" defer></script>
 		<script src="../components/copyright-notice.js" defer></script>
 		<script src="../components/back-to-top.js" defer></script>
 		<script src="../components/site-search.js" defer></script>
@@ -100,19 +84,7 @@
 	<body>
 		<a class="skip-link" href="#main-content">Skip to main content</a>
 		<main id="main-content">
-			<p class="dept-banner">Department of CSIS</p>
-			<h2>
-				<img
-					height="40"
-					src="../pics/i-AtComputer.gif"
-					width="40"
-					alt=""
-					style="border: 1px solid"
-				/>&nbsp;COBOL Programming Exercises&nbsp;
-			</h2>
-			<div class="center-block">
-				<site-search></site-search>
-			</div>
+			<page-hero title="COBOL Programming Exercises" eyebrow="Department of CSIS"></page-hero>
 			<hr style="max-width: 800px" />
 			<div>
 				<table width="750">
