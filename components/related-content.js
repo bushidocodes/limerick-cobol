@@ -11,6 +11,10 @@
 // Renders into Light DOM (no Shadow DOM) so that course.css link colours and
 // course-components.css layout classes apply without any extra CSS piercing.
 
+function escapeAttr(str) {
+	return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
 class RelatedContent extends HTMLElement {
 	connectedCallback() {
 		const groups = [
@@ -26,7 +30,7 @@ class RelatedContent extends HTMLElement {
 				const items = this._parseLinks(raw);
 				if (!items.length) return "";
 				const lis = items
-					.map(({ href, title }) => `<li><a href="${href}">${title}</a></li>`)
+					.map(({ href, title }) => `<li><a href="${escapeAttr(href)}">${escapeAttr(title)}</a></li>`)
 					.join("\n\t\t\t\t");
 				return `
 			<div class="related-group">
