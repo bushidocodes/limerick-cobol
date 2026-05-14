@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+		<title>Object-oriented COBOL</title>
+		<meta
+			name="description"
+			content="The COBOL 2002 OO dialect: CLASS-ID, METHOD-ID, INVOKE, inheritance, object references, and where it actually gets used."
+		/>
+		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/ObjectOriented.html" />
+		<!-- Open Graph -->
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/ObjectOriented.html" />
+		<meta property="og:title" content="Object-oriented COBOL" />
+		<meta
+			property="og:description"
+			content="The COBOL 2002 OO dialect: CLASS-ID, METHOD-ID, INVOKE, inheritance, object references, and where it actually gets used."
+		/>
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content="Object-oriented COBOL" />
+		<meta
+			name="twitter:description"
+			content="The COBOL 2002 OO dialect: CLASS-ID, METHOD-ID, INVOKE, inheritance, object references, and where it actually gets used."
+		/>
+		<link href="Resources/css/course.css" rel="stylesheet" />
+		<link href="Resources/css/course-components.css" rel="stylesheet" />
+		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
+		<script src="Resources/vendor/prism/prism.min.js" defer></script>
+		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
+		<style type="text/css">
+			.section-grid > * {
+				padding: 4px;
+			}
+
+			@media (max-width: 600px) {
+				.page-wrapper {
+					border: none;
+				}
+			}
+		</style>
+		<script src="../components/theme-toggle.js" defer></script>
+		<script src="../components/page-hero.js" defer></script>
+		<script src="../components/back-to-top.js" defer></script>
+		<script src="../components/lesson-progress.js" defer></script>
+		<script src="../components/lesson-nav.js" defer></script>
+		<script src="../components/lesson-checkbox.js" defer></script>
+		<script src="../components/copyright-notice.js" defer></script>
+		<script src="../components/related-content.js" defer></script>
+		<script src="../components/copy-button.js" defer></script>
+	</head>
+
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="section-grid">
+					<!-- Header -->
+					<div class="section-full">
+						<page-hero title="Object-oriented COBOL"></page-hero>
+						<hr />
+						<ul class="toc">
+							<li>
+								<a href="#intro">Introduction</a><br />
+								Unit aims, objectives, prerequisites. Why an OO dialect of a procedural language exists,
+								and when to actually use it.
+							</li>
+							<li>
+								<a href="#part1">History and scope</a><br />
+								COBOL 2002 added it; compiler support is uneven; production use is concentrated in Java-
+								and .NET-interop scenarios.
+							</li>
+							<li>
+								<a href="#part2">CLASS-ID and METHOD-ID</a><br />
+								Declaring a class and its methods. A complete tiny <code>Account</code> class.
+							</li>
+							<li>
+								<a href="#part3">INVOKE</a><br />
+								Calling a method on an object reference, contrasted with the procedural
+								<code class="language-cobol">CALL</code>.
+							</li>
+							<li>
+								<a href="#part4">Inheritance</a><br />
+								<code class="language-cobol">INHERITS FROM</code>; overriding methods.
+							</li>
+							<li>
+								<a href="#part5">OBJECT REFERENCE data items</a><br />
+								The new data type for holding instances. Where they live in
+								<code class="language-cobol">WORKING-STORAGE</code> and the
+								<code class="language-cobol">LINKAGE SECTION</code>.
+							</li>
+							<li>
+								<a href="#part6">Factory methods</a><br />
+								Class-side methods &mdash; the OO COBOL equivalent of static methods.
+							</li>
+							<li>
+								<a href="#part7">Java and .NET interop</a><br />
+								The actual reason most shops touch OO COBOL.
+							</li>
+							<li>
+								<a href="#part8">When to use it</a><br />
+								Explicit guidance: most shops still write procedural COBOL. Here are the cases where OO
+								makes sense.
+							</li>
+						</ul>
+						<hr />
+					</div>
+
+					<!-- Introduction -->
+					<div class="section-header">
+						<h2 id="intro">Introduction</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Aims</h3>
+					</div>
+					<div>
+						<p>
+							The COBOL 2002 standard added an <i>object-oriented</i> dialect on top of the procedural
+							core. New keywords (<code class="language-cobol">CLASS-ID</code>,
+							<code class="language-cobol">METHOD-ID</code>, <code class="language-cobol">INVOKE</code>,
+							<code class="language-cobol">INHERITS FROM</code>), new data types (<code
+								class="language-cobol"
+								>USAGE OBJECT REFERENCE</code
+							>), and a new program structure (a class is not a program; methods are not paragraphs).
+						</p>
+						<p>
+							This unit teaches you to read OO COBOL and explains where you will actually meet it.
+							<b>It is optional.</b> Most production code &mdash; including everything earlier in this
+							course &mdash; is procedural and will stay procedural for the foreseeable future.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Objectives</h3>
+					</div>
+					<div>
+						<p>By the end of this unit you should &mdash;</p>
+						<ol>
+							<li>
+								Be able to read an OO COBOL class definition and identify its methods and instance
+								data.<br /><br />
+							</li>
+							<li>
+								Understand the difference between
+								<code class="language-cobol">CALL</code> and
+								<code class="language-cobol">INVOKE</code>.<br /><br />
+							</li>
+							<li>Recognise inheritance and overriding when you see them.<br /><br /></li>
+							<li>
+								Know when OO COBOL is the right tool &mdash; primarily JVM and .NET interop &mdash; and
+								when it is the wrong one.
+							</li>
+						</ol>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Prerequisites</h3>
+					</div>
+					<div>
+						<p>This is an end-of-course chapter; comfort with the procedural language is assumed.</p>
+						<ul>
+							<li><a href="COBOLIntro.html">The structure of COBOL programs</a></li>
+							<li><a href="DataDeclaration.html">Declaring data in COBOL</a></li>
+							<li><a href="Subprograms.html">Contained and external sub-programs</a></li>
+							<li>Familiarity with OO concepts (classes, methods, inheritance) from any language.</li>
+						</ul>
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: History and scope -->
+					<div class="section-header">
+						<h2 id="part1">History and scope</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>How OO got into COBOL</h3>
+					</div>
+					<div>
+						<p>
+							The 1985 standard had no OO at all. Through the late 1990s individual vendors (IBM, Micro
+							Focus, Fujitsu) added their own OO extensions, each subtly different.
+							<i>ISO/IEC 1989:2002</i> standardised a common dialect, drawing heavily on the Micro Focus
+							design. <i>ISO/IEC 1989:2014</i> tightened and extended it. <i>2023</i> added a small number
+							of features.
+						</p>
+						<p>Compiler support today:</p>
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Compiler</th>
+									<th>OO support</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>IBM Enterprise COBOL for z/OS</td>
+									<td>Yes, since v3. Tight integration with JNI for Java interop.</td>
+								</tr>
+								<tr>
+									<td>OpenText (Micro Focus) Visual COBOL</td>
+									<td>
+										Yes. Strong integration with .NET and JVM &mdash; classes can implement Java or
+										.NET interfaces directly.
+									</td>
+								</tr>
+								<tr>
+									<td>Fujitsu NetCOBOL</td>
+									<td>Yes, with its own .NET integration.</td>
+								</tr>
+								<tr>
+									<td>GnuCOBOL</td>
+									<td>
+										Partial. <code>CLASS-ID</code> / <code>METHOD-ID</code> exist but the runtime is
+										limited. Treat as experimental.
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: CLASS-ID -->
+					<div class="section-header">
+						<h2 id="part2">CLASS-ID and METHOD-ID</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>The shape of a class</h3>
+					</div>
+					<div>
+						<p>
+							A class definition replaces a program. Where a procedural source file starts with
+							<code class="language-cobol">IDENTIFICATION DIVISION. PROGRAM-ID.</code>, a class source
+							file starts with
+							<code class="language-cobol">IDENTIFICATION DIVISION. CLASS-ID.</code> Methods replace
+							paragraphs.
+						</p>
+						<pre><code class="language-cobol">       IDENTIFICATION DIVISION.
+       CLASS-ID. Account.
+
+       *&gt; Instance data: per-object state.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  Balance              PIC S9(9)V99 COMP-3 VALUE ZERO.
+
+       *&gt; Methods follow.
+
+       IDENTIFICATION DIVISION.
+       METHOD-ID. Deposit.
+
+       DATA DIVISION.
+       LINKAGE SECTION.
+       01  LK-Amount            PIC S9(9)V99 COMP-3.
+
+       PROCEDURE DIVISION USING BY VALUE LK-Amount.
+           ADD LK-Amount TO Balance.
+
+       END METHOD Deposit.
+
+       IDENTIFICATION DIVISION.
+       METHOD-ID. Withdraw.
+
+       DATA DIVISION.
+       LINKAGE SECTION.
+       01  LK-Amount            PIC S9(9)V99 COMP-3.
+       01  LK-Success           PIC X.
+
+       PROCEDURE DIVISION USING BY VALUE LK-Amount
+                          RETURNING LK-Success.
+           IF Balance &gt;= LK-Amount
+               SUBTRACT LK-Amount FROM Balance
+               MOVE "Y" TO LK-Success
+           ELSE
+               MOVE "N" TO LK-Success
+           END-IF.
+
+       END METHOD Withdraw.
+
+       IDENTIFICATION DIVISION.
+       METHOD-ID. GetBalance.
+
+       DATA DIVISION.
+       LINKAGE SECTION.
+       01  LK-Balance           PIC S9(9)V99 COMP-3.
+
+       PROCEDURE DIVISION RETURNING LK-Balance.
+           MOVE Balance TO LK-Balance.
+
+       END METHOD GetBalance.
+
+       END CLASS Account.</code></pre>
+						<p>Notice the shape:</p>
+						<ul>
+							<li>
+								Instance data is in <code class="language-cobol">WORKING-STORAGE</code>. Each instance
+								gets its own copy.
+							</li>
+							<li>
+								Method parameters use
+								<code class="language-cobol">PROCEDURE DIVISION USING ... RETURNING ...</code> &mdash;
+								the same syntax as a subprogram, declared in
+								<code class="language-cobol">LINKAGE SECTION</code>.
+							</li>
+							<li>
+								The terminator is <code class="language-cobol">END METHOD</code> for methods and
+								<code class="language-cobol">END CLASS</code> at the very end.
+							</li>
+						</ul>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: INVOKE -->
+					<div class="section-header">
+						<h2 id="part3">INVOKE</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Calling a method</h3>
+					</div>
+					<div>
+						<p>
+							<code class="language-cobol">INVOKE</code> is to objects what
+							<code class="language-cobol">CALL</code> is to subprograms. It takes an object reference, a
+							method name, and parameters.
+						</p>
+						<pre><code class="language-cobol">       WORKING-STORAGE SECTION.
+       01  MyAccount        USAGE OBJECT REFERENCE Account.
+       01  WS-OK            PIC X.
+       01  WS-Balance       PIC S9(9)V99 COMP-3.
+
+       PROCEDURE DIVISION.
+           *&gt; Create a new instance and store it.
+           INVOKE Account "NEW" RETURNING MyAccount
+
+           *&gt; Call methods on it.
+           INVOKE MyAccount "Deposit" USING BY VALUE 100.00
+           INVOKE MyAccount "Withdraw"
+                  USING BY VALUE 40.00
+                  RETURNING WS-OK
+           INVOKE MyAccount "GetBalance" RETURNING WS-Balance
+           DISPLAY "Balance is " WS-Balance.</code></pre>
+						<p>
+							The string literal <code>"NEW"</code> in the first
+							<code class="language-cobol">INVOKE</code> calls the class-side factory method that
+							constructs an instance. It's the equivalent of <code>new Account()</code> in Java.
+						</p>
+						<p>
+							The compiler resolves the method name at compile time when the object reference is typed
+							(<code class="language-cobol">OBJECT REFERENCE Account</code>) or dispatches dynamically at
+							run time when the reference is generic (<code class="language-cobol">OBJECT REFERENCE</code>
+							with no class name &mdash; the <code>Object</code> root type).
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: Inheritance -->
+					<div class="section-header">
+						<h2 id="part4">Inheritance</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>INHERITS FROM</h3>
+					</div>
+					<div>
+						<p>
+							A subclass declares its parent on the
+							<code class="language-cobol">CLASS-ID</code> line:
+						</p>
+						<pre><code class="language-cobol">       IDENTIFICATION DIVISION.
+       CLASS-ID. SavingsAccount INHERITS FROM Account.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  InterestRate         PIC S9(3)V9(6) COMP-3 VALUE 0.025.
+
+       IDENTIFICATION DIVISION.
+       METHOD-ID. AccrueInterest.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  WS-CurrentBalance    PIC S9(9)V99 COMP-3.
+       01  WS-Interest          PIC S9(9)V99 COMP-3.
+
+       PROCEDURE DIVISION.
+           INVOKE SELF "GetBalance" RETURNING WS-CurrentBalance
+           COMPUTE WS-Interest = WS-CurrentBalance * InterestRate
+           INVOKE SELF "Deposit" USING BY VALUE WS-Interest.
+
+       END METHOD AccrueInterest.
+
+       END CLASS SavingsAccount.</code></pre>
+						<p>
+							<code class="language-cobol">SELF</code> is the equivalent of <code>this</code> in Java or
+							C# &mdash; an object reference to the currently executing instance.
+						</p>
+						<p>
+							To override an inherited method, define a method with the same name in the subclass. Method
+							dispatch is dynamic by default &mdash; the runtime picks the most-derived implementation for
+							the actual object's class.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: OBJECT REFERENCE -->
+					<div class="section-header">
+						<h2 id="part5">OBJECT REFERENCE data items</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Typed and untyped references</h3>
+					</div>
+					<div>
+						<p>
+							A data item declared
+							<code class="language-cobol">USAGE OBJECT REFERENCE</code> holds either <code>NULL</code> or
+							a reference to an object. There are two flavours:
+						</p>
+						<ul>
+							<li>
+								<b>Typed</b> &mdash; <code class="language-cobol">USAGE OBJECT REFERENCE Account</code>.
+								The compiler knows which methods are valid; calls to nonexistent methods fail at compile
+								time.
+							</li>
+							<li>
+								<b>Untyped</b> &mdash; <code class="language-cobol">USAGE OBJECT REFERENCE</code>. The
+								reference can point at any class; method dispatch is fully dynamic.
+							</li>
+						</ul>
+						<p>
+							Object references obey the same lifetime rules as any other data item: they live in
+							<code class="language-cobol">WORKING-STORAGE</code> for the duration of the program (or
+							method) they're declared in. The objects they point at are garbage-collected by the OO COBOL
+							runtime.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: Factory methods -->
+					<div class="section-header">
+						<h2 id="part6">Factory methods</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>Class-side behaviour</h3>
+					</div>
+					<div>
+						<p>
+							A <i>factory</i> method belongs to the class itself, not to instances of it &mdash; the OO
+							COBOL equivalent of a static method. They're useful for constructing instances with
+							non-trivial setup, or for sharing class-level state.
+						</p>
+						<pre><code class="language-cobol">       IDENTIFICATION DIVISION.
+       CLASS-ID. Account.
+
+       FACTORY.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  NextAccountNumber    PIC S9(9) COMP VALUE 1.
+
+       IDENTIFICATION DIVISION.
+       METHOD-ID. CreateNumbered.
+
+       DATA DIVISION.
+       LINKAGE SECTION.
+       01  LK-NewAccount        USAGE OBJECT REFERENCE Account.
+
+       PROCEDURE DIVISION RETURNING LK-NewAccount.
+           INVOKE Account "NEW" RETURNING LK-NewAccount
+           *&gt; Set the new account's ID, increment the counter, etc.
+           ADD 1 TO NextAccountNumber.
+
+       END METHOD CreateNumbered.
+
+       END FACTORY.
+
+       *&gt; Instance section follows...
+       OBJECT.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  Balance              PIC S9(9)V99 COMP-3 VALUE ZERO.
+
+       *&gt; Instance methods...
+
+       END OBJECT.
+
+       END CLASS Account.</code></pre>
+						<p>
+							The class definition is bracketed by
+							<code class="language-cobol">FACTORY</code>/<code class="language-cobol">END FACTORY</code>
+							for class-side state and methods, and
+							<code class="language-cobol">OBJECT</code>/<code class="language-cobol">END OBJECT</code>
+							for instance-side. Code calls
+							<code class="language-cobol">INVOKE Account "CreateNumbered"</code> &mdash; using the class
+							name itself as the receiver.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: Java and .NET -->
+					<div class="section-header">
+						<h2 id="part7">Java and .NET interop</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>The actual use case</h3>
+					</div>
+					<div>
+						<p>
+							The most common reason a shop touches OO COBOL is interoperating with code in another
+							language &mdash; usually Java on z/OS or .NET on Windows.
+						</p>
+						<ul>
+							<li>
+								<b>IBM Enterprise COBOL on z/OS</b> can call Java classes and be called from Java. The
+								mechanism is JNI under the hood; OO COBOL syntax is what shields the application
+								programmer from it.
+							</li>
+							<li>
+								<b>OpenText Visual COBOL</b> compiles to either JVM bytecode or .NET IL. Classes written
+								in OO COBOL can directly implement Java or .NET interfaces; instances are usable from
+								any other language on the same runtime.
+							</li>
+						</ul>
+						<p>
+							In both cases the OO COBOL is essentially a bridge: a thin object layer in front of the
+							business logic so that another language can hold and call it.
+						</p>
+						<hr size="1" />
+					</div>
+					<!-- Navigation -->
+					<div class="section-full">
+						<hr />
+						<back-to-top></back-to-top>
+					</div>
+
+					<!-- Section: When to use it -->
+					<div class="section-header">
+						<h2 id="part8">When to use it</h2>
+					</div>
+					<div class="section-sidebar">
+						<h3>The honest guidance</h3>
+					</div>
+					<div>
+						<p>OO COBOL is the right tool in a small number of specific situations:</p>
+						<ul>
+							<li>
+								You need to expose existing COBOL business logic to a Java or .NET caller and don't want
+								to bridge through JNI / P/Invoke by hand.
+							</li>
+							<li>
+								You're writing new code on Visual COBOL for the JVM or .NET and the surrounding
+								ecosystem is OO.
+							</li>
+							<li>
+								A specific framework (e.g. some IBM modernisation tools) requires class-shaped entry
+								points.
+							</li>
+						</ul>
+						<p>
+							For everything else &mdash; including everything else covered in this course &mdash;
+							procedural COBOL is the right answer. The procedural language is more thoroughly tested
+							across compilers, more familiar to every other engineer who will touch the code, and equally
+							able to express any business algorithm.
+						</p>
+						<p>
+							If your team is debating whether to write a new module in OO COBOL, the default answer
+							should be "no, write it procedurally" unless one of the bullets above clearly applies.
+						</p>
+						<hr size="1" />
+					</div>
+
+					<div class="section-sidebar">
+						<h3>Where to go next</h3>
+					</div>
+					<div>
+						<p>
+							For OO depth on IBM, the canonical reference is the
+							<i>Enterprise COBOL Language Reference</i>'s OO chapters. For Visual COBOL, OpenText
+							publishes a dedicated <i>Visual COBOL Object-Oriented Programming Guide</i> covering the JVM
+							and .NET targets.
+						</p>
+						<p>
+							The procedural <a href="Subprograms.html">Contained and external sub-programs</a> chapter
+							covers the equivalent "structuring large systems" concerns without OO. If you're trying to
+							decide whether to use OO, read that chapter first.
+						</p>
+					</div>
+				</div>
+				<!-- Footer -->
+				<div class="page-footer">
+					<related-content></related-content>
+					<hr />
+					<lesson-checkbox lesson="ObjectOriented"></lesson-checkbox>
+					<lesson-nav></lesson-nav>
+					<back-to-top></back-to-top>
+					<copyright-notice></copyright-notice>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>
