@@ -440,9 +440,7 @@ function buildPage(entry) {
 
 	const relatedEl = relatedContentHtml(entry.file);
 
-	const runInCeScript = entry.runInCe
-		? `\t\t<script src="${pfx}components/run-in-ce.js" defer></script>\n`
-		: "";
+	const runInCeScript = entry.runInCe ? `\t\t<script src="${pfx}components/run-in-ce.js" defer></script>\n` : "";
 	const runInCeEl = entry.runInCe ? `\t\t\t\t\t\t<p><run-in-ce></run-in-ce></p>\n` : "";
 
 	return `<!doctype html>
