@@ -1250,15 +1250,25 @@ related-content {
 }
 
 /* ============================================================================
-   page-toc custom element (issue #255).
-   Sticky in-page sidebar table-of-contents for long course pages. Opt-in
-   per page by adding <page-toc></page-toc> inside .page-wrapper. The
-   element is hidden below the desktop breakpoint so the existing
-   top-of-page ul.toc handles mobile/tablet navigation unchanged.
+   page-toc custom element (issue #255) and lesson-toc custom element
+   (issue #382).
+
+   page-toc: sticky in-page sidebar table-of-contents for long course pages.
+   Opt-in per page by adding <page-toc></page-toc> inside .page-wrapper.
+   The element is hidden below the desktop breakpoint so lesson-toc handles
+   mobile/tablet navigation.
+
+   lesson-toc: auto-generated flat nav at the top of each lesson that lists
+   the page's <h2> sections. Replaces the hand-authored <ul class="toc">
+   block. Hidden on desktop when the page-toc sidebar is present.
    ============================================================================ */
 
 page-toc {
 	display: none;
+}
+
+lesson-toc {
+	display: block;
 }
 
 .page-toc {
@@ -1354,14 +1364,16 @@ page-toc {
 		box-sizing: border-box;
 	}
 
-	/* Hide the top-of-page ul.toc on desktop when the sidebar is present —
+	/* Hide the top-of-page TOC on desktop when the sidebar is present —
 	   the sidebar covers the same role. Selector matches both layout
-	   shapes used across course pages: `ul.toc` inside .page-content
-	   (Iteration-style) and inside a .section-grid > .section-full
-	   (COBOLIntro-style). The trailing <hr /> sibling is hidden too so
-	   the empty divider doesn't leave a stray rule. */
+	   shapes used across course pages: `ul.toc`/`lesson-toc` inside
+	   .page-content (Iteration-style) and inside .section-grid >
+	   .section-full (COBOLIntro-style). The trailing <hr /> sibling is
+	   hidden too so the empty divider doesn't leave a stray rule. */
 	.page-wrapper:has(page-toc) ul.toc,
-	.page-wrapper:has(page-toc) ul.toc + hr {
+	.page-wrapper:has(page-toc) ul.toc + hr,
+	.page-wrapper:has(page-toc) lesson-toc,
+	.page-wrapper:has(page-toc) lesson-toc + hr {
 		display: none;
 	}
 }
