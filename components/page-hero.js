@@ -24,6 +24,8 @@ class PageHero extends HTMLElement {
 		this.querySelector(".page-hero-eyebrow").textContent = eyebrow;
 		this.querySelector("h1").textContent = title;
 	}
+
+	disconnectedCallback() {}
 }
 
 customElements.define("page-hero", PageHero);

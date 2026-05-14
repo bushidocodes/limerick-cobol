@@ -37,6 +37,8 @@ class CopyrightNotice extends HTMLElement {
 		`;
 	}
 
+	disconnectedCallback() {}
+
 	_getContent(type) {
 		switch (type) {
 			case "project":
