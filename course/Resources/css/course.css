@@ -18,6 +18,10 @@
 	--color-emphasis: #000099;
 
 	--site-header-height: 3em;
+	/* site-header (--site-header-height) + secondary breadcrumb bar. Used by
+	   sticky sidebars (page-toc, course-sidebar) so they sit below both bars
+	   instead of slipping under the breadcrumbs. */
+	--site-bar-height: calc(var(--site-header-height) + 2.5em);
 
 	--color-border: currentColor;
 	--color-border-soft: #cccccc;
@@ -324,17 +328,6 @@ ul.toc a {
 	display: block;
 	font-weight: bold;
 	font-size: larger;
-}
-
-/* Department banner — replaces T-Dept.gif word-art on index pages.
-   Maroon matches the original word-art hue; orange for dark mode. */
-.dept-banner {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 1.5rem;
-	font-weight: bold;
-	letter-spacing: 0.04em;
-	color: var(--color-inline-warm);
-	margin: 0;
 }
 
 /* Recolor legacy <table>/<tr>/<td> bgcolor="..." attribute markup via CSS
@@ -892,7 +885,6 @@ body .token.function {
 	   these elements have a competing `display` rule elsewhere in course.css,
 	   so source order alone wins. */
 	.hero img,
-	.back-to-top,
 	.skip-link,
 	theme-toggle,
 	ul.toc,

@@ -4,14 +4,15 @@
    <table border cellspacing cellpadding>) without changing the rendered output. */
 
 /* Sticky site-wide toolbar — injected by site-header.js before <main>.
-   Contains the site logo, primary section nav, site-search, and
-   theme-toggle. */
+   Contains the site logo, primary section nav, and site-search. The
+   theme-toggle now lives in the secondary breadcrumb bar below this
+   one (see <page-breadcrumbs> styling further down). */
 .site-header {
 	position: sticky;
 	top: 0;
 	z-index: 200;
 	display: grid;
-	grid-template-columns: auto auto 1fr auto;
+	grid-template-columns: auto auto 1fr;
 	align-items: center;
 	column-gap: 0.75em;
 	padding: 0.25em 0.5em;
@@ -43,14 +44,6 @@
 .site-header site-search {
 	grid-column: 3;
 	grid-row: 1;
-	display: flex;
-	align-items: center;
-}
-
-.site-header theme-toggle {
-	grid-column: 4;
-	grid-row: 1;
-	justify-self: end;
 	display: flex;
 	align-items: center;
 }
@@ -105,7 +98,7 @@
 
 @media (max-width: 720px) {
 	.site-header {
-		grid-template-columns: auto 1fr auto;
+		grid-template-columns: auto 1fr;
 	}
 
 	.site-header .site-nav {
@@ -115,14 +108,6 @@
 	.site-header site-search {
 		grid-column: 2;
 	}
-
-	.site-header theme-toggle {
-		grid-column: 3;
-	}
-}
-
-.site-header .theme-toggle {
-	margin-top: 0;
 }
 
 .site-header .site-search {
@@ -145,29 +130,6 @@ nav[aria-label="Breadcrumb"] {
 	margin-bottom: 0.5em;
 }
 
-/* Eyebrow label in page-hero — replaces t-CobolTut.gif word-art badge.
-   Uses site maroon in light mode; warm orange in dark mode so it stays
-   legible without the img invert filter. */
-.page-hero-eyebrow {
-	margin: 0 0 0.25em;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 0.85em;
-	font-weight: bold;
-	letter-spacing: 0.12em;
-	text-transform: uppercase;
-	color: #993300;
-}
-
-@media (prefers-color-scheme: dark) {
-	:root:not([data-theme="light"]) .page-hero-eyebrow {
-		color: #ff9966;
-	}
-}
-
-:root[data-theme="dark"] .page-hero-eyebrow {
-	color: #ff9966;
-}
-
 /* Estimated reading-time badge rendered by page-hero.js when the
    reading-time attribute is present. Sits between the h1 and theme-toggle;
    muted via opacity so it recedes behind the title without a theme-specific
@@ -177,6 +139,18 @@ nav[aria-label="Breadcrumb"] {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 0.8em;
 	opacity: 0.65;
+}
+
+/* Inline <code class="language-cobol"> inside section headings (h1–h6)
+   should not be Prism-highlighted — keep COBOL keyword references in the
+   heading flow rather than calling them out with token colours. The `body`
+   prefix matches the specificity of Prism's `body .token.<x>` overrides in
+   course.css so these rules win without `!important`. */
+body :is(h1, h2, h3, h4, h5, h6) code[class*="language-"],
+body :is(h1, h2, h3, h4, h5, h6) code[class*="language-"] .token {
+	color: inherit;
+	background: transparent;
+	text-shadow: none;
 }
 
 /* Decorative disc bullet — replaces BallBlueG.gif (13×13 px) used inline
@@ -195,20 +169,6 @@ nav[aria-label="Breadcrumb"] {
 
 .center-block {
 	text-align: center;
-}
-
-/* Replaces <p align="center"><a href="#top"><img .../></a></p> blocks placed
-   between sections. The 1em vertical margin matches the default <p> margin so
-   the divider/anchor pair retains its rhythm. The .page-footer override drops
-   that margin because the footer variant uses a <div>, which has no default
-   margin. */
-.back-to-top {
-	text-align: center;
-	margin: 1em 0;
-}
-
-.page-footer .back-to-top {
-	margin: 0;
 }
 
 /* Reproduces <table border="1" cellspacing="1" cellpadding="5"> exactly:
@@ -233,20 +193,6 @@ nav[aria-label="Breadcrumb"] {
    image baselines, so the default would look dropped). */
 .i-detail {
 	font-size: 32px;
-	line-height: 1;
-	vertical-align: middle;
-}
-
-/* Back-to-top marker. Replaces the legacy 132×38 px i-pagetop.gif "to top of
-   page" link with the 🔝 emoji. font-size 36px keeps the glyph close to the
-   original GIF height (38px) without overshooting; line-height 1 prevents the
-   emoji from inflating the line box; vertical-align: middle centres the glyph
-   against neighbouring text the same way it does for .i-detail.
-   display: inline-block makes the span an atomic inline so the parent
-   anchor's a:link underline doesn't extend through the emoji. */
-.i-pagetop {
-	display: inline-block;
-	font-size: 36px;
 	line-height: 1;
 	vertical-align: middle;
 }
@@ -1143,13 +1089,16 @@ body pre[class*="language-"] {
 	font-weight: bold;
 	letter-spacing: 0.06em;
 	text-transform: uppercase;
-	padding: 0.3em 0.7em;
+	padding: 0.2em 0.5em;
 	background: transparent;
 	color: inherit;
 	border: none;
 	border-right: 1px solid var(--color-border-mute);
 	cursor: pointer;
 	line-height: 1.4;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .theme-toggle__btn:last-child {
@@ -1550,14 +1499,23 @@ lesson-toc {
 		min-width: 0;
 	}
 
+	/* Take page-toc out of grid flow with position: fixed.
+	   Why: same row-inflation issue documented for course-sidebar above —
+	   when page-toc spans rows 1 to -1, its tall content distributes
+	   across row tracks and inflates rows that only need to fit a short
+	   item (e.g. the hero's section-grid). Fixed positioning bypasses
+	   grid sizing entirely. The grid still reserves a 200px first column
+	   track (empty); page-toc visually fills it via viewport-coordinate
+	   left/top. The 2-col layout uses max-width 947px so the offset is
+	   `max(0px, (50vw - 947px / 2))`. The 3-col layout below overrides
+	   for max-width 1199px and the right-hand column. */
 	.page-wrapper:has(page-toc) > page-toc {
 		display: block;
-		grid-column: 1;
-		grid-row: 1 / -1;
-		position: sticky;
-		top: calc(var(--site-header-height) + 1em);
-		align-self: start;
-		max-height: calc(100vh - var(--site-header-height) - 2em);
+		position: fixed;
+		top: calc(var(--site-bar-height) + 1em);
+		left: max(0px, calc(50vw - 947px / 2));
+		width: 200px;
+		max-height: calc(100vh - var(--site-bar-height) - 2em);
 		overflow-y: auto;
 		padding: 0.5em 0.25em;
 		box-sizing: border-box;
@@ -1572,7 +1530,12 @@ lesson-toc {
 	.page-wrapper:has(page-toc) ul.toc,
 	.page-wrapper:has(page-toc) ul.toc + hr,
 	.page-wrapper:has(page-toc) lesson-toc,
-	.page-wrapper:has(page-toc) lesson-toc + hr {
+	.page-wrapper:has(page-toc) lesson-toc + hr,
+	/* Also hide the leading <hr> immediately above lesson-toc so we don't
+	   leave an orphan divider between the hero and the section header
+	   when the sidebar TOC takes over (uses :has() preceding-sibling). */
+	.page-wrapper:has(page-toc) hr:has(+ lesson-toc),
+	.page-wrapper:has(page-toc) hr:has(+ ul.toc) {
 		display: none;
 	}
 }
@@ -1834,19 +1797,57 @@ last-updated {
 }
 
 /* ============================================================================
-   breadcrumbs custom element (MDN-style trail above page-hero).
-   Light DOM. Auto-injected by components/breadcrumbs.js. Renders as a small
-   muted-text row with › separators; the current page is non-linked.
+   breadcrumbs custom element (MDN-style sticky secondary bar).
+   Light DOM. Auto-injected by components/breadcrumbs.js as a sibling of
+   .site-header so the element forms a full-width bar that sticks just below
+   the header. Hosts the breadcrumb trail on the left and the theme-toggle
+   on the right (mirroring MDN's layout). The .breadcrumbs-list and
+   .breadcrumbs-item rules below style the trail markup itself.
    ============================================================================ */
 
 page-breadcrumbs {
 	display: block;
-	margin: 0 0 0.5em;
+	position: sticky;
+	top: var(--site-header-height);
+	/* One under .site-header (200) so it tucks beneath when both are
+	   sticky-stacked at the top of the viewport. */
+	z-index: 199;
+	background-color: var(--color-bg);
+	border-bottom: 1px solid var(--color-border-mute);
+	box-sizing: border-box;
 }
 
-.breadcrumbs {
+.breadcrumb-bar-inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.75em;
+	padding: 0.2em 0.5em;
+	min-height: 1.5em;
+}
+
+/* Empty spacer rendered on pages without a breadcrumb trail (e.g. the site
+   home) so the theme-toggle still right-aligns via space-between. */
+.breadcrumb-bar-spacer {
+	flex: 1 1 auto;
+}
+
+/* Override the in-content nav[aria-label="Breadcrumb"] margin rule below —
+   inside the sticky bar the wrapping <div> handles spacing. */
+.breadcrumb-bar-inner nav.page-breadcrumbs {
+	margin: 0;
+}
+
+/* Theme-toggle's own default margin-top (from the .theme-toggle rule near
+   the bottom of this file) would push it off-center inside the bar. */
+.breadcrumb-bar-inner .theme-toggle {
+	margin-top: 0;
+}
+
+nav.page-breadcrumbs {
 	font-size: 0.85em;
 	color: var(--color-text-muted);
+	min-width: 0;
 }
 
 .breadcrumbs-list {
@@ -1878,7 +1879,13 @@ page-breadcrumbs {
 	text-decoration: underline;
 }
 
-.breadcrumbs-current {
+/* Leaf is rendered as <a href="#top"> so clicking it scrolls to the page
+   top. Mute its color regardless of link/visited state — the breadcrumb's
+   own muted hue should win over the global a:link / a:visited rules
+   (specificity 0,1,1) without `!important`. */
+.breadcrumbs-current,
+.breadcrumbs-current:link,
+.breadcrumbs-current:visited {
 	color: var(--color-text-muted);
 }
 
@@ -2054,10 +2061,10 @@ course-sidebar {
 	.page-wrapper:has(course-sidebar) > course-sidebar {
 		display: block;
 		position: fixed;
-		top: calc(var(--site-header-height) + 1em);
+		top: calc(var(--site-bar-height) + 1em);
 		left: max(0px, calc(50vw - 967px / 2));
 		width: 220px;
-		max-height: calc(100vh - var(--site-header-height) - 2em);
+		max-height: calc(100vh - var(--site-bar-height) - 2em);
 		overflow-y: auto;
 		padding: 0.5em 0.25em;
 		box-sizing: border-box;
@@ -2097,8 +2104,13 @@ course-sidebar {
 		left: max(0px, calc(50vw - 1199px / 2));
 	}
 
+	/* In the 3-col layout page-toc moves to the right column. Override the
+	   fixed-positioning left offset so it tracks the wrapper's right edge:
+	     wrapper-right = 50vw + 1199px / 2
+	     page-toc.left = wrapper-right - 200px (page-toc width)
+	*/
 	.page-wrapper:has(course-sidebar):has(page-toc) > page-toc {
-		grid-column: 3;
+		left: max(0px, calc(50vw + 1199px / 2 - 200px));
 	}
 
 	.page-wrapper:has(course-sidebar):has(page-toc) > *:not(course-sidebar):not(page-toc) {

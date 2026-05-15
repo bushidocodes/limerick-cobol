@@ -25,7 +25,7 @@ function ogImageUrl(pageType) {
 }
 const REPO_ROOT = path.resolve(__dirname, "../..");
 const CONTENT_DIRS = ["course", "exercises", "examples", "lectures"];
-const SKIP_NAMES = new Set(["index.html", "default.html"]);
+const SKIP_NAMES = new Set(["index.html"]);
 
 // ── Optional manual override map ──────────────────────────────────────────────
 const OVERRIDES_PATH = path.join(__dirname, "..", "page-descriptions.json");
@@ -100,7 +100,7 @@ function fromExercise(html) {
 }
 
 /**
- * Build a map of { lowercased-view-path → description } from examples/default.html.
+ * Build a map of { lowercased-view-path → description } from examples/index.html.
  * Each data row contains a description td (width=298) and a View link in the actions td.
  */
 function buildExampleMap(defaultHtml) {
@@ -234,7 +234,7 @@ function processFile(filePath, exampleMap) {
 
 // ── Entry point ────────────────────────────────────────────────────────────────
 function main() {
-	const defaultHtmlPath = path.join(REPO_ROOT, "examples", "default.html");
+	const defaultHtmlPath = path.join(REPO_ROOT, "examples", "index.html");
 	const exampleMap = fs.existsSync(defaultHtmlPath) ? buildExampleMap(fs.readFileSync(defaultHtmlPath, "utf8")) : {};
 
 	let updated = 0,

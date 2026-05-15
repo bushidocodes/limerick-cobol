@@ -358,13 +358,13 @@ function prefix(relFile) {
 }
 
 /**
- * Return the relative path from examples/<relFile> back to examples/default.html.
- * e.g. "Accept/ACCEPT.html"        -> "../default.html"
- *      "SubProg/Multiply/Foo.html" -> "../../default.html"
+ * Return the relative path from examples/<relFile> back to examples/index.html.
+ * e.g. "Accept/ACCEPT.html"        -> "../index.html"
+ *      "SubProg/Multiply/Foo.html" -> "../../index.html"
  */
 function defaultHtmlPath(relFile) {
 	const depth = relFile.split("/").length - 1;
-	return "../".repeat(depth) + "default.html";
+	return "../".repeat(depth) + "index.html";
 }
 
 /**
@@ -486,7 +486,7 @@ ${runInCeScript}\t</head>
 \t\t\t<div class="page-wrapper">
 \t\t\t\t<div class="section-grid">
 \t\t\t\t\t<div class="section-full">
-\t\t\t\t\t\t<page-hero title="${metaTitle}" eyebrow="COBOL Example"></page-hero>
+\t\t\t\t\t\t<page-hero title="${metaTitle}"></page-hero>
 \t\t\t\t\t\t<nav aria-label="Breadcrumb">
 \t\t\t\t\t\t\t<a href="${defPath}">Example programs</a> ›
 \t\t\t\t\t\t\t<span>${entry.crumb}</span>
