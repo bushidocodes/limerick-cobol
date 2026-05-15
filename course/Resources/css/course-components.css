@@ -3,16 +3,17 @@
    a recurring chunk of legacy presentational HTML (<center>, align="...",
    <table border cellspacing cellpadding>) without changing the rendered output. */
 
-/* Sticky site-wide toolbar — injected by page-hero.js before <main>.
-   Contains theme-toggle and site-search. */
+/* Sticky site-wide toolbar — injected by site-header.js before <main>.
+   Contains the site logo, primary section nav, site-search, and
+   theme-toggle. */
 .site-header {
 	position: sticky;
 	top: 0;
 	z-index: 200;
 	display: grid;
-	grid-template-columns: auto 1fr auto;
+	grid-template-columns: auto auto 1fr auto;
 	align-items: center;
-	column-gap: 0.5em;
+	column-gap: 0.75em;
 	padding: 0.25em 0.5em;
 	background-color: var(--color-bg);
 	border-bottom: 1px solid var(--color-border-mute);
@@ -32,19 +33,92 @@
 	display: block;
 }
 
-.site-header site-search {
+.site-header .site-nav {
 	grid-column: 2;
 	grid-row: 1;
 	display: flex;
 	align-items: center;
 }
 
-.site-header theme-toggle {
+.site-header site-search {
 	grid-column: 3;
+	grid-row: 1;
+	display: flex;
+	align-items: center;
+}
+
+.site-header theme-toggle {
+	grid-column: 4;
 	grid-row: 1;
 	justify-self: end;
 	display: flex;
 	align-items: center;
+}
+
+/* Primary nav — horizontal list of top-level sections (Course, Exercises,
+   Examples, Lectures). Active section gets a bottom-border accent and bold
+   text so the reader always knows which silo they're in (MDN's tab pattern).
+   Hidden below ~720px so the mobile header stays compact — logo + search
+   still reach everything. */
+.site-nav ul {
+	display: flex;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	gap: 0.25em;
+}
+
+.site-nav li {
+	margin: 0;
+}
+
+.site-nav a {
+	display: inline-block;
+	padding: 0.25em 0.6em;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.9em;
+	text-decoration: none;
+	color: var(--color-text);
+	border-bottom: 2px solid transparent;
+	border-radius: 2px 2px 0 0;
+	line-height: 1.4;
+}
+
+.site-nav a:hover {
+	background-color: var(--color-border-mute);
+}
+
+.site-nav a[data-active] {
+	font-weight: bold;
+	border-bottom-color: var(--color-header-bg);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) .site-nav a[data-active] {
+		border-bottom-color: #ff9966;
+	}
+}
+
+:root[data-theme="dark"] .site-nav a[data-active] {
+	border-bottom-color: #ff9966;
+}
+
+@media (max-width: 720px) {
+	.site-header {
+		grid-template-columns: auto 1fr auto;
+	}
+
+	.site-header .site-nav {
+		display: none;
+	}
+
+	.site-header site-search {
+		grid-column: 2;
+	}
+
+	.site-header theme-toggle {
+		grid-column: 3;
+	}
 }
 
 .site-header .theme-toggle {
