@@ -19,8 +19,6 @@ class PageHero extends HTMLElement {
 				<p id="top" class="page-hero-eyebrow"></p>
 				<h1></h1>
 				${readingTime ? `<p class="page-hero-reading-time"></p>` : ""}
-				<theme-toggle></theme-toggle>
-				<site-search></site-search>
 			</div>
 		`;
 		this.querySelector(".page-hero-eyebrow").textContent = eyebrow;

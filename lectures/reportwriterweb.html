@@ -4,6 +4,12 @@
 		<meta content="width=device-width, initial-scale=1" name="viewport" />
 		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
 		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<title>COBOL Report Writer</title>
 		<meta name="description" content="COBOL lecture slides covering COBOL Report Writer." />
@@ -124,6 +130,7 @@
 		</style>
 		<script src="../components/copyright-notice.js" defer></script>
 		<script src="../components/last-updated.js" defer></script>
+		<script src="../components/site-header.js" defer></script>
 	</head>
 	<body id="top">
 		<div class="page-wrapper">
