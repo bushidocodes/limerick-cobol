@@ -27,10 +27,7 @@ for (const file of walk(ROOT)) {
 	if (!/body style="margin: 0; padding: 0"/.test(html)) continue;
 	if (!/components\/site-header\.js/.test(html)) continue;
 
-	const newHtml = html.replace(
-		/[ \t]*<script src="[^"]*components\/site-header\.js"[^>]*><\/script>\n?/,
-		"",
-	);
+	const newHtml = html.replace(/[ \t]*<script src="[^"]*components\/site-header\.js"[^>]*><\/script>\n?/, "");
 	if (newHtml === html) continue;
 
 	fs.writeFileSync(file, newHtml);

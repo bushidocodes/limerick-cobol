@@ -54,10 +54,7 @@ for (const file of walk(ROOT)) {
 		newHtml = html.slice(0, insertAt) + "\n" + BOOTSTRAP + html.slice(insertAt);
 	} else {
 		// Fall back to inserting after viewport meta.
-		newHtml = html.replace(
-			/(<meta\s+name="viewport"[^>]*\/?>)/,
-			(m) => `${m}\n${BOOTSTRAP}`,
-		);
+		newHtml = html.replace(/(<meta\s+name="viewport"[^>]*\/?>)/, (m) => `${m}\n${BOOTSTRAP}`);
 		if (newHtml === html) {
 			console.warn("no insertion point found, skipping:", path.relative(ROOT, file));
 			continue;
