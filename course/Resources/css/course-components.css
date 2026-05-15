@@ -1710,3 +1710,283 @@ last-updated {
 	margin: 0.75em 0 0;
 	opacity: 0.75;
 }
+
+/* ============================================================================
+   breadcrumbs custom element (MDN-style trail above page-hero).
+   Light DOM. Auto-injected by components/breadcrumbs.js. Renders as a small
+   muted-text row with › separators; the current page is non-linked.
+   ============================================================================ */
+
+page-breadcrumbs {
+	display: block;
+	margin: 0 0 0.5em;
+}
+
+.breadcrumbs {
+	font-size: 0.85em;
+	color: var(--color-text-muted);
+}
+
+.breadcrumbs-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0 0.4em;
+}
+
+.breadcrumbs-item {
+	display: inline-flex;
+	align-items: center;
+}
+
+.breadcrumbs-item + .breadcrumbs-item::before {
+	content: "›";
+	margin-right: 0.4em;
+	color: var(--color-text-muted);
+	opacity: 0.6;
+}
+
+.breadcrumbs-item a {
+	text-decoration: none;
+}
+
+.breadcrumbs-item a:hover {
+	text-decoration: underline;
+}
+
+.breadcrumbs-current {
+	color: var(--color-text-muted);
+}
+
+/* ============================================================================
+   course-sidebar custom element (MDN-style left rail).
+   Light DOM. Auto-injected by components/course-sidebar.js on pages within
+   the COBOL course. Renders the full course outline grouped by topic, with
+   the current page highlighted via the same data-active pattern page-toc
+   uses for its scroll-spy.
+
+   Layout interaction:
+   - Below 1100px: hidden. The inline lesson-toc at the top of each page
+     handles per-page navigation; the course index is reachable via the
+     site-header logo link.
+   - 1100-1399px: course-sidebar takes the left rail. If page-toc is also
+     present in the DOM, it is hidden at this width (and lesson-toc is
+     re-shown at the top of the page so the reader still has an in-page
+     index).
+   - 1400px+: three-column layout — course-sidebar left, content middle,
+     page-toc right (mirrors MDN's CSS docs).
+   ============================================================================ */
+
+course-sidebar {
+	display: none;
+}
+
+.course-sidebar {
+	font-size: 0.85em;
+	line-height: 1.4;
+}
+
+.course-sidebar-heading {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.9em;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	margin: 0 0 0.5em;
+	padding-bottom: 0.3em;
+	border-bottom: 1px solid var(--color-border-soft);
+}
+
+.course-sidebar-heading a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.course-sidebar-heading a:hover {
+	text-decoration: underline;
+}
+
+.course-sidebar-topics {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.course-sidebar-topic {
+	margin: 0 0 1em;
+}
+
+.course-sidebar-topic-label {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.85em;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	margin: 0 0 0.25em;
+	color: var(--color-text-muted);
+}
+
+.course-sidebar-topic[data-active-topic] .course-sidebar-topic-label {
+	color: var(--color-text);
+}
+
+.course-sidebar-links {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.course-sidebar-link {
+	margin: 0;
+}
+
+.course-sidebar-link a {
+	display: block;
+	padding: 0.25em 0 0.25em 0.7em;
+	border-left: 2px solid transparent;
+	text-decoration: none;
+	line-height: 1.3;
+}
+
+.course-sidebar-link a:hover {
+	border-left-color: var(--color-border-soft);
+}
+
+.course-sidebar-link a[data-active] {
+	border-left-color: var(--color-header-bg);
+	font-weight: bold;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) .course-sidebar-link a[data-active] {
+		border-left-color: #ff9966;
+	}
+}
+
+:root[data-theme="dark"] .course-sidebar-link a[data-active] {
+	border-left-color: #ff9966;
+}
+
+/* Subtle type marker so the reader can tell tutorials from exercises and
+   self-assessment questions at a glance. Matches the icon legend on
+   course/index.html. */
+.course-sidebar-link--exercise a::after,
+.course-sidebar-link--saq a::after,
+.course-sidebar-link--reference a::after {
+	margin-left: 0.4em;
+	font-size: 0.85em;
+	color: var(--color-text-muted);
+	font-weight: normal;
+}
+
+.course-sidebar-link--exercise a::after {
+	content: "ex";
+}
+
+.course-sidebar-link--saq a::after {
+	content: "saq";
+}
+
+.course-sidebar-link--reference a::after {
+	content: "ref";
+}
+
+/* Narrow-desktop band: course-sidebar is the only sidebar visible.
+   The page-wrapper grid is identical in shape to the existing page-toc
+   layout, just keyed on :has(course-sidebar). When :has(page-toc) ALSO
+   matches at this width, the override block further down hides page-toc
+   and re-shows the inline lesson-toc so the reader still has an in-page
+   index. */
+@media (min-width: 1100px) {
+	.page-wrapper:has(course-sidebar) {
+		display: grid;
+		grid-template-columns: 220px minmax(0, 715px);
+		column-gap: 2em;
+		max-width: 967px;
+		border: none;
+		align-items: start;
+	}
+
+	.page-wrapper:has(course-sidebar) > *:not(course-sidebar):not(page-toc) {
+		grid-column: 2;
+		min-width: 0;
+	}
+
+	/* Take course-sidebar out of grid flow with position: fixed.
+	   Why: with grid-row: 1 / -1 (needed for sticky to work over the full
+	   page), the sidebar's tall content (~820px clamped by max-height)
+	   gets distributed across the grid's row tracks. On pages with many
+	   direct .page-wrapper children (RelativeFiles has 36, Iteration has
+	   2), the algorithm inflates one or more rows by hundreds of pixels,
+	   leaving large empty bands in the content column.
+	   Fixed positioning bypasses grid sizing entirely. The grid still
+	   reserves the 220px first column track (empty); the sidebar visually
+	   fills it via viewport-coordinate left/top. Horizontal position
+	   tracks the wrapper's centered left edge:
+	     wrapper-left = max(0, (viewport-width - max-width) / 2)
+	   The 2-col layout uses max-width 967px so the offset is
+	   `max(0px, (50vw - 967px / 2))`. The 3-col layout below overrides
+	   for max-width 1199px. */
+	.page-wrapper:has(course-sidebar) > course-sidebar {
+		display: block;
+		position: fixed;
+		top: calc(var(--site-header-height) + 1em);
+		left: max(0px, calc(50vw - 967px / 2));
+		width: 220px;
+		max-height: calc(100vh - var(--site-header-height) - 2em);
+		overflow-y: auto;
+		padding: 0.5em 0.25em;
+		box-sizing: border-box;
+	}
+}
+
+/* Narrow desktop with both sidebars in the DOM: hide page-toc (no room),
+   re-show the inline lesson-toc / ul.toc so the reader can still jump
+   between page sections. The existing :has(page-toc) rule hides those by
+   default; this override (more specific via the extra :has clause) wins. */
+@media (min-width: 1100px) and (max-width: 1399px) {
+	.page-wrapper:has(course-sidebar):has(page-toc) > page-toc {
+		display: none;
+	}
+
+	.page-wrapper:has(course-sidebar):has(page-toc) lesson-toc,
+	.page-wrapper:has(course-sidebar):has(page-toc) ul.toc {
+		display: block;
+	}
+
+	.page-wrapper:has(course-sidebar):has(page-toc) lesson-toc + hr,
+	.page-wrapper:has(course-sidebar):has(page-toc) ul.toc + hr {
+		display: block;
+	}
+}
+
+/* Wide-desktop three-column layout: course-sidebar left, content middle,
+   page-toc right. Mirrors MDN's CSS reference pages. */
+@media (min-width: 1400px) {
+	.page-wrapper:has(course-sidebar):has(page-toc) {
+		grid-template-columns: 220px minmax(0, 715px) 200px;
+		max-width: 1199px;
+	}
+
+	/* Override the 2-col left offset for the wider 3-col max-width. */
+	.page-wrapper:has(course-sidebar):has(page-toc) > course-sidebar {
+		left: max(0px, calc(50vw - 1199px / 2));
+	}
+
+	.page-wrapper:has(course-sidebar):has(page-toc) > page-toc {
+		grid-column: 3;
+	}
+
+	.page-wrapper:has(course-sidebar):has(page-toc) > *:not(course-sidebar):not(page-toc) {
+		grid-column: 2;
+	}
+}
+
+@media print {
+	course-sidebar,
+	page-breadcrumbs {
+		display: none !important;
+	}
+}

@@ -29,6 +29,8 @@
 
 	ensureScript("theme-toggle.js");
 	ensureScript("site-search.js");
+	ensureScript("breadcrumbs.js");
+	ensureScript("course-sidebar.js");
 
 	function inject() {
 		if (document.querySelector(".site-header")) return;
