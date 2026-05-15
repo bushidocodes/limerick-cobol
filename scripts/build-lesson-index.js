@@ -28,10 +28,25 @@ const ICON_MAP = {
 	reference: `<span class="icon-ref" aria-label="COBOL reference" role="img">R</span>`,
 };
 
+function slugify(s) {
+	return s
+		.toLowerCase()
+		.replace(/[^a-z0-9]+/g, "-")
+		.replace(/^-+|-+$/g, "");
+}
+
+function escapeHTML(s) {
+	return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
 function buildTopicsHTML(topics) {
 	return topics
 		.map((topic, i) => {
 			const isLast = i === topics.length - 1;
+			const slug = slugify(topic.label);
+			const description = topic.description
+				? `<p class="topic-description">${escapeHTML(topic.description)}</p>`
+				: "";
 			const links = topic.links
 				.map(
 					(link) =>
@@ -39,7 +54,7 @@ function buildTopicsHTML(topics) {
 				)
 				.join("");
 			const divider = isLast ? "" : `<div class="topic-divider"></div>`;
-			return `<div class="topic-label"><span class="ball-red" aria-hidden="true"></span><strong>${topic.label}</strong></div><div class="topic-links">${links}</div>${divider}`;
+			return `<h2 class="topic-label" id="${slug}"><span class="ball-red" aria-hidden="true"></span>${escapeHTML(topic.label)}</h2><div class="topic-links">${description}${links}</div>${divider}`;
 		})
 		.join("");
 }

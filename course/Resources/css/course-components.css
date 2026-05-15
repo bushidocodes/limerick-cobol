@@ -854,15 +854,35 @@ details[open].saq-reveal summary::before {
 	width: 100%;
 }
 
+/* Topic-label is rendered as <h2> by build-lesson-index.js so each topic
+   group becomes an anchorable section (#introduction-to-cobol etc.) and
+   has proper heading semantics. The selector targets both the old div
+   form and the new h2 to keep the build script's output flexible. */
 .topic-label {
 	background-color: var(--color-panel-bg);
 	padding: 4px;
+	margin: 0;
+	font-size: 1em;
+	font-weight: bold;
+	font-family: inherit;
+	line-height: 1.3;
 }
 
 .topic-links {
 	background-color: var(--color-bg);
 	display: flex;
 	flex-direction: column;
+}
+
+/* One-line context blurb rendered above each topic's links. Sits at the
+   top of the topic-links column so it visually pairs with the label on
+   the left without crowding the narrow 225px label column. */
+.topic-description {
+	margin: 0 0 0.5em;
+	padding: 4px 4px 0;
+	font-size: 0.9em;
+	color: var(--color-text-muted);
+	line-height: 1.35;
 }
 
 /* Flexbox rows replace each icon+link layout table */
