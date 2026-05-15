@@ -1763,7 +1763,9 @@ copyright-notice .left {
 
 /* ============================================================================
    edit-on-github custom element (issue #402).
-   Subtle "Edit this page on GitHub" footer affordance. Sits below the
+   MDN-style "Help improve this page" footer panel: a small bordered card
+   offering two contribution paths — edit the file directly on GitHub, or
+   open an issue with the page path pre-filled. Sits below the
    copyright-notice block on content pages; standalone on index pages.
    Light DOM — link colours come from course.css.
    ============================================================================ */
@@ -1773,19 +1775,45 @@ edit-on-github {
 }
 
 .edit-on-github {
-	text-align: center;
 	font-size: 0.85em;
 	margin: 1em 0 0.25em;
-	opacity: 0.75;
-}
-
-.edit-on-github a {
-	text-decoration: underline;
+	padding: 0.5em 0.75em;
+	border: 1px solid var(--color-border-soft);
+	border-radius: 4px;
+	background-color: var(--color-panel-bg);
+	opacity: 0.85;
 }
 
 .edit-on-github:hover,
 .edit-on-github:focus-within {
 	opacity: 1;
+}
+
+.edit-on-github-heading {
+	margin: 0 0 0.25em;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.9em;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: var(--color-text-muted);
+}
+
+.edit-on-github-links {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.3em 1em;
+}
+
+.edit-on-github-links li {
+	margin: 0;
+}
+
+.edit-on-github-links a {
+	text-decoration: underline;
 }
 
 /* ============================================================================
