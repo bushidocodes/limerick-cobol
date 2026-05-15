@@ -1,8 +1,7 @@
 // Light-DOM custom element that renders Previous / Next lesson links plus a
-// "Lesson X of N" position indicator. Mirrors the style of page-hero.js and
-// back-to-top.js: no shadow DOM so course.css link colours and the
-// .lesson-nav rule from course-components.css apply without any extra
-// piercing selectors.
+// "Lesson X of N" position indicator. Mirrors the style of page-hero.js: no
+// shadow DOM so course.css link colours and the .lesson-nav rule from
+// course-components.css apply without any extra piercing selectors.
 //
 // Reads the lesson sequence from window.COBOL_LESSONS, populated by
 // lesson-progress.js via a fetch. If the fetch hasn't completed when the

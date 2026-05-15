@@ -1,18 +1,24 @@
-// Light-DOM custom element <breadcrumbs>: renders a hierarchical trail from
-// the site home down to the current page, derived from the URL pathname.
+// Light-DOM custom element <page-breadcrumbs>: renders a hierarchical trail
+// from the site home down to the current page, derived from the URL pathname.
 // Mirrors MDN's "Learn › Core › CSS styling basics" pattern.
 //
-// Auto-injection: an IIFE at the bottom inserts <breadcrumbs> as the first
-// child of .page-wrapper (so it lands in the content column of the grid
-// layout) or of <main> if no .page-wrapper exists. Pages can also place the
-// tag manually.
+// Auto-injection: an IIFE at the bottom inserts <page-breadcrumbs> as a
+// sibling of .site-header, immediately after it, so it forms a full-width
+// sticky secondary bar (MDN-style). The element also hosts a <theme-toggle>
+// on the right edge so the toggle scrolls away with the bar.
 //
-// Scope: skipped on the site home page (where the trail would be just "Home"
-// alone) and on viewer shells that don't have a <main>.
+// Scope: skipped entirely on viewer shells that don't have a <main>. On the
+// site home page (where the trail would be just "Home") the breadcrumb nav
+// is omitted but the bar still renders so the theme-toggle remains reachable.
 //
 // Labels: top-level directories (course, exercises, examples, lectures) map
-// to friendly titles via SECTION_LABELS. The leaf page uses document.title
-// stripped at the first " - " / " — " / " | " separator.
+// to friendly titles via TOP_LEVEL_SECTIONS. The leaf page uses
+// document.title stripped at the first " - " / " — " / " | " separator.
+//
+// Course pages get an extra topic-level crumb inserted between "Course" and
+// the leaf. The topic + canonical lesson title come from
+// course/lesson-manifest.json, fetched after the initial render so the bar
+// shows up immediately and the leaf upgrades when the manifest resolves.
 
 (function () {
 	function computeBaseUrl() {
@@ -35,7 +41,7 @@
 	const TOP_LEVEL_SECTIONS = {
 		course: { label: "Course", entry: "course/index.html" },
 		exercises: { label: "Exercises", entry: "exercises/index.html" },
-		examples: { label: "Examples", entry: "examples/default.html" },
+		examples: { label: "Examples", entry: "examples/index.html" },
 		lectures: { label: "Lectures", entry: "lectures/index.html" },
 	};
 
@@ -86,7 +92,7 @@
 		return new URL(location.href).pathname;
 	}
 
-	function render(host, crumbs) {
+	function renderCrumbs(crumbs) {
 		const nav = document.createElement("nav");
 		nav.className = "page-breadcrumbs";
 		nav.setAttribute("aria-label", "Breadcrumb");
@@ -103,28 +109,125 @@
 				a.textContent = c.label;
 				li.appendChild(a);
 			} else {
-				const span = document.createElement("span");
-				span.className = "breadcrumbs-current";
-				span.textContent = c.label;
-				span.setAttribute("aria-current", "page");
-				li.appendChild(span);
+				// Render the current page as a link to #top so clicking the
+				// leaf scrolls to the top of the page (page-hero carries the
+				// #top anchor). aria-current="page" preserves screen-reader
+				// semantics that the user is already here.
+				const a = document.createElement("a");
+				a.className = "breadcrumbs-current";
+				a.href = "#top";
+				a.textContent = c.label;
+				a.setAttribute("aria-current", "page");
+				li.appendChild(a);
 			}
 			ol.appendChild(li);
 		});
 
 		nav.appendChild(ol);
-		host.appendChild(nav);
+		return nav;
+	}
+
+	function render(host, crumbs) {
+		const inner = document.createElement("div");
+		inner.className = "breadcrumb-bar-inner";
+
+		if (crumbs && crumbs.length >= 2) {
+			inner.appendChild(renderCrumbs(crumbs));
+		} else {
+			// Spacer keeps the theme-toggle right-aligned on pages without a
+			// breadcrumb trail (e.g. the site home).
+			const spacer = document.createElement("div");
+			spacer.className = "breadcrumb-bar-spacer";
+			inner.appendChild(spacer);
+		}
+
+		inner.appendChild(document.createElement("theme-toggle"));
+		host.appendChild(inner);
+	}
+
+	// Mirrors scripts/build-lesson-index.js so the topic anchor produced here
+	// matches the #ids generated for course/index.html.
+	function slugify(s) {
+		return s
+			.toLowerCase()
+			.replace(/[^a-z0-9]+/g, "-")
+			.replace(/^-+|-+$/g, "");
+	}
+
+	// Returns { topic, slug, title, firstLinkFile } if `fileName` (a basename
+	// like "COBOLIntro.html") appears as a link inside one of the manifest
+	// topics AND that link points within course/ (not ../exercises/, etc.).
+	// Cross-section links don't get a topic crumb here because the user is on
+	// a different section's page.
+	//
+	// `firstLinkFile` is the first link in the topic — used as the click
+	// target for the topic crumb so users land on the topic's opening page
+	// rather than scrolling course/index.html to an anchor.
+	function findLessonInManifest(manifest, fileName) {
+		if (!manifest || !Array.isArray(manifest.topics)) return null;
+		for (const topic of manifest.topics) {
+			const links = topic.links || [];
+			for (const link of links) {
+				if (!link.file || link.file.includes("..")) continue;
+				const linkBase = link.file.split("/").pop();
+				if (linkBase === fileName) {
+					return {
+						topic: topic.label,
+						slug: slugify(topic.label),
+						title: link.title,
+						firstLinkFile: (links.find((l) => l.file) || {}).file,
+					};
+				}
+			}
+		}
+		return null;
+	}
+
+	async function augmentCourseCrumbs(host) {
+		const here = currentPath();
+		// Only attempt for /<base>/course/<file>.html, never the course index.
+		const courseFileRe = new RegExp("^" + sitePath.replace(/\/$/, "") + "/course/([^/]+\\.html)$");
+		const m = here.match(courseFileRe);
+		if (!m || m[1] === "index.html") return;
+
+		try {
+			const r = await fetch(baseUrl + "course/lesson-manifest.json");
+			if (!r.ok) return;
+			const manifest = await r.json();
+			const found = findLessonInManifest(manifest, m[1]);
+			if (!found) return;
+
+			// First link may be a relative path like "../exercises/Foo.html";
+			// resolving it against the course directory keeps the link correct
+			// regardless of the user's current depth.
+			const topicHref = found.firstLinkFile
+				? new URL(found.firstLinkFile, baseUrl + "course/").href
+				: baseUrl + "course/index.html#" + found.slug;
+			const crumbs = [
+				{ href: homeUrl, label: "Home" },
+				{ href: baseUrl + "course/index.html", label: "Course" },
+				{ href: topicHref, label: found.topic },
+				{ href: null, label: found.title },
+			];
+
+			const oldNav = host.querySelector("nav.page-breadcrumbs");
+			const newNav = renderCrumbs(crumbs);
+			if (oldNav) {
+				oldNav.replaceWith(newNav);
+			} else {
+				const spacer = host.querySelector(".breadcrumb-bar-spacer");
+				if (spacer) spacer.replaceWith(newNav);
+			}
+		} catch {
+			// Network or parse errors: leave the URL-derived crumbs as-is.
+		}
 	}
 
 	class PageBreadcrumbs extends HTMLElement {
 		connectedCallback() {
 			if (this.childElementCount > 0) return;
-			const crumbs = buildCrumbs();
-			if (!crumbs || crumbs.length < 2) {
-				this.remove();
-				return;
-			}
-			render(this, crumbs);
+			render(this, buildCrumbs());
+			augmentCourseCrumbs(this);
 		}
 	}
 
@@ -134,24 +237,24 @@
 
 	function autoInject() {
 		if (document.querySelector("page-breadcrumbs")) return;
+
+		// Viewer shells (pdf-viewer, build-viewer) have no <main>; skip
+		// entirely so the bar doesn't appear above the embedded UI.
+		const main = document.getElementById("main-content") || document.querySelector("main");
+		if (!main) return;
+
 		const el = document.createElement("page-breadcrumbs");
 
-		// Preferred insertion point: inside the content column, immediately
-		// before <page-hero>. This keeps breadcrumbs visually aligned with
-		// the lesson content (matching MDN's pattern) without becoming a
-		// direct grid child of .page-wrapper, which would force the wrapper
-		// grid into multiple rows and inflate row sizing for sticky
-		// sidebar siblings.
-		const hero = document.querySelector("page-hero");
-		if (hero && hero.parentNode) {
-			hero.parentNode.insertBefore(el, hero);
+		// Preferred placement: sibling of .site-header, immediately after it.
+		// Renders as a full-width sticky secondary bar (MDN's pattern).
+		const header = document.querySelector(".site-header");
+		if (header && header.parentNode) {
+			header.insertAdjacentElement("afterend", el);
 			return;
 		}
 
-		// Fallback for pages without a page-hero (e.g. index, glossary,
-		// 404): insert at top of <main>.
-		const main = document.getElementById("main-content") || document.querySelector("main");
-		if (!main) return;
+		// Fallback for pages that somehow load breadcrumbs.js without a
+		// site-header: drop it at the top of <main> so it still renders.
 		main.insertBefore(el, main.firstChild);
 	}
 

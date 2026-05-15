@@ -38,7 +38,7 @@
 				"learningResourceType": "Tutorial"
 			}
 		</script>
-		<title>COBOL Report Writer</title>
+		<title>Report Writer by Example</title>
 		<meta
 			name="description"
 			content="The aim of this unit is to provide you with a solid understanding of COBOL Report Writer. This unit introduces the report writer by -"
@@ -49,7 +49,7 @@
 		<!-- Open Graph -->
 		<meta property="og:type" content="article" />
 		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/ReportWriter.html" />
-		<meta property="og:title" content="COBOL Report Writer" />
+		<meta property="og:title" content="Report Writer by Example" />
 		<meta
 			property="og:description"
 			content="The aim of this unit is to provide you with a solid understanding of COBOL Report Writer. This unit introduces the report writer by -"
@@ -57,7 +57,7 @@
 		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/course.png" />
 		<!-- Twitter Card -->
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="COBOL Report Writer" />
+		<meta name="twitter:title" content="Report Writer by Example" />
 		<meta
 			name="twitter:description"
 			content="The aim of this unit is to provide you with a solid understanding of COBOL Report Writer. This unit introduces the report writer by -"
@@ -85,7 +85,6 @@
 		<script src="../components/theme-toggle.js" defer></script>
 		<script src="../components/page-hero.js" defer></script>
 		<script src="../components/site-search.js" defer></script>
-		<script src="../components/back-to-top.js" defer></script>
 		<script src="../components/lesson-progress.js" defer></script>
 		<script src="../components/lesson-nav.js" defer></script>
 		<script src="../components/lesson-checkbox.js" defer></script>
@@ -103,156 +102,130 @@
 		<main id="main-content">
 			<div class="page-wrapper">
 				<page-toc></page-toc>
-				<div class="page-content">
-					<div>
-						<page-hero title="The COBOL Report Writer" reading-time="19 min"></page-hero>
+				<div class="section-grid">
+					<div class="section-full">
+						<page-hero title="Report Writer by Example" reading-time="19 min"></page-hero>
 						<hr />
 						<lesson-toc></lesson-toc>
 					</div>
+					<div class="section-header">
+						<h2 id="intro">Introduction</h2>
+					</div>
 
-					<div class="section-grid">
-						<div class="section-header">
-							<h2 id="intro">Introduction</h2>
-						</div>
+					<div class="section-sidebar">
+						<h3>Aims</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							The aim of this unit is to provide you with a solid understanding of COBOL Report Writer.
+							This unit introduces the report writer by -
+						</p>
+						<ol>
+							<li>
+								Looking at a fairly complex report created using the report writer and examining what
+								the Report Writer had to do to produce the report.
+							</li>
+							<li>Looking at the Procedure Division of the program that produced the report.</li>
+							<li>Writing a simple version of the program that produced the report.</li>
+							<li>Adding more features to the report program.</li>
+							<li>
+								Examining the use of Declaratives in extending the functionality of the Report Writer.
+							</li>
+							<li>Examining a full report program that uses Declaratives.</li>
+						</ol>
+						<p>
+							In the next unit we examine the syntax and semantics of the Report Writer clauses and verbs
+							in detail.
+						</p>
+						<hr />
+					</div>
 
-						<div class="section-sidebar">
-							<h3>Aims</h3>
-						</div>
-						<div class="section-content">
-							<p>
-								The aim of this unit is to provide you with a solid understanding of COBOL Report
-								Writer. This unit introduces the report writer by -
-							</p>
-							<ol>
-								<li>
-									Looking at a fairly complex report created using the report writer and examining
-									what the Report Writer had to do to produce the report.
-								</li>
-								<li>Looking at the Procedure Division of the program that produced the report.</li>
-								<li>Writing a simple version of the program that produced the report.</li>
-								<li>Adding more features to the report program.</li>
-								<li>
-									Examining the use of Declaratives in extending the functionality of the Report
-									Writer.
-								</li>
-								<li>Examining a full report program that uses Declaratives.</li>
-							</ol>
-							<p>
-								In the next unit we examine the syntax and semantics of the Report Writer clauses and
-								verbs in detail.
-							</p>
-							<hr />
-						</div>
+					<div class="section-sidebar">
+						<h3>Objectives</h3>
+					</div>
+					<div class="section-content">
+						<p>By the end of this unit you should -</p>
+						<ol>
+							<li>Understand how the Report Writer works</li>
+							<li>Understand how and when to use the seven different types of report group.</li>
+							<li>
+								Be able to control the placement of print items on the page and to control when the
+								Report Writer goes to a new page.
+							</li>
+							<li>
+								Understand how to use the <code class="language-cobol">SUM</code> clause to
+								automatically accumulate totals.
+							</li>
+							<li>
+								Be able to set up control break items and understand how the relationship between them
+								is controlled.
+							</li>
+							<li>Understand how and when to use Declaratives.</li>
+						</ol>
+					</div>
 
-						<div class="section-sidebar">
-							<h3>Objectives</h3>
-						</div>
-						<div class="section-content">
-							<p>By the end of this unit you should -</p>
-							<ol>
-								<li>Understand how the Report Writer works</li>
-								<li>Understand how and when to use the seven different types of report group.</li>
-								<li>
-									Be able to control the placement of print items on the page and to control when the
-									Report Writer goes to a new page.
-								</li>
-								<li>
-									Understand how to use the <code class="language-cobol">SUM</code> clause to
-									automatically accumulate totals.
-								</li>
-								<li>
-									Be able to set up control break items and understand how the relationship between
-									them is controlled.
-								</li>
-								<li>Understand how and when to use Declaratives.</li>
-							</ol>
-							<hr />
-						</div>
+					<div class="section-full"></div>
 
-						<div class="section-sidebar">
-							<h3>Prerequisites</h3>
-						</div>
-						<div class="section-content">
-							<p>You should be familiar with the material covered in the unit;</p>
-							<ul>
-								<li>Data Declaration</li>
-								<li>Iteration</li>
-								<li>Selection</li>
-								<li>Tables</li>
-								<li>Edited Pictures</li>
-								<li>The <code class="language-cobol">INSPECT</code> verb</li>
-								<li>The <code class="language-cobol">STRING</code> verb</li>
-								<li>The <code class="language-cobol">UNSTRING</code> verb</li>
-								<li>Sequential files</li>
-							</ul>
-						</div>
+					<div class="section-header">
+						<h2 id="part1">The Report Writer in Action</h2>
+					</div>
 
-						<div class="section-full">
-							<hr />
-							<back-to-top></back-to-top>
-						</div>
+					<div class="section-sidebar">
+						<h3>Introduction</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							Producing printed reports is an important aspect of business programming. Unfortunately,
+							report programs are often tedious to code. Report programs are long, and frequently consist
+							of mere repetitions of the tasks and techniques used in other report programs. To simplify
+							the task of writing report programs COBOL contains the Report Writer.
+						</p>
+						<p>
+							The COBOL Report Writer is very large. It includes many new
+							<code class="language-cobol">DATA DIVISION</code> entries, including a
+							<code class="language-cobol">REPORT SECTION</code>, and a number of new
+							<code class="language-cobol">PROCEDURE DIVISION</code> verbs.
+						</p>
+						<hr />
+					</div>
 
-						<div class="section-header">
-							<h2 id="part1">The Report Writer in Action</h2>
+					<div class="section-sidebar">
+						<h3 class="center-block">An example report - with animated commentary.</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							The first page from an example report, produced by the Report Writer, is shown below. The
+							report shows the sales made by Bible salespersons in all of the cities of Ireland.
+						</p>
+						<p>
+							In the attached animated commentary we will examine what the program has to do to produce
+							the report.
+						</p>
+						<div class="iframe-wrapper">
+							<iframe
+								height="575"
+								src="Resources/build-viewer.html?deck=TC-RepWrite1"
+								style="border: 1px solid #ccc; width: 100%; aspect-ratio: 425/575"
+								title="Animation: Report Writer example - Bible salesperson sales report"
+								width="425"
+							></iframe>
 						</div>
+						<hr />
+					</div>
 
-						<div class="section-sidebar">
-							<h3>Introduction</h3>
-						</div>
-						<div class="section-content">
-							<p>
-								Producing printed reports is an important aspect of business programming. Unfortunately,
-								report programs are often tedious to code. Report programs are long, and frequently
-								consist of mere repetitions of the tasks and techniques used in other report programs.
-								To simplify the task of writing report programs COBOL contains the Report Writer.
-							</p>
-							<p>
-								The COBOL Report Writer is very large. It includes many new
-								<code class="language-cobol">DATA DIVISION</code> entries, including a
-								<code class="language-cobol">REPORT SECTION</code>, and a number of new
-								<code class="language-cobol">PROCEDURE DIVISION</code> verbs.
-							</p>
-							<hr />
-						</div>
-
-						<div class="section-sidebar">
-							<h3 class="center-block">An example report - with animated commentary.</h3>
-						</div>
-						<div class="section-content">
-							<p>
-								The first page from an example report, produced by the Report Writer, is shown below.
-								The report shows the sales made by Bible salespersons in all of the cities of Ireland.
-							</p>
-							<p>
-								In the attached animated commentary we will examine what the program has to do to
-								produce the report.
-							</p>
-							<div class="iframe-wrapper">
-								<iframe
-									height="575"
-									src="Resources/build-viewer.html?deck=TC-RepWrite1"
-									style="border: 1px solid #ccc; width: 100%; aspect-ratio: 425/575"
-									title="Animation: Report Writer example - Bible salesperson sales report"
-									width="425"
-								></iframe>
-							</div>
-							<hr />
-						</div>
-
-						<div class="section-sidebar">
-							<h3 class="center-block">The Procedure Division that produces the sales report</h3>
-						</div>
-						<div class="section-content">
-							<p>
-								In a program that did not use the Report Writer, the
-								<code class="language-cobol">PROCEDURE DIVISION</code> required to produce the sales
-								report shown above would occupy a hundred lines or so of code. When the Report Writer is
-								used, only the <code class="language-cobol">PROCEDURE DIVISION</code> shown below is
-								required.
-							</p>
-							<p>All the work of printing the report is being done in just 10 statements.</p>
-							<hr />
-							<pre class="language-cobol"><code class="language-cobol">PROCEDURE DIVISION.
+					<div class="section-sidebar">
+						<h3 class="center-block">The Procedure Division that produces the sales report</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							In a program that did not use the Report Writer, the
+							<code class="language-cobol">PROCEDURE DIVISION</code> required to produce the sales report
+							shown above would occupy a hundred lines or so of code. When the Report Writer is used, only
+							the <code class="language-cobol">PROCEDURE DIVISION</code> shown below is required.
+						</p>
+						<p>All the work of printing the report is being done in just 10 statements.</p>
+						<hr />
+						<pre class="language-cobol"><code class="language-cobol">PROCEDURE DIVISION.
 Begin.
     OPEN INPUT SalesFile.
     OPEN OUTPUT PrintFile.
@@ -271,217 +244,212 @@ PrintSalaryReport.
     READ SalesFile
           AT END SET EndOfFile TO TRUE
     END-READ.                                                       </code></pre>
-							<hr />
-						</div>
+						<hr />
+					</div>
 
-						<div class="section-sidebar">
-							<h3 class="center-block">So much work, so little Procedure Division code</h3>
-						</div>
-						<div class="section-content">
-							<p>
-								How can so much work be done in so little
-								<code class="language-cobol">PROCEDURE DIVISION</code> code? How does the report writer
-								know that page headings are required or that it is time to print the salesperson or city
-								totals.
-							</p>
-							<p>
-								To achieve so much in so little
-								<code class="language-cobol">PROCEDURE DIVISION</code> code, the Report Writer uses a
-								declarative approach to programming rather than the procedural one familiar to most
-								programmers.
-							</p>
-							<p>
-								When the Report Writer is used, the programmer declares <strong>what</strong> to print
-								when a page heading, page footing, salesman total, city total or final total is required
-								and the Report Writer works out <strong>when</strong> to print these items.
-							</p>
-							<p>
-								In keeping with the adage that "there is no such thing as free lunch", the
-								<code class="language-cobol">PROCEDURE DIVISION</code> of a Report Writer program is
-								short because most of the work is actually done in the (greatly expanded)
-								<code class="language-cobol">DATA DIVISION</code>.
-							</p>
-							<hr />
-						</div>
+					<div class="section-sidebar">
+						<h3 class="center-block">So much work, so little Procedure Division code</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							How can so much work be done in so little
+							<code class="language-cobol">PROCEDURE DIVISION</code> code? How does the report writer know
+							that page headings are required or that it is time to print the salesperson or city totals.
+						</p>
+						<p>
+							To achieve so much in so little
+							<code class="language-cobol">PROCEDURE DIVISION</code> code, the Report Writer uses a
+							declarative approach to programming rather than the procedural one familiar to most
+							programmers.
+						</p>
+						<p>
+							When the Report Writer is used, the programmer declares <strong>what</strong> to print when
+							a page heading, page footing, salesman total, city total or final total is required and the
+							Report Writer works out <strong>when</strong> to print these items.
+						</p>
+						<p>
+							In keeping with the adage that "there is no such thing as free lunch", the
+							<code class="language-cobol">PROCEDURE DIVISION</code> of a Report Writer program is short
+							because most of the work is actually done in the (greatly expanded)
+							<code class="language-cobol">DATA DIVISION</code>.
+						</p>
+					</div>
 
-						<div class="section-header">
-							<h2 id="part1b">How the Report Writer works</h2>
-						</div>
+					<div class="section-header">
+						<h2 id="part1b">How the Report Writer works</h2>
+					</div>
 
-						<div class="section-sidebar">
-							<h3>Report Groups</h3>
-						</div>
-						<div class="section-content">
+					<div class="section-sidebar">
+						<h3>Report Groups</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							The Report Writer works by recognizing that many reports take (more or less) the same shape.
+						</p>
+						<ul>
+							<li>There may be headings at the beginning of the report and footings at the end.</li>
+							<li>There may be headings at the top of each page and footings at the bottom.</li>
+							<li>
+								Headings and Footings may need to be printed whenever there is a control break (i.e.,
+								when the value in a specified field changes, such as when the SalesPerson number changes
+								in the example above).
+							</li>
+							<li>Detail lines must be printed.</li>
+						</ul>
+						<p>
+							The Report Writer calls these different report items - Report Groups. Reports are organized
+							around report groups and the Report Writer recognizes seven types of report group (shown
+							below). The indentation shows the importance/order of execution of the report groups.
+						</p>
+						<blockquote>
 							<p>
-								The Report Writer works by recognizing that many reports take (more or less) the same
-								shape.
+								<code class="language-cobol">REPORT HEADING</code> or RH group<br />
+								- printed once at the beginning of the report
 							</p>
-							<ul>
-								<li>There may be headings at the beginning of the report and footings at the end.</li>
-								<li>There may be headings at the top of each page and footings at the bottom.</li>
-								<li>
-									Headings and Footings may need to be printed whenever there is a control break
-									(i.e., when the value in a specified field changes, such as when the SalesPerson
-									number changes in the example above).
-								</li>
-								<li>Detail lines must be printed.</li>
-							</ul>
-							<p>
-								The Report Writer calls these different report items - Report Groups. Reports are
-								organized around report groups and the Report Writer recognizes seven types of report
-								group (shown below). The indentation shows the importance/order of execution of the
-								report groups.
-							</p>
+						</blockquote>
+						<ol>
 							<blockquote>
 								<p>
-									<code class="language-cobol">REPORT HEADING</code> or RH group<br />
-									- printed once at the beginning of the report
+									<code class="language-cobol">PAGE HEADING</code> of PH group<br />
+									- printed at the top of each page
 								</p>
-							</blockquote>
-							<ol>
 								<blockquote>
 									<p>
-										<code class="language-cobol">PAGE HEADING</code> of PH group<br />
-										- printed at the top of each page
+										<code class="language-cobol">CONTROL HEADING</code> or CH group<br />
+										- printed at the beginning of each control break
 									</p>
 									<blockquote>
 										<p>
-											<code class="language-cobol">CONTROL HEADING</code> or CH group<br />
-											- printed at the beginning of each control break
-										</p>
-										<blockquote>
-											<p>
-												<code class="language-cobol">DETAIL</code>or DE group<br />
-												- printed each time the
-												<code class="language-cobol">GENERATE</code> statement is executed
-											</p>
-										</blockquote>
-										<p>
-											<code class="language-cobol">CONTROL FOOTING</code> or CF group<br />
-											- printed at the end of each control break
+											<code class="language-cobol">DETAIL</code>or DE group<br />
+											- printed each time the
+											<code class="language-cobol">GENERATE</code> statement is executed
 										</p>
 									</blockquote>
 									<p>
-										<code class="language-cobol">PAGE FOOTING</code> or PF group<br />
-										- printed at the bottom of each page
+										<code class="language-cobol">CONTROL FOOTING</code> or CF group<br />
+										- printed at the end of each control break
 									</p>
 								</blockquote>
-							</ol>
-							<blockquote>
 								<p>
-									<code class="language-cobol">REPORT FOOTING</code> or RF group<br />
-									- printed once at the end of the report.
+									<code class="language-cobol">PAGE FOOTING</code> or PF group<br />
+									- printed at the bottom of each page
 								</p>
 							</blockquote>
+						</ol>
+						<blockquote>
 							<p>
-								Report Groups are defined as records in the
-								<code class="language-cobol">REPORT SECTION</code> of the
-								<code class="language-cobol">DATA DIVISION</code>. Most groups are defined once for each
-								report, but control groups are defined for each control break item. For instance, in the
-								example program, control footings are defined on the SalesPersonNumber, the CityCode and
-								<code class="language-cobol">FINAL</code>. <code class="language-cobol">FINAL</code> is
-								a special control group that is invoked before the normal control groups (<code
-									class="language-cobol"
-									>CONTROL HEADING FINAL</code
-								>) and after the normal control groups (<code class="language-cobol"
-									>CONTROL FOOTING FINAL</code
-								>).
+								<code class="language-cobol">REPORT FOOTING</code> or RF group<br />
+								- printed once at the end of the report.
 							</p>
-							<p>
-								An ordinary control group is defined on some control break data-item. The Report Writer
-								monitors the contents of the data-item and when the value in the item changes a control
-								break is automatically initiated and the
-								<code class="language-cobol">CONTROL FOOTING</code> group (if there is one) is printed.
-							</p>
-							<hr />
-						</div>
+						</blockquote>
+						<p>
+							Report Groups are defined as records in the
+							<code class="language-cobol">REPORT SECTION</code> of the
+							<code class="language-cobol">DATA DIVISION</code>. Most groups are defined once for each
+							report, but control groups are defined for each control break item. For instance, in the
+							example program, control footings are defined on the SalesPersonNumber, the CityCode and
+							<code class="language-cobol">FINAL</code>. <code class="language-cobol">FINAL</code> is a
+							special control group that is invoked before the normal control groups (<code
+								class="language-cobol"
+								>CONTROL HEADING FINAL</code
+							>) and after the normal control groups (<code class="language-cobol"
+								>CONTROL FOOTING FINAL</code
+							>).
+						</p>
+						<p>
+							An ordinary control group is defined on some control break data-item. The Report Writer
+							monitors the contents of the data-item and when the value in the item changes a control
+							break is automatically initiated and the
+							<code class="language-cobol">CONTROL FOOTING</code> group (if there is one) is printed.
+						</p>
+						<hr />
+					</div>
 
-						<div class="section-sidebar">
-							<h3 class="center-block">Report writing made easy</h3>
-						</div>
-						<div class="section-content">
-							<p>
-								Writing report programs is time consuming. It may be difficult to get the vertical and
-								horizontal placement of printed items correct. Many lines of code may have to be written
-								merely to move values to their corresponding items in the print line. A line count has
-								to be kept to control when the report prints on a new page and a page count is often
-								required.
-							</p>
-							<p>The Report Writer makes all of this easy by;</p>
-							<ul>
-								<li>
-									Allowing simple vertical and horizontal placement of printed items using the
-									<code class="language-cobol">LINE IS</code> and
-									<code class="language-cobol">COLUMN IS</code> phrases in the data declaration
-								</li>
-								<li>Automatically moving data values to output items</li>
-								<li>
-									Keeping a line count and automatically generating report and page headers and
-									footers at the appropriate times
-								</li>
-								<li>Keeping a page count which can be referenced in the report declaration</li>
-								<li>
-									Recognizing control breaks and automatically generating the appropriate control
-									headings and footings
-								</li>
-								<li>Automatically accumulating totals, sub-totals and final totals</li>
-							</ul>
-						</div>
+					<div class="section-sidebar">
+						<h3 class="center-block">Report writing made easy</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							Writing report programs is time consuming. It may be difficult to get the vertical and
+							horizontal placement of printed items correct. Many lines of code may have to be written
+							merely to move values to their corresponding items in the print line. A line count has to be
+							kept to control when the report prints on a new page and a page count is often required.
+						</p>
+						<p>The Report Writer makes all of this easy by;</p>
+						<ul>
+							<li>
+								Allowing simple vertical and horizontal placement of printed items using the
+								<code class="language-cobol">LINE IS</code> and
+								<code class="language-cobol">COLUMN IS</code> phrases in the data declaration
+							</li>
+							<li>Automatically moving data values to output items</li>
+							<li>
+								Keeping a line count and automatically generating report and page headers and footers at
+								the appropriate times
+							</li>
+							<li>Keeping a page count which can be referenced in the report declaration</li>
+							<li>
+								Recognizing control breaks and automatically generating the appropriate control headings
+								and footings
+							</li>
+							<li>Automatically accumulating totals, sub-totals and final totals</li>
+						</ul>
+					</div>
 
-						<div class="section-header">
-							<h2 id="part2">Let's write a Report Writer program!</h2>
-						</div>
+					<div class="section-header">
+						<h2 id="part2">Let's write a Report Writer program!</h2>
+					</div>
 
-						<div class="section-sidebar">
-							<h3>Introduction</h3>
-						</div>
-						<div class="section-content">
-							<p>Let's write a Report Writer program!</p>
-							<p>
-								We'll start by writing a simpler version of the program that produces example report
-								shown above and then we'll add to it to create a report program with even more features
-								than the one shown.
-							</p>
-							<p>
-								Let's start by looking the data we have been giving to work with and at what is required
-								in our simple report.
-							</p>
-						</div>
+					<div class="section-sidebar">
+						<h3>Introduction</h3>
+					</div>
+					<div class="section-content">
+						<p>Let's write a Report Writer program!</p>
+						<p>
+							We'll start by writing a simpler version of the program that produces example report shown
+							above and then we'll add to it to create a report program with even more features than the
+							one shown.
+						</p>
+						<p>
+							Let's start by looking the data we have been giving to work with and at what is required in
+							our simple report.
+						</p>
+					</div>
 
-						<div class="section-sidebar">
-							<h3>Report Specification</h3>
-						</div>
-						<div class="section-content">
-							<p>
-								Bible salespersons work in each of the cities of Ireland. Each time a salesperson sells
-								some bibles the value of that sale is recorded in a sales file along with the
-								salesperson number and the city code.
-							</p>
-							<p>
-								The sales file has been validated and sorted on ascending SalesPersonNum within
-								ascending CityCode.
-							</p>
-							<p>We want to write a program that will produce a report that prints -</p>
-							<ul>
-								<li>a heading and a footing on each page</li>
-								<li>
-									for each sale record we want to print the city name (obtained from a table),
-									salesperson number and the value of the sale
-								</li>
-								<li>the total value of sales for each salesperson</li>
-							</ul>
-							<hr />
-						</div>
+					<div class="section-sidebar">
+						<h3>Report Specification</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							Bible salespersons work in each of the cities of Ireland. Each time a salesperson sells some
+							bibles the value of that sale is recorded in a sales file along with the salesperson number
+							and the city code.
+						</p>
+						<p>
+							The sales file has been validated and sorted on ascending SalesPersonNum within ascending
+							CityCode.
+						</p>
+						<p>We want to write a program that will produce a report that prints -</p>
+						<ul>
+							<li>a heading and a footing on each page</li>
+							<li>
+								for each sale record we want to print the city name (obtained from a table), salesperson
+								number and the value of the sale
+							</li>
+							<li>the total value of sales for each salesperson</li>
+						</ul>
+						<hr />
+					</div>
 
-						<div class="section-sidebar">
-							<h3>A simple report</h3>
-						</div>
-						<div class="section-content">
-							<p>
-								The first page produced by the simple report program we are going to write is shown
-								below. In the section that follows we will examine the program that created the report.
-							</p>
-							<pre><code>       An example COBOL Report Program
+					<div class="section-sidebar">
+						<h3>A simple report</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							The first page produced by the simple report program we are going to write is shown below.
+							In the section that follows we will examine the program that created the report.
+						</p>
+						<pre><code>       An example COBOL Report Program
      Bible Salesperson - Sales and Salary Report
 
  City      Salesperson     Sale
@@ -518,101 +486,97 @@ Belfast       4         $2,505.50
 Cork          1           $333.50
 
 Programmer - Michael Coughlan               Page :  1</code></pre>
-							<hr />
-						</div>
+						<hr />
+					</div>
 
-						<div class="section-sidebar">
-							<h3>Code &amp; Commentary</h3>
+					<div class="section-sidebar">
+						<h3>Code &amp; Commentary</h3>
+					</div>
+					<div class="section-content">
+						<div class="iframe-wrapper">
+							<iframe
+								height="575"
+								src="Resources/build-viewer.html?deck=TC-RepWrite2"
+								style="border: 1px solid #ccc; width: 100%; aspect-ratio: 425/575"
+								title="Code and commentary: Simple Report Writer program"
+								width="425"
+							></iframe>
 						</div>
-						<div class="section-content">
-							<div class="iframe-wrapper">
-								<iframe
-									height="575"
-									src="Resources/build-viewer.html?deck=TC-RepWrite2"
-									style="border: 1px solid #ccc; width: 100%; aspect-ratio: 425/575"
-									title="Code and commentary: Simple Report Writer program"
-									width="425"
-								></iframe>
-							</div>
-						</div>
+					</div>
 
-						<div class="section-header">
-							<h2 id="part3">Let's add some features to our Report Program</h2>
-						</div>
+					<div class="section-header">
+						<h2 id="part3">Let's add some features to our Report Program</h2>
+					</div>
 
-						<div class="section-sidebar">
-							<h3>Adding a city and a final total</h3>
-						</div>
-						<div class="section-content">
-							<p>
-								Let's add city totals and a final total to the Report. The city total will be the sum of
-								all the salesperson totals for the city and the final total will be the sum of all the
-								city totals. A city total will be printed when the CityCode changes (i.e. when there is
-								a control break on the CityCode) and the final total will be printed at the end of the
-								report.
-							</p>
-							<p>
-								What changes do we have to make to our program to get it to print the city and final
-								totals?
-							</p>
-							<hr />
-						</div>
+					<div class="section-sidebar">
+						<h3>Adding a city and a final total</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							Let's add city totals and a final total to the Report. The city total will be the sum of all
+							the salesperson totals for the city and the final total will be the sum of all the city
+							totals. A city total will be printed when the CityCode changes (i.e. when there is a control
+							break on the CityCode) and the final total will be printed at the end of the report.
+						</p>
+						<p>
+							What changes do we have to make to our program to get it to print the city and final totals?
+						</p>
+						<hr />
+					</div>
 
-						<div class="section-sidebar">
-							<h3>Printing the city total</h3>
-						</div>
-						<div class="section-content">
-							<p>
-								If we want to print the city total we must set up a report group for it describing
-								<strong>what</strong> we want printed. To describe <strong>when</strong> we want the
-								group printed, we must specify that the group is a
-								<code class="language-cobol">CONTROL FOOTING</code> group and we must identify the
-								CityCode as the control break data-item. Since the city control break is senior to the
-								salesperson control break we must indicate this by placing CityCode before
-								SalespersonNumber in the <code class="language-cobol">CONTROLS ARE</code> phrase.
-							</p>
-							<p>
-								The total for the city is automatically accumulated by means of the
-								<code class="language-cobol">SUM</code> clause. Every time a salesperson total is
-								printed the phrase - <code class="language-cobol">SUM</code> SMS - adds the total to the
-								city total. This is why the item for printing the salesperson total was given a name -
-								so that we could refer to it in the <code class="language-cobol">SUM</code> phrase of
-								the city total.
-							</p>
-							<p>
-								The item that prints the city total has also been given a name. This is so that we can
-								refer to it in the final total <code class="language-cobol">SUM</code> phrase.
-							</p>
-							<hr />
-						</div>
+					<div class="section-sidebar">
+						<h3>Printing the city total</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							If we want to print the city total we must set up a report group for it describing
+							<strong>what</strong> we want printed. To describe <strong>when</strong> we want the group
+							printed, we must specify that the group is a
+							<code class="language-cobol">CONTROL FOOTING</code> group and we must identify the CityCode
+							as the control break data-item. Since the city control break is senior to the salesperson
+							control break we must indicate this by placing CityCode before SalespersonNumber in the
+							<code class="language-cobol">CONTROLS ARE</code> phrase.
+						</p>
+						<p>
+							The total for the city is automatically accumulated by means of the
+							<code class="language-cobol">SUM</code> clause. Every time a salesperson total is printed
+							the phrase - <code class="language-cobol">SUM</code> SMS - adds the total to the city total.
+							This is why the item for printing the salesperson total was given a name - so that we could
+							refer to it in the <code class="language-cobol">SUM</code> phrase of the city total.
+						</p>
+						<p>
+							The item that prints the city total has also been given a name. This is so that we can refer
+							to it in the final total <code class="language-cobol">SUM</code> phrase.
+						</p>
+						<hr />
+					</div>
 
-						<div class="section-sidebar">
-							<h3>Printing a Final Total</h3>
-						</div>
-						<div class="section-content">
-							<p>
-								To print the final total we must set up a
-								<code class="language-cobol">CONTROL FOOTING FINAL</code> group. Final is a special
-								keyword that indicates the control break that occurs when the end of the report is
-								reached. This is the most senior control break and we indicate this by placing the word
-								<code class="language-cobol">FINAL</code> ahead of all the other control break items in
-								the <code class="language-cobol">CONTROLS ARE</code> phrase.
-							</p>
-							<p>
-								The final total is automatically accumulated by means of the
-								<code class="language-cobol">SUM</code> CS clause. Every time a city total is printed
-								the phrase <code class="language-cobol">SUM</code> CS adds the city total to the final
-								total. Note that the final total print item is not named because we never need to refer
-								to it.
-							</p>
-						</div>
+					<div class="section-sidebar">
+						<h3>Printing a Final Total</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							To print the final total we must set up a
+							<code class="language-cobol">CONTROL FOOTING FINAL</code> group. Final is a special keyword
+							that indicates the control break that occurs when the end of the report is reached. This is
+							the most senior control break and we indicate this by placing the word
+							<code class="language-cobol">FINAL</code> ahead of all the other control break items in the
+							<code class="language-cobol">CONTROLS ARE</code> phrase.
+						</p>
+						<p>
+							The final total is automatically accumulated by means of the
+							<code class="language-cobol">SUM</code> CS clause. Every time a city total is printed the
+							phrase <code class="language-cobol">SUM</code> CS adds the city total to the final total.
+							Note that the final total print item is not named because we never need to refer to it.
+						</p>
+					</div>
 
-						<div class="section-sidebar">
-							<h3>REPORT SECTION changes</h3>
-						</div>
-						<div class="section-content">
-							<hr />
-							<pre class="language-cobol"><code class="language-cobol">REPORT SECTION.
+					<div class="section-sidebar">
+						<h3>REPORT SECTION changes</h3>
+					</div>
+					<div class="section-content">
+						<hr />
+						<pre class="language-cobol"><code class="language-cobol">REPORT SECTION.
 RD  SalesReport
     CONTROLS ARE FINAL
                  CityCode
@@ -680,123 +644,118 @@ RD  SalesReport
                         VALUE "Programmer - Michael Coughlan".
        03 COLUMN 45     PIC X(6) VALUE "Page :".
        03 COLUMN 52     PIC Z9 SOURCE PAGE-COUNTER.</code></pre>
-							<hr />
-						</div>
+						<hr />
+					</div>
 
-						<div class="section-sidebar">
-							<h3>Changes to the Procedure Division</h3>
-						</div>
-						<div class="section-content">
-							<p>
-								What changes do we need to make to the Procedure Division code to print the city and
-								final totals.
-							</p>
-							<p>Why none at all!!!</p>
-							<p>The Procedure Division code remains exactly the same.</p>
-							<hr />
-						</div>
+					<div class="section-sidebar">
+						<h3>Changes to the Procedure Division</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							What changes do we need to make to the Procedure Division code to print the city and final
+							totals.
+						</p>
+						<p>Why none at all!!!</p>
+						<p>The Procedure Division code remains exactly the same.</p>
+					</div>
 
-						<div class="section-header">
-							<h2 id="part4">Report Writer Declaratives</h2>
-						</div>
+					<div class="section-header">
+						<h2 id="part4">Report Writer Declaratives</h2>
+					</div>
 
-						<div class="section-sidebar">
-							<h3>Introduction</h3>
-						</div>
-						<div class="section-content">
-							<p>
-								The Report Writer is a wonderful tool if the structure of the required report fits in to
-								the way the Report Writer does things. But sometimes, the structure or requirements of
-								the report are such that the standard Report Writer alone is an insufficient tool. In
-								these cases,
-								<code class="language-cobol">DECLARATIVES</code> may be used to extend the functionality
-								of the Report Writer.
-							</p>
-							<p>
-								The <code class="language-cobol">USE BEFORE REPORTING</code> phrase allows code
-								specified in the <code class="language-cobol">DECLARATIVES</code> to be executed just
-								before a report group is printed. The code in the
-								<code class="language-cobol">DECLARATIVES</code> extends the functionality of the Report
-								Writer by performing tasks or calculations that the Report Writer can not do
-								automatically or by selectively stopping the report group from being printed (using the
-								<code class="language-cobol">SUPPRESS PRINTING</code> command).
-							</p>
-							<hr />
-						</div>
+					<div class="section-sidebar">
+						<h3>Introduction</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							The Report Writer is a wonderful tool if the structure of the required report fits in to the
+							way the Report Writer does things. But sometimes, the structure or requirements of the
+							report are such that the standard Report Writer alone is an insufficient tool. In these
+							cases,
+							<code class="language-cobol">DECLARATIVES</code> may be used to extend the functionality of
+							the Report Writer.
+						</p>
+						<p>
+							The <code class="language-cobol">USE BEFORE REPORTING</code> phrase allows code specified in
+							the <code class="language-cobol">DECLARATIVES</code> to be executed just before a report
+							group is printed. The code in the <code class="language-cobol">DECLARATIVES</code> extends
+							the functionality of the Report Writer by performing tasks or calculations that the Report
+							Writer can not do automatically or by selectively stopping the report group from being
+							printed (using the <code class="language-cobol">SUPPRESS PRINTING</code> command).
+						</p>
+						<hr />
+					</div>
 
-						<div class="section-sidebar">
-							<h3>Calculating the salesperson's commission and salary</h3>
-						</div>
-						<div class="section-content">
-							<p>
-								Suppose we want to extend our report so that as well as printing the salesperson total
-								it also prints the salesperson's commission and salary. The commission will be a
-								percentage of the saleperson's sales and the salary will be calculated as the commission
-								plus a fixed amount obtained from a two dimension table.
-							</p>
-							<p>
-								Additionally to enhance our understanding of how the control break items are referenced
-								we will show the number of the salesperson for which we have just calculated the totals,
-								commission and salary and the salesperson number currently in the file buffer.
-							</p>
-							<p>
-								Calculating the commission requires more than just simple addition so the Report Writer
-								cannot handle it automatically. To calculate the commission are
-								<code class="language-cobol">DECLARATIVES</code> are required. The
-								<code class="language-cobol">USE BEFORE REPORTING</code> Salespsn-Line phrase in the
-								<code class="language-cobol">DECLARATIVES</code> allows these items to be calculated
-								when the Salespsn-Number control footer group is about to be printed.
-							</p>
-							<p>
-								In the example program, <code class="language-cobol">DECLARATIVES</code> are used
-								because the Report Writer cannot automatically calculate a salesperson's commission and
-								salary. The <code class="language-cobol">USE BEFORE REPORTING</code> SalesPersonGrp
-								phrase in the <code class="language-cobol">DECLARATIVES</code> allows these items to be
-								calculated when the SalesPersonGrp control footer group is about to be printed.
-							</p>
-							<hr />
-						</div>
+					<div class="section-sidebar">
+						<h3>Calculating the salesperson's commission and salary</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							Suppose we want to extend our report so that as well as printing the salesperson total it
+							also prints the salesperson's commission and salary. The commission will be a percentage of
+							the saleperson's sales and the salary will be calculated as the commission plus a fixed
+							amount obtained from a two dimension table.
+						</p>
+						<p>
+							Additionally to enhance our understanding of how the control break items are referenced we
+							will show the number of the salesperson for which we have just calculated the totals,
+							commission and salary and the salesperson number currently in the file buffer.
+						</p>
+						<p>
+							Calculating the commission requires more than just simple addition so the Report Writer
+							cannot handle it automatically. To calculate the commission are
+							<code class="language-cobol">DECLARATIVES</code> are required. The
+							<code class="language-cobol">USE BEFORE REPORTING</code> Salespsn-Line phrase in the
+							<code class="language-cobol">DECLARATIVES</code> allows these items to be calculated when
+							the Salespsn-Number control footer group is about to be printed.
+						</p>
+						<p>
+							In the example program, <code class="language-cobol">DECLARATIVES</code> are used because
+							the Report Writer cannot automatically calculate a salesperson's commission and salary. The
+							<code class="language-cobol">USE BEFORE REPORTING</code> SalesPersonGrp phrase in the
+							<code class="language-cobol">DECLARATIVES</code> allows these items to be calculated when
+							the SalesPersonGrp control footer group is about to be printed.
+						</p>
+						<hr />
+					</div>
 
-						<div class="section-sidebar">
-							<h3>Values of control break items</h3>
-						</div>
-						<div class="section-content">
-							<p>
-								Have another look at the Report Section above. In particular look at the salesperson
-								control footing group. Notice anything strange?
-							</p>
-							<p>
-								The salesperson number is being printed and the
-								<code class="language-cobol">SOURCE</code> clause is used to get its value from the
-								SalesPersonNum in the sales record. But this is a control footing and that means that it
-								is printed when there is a change of salesperson number. So the value in SalesPersonNum
-								should be the number of the next salesperson and not the number of the salesperson whose
-								totals have just been produced.
-							</p>
-							<p>Yet the report produced has the correct salesperson number printed. How can this be?</p>
-							<p>
-								In the control footing any reference to the control break item will be supplied with the
-								previous value not the current value.
-							</p>
-							<p>
-								To help make the relationship between control break items and the Report Section, the
-								Declaratives and the Procedure Division we will show the number of the salesperson for
-								which we have just calculated the totals, commission and salary and the salesperson
-								number currently in the file buffer. In the city footing we will show the city code for
-								the city whose total sales have just been printed and the city code currently in the
-								file buffer.
-							</p>
-							<hr />
-						</div>
+					<div class="section-sidebar">
+						<h3>Values of control break items</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							Have another look at the Report Section above. In particular look at the salesperson control
+							footing group. Notice anything strange?
+						</p>
+						<p>
+							The salesperson number is being printed and the
+							<code class="language-cobol">SOURCE</code> clause is used to get its value from the
+							SalesPersonNum in the sales record. But this is a control footing and that means that it is
+							printed when there is a change of salesperson number. So the value in SalesPersonNum should
+							be the number of the next salesperson and not the number of the salesperson whose totals
+							have just been produced.
+						</p>
+						<p>Yet the report produced has the correct salesperson number printed. How can this be?</p>
+						<p>
+							In the control footing any reference to the control break item will be supplied with the
+							previous value not the current value.
+						</p>
+						<p>
+							To help make the relationship between control break items and the Report Section, the
+							Declaratives and the Procedure Division we will show the number of the salesperson for which
+							we have just calculated the totals, commission and salary and the salesperson number
+							currently in the file buffer. In the city footing we will show the city code for the city
+							whose total sales have just been printed and the city code currently in the file buffer.
+						</p>
+						<hr />
+					</div>
 
-						<div class="section-sidebar">
-							<h3>The full program and the report it produces</h3>
-						</div>
-						<div class="section-content">
-							<p>Changes from the simple version are shown in red.</p>
-							<pre
-								class="language-cobol"
-							><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+					<div class="section-sidebar">
+						<h3>The full program and the report it produces</h3>
+					</div>
+					<div class="section-content">
+						<p>Changes from the simple version are shown in red.</p>
+						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  ReportExampleFull.
 AUTHOR.  Michael Coughlan.
@@ -995,8 +954,8 @@ PrintSalaryReport.
     READ SalesFile
           AT END SET EndOfFile TO TRUE
     END-READ.</code></pre>
-							<hr />
-							<pre><code>           An example COBOL Report Program
+						<hr />
+						<pre><code>           An example COBOL Report Program
      Bible Salesperson - Sales and Salary Report
 
  City      Salesperson     Sale
@@ -1038,34 +997,32 @@ Belfast       1           $111.50
               Previous salesperson number = 1
 
 Programmer - Michael Coughlan               Page :  1 </code></pre>
-							<hr />
-						</div>
+						<hr />
+					</div>
 
-						<div class="section-sidebar">
-							<h3>Summary of control break item reference</h3>
-						</div>
-						<div class="section-content">
-							<p>
-								When a control break item is used in a control footing or in the
-								<code class="language-cobol">DECLARATIVES</code> before printing a control footing the
-								value supplied by the Report Writer is the previous value. Referring to the same item in
-								the Procedure Division yields the current value.
-							</p>
-							<hr />
-						</div>
+					<div class="section-sidebar">
+						<h3>Summary of control break item reference</h3>
+					</div>
+					<div class="section-content">
+						<p>
+							When a control break item is used in a control footing or in the
+							<code class="language-cobol">DECLARATIVES</code> before printing a control footing the value
+							supplied by the Report Writer is the previous value. Referring to the same item in the
+							Procedure Division yields the current value.
+						</p>
+						<hr />
+					</div>
 
-						<div class="page-footer">
-							<related-content
-								lectures="../lectures/reportwriterweb.html|COBOL Report Writer Lecture"
-								examples="../examples/ReportWriter/RepWriteFull.html|Full Report Writer Program, ../examples/ReportWriter/RepWriteA.html|Report Writer – One Control Break"
-							></related-content>
-							<hr />
-							<lesson-checkbox lesson="ReportWriter"></lesson-checkbox>
-							<lesson-nav></lesson-nav>
-							<back-to-top></back-to-top>
-							<copyright-notice></copyright-notice>
-							<last-updated></last-updated>
-						</div>
+					<div class="page-footer">
+						<related-content
+							lectures="../lectures/reportwriterweb.html|COBOL Report Writer Lecture"
+							examples="../examples/ReportWriter/RepWriteFull.html|Full Report Writer Program, ../examples/ReportWriter/RepWriteA.html|Report Writer – One Control Break"
+						></related-content>
+						<hr />
+						<lesson-checkbox lesson="ReportWriter"></lesson-checkbox>
+						<lesson-nav></lesson-nav>
+						<copyright-notice></copyright-notice>
+						<last-updated></last-updated>
 					</div>
 				</div>
 			</div>
