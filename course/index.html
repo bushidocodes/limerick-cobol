@@ -4,6 +4,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
 		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+			})();
+		</script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
 		<script type="application/ld+json">
@@ -89,6 +95,7 @@
 				}
 			}
 		</style>
+		<script src="../components/site-header.js" defer></script>
 	</head>
 	<body>
 		<a class="skip-link" href="#main-content">Skip to main content</a>
@@ -104,7 +111,6 @@
 							questions.</b
 						>
 					</p>
-					<site-search></site-search>
 				</div>
 				<div class="course-header-legend">
 					<!-- Legend table: real tabular data (icon → meaning), kept as <table> -->
