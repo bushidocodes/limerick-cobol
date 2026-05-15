@@ -478,6 +478,7 @@ function buildPage(entry) {
 \t\t<script src="${pfx}components/page-hero.js" defer></script>
 \t\t<script src="${pfx}components/related-content.js" defer></script>
 \t\t<script src="${pfx}components/copy-button.js" defer></script>
+\t\t<script src="${pfx}components/site-header.js" defer></script>
 ${runInCeScript}\t</head>
 \t<body>
 \t\t<a class="skip-link" href="#main-content">Skip to main content</a>
