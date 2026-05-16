@@ -273,6 +273,13 @@ const MANIFEST = [
 		crumb: "Male Sort",
 		desc: "Sorts the student masterfile and produces a new file, sorted on ascending student name, containing only the records of male students.",
 	},
+	{
+		file: "Sort/SortIP.html",
+		cbl: "SortIP.cbl",
+		title: "SORT with Input Procedure to count males and females per course",
+		crumb: "Sort IP",
+		desc: "Reads the Students File and uses the SORT verb with an INPUT PROCEDURE to produce a file sequenced on ascending CourseCode. The sorted file is then read sequentially and the number of males and females taking each course is displayed.",
+	},
 	// ── Strings ─────────────────────────────────────────────────────────────
 	{
 		file: "Strings/RefMod.html",

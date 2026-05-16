@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") {
+					document.documentElement.setAttribute("data-theme", t);
+					var color = t === "dark" ? "#1a1a1a" : "#ffffff";
+					var meta = document.querySelector('meta[name="theme-color"]:not([media])');
+					if (!meta) {
+						meta = document.createElement("meta");
+						meta.name = "theme-color";
+						document.head.appendChild(meta);
+					}
+					meta.content = color;
+				}
+			})();
+		</script>
+		<title>SORT with Input Procedure to count males and females per course</title>
+		<meta
+			name="description"
+			content="Reads the Students File and uses the SORT verb with an INPUT PROCEDURE to produce a file sequenced on ascending CourseCode. The sorted file is then read"
+		/>
+		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/examples/Sort/SortIP.html" />
+		<!-- Open Graph -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/examples/Sort/SortIP.html" />
+		<meta property="og:title" content="SORT with Input Procedure to count males and females per course" />
+		<meta
+			property="og:description"
+			content="Reads the Students File and uses the SORT verb with an INPUT PROCEDURE to produce a file sequenced on ascending CourseCode. The sorted file is then read"
+		/>
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/examples.png" />
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="SORT with Input Procedure to count males and females per course" />
+		<meta
+			name="twitter:description"
+			content="Reads the Students File and uses the SORT verb with an INPUT PROCEDURE to produce a file sequenced on ascending CourseCode. The sorted file is then read"
+		/>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href="../../course/Resources/css/course.css" rel="stylesheet" />
+		<link href="../../course/Resources/css/course-components.css" rel="stylesheet" />
+		<link href="../../course/Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
+		<script src="../../course/Resources/vendor/prism/prism.min.js" defer></script>
+		<script src="../../course/Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
+		<script src="../../components/theme-toggle.js" defer></script>
+		<script src="../../components/page-hero.js" defer></script>
+		<script src="../../components/related-content.js" defer></script>
+		<script src="../../components/copy-button.js" defer></script>
+		<script src="../../components/site-header.js" defer></script>
+		<script src="../../components/copyright-notice.js" defer></script>
+		<script src="../../components/last-updated.js" defer></script>
+		<script src="../../components/edit-on-github.js" defer></script>
+	</head>
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="section-grid">
+					<div class="section-full">
+						<page-hero title="SORT with Input Procedure to count males and females per course"></page-hero>
+						<p>
+							Reads the Students File and uses the SORT verb with an INPUT PROCEDURE to produce a file
+							sequenced on ascending CourseCode. The sorted file is then read sequentially and the number
+							of males and females taking each course is displayed.
+						</p>
+						<div class="code-toolbar">
+							<a href="SortIP.cbl" download class="download-btn">Download SortIP.cbl</a>
+						</div>
+						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+IDENTIFICATION DIVISION.
+PROGRAM-ID.  SortIP.
+AUTHOR.  Michael Coughlan.
+*&gt; Reads the Students File (held in ascending StudentId order) and
+*&gt; uses the SORT verb with an INPUT PROCEDURE to produce a file
+*&gt; sequenced on ascending CourseCode containing only the CourseCode
+*&gt; and Gender of each student.  The sorted file is then read
+*&gt; sequentially and the number of males and females taking each
+*&gt; course is displayed in ascending CourseCode order.
+
+ENVIRONMENT DIVISION.
+INPUT-OUTPUT SECTION.
+FILE-CONTROL.
+    SELECT StudentFile ASSIGN TO "STUDENTS.dat"
+        ORGANIZATION IS LINE SEQUENTIAL.
+
+    SELECT SortedFile ASSIGN TO "SORTED.dat"
+        ORGANIZATION IS LINE SEQUENTIAL.
+
+    SELECT WorkFile ASSIGN TO "WORK.tmp".
+
+
+DATA DIVISION.
+FILE SECTION.
+FD StudentFile.
+01 StudentRec.
+   88 EndOfStudentFile  VALUE HIGH-VALUES.
+   02 FILLER            PIC X(25).
+   02 SCourseCode       PIC X(4).
+   02 SGender           PIC X.
+
+FD SortedFile.
+01 SortedRec.
+   88 EndOfSortedFile   VALUE HIGH-VALUES.
+   02 SortedCourseCode  PIC X(4).
+   02 SortedGender      PIC X.
+      88 IsFemale       VALUE "F".
+
+SD WorkFile.
+01 WorkRec.
+   02 WCourseCode       PIC X(4).
+   02 WGender           PIC X.
+
+WORKING-STORAGE SECTION.
+01 CurrentCourse        PIC X(4) VALUE SPACES.
+01 FemaleCount          PIC 9(3) VALUE 0.
+01 MaleCount            PIC 9(3) VALUE 0.
+
+01 ReportLine.
+   02 FILLER            PIC XX     VALUE SPACES.
+   02 RepCourseCode     PIC X(4).
+   02 FILLER            PIC X(7)   VALUE SPACES.
+   02 RepFemales        PIC ZZ9.
+   02 FILLER            PIC X(4)   VALUE SPACES.
+   02 RepMales          PIC ZZ9.
+
+
+PROCEDURE DIVISION.
+Begin.
+   SORT WorkFile ON ASCENDING KEY WCourseCode
+        INPUT PROCEDURE IS GetCourseAndGender
+        GIVING SortedFile.
+
+   DISPLAY "CourseCode Females Males"
+   OPEN INPUT SortedFile
+   READ SortedFile
+      AT END SET EndOfSortedFile TO TRUE
+   END-READ
+   IF NOT EndOfSortedFile
+      MOVE SortedCourseCode TO CurrentCourse
+   END-IF
+   PERFORM UNTIL EndOfSortedFile
+      IF SortedCourseCode NOT = CurrentCourse
+         PERFORM DisplayCourseTotals
+         MOVE SortedCourseCode TO CurrentCourse
+         MOVE 0 TO FemaleCount
+         MOVE 0 TO MaleCount
+      END-IF
+      IF IsFemale
+         ADD 1 TO FemaleCount
+      ELSE
+         ADD 1 TO MaleCount
+      END-IF
+      READ SortedFile
+         AT END SET EndOfSortedFile TO TRUE
+      END-READ
+   END-PERFORM
+   IF CurrentCourse NOT = SPACES
+      PERFORM DisplayCourseTotals
+   END-IF
+   CLOSE SortedFile
+   STOP RUN.
+
+
+GetCourseAndGender.
+   OPEN INPUT StudentFile
+   READ StudentFile
+      AT END SET EndOfStudentFile TO TRUE
+   END-READ
+   PERFORM UNTIL EndOfStudentFile
+      MOVE SCourseCode TO WCourseCode
+      MOVE SGender     TO WGender
+      RELEASE WorkRec
+      READ StudentFile
+         AT END SET EndOfStudentFile TO TRUE
+      END-READ
+   END-PERFORM
+   CLOSE StudentFile.
+
+
+DisplayCourseTotals.
+   MOVE CurrentCourse TO RepCourseCode
+   MOVE FemaleCount   TO RepFemales
+   MOVE MaleCount     TO RepMales
+   DISPLAY ReportLine.
+</code></pre>
+						<related-content
+							lectures="../../course/SortMerge.html|SORT and MERGE"
+							examples="InputSort.html|SORT with Input Procedure, MaleSort.html|SORT with Output Procedure, ../Merge/Merge.html|Merging Files"
+							exercises="../../exercises/SortIP.html|Sorting a Sequential File"
+						></related-content>
+						<copyright-notice type="examples"></copyright-notice>
+						<last-updated></last-updated>
+						<edit-on-github></edit-on-github>
+					</div>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>
