@@ -570,6 +570,7 @@ function buildPage(entry) {
 \t\t<meta name="twitter:title" content="${metaTitle}" />
 \t\t<meta name="twitter:description" content="${metaDesc}" />
 \t\t<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+\t\t<link rel="icon" type="image/svg+xml" href="${pfx}favicon.svg" />
 \t\t<link href="${pfx}course/Resources/css/course.css" rel="stylesheet" />
 \t\t<link href="${pfx}course/Resources/css/course-components.css" rel="stylesheet" />
 \t\t<link href="${pfx}course/Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
