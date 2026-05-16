@@ -43,6 +43,10 @@ class SiteSearch extends HTMLElement {
 	#pointer = -1;
 	#listboxId = "";
 
+	static #SHORT_MQL = window.matchMedia("(max-width: 360px)");
+	static #FULL_PLACEHOLDER = "Search lessons, exercises, examples… (Ctrl+K)";
+	static #SHORT_PLACEHOLDER = "Search…";
+
 	connectedCallback() {
 		const uid = ++instanceCounter;
 		this.#listboxId = `site-search-results-${uid}`;
@@ -54,7 +58,6 @@ class SiteSearch extends HTMLElement {
 					id="${inputId}"
 					class="site-search__input"
 					type="search"
-					placeholder="Search lessons, exercises, examples… (Ctrl+K)"
 					autocomplete="off"
 					autocapitalize="off"
 					spellcheck="false"
@@ -75,6 +78,14 @@ class SiteSearch extends HTMLElement {
 		this.#input = this.querySelector(".site-search__input");
 		this.#results = this.querySelector(".site-search__results");
 		this.#status = this.querySelector(".site-search__status");
+
+		const updatePlaceholder = () => {
+			this.#input.placeholder = SiteSearch.#SHORT_MQL.matches
+				? SiteSearch.#SHORT_PLACEHOLDER
+				: SiteSearch.#FULL_PLACEHOLDER;
+		};
+		updatePlaceholder();
+		SiteSearch.#SHORT_MQL.addEventListener("change", updatePlaceholder);
 
 		this.#input.addEventListener("focus", () => this.#ensureLoaded());
 		this.#input.addEventListener("input", () => this.#render());

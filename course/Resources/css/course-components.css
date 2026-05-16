@@ -96,9 +96,14 @@
 	border-bottom-color: #ff9966;
 }
 
+/* Hidden on desktop; the @media (max-width: 720px) block below shows it. */
+.site-header__hamburger {
+	display: none;
+}
+
 @media (max-width: 720px) {
 	.site-header {
-		grid-template-columns: auto 1fr;
+		grid-template-columns: auto 1fr auto;
 	}
 
 	.site-header .site-nav {
@@ -107,6 +112,64 @@
 
 	.site-header site-search {
 		grid-column: 2;
+		min-width: 0;
+	}
+
+	.site-header__hamburger {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		grid-column: 3;
+		grid-row: 1;
+		padding: 0.3em 0.5em;
+		background: none;
+		border: 1px solid var(--color-border-mute);
+		border-radius: 3px;
+		cursor: pointer;
+		font-size: 1.25em;
+		line-height: 1;
+		color: var(--color-text);
+	}
+
+	.site-header__hamburger:hover {
+		background-color: var(--color-border-mute);
+	}
+
+	.site-header__hamburger:focus-visible {
+		outline: 2px solid var(--color-emphasis);
+		outline-offset: 1px;
+	}
+
+	/* Mobile nav dropdown — full-width row below logo/search/hamburger */
+	.site-nav-mobile {
+		grid-column: 1 / -1;
+		border-top: 1px solid var(--color-border-mute);
+		padding: 0.25em 0;
+	}
+
+	.site-nav-mobile ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.site-nav-mobile a {
+		display: block;
+		padding: 0.5em 0.75em;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 0.95em;
+		text-decoration: none;
+		color: var(--color-text);
+	}
+
+	.site-nav-mobile a:hover {
+		background-color: var(--color-border-mute);
+	}
+
+	.site-nav-mobile a[data-active] {
+		font-weight: bold;
+		border-left: 3px solid var(--color-header-bg);
+		padding-left: calc(0.75em - 3px);
 	}
 }
 
@@ -114,6 +177,11 @@
 	margin-top: 0;
 	width: 100%;
 	max-width: 360px;
+	min-width: 0;
+}
+
+.site-header .site-search__input {
+	min-width: 0;
 }
 
 .site-header .site-search__label {
@@ -1845,6 +1913,27 @@ page-breadcrumbs {
 	margin-top: 0;
 }
 
+/* At narrow viewports, stack the breadcrumb trail and theme toggle vertically
+   so a long breadcrumb chain (e.g. Home › Course › Topic › Page) that wraps
+   to a second line doesn't cause the toggle to overlap the wrapped text. */
+@media (max-width: 480px) {
+	.breadcrumb-bar-inner {
+		flex-wrap: wrap;
+		align-items: flex-start;
+		gap: 0.25em 0.5em;
+	}
+
+	.breadcrumb-bar-inner > nav.page-breadcrumbs,
+	.breadcrumb-bar-inner > .breadcrumb-bar-spacer {
+		flex: 1 1 100%;
+	}
+
+	.breadcrumb-bar-inner > theme-toggle,
+	.breadcrumb-bar-inner > .theme-toggle {
+		margin-left: auto;
+	}
+}
+
 nav.page-breadcrumbs {
 	font-size: 0.85em;
 	color: var(--color-text-muted);
@@ -2146,4 +2235,41 @@ course-sidebar {
 	background: #1a1a1a;
 	border-color: #555;
 	color: #e0e0e0;
+}
+
+/* ============================================================================
+   Homepage layout (index.html).
+   Scoped via :has(#page-description) so the max-width constraint only
+   applies to the one page that contains this element — other pages'
+   #main-content stays unconstrained.
+   ============================================================================ */
+main:has(#page-description) {
+	max-width: 605px;
+	margin-inline: auto;
+	padding: 0 0.5em;
+	box-sizing: border-box;
+}
+
+#page-description {
+	width: 80%;
+	margin: 0 auto;
+	font-size: smaller;
+	box-sizing: border-box;
+}
+
+/* Blue ball marker on homepage TOC — overrides the green from course.css */
+ul.toc ::marker {
+	color: #0066cc;
+}
+
+@media (max-width: 600px) {
+	#page-description {
+		width: 100%;
+	}
+
+	ul.toc {
+		margin-left: 12px;
+		margin-right: 12px;
+		padding-left: 1.5em;
+	}
 }
