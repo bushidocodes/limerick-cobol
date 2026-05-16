@@ -12,6 +12,21 @@
           }
         ]
       }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "powershell",
+            "if": "Bash(gh issue view *)",
+            "async": true,
+            "statusMessage": "Claiming issue...",
+            "command": "$j = $input | Out-String | ConvertFrom-Json; $cmd = $j.tool_input.command; if ($cmd -match 'gh issue view (\\d+)') { gh issue edit $matches[1] --add-assignee bushidocodes --repo bushidocodes/limerick-cobol 2>$null }"
+          }
+        ]
+      }
     ]
   },
   "permissions": {
