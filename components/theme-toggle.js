@@ -55,9 +55,21 @@ class ThemeToggle extends HTMLElement {
 		if (value === "auto") {
 			if (HAS_STORAGE) localStorage.removeItem(ThemeToggle.#KEY);
 			document.documentElement.removeAttribute("data-theme");
+			// Remove the override meta, letting media queries apply
+			const meta = document.querySelector('meta[name="theme-color"]:not([media])');
+			if (meta) meta.remove();
 		} else {
 			if (HAS_STORAGE) localStorage.setItem(ThemeToggle.#KEY, value);
 			document.documentElement.setAttribute("data-theme", value);
+			// Update or create the override meta tag
+			const color = value === "dark" ? "#1a1a1a" : "#ffffff";
+			let meta = document.querySelector('meta[name="theme-color"]:not([media])');
+			if (!meta) {
+				meta = document.createElement("meta");
+				meta.name = "theme-color";
+				document.head.appendChild(meta);
+			}
+			meta.content = color;
 		}
 		this.querySelectorAll("[data-theme-value]").forEach((btn) => {
 			const active = btn.dataset.themeValue === value;
