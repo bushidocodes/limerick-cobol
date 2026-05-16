@@ -1,4 +1,4 @@
-﻿       >>SOURCE FORMAT IS FREE
+       >>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.   WirthMemLib.
 AUTHOR.  MICHAEL COUGHLAN.
@@ -10,13 +10,13 @@ FILE-CONTROL.
         ORGANIZATION IS INDEXED
         ACCESS MODE IS DYNAMIC
         RECORD KEY IS BookNumber
-        ALTERNATE RECORD KEY IS AuthorNumber 
-                            WITH DUPLICATES    
+        ALTERNATE RECORD KEY IS AuthorNumber
+                            WITH DUPLICATES
         FILE STATUS IS BookErrorStatus.
 
     SELECT AuthorFile ASSIGN TO "AUTHOR.dat"
         ORGANIZATION IS INDEXED
-        
+
         ACCESS MODE IS DYNAMIC
         RECORD KEY IS AuthorNum
         ALTERNATE RECORD KEY IS AgentName
@@ -27,7 +27,7 @@ FILE-CONTROL.
 
 
 DATA DIVISION.
-FILE SECTION.    
+FILE SECTION.
 FD  BookFile.
 01  BookRec.
     88 EndOfBookFile     VALUE HIGH-VALUES.
@@ -39,7 +39,7 @@ FD  BookFile.
     02 QtrBorrowings         PIC 999.
 
 FD  AuthorFile.
-01  AuthorRec.    
+01  AuthorRec.
     88 EndOfAuthorFile   VALUE HIGH-VALUES.
     02 AuthorNum             PIC X(7).
     02 AuthorName            PIC X(25).
@@ -123,7 +123,7 @@ Begin.
     START AuthorFile KEY IS GREATER THAN AgentName
         INVALID KEY DISPLAY "OH DEAR SOMETHING WRONG IN BEGIN PARA"
     END-START.
-    READ AuthorFile NEXT RECORD 
+    READ AuthorFile NEXT RECORD
         AT END SET EndOfAuthorFile TO TRUE
     END-READ.
     PERFORM ProcessAgents UNTIL EndOfAuthorFile.
@@ -131,13 +131,13 @@ Begin.
     CLOSE BookFile.
     CLOSE AuthorFile.
     CLOSE PrintFile.
-    STOP RUN.    
+    STOP RUN.
 
 ProcessAgents.
     MOVE AgentName TO AgentNamePrn, PrevAgent.
     MOVE ZEROS TO AgentPayment.
 
-    PERFORM ProcessAuthors 
+    PERFORM ProcessAuthors
         UNTIL EndOfAuthorFile
             OR AgentName NOT EQUAL TO PrevAgent.
 
@@ -150,13 +150,13 @@ ProcessAuthors.
     MOVE ZEROS TO QtrAuthorBorrows, AuthorRoyalties.
     MOVE AuthorNum TO AuthorNumber, PrevAuthor.
     MOVE AuthorName TO AuthorNamePrn.
-    READ BookFile 
+    READ BookFile
         KEY IS AuthorNumber
         INVALID KEY
          DISPLAY "ERROR IN ProcessAgents = " BookErrorStatus
     END-READ.
-    PERFORM ProcessBooks 
-        UNTIL EndOfBookFile 
+    PERFORM ProcessBooks
+        UNTIL EndOfBookFile
             OR AuthorNumber NOT EQUAL TO PrevAuthor.
     SET NotEndOfBookFile TO TRUE.
 
@@ -167,7 +167,7 @@ ProcessAuthors.
     MOVE SPACES TO PrintLine.
     WRITE PrintLine AFTER ADVANCING 2 LINES.
 
-    READ AuthorFile NEXT RECORD 
+    READ AuthorFile NEXT RECORD
         AT END SET EndOfAuthorFile TO TRUE
     END-READ.
 
@@ -180,7 +180,7 @@ ProcessBooks.
     MOVE SPACES TO AuthorNamePrn, AgentNamePrn.
 
 ProcessOneBook.
-    MULTIPLY QtrBorrowings BY RoyaltyRate 
+    MULTIPLY QtrBorrowings BY RoyaltyRate
         GIVING BookRoyalty ROUNDED.
     ADD QtrBorrowings  TO QtrAuthorBorrows.
     ADD BookRoyalty  TO AuthorRoyalties, AgentPayment.
