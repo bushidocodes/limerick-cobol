@@ -250,6 +250,14 @@ const MANIFEST = [
 		crumb: "Student Numbers Report",
 		desc: "Reads records from the student file, counts the total number of student records and the number of records for females and males, and prints the results in a short report.",
 	},
+	// ── SeqUpd ──────────────────────────────────────────────────────────────
+	{
+		file: "SeqUpd/SeqUpdate.html",
+		cbl: "SeqUpdate.cbl",
+		title: "Updating a Sequential File",
+		crumb: "Sequential Update",
+		desc: "Updates the Students.dat master file using course-transfer transactions from Transfer.dat to produce a new Students.New file. Demonstrates the sequential file matching algorithm and detects two error conditions: unmatched transaction records and mismatched course codes.",
+	},
 	// ── SeqWrite ────────────────────────────────────────────────────────────
 	{
 		file: "SeqWrite/SEQWRITE.html",
