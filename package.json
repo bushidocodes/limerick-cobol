@@ -26,10 +26,11 @@
 		"check:reading-time": "node scripts/add-reading-time.js && prettier --write \"course/**/*.html\" && git diff --exit-code \"course/**/*.html\"",
 		"build:prev-next-links": "node scripts/add-prev-next-links.js && prettier --write \"course/**/*.html\"",
 		"check:prev-next-links": "node scripts/add-prev-next-links.js && prettier --write \"course/**/*.html\" && git diff --exit-code \"course/**/*.html\"",
+		"check:example-orphans": "node scripts/check-example-orphans.js",
 		"check:assets": "node scripts/check-assets.js",
 		"format:check": "prettier --check .",
 		"format:write": "prettier --write .",
-		"check": "npm run check:examples && npm run check:search-index && npm run validate && npm run check:assets && npm run check:img-dims && npm run links && npm run a11y"
+		"check": "npm run check:examples && npm run check:example-orphans && npm run check:search-index && npm run validate && npm run check:assets && npm run check:img-dims && npm run links && npm run a11y"
 	},
 	"devDependencies": {
 		"@resvg/resvg-js": "^2.6.2",

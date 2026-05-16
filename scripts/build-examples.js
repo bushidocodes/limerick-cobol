@@ -580,23 +580,27 @@ ${relatedEl}\t\t\t\t\t\t<copyright-notice type="examples"></copyright-notice>
 // Main
 // ---------------------------------------------------------------------------
 
-console.log("Building example HTML pages from .cbl sources…\n");
+module.exports = { MANIFEST, EXAMPLES_DIR };
 
-let ok = 0;
-let fail = 0;
+if (require.main === module) {
+	console.log("Building example HTML pages from .cbl sources…\n");
 
-for (const entry of MANIFEST) {
-	const absPath = path.join(EXAMPLES_DIR, entry.file);
-	try {
-		const html = buildPage(entry);
-		fs.writeFileSync(absPath, html, "utf8");
-		console.log(`  OK  ${entry.file}`);
-		ok++;
-	} catch (err) {
-		console.error(`  ERR ${entry.file}: ${err.message}`);
-		fail++;
+	let ok = 0;
+	let fail = 0;
+
+	for (const entry of MANIFEST) {
+		const absPath = path.join(EXAMPLES_DIR, entry.file);
+		try {
+			const html = buildPage(entry);
+			fs.writeFileSync(absPath, html, "utf8");
+			console.log(`  OK  ${entry.file}`);
+			ok++;
+		} catch (err) {
+			console.error(`  ERR ${entry.file}: ${err.message}`);
+			fail++;
+		}
 	}
-}
 
-console.log(`\nDone. ${ok} written, ${fail} failed.`);
-if (fail > 0) process.exit(1);
+	console.log(`\nDone. ${ok} written, ${fail} failed.`);
+	if (fail > 0) process.exit(1);
+}
