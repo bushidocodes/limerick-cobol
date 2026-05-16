@@ -49,6 +49,13 @@ const MANIFEST = [
 		runInCe: true,
 	},
 	{
+		file: "Accept/GettingStarted.html",
+		cbl: "gettingstarted.cbl",
+		title: "Getting Started exercise program",
+		crumb: "Getting Started",
+		desc: "An intentionally incorrect exercise program. The ACCEPT and MULTIPLY statements are in the wrong order, so the multiplication always uses the uninitialised value of Num2. Students are asked to rewrite it so that it prompts the user for both inputs before computing the result.",
+	},
+	{
 		file: "Accept/Multiplier.html",
 		cbl: "Multiplier.cbl",
 		title: "ACCEPT, DISPLAY and MULTIPLY example program",

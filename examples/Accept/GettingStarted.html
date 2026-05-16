@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") {
+					document.documentElement.setAttribute("data-theme", t);
+					var color = t === "dark" ? "#1a1a1a" : "#ffffff";
+					var meta = document.querySelector('meta[name="theme-color"]:not([media])');
+					if (!meta) {
+						meta = document.createElement("meta");
+						meta.name = "theme-color";
+						document.head.appendChild(meta);
+					}
+					meta.content = color;
+				}
+			})();
+		</script>
+		<title>Getting Started exercise program</title>
+		<meta
+			name="description"
+			content="An intentionally incorrect exercise program. The ACCEPT and MULTIPLY statements are in the wrong order, so the multiplication always uses the uninitialised"
+		/>
+		<link
+			rel="canonical"
+			href="https://bushidocodes.github.io/limerick-cobol/examples/Accept/GettingStarted.html"
+		/>
+		<!-- Open Graph -->
+		<meta property="og:type" content="website" />
+		<meta
+			property="og:url"
+			content="https://bushidocodes.github.io/limerick-cobol/examples/Accept/GettingStarted.html"
+		/>
+		<meta property="og:title" content="Getting Started exercise program" />
+		<meta
+			property="og:description"
+			content="An intentionally incorrect exercise program. The ACCEPT and MULTIPLY statements are in the wrong order, so the multiplication always uses the uninitialised"
+		/>
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/examples.png" />
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Getting Started exercise program" />
+		<meta
+			name="twitter:description"
+			content="An intentionally incorrect exercise program. The ACCEPT and MULTIPLY statements are in the wrong order, so the multiplication always uses the uninitialised"
+		/>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href="../../course/Resources/css/course.css" rel="stylesheet" />
+		<link href="../../course/Resources/css/course-components.css" rel="stylesheet" />
+		<link href="../../course/Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
+		<script src="../../course/Resources/vendor/prism/prism.min.js" defer></script>
+		<script src="../../course/Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
+		<script src="../../components/theme-toggle.js" defer></script>
+		<script src="../../components/page-hero.js" defer></script>
+		<script src="../../components/related-content.js" defer></script>
+		<script src="../../components/copy-button.js" defer></script>
+		<script src="../../components/site-header.js" defer></script>
+		<script src="../../components/copyright-notice.js" defer></script>
+		<script src="../../components/last-updated.js" defer></script>
+		<script src="../../components/edit-on-github.js" defer></script>
+	</head>
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<main id="main-content">
+			<div class="page-wrapper">
+				<div class="section-grid">
+					<div class="section-full">
+						<page-hero title="Getting Started exercise program"></page-hero>
+						<p>
+							An intentionally incorrect exercise program. The ACCEPT and MULTIPLY statements are in the
+							wrong order, so the multiplication always uses the uninitialised value of Num2. Students are
+							asked to rewrite it so that it prompts the user for both inputs before computing the result.
+						</p>
+						<div class="code-toolbar">
+							<a href="gettingstarted.cbl" download class="download-btn">Download gettingstarted.cbl</a>
+						</div>
+						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+IDENTIFICATION DIVISION.
+PROGRAM-ID.  GettingStarted.
+AUTHOR.  Michael Coughlan.
+*&gt; This program should accept two numbers from the user, multiply them together
+*&gt; and then display the result.  Unfortunately it does not work correctly.
+*&gt; Re-write the program so that it prompts the user for input and displays
+*&gt; the correct result.
+
+
+DATA DIVISION.
+
+WORKING-STORAGE SECTION.
+01  Num1                                PIC 9  VALUE ZEROS.
+01  Num2                                PIC 9  VALUE ZEROS.
+01  Result                              PIC 99 VALUE ZEROS.
+
+PROCEDURE DIVISION.
+Calc-Result.
+    ACCEPT Num1.
+    MULTIPLY Num1 BY Num2 GIVING Result.
+    ACCEPT Num2.
+    DISPLAY "Result is = ", Result.
+    STOP RUN.
+</code></pre>
+						<copyright-notice type="examples"></copyright-notice>
+						<last-updated></last-updated>
+						<edit-on-github></edit-on-github>
+					</div>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>
