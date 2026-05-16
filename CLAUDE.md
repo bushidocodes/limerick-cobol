@@ -53,13 +53,13 @@ Prettier runs automatically in CI on every PR merge. Run it locally after editin
 
 Several generated files must be kept in sync with the source HTML. Run the relevant script after the triggering change and commit the output alongside it.
 
-| Script | When to run |
-|---|---|
-| `npm run build:sitemap` | After adding, removing, or renaming any HTML page (or changing `scripts/collect-html.js`) |
-| `npm run build:search-index` | After adding or renaming pages, or changing page titles |
-| `npm run build:lesson-index` | After adding, removing, or reordering course lessons |
-| `npm run build:prev-next-links` | After reordering course lessons |
-| `npm run build:reading-time` | After substantially editing course page body text |
+| Script                          | When to run                                                                               |
+| ------------------------------- | ----------------------------------------------------------------------------------------- |
+| `npm run build:sitemap`         | After adding, removing, or renaming any HTML page (or changing `scripts/collect-html.js`) |
+| `npm run build:search-index`    | After adding or renaming pages, or changing page titles                                   |
+| `npm run build:lesson-index`    | After adding, removing, or reordering course lessons                                      |
+| `npm run build:prev-next-links` | After reordering course lessons                                                           |
+| `npm run build:reading-time`    | After substantially editing course page body text                                         |
 
 `npm run check` runs the full suite (examples, search-index, validate, assets, img-dims, links, a11y) — use it before opening a PR when multiple generators may be affected.
 
