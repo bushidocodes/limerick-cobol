@@ -2033,6 +2033,35 @@ nav.page-breadcrumbs {
 	color: var(--color-text-muted);
 }
 
+/* Narrow viewports: keep the breadcrumb trail on a single row by clipping
+   the current-page leaf with an ellipsis. The h1 immediately below repeats
+   the leaf title in full, so truncating it here loses no information. */
+@media (max-width: 600px) {
+	.breadcrumbs-list {
+		flex-wrap: nowrap;
+		min-width: 0;
+	}
+
+	.breadcrumbs-item {
+		min-width: 0;
+		flex-shrink: 0;
+	}
+
+	.breadcrumbs-item:last-child {
+		flex-shrink: 1;
+		overflow: hidden;
+	}
+
+	.breadcrumbs-current {
+		display: inline-block;
+		max-width: 100%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		vertical-align: bottom;
+	}
+}
+
 /* ============================================================================
    course-sidebar custom element (MDN-style left rail).
    Light DOM. Auto-injected by components/course-sidebar.js on pages within
