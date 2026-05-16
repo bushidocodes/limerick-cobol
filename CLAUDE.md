@@ -35,6 +35,12 @@ npm run validate
 
 Runs `html-validate` against all HTML pages. Run after any HTML edits.
 
+```bash
+npm run links
+```
+
+Checks for dead links. Run after any edits that add, remove, or change `href` or `src` values.
+
 ## Preview server
 
 The launch.json server name is `limerick-cobol` (serves the repo root via `http-server`). Start it with `preview_start("limerick-cobol")` — port is auto-assigned. Use the preview tools to verify layout, breadcrumb, and hero-title changes before committing.
