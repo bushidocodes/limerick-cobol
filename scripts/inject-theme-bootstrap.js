@@ -53,11 +53,14 @@ for (const file of walk(ROOT)) {
 	let html = fs.readFileSync(file, "utf8");
 
 	// Check if the file has the bootstrap script and replace it
-	const bootstrapRe = /(\t\t)<script>\s*\(function\s*\(\)\s*\{\s*var\s+t\s*=\s*localStorage\.getItem\("lc-theme"\);[^}]*?\}\)\(\);\s*<\/script>/s;
+	const bootstrapRe =
+		/(\t\t)<script>\s*\(function\s*\(\)\s*\{\s*var\s+t\s*=\s*localStorage\.getItem\("lc-theme"\);[^}]*?\}\)\(\);\s*<\/script>/s;
 	const match = html.match(bootstrapRe);
 	if (match) {
 		const indent = match[1]; // Capture the original indentation
-		const indentedBootstrap = BOOTSTRAP.split('\n').map((line, i) => i === 0 ? indent + line.slice(2) : indent + line.slice(2)).join('\n');
+		const indentedBootstrap = BOOTSTRAP.split("\n")
+			.map((line, i) => (i === 0 ? indent + line.slice(2) : indent + line.slice(2)))
+			.join("\n");
 		const newHtml = html.replace(bootstrapRe, indentedBootstrap);
 		fs.writeFileSync(file, newHtml);
 		touched++;
