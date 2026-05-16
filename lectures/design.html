@@ -2,6 +2,22 @@
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") {
+					document.documentElement.setAttribute("data-theme", t);
+					var color = t === "dark" ? "#1a1a1a" : "#ffffff";
+					var meta = document.querySelector('meta[name="theme-color"]:not([media])');
+					if (!meta) {
+						meta = document.createElement("meta");
+						meta.name = "theme-color";
+						document.head.appendChild(meta);
+					}
+					meta.content = color;
+				}
+			})();
+		</script>
 		<title>design - COBOL Lecture</title>
 		<meta name="description" content="COBOL lecture slides covering design." />
 		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/lectures/design.html" />
