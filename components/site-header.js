@@ -30,6 +30,8 @@
 		{ label: "Lectures", dir: "lectures", entry: "lectures/index.html" },
 	];
 
+	const MOBILE_NAV_ID = "site-nav-mobile";
+
 	function ensureScript(filename) {
 		if (document.querySelector(`script[src*="components/${filename}"]`)) return;
 		const s = document.createElement("script");
@@ -46,14 +48,17 @@
 	ensureScript("breadcrumbs.js");
 	ensureScript("course-sidebar.js");
 
-	function buildNavHTML() {
+	function buildNavItems() {
 		const path = location.pathname;
-		const items = NAV_SECTIONS.map((s) => {
+		return NAV_SECTIONS.map((s) => {
 			const isActive = new RegExp("/" + s.dir + "/").test(path);
 			const attrs = isActive ? ' data-active aria-current="page"' : "";
 			return `<li><a href="${baseUrl}${s.entry}"${attrs}>${s.label}</a></li>`;
 		}).join("");
-		return `<nav class="site-nav" aria-label="Primary"><ul>${items}</ul></nav>`;
+	}
+
+	function buildNavHTML() {
+		return `<nav class="site-nav" aria-label="Primary"><ul>${buildNavItems()}</ul></nav>`;
 	}
 
 	function inject() {
@@ -63,13 +68,61 @@
 		header.innerHTML =
 			`<a class="site-header__logo" href="${homeUrl}">` +
 			`<img src="${faviconUrl}" alt="COBOL Tutorial" width="32" height="28">` +
-			`</a>${buildNavHTML()}<site-search></site-search>`;
+			`</a>${buildNavHTML()}<site-search></site-search>` +
+			`<button class="site-header__hamburger" type="button" ` +
+			`aria-expanded="false" aria-controls="${MOBILE_NAV_ID}" ` +
+			`aria-label="Open navigation">` +
+			`<span aria-hidden="true">&#9776;</span>` +
+			`</button>` +
+			`<nav id="${MOBILE_NAV_ID}" class="site-nav-mobile" aria-label="Primary" hidden>` +
+			`<ul>${buildNavItems()}</ul>` +
+			`</nav>`;
+
 		const skipLink = document.body.querySelector("a.skip-link");
 		if (skipLink) {
 			skipLink.insertAdjacentElement("afterend", header);
 		} else {
 			document.body.prepend(header);
 		}
+
+		const btn = header.querySelector(".site-header__hamburger");
+		const mobileNav = header.querySelector(`#${MOBILE_NAV_ID}`);
+
+		function openMenu() {
+			mobileNav.removeAttribute("hidden");
+			btn.setAttribute("aria-expanded", "true");
+			btn.setAttribute("aria-label", "Close navigation");
+			const first = mobileNav.querySelector("a");
+			if (first) first.focus();
+		}
+
+		function closeMenu(returnFocus) {
+			mobileNav.setAttribute("hidden", "");
+			btn.setAttribute("aria-expanded", "false");
+			btn.setAttribute("aria-label", "Open navigation");
+			if (returnFocus) btn.focus();
+		}
+
+		btn.addEventListener("click", () => {
+			if (btn.getAttribute("aria-expanded") === "true") {
+				closeMenu(true);
+			} else {
+				openMenu();
+			}
+		});
+
+		mobileNav.addEventListener("keydown", (e) => {
+			if (e.key === "Escape") {
+				closeMenu(true);
+			}
+		});
+
+		document.addEventListener("click", (e) => {
+			if (btn.getAttribute("aria-expanded") === "true" && !header.contains(e.target)) {
+				closeMenu(false);
+			}
+		});
+
 		measureStickyHeights(header);
 	}
 
