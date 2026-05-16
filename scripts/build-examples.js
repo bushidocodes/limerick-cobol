@@ -121,6 +121,13 @@ const MANIFEST = [
 		desc: "Reads the Indexed file sequentially on whichever key is chosen by the user. Displays all the records in the file.",
 		fixtures: ["SEQVIDEO.dat"],
 	},
+	{
+		file: "Indexed/WirthMemLib.html",
+		cbl: "WirthMemLib.cbl",
+		title: "Niklaus Wirth Memorial Library – Royalty Payment Report",
+		crumb: "Wirth Mem Lib Royalties",
+		desc: "A comprehensive example using two Indexed files (books and authors) to produce a quarterly royalty payment report grouped by agent and author.",
+	},
 	// ── Merge ───────────────────────────────────────────────────────────────
 	{
 		file: "Merge/Merge.html",
