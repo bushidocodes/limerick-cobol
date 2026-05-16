@@ -103,6 +103,7 @@ const MANIFEST = [
 		title: "Reading an Indexed file directly by key",
 		crumb: "Direct Read on Indexed File",
 		desc: "Does a direct read on the Indexed file. Allows the user to choose which of the keys to use for the direct read.",
+		fixtures: ["SEQVIDEO.dat"],
 	},
 	{
 		file: "Indexed/Seq2Index.html",
@@ -110,6 +111,7 @@ const MANIFEST = [
 		title: "Creating an Indexed file from a sequential file",
 		crumb: "Sequential to Indexed",
 		desc: "Creates a direct access Indexed file from a Sequential file.",
+		fixtures: ["SEQVIDEO.dat"],
 	},
 	{
 		file: "Indexed/SeqReadIdx.html",
@@ -117,6 +119,7 @@ const MANIFEST = [
 		title: "Reading an Indexed file sequentially on any of its keys",
 		crumb: "Sequential Read of Indexed File",
 		desc: "Reads the Indexed file sequentially on whichever key is chosen by the user. Displays all the records in the file.",
+		fixtures: ["SEQVIDEO.dat"],
 	},
 	// ── Merge ───────────────────────────────────────────────────────────────
 	{
@@ -174,6 +177,7 @@ const MANIFEST = [
 		title: "Read Relative File example program",
 		crumb: "Read Relative File",
 		desc: "Reads the Relative file and displays the records. Allows the user to choose to read sequentially through all the records or to use a key to read a single record directly.",
+		fixtures: ["SEQSUPP.dat"],
 	},
 	{
 		file: "Relative/Seq2Rel.html",
@@ -181,6 +185,7 @@ const MANIFEST = [
 		title: "Sequential to Relative File example program",
 		crumb: "Sequential to Relative",
 		desc: "Creates a direct access Relative file from a Sequential File.",
+		fixtures: ["SEQSUPP.dat"],
 	},
 	// ── ReportWriter ────────────────────────────────────────────────────────
 	{
@@ -218,6 +223,7 @@ const MANIFEST = [
 		title: "Inserting records in a Sequential File",
 		crumb: "Insert Records",
 		desc: "Demonstrates how to insert records into a sequential file from a file of transaction records. A new file is created which contains the inserted records.",
+		fixtures: ["STUDENTS.dat", "TRANSINS.dat"],
 	},
 	// ── SeqRead ─────────────────────────────────────────────────────────────
 	{
@@ -226,6 +232,7 @@ const MANIFEST = [
 		title: "Reading a Sequential File",
 		crumb: "Sequential Read",
 		desc: 'An example program that reads a sequential file and displays the records. Uses the Condition Name (level 88) "EndOfFile" to signal when the end of the file has been reached.',
+		fixtures: ["STUDENTS.dat"],
 	},
 	{
 		file: "SeqRead/SEQREADno88.html",
@@ -233,6 +240,7 @@ const MANIFEST = [
 		title: "Reading a Sequential File",
 		crumb: "Sequential Read (without level 88s)",
 		desc: "An example program that reads a sequential file and displays the records. This version does not use level 88's to signal when the end of the file has been reached.",
+		fixtures: ["STUDENTS.dat"],
 	},
 	// ── SeqRpt ──────────────────────────────────────────────────────────────
 	{
@@ -280,6 +288,7 @@ const MANIFEST = [
 		title: "String handling - Unpacking and size-validating comma separated records",
 		crumb: "UNSTRING File Example",
 		desc: "An example showing the unpacking of comma-separated records and the size validation of the unpacked fields.",
+		fixtures: ["VarLen.dat"],
 	},
 	// ── SubProg/DateValid (depth 3) ──────────────────────────────────────────
 	{
@@ -360,6 +369,35 @@ function truncate(text, max = 155) {
 	if (text.length <= max) return text;
 	const cut = text.lastIndexOf(" ", max);
 	return (cut > 80 ? text.slice(0, cut) : text.slice(0, max)).trimEnd();
+}
+
+const MAX_FIXTURE_ROWS = 5;
+
+/**
+ * Build collapsible <details> blocks for each fixture file listed in entry.fixtures.
+ * Missing files are silently skipped so entries can be declared defensively.
+ */
+function sampleDataHtml(entry) {
+	if (!entry.fixtures || !entry.fixtures.length) return "";
+	const dir = path.join(EXAMPLES_DIR, path.dirname(entry.file));
+	let html = "";
+	for (const dat of entry.fixtures) {
+		const datPath = path.join(dir, dat);
+		if (!fs.existsSync(datPath)) continue;
+		const raw = fs.readFileSync(datPath, "utf8").replace(/\r\n/g, "\n");
+		const allLines = raw.split("\n").filter((l) => l.length > 0);
+		const shown = allLines.slice(0, MAX_FIXTURE_ROWS);
+		const total = allLines.length;
+		const suffix =
+			total > MAX_FIXTURE_ROWS ? ` (first ${MAX_FIXTURE_ROWS} of ${total} records)` : ` (${total} records)`;
+		const escaped = escapeHtml(shown.join("\n"));
+		html +=
+			`\t\t\t\t\t\t<details class="sample-data">\n` +
+			`\t\t\t\t\t\t\t<summary>Sample data: ${dat}${suffix}</summary>\n` +
+			`\t\t\t\t\t\t\t<pre>${escaped}</pre>\n` +
+			`\t\t\t\t\t\t</details>\n`;
+	}
+	return html;
 }
 
 /**
@@ -443,6 +481,7 @@ function buildPage(entry) {
 	const escapedSource = escapeHtml(cblSource);
 
 	const relatedEl = relatedContentHtml(entry.file);
+	const sampleDataEl = sampleDataHtml(entry);
 
 	const runInCeScript = entry.runInCe ? `\t\t<script src="${pfx}components/run-in-ce.js" defer></script>\n` : "";
 	const runInCeToolbarEl = entry.runInCe ? `\t\t\t\t\t\t\t<run-in-ce></run-in-ce>\n` : "";
@@ -505,7 +544,7 @@ ${runInCeScript}\t</head>
 \t\t\t\t\t<div class="section-full">
 \t\t\t\t\t\t<page-hero title="${metaTitle}"></page-hero>
 \t\t\t\t\t\t<p>${entry.desc}</p>
-\t\t\t\t\t\t\t<div class="code-toolbar">
+${sampleDataEl}\t\t\t\t\t\t\t<div class="code-toolbar">
 \t\t\t\t\t\t\t<a href="${entry.cbl}" download class="download-btn">Download ${entry.cbl}</a>
 ${runInCeToolbarEl}\t\t\t\t\t\t</div>
 \t\t\t\t\t\t<pre class="language-cobol"><code class="language-cobol">${escapedSource}
