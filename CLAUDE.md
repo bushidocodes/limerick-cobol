@@ -88,7 +88,7 @@ Several generated files must be kept in sync with the source HTML. Run the relev
 
 ## Pull requests
 
-- Reference the issue being fixed with `Fixes #NNN` in the commit message body so GitHub closes it on merge.
+- Reference the issue being fixed with `Fixes #NNN` in **both** the commit message body and the PR body. GitHub only auto-closes issues when the exact keyword form (`Fixes #NNN`, `Closes #NNN`, etc.) appears — plain references like `(issue #NNN)` do not trigger auto-close.
 - Open PRs with `gh pr create` from the worktree branch.
 
 ## CSS architecture
