@@ -441,7 +441,17 @@ function buildPage(entry) {
 \t\t<script>
 \t\t\t(function () {
 \t\t\t\tvar t = localStorage.getItem("lc-theme");
-\t\t\t\tif (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+\t\t\t\tif (t === "dark" || t === "light") {
+\t\t\t\t\tdocument.documentElement.setAttribute("data-theme", t);
+\t\t\t\t\tvar color = t === "dark" ? "#1a1a1a" : "#ffffff";
+\t\t\t\t\tvar meta = document.querySelector('meta[name="theme-color"]:not([media])');
+\t\t\t\t\tif (!meta) {
+\t\t\t\t\t\tmeta = document.createElement("meta");
+\t\t\t\t\t\tmeta.name = "theme-color";
+\t\t\t\t\t\tdocument.head.appendChild(meta);
+\t\t\t\t\t}
+\t\t\t\t\tmeta.content = color;
+\t\t\t\t}
 \t\t\t})();
 \t\t</script>
 \t\t<title>${entry.title}</title>
