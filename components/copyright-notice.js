@@ -18,7 +18,11 @@ const COMPONENTS_DIR = (() => {
 function ensureEditOnGithubLoaded() {
 	if (customElements.get("edit-on-github")) return;
 	if (!COMPONENTS_DIR) return;
-	if (document.querySelector('script[data-component="edit-on-github"]')) return;
+	// Match both dynamically-added (data-component) and manually-included
+	// <script src="…/edit-on-github.js"> tags to avoid loading the script twice
+	// when a page hand-includes it (which re-runs the top-level `const`
+	// declarations and throws "REPO_EDIT_URL has already been declared").
+	if (document.querySelector('script[data-component="edit-on-github"], script[src$="/edit-on-github.js"]')) return;
 	const s = document.createElement("script");
 	s.src = COMPONENTS_DIR + "edit-on-github.js";
 	s.defer = true;
@@ -35,7 +39,10 @@ class CopyrightNotice extends HTMLElement {
 			${this._getContent(type)}
 		`;
 		// Insert after <last-updated> sibling when present so the footer order is:
-		// copyright → last updated → help improve this page.
+		// copyright → last updated → help improve this page. Skip if the page
+		// already includes its own <edit-on-github> — otherwise example pages
+		// (which hand-include both) get the banner rendered twice.
+		if (document.querySelector("edit-on-github")) return;
 		const anchor = this.nextElementSibling?.tagName === "LAST-UPDATED" ? this.nextElementSibling : this;
 		anchor.insertAdjacentElement("afterend", document.createElement("edit-on-github"));
 	}
