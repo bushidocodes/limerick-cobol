@@ -2250,3 +2250,34 @@ course-sidebar {
 	border-color: #555;
 	color: #e0e0e0;
 }
+
+/* Sample data viewer (examples/*.html) */
+
+.sample-data {
+	border: 1px solid var(--color-border-soft);
+	border-radius: 3px;
+	background-color: var(--color-code-bg);
+	margin: 1rem 0;
+}
+
+.sample-data summary {
+	cursor: pointer;
+	padding: 3px 6px;
+	list-style: none;
+}
+
+.sample-data summary::before {
+	content: "▶ ";
+	font-size: 0.7em;
+}
+
+details[open].sample-data summary::before {
+	content: "▼ ";
+}
+
+.sample-data > pre {
+	padding: 4px 8px;
+	margin: 0;
+	overflow-x: auto;
+	white-space: pre;
+}
