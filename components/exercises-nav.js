@@ -11,10 +11,16 @@ class ExercisesNav extends HTMLElement {
 		const EXERCISES = window.COBOL_EXERCISES;
 		if (!EXERCISES) return;
 
-		// Match against the last two path segments (subdir/file.html) since each
-		// exercise lives in its own subdirectory under exercises/.
+		// Build currentFile as a path relative to the exercises/ directory so it
+		// matches entries in COBOL_EXERCISES regardless of nesting depth.
+		// Simple exercises live directly in exercises/ (depth 0, e.g. "CountDown.html");
+		// exam/project pages live one level deeper (depth 1, e.g. "Exm-Foo/Exm-Foo.html").
 		const segments = window.location.pathname.split("/").filter(Boolean);
-		const currentFile = segments.slice(-2).join("/");
+		const exercisesIdx = segments.lastIndexOf("exercises");
+		const relSegments = exercisesIdx >= 0 ? segments.slice(exercisesIdx + 1) : segments.slice(-2);
+		const currentFile = relSegments.join("/");
+		const depth = relSegments.length - 1;
+		const prefix = depth > 0 ? "../".repeat(depth) : "";
 
 		const index = EXERCISES.findIndex((e) => e.file === currentFile);
 		if (index === -1) return;
@@ -23,11 +29,11 @@ class ExercisesNav extends HTMLElement {
 		const next = index < EXERCISES.length - 1 ? EXERCISES[index + 1] : null;
 
 		const prevHTML = prev
-			? `<a class="lesson-nav-prev" href="../${prev.file}">← Previous: ${prev.title}</a>`
+			? `<a class="lesson-nav-prev" href="${prefix}${prev.file}">← Previous: ${prev.title}</a>`
 			: `<span></span>`;
 		const positionHTML = `<span class="lesson-nav-position">Exercise ${index + 1} of ${EXERCISES.length}</span>`;
 		const nextHTML = next
-			? `<a class="lesson-nav-next" href="../${next.file}">Next: ${next.title} →</a>`
+			? `<a class="lesson-nav-next" href="${prefix}${next.file}">Next: ${next.title} →</a>`
 			: `<span></span>`;
 
 		this.innerHTML = `<nav class="lesson-nav" aria-label="Exercise navigation">${prevHTML}${positionHTML}${nextHTML}</nav>`;
