@@ -1731,6 +1731,11 @@ copyright-notice .left {
 	top: 100%;
 	margin-top: 4px;
 	max-height: 60vh;
+	/* Both axes must be explicit. Setting only overflow-y leaves overflow-x at
+	   the spec-mandated computed value of `auto` (whenever the other axis is
+	   non-visible), which on narrow viewports caused a stray horizontal
+	   scrollbar under long result rows. */
+	overflow-x: hidden;
 	overflow-y: auto;
 	background-color: var(--color-bg);
 	border: 1px solid var(--color-border-mute);
@@ -1770,6 +1775,11 @@ copyright-notice .left {
 .site-search__result-title {
 	font-weight: bold;
 	color: var(--color-link);
+	/* Allow the flex item to shrink and wrap when titles outgrow the dropdown
+	   width (the surrounding row is display: flex, which sets min-width: auto
+	   on its children by default). */
+	min-width: 0;
+	overflow-wrap: anywhere;
 }
 
 .site-search__result-section {
