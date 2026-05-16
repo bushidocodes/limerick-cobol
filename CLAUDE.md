@@ -41,6 +41,12 @@ npm run links
 
 Checks for dead links. Run after any edits that add, remove, or change `href` or `src` values.
 
+**Windows note:** `npm run links` shells out to `start-server-and-test`, which may not be on PATH. If it fails, run the checker directly against the already-running preview server:
+
+```bash
+npx linkinator http://localhost:<PORT> --config linkinator.config.json
+```
+
 ## Preview server
 
 The launch.json server name is `limerick-cobol` (serves the repo root via `http-server`). Start it with `preview_start("limerick-cobol")` — port is auto-assigned. Use the preview tools to verify layout, breadcrumb, and hero-title changes before committing.

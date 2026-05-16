@@ -23,8 +23,27 @@
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content="TC-Search2 - COBOL Course Animation" />
 		<meta name="twitter:description" content="COBOL programming lesson on TC-Search2." />
+		<script>
+			(function () {
+				var t = localStorage.getItem("lc-theme");
+				if (t === "dark" || t === "light") {
+					document.documentElement.setAttribute("data-theme", t);
+					var color = t === "dark" ? "#1a1a1a" : "#ffffff";
+					var meta = document.querySelector('meta[name="theme-color"]:not([media])');
+					if (!meta) {
+						meta = document.createElement("meta");
+						meta.name = "theme-color";
+						document.head.appendChild(meta);
+					}
+					meta.content = color;
+				}
+			})();
+		</script>
+		<link href="../css/course.css" rel="stylesheet" />
+		<link href="../css/course-components.css" rel="stylesheet" />
 	</head>
 	<body style="margin: 0; padding: 0">
+		<a href="../../index.html" class="viewer-back-link">&#8592; Back to Course</a>
 		<iframe
 			src="../build-viewer.html?deck=TC-Search2"
 			style="border: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%"
