@@ -45,6 +45,54 @@
 		lectures: { label: "Lectures", entry: "lectures/index.html" },
 	};
 
+	// Human-readable labels for intermediate directories that have slugs
+	// unsuitable for display (Exm-/Prj- prefixes, compressed words, etc.).
+	// Keyed on the site-relative path of the directory (no leading slash).
+	const FOLDER_LABELS = {
+		// exercises — exam papers
+		"exercises/COBOLExams": "COBOL Exams",
+		"exercises/Exm-AcmeStockReorder": "ACME Stock Reorder Exam",
+		"exercises/Exm-AromaOilFileMainRpt": "Aromamora Oil File Maintenance Exam",
+		"exercises/Exm-AromaSalesRpt": "Aromamora Sales Report Exam",
+		"exercises/Exm-BestSellersRpt": "Folio Best Sellers Report Exam",
+		"exercises/Exm-BookshopLectReqRpt": "Campus Bookshop Report Exam",
+		"exercises/Exm-CSISEmailDomain": "CSIS Email Domain Exam",
+		"exercises/Exm-DueSubsRpt": "NetNews Due Subscriptions Exam",
+		"exercises/Exm-FileConversion": "File Conversion Exam",
+		"exercises/Exm-FlyByNightTravel": "Fly By Night Travel Exam",
+		"exercises/Exm-RoyaltyPaymentsRpt": "Library Royalty Payments Exam",
+		"exercises/Exm-SFbyMail": "Science Fiction by Mail Exam",
+		"exercises/Exm-StudFeesRpt": "Student Fee Payment Exam",
+		"exercises/Exm-TopSupplierRpt": "Top Video Suppliers Exam",
+		"exercises/Exm-USSRshipRpt": "USSR Naval Vessels Exam",
+		// exercises — projects
+		"exercises/Prj-AromaInvoicesRpt": "Aromamora Invoices Report Project",
+		"exercises/Prj-AromaSalesRpt": "Aromamora Sales Report Project",
+		"exercises/Prj-CAOPointsCalc": "CAO Points Calculator Project",
+		"exercises/Prj-MunsterSurnamesFreqRpt": "Munster Surnames Frequency Project",
+		"exercises/Prj-NewtronicsFileMaint": "Newtronics File Maintenance Project",
+		"exercises/Proj-CSISEvalform": "CSIS Evaluation Form Project",
+		// examples
+		"examples/Accept": "ACCEPT & DISPLAY",
+		"examples/Conditn": "Conditions & IF",
+		"examples/Indexed": "Indexed Files",
+		"examples/Merge": "Merge Files",
+		"examples/Perform": "PERFORM",
+		"examples/Relative": "Relative Files",
+		"examples/ReportWriter": "Report Writer",
+		"examples/SeqIns": "Sequential File Insert",
+		"examples/SeqRead": "Sequential File Read",
+		"examples/SeqRpt": "Sequential File Report",
+		"examples/SeqWrite": "Sequential File Write",
+		"examples/Sort": "SORT",
+		"examples/Strings": "String Handling",
+		"examples/SubProg": "Subprograms",
+		"examples/SubProg/DateValid": "Date Validation",
+		"examples/SubProg/DayDiff": "Day Difference",
+		"examples/SubProg/Multiply": "Multiply Numbers",
+		"examples/Tables": "Tables",
+	};
+
 	function tidyLeafLabel() {
 		const t = (document.title || "").trim();
 		const parts = t.split(/\s+[-—–|]\s+/);
@@ -79,7 +127,8 @@
 			} else {
 				// Intermediate directory with no guaranteed index page —
 				// render as plain text rather than a 404-prone link.
-				label = part.replace(/[-_]/g, " ");
+				const key = parts.slice(0, i + 1).join("/");
+				label = FOLDER_LABELS[key] || part.replace(/[-_]/g, " ");
 				href = null;
 			}
 			crumbs.push({ href, label });

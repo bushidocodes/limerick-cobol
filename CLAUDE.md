@@ -35,6 +35,23 @@ npm run validate
 
 Runs `html-validate` against all HTML pages. Run after any HTML edits.
 
+## Preview server
+
+The launch.json server name is `limerick-cobol` (serves the repo root via `http-server`). Start it with `preview_start("limerick-cobol")` — port is auto-assigned. Use the preview tools to verify layout, breadcrumb, and hero-title changes before committing.
+
+## Formatting
+
+```bash
+npx prettier --write .
+```
+
+Prettier runs automatically in CI on every PR merge. Run it locally after editing JS or JSON files to avoid a style-only follow-up commit. HTML files are hand-authored and intentionally excluded from prettier.
+
+## Pull requests
+
+- Reference the issue being fixed with `Fixes #NNN` in the commit message body so GitHub closes it on merge.
+- Open PRs with `gh pr create` from the worktree branch.
+
 ## Key conventions
 
 - `<page-hero title="…">` is the source of truth for page titles. Keep `<title>`, `og:title`, and `twitter:title` in sync with it.
