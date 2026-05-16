@@ -4,16 +4,25 @@ Static site for COBOL programming exercises. Hand-authored HTML — no build ste
 
 ## Before starting any work
 
-Check that the branch is current with master:
+Fetch, then check that the branch is current with master:
 
 ```bash
+git fetch origin
 git rev-list --count HEAD..origin/master
 ```
+
+**Always run `git fetch origin` first.** Without it, the local remote-tracking ref may be stale and the count will appear to be 0 even when origin/master has moved ahead.
 
 If the count is greater than 0, rebase **before** making any changes:
 
 ```bash
 git rebase origin/master
+```
+
+If the current branch has already been merged into master, create a fresh branch from origin/master instead of adding more commits to it:
+
+```bash
+git checkout -b fix/<description> origin/master
 ```
 
 A stale branch inflates the PR diff with unrelated commits and causes conflicts on stash pop. Never use `git stash + git rebase + git stash pop` — commit work-in-progress first, then rebase.
