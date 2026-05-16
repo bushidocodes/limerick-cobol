@@ -213,6 +213,15 @@ body code[class*="language-"] {
 	overflow-wrap: break-word;
 }
 
+/* Reserve room on the right for the absolutely-positioned .copy-button
+   injected by components/copy-button.js (top: 0.4em; right: 0.4em). Without
+   this, short one-line snippets and any line that reaches the right edge
+   render directly under the button. 4em comfortably clears the button at
+   its mobile tap-target size (50×44 from PR #606). */
+body pre[class*="language-"] {
+	padding-right: 4em;
+}
+
 body {
 	-webkit-text-size-adjust: 100%;
 }
