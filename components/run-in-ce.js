@@ -7,18 +7,46 @@
 // ClientState payload as base64 and links to /clientstate/<base64>, which is the
 // no-shortener form of CE permalinks documented in the Compiler Explorer API.
 //
+// Optional attribute:
+//   extra="foo.cbl bar.cbl"  — space-separated list of additional .cbl files to
+//   include as the CE session's `files` array. Paths are resolved relative to the
+//   current page URL. Use this for multi-file examples where the main source calls
+//   external subprograms.
+//
 // Light DOM (no shadow root) so .run-in-ce styles in course-components.css apply.
 
 const COMPILER_ID = "gnucobol32";
 const COMPILER_OPTIONS = "-x -free";
 
 class RunInCE extends HTMLElement {
-	connectedCallback() {
+	async connectedCallback() {
 		const code = document.querySelector('pre[class*="language-cobol"] code');
 		const source = code ? code.textContent : "";
 		if (!source.trim()) return;
 
-		const url = buildCEUrl(source);
+		const extra = this.getAttribute("extra");
+		let files = [];
+
+		if (extra) {
+			const filenames = extra.trim().split(/\s+/);
+			const results = await Promise.all(
+				filenames.map(async (filename) => {
+					try {
+						const url = new URL(filename, window.location.href);
+						const resp = await fetch(url);
+						if (!resp.ok) return null;
+						const contents = await resp.text();
+						const basename = filename.split("/").pop();
+						return { filename: basename, contents };
+					} catch {
+						return null;
+					}
+				})
+			);
+			files = results.filter(Boolean);
+		}
+
+		const url = buildCEUrl(source, files);
 
 		const link = document.createElement("a");
 		link.className = "run-in-ce";
@@ -30,23 +58,23 @@ class RunInCE extends HTMLElement {
 	}
 }
 
-function buildCEUrl(source) {
-	const state = {
-		sessions: [
+function buildCEUrl(source, files = []) {
+	const session = {
+		id: 1,
+		language: "cobol",
+		source: source,
+		compilers: [{ id: COMPILER_ID, options: COMPILER_OPTIONS }],
+		executors: [
 			{
-				id: 1,
-				language: "cobol",
-				source: source,
-				compilers: [{ id: COMPILER_ID, options: COMPILER_OPTIONS }],
-				executors: [
-					{
-						compiler: { id: COMPILER_ID, options: COMPILER_OPTIONS, libs: [] },
-						stdin: "",
-					},
-				],
+				compiler: { id: COMPILER_ID, options: COMPILER_OPTIONS, libs: [] },
+				stdin: "",
 			},
 		],
 	};
+	if (files.length > 0) {
+		session.files = files;
+	}
+	const state = { sessions: [session] };
 	// CE's /clientstate/ endpoint accepts base64-encoded JSON. btoa is Latin1-only,
 	// so escape any code points above 0x7E to \uXXXX before encoding. The JSON
 	// parser on the server side decodes the escapes back. In practice COBOL source
