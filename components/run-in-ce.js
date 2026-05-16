@@ -41,7 +41,7 @@ class RunInCE extends HTMLElement {
 					} catch {
 						return null;
 					}
-				})
+				}),
 			);
 			files = results.filter(Boolean);
 		}
