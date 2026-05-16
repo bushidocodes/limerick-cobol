@@ -3,6 +3,16 @@
 // Paths are relative to the exercises/ root (subdir/file.html).
 
 window.COBOL_EXERCISES = Object.freeze([
+	// --- Simple Programming Exercises ---
+	{ file: "GettingStarted.html", title: "Getting Started" },
+	{ file: "CountDown.html", title: "The Calculator and Countdown" },
+	{ file: "SeqRead.html", title: "Reading Sequential Files" },
+	{ file: "SeqReadIf.html", title: "Counting Records in a Sequential File" },
+	{ file: "SeqWrite.html", title: "Writing Records to a Sequential File" },
+	{ file: "SeqInsert.html", title: "Inserting Records in a Sequential File" },
+	{ file: "SeqUpdate.html", title: "Updating a Sequential File" },
+	{ file: "SortIP.html", title: "Sorting a Sequential File" },
+	{ file: "MonthTable.html", title: "Using Tables" },
 	// --- Programming Exam Specifications ---
 	{ file: "Exm-StudFeesRpt/Exm-StudPay.html", title: "Student Fees Report" },
 	{ file: "Exm-AromaSalesRpt/Exm-AromaSalesSummaryRpt.html", title: "Aromamora Summary Sales" },
