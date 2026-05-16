@@ -1152,6 +1152,46 @@ body pre[class*="language-"] {
 }
 
 /* ============================================================================
+   File I/O notice (components/file-io-notice.js)
+   Shown on example pages where the COBOL source reads or writes named files.
+   Sits inside .code-toolbar and takes the full width below the download button.
+   ============================================================================ */
+
+file-io-notice {
+	display: block;
+	flex-basis: 100%;
+	padding: 0.55em 0.85em;
+	font-size: 0.875em;
+	line-height: 1.5;
+	border-left: 3px solid #4a90d9;
+	border-radius: 0 3px 3px 0;
+	background-color: #f0f6ff;
+	color: #1a3a5c;
+}
+
+file-io-notice p {
+	margin: 0;
+}
+
+file-io-notice a {
+	color: inherit;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) file-io-notice {
+		background-color: #192a3e;
+		border-color: #5b9bd5;
+		color: #c5d8f0;
+	}
+}
+
+:root[data-theme="dark"] file-io-notice {
+	background-color: #192a3e;
+	border-color: #5b9bd5;
+	color: #c5d8f0;
+}
+
+/* ============================================================================
    Theme-toggle button group (components/theme-toggle.js)
    Three side-by-side buttons: Light | Auto | Dark. The active button uses a
    filled style derived from the site's header palette so it's distinct without
