@@ -468,6 +468,9 @@ function buildPage(entry) {
 \t\t<script src="${pfx}components/related-content.js" defer></script>
 \t\t<script src="${pfx}components/copy-button.js" defer></script>
 \t\t<script src="${pfx}components/site-header.js" defer></script>
+\t\t<script src="${pfx}components/copyright-notice.js" defer></script>
+\t\t<script src="${pfx}components/last-updated.js" defer></script>
+\t\t<script src="${pfx}components/edit-on-github.js" defer></script>
 ${runInCeScript}\t</head>
 \t<body>
 \t\t<a class="skip-link" href="#main-content">Skip to main content</a>
@@ -482,7 +485,10 @@ ${runInCeScript}\t</head>
 ${runInCeToolbarEl}\t\t\t\t\t\t</div>
 \t\t\t\t\t\t<pre class="language-cobol"><code class="language-cobol">${escapedSource}
 </code></pre>
-${relatedEl}\t\t\t\t\t</div>
+${relatedEl}\t\t\t\t\t\t<copyright-notice type="examples"></copyright-notice>
+\t\t\t\t\t\t<last-updated></last-updated>
+\t\t\t\t\t\t<edit-on-github></edit-on-github>
+\t\t\t\t\t</div>
 \t\t\t\t</div>
 \t\t\t</div>
 \t\t</main>
