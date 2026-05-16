@@ -7,7 +7,7 @@ const fs = require("fs");
 const path = require("path");
 
 const REPO_ROOT = path.resolve(__dirname, "..");
-const SKIP_DIRS = new Set([".playwright-mcp", "node_modules", ".claude", "scripts"]);
+const SKIP_DIRS = new Set([".playwright-mcp", "node_modules", ".claude", "scripts", "ppz"]);
 const SKIP_FILES = new Set(["404.html"]);
 // Parameterized shells and meta-refresh stubs that must not be indexed or a11y-scanned directly.
 const SKIP_PATHS = new Set([
