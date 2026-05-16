@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en-GB">
+<html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
@@ -7,12 +7,22 @@
 		<script>
 			(function () {
 				var t = localStorage.getItem("lc-theme");
-				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+				if (t === "dark" || t === "light") {
+					document.documentElement.setAttribute("data-theme", t);
+					var color = t === "dark" ? "#1a1a1a" : "#ffffff";
+					var meta = document.querySelector('meta[name="theme-color"]:not([media])');
+					if (!meta) {
+						meta = document.createElement("meta");
+						meta.name = "theme-color";
+						document.head.appendChild(meta);
+					}
+					meta.content = color;
+				}
 			})();
 		</script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
-		<title>Zoom taxis DP291 Cobol project</title>
+		<title>CSIS Web Site Evaluation Form Report</title>
 		<meta
 			name="description"
 			content="Visitors to the CSIS web site are asked to fill in an evaluation form. The form requests the name of the visitor, his/her country of origin, his/her"
@@ -27,7 +37,7 @@
 			property="og:url"
 			content="https://bushidocodes.github.io/limerick-cobol/exercises/Proj-CSISEvalform/CSISEvalForm.html"
 		/>
-		<meta property="og:title" content="Zoom taxis DP291 Cobol project" />
+		<meta property="og:title" content="CSIS Web Site Evaluation Form Report" />
 		<meta
 			property="og:description"
 			content="Visitors to the CSIS web site are asked to fill in an evaluation form. The form requests the name of the visitor, his/her country of origin, his/her"
@@ -35,7 +45,7 @@
 		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/exercises.png" />
 		<!-- Twitter Card -->
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="Zoom taxis DP291 Cobol project" />
+		<meta name="twitter:title" content="CSIS Web Site Evaluation Form Report" />
 		<meta
 			name="twitter:description"
 			content="Visitors to the CSIS web site are asked to fill in an evaluation form. The form requests the name of the visitor, his/her country of origin, his/her"
