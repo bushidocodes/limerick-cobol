@@ -53,22 +53,6 @@
 		<link href="../../course/Resources/css/course.css" rel="stylesheet" />
 		<link href="../../course/Resources/css/course-components.css" rel="stylesheet" />
 		<style>
-			<!--
-			.Normal {
-			    font-size: 12.0pt;
-			    font-family: "Times New Roman";
-			}
-
-			.TableHead {
-			    text-align: center;
-			    font-size: 12.0pt;
-			    font-family: Times;
-			    font-variant: small-caps;
-			    font-weight: bold;
-			}
-			-->
-		</style>
-		<style>
 			/* Page-specific: CSS grid layout for the spec body and the
 			   StockNumber check-digit calculation breakdown. Preserved from
 			   the partial modernization that pre-dated the shared theme. */
@@ -159,554 +143,256 @@
 							type code in the first character position.&nbsp; The following transaction types have been
 							identified :-
 						</p>
-						<div style="margin-left: 62px; text-align: left">
-							<table class="data-table">
-								<tr bgcolor="#FFFFCC">
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">
-											<b><span style="text-transform: uppercase">Trans Type</span></b>
-										</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">
-											<b><span style="text-transform: uppercase">Description</span></b>
-										</p>
-									</td>
-								</tr>
-								<tr>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">1</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">Delete Stock Record</p>
-									</td>
-								</tr>
-								<tr>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">2</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">Insert Stock Record</p>
-									</td>
-								</tr>
-								<tr>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">3</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">Adjust Reorder Level</p>
-									</td>
-								</tr>
-								<tr>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">4</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">Adjust Reorder Qty</p>
-									</td>
-								</tr>
-								<tr>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">5</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">Adjust Price</p>
-									</td>
-								</tr>
-								<tr>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">6</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">Delete Supplier Record</p>
-									</td>
-								</tr>
-								<tr>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">7</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">Insert Supplier Record</p>
-									</td>
-								</tr>
-							</table>
-						</div>
+						<table class="data-table">
+							<tr>
+								<th>Trans Type</th>
+								<th>Description</th>
+							</tr>
+							<tr>
+								<td style="text-align: center">1</td>
+								<td style="text-align: center">Delete Stock Record</td>
+							</tr>
+							<tr>
+								<td style="text-align: center">2</td>
+								<td style="text-align: center">Insert Stock Record</td>
+							</tr>
+							<tr>
+								<td style="text-align: center">3</td>
+								<td style="text-align: center">Adjust Reorder Level</td>
+							</tr>
+							<tr>
+								<td style="text-align: center">4</td>
+								<td style="text-align: center">Adjust Reorder Qty</td>
+							</tr>
+							<tr>
+								<td style="text-align: center">5</td>
+								<td style="text-align: center">Adjust Price</td>
+							</tr>
+							<tr>
+								<td style="text-align: center">6</td>
+								<td style="text-align: center">Delete Supplier Record</td>
+							</tr>
+							<tr>
+								<td style="text-align: center">7</td>
+								<td style="text-align: center">Insert Supplier Record</td>
+							</tr>
+						</table>
 						<p>
 							<b>Transaction Record Descriptions</b><br />
 							Descriptions of the different types of transaction record are shown below.
 						</p>
 
-						<p style="text-align: left"><b>Delete Stock Record</b></p>
-						<div style="text-align: left">
-							<table class="data-table">
-								<tr bgcolor="#FFFFCC">
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">
-											<b><span style="text-transform: uppercase">FieldName</span></b>
-										</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">
-											<b><span style="text-transform: uppercase">Type</span></b>
-										</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">
-											<b><span style="text-transform: uppercase">Length</span></b>
-										</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">
-											<b><span style="text-transform: uppercase">Format</span></b>
-										</p>
-									</td>
-								</tr>
-								<tr>
-									<td class="Normal" style="vertical-align: top"><p>Transaction-Type</p></td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">Numeric</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">1</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">Value 1</p>
-									</td>
-								</tr>
-								<tr>
-									<td class="Normal" style="vertical-align: top"><p>Stock-Number</p></td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">Character</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">7</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">9999999</p>
-									</td>
-								</tr>
-							</table>
-						</div>
+						<p><b>Delete Stock Record</b></p>
+						<table class="data-table">
+							<tr>
+								<th>FieldName</th>
+								<th>Type</th>
+								<th>Length</th>
+								<th>Format</th>
+							</tr>
+							<tr>
+								<td>Transaction-Type</td>
+								<td style="text-align: center">Numeric</td>
+								<td style="text-align: center">1</td>
+								<td style="text-align: center">Value 1</td>
+							</tr>
+							<tr>
+								<td>Stock-Number</td>
+								<td style="text-align: center">Character</td>
+								<td style="text-align: center">7</td>
+								<td style="text-align: center">9999999</td>
+							</tr>
+						</table>
 
 						<p><b>Insert Stock Record</b></p>
-						<div style="text-align: left">
-							<table class="data-table">
-								<tr bgcolor="#FFFFCC">
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">
-											<b><span style="text-transform: uppercase">FieldName</span></b>
-										</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">
-											<b><span style="text-transform: uppercase">Type</span></b>
-										</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">
-											<b><span style="text-transform: uppercase">Length</span></b>
-										</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">
-											<b><span style="text-transform: uppercase">Format</span></b>
-										</p>
-									</td>
-								</tr>
-								<tr>
-									<td class="Normal" style="vertical-align: top"><p>Transaction-Type</p></td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">Numeric</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">1</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">Value 2</p>
-									</td>
-								</tr>
-								<tr>
-									<td class="Normal" style="vertical-align: top"><p>Stock-Number</p></td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">Numeric</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">7</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">9999999</p>
-									</td>
-								</tr>
-								<tr>
-									<td class="Normal" style="vertical-align: top"><p>Qty-In-Stock</p></td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">Numeric</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">5</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">99999</p>
-									</td>
-								</tr>
-								<tr>
-									<td class="Normal" style="vertical-align: top"><p>Price</p></td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">Numeric</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">6</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">9999.99</p>
-									</td>
-								</tr>
-								<tr>
-									<td class="Normal" style="vertical-align: top"><p>Reorder-Level</p></td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">Numeric</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">3</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">999</p>
-									</td>
-								</tr>
-								<tr>
-									<td class="Normal" style="vertical-align: top"><p>Reorder-Qty</p></td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">Numeric</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">5</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">99999</p>
-									</td>
-								</tr>
-								<tr>
-									<td class="Normal" style="vertical-align: top"><p>Supplier-Number</p></td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">Character</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">4</p>
-									</td>
-									<td class="Normal" style="vertical-align: top">
-										<p style="text-align: center">X999</p>
-									</td>
-								</tr>
-							</table>
-						</div>
+						<table class="data-table">
+							<tr>
+								<th>FieldName</th>
+								<th>Type</th>
+								<th>Length</th>
+								<th>Format</th>
+							</tr>
+							<tr>
+								<td>Transaction-Type</td>
+								<td style="text-align: center">Numeric</td>
+								<td style="text-align: center">1</td>
+								<td style="text-align: center">Value 2</td>
+							</tr>
+							<tr>
+								<td>Stock-Number</td>
+								<td style="text-align: center">Numeric</td>
+								<td style="text-align: center">7</td>
+								<td style="text-align: center">9999999</td>
+							</tr>
+							<tr>
+								<td>Qty-In-Stock</td>
+								<td style="text-align: center">Numeric</td>
+								<td style="text-align: center">5</td>
+								<td style="text-align: center">99999</td>
+							</tr>
+							<tr>
+								<td>Price</td>
+								<td style="text-align: center">Numeric</td>
+								<td style="text-align: center">6</td>
+								<td style="text-align: center">9999.99</td>
+							</tr>
+							<tr>
+								<td>Reorder-Level</td>
+								<td style="text-align: center">Numeric</td>
+								<td style="text-align: center">3</td>
+								<td style="text-align: center">999</td>
+							</tr>
+							<tr>
+								<td>Reorder-Qty</td>
+								<td style="text-align: center">Numeric</td>
+								<td style="text-align: center">5</td>
+								<td style="text-align: center">99999</td>
+							</tr>
+							<tr>
+								<td>Supplier-Number</td>
+								<td style="text-align: center">Character</td>
+								<td style="text-align: center">4</td>
+								<td style="text-align: center">X999</td>
+							</tr>
+						</table>
 
 						<p class="recorddesc"><b>Adjust Reorder Level</b></p>
 						<table class="data-table">
-							<tr bgcolor="#FFFFCC">
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">FieldName</span></b>
-									</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">Type</span></b>
-									</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">Length</span></b>
-									</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">Format</span></b>
-									</p>
-								</td>
+							<tr>
+								<th>FieldName</th>
+								<th>Type</th>
+								<th>Length</th>
+								<th>Format</th>
 							</tr>
 							<tr>
-								<td class="Normal" style="vertical-align: top"><p>Transaction-Type</p></td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">Numeric</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">1</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">Value 3</p>
-								</td>
+								<td>Transaction-Type</td>
+								<td style="text-align: center">Numeric</td>
+								<td style="text-align: center">1</td>
+								<td style="text-align: center">Value 3</td>
 							</tr>
 							<tr>
-								<td class="Normal" style="vertical-align: top"><p>Stock-Number</p></td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">Numeric</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">7</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">9999999</p>
-								</td>
+								<td>Stock-Number</td>
+								<td style="text-align: center">Numeric</td>
+								<td style="text-align: center">7</td>
+								<td style="text-align: center">9999999</td>
 							</tr>
 							<tr>
-								<td class="Normal" style="vertical-align: top"><p>Reorder-Level</p></td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">Numeric</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">3</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">999</p>
-								</td>
+								<td>Reorder-Level</td>
+								<td style="text-align: center">Numeric</td>
+								<td style="text-align: center">3</td>
+								<td style="text-align: center">999</td>
 							</tr>
 						</table>
 
 						<p class="recorddesc"><b>Adjust Reorder Qty</b></p>
 						<table class="data-table">
-							<tr bgcolor="#FFFFCC">
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">FieldName</span></b>
-									</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">Type</span></b>
-									</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">Length</span></b>
-									</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">Format</span></b>
-									</p>
-								</td>
+							<tr>
+								<th>FieldName</th>
+								<th>Type</th>
+								<th>Length</th>
+								<th>Format</th>
 							</tr>
 							<tr>
-								<td class="Normal" style="vertical-align: top"><p>Transaction-Type</p></td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">Numeric</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">1</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">Value 4</p>
-								</td>
+								<td>Transaction-Type</td>
+								<td style="text-align: center">Numeric</td>
+								<td style="text-align: center">1</td>
+								<td style="text-align: center">Value 4</td>
 							</tr>
 							<tr>
-								<td class="Normal" style="vertical-align: top"><p>Stock-Number</p></td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">Numeric</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">7</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">9999999</p>
-								</td>
+								<td>Stock-Number</td>
+								<td style="text-align: center">Numeric</td>
+								<td style="text-align: center">7</td>
+								<td style="text-align: center">9999999</td>
 							</tr>
 							<tr>
-								<td class="Normal" style="vertical-align: top"><p>Reorder-Qty</p></td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">Numeric</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">5</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">99999</p>
-								</td>
+								<td>Reorder-Qty</td>
+								<td style="text-align: center">Numeric</td>
+								<td style="text-align: center">5</td>
+								<td style="text-align: center">99999</td>
 							</tr>
 						</table>
 
 						<p class="recorddesc"><b>Adjust Price</b></p>
 						<table class="data-table">
-							<tr bgcolor="#FFFFCC">
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">FieldName</span></b>
-									</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">Type</span></b>
-									</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">Length</span></b>
-									</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">Format</span></b>
-									</p>
-								</td>
+							<tr>
+								<th>FieldName</th>
+								<th>Type</th>
+								<th>Length</th>
+								<th>Format</th>
 							</tr>
 							<tr>
-								<td class="Normal" style="vertical-align: top"><p>Transaction-Type</p></td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">Numeric</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">1</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">Value 5</p>
-								</td>
+								<td>Transaction-Type</td>
+								<td style="text-align: center">Numeric</td>
+								<td style="text-align: center">1</td>
+								<td style="text-align: center">Value 5</td>
 							</tr>
 							<tr>
-								<td class="Normal" style="vertical-align: top"><p>Stock-Number</p></td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">Numeric</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">7</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">9999999</p>
-								</td>
+								<td>Stock-Number</td>
+								<td style="text-align: center">Numeric</td>
+								<td style="text-align: center">7</td>
+								<td style="text-align: center">9999999</td>
 							</tr>
 							<tr>
-								<td class="Normal" style="vertical-align: top"><p>Price</p></td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">Numeric</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">6</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">9999.99</p>
-								</td>
+								<td>Price</td>
+								<td style="text-align: center">Numeric</td>
+								<td style="text-align: center">6</td>
+								<td style="text-align: center">9999.99</td>
 							</tr>
 						</table>
 
 						<p class="recorddesc"><b>Delete Supplier Record</b></p>
 						<table class="data-table">
-							<tr bgcolor="#FFFFCC">
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">FieldName</span></b>
-									</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">Type</span></b>
-									</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">Length</span></b>
-									</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">Format</span></b>
-									</p>
-								</td>
+							<tr>
+								<th>FieldName</th>
+								<th>Type</th>
+								<th>Length</th>
+								<th>Format</th>
 							</tr>
 							<tr>
-								<td class="Normal" style="vertical-align: top"><p>Transaction-Type</p></td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">Numeric</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">1</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">Value 6</p>
-								</td>
+								<td>Transaction-Type</td>
+								<td style="text-align: center">Numeric</td>
+								<td style="text-align: center">1</td>
+								<td style="text-align: center">Value 6</td>
 							</tr>
 							<tr>
-								<td class="Normal" style="vertical-align: top"><p>Supplier-Number</p></td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">Character</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">4</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">X999</p>
-								</td>
+								<td>Supplier-Number</td>
+								<td style="text-align: center">Character</td>
+								<td style="text-align: center">4</td>
+								<td style="text-align: center">X999</td>
 							</tr>
 						</table>
 
 						<p class="recorddesc"><b>Insert Supplier Record</b></p>
 						<table class="data-table">
-							<tr bgcolor="#FFFFCC">
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">FieldName</span></b>
-									</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">Type</span></b>
-									</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">Length</span></b>
-									</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">Format</span></b>
-									</p>
-								</td>
+							<tr>
+								<th>FieldName</th>
+								<th>Type</th>
+								<th>Length</th>
+								<th>Format</th>
 							</tr>
 							<tr>
-								<td class="Normal" style="vertical-align: top"><p>Transaction-Type</p></td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">9</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">1</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">Value 7</p>
-								</td>
+								<td>Transaction-Type</td>
+								<td style="text-align: center">9</td>
+								<td style="text-align: center">1</td>
+								<td style="text-align: center">Value 7</td>
 							</tr>
 							<tr>
-								<td class="Normal" style="vertical-align: top"><p>Supplier-Number</p></td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">X</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">4</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">X999</p>
-								</td>
+								<td>Supplier-Number</td>
+								<td style="text-align: center">X</td>
+								<td style="text-align: center">4</td>
+								<td style="text-align: center">X999</td>
 							</tr>
 							<tr>
-								<td class="Normal" style="vertical-align: top"><p>Supplier-Name</p></td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">X</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">20</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">-</p>
-								</td>
+								<td>Supplier-Name</td>
+								<td style="text-align: center">X</td>
+								<td style="text-align: center">20</td>
+								<td style="text-align: center">-</td>
 							</tr>
 							<tr>
-								<td class="Normal" style="vertical-align: top"><p>Supplier-Address</p></td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">X</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">35</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">-</p>
-								</td>
+								<td>Supplier-Address</td>
+								<td style="text-align: center">X</td>
+								<td style="text-align: center">35</td>
+								<td style="text-align: center">-</td>
 							</tr>
 						</table>
 					</section>
@@ -716,189 +402,87 @@
 						<h3>The Stock Master File</h3>
 						<p>The Stock Master File is an Indexed file with the following record description.</p>
 						<table class="data-table">
-							<tr bgcolor="#FFFFCC">
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">FieldName</span></b>
-									</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">Key type</span></b>
-									</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">Type</span></b>
-									</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">Length</span></b>
-									</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">Format</span></b>
-									</p>
-								</td>
+							<tr>
+								<th>FieldName</th>
+								<th>Key type</th>
+								<th>Type</th>
+								<th>Length</th>
+								<th>Format</th>
 							</tr>
 							<tr>
-								<td class="Normal" style="vertical-align: top"><p>StockNumber</p></td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">Primary</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">9</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">7</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">9999999</p>
-								</td>
+								<td>StockNumber</td>
+								<td style="text-align: center">Primary</td>
+								<td style="text-align: center">9</td>
+								<td style="text-align: center">7</td>
+								<td style="text-align: center">9999999</td>
 							</tr>
 							<tr>
-								<td class="Normal" style="vertical-align: top"><p>QtyInStock</p></td>
-								<td class="Normal" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">9</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">5</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">99999</p>
-								</td>
+								<td>QtyInStock</td>
+								<td>&nbsp;</td>
+								<td style="text-align: center">9</td>
+								<td style="text-align: center">5</td>
+								<td style="text-align: center">99999</td>
 							</tr>
 							<tr>
-								<td class="Normal" style="vertical-align: top"><p>Price</p></td>
-								<td class="Normal" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">9</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">6</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">9999.99</p>
-								</td>
+								<td>Price</td>
+								<td>&nbsp;</td>
+								<td style="text-align: center">9</td>
+								<td style="text-align: center">6</td>
+								<td style="text-align: center">9999.99</td>
 							</tr>
 							<tr>
-								<td class="Normal" style="vertical-align: top"><p>ReorderLevel</p></td>
-								<td class="Normal" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">9</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">3</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">999</p>
-								</td>
+								<td>ReorderLevel</td>
+								<td>&nbsp;</td>
+								<td style="text-align: center">9</td>
+								<td style="text-align: center">3</td>
+								<td style="text-align: center">999</td>
 							</tr>
 							<tr>
-								<td class="Normal" style="vertical-align: top"><p>ReorderQty</p></td>
-								<td class="Normal" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">9</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">5</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">99999</p>
-								</td>
+								<td>ReorderQty</td>
+								<td>&nbsp;</td>
+								<td style="text-align: center">9</td>
+								<td style="text-align: center">5</td>
+								<td style="text-align: center">99999</td>
 							</tr>
 							<tr>
-								<td class="Normal" style="vertical-align: top"><p>SupplierNumber</p></td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">ALT with Duplicates</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">X</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">4</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">X999</p>
-								</td>
+								<td>SupplierNumber</td>
+								<td style="text-align: center">ALT with Duplicates</td>
+								<td style="text-align: center">X</td>
+								<td style="text-align: center">4</td>
+								<td style="text-align: center">X999</td>
 							</tr>
 						</table>
 
 						<h3>The Supplier Master File</h3>
 						<p>The Supplier Master File is an Indexed file with the following record description.</p>
 						<table class="data-table">
-							<tr bgcolor="#FFFFCC">
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">FieldName</span></b>
-									</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">Key type</span></b>
-									</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">Type</span></b>
-									</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">Length</span></b>
-									</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">Format</span></b>
-									</p>
-								</td>
+							<tr>
+								<th>FieldName</th>
+								<th>Key type</th>
+								<th>Type</th>
+								<th>Length</th>
+								<th>Format</th>
 							</tr>
 							<tr>
-								<td class="Normal" style="vertical-align: top"><p>SupplierNumber</p></td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">Primary</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">X</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">4</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">X999</p>
-								</td>
+								<td>SupplierNumber</td>
+								<td style="text-align: center">Primary</td>
+								<td style="text-align: center">X</td>
+								<td style="text-align: center">4</td>
+								<td style="text-align: center">X999</td>
 							</tr>
 							<tr>
-								<td class="Normal" style="vertical-align: top"><p>SupplierName</p></td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">ALT with Duplicates</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">X</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">20</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">-</p>
-								</td>
+								<td>SupplierName</td>
+								<td style="text-align: center">ALT with Duplicates</td>
+								<td style="text-align: center">X</td>
+								<td style="text-align: center">20</td>
+								<td style="text-align: center">-</td>
 							</tr>
 							<tr>
-								<td class="Normal" style="vertical-align: top"><p>SupplierAddress</p></td>
-								<td class="Normal" style="vertical-align: top">&nbsp;</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">X</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">40</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">-</p>
-								</td>
+								<td>SupplierAddress</td>
+								<td>&nbsp;</td>
+								<td style="text-align: center">X</td>
+								<td style="text-align: center">40</td>
+								<td style="text-align: center">-</td>
 							</tr>
 						</table>
 					</section>
@@ -907,99 +491,47 @@
 						<h2>The Stock Archive File</h2>
 						<p>The Stock Archive File is a sequential file with the following record description.</p>
 						<table class="data-table">
-							<tr bgcolor="#FFFFCC">
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">FieldName</span></b>
-									</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">Type</span></b>
-									</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">Length</span></b>
-									</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">
-										<b><span style="text-transform: uppercase">Format</span></b>
-									</p>
-								</td>
+							<tr>
+								<th>FieldName</th>
+								<th>Type</th>
+								<th>Length</th>
+								<th>Format</th>
 							</tr>
 							<tr>
-								<td class="Normal" style="vertical-align: top"><p>StockNumber</p></td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">9</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">7</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">9999999</p>
-								</td>
+								<td>StockNumber</td>
+								<td style="text-align: center">9</td>
+								<td style="text-align: center">7</td>
+								<td style="text-align: center">9999999</td>
 							</tr>
 							<tr>
-								<td class="Normal" style="vertical-align: top"><p>QtyInStock</p></td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">9</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">5</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">99999</p>
-								</td>
+								<td>QtyInStock</td>
+								<td style="text-align: center">9</td>
+								<td style="text-align: center">5</td>
+								<td style="text-align: center">99999</td>
 							</tr>
 							<tr>
-								<td class="Normal" style="vertical-align: top"><p>Price</p></td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">9</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">6</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">9999.99</p>
-								</td>
+								<td>Price</td>
+								<td style="text-align: center">9</td>
+								<td style="text-align: center">6</td>
+								<td style="text-align: center">9999.99</td>
 							</tr>
 							<tr>
-								<td class="Normal" style="vertical-align: top"><p>ReorderLevel</p></td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">9</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">3</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">999</p>
-								</td>
+								<td>ReorderLevel</td>
+								<td style="text-align: center">9</td>
+								<td style="text-align: center">3</td>
+								<td style="text-align: center">999</td>
 							</tr>
 							<tr>
-								<td class="Normal" style="vertical-align: top"><p>ReorderQty</p></td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">9</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">5</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">99999</p>
-								</td>
+								<td>ReorderQty</td>
+								<td style="text-align: center">9</td>
+								<td style="text-align: center">5</td>
+								<td style="text-align: center">99999</td>
 							</tr>
 							<tr>
-								<td class="Normal" style="vertical-align: top"><p>SupplierNumber</p></td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">X</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">4</p>
-								</td>
-								<td class="Normal" style="vertical-align: top">
-									<p style="text-align: center">X999</p>
-								</td>
+								<td>SupplierNumber</td>
+								<td style="text-align: center">X</td>
+								<td style="text-align: center">4</td>
+								<td style="text-align: center">X999</td>
 							</tr>
 						</table>
 					</section>
