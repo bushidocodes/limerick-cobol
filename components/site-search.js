@@ -43,7 +43,12 @@ class SiteSearch extends HTMLElement {
 	#pointer = -1;
 	#listboxId = "";
 
-	static #SHORT_MQL = window.matchMedia("(max-width: 360px)");
+	// Show the long placeholder only when the input is wide enough to display
+	// it without truncation. Below this, the (Ctrl+K) hint and even
+	// "exercises, examples" get clipped — and Ctrl+K is irrelevant on touch
+	// devices anyway. iPhone SE / Pixel-class phones (≤ 600 px) fall back to
+	// the compact "Search…" placeholder.
+	static #SHORT_MQL = window.matchMedia("(max-width: 600px)");
 	static #FULL_PLACEHOLDER = "Search lessons, exercises, examples… (Ctrl+K)";
 	static #SHORT_PLACEHOLDER = "Search…";
 
