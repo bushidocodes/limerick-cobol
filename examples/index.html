@@ -7,15 +7,25 @@
 		<script>
 			(function () {
 				var t = localStorage.getItem("lc-theme");
-				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+				if (t === "dark" || t === "light") {
+					document.documentElement.setAttribute("data-theme", t);
+					var color = t === "dark" ? "#1a1a1a" : "#ffffff";
+					var meta = document.querySelector('meta[name="theme-color"]:not([media])');
+					if (!meta) {
+						meta = document.createElement("meta");
+						meta.name = "theme-color";
+						document.head.appendChild(meta);
+					}
+					meta.content = color;
+				}
 			})();
 		</script>
-		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
 		<title>COBOL example programs</title>
 		<link href="../course/Resources/css/course.css" rel="stylesheet" />
 		<link href="../course/Resources/css/course-components.css" rel="stylesheet" />
-		<meta content="document" name="resource-type" />
+		<meta name="resource-type" content="document" />
 		<meta
 			content="These pages contain a large number of example COBOL programs. The example COBOL programs may be downloaded or viewed in your browser. Test data for the example COBOL programs is also provided."
 			name="description"

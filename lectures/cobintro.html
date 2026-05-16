@@ -7,10 +7,20 @@
 		<script>
 			(function () {
 				var t = localStorage.getItem("lc-theme");
-				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+				if (t === "dark" || t === "light") {
+					document.documentElement.setAttribute("data-theme", t);
+					var color = t === "dark" ? "#1a1a1a" : "#ffffff";
+					var meta = document.querySelector('meta[name="theme-color"]:not([media])');
+					if (!meta) {
+						meta = document.createElement("meta");
+						meta.name = "theme-color";
+						document.head.appendChild(meta);
+					}
+					meta.content = color;
+				}
 			})();
 		</script>
-		<title>cobintro - COBOL Lecture</title>
+		<title>Cobintro - COBOL Lecture</title>
 		<meta name="description" content="COBOL lecture slides covering cobintro." />
 		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/lectures/cobintro.html" />
 		<!-- Open Graph -->
