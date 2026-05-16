@@ -47,6 +47,17 @@ The launch.json server name is `limerick-cobol` (serves the repo root via `http-
 
 Use `preview_inspect` with explicit `styles` to verify computed dimensions and colours — it is more reliable than screenshots for style assertions.
 
+## Visual bug investigation
+
+When an issue describes a visual or CSS symptom (colour, contrast, dark-mode rendering, layout), **screenshot before reading files**:
+
+1. `preview_start("limerick-cobol")` — note the assigned port
+2. Screenshot in light mode
+3. Toggle dark mode, screenshot again
+4. Decide: is the symptom reproduced, already fixed, or ambiguous?
+
+Only move to static analysis (reading CSS/HTML) if the screenshots are inconclusive. The browser is ground truth; a two-screenshot check replaces several rounds of colour-arithmetic and selector tracing.
+
 ## Formatting
 
 ```bash
