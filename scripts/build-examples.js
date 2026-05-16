@@ -74,6 +74,14 @@ const MANIFEST = [
 		runInCe: true,
 	},
 	{
+		file: "Conditn/IterCalc.html",
+		cbl: "Iteration-Calculator.cbl",
+		title: "Iteration Calculator with COMPUTE example program",
+		crumb: "Iteration Calculator",
+		desc: "Accepts two numbers and an operator from the user, then adds or multiplies them using the COMPUTE statement. Repeats three times with PERFORM TIMES. A companion to the Iteration with IF example, showing COMPUTE as an alternative to the ADD and MULTIPLY verbs.",
+		runInCe: true,
+	},
+	{
 		file: "Conditn/IterIf.html",
 		cbl: "Iteration-If.cbl",
 		title: "Iteration with IF example program",

@@ -20,27 +20,30 @@
 				}
 			})();
 		</script>
-		<title>Condition Names (level 88) example program</title>
-		<meta name="description" content="An example program demonstrating the use of Condition Names (level 88's)." />
-		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/examples/Conditn/Conditions.html" />
+		<title>Iteration Calculator with COMPUTE example program</title>
+		<meta
+			name="description"
+			content="Accepts two numbers and an operator from the user, then adds or multiplies them using the COMPUTE statement. Repeats three times with PERFORM TIMES. A"
+		/>
+		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/examples/Conditn/IterCalc.html" />
 		<!-- Open Graph -->
 		<meta property="og:type" content="website" />
 		<meta
 			property="og:url"
-			content="https://bushidocodes.github.io/limerick-cobol/examples/Conditn/Conditions.html"
+			content="https://bushidocodes.github.io/limerick-cobol/examples/Conditn/IterCalc.html"
 		/>
-		<meta property="og:title" content="Condition Names (level 88) example program" />
+		<meta property="og:title" content="Iteration Calculator with COMPUTE example program" />
 		<meta
 			property="og:description"
-			content="An example program demonstrating the use of Condition Names (level 88's)."
+			content="Accepts two numbers and an operator from the user, then adds or multiplies them using the COMPUTE statement. Repeats three times with PERFORM TIMES. A"
 		/>
 		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/examples.png" />
 		<!-- Twitter Card -->
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="Condition Names (level 88) example program" />
+		<meta name="twitter:title" content="Iteration Calculator with COMPUTE example program" />
 		<meta
 			name="twitter:description"
-			content="An example program demonstrating the use of Condition Names (level 88's)."
+			content="Accepts two numbers and an operator from the user, then adds or multiplies them using the COMPUTE statement. Repeats three times with PERFORM TIMES. A"
 		/>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="../../course/Resources/css/course.css" rel="stylesheet" />
@@ -64,46 +67,58 @@
 			<div class="page-wrapper">
 				<div class="section-grid">
 					<div class="section-full">
-						<page-hero title="Condition Names (level 88) example program"></page-hero>
-						<p>An example program demonstrating the use of Condition Names (level 88's).</p>
+						<page-hero title="Iteration Calculator with COMPUTE example program"></page-hero>
+						<p>
+							Accepts two numbers and an operator from the user, then adds or multiplies them using the
+							COMPUTE statement. Repeats three times with PERFORM TIMES. A companion to the Iteration with
+							IF example, showing COMPUTE as an alternative to the ADD and MULTIPLY verbs.
+						</p>
 						<div class="code-toolbar">
-							<a href="CONDITIONS.cbl" download class="download-btn">Download CONDITIONS.cbl</a>
+							<a href="Iteration-Calculator.cbl" download class="download-btn"
+								>Download Iteration-Calculator.cbl</a
+							>
 							<run-in-ce></run-in-ce>
 						</div>
 						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
-PROGRAM-ID.  Conditions.
+PROGRAM-ID.  Iteration-Calculator.
 AUTHOR.  Michael Coughlan.
-*&gt; An example program demonstrating the use of 
-*&gt; condition names (level 88's).
-*&gt; The EVALUATE and PERFORM verbs are also used.
+*&gt; This program accepts two numbers and an operator from the user and
+*&gt; depending on the type of the operator either adds the numbers or
+*&gt; multiplys them together and displays the result.  It does this three times.
+*&gt; No error checking is done.
+
 
 DATA DIVISION.
 WORKING-STORAGE SECTION.
-01  Char               PIC X.
-    88 Vowel           VALUE "a", "e", "i", "o", "u".
-    88 Consonant       VALUE "b", "c", "d", "f", "g", "h"
-                             "j" THRU "n", "p" THRU "t", "v" THRU "z".
-    88 Digit           VALUE "0" THRU "9".
-    88 ValidCharacter  VALUE "a" THRU "z", "0" THRU "9".
+01  Num1           PIC 9  VALUE ZEROS.
+01  Num2           PIC 9  VALUE ZEROS.
+01  Result         PIC 99 VALUE ZEROS.
+01  Operator       PIC X  VALUE SPACE.
 
 PROCEDURE DIVISION.
-Begin.
-    DISPLAY "Enter lower case character or digit. No data ends.".
-    ACCEPT Char.
-    PERFORM UNTIL NOT ValidCharacter
-        EVALUATE TRUE
-           WHEN Vowel DISPLAY "The letter " Char " is a vowel."
-           WHEN Consonant DISPLAY "The letter " Char " is a consonant."
-           WHEN Digit DISPLAY Char " is a digit."
-           WHEN OTHER DISPLAY "problems found"
-        END-EVALUATE
-    END-PERFORM
+Calculator.
+    PERFORM 3 TIMES
+       DISPLAY "Enter First Number      : " WITH NO ADVANCING
+       ACCEPT Num1
+       DISPLAY "Enter Second Number     : " WITH NO ADVANCING
+       ACCEPT Num2
+       DISPLAY "Enter operator (+ or *) : " WITH NO ADVANCING
+       ACCEPT Operator
+       IF Operator = "+" THEN
+          COMPUTE Result = Num1 + Num2
+       END-IF
+       IF Operator = "*" THEN
+          COMPUTE Result = Num1 * Num2
+       END-IF
+       DISPLAY "Result is = ", Result
+    END-PERFORM.
     STOP RUN.
 </code></pre>
 						<related-content
-							lectures="../../course/Selection.html|Selection in COBOL"
-							examples="IterIf.html|Iteration with IF Example, IterCalc.html|Iteration Calculator (COMPUTE)"
+							lectures="../../course/Selection.html|Selection in COBOL, ../../course/Iteration.html|Iteration in COBOL"
+							examples="Conditions.html|Condition Names Example, IterIf.html|Iteration with IF Example, ../Perform/Perform1.html|PERFORM – Format 1, ../Perform/Perform2.html|PERFORM – Format 2"
+							exercises="../../exercises/CountDown.html|Calculator and Countdown"
 						></related-content>
 						<copyright-notice type="examples"></copyright-notice>
 						<last-updated></last-updated>
