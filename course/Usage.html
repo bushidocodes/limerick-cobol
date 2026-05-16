@@ -1,8 +1,10 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<script>
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<script>
 			(function () {
 				var t = localStorage.getItem("lc-theme");
 				if (t === "dark" || t === "light") {
@@ -20,37 +22,79 @@
 		</script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
-		<title>The USAGE clause</title>
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "LearningResource",
+				"name": "The USAGE clause",
+				"description": "The internal representation of data can be an important consideration for program efficiency. Unfortunately the default representation used by COBOL for",
+				"url": "https://bushidocodes.github.io/limerick-cobol/course/usage.html",
+				"position": 9,
+				"isPartOf": {
+					"@type": "Course",
+					"name": "COBOL Course",
+					"url": "https://bushidocodes.github.io/limerick-cobol/course/index.html"
+				},
+				"provider": {
+					"@type": "Person",
+					"name": "Michael Coughlan",
+					"affiliation": {
+						"@type": "Organization",
+						"name": "University of Limerick CSIS"
+					}
+				},
+				"educationalLevel": "beginner",
+				"inLanguage": "en",
+				"learningResourceType": "Tutorial"
+			}
+		</script>
+		<title>The USAGE Clause</title>
 		<meta
 			name="description"
 			content="The internal representation of data can be an important consideration for program efficiency. Unfortunately the default representation used by COBOL for"
 		/>
 		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/usage.html" />
+		<link rel="prev" href="https://bushidocodes.github.io/limerick-cobol/course/EditedPics.html" />
+		<link rel="next" href="https://bushidocodes.github.io/limerick-cobol/course/SequentialFiles3.html" />
 		<!-- Open Graph -->
 		<meta property="og:type" content="article" />
 		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/usage.html" />
-		<meta property="og:title" content="The USAGE clause" />
+		<meta property="og:title" content="The USAGE Clause" />
 		<meta
 			property="og:description"
 			content="The internal representation of data can be an important consideration for program efficiency. Unfortunately the default representation used by COBOL for"
 		/>
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/course.png" />
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary" />
-		<meta name="twitter:title" content="The USAGE clause" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="The USAGE Clause" />
 		<meta
 			name="twitter:description"
 			content="The internal representation of data can be an important consideration for program efficiency. Unfortunately the default representation used by COBOL for"
 		/>
 		<link href="Resources/css/course.css" rel="stylesheet" />
 		<link href="Resources/css/course-components.css" rel="stylesheet" />
-		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
-		<script src="Resources/vendor/prism/prism.min.js" defer></script>
-		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
+		<link
+			href="Resources/vendor/prism/themes/prism.min.css"
+			rel="stylesheet"
+			integrity="sha384-rCCjoCPCsizaAAYVoz1Q0CmCTvnctK0JkfCSjx7IIxexTBg+uCKtFYycedUjMyA2"
+			crossorigin="anonymous"
+		/>
+		<script
+			src="Resources/vendor/prism/prism.min.js"
+			integrity="sha384-06z5D//U/xpvxZHuUz92xBvq3DqBBFi7Up53HRrbV7Jlv7Yvh/MZ7oenfUe9iCEt"
+			crossorigin="anonymous"
+			defer
+		></script>
+		<script
+			src="Resources/vendor/prism/components/prism-cobol.min.js"
+			integrity="sha384-s4JeL+r7pYtWemgWCY7jgWCWuBQfoHt/88SwBLAitxcMkr8ji8Lp4JvZq9qCv8W6"
+			crossorigin="anonymous"
+			defer
+		></script>
 		<script src="../components/theme-toggle.js" defer></script>
 		<script src="../components/page-hero.js" defer></script>
 		<script src="../components/site-search.js" defer></script>
-		<script src="../components/back-to-top.js" defer></script>
 		<script src="../components/lesson-progress.js" defer></script>
 		<script src="../components/lesson-nav.js" defer></script>
 		<script src="../components/lesson-checkbox.js" defer></script>
@@ -59,6 +103,8 @@
 		<script src="../components/related-content.js" defer></script>
 		<script src="../components/copy-button.js" defer></script>
 		<script src="../components/page-toc.js" defer></script>
+		<script src="../components/lesson-toc.js" defer></script>
+		<script src="../components/site-header.js" defer></script>
 	</head>
 
 	<body>
@@ -68,22 +114,9 @@
 				<page-toc></page-toc>
 				<div class="section-grid">
 					<div class="section-full">
-						<page-hero title="The USAGE clause"></page-hero>
+						<page-hero title="The USAGE Clause" reading-time="12 min"></page-hero>
 						<hr />
-						<ul class="toc">
-							<li>
-								<a href="#intro">Introduction</a>
-								Unit aims, objectives, prerequisites.
-							</li>
-							<li>
-								<a href="#part1">The USAGE clause</a>
-								Subprograms, the syntax and semantics of the
-								<code class="language-cobol">CALL</code> verb and parameter passing mechanisms. State
-								memory, the <code class="language-cobol">IS INITIAL</code> clause and the
-								<code class="language-cobol">CANCEL</code> command.
-							</li>
-						</ul>
-						<hr />
+						<lesson-toc></lesson-toc>
 					</div>
 					<div class="section-header">
 						<h2 id="intro">Introduction</h2>
@@ -111,7 +144,7 @@
 							The <code class="language-cobol">SYNCHRONIZED</code> clause is introduced and a generalized
 							example given.
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Objectives</h3>
@@ -130,33 +163,17 @@
 								<code class="language-cobol">SYNCHRONIZED</code> clause.
 							</li>
 						</ol>
-						<hr size="1" />
-					</div>
-					<div class="section-sidebar">
-						<h3>Prerequisites</h3>
-					</div>
-					<div class="section-content">
-						<ul>
-							<li>Introduction to COBOL</li>
-							<li>Declaring data in COBOL</li>
-							<li>Basic Procedure Division commands</li>
-							<li>Selection in COBOL</li>
-							<li>Iteration in COBOL</li>
-							<li>Introduction to Sequential files</li>
-							<li>Processing Sequential files</li>
-							<li>Reading Sequential Files</li>
-							<li>Edited Pictures</li>
-						</ul>
 					</div>
 					<div class="section-full">
-						<hr />
-						<back-to-top></back-to-top>
+						<div>
+							<hr />
+						</div>
 					</div>
 					<div class="section-header">
 						<h2 id="part1">The USAGE clause</h2>
 					</div>
 					<div class="section-sidebar">
-						<h3><b>Introduction</b></h3>
+						<h3><strong>Introduction</strong></h3>
 						<span class="i-detail" aria-hidden="true">🔍</span>
 						<h4>ASCII</h4>
 						<p><b>A</b>merican <b>S</b>tandard <b>C</b>ode for <b>I</b>nformation <b>I</b>nterchange</p>
@@ -199,18 +216,11 @@
 							specified. When there is no explicit <code class="language-cobol">USAGE</code> clause, the
 							default - <code class="language-cobol">USAGE IS DISPLAY</code> - is applied.
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
-						<h3><b>Problems with USAGE IS DISPLAY</b></h3>
-						<p class="center-block">
-							<img
-								height="44"
-								src="Resources/pics/program-fragment.svg"
-								width="48"
-								alt="Program fragment"
-							/>
-						</p>
+						<h3><strong>Problems with USAGE IS DISPLAY</strong></h3>
+
 						<aside>
 							<p class="center-block">
 								<img height="44" src="Resources/pics/i-LightBulbTip.svg" width="42" alt="" />
@@ -273,19 +283,19 @@ Begin.
 							If you examine the ASCII table below you will see that the digit 4 (the value in Num1) is
 							encoded as
 							<b>
-								<span style="color: #ff0000">00110100</span>
+								<span class="cobol-highlight">00110100</span>
 							</b>
-							and the digit 1 is encoded as <span style="color: #ff0000"><b>00110001</b></span
+							and the digit 1 is encoded as <span class="cobol-highlight"><b>00110001</b></span
 							>.
 						</p>
 						<p>
 							When these these binary numbers are added together the result is
 							<b>
-								<span style="color: #ff0000">01100101</span>
+								<span class="cobol-highlight">01100101</span>
 							</b>
 							which is the ASCII code for the lower case letter "e".
 						</p>
-						<p>The sum <b>4 + 1 = e</b> does not compute.</p>
+						<p>The sum <strong>4 + 1 = e</strong> does not compute.</p>
 						<p class="center-block">
 							<img
 								height="202"
@@ -306,7 +316,7 @@ Begin.
 							the usages optimized for computation such as
 							<code class="language-cobol">USAGE IS COMPUTATIONAL</code>.
 						</p>
-						<p><b>ASCII Table</b></p>
+						<p><strong>ASCII Table</strong></p>
 						<table style="margin: 0 auto" class="data-table" cellpadding="0" cellspacing="0">
 							<tr bgcolor="#FFFFCC">
 								<th scope="col" width="114">Char</th>
@@ -1004,28 +1014,28 @@ Begin.
 								<td width="114">
 									<p class="center-block">
 										<b>
-											<span style="color: #ff0000">1</span>
+											<span class="cobol-highlight">1</span>
 										</b>
 									</p>
 								</td>
 								<td width="66">
 									<p class="center-block">
 										<b>
-											<span style="color: #ff0000">49</span>
+											<span class="cobol-highlight">49</span>
 										</b>
 									</p>
 								</td>
 								<td width="60">
 									<p class="center-block">
 										<b>
-											<span style="color: #ff0000">31</span>
+											<span class="cobol-highlight">31</span>
 										</b>
 									</p>
 								</td>
 								<td width="108">
 									<p class="center-block">
 										<b>
-											<span style="color: #ff0000">00110001</span>
+											<span class="cobol-highlight">00110001</span>
 										</b>
 									</p>
 								</td>
@@ -1062,28 +1072,28 @@ Begin.
 								<td width="114">
 									<p class="center-block">
 										<b>
-											<span style="color: #ff0000">4</span>
+											<span class="cobol-highlight">4</span>
 										</b>
 									</p>
 								</td>
 								<td width="66">
 									<p class="center-block">
 										<b>
-											<span style="color: #ff0000">52</span>
+											<span class="cobol-highlight">52</span>
 										</b>
 									</p>
 								</td>
 								<td width="60">
 									<p class="center-block">
 										<b>
-											<span style="color: #ff0000">34</span>
+											<span class="cobol-highlight">34</span>
 										</b>
 									</p>
 								</td>
 								<td width="108">
 									<p class="center-block">
 										<b>
-											<span style="color: #ff0000">00110100</span>
+											<span class="cobol-highlight">00110100</span>
 										</b>
 									</p>
 								</td>
@@ -1764,28 +1774,28 @@ Begin.
 								<td width="114">
 									<p class="center-block">
 										<b>
-											<span style="color: #ff0000">e</span>
+											<span class="cobol-highlight">e</span>
 										</b>
 									</p>
 								</td>
 								<td width="66">
 									<p class="center-block">
 										<b>
-											<span style="color: #ff0000">101</span>
+											<span class="cobol-highlight">101</span>
 										</b>
 									</p>
 								</td>
 								<td width="60">
 									<p class="center-block">
 										<b>
-											<span style="color: #ff0000">65</span>
+											<span class="cobol-highlight">65</span>
 										</b>
 									</p>
 								</td>
 								<td width="108">
 									<p class="center-block">
 										<b>
-											<span style="color: #ff0000">01100101</span>
+											<span class="cobol-highlight">01100101</span>
 										</b>
 									</p>
 								</td>
@@ -2155,20 +2165,13 @@ Begin.
 								</td>
 							</tr>
 						</table>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<p>
 							<b>USAGE syntax and notes</b>
 						</p>
-						<p class="center-block">
-							<img
-								height="44"
-								src="Resources/pics/program-fragment.svg"
-								width="48"
-								alt="Program fragment"
-							/>
-						</p>
+
 						<aside>
 							<p class="center-block">
 								<img height="62" src="Resources/pics/i-BugAlert.svg" width="56" alt="" />
@@ -2316,7 +2319,7 @@ Begin.
 							typed languages) and <code class="language-cobol">COMP-2</code> is usually defined as a
 							double precision, floating point number (LongReal or Double in typed languages).
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<b>The SYNCHRONIZED clause</b>
@@ -2389,7 +2392,7 @@ Begin.
 								alt="Diagram showing a COMP item aligned on a word boundary with SYNCHRONIZED, requiring only one fetch cycle"
 							/>
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 				</div>
 				<div class="page-footer">
@@ -2397,7 +2400,6 @@ Begin.
 					<hr />
 					<lesson-checkbox lesson="Usage"></lesson-checkbox>
 					<lesson-nav></lesson-nav>
-					<back-to-top></back-to-top>
 					<copyright-notice></copyright-notice>
 					<last-updated></last-updated>
 				</div>

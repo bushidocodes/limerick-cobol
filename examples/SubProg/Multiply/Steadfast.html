@@ -2,20 +2,12 @@
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<script>
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<script>
 			(function () {
 				var t = localStorage.getItem("lc-theme");
-				if (t === "dark" || t === "light") {
-					document.documentElement.setAttribute("data-theme", t);
-					var color = t === "dark" ? "#1a1a1a" : "#ffffff";
-					var meta = document.querySelector('meta[name="theme-color"]:not([media])');
-					if (!meta) {
-						meta = document.createElement("meta");
-						meta.name = "theme-color";
-						document.head.appendChild(meta);
-					}
-					meta.content = color;
-				}
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
 			})();
 		</script>
 		<title>The Steadfast sub-program demonstrates the IS INITIAL phrase</title>
@@ -38,9 +30,9 @@
 			property="og:description"
 			content="A sub-program identical to Fickle except that it uses the IS INITIAL phrase to avoid State Memory — it always produces the same result for the same input."
 		/>
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/examples.png" />
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content="The Steadfast sub-program demonstrates the IS INITIAL phrase" />
 		<meta
 			name="twitter:description"
@@ -56,6 +48,7 @@
 		<script src="../../../components/page-hero.js" defer></script>
 		<script src="../../../components/related-content.js" defer></script>
 		<script src="../../../components/copy-button.js" defer></script>
+		<script src="../../../components/site-header.js" defer></script>
 	</head>
 	<body>
 		<a class="skip-link" href="#main-content">Skip to main content</a>
@@ -63,23 +56,14 @@
 			<div class="page-wrapper">
 				<div class="section-grid">
 					<div class="section-full">
-						<page-hero
-							title="The Steadfast sub-program demonstrates the IS INITIAL phrase"
-							eyebrow="COBOL Example"
-						></page-hero>
-						<nav aria-label="Breadcrumb">
-							<a href="../../default.html">Example programs</a> ›
-							<span>Steadfast Sub-program</span>
-						</nav>
+						<page-hero title="The Steadfast sub-program demonstrates the IS INITIAL phrase"></page-hero>
 						<p>
 							A sub-program identical to Fickle except that it uses the IS INITIAL phrase to avoid State
 							Memory — it always produces the same result for the same input.
 						</p>
-						<p><a href="Steadfast.cbl" download>Download Steadfast.cbl</a></p>
-						<related-content
-							lectures="../../../course/Subprograms.html|Subprograms"
-							examples="DriverProg.html|Subprogram Driver, MultiplyNums.html|MultiplyNums Subprogram, Fickle.html|Fickle Subprogram (State Memory), ../DateValid/DateDriver.html|Date Validation Driver"
-						></related-content>
+						<div class="code-toolbar">
+							<a href="Steadfast.cbl" download class="download-btn">Download Steadfast.cbl</a>
+						</div>
 						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. Steadfast IS INITIAL.
@@ -105,6 +89,10 @@ Begin.
 
     EXIT PROGRAM.
 </code></pre>
+						<related-content
+							lectures="../../../course/Subprograms.html|Subprograms"
+							examples="DriverProg.html|Subprogram Driver, MultiplyNums.html|MultiplyNums Subprogram, Fickle.html|Fickle Subprogram (State Memory), ../DateValid/DateDriver.html|Date Validation Driver"
+						></related-content>
 					</div>
 				</div>
 			</div>

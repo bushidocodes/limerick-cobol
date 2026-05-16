@@ -2,20 +2,12 @@
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<script>
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<script>
 			(function () {
 				var t = localStorage.getItem("lc-theme");
-				if (t === "dark" || t === "light") {
-					document.documentElement.setAttribute("data-theme", t);
-					var color = t === "dark" ? "#1a1a1a" : "#ffffff";
-					var meta = document.querySelector('meta[name="theme-color"]:not([media])');
-					if (!meta) {
-						meta = document.createElement("meta");
-						meta.name = "theme-color";
-						document.head.appendChild(meta);
-					}
-					meta.content = color;
-				}
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
 			})();
 		</script>
 		<title>String handling - Unpacking and size-validating comma separated records</title>
@@ -38,9 +30,9 @@
 			property="og:description"
 			content="An example showing the unpacking of comma-separated records and the size validation of the unpacked fields."
 		/>
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/examples.png" />
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content="String handling - Unpacking and size-validating comma separated records" />
 		<meta
 			name="twitter:description"
@@ -56,6 +48,7 @@
 		<script src="../../components/page-hero.js" defer></script>
 		<script src="../../components/related-content.js" defer></script>
 		<script src="../../components/copy-button.js" defer></script>
+		<script src="../../components/site-header.js" defer></script>
 	</head>
 	<body>
 		<a class="skip-link" href="#main-content">Skip to main content</a>
@@ -65,21 +58,14 @@
 					<div class="section-full">
 						<page-hero
 							title="String handling - Unpacking and size-validating comma separated records"
-							eyebrow="COBOL Example"
 						></page-hero>
-						<nav aria-label="Breadcrumb">
-							<a href="../default.html">Example programs</a> ›
-							<span>UNSTRING File Example</span>
-						</nav>
 						<p>
 							An example showing the unpacking of comma-separated records and the size validation of the
 							unpacked fields.
 						</p>
-						<p><a href="UnstringFileEg.cbl" download>Download UnstringFileEg.cbl</a></p>
-						<related-content
-							lectures="../../course/String.html|STRING Verb, ../../course/Unstring.html|UNSTRING Verb, ../../course/RefMod.html|Reference Modification"
-							examples="RefMod.html|Reference Modification Examples"
-						></related-content>
+						<div class="code-toolbar">
+							<a href="UnstringFileEg.cbl" download class="download-btn">Download UnstringFileEg.cbl</a>
+						</div>
 						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  UnstringFileEg.
@@ -176,6 +162,10 @@ CheckForErrors.
    IF NOT ValidSuppName DISPLAY "Supplier name Error"    END-IF
    IF NOT ValidSuppAdr  DISPLAY "Supplier address Error" END-IF.
 </code></pre>
+						<related-content
+							lectures="../../course/String.html|STRING Verb, ../../course/Unstring.html|UNSTRING Verb, ../../course/RefMod.html|Reference Modification"
+							examples="RefMod.html|Reference Modification Examples"
+						></related-content>
 					</div>
 				</div>
 			</div>

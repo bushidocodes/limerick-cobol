@@ -3,6 +3,122 @@
    a recurring chunk of legacy presentational HTML (<center>, align="...",
    <table border cellspacing cellpadding>) without changing the rendered output. */
 
+/* Sticky site-wide toolbar — injected by site-header.js before <main>.
+   Contains the site logo, primary section nav, and site-search. The
+   theme-toggle now lives in the secondary breadcrumb bar below this
+   one (see <page-breadcrumbs> styling further down). */
+.site-header {
+	position: sticky;
+	top: 0;
+	z-index: 200;
+	display: grid;
+	grid-template-columns: auto auto 1fr;
+	align-items: center;
+	column-gap: 0.75em;
+	padding: 0.25em 0.5em;
+	background-color: var(--color-bg);
+	border-bottom: 1px solid var(--color-border-mute);
+	box-sizing: border-box;
+}
+
+.site-header__logo {
+	grid-column: 1;
+	grid-row: 1;
+	display: flex;
+	align-items: center;
+}
+
+.site-header__logo img {
+	height: 2em;
+	width: auto;
+	display: block;
+}
+
+.site-header .site-nav {
+	grid-column: 2;
+	grid-row: 1;
+	display: flex;
+	align-items: center;
+}
+
+.site-header site-search {
+	grid-column: 3;
+	grid-row: 1;
+	display: flex;
+	align-items: center;
+}
+
+/* Primary nav — horizontal list of top-level sections (Course, Exercises,
+   Examples, Lectures). Active section gets a bottom-border accent and bold
+   text so the reader always knows which silo they're in (MDN's tab pattern).
+   Hidden below ~720px so the mobile header stays compact — logo + search
+   still reach everything. */
+.site-nav ul {
+	display: flex;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	gap: 0.25em;
+}
+
+.site-nav li {
+	margin: 0;
+}
+
+.site-nav a {
+	display: inline-block;
+	padding: 0.25em 0.6em;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.9em;
+	text-decoration: none;
+	color: var(--color-text);
+	border-bottom: 2px solid transparent;
+	border-radius: 2px 2px 0 0;
+	line-height: 1.4;
+}
+
+.site-nav a:hover {
+	background-color: var(--color-border-mute);
+}
+
+.site-nav a[data-active] {
+	font-weight: bold;
+	border-bottom-color: var(--color-header-bg);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) .site-nav a[data-active] {
+		border-bottom-color: #ff9966;
+	}
+}
+
+:root[data-theme="dark"] .site-nav a[data-active] {
+	border-bottom-color: #ff9966;
+}
+
+@media (max-width: 720px) {
+	.site-header {
+		grid-template-columns: auto 1fr;
+	}
+
+	.site-header .site-nav {
+		display: none;
+	}
+
+	.site-header site-search {
+		grid-column: 2;
+	}
+}
+
+.site-header .site-search {
+	margin-top: 0;
+	width: 100%;
+}
+
+.site-header .site-search__label {
+	display: none;
+}
+
 .hero {
 	text-align: center;
 }
@@ -14,27 +130,27 @@ nav[aria-label="Breadcrumb"] {
 	margin-bottom: 0.5em;
 }
 
-/* Eyebrow label in page-hero — replaces t-CobolTut.gif word-art badge.
-   Uses site maroon in light mode; warm orange in dark mode so it stays
-   legible without the img invert filter. */
-.page-hero-eyebrow {
-	margin: 0 0 0.25em;
+/* Estimated reading-time badge rendered by page-hero.js when the
+   reading-time attribute is present. Sits between the h1 and theme-toggle;
+   muted via opacity so it recedes behind the title without a theme-specific
+   colour override. */
+.page-hero-reading-time {
+	margin: 0.1em 0 0;
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 0.85em;
-	font-weight: bold;
-	letter-spacing: 0.12em;
-	text-transform: uppercase;
-	color: #993300;
+	font-size: 0.8em;
+	opacity: 0.65;
 }
 
-@media (prefers-color-scheme: dark) {
-	:root:not([data-theme="light"]) .page-hero-eyebrow {
-		color: #ff9966;
-	}
-}
-
-:root[data-theme="dark"] .page-hero-eyebrow {
-	color: #ff9966;
+/* Inline <code class="language-cobol"> inside section headings (h1–h6)
+   should not be Prism-highlighted — keep COBOL keyword references in the
+   heading flow rather than calling them out with token colours. The `body`
+   prefix matches the specificity of Prism's `body .token.<x>` overrides in
+   course.css so these rules win without `!important`. */
+body :is(h1, h2, h3, h4, h5, h6) code[class*="language-"],
+body :is(h1, h2, h3, h4, h5, h6) code[class*="language-"] .token {
+	color: inherit;
+	background: transparent;
+	text-shadow: none;
 }
 
 /* Decorative disc bullet — replaces BallBlueG.gif (13×13 px) used inline
@@ -53,20 +169,6 @@ nav[aria-label="Breadcrumb"] {
 
 .center-block {
 	text-align: center;
-}
-
-/* Replaces <p align="center"><a href="#top"><img .../></a></p> blocks placed
-   between sections. The 1em vertical margin matches the default <p> margin so
-   the divider/anchor pair retains its rhythm. The .page-footer override drops
-   that margin because the footer variant uses a <div>, which has no default
-   margin. */
-.back-to-top {
-	text-align: center;
-	margin: 1em 0;
-}
-
-.page-footer .back-to-top {
-	margin: 0;
 }
 
 /* Reproduces <table border="1" cellspacing="1" cellpadding="5"> exactly:
@@ -91,20 +193,6 @@ nav[aria-label="Breadcrumb"] {
    image baselines, so the default would look dropped). */
 .i-detail {
 	font-size: 32px;
-	line-height: 1;
-	vertical-align: middle;
-}
-
-/* Back-to-top marker. Replaces the legacy 132×38 px i-pagetop.gif "to top of
-   page" link with the 🔝 emoji. font-size 36px keeps the glyph close to the
-   original GIF height (38px) without overshooting; line-height 1 prevents the
-   emoji from inflating the line box; vertical-align: middle centres the glyph
-   against neighbouring text the same way it does for .i-detail.
-   display: inline-block makes the span an atomic inline so the parent
-   anchor's a:link underline doesn't extend through the emoji. */
-.i-pagetop {
-	display: inline-block;
-	font-size: 36px;
 	line-height: 1;
 	vertical-align: middle;
 }
@@ -666,6 +754,206 @@ details[open].saq-reveal summary::before {
 	border-left: 1px solid;
 }
 
+/* index.html */
+
+/* Header: flexbox replaces the 3-column layout table */
+.course-header {
+	display: flex;
+	align-items: flex-start;
+	width: 605px;
+	max-width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.course-header-title {
+	flex: 1 1 0;
+	min-width: 0;
+}
+
+.course-header-legend {
+	flex: 0 0 207px;
+}
+
+.course-hr {
+	width: 605px;
+	max-width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Main content box replaces outer border layout table */
+.course-content {
+	width: 605px;
+	max-width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid;
+	padding: 1px;
+	box-sizing: border-box;
+}
+
+/* CSS grid replaces the inner 2-column topic layout table */
+.course-topics {
+	display: grid;
+	grid-template-columns: 225px 1fr;
+	width: 100%;
+}
+
+/* Topic-label is rendered as <h2> by build-lesson-index.js so each topic
+   group becomes an anchorable section (#introduction-to-cobol etc.) and
+   has proper heading semantics. The selector targets both the old div
+   form and the new h2 to keep the build script's output flexible. */
+.topic-label {
+	background-color: var(--color-panel-bg);
+	padding: 4px;
+	margin: 0;
+	font-size: 1em;
+	font-weight: bold;
+	font-family: inherit;
+	line-height: 1.3;
+}
+
+.topic-links {
+	background-color: var(--color-bg);
+	display: flex;
+	flex-direction: column;
+}
+
+/* One-line context blurb rendered above each topic's links. Sits at the
+   top of the topic-links column so it visually pairs with the label on
+   the left without crowding the narrow 225px label column. */
+.topic-description {
+	margin: 0 0 0.5em;
+	padding: 4px 4px 0;
+	font-size: 0.9em;
+	color: var(--color-text-muted);
+	line-height: 1.35;
+}
+
+/* Flexbox rows replace each icon+link layout table */
+.course-link {
+	display: flex;
+	align-items: center;
+}
+
+.course-link-icon {
+	flex: 0 0 auto;
+}
+
+/* Maroon divider spanning both grid columns */
+.topic-divider {
+	grid-column: 1 / -1;
+	height: 1px;
+	background-color: #990033;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) .topic-divider {
+		background-color: #b3334d;
+	}
+}
+
+:root[data-theme="dark"] .topic-divider {
+	background-color: #b3334d;
+}
+
+/* Decorative disc bullet — replaces BallRedG.gif (13×13 px) */
+.ball-red {
+	display: inline-block;
+	width: 13px;
+	height: 13px;
+	border-radius: 50%;
+	background-color: #cc3300;
+	vertical-align: middle;
+	margin-left: 4px;
+	margin-right: 4px;
+}
+
+/* Course content link icons — replace i-Tut.gif, i-exercise.gif, i-SAQ.gif */
+.icon-tut,
+.icon-exercise,
+.icon-saq,
+.icon-ref {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 22px;
+	height: 21px;
+	border-radius: 3px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #fff;
+	vertical-align: middle;
+	flex-shrink: 0;
+	margin: 4px 5px;
+}
+
+.icon-tut {
+	background-color: #1565c0;
+}
+
+.icon-exercise {
+	background-color: #2e7d32;
+}
+
+.icon-saq {
+	background-color: #c84a00;
+}
+
+.icon-ref {
+	background-color: #6a1b9a;
+}
+
+/* ============================================================================
+   Code toolbar — Download / Copy / Run buttons grouped above a code block.
+   Used on example pages; the .code-toolbar div sits immediately before <pre>.
+   ============================================================================ */
+
+.code-toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5em;
+	align-items: center;
+	margin-bottom: 0;
+}
+
+.download-btn {
+	display: inline-block;
+	padding: 0.4em 0.85em;
+	font-size: 0.9em;
+	line-height: 1.4;
+	cursor: pointer;
+	border-radius: 3px;
+	background-color: #f0f0f0;
+	color: #333;
+	border: 1px solid #bbb;
+	text-decoration: none;
+	transition: opacity 0.15s;
+}
+
+.download-btn:hover,
+.download-btn:focus {
+	opacity: 0.85;
+	outline: 2px solid currentColor;
+	outline-offset: 1px;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) .download-btn {
+		background-color: #2e2e2e;
+		color: #ddd;
+		border-color: #555;
+	}
+}
+
+:root[data-theme="dark"] .download-btn {
+	background-color: #2e2e2e;
+	color: #ddd;
+	border-color: #555;
+}
+
 /* ============================================================================
    Copy-to-clipboard button (components/copy-button.js)
    The host <pre> gets position:relative so the button can sit top-right.
@@ -692,7 +980,11 @@ body pre[class*="language-"] {
 	color: #333;
 	border: 1px solid #bbb;
 	opacity: 0.8;
-	transition: opacity 0.15s;
+	transition:
+		opacity 0.15s,
+		background-color 0.15s,
+		color 0.15s,
+		border-color 0.15s;
 }
 
 .copy-button:hover,
@@ -702,11 +994,24 @@ body pre[class*="language-"] {
 	outline-offset: 1px;
 }
 
+.copy-button.is-success {
+	background-color: #e8f5e9;
+	color: #2e7d32;
+	border-color: #a5d6a7;
+	opacity: 1;
+}
+
 @media (prefers-color-scheme: dark) {
 	:root:not([data-theme="light"]) .copy-button {
 		background-color: #2e2e2e;
 		color: #ddd;
 		border-color: #555;
+	}
+
+	:root:not([data-theme="light"]) .copy-button.is-success {
+		background-color: #1b3a1e;
+		color: #66bb6a;
+		border-color: #388e3c;
 	}
 }
 
@@ -714,6 +1019,12 @@ body pre[class*="language-"] {
 	background-color: #2e2e2e;
 	color: #ddd;
 	border-color: #555;
+}
+
+:root[data-theme="dark"] .copy-button.is-success {
+	background-color: #1b3a1e;
+	color: #66bb6a;
+	border-color: #388e3c;
 }
 
 /* ============================================================================
@@ -778,13 +1089,16 @@ body pre[class*="language-"] {
 	font-weight: bold;
 	letter-spacing: 0.06em;
 	text-transform: uppercase;
-	padding: 0.3em 0.7em;
+	padding: 0.2em 0.5em;
 	background: transparent;
 	color: inherit;
 	border: none;
 	border-right: 1px solid var(--color-border-mute);
 	cursor: pointer;
 	line-height: 1.4;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .theme-toggle__btn:last-child {
@@ -906,6 +1220,26 @@ body pre[class*="language-"] {
 		border-left: none;
 		border-top: 1px solid;
 	}
+
+	/* index.html */
+	.course-header {
+		flex-wrap: wrap;
+	}
+
+	.course-header-title {
+		flex: 1 1 auto;
+	}
+
+	/* Legend wraps to its own row on narrow screens */
+	.course-header-legend {
+		flex: 0 0 100%;
+		margin-top: 8px;
+	}
+
+	/* Topic sections stack vertically on mobile */
+	.course-topics {
+		grid-template-columns: 1fr;
+	}
 }
 
 /* ============================================================================
@@ -949,6 +1283,36 @@ dl.exam-meta dd > p:last-child {
 
 	dl.exam-meta dd {
 		margin-bottom: 0.6em;
+	}
+}
+
+dl.index-grid {
+	display: grid;
+	grid-template-columns: max-content 1fr;
+	gap: 1em 1.5em;
+	margin: 1em 0;
+}
+
+dl.index-grid dd {
+	margin: 0;
+}
+
+dl.index-grid dd > p:first-child {
+	margin-top: 0;
+}
+
+dl.index-grid dd > p:last-child {
+	margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+	dl.index-grid {
+		grid-template-columns: 1fr;
+		gap: 0.2em 0;
+	}
+
+	dl.index-grid dd {
+		margin-bottom: 1em;
 	}
 }
 
@@ -1034,15 +1398,25 @@ related-content {
 }
 
 /* ============================================================================
-   page-toc custom element (issue #255).
-   Sticky in-page sidebar table-of-contents for long course pages. Opt-in
-   per page by adding <page-toc></page-toc> inside .page-wrapper. The
-   element is hidden below the desktop breakpoint so the existing
-   top-of-page ul.toc handles mobile/tablet navigation unchanged.
+   page-toc custom element (issue #255) and lesson-toc custom element
+   (issue #382).
+
+   page-toc: sticky in-page sidebar table-of-contents for long course pages.
+   Opt-in per page by adding <page-toc></page-toc> inside .page-wrapper.
+   The element is hidden below the desktop breakpoint so lesson-toc handles
+   mobile/tablet navigation.
+
+   lesson-toc: auto-generated flat nav at the top of each lesson that lists
+   the page's <h2> sections. Replaces the hand-authored <ul class="toc">
+   block. Hidden on desktop when the page-toc sidebar is present.
    ============================================================================ */
 
 page-toc {
 	display: none;
+}
+
+lesson-toc {
+	display: block;
 }
 
 .page-toc {
@@ -1125,27 +1499,43 @@ page-toc {
 		min-width: 0;
 	}
 
+	/* Take page-toc out of grid flow with position: fixed.
+	   Why: same row-inflation issue documented for course-sidebar above —
+	   when page-toc spans rows 1 to -1, its tall content distributes
+	   across row tracks and inflates rows that only need to fit a short
+	   item (e.g. the hero's section-grid). Fixed positioning bypasses
+	   grid sizing entirely. The grid still reserves a 200px first column
+	   track (empty); page-toc visually fills it via viewport-coordinate
+	   left/top. The 2-col layout uses max-width 947px so the offset is
+	   `max(0px, (50vw - 947px / 2))`. The 3-col layout below overrides
+	   for max-width 1199px and the right-hand column. */
 	.page-wrapper:has(page-toc) > page-toc {
 		display: block;
-		grid-column: 1;
-		grid-row: 1 / -1;
-		position: sticky;
-		top: 1em;
-		align-self: start;
-		max-height: calc(100vh - 2em);
+		position: fixed;
+		top: calc(var(--site-bar-height) + 1em);
+		left: max(0px, calc(50vw - 947px / 2));
+		width: 200px;
+		max-height: calc(100vh - var(--site-bar-height) - 2em);
 		overflow-y: auto;
 		padding: 0.5em 0.25em;
 		box-sizing: border-box;
 	}
 
-	/* Hide the top-of-page ul.toc on desktop when the sidebar is present —
+	/* Hide the top-of-page TOC on desktop when the sidebar is present —
 	   the sidebar covers the same role. Selector matches both layout
-	   shapes used across course pages: `ul.toc` inside .page-content
-	   (Iteration-style) and inside a .section-grid > .section-full
-	   (COBOLIntro-style). The trailing <hr /> sibling is hidden too so
-	   the empty divider doesn't leave a stray rule. */
+	   shapes used across course pages: `ul.toc`/`lesson-toc` inside
+	   .page-content (Iteration-style) and inside .section-grid >
+	   .section-full (COBOLIntro-style). The trailing <hr /> sibling is
+	   hidden too so the empty divider doesn't leave a stray rule. */
 	.page-wrapper:has(page-toc) ul.toc,
-	.page-wrapper:has(page-toc) ul.toc + hr {
+	.page-wrapper:has(page-toc) ul.toc + hr,
+	.page-wrapper:has(page-toc) lesson-toc,
+	.page-wrapper:has(page-toc) lesson-toc + hr,
+	/* Also hide the leading <hr> immediately above lesson-toc so we don't
+	   leave an orphan divider between the hero and the section header
+	   when the sidebar TOC takes over (uses :has() preceding-sibling). */
+	.page-wrapper:has(page-toc) hr:has(+ lesson-toc),
+	.page-wrapper:has(page-toc) hr:has(+ ul.toc) {
 		display: none;
 	}
 }
@@ -1165,6 +1555,13 @@ page-toc {
 
 copyright-notice {
 	display: block;
+}
+
+/* Replaces deprecated <hr size="1"> (issue #373). */
+hr.thin-rule {
+	border: none;
+	border-top: 1px solid currentColor;
+	margin: 0.75em 0;
 }
 
 copyright-notice hr {
@@ -1329,7 +1726,9 @@ copyright-notice .left {
 
 /* ============================================================================
    edit-on-github custom element (issue #402).
-   Subtle "Edit this page on GitHub" footer affordance. Sits below the
+   MDN-style "Help improve this page" footer panel: a small bordered card
+   offering two contribution paths — edit the file directly on GitHub, or
+   open an issue with the page path pre-filled. Sits below the
    copyright-notice block on content pages; standalone on index pages.
    Light DOM — link colours come from course.css.
    ============================================================================ */
@@ -1339,19 +1738,45 @@ edit-on-github {
 }
 
 .edit-on-github {
-	text-align: center;
 	font-size: 0.85em;
 	margin: 1em 0 0.25em;
-	opacity: 0.75;
-}
-
-.edit-on-github a {
-	text-decoration: underline;
+	padding: 0.5em 0.75em;
+	border: 1px solid var(--color-border-soft);
+	border-radius: 4px;
+	background-color: var(--color-panel-bg);
+	opacity: 0.85;
 }
 
 .edit-on-github:hover,
 .edit-on-github:focus-within {
 	opacity: 1;
+}
+
+.edit-on-github-heading {
+	margin: 0 0 0.25em;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.9em;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: var(--color-text-muted);
+}
+
+.edit-on-github-links {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.3em 1em;
+}
+
+.edit-on-github-links li {
+	margin: 0;
+}
+
+.edit-on-github-links a {
+	text-decoration: underline;
 }
 
 /* ============================================================================
@@ -1369,4 +1794,333 @@ last-updated {
 	text-align: center;
 	margin: 0.75em 0 0;
 	opacity: 0.75;
+}
+
+/* ============================================================================
+   breadcrumbs custom element (MDN-style sticky secondary bar).
+   Light DOM. Auto-injected by components/breadcrumbs.js as a sibling of
+   .site-header so the element forms a full-width bar that sticks just below
+   the header. Hosts the breadcrumb trail on the left and the theme-toggle
+   on the right (mirroring MDN's layout). The .breadcrumbs-list and
+   .breadcrumbs-item rules below style the trail markup itself.
+   ============================================================================ */
+
+page-breadcrumbs {
+	display: block;
+	position: sticky;
+	top: var(--site-header-height);
+	/* One under .site-header (200) so it tucks beneath when both are
+	   sticky-stacked at the top of the viewport. */
+	z-index: 199;
+	background-color: var(--color-bg);
+	border-bottom: 1px solid var(--color-border-mute);
+	box-sizing: border-box;
+}
+
+.breadcrumb-bar-inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.75em;
+	padding: 0.2em 0.5em;
+	min-height: 1.5em;
+}
+
+/* Empty spacer rendered on pages without a breadcrumb trail (e.g. the site
+   home) so the theme-toggle still right-aligns via space-between. */
+.breadcrumb-bar-spacer {
+	flex: 1 1 auto;
+}
+
+/* Override the in-content nav[aria-label="Breadcrumb"] margin rule below —
+   inside the sticky bar the wrapping <div> handles spacing. */
+.breadcrumb-bar-inner nav.page-breadcrumbs {
+	margin: 0;
+}
+
+/* Theme-toggle's own default margin-top (from the .theme-toggle rule near
+   the bottom of this file) would push it off-center inside the bar. */
+.breadcrumb-bar-inner .theme-toggle {
+	margin-top: 0;
+}
+
+nav.page-breadcrumbs {
+	font-size: 0.85em;
+	color: var(--color-text-muted);
+	min-width: 0;
+}
+
+.breadcrumbs-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0 0.4em;
+}
+
+.breadcrumbs-item {
+	display: inline-flex;
+	align-items: center;
+}
+
+.breadcrumbs-item + .breadcrumbs-item::before {
+	content: "›";
+	margin-right: 0.4em;
+	color: var(--color-text-muted);
+	opacity: 0.6;
+}
+
+.breadcrumbs-item a {
+	text-decoration: none;
+}
+
+.breadcrumbs-item a:hover {
+	text-decoration: underline;
+}
+
+/* Leaf is rendered as <a href="#top"> so clicking it scrolls to the page
+   top. Mute its color regardless of link/visited state — the breadcrumb's
+   own muted hue should win over the global a:link / a:visited rules
+   (specificity 0,1,1) without `!important`. */
+.breadcrumbs-current,
+.breadcrumbs-current:link,
+.breadcrumbs-current:visited {
+	color: var(--color-text-muted);
+}
+
+/* ============================================================================
+   course-sidebar custom element (MDN-style left rail).
+   Light DOM. Auto-injected by components/course-sidebar.js on pages within
+   the COBOL course. Renders the full course outline grouped by topic, with
+   the current page highlighted via the same data-active pattern page-toc
+   uses for its scroll-spy.
+
+   Layout interaction:
+   - Below 1100px: hidden. The inline lesson-toc at the top of each page
+     handles per-page navigation; the course index is reachable via the
+     site-header logo link.
+   - 1100-1399px: course-sidebar takes the left rail. If page-toc is also
+     present in the DOM, it is hidden at this width (and lesson-toc is
+     re-shown at the top of the page so the reader still has an in-page
+     index).
+   - 1400px+: three-column layout — course-sidebar left, content middle,
+     page-toc right (mirrors MDN's CSS docs).
+   ============================================================================ */
+
+course-sidebar {
+	display: none;
+}
+
+.course-sidebar {
+	font-size: 0.85em;
+	line-height: 1.4;
+}
+
+.course-sidebar-heading {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.9em;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	margin: 0 0 0.5em;
+	padding-bottom: 0.3em;
+	border-bottom: 1px solid var(--color-border-soft);
+}
+
+.course-sidebar-heading a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.course-sidebar-heading a:hover {
+	text-decoration: underline;
+}
+
+.course-sidebar-topics {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.course-sidebar-topic {
+	margin: 0 0 1em;
+}
+
+.course-sidebar-topic-label {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.85em;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	margin: 0 0 0.25em;
+	color: var(--color-text-muted);
+}
+
+.course-sidebar-topic[data-active-topic] .course-sidebar-topic-label {
+	color: var(--color-text);
+}
+
+.course-sidebar-links {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.course-sidebar-link {
+	margin: 0;
+}
+
+.course-sidebar-link a {
+	display: block;
+	padding: 0.25em 0 0.25em 0.7em;
+	border-left: 2px solid transparent;
+	text-decoration: none;
+	line-height: 1.3;
+}
+
+.course-sidebar-link a:hover {
+	border-left-color: var(--color-border-soft);
+}
+
+.course-sidebar-link a[data-active] {
+	border-left-color: var(--color-header-bg);
+	font-weight: bold;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) .course-sidebar-link a[data-active] {
+		border-left-color: #ff9966;
+	}
+}
+
+:root[data-theme="dark"] .course-sidebar-link a[data-active] {
+	border-left-color: #ff9966;
+}
+
+/* Subtle type marker so the reader can tell tutorials from exercises and
+   self-assessment questions at a glance. Matches the icon legend on
+   course/index.html. */
+.course-sidebar-link--exercise a::after,
+.course-sidebar-link--saq a::after,
+.course-sidebar-link--reference a::after {
+	margin-left: 0.4em;
+	font-size: 0.85em;
+	color: var(--color-text-muted);
+	font-weight: normal;
+}
+
+.course-sidebar-link--exercise a::after {
+	content: "ex";
+}
+
+.course-sidebar-link--saq a::after {
+	content: "saq";
+}
+
+.course-sidebar-link--reference a::after {
+	content: "ref";
+}
+
+/* Narrow-desktop band: course-sidebar is the only sidebar visible.
+   The page-wrapper grid is identical in shape to the existing page-toc
+   layout, just keyed on :has(course-sidebar). When :has(page-toc) ALSO
+   matches at this width, the override block further down hides page-toc
+   and re-shows the inline lesson-toc so the reader still has an in-page
+   index. */
+@media (min-width: 1100px) {
+	.page-wrapper:has(course-sidebar) {
+		display: grid;
+		grid-template-columns: 220px minmax(0, 715px);
+		column-gap: 2em;
+		max-width: 967px;
+		border: none;
+		align-items: start;
+	}
+
+	.page-wrapper:has(course-sidebar) > *:not(course-sidebar):not(page-toc) {
+		grid-column: 2;
+		min-width: 0;
+	}
+
+	/* Take course-sidebar out of grid flow with position: fixed.
+	   Why: with grid-row: 1 / -1 (needed for sticky to work over the full
+	   page), the sidebar's tall content (~820px clamped by max-height)
+	   gets distributed across the grid's row tracks. On pages with many
+	   direct .page-wrapper children (RelativeFiles has 36, Iteration has
+	   2), the algorithm inflates one or more rows by hundreds of pixels,
+	   leaving large empty bands in the content column.
+	   Fixed positioning bypasses grid sizing entirely. The grid still
+	   reserves the 220px first column track (empty); the sidebar visually
+	   fills it via viewport-coordinate left/top. Horizontal position
+	   tracks the wrapper's centered left edge:
+	     wrapper-left = max(0, (viewport-width - max-width) / 2)
+	   The 2-col layout uses max-width 967px so the offset is
+	   `max(0px, (50vw - 967px / 2))`. The 3-col layout below overrides
+	   for max-width 1199px. */
+	.page-wrapper:has(course-sidebar) > course-sidebar {
+		display: block;
+		position: fixed;
+		top: calc(var(--site-bar-height) + 1em);
+		left: max(0px, calc(50vw - 967px / 2));
+		width: 220px;
+		max-height: calc(100vh - var(--site-bar-height) - 2em);
+		overflow-y: auto;
+		padding: 0.5em 0.25em;
+		box-sizing: border-box;
+	}
+}
+
+/* Narrow desktop with both sidebars in the DOM: hide page-toc (no room),
+   re-show the inline lesson-toc / ul.toc so the reader can still jump
+   between page sections. The existing :has(page-toc) rule hides those by
+   default; this override (more specific via the extra :has clause) wins. */
+@media (min-width: 1100px) and (max-width: 1399px) {
+	.page-wrapper:has(course-sidebar):has(page-toc) > page-toc {
+		display: none;
+	}
+
+	.page-wrapper:has(course-sidebar):has(page-toc) lesson-toc,
+	.page-wrapper:has(course-sidebar):has(page-toc) ul.toc {
+		display: block;
+	}
+
+	.page-wrapper:has(course-sidebar):has(page-toc) lesson-toc + hr,
+	.page-wrapper:has(course-sidebar):has(page-toc) ul.toc + hr {
+		display: block;
+	}
+}
+
+/* Wide-desktop three-column layout: course-sidebar left, content middle,
+   page-toc right. Mirrors MDN's CSS reference pages. */
+@media (min-width: 1400px) {
+	.page-wrapper:has(course-sidebar):has(page-toc) {
+		grid-template-columns: 220px minmax(0, 715px) 200px;
+		max-width: 1199px;
+	}
+
+	/* Override the 2-col left offset for the wider 3-col max-width. */
+	.page-wrapper:has(course-sidebar):has(page-toc) > course-sidebar {
+		left: max(0px, calc(50vw - 1199px / 2));
+	}
+
+	/* In the 3-col layout page-toc moves to the right column. Override the
+	   fixed-positioning left offset so it tracks the wrapper's right edge:
+	     wrapper-right = 50vw + 1199px / 2
+	     page-toc.left = wrapper-right - 200px (page-toc width)
+	*/
+	.page-wrapper:has(course-sidebar):has(page-toc) > page-toc {
+		left: max(0px, calc(50vw + 1199px / 2 - 200px));
+	}
+
+	.page-wrapper:has(course-sidebar):has(page-toc) > *:not(course-sidebar):not(page-toc) {
+		grid-column: 2;
+	}
+}
+
+@media print {
+	course-sidebar,
+	page-breadcrumbs {
+		display: none !important;
+	}
 }

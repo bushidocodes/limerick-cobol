@@ -2,6 +2,8 @@
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
 		<script>
 			(function () {
 				var t = localStorage.getItem("lc-theme");
@@ -40,9 +42,26 @@
 		<title>COBOL Course</title>
 		<link rel="stylesheet" href="Resources/css/course.css" />
 		<link rel="stylesheet" href="Resources/css/course-components.css" />
-		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
-		<script src="Resources/vendor/prism/prism.min.js" charset="utf-8" defer></script>
-		<script src="Resources/vendor/prism/components/prism-cobol.min.js" charset="utf-8" defer></script>
+		<link
+			href="Resources/vendor/prism/themes/prism.min.css"
+			rel="stylesheet"
+			integrity="sha384-rCCjoCPCsizaAAYVoz1Q0CmCTvnctK0JkfCSjx7IIxexTBg+uCKtFYycedUjMyA2"
+			crossorigin="anonymous"
+		/>
+		<script
+			src="Resources/vendor/prism/prism.min.js"
+			charset="utf-8"
+			integrity="sha384-06z5D//U/xpvxZHuUz92xBvq3DqBBFi7Up53HRrbV7Jlv7Yvh/MZ7oenfUe9iCEt"
+			crossorigin="anonymous"
+			defer
+		></script>
+		<script
+			src="Resources/vendor/prism/components/prism-cobol.min.js"
+			charset="utf-8"
+			integrity="sha384-s4JeL+r7pYtWemgWCY7jgWCWuBQfoHt/88SwBLAitxcMkr8ji8Lp4JvZq9qCv8W6"
+			crossorigin="anonymous"
+			defer
+		></script>
 		<script src="../components/lesson-progress.js" defer></script>
 		<script src="../components/course-progress.js" defer></script>
 		<script src="../components/site-search.js" defer></script>
@@ -71,170 +90,22 @@
 			property="og:description"
 			content="On-line COBOL programming course - includes tutorials, example programs and exercises."
 		/>
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/course.png" />
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content="COBOL Course" />
 		<meta
 			name="twitter:description"
 			content="On-line COBOL programming course - includes tutorials, example programs and exercises."
 		/>
-		<style type="text/css">
-			/* Header: flexbox replaces the 3-column layout table */
-			.course-header {
-				display: flex;
-				align-items: flex-start;
-				width: 605px;
-				max-width: 100%;
-				margin-left: auto;
-				margin-right: auto;
-			}
-
-			.course-header-title {
-				flex: 1 1 0;
-				min-width: 0;
-			}
-
-			.course-header-legend {
-				flex: 0 0 207px;
-			}
-
-			.course-hr {
-				width: 605px;
-				max-width: 100%;
-				margin-left: auto;
-				margin-right: auto;
-			}
-
-			/* Main content box replaces outer border layout table */
-			.course-content {
-				width: 605px;
-				max-width: 100%;
-				margin-left: auto;
-				margin-right: auto;
-				border: 1px solid;
-				padding: 1px;
-				box-sizing: border-box;
-			}
-
-			/* CSS grid replaces the inner 2-column topic layout table */
-			.course-topics {
-				display: grid;
-				grid-template-columns: 225px 1fr;
-				width: 100%;
-			}
-
-			.topic-label {
-				background-color: var(--color-panel-bg);
-				padding: 4px;
-			}
-
-			.topic-links {
-				background-color: var(--color-bg);
-				display: flex;
-				flex-direction: column;
-			}
-
-			/* Flexbox rows replace each icon+link layout table */
-			.course-link {
-				display: flex;
-				align-items: center;
-			}
-
-			.course-link-icon {
-				flex: 0 0 auto;
-			}
-
-			/* Maroon divider spanning both grid columns */
-			.topic-divider {
-				grid-column: 1 / -1;
-				height: 1px;
-				background-color: #990033;
-			}
-
-			@media (prefers-color-scheme: dark) {
-				:root:not([data-theme="light"]) .topic-divider {
-					background-color: #b3334d;
-				}
-			}
-
-			:root[data-theme="dark"] .topic-divider {
-				background-color: #b3334d;
-			}
-
-			/* Decorative disc bullet — replaces BallRedG.gif (13×13 px) */
-			.ball-red {
-				display: inline-block;
-				width: 13px;
-				height: 13px;
-				border-radius: 50%;
-				background-color: #cc3300;
-				vertical-align: middle;
-				margin-left: 4px;
-				margin-right: 4px;
-			}
-
-			/* Course content link icons — replace i-Tut.gif, i-exercise.gif, i-SAQ.gif */
-			.icon-tut,
-			.icon-exercise,
-			.icon-saq,
-			.icon-ref {
-				display: inline-flex;
-				align-items: center;
-				justify-content: center;
-				width: 22px;
-				height: 21px;
-				border-radius: 3px;
-				font-family: Arial, Helvetica, sans-serif;
-				font-size: 12px;
-				font-weight: bold;
-				color: #fff;
-				vertical-align: middle;
-				flex-shrink: 0;
-				margin: 4px 5px;
-			}
-
-			.icon-tut {
-				background-color: #1565c0;
-			}
-
-			.icon-exercise {
-				background-color: #2e7d32;
-			}
-
-			.icon-saq {
-				background-color: #c84a00;
-			}
-
-			.icon-ref {
-				background-color: #6a1b9a;
-			}
-
+		<style>
 			@media (max-width: 600px) {
 				body {
 					padding-bottom: 65px;
 				}
-
-				.course-header {
-					flex-wrap: wrap;
-				}
-
-				.course-header-title {
-					flex: 1 1 auto;
-				}
-
-				/* Legend wraps to its own row on narrow screens */
-				.course-header-legend {
-					flex: 0 0 100%;
-					margin-top: 8px;
-				}
-
-				/* Topic sections stack vertically on mobile */
-				.course-topics {
-					grid-template-columns: 1fr;
-				}
 			}
 		</style>
+		<script src="../components/site-header.js" defer></script>
 	</head>
 	<body>
 		<a class="skip-link" href="#main-content">Skip to main content</a>
@@ -242,17 +113,13 @@
 			<!-- Header: flex row replaces 3-column layout table -->
 			<div class="course-header">
 				<div class="course-header-title">
-					<h1>
-						<span class="dept-banner">Department of CSIS</span><br />
-						COBOL Course
-					</h1>
+					<h1>Course</h1>
 					<p class="center-block">
 						<b
 							>Includes tutorials, example programs, programming exercises and self assessment
 							questions.</b
 						>
 					</p>
-					<site-search></site-search>
 				</div>
 				<div class="course-header-legend">
 					<!-- Legend table: real tabular data (icon → meaning), kept as <table> -->
@@ -278,12 +145,6 @@
 						</tr>
 						<tr>
 							<td width="14%" height="8">
-								<span class="icon-saq" style="margin: 0 2px" aria-hidden="true">?</span>
-							</td>
-							<td width="86%" height="8">Self assessment questions</td>
-						</tr>
-						<tr>
-							<td width="14%" height="8">
 								<span class="icon-ref" style="margin: 0 2px" aria-hidden="true">R</span>
 							</td>
 							<td width="86%" height="8">COBOL reference</td>
@@ -297,314 +158,284 @@
 			<nav aria-label="Course topics">
 				<div class="course-content">
 					<div class="course-topics">
-						<!-- Introduction to COBOL -->
-						<div class="topic-label">
-							<span class="ball-red" aria-hidden="true"></span><b>Introduction to COBOL</b>
-						</div>
+						<!-- BEGIN:lesson-topics -->
+						<h2 class="topic-label" id="introduction-to-cobol">
+							<span class="ball-red" aria-hidden="true"></span>Introduction to COBOL
+						</h2>
 						<div class="topic-links">
+							<p class="topic-description">
+								Get your bearings: program structure, data declaration, and the four divisions.
+							</p>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span
-								>
-								<a href="COBOLIntro.html">The structure of COBOL programs</a>
+								><a href="COBOLIntro.html">The Structure of COBOL Programs</a>
 							</div>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span
-								>
-								<a href="DataDeclaration.html">Declaring data in COBOL</a>
+								><a href="DataDeclaration.html">Declaring Data in COBOL</a>
 							</div>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span
-								>
-								<a href="COBOLcommands.html">Basic Procedure Division commands</a>
+								><a href="COBOLcommands.html">Basic Procedure Division Commands</a>
 							</div>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-exercise" aria-hidden="true">E</span></span
-								>
-								<a href="../exercises/GettingStarted.html">Getting Started</a>
-							</div>
-							<div class="course-link">
-								<span class="course-link-icon"><span class="icon-saq" aria-hidden="true">?</span></span>
-								<a href="../exercises/GettingStarted.html">These will be self assessment questions</a>
+								><a href="../exercises/GettingStarted.html">Getting Started</a>
 							</div>
 						</div>
 						<div class="topic-divider"></div>
-
-						<!-- COBOL Control structures -->
-						<div class="topic-label">
-							<span class="ball-red" aria-hidden="true"></span><b>COBOL Control structures</b>
-						</div>
+						<h2 class="topic-label" id="cobol-control-structures">
+							<span class="ball-red" aria-hidden="true"></span>COBOL Control Structures
+						</h2>
 						<div class="topic-links">
+							<p class="topic-description">
+								Branch and loop: IF, EVALUATE, and PERFORM in all its forms.
+							</p>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span
-								>
-								<a href="Selection.html">Selection in COBOL</a>
+								><a href="Selection.html">Selection in COBOL</a>
 							</div>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span
-								>
-								<a href="Iteration.html">Iteration in COBOL</a>
+								><a href="Iteration.html">Iteration in COBOL</a>
 							</div>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-exercise" aria-hidden="true">E</span></span
-								>
-								<a href="../exercises/CountDown.html">The Calculator and Countdown exercise</a>
-							</div>
-							<div class="course-link">
-								<span class="course-link-icon"><span class="icon-saq" aria-hidden="true">?</span></span>
-								<a href="../exercises/GettingStarted.html">These will be self assessment questions</a>
+								><a href="../exercises/CountDown.html">The Calculator and Countdown Exercise</a>
 							</div>
 						</div>
 						<div class="topic-divider"></div>
-
-						<!-- Simple Sequential Files -->
-						<div class="topic-label">
-							<span class="ball-red" aria-hidden="true"></span><b>Simple Sequential Files</b>
-						</div>
+						<h2 class="topic-label" id="simple-sequential-files">
+							<span class="ball-red" aria-hidden="true"></span>Simple Sequential Files
+						</h2>
 						<div class="topic-links">
+							<p class="topic-description">
+								Read and process file records one at a time — the bread-and-butter pattern for batch
+								COBOL.
+							</p>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span
-								>
-								<a href="SequentialFiles1.html">Introduction to Sequential files</a>
+								><a href="SequentialFiles1.html">Introduction to Sequential Files</a>
 							</div>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span
-								>
-								<a href="SequentialFiles2.html">Processing Sequential files</a>
+								><a href="SequentialFiles2.html">Processing Sequential Files</a>
 							</div>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-exercise" aria-hidden="true">E</span></span
-								>
-								<a href="../exercises/SeqRead.html">Reading Sequential Files</a>
+								><a href="../exercises/SeqRead.html">Reading Sequential Files</a>
 							</div>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-exercise" aria-hidden="true">E</span></span
-								>
-								<a href="../exercises/SeqReadIf.html">Counting records in a Sequential File</a>
+								><a href="../exercises/SeqReadIf.html">Counting Records in a Sequential File</a>
 							</div>
 						</div>
 						<div class="topic-divider"></div>
-
-						<!-- Advanced data declaration -->
-						<div class="topic-label">
-							<span class="ball-red" aria-hidden="true"></span><b>Advanced data declaration</b>
-						</div>
+						<h2 class="topic-label" id="advanced-data-declaration">
+							<span class="ball-red" aria-hidden="true"></span>Advanced Data Declaration
+						</h2>
 						<div class="topic-links">
+							<p class="topic-description">
+								Edited PICTURE strings and the USAGE clause for richer data representations.
+							</p>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span
-								>
-								<a href="EditedPics.html">Edited Pictures</a>
+								><a href="EditedPics.html">Edited Pictures</a>
 							</div>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span
-								>
-								<a href="Usage.html">The USAGE clause</a>
+								><a href="Usage.html">The USAGE Clause</a>
 							</div>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-exercise" aria-hidden="true">E</span></span
-								>
-								<a href="../exercises/SeqWrite.html">Writing records to a Sequential File</a>
+								><a href="../exercises/SeqWrite.html">Writing Records to a Sequential File</a>
 							</div>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-exercise" aria-hidden="true">E</span></span
-								>
-								<a href="../exercises/SeqInsert.html">Inserting records in a Sequential File</a>
+								><a href="../exercises/SeqInsert.html">Inserting Records in a Sequential File</a>
 							</div>
 						</div>
 						<div class="topic-divider"></div>
-
-						<!-- Advanced Sequential Files -->
-						<div class="topic-label">
-							<span class="ball-red" aria-hidden="true"></span><b>Advanced Sequential Files</b>
-						</div>
+						<h2 class="topic-label" id="advanced-sequential-files">
+							<span class="ball-red" aria-hidden="true"></span>Advanced Sequential Files
+						</h2>
 						<div class="topic-links">
+							<p class="topic-description">
+								Print files, variable-length records, sorting, merging, and in-place updates.
+							</p>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span
-								>
-								<a href="SequentialFiles3.html">COBOL print files and variable-length records</a>
+								><a href="SequentialFiles3.html">COBOL Print Files and Variable-Length Records</a>
 							</div>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span
-								>
-								<a href="SortMerge.html">Sorting and Merging</a>
-							</div>
-							<div class="course-link">
-								<span class="course-link-icon"
-									><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span
-								>
-								<a href="COBOLcommands.html">Basic Procedure Division commands</a>
+								><a href="SortMerge.html">Sorting and Merging</a>
 							</div>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-exercise" aria-hidden="true">E</span></span
-								>
-								<a href="../exercises/SeqUpdate.html">Updating a Sequential File</a>
+								><a href="../exercises/SeqUpdate.html">Updating a Sequential File</a>
 							</div>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-exercise" aria-hidden="true">E</span></span
-								>
-								<a href="../exercises/SortIP.html">Sorting a Sequential File</a>
+								><a href="../exercises/SortIP.html">Sorting a Sequential File</a>
 							</div>
 						</div>
 						<div class="topic-divider"></div>
-
-						<!-- Direct access files -->
-						<div class="topic-label">
-							<span class="ball-red" aria-hidden="true"></span><b>Direct access files</b>
-						</div>
+						<h2 class="topic-label" id="direct-access-files">
+							<span class="ball-red" aria-hidden="true"></span>Direct Access Files
+						</h2>
 						<div class="topic-links">
+							<p class="topic-description">
+								Random-access alternatives to sequential files: relative and indexed organisations.
+							</p>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span
-								>
-								<a href="Intro2DirectAccess.html">Introduction to direct access files</a>
+								><a href="Intro2DirectAccess.html">Introduction to Direct Access Files</a>
 							</div>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span
-								>
-								<a href="RelativeFiles.html">Relative Files</a>
+								><a href="RelativeFiles.html">Relative Files</a>
 							</div>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span
-								>
-								<a href="IndexedFiles.html">Indexed Files</a>
+								><a href="IndexedFiles.html">Indexed Files</a>
 							</div>
 						</div>
 						<div class="topic-divider"></div>
-
-						<!-- COBOL tables -->
-						<div class="topic-label">
-							<span class="ball-red" aria-hidden="true"></span><b>COBOL tables</b>
-						</div>
+						<h2 class="topic-label" id="cobol-tables">
+							<span class="ball-red" aria-hidden="true"></span>COBOL Tables
+						</h2>
 						<div class="topic-links">
+							<p class="topic-description">
+								Arrays in COBOL — declaring tables, accessing them, and searching with SEARCH / SEARCH
+								ALL.
+							</p>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span
-								>
-								<a href="Tables1.html">Using tables</a>
+								><a href="Tables1.html">Using Tables</a>
 							</div>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span
-								>
-								<a href="Tables2.html">Creating tables - syntax and semantics</a>
+								><a href="Tables2.html">Creating Tables - Syntax and Semantics</a>
 							</div>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span
-								>
-								<a href="Search.html">Searching tables</a>
+								><a href="Search.html">Searching Tables</a>
 							</div>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-exercise" aria-hidden="true">E</span></span
-								>
-								<a href="../exercises/MonthTable.html">Using Tables</a>
+								><a href="../exercises/MonthTable.html">Using Tables</a>
 							</div>
 						</div>
 						<div class="topic-divider"></div>
-
-						<!-- Constructing large systems -->
-						<div class="topic-label">
-							<span class="ball-red" aria-hidden="true"></span><b>Constructing large systems</b>
-						</div>
+						<h2 class="topic-label" id="constructing-large-systems">
+							<span class="ball-red" aria-hidden="true"></span>Constructing Large Systems
+						</h2>
 						<div class="topic-links">
+							<p class="topic-description">
+								Splitting a program across source files: sub-programs and the COPY verb.
+							</p>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span
-								>
-								<a href="Subprograms.html">Contained and external sub-programs</a>
+								><a href="Subprograms.html">Contained and External Sub-Programs</a>
 							</div>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span
-								>
-								<a href="Copy.html">The COPY verb</a>
+								><a href="Copy.html">The COPY Verb</a>
 							</div>
 						</div>
 						<div class="topic-divider"></div>
-
-						<!-- COBOL string handling -->
-						<div class="topic-label">
-							<span class="ball-red" aria-hidden="true"></span><b>COBOL string handling</b>
-						</div>
+						<h2 class="topic-label" id="cobol-string-handling">
+							<span class="ball-red" aria-hidden="true"></span>COBOL String Handling
+						</h2>
 						<div class="topic-links">
+							<p class="topic-description">
+								Operate on character data: INSPECT, STRING, UNSTRING, reference modification, and
+								intrinsic functions.
+							</p>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span
-								>
-								<a href="Inspect.html">Inspect</a>
+								><a href="Inspect.html">INSPECT</a>
 							</div>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span
-								>
-								<a href="String.html">String</a>
+								><a href="String.html">STRING</a>
 							</div>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span
-								>
-								<a href="Unstring.html">Unstring</a>
+								><a href="Unstring.html">UNSTRING</a>
 							</div>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span
-								>
-								<a href="RefMod.html">Reference modification and Intrinsic Functions</a>
+								><a href="RefMod.html">Reference Modification and Intrinsic Functions</a>
 							</div>
 						</div>
 						<div class="topic-divider"></div>
-
-						<!-- The COBOL Report Writer -->
-						<div class="topic-label">
-							<span class="ball-red" aria-hidden="true"></span><b>The COBOL Report Writer</b>
-						</div>
+						<h2 class="topic-label" id="the-cobol-report-writer">
+							<span class="ball-red" aria-hidden="true"></span>The COBOL Report Writer
+						</h2>
 						<div class="topic-links">
+							<p class="topic-description">
+								COBOL's built-in reporting facility — by example first, then by syntax and semantics.
+							</p>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span
-								>
-								<a href="ReportWriter.html">Report Writer by example</a>
+								><a href="ReportWriter.html">Report Writer by Example</a>
 							</div>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-tut" aria-label="COBOL tutorial" role="img">T</span></span
-								>
-								<a href="ReportWriterSS.html">Report Writer syntax and semantics</a>
+								><a href="ReportWriterSS.html">Report Writer Syntax and Semantics</a>
 							</div>
 						</div>
 						<div class="topic-divider"></div>
-
-						<!-- Reference -->
-						<div class="topic-label"><span class="ball-red" aria-hidden="true"></span><b>Reference</b></div>
+						<h2 class="topic-label" id="reference">
+							<span class="ball-red" aria-hidden="true"></span>Reference
+						</h2>
 						<div class="topic-links">
+							<p class="topic-description">
+								Quick lookup for keywords and concepts encountered across the course.
+							</p>
 							<div class="course-link">
 								<span class="course-link-icon"
 									><span class="icon-ref" aria-label="COBOL reference" role="img">R</span></span
-								>
-								<a href="glossary.html">Glossary of COBOL keywords and concepts</a>
+								><a href="glossary.html">Glossary of COBOL Keywords and Concepts</a>
 							</div>
 						</div>
+						<!-- END:lesson-topics -->
 					</div>
 				</div>
 			</nav>

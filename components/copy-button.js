@@ -16,12 +16,33 @@ document.addEventListener("DOMContentLoaded", () => {
 		btn.textContent = "Copy";
 
 		btn.addEventListener("click", () => {
-			navigator.clipboard.writeText(code.textContent).then(() => {
+			const onSuccess = () => {
 				btn.textContent = "Copied!";
+				btn.classList.add("is-success");
+				setTimeout(() => {
+					btn.textContent = "Copy";
+					btn.classList.remove("is-success");
+				}, 1500);
+			};
+			const onFailure = () => {
+				btn.textContent = "Copy failed";
 				setTimeout(() => {
 					btn.textContent = "Copy";
 				}, 1500);
-			});
+			};
+
+			if (navigator.clipboard) {
+				navigator.clipboard.writeText(code.textContent).then(onSuccess).catch(onFailure);
+			} else {
+				const selection = window.getSelection();
+				const range = document.createRange();
+				range.selectNodeContents(code);
+				selection.removeAllRanges();
+				selection.addRange(range);
+				const ok = document.execCommand("copy");
+				selection.removeAllRanges();
+				ok ? onSuccess() : onFailure();
+			}
 		});
 
 		pre.appendChild(btn);

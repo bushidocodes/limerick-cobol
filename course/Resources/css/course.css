@@ -17,9 +17,37 @@
 	--color-cell-label-bg: #e8e8e8;
 	--color-emphasis: #000099;
 
+	--site-header-height: 3em;
+	/* site-header (--site-header-height) + secondary breadcrumb bar. Used by
+	   sticky sidebars (page-toc, course-sidebar) so they sit below both bars
+	   instead of slipping under the breadcrumbs. */
+	--site-bar-height: calc(var(--site-header-height) + 2.5em);
+
 	--color-border: currentColor;
 	--color-border-soft: #cccccc;
 	--color-border-mute: #999999;
+
+	--color-text-muted: #6a6a6a;
+	--color-danger: #c00000;
+	--color-inline-warm: #993300;
+	--color-inline-green: #006600;
+	--color-syntax-highlight: #c00000;
+	--color-toc-marker: #2e7d32;
+
+	--prism-bg: #f5f2f0;
+	--prism-text: #000000;
+	--prism-keyword: #006fa1;
+	--prism-string: #447a00;
+	--prism-punctuation: #6a6a6a;
+	--prism-comment: #546e7a;
+	--prism-function: #c03a58;
+	--prism-number: currentColor;
+	--prism-operator: currentColor;
+
+	/* Dark-mode image inversion. Light/print leave it at `none`; the dark
+	   rulesets override it to actually invert. Routing through a custom
+	   property lets the print stylesheet reset it without `!important`. */
+	--img-filter: none;
 }
 
 /* Tighten color-scheme when the user has explicitly chosen a theme so the
@@ -52,6 +80,23 @@
 
 		--color-border-soft: #444444;
 		--color-border-mute: #666666;
+
+		--color-text-muted: #a0a0a0;
+		--color-danger: #ff8a8a;
+		--color-inline-warm: #ff9966;
+		--color-inline-green: #7ec47e;
+		--color-syntax-highlight: #ff8a8a;
+		--color-toc-marker: #66bb6a;
+
+		--prism-bg: #1f1f1f;
+		--prism-text: #e6e6e6;
+		--prism-keyword: #ff9d6e;
+		--prism-string: #b5e8a3;
+		--prism-punctuation: #c8c8c8;
+		--prism-comment: #8a8a8a;
+		--prism-function: #90c8ff;
+		--prism-number: #f8d57e;
+		--prism-operator: #d8a0ff;
 	}
 }
 
@@ -75,9 +120,27 @@
 
 	--color-border-soft: #444444;
 	--color-border-mute: #666666;
+
+	--color-text-muted: #a0a0a0;
+	--color-danger: #ff8a8a;
+	--color-inline-warm: #ff9966;
+	--color-inline-green: #7ec47e;
+	--color-syntax-highlight: #ff8a8a;
+	--color-toc-marker: #66bb6a;
+
+	--prism-bg: #1f1f1f;
+	--prism-text: #e6e6e6;
+	--prism-keyword: #ff9d6e;
+	--prism-string: #b5e8a3;
+	--prism-punctuation: #c8c8c8;
+	--prism-comment: #8a8a8a;
+	--prism-function: #90c8ff;
+	--prism-number: #f8d57e;
+	--prism-operator: #d8a0ff;
 }
 
 body {
+	margin: 0;
 	background-color: var(--color-bg);
 	color: var(--color-text);
 }
@@ -94,9 +157,31 @@ a:active {
 	color: var(--color-link-active);
 }
 
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+details:focus-visible {
+	outline: 2px solid var(--color-link);
+	outline-offset: 2px;
+	box-shadow: 0 0 0 4px var(--color-bg);
+}
+
 img {
 	max-width: 100%;
 	height: auto;
+	filter: var(--img-filter);
+}
+
+/* Photos and explicit opt-outs skip the dark-mode invert. Setting the custom
+   property on the element itself (rather than a high-specificity `img { filter
+   }` rule) means the same selectors work in light, dark, and print without
+   needing to be repeated under each theme. */
+img.no-invert,
+img[src$=".jpg"],
+img[src$=".jpeg"],
+img[src$=".JPG"],
+img[src$=".JPEG"] {
+	--img-filter: none;
 }
 
 table {
@@ -138,17 +223,21 @@ body {
 		word-wrap: break-word;
 	}
 
+	/* These attribute selectors override HTML width="..." / height="..."
+	   presentation attributes, which the cascade treats as having specificity
+	   0 — so any author CSS selector wins without `!important`. Confirmed no
+	   page sets an inline `style="width:..."` on these tags. */
 	table[width] {
-		width: 100% !important;
-		height: auto !important;
+		width: 100%;
+		height: auto;
 	}
 
 	td[width],
 	th[width],
 	td[height],
 	th[height] {
-		width: auto !important;
-		height: auto !important;
+		width: auto;
+		height: auto;
 	}
 
 	td[bgcolor="#993300"] > h2,
@@ -162,7 +251,7 @@ body {
 	}
 
 	hr[width] {
-		width: 100% !important;
+		width: 100%;
 	}
 
 	img,
@@ -170,12 +259,12 @@ body {
 	video,
 	embed,
 	object {
-		max-width: min(100%, calc(100vw - 16px)) !important;
+		max-width: min(100%, calc(100vw - 16px));
 		height: auto;
 	}
 
 	pre {
-		max-width: min(100%, calc(100vw - 16px)) !important;
+		max-width: min(100%, calc(100vw - 16px));
 	}
 
 	pre[class*="language-"] {
@@ -190,7 +279,7 @@ body {
 	#layout-table > tbody > tr,
 	#layout-table > tbody > tr > td {
 		display: block;
-		width: auto !important;
+		width: auto;
 	}
 }
 
@@ -226,7 +315,7 @@ ul.toc {
 }
 
 ul.toc ::marker {
-	color: #2e7d32;
+	color: var(--color-toc-marker);
 }
 
 ul.toc > li {
@@ -239,23 +328,6 @@ ul.toc a {
 	display: block;
 	font-weight: bold;
 	font-size: larger;
-}
-
-/* Department banner — replaces T-Dept.gif word-art on index pages.
-   Maroon matches the original word-art hue; orange for dark mode. */
-.dept-banner {
-	display: inline-block;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 1.5rem;
-	font-weight: bold;
-	letter-spacing: 0.04em;
-	color: #993300;
-}
-
-@media (prefers-color-scheme: dark) {
-	.dept-banner {
-		color: #ff9966;
-	}
 }
 
 /* Recolor legacy <table>/<tr>/<td> bgcolor="..." attribute markup via CSS
@@ -355,7 +427,12 @@ td[bgcolor="#ffffcc"] h4 {
 	box-sizing: border-box;
 }
 
-.page-content,
+.page-content {
+	max-width: 700px;
+	margin-inline: auto;
+	padding: 2px;
+}
+
 .page-footer {
 	padding: 2px;
 }
@@ -426,23 +503,33 @@ td[bgcolor="#ffffcc"] h4 {
    Legacy <span style="color: #cccccc"> fails 4.5:1 against any light
    background. Remap to a dark grey that passes without the rule being
    visible in dark mode (the dark-mode block below uses higher-specificity
-   :root:not([data-theme="light"]) selectors and overrides this). */
+   :root:not([data-theme="light"]) selectors and overrides this).
+   `!important` is required: attribute selectors only see the raw inline
+   value, but the actual `color` declaration sits in the element's `style`
+   attribute, whose specificity (1,0,0,0) outranks any author selector
+   without `!important`. */
 [style*="color:#cccccc"],
 [style*="color: #cccccc"],
 [style*="color:#CCCCCC"],
 [style*="color: #CCCCCC"] {
-	color: #6a6a6a !important;
+	color: var(--color-text-muted) !important;
+}
+
+.cobol-highlight {
+	color: var(--color-syntax-highlight);
 }
 
 /* Legacy <span style="color: #ff0000"> fails 4.5:1 against light backgrounds
    (#E1FFE1 gives 3.73:1, #FFFFCC gives 3.89:1, white gives 4:1). Remap to a
    darker red. Dark-mode override below uses higher-specificity selectors and
-   maps to #ff8a8a for legibility on dark panel backgrounds. */
+   maps to #ff8a8a for legibility on dark panel backgrounds. `!important` is
+   required for the same reason as the #cccccc rule above — we're overriding
+   an inline `style="color:..."` declaration. */
 [style*="color:#ff0000"],
 [style*="color: #ff0000"],
 [style*="color:#FF0000"],
 [style*="color: #FF0000"] {
-	color: #c00000 !important;
+	color: var(--color-danger) !important;
 }
 
 /* ============================================================================
@@ -455,7 +542,7 @@ td[bgcolor="#ffffcc"] h4 {
 body .token.atrule,
 body .token.attr-value,
 body .token.keyword {
-	color: #006fa1;
+	color: var(--prism-keyword);
 }
 
 body .token.attr-name,
@@ -464,23 +551,23 @@ body .token.char,
 body .token.inserted,
 body .token.selector,
 body .token.string {
-	color: #447a00;
+	color: var(--prism-string);
 }
 
 body .token.punctuation {
-	color: #6a6a6a;
+	color: var(--prism-punctuation);
 }
 
 body .token.comment,
 body .token.prolog,
 body .token.doctype,
 body .token.cdata {
-	color: #546e7a;
+	color: var(--prism-comment);
 }
 
 body .token.class-name,
 body .token.function {
-	color: #c03a58;
+	color: var(--prism-function);
 }
 
 /* ============================================================================
@@ -500,31 +587,31 @@ body .token.function {
 	   (0,1,1) selectors despite the vendor sheet loading after course.css. */
 	:root:not([data-theme="light"]) body pre[class*="language-"],
 	:root:not([data-theme="light"]) body code[class*="language-"] {
-		background: #1f1f1f;
-		color: #e6e6e6;
+		background: var(--prism-bg);
+		color: var(--prism-text);
 		text-shadow: none;
 	}
 
 	:root:not([data-theme="light"]) body :not(pre) > code[class*="language-"] {
-		background: #1f1f1f;
+		background: var(--prism-bg);
 	}
 
 	:root:not([data-theme="light"]) body .token.comment,
 	:root:not([data-theme="light"]) body .token.prolog,
 	:root:not([data-theme="light"]) body .token.doctype,
 	:root:not([data-theme="light"]) body .token.cdata {
-		color: #8a8a8a;
+		color: var(--prism-comment);
 	}
 
 	:root:not([data-theme="light"]) body .token.punctuation {
-		color: #c8c8c8;
+		color: var(--prism-punctuation);
 	}
 
 	:root:not([data-theme="light"]) body .token.keyword,
 	:root:not([data-theme="light"]) body .token.tag,
 	:root:not([data-theme="light"]) body .token.selector,
 	:root:not([data-theme="light"]) body .token.atrule {
-		color: #ff9d6e;
+		color: var(--prism-keyword);
 	}
 
 	:root:not([data-theme="light"]) body .token.string,
@@ -532,7 +619,7 @@ body .token.function {
 	:root:not([data-theme="light"]) body .token.char,
 	:root:not([data-theme="light"]) body .token.builtin,
 	:root:not([data-theme="light"]) body .token.inserted {
-		color: #b5e8a3;
+		color: var(--prism-string);
 	}
 
 	:root:not([data-theme="light"]) body .token.number,
@@ -540,12 +627,12 @@ body .token.function {
 	:root:not([data-theme="light"]) body .token.constant,
 	:root:not([data-theme="light"]) body .token.symbol,
 	:root:not([data-theme="light"]) body .token.deleted {
-		color: #f8d57e;
+		color: var(--prism-number);
 	}
 
 	:root:not([data-theme="light"]) body .token.function,
 	:root:not([data-theme="light"]) body .token.class-name {
-		color: #90c8ff;
+		color: var(--prism-function);
 	}
 
 	:root:not([data-theme="light"]) body .token.operator,
@@ -554,24 +641,17 @@ body .token.function {
 	:root:not([data-theme="light"]) body .token.variable,
 	:root:not([data-theme="light"]) body .language-css .token.string,
 	:root:not([data-theme="light"]) body .style .token.string {
-		color: #d8a0ff;
+		color: var(--prism-operator);
 		background: transparent;
 	}
 
 	/* Light-background diagrams and decorative GIFs invert to read on dark.
 	   `0.92` keeps blacks just shy of pure white so they merge into the page;
-	   `hue-rotate(180deg)` recovers reds/greens. Photos opt out by extension
-	   or by adding `class="no-invert"` to the <img>. */
-	:root:not([data-theme="light"]) img {
-		filter: invert(0.92) hue-rotate(180deg);
-	}
-
-	:root:not([data-theme="light"]) img.no-invert,
-	:root:not([data-theme="light"]) img[src$=".jpg"],
-	:root:not([data-theme="light"]) img[src$=".jpeg"],
-	:root:not([data-theme="light"]) img[src$=".JPG"],
-	:root:not([data-theme="light"]) img[src$=".JPEG"] {
-		filter: none;
+	   `hue-rotate(180deg)` recovers reds/greens. The photo / no-invert opt-out
+	   lives at the base `img.no-invert` rule above, which resets the variable
+	   on the element itself. */
+	:root:not([data-theme="light"]) {
+		--img-filter: invert(0.92) hue-rotate(180deg);
 	}
 
 	/* Override inline `style="color: #..."` spans baked into legacy code
@@ -586,7 +666,7 @@ body .token.function {
 
 	:root:not([data-theme="light"]) [style*="color:#993300"],
 	:root:not([data-theme="light"]) [style*="color: #993300"] {
-		color: #ff9966 !important;
+		color: var(--color-inline-warm) !important;
 	}
 
 	:root:not([data-theme="light"]) [style*="color:#000099"],
@@ -603,19 +683,19 @@ body .token.function {
 	:root:not([data-theme="light"]) [style*="color: #ff0000"],
 	:root:not([data-theme="light"]) [style*="color:#FF0000"],
 	:root:not([data-theme="light"]) [style*="color: #FF0000"] {
-		color: #ff8a8a !important;
+		color: var(--color-danger) !important;
 	}
 
 	:root:not([data-theme="light"]) [style*="color:#006600"],
 	:root:not([data-theme="light"]) [style*="color: #006600"] {
-		color: #7ec47e !important;
+		color: var(--color-inline-green) !important;
 	}
 
 	:root:not([data-theme="light"]) [style*="color:#cccccc"],
 	:root:not([data-theme="light"]) [style*="color: #cccccc"],
 	:root:not([data-theme="light"]) [style*="color:#CCCCCC"],
 	:root:not([data-theme="light"]) [style*="color: #CCCCCC"] {
-		color: #a0a0a0 !important;
+		color: var(--color-text-muted) !important;
 	}
 
 	/* Inline background-color: #ffffff stays white in dark mode, leaving light
@@ -641,34 +721,39 @@ body .token.function {
 	}
 }
 
-/* Manual dark override — same non-token rules, applied regardless of OS. */
+/* Manual dark override — same non-token rules as the @media block above,
+   applied regardless of OS preference. The `[style*="..."]` overrides below
+   need `!important` for the same reason as their @media-dark twins: they
+   target the raw inline-style attribute, but the actual `color` /
+   `background-color` declaration sits in `style=""` at specificity (1,0,0,0)
+   and can't be beaten without it. */
 :root[data-theme="dark"] body pre[class*="language-"],
 :root[data-theme="dark"] body code[class*="language-"] {
-	background: #1f1f1f;
-	color: #e6e6e6;
+	background: var(--prism-bg);
+	color: var(--prism-text);
 	text-shadow: none;
 }
 
 :root[data-theme="dark"] body :not(pre) > code[class*="language-"] {
-	background: #1f1f1f;
+	background: var(--prism-bg);
 }
 
 :root[data-theme="dark"] body .token.comment,
 :root[data-theme="dark"] body .token.prolog,
 :root[data-theme="dark"] body .token.doctype,
 :root[data-theme="dark"] body .token.cdata {
-	color: #8a8a8a;
+	color: var(--prism-comment);
 }
 
 :root[data-theme="dark"] body .token.punctuation {
-	color: #c8c8c8;
+	color: var(--prism-punctuation);
 }
 
 :root[data-theme="dark"] body .token.keyword,
 :root[data-theme="dark"] body .token.tag,
 :root[data-theme="dark"] body .token.selector,
 :root[data-theme="dark"] body .token.atrule {
-	color: #ff9d6e;
+	color: var(--prism-keyword);
 }
 
 :root[data-theme="dark"] body .token.string,
@@ -676,7 +761,7 @@ body .token.function {
 :root[data-theme="dark"] body .token.char,
 :root[data-theme="dark"] body .token.builtin,
 :root[data-theme="dark"] body .token.inserted {
-	color: #b5e8a3;
+	color: var(--prism-string);
 }
 
 :root[data-theme="dark"] body .token.number,
@@ -684,12 +769,12 @@ body .token.function {
 :root[data-theme="dark"] body .token.constant,
 :root[data-theme="dark"] body .token.symbol,
 :root[data-theme="dark"] body .token.deleted {
-	color: #f8d57e;
+	color: var(--prism-number);
 }
 
 :root[data-theme="dark"] body .token.function,
 :root[data-theme="dark"] body .token.class-name {
-	color: #90c8ff;
+	color: var(--prism-function);
 }
 
 :root[data-theme="dark"] body .token.operator,
@@ -698,20 +783,12 @@ body .token.function {
 :root[data-theme="dark"] body .token.variable,
 :root[data-theme="dark"] body .language-css .token.string,
 :root[data-theme="dark"] body .style .token.string {
-	color: #d8a0ff;
+	color: var(--prism-operator);
 	background: transparent;
 }
 
-:root[data-theme="dark"] img {
-	filter: invert(0.92) hue-rotate(180deg);
-}
-
-:root[data-theme="dark"] img.no-invert,
-:root[data-theme="dark"] img[src$=".jpg"],
-:root[data-theme="dark"] img[src$=".jpeg"],
-:root[data-theme="dark"] img[src$=".JPG"],
-:root[data-theme="dark"] img[src$=".JPEG"] {
-	filter: none;
+:root[data-theme="dark"] {
+	--img-filter: invert(0.92) hue-rotate(180deg);
 }
 
 :root[data-theme="dark"] [style*="color:#0000ff"],
@@ -723,7 +800,7 @@ body .token.function {
 
 :root[data-theme="dark"] [style*="color:#993300"],
 :root[data-theme="dark"] [style*="color: #993300"] {
-	color: #ff9966 !important;
+	color: var(--color-inline-warm) !important;
 }
 
 :root[data-theme="dark"] [style*="color:#000099"],
@@ -740,19 +817,19 @@ body .token.function {
 :root[data-theme="dark"] [style*="color: #ff0000"],
 :root[data-theme="dark"] [style*="color:#FF0000"],
 :root[data-theme="dark"] [style*="color: #FF0000"] {
-	color: #ff8a8a !important;
+	color: var(--color-danger) !important;
 }
 
 :root[data-theme="dark"] [style*="color:#006600"],
 :root[data-theme="dark"] [style*="color: #006600"] {
-	color: #7ec47e !important;
+	color: var(--color-inline-green) !important;
 }
 
 :root[data-theme="dark"] [style*="color:#cccccc"],
 :root[data-theme="dark"] [style*="color: #cccccc"],
 :root[data-theme="dark"] [style*="color:#CCCCCC"],
 :root[data-theme="dark"] [style*="color: #CCCCCC"] {
-	color: #a0a0a0 !important;
+	color: var(--color-text-muted) !important;
 }
 
 :root[data-theme="dark"] [style*="background-color: #ffffff"],
@@ -804,13 +881,15 @@ body .token.function {
 		background: #fff;
 	}
 
-	/* Hide decorative chrome that doesn't belong on a printed page */
+	/* Hide decorative chrome that doesn't belong on a printed page. None of
+	   these elements have a competing `display` rule elsewhere in course.css,
+	   so source order alone wins. */
 	.hero img,
-	.back-to-top,
 	.skip-link,
 	theme-toggle,
-	ul.toc {
-		display: none !important;
+	ul.toc,
+	lesson-toc {
+		display: none;
 	}
 
 	/* Expand multi-column section grid to a single column */
@@ -831,8 +910,14 @@ body .token.function {
 		break-inside: avoid;
 	}
 
-	/* Undo any dark-mode invert filter on images */
-	img {
-		filter: none !important;
+	/* Undo any dark-mode invert filter on images. The dark-mode rulesets set
+	   `--img-filter` on `:root[data-theme="dark"]` or
+	   `:root:not([data-theme="light"])` (both specificity 0,2,0). Resetting on
+	   the same selectors here matches that specificity, and source order
+	   makes the print declarations win — no `!important` required. */
+	:root,
+	:root[data-theme="dark"],
+	:root:not([data-theme="light"]) {
+		--img-filter: none;
 	}
 }

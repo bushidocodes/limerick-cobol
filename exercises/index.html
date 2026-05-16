@@ -2,6 +2,8 @@
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
 		<script>
 			(function () {
 				var t = localStorage.getItem("lc-theme");
@@ -18,12 +20,12 @@
 				}
 			})();
 		</script>
-		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
 		<title>COBOL Programming Exercises</title>
 		<link href="../course/Resources/css/course.css" rel="stylesheet" />
 		<link href="../course/Resources/css/course-components.css" rel="stylesheet" />
-		<meta content="document" name="resource-type" />
+		<meta name="resource-type" content="document" />
 		<meta
 			content="These pages contain COBOL programming exercises with sample answers. Where required, test data files are also supplied."
 			name="description"
@@ -43,9 +45,9 @@
 			property="og:description"
 			content="These pages contain COBOL programming exercises with sample answers. Where required, test data files are also supplied."
 		/>
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/exercises.png" />
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content="COBOL Programming Exercises" />
 		<meta
 			name="twitter:description"
@@ -83,149 +85,108 @@
 				margin-left: 4px;
 				margin-right: 4px;
 			}
-
-			/* Skip-to-content link */
-			.skip-link {
-				position: absolute;
-				left: -9999px;
-				top: auto;
-				width: 1px;
-				height: 1px;
-				overflow: hidden;
-			}
-
-			.skip-link:focus {
-				position: fixed;
-				top: 0;
-				left: 0;
-				width: auto;
-				height: auto;
-				overflow: visible;
-				padding: 0.5em 1em;
-				background-color: #993300;
-				color: #ffff00;
-				font-weight: bold;
-				z-index: 9999;
-				text-decoration: none;
-			}
 		</style>
+		<script src="../components/theme-toggle.js" defer></script>
+		<script src="../components/page-hero.js" defer></script>
 		<script src="../components/copyright-notice.js" defer></script>
-		<script src="../components/back-to-top.js" defer></script>
 		<script src="../components/site-search.js" defer></script>
+		<script src="../components/site-header.js" defer></script>
 	</head>
 	<body>
 		<a class="skip-link" href="#main-content">Skip to main content</a>
 		<main id="main-content">
-			<h2>
-				<img
-					height="40"
-					src="../pics/i-AtComputer.gif"
-					width="40"
-					alt=""
-					style="border: 1px solid"
-				/>&nbsp;<span class="dept-banner">Department of CSIS</span><br />
-				COBOL Programming Exercises&nbsp;
-			</h2>
-			<div class="center-block">
-				<site-search></site-search>
-			</div>
-			<hr width="800" />
-			<div>
-				<table width="750">
-					<tr>
-						<td width="50">&nbsp;</td>
-						<td width="698">
-							<p>These pages contain -</p>
-							<ul>
-								<li>Simple COBOL programming exercises with sample answers.</li>
-								<li>Programming exam specifications with sample answers.</li>
-								<li>Programming project specifications with no answers provided.</li>
-							</ul>
-							<p>Where required, test data files are also supplied.</p>
-							<p>
-								The simple programming exercises are normally given as lab exercises. Good students
-								should be able to do these in little more than one or two hours.
-							</p>
-							<p>
-								The specifications for the programming exams are actually old
-								<a href="COBOLExams/COBOLExams.html">exam papers</a>. Good students should be able to
-								produce a working program in four to six hours.
-							</p>
-							<p>
-								Unlike the exercises described above, the programming project specifications require
-								programs that can not be written in one sitting. For each project, an estimate of the
-								number of hours it should take to complete the project has been given.
-							</p>
-							<p>
-								In our course we normally allow students about one week for every 5 hours of the
-								completion estimate. In other words if we estimate that a programming project will take
-								20 hours to complete, we allow the students 4 weeks to do it.
-							</p>
-							<copyright-notice type="exercises"></copyright-notice>
-						</td>
-					</tr>
-				</table>
-			</div>
-			<hr width="800" />
-			<nav aria-label="Simple programming exercises">
-				<h3>Simple Programming Exercises</h3>
-				<ul class="toc">
-					<li>
-						<a href="GettingStarted.html">Getting Started</a> - Exercise to load, compile, run and alter an
-						existing program.
-					</li>
-					<li>
-						<a href="CountDown.html">CountDown</a> - Exercise using the
-						<code class="language-cobol">ACCEPT</code>, <code class="language-cobol">DISPLAY</code>,
-						<code class="language-cobol">PERFORM</code> ... <code class="language-cobol">TIMES</code>,
-						<code class="language-cobol">COMPUTE</code> and <code class="language-cobol">IF</code> .
-					</li>
-					<li>
-						<a href="SeqRead.html">Reading Sequential Files</a>&nbsp; -
-						<code class="language-cobol">READ</code>, <code class="language-cobol">PERFORM.. UNTIL</code>,
-						<code class="language-cobol">DISPLAY</code>
-					</li>
-					<li>
-						<a href="SeqReadIf.html">Counting records in a Sequential File</a> -
-						<code class="language-cobol">READ</code>, <code class="language-cobol">PERFORM..UNTIL</code>,
-						<code class="language-cobol">DISPLAY</code>, <code class="language-cobol">IF</code>,
-						<code class="language-cobol">COMPUTE</code>
-					</li>
-					<li>
-						<a href="SeqWrite.html">Writing to a Sequential File</a> -
-						<code class="language-cobol">ACCEPT</code>, <code class="language-cobol">DISPLAY</code>,
-						<code class="language-cobol">WRITE</code>, <code class="language-cobol">PERFORM..UNTIL</code>,
-					</li>
-					<li>
-						<a href="SeqInsert.html">Inserting records into a Sequential File</a> -
-						<code class="language-cobol">READ</code>, <code class="language-cobol">WRITE</code>,
-						<code class="language-cobol">PERFORM.. UNTIL</code>.
-					</li>
-					<li>
-						<a href="SeqUpdate.html">Updating records in a Sequential File</a> -
-						<code class="language-cobol">READ</code>, <code class="language-cobol">WRITE</code>.
-					</li>
-					<li>
-						<a href="SortIP.html">Sorting a Sequential File</a> - <code class="language-cobol">SORT</code>,
-						<code class="language-cobol">READ</code>, <code class="language-cobol">RELEASE</code>, Input
-						Procedure.
-					</li>
-					<li>
-						<a href="MonthTable.html">Using Tables</a> - <code class="language-cobol">READ</code>,
-						pre-defined Tables, Tables.
-					</li>
-				</ul>
-			</nav>
-			<hr />
-			<h3>Programming Exam Specifications</h3>
-			<blockquote>
-				<table cellpadding="0" cellspacing="0" width="750">
-					<tr>
-						<td height="37" width="27%" style="vertical-align: top">
+			<div class="page-wrapper">
+				<div class="page-content">
+					<page-hero title="Exercises"></page-hero>
+					<hr />
+					<p>These pages contain -</p>
+					<ul>
+						<li>Simple COBOL programming exercises with sample answers.</li>
+						<li>Programming exam specifications with sample answers.</li>
+						<li>Programming project specifications with no answers provided.</li>
+					</ul>
+					<p>Where required, test data files are also supplied.</p>
+					<p>
+						The simple programming exercises are normally given as lab exercises. Good students should be
+						able to do these in little more than one or two hours.
+					</p>
+					<p>
+						The specifications for the programming exams are actually old
+						<a href="COBOLExams/COBOLExams.html">exam papers</a>. Good students should be able to produce a
+						working program in four to six hours.
+					</p>
+					<p>
+						Unlike the exercises described above, the programming project specifications require programs
+						that can not be written in one sitting. For each project, an estimate of the number of hours it
+						should take to complete the project has been given.
+					</p>
+					<p>
+						In our course we normally allow students about one week for every 5 hours of the completion
+						estimate. In other words if we estimate that a programming project will take 20 hours to
+						complete, we allow the students 4 weeks to do it.
+					</p>
+					<hr />
+					<nav aria-label="Simple programming exercises">
+						<h2>Simple Programming Exercises</h2>
+						<ul class="toc">
+							<li>
+								<a href="GettingStarted.html">Getting Started</a> - Exercise to load, compile, run and
+								alter an existing program.
+							</li>
+							<li>
+								<a href="CountDown.html">CountDown</a> - Exercise using the
+								<code class="language-cobol">ACCEPT</code>, <code class="language-cobol">DISPLAY</code>,
+								<code class="language-cobol">PERFORM</code> ...
+								<code class="language-cobol">TIMES</code>,
+								<code class="language-cobol">COMPUTE</code> and <code class="language-cobol">IF</code> .
+							</li>
+							<li>
+								<a href="SeqRead.html">Reading Sequential Files</a>&nbsp; -
+								<code class="language-cobol">READ</code>,
+								<code class="language-cobol">PERFORM.. UNTIL</code>,
+								<code class="language-cobol">DISPLAY</code>
+							</li>
+							<li>
+								<a href="SeqReadIf.html">Counting records in a Sequential File</a> -
+								<code class="language-cobol">READ</code>,
+								<code class="language-cobol">PERFORM..UNTIL</code>,
+								<code class="language-cobol">DISPLAY</code>, <code class="language-cobol">IF</code>,
+								<code class="language-cobol">COMPUTE</code>
+							</li>
+							<li>
+								<a href="SeqWrite.html">Writing to a Sequential File</a> -
+								<code class="language-cobol">ACCEPT</code>, <code class="language-cobol">DISPLAY</code>,
+								<code class="language-cobol">WRITE</code>,
+								<code class="language-cobol">PERFORM..UNTIL</code>,
+							</li>
+							<li>
+								<a href="SeqInsert.html">Inserting records into a Sequential File</a> -
+								<code class="language-cobol">READ</code>, <code class="language-cobol">WRITE</code>,
+								<code class="language-cobol">PERFORM.. UNTIL</code>.
+							</li>
+							<li>
+								<a href="SeqUpdate.html">Updating records in a Sequential File</a> -
+								<code class="language-cobol">READ</code>, <code class="language-cobol">WRITE</code>.
+							</li>
+							<li>
+								<a href="SortIP.html">Sorting a Sequential File</a> -
+								<code class="language-cobol">SORT</code>, <code class="language-cobol">READ</code>,
+								<code class="language-cobol">RELEASE</code>, Input Procedure.
+							</li>
+							<li>
+								<a href="MonthTable.html">Using Tables</a> - <code class="language-cobol">READ</code>,
+								pre-defined Tables, Tables.
+							</li>
+						</ul>
+					</nav>
+					<hr />
+					<h2>Programming Exam Specifications</h2>
+					<dl class="index-grid">
+						<dt>
 							<span class="ball-green" aria-hidden="true"></span
 							><a href="Exm-StudFeesRpt/Exm-StudPay.html">Student Fees Report</a>
-						</td>
-						<td height="37" width="73%" style="vertical-align: top">
+						</dt>
+						<dd>
 							<p>
 								Write a program to apply a transaction file of student payments to a Student Master File
 								and then produce a report showing those students whose fees are partially or wholly
@@ -235,50 +196,41 @@
 								<code class="language-cobol">REWRITE</code>,
 								<code class="language-cobol">IF</code>,<br />
 								<code class="language-cobol">PERFORM</code>, <code class="language-cobol">ADD</code>,
-								<code class="language-cobol">SUBTRACT</code>)<br />
-								&nbsp;
+								<code class="language-cobol">SUBTRACT</code>)
 							</p>
-						</td>
-					</tr>
-					<tr>
-						<td height="47" width="27%" style="vertical-align: top">
+						</dd>
+						<dt>
 							<span class="ball-green" aria-hidden="true"></span
 							><a href="Exm-AromaSalesRpt/Exm-AromaSalesSummaryRpt.html">Aromamora Summary Sales</a>
-						</td>
-						<td height="47" width="73%" style="vertical-align: top">
+						</dt>
+						<dd>
 							<p>
 								A program is required to produce a summary sales report from an unsorted sequential file
 								containing the details of sales of essential and base oils to Aromamora customers.<br />
 								(<code class="language-cobol">SORT</code> with Input Procedure and Output Procedure,
-								Print Files, Sequential Files, <code class="language-cobol">COMPUTE</code>)<br />
-								&nbsp;
+								Print Files, Sequential Files, <code class="language-cobol">COMPUTE</code>)
 							</p>
-						</td>
-					</tr>
-					<tr>
-						<td height="62" width="27%" style="vertical-align: top">
+						</dd>
+						<dt>
 							<span class="ball-green" aria-hidden="true"></span
 							><a href="Exm-FlyByNightTravel/Exm-FlyByNight.html">FlyByNight Summary File</a>
-						</td>
-						<td height="62" width="73%" style="vertical-align: top">
+						</dt>
+						<dd>
 							<p>
 								A program is required which will read the tourist bookings master filee to produce a
 								summary file sequenced upon ascending Destination-Name.<br />
 								(Pre-Filled Tables, Sequential Files, <code class="language-cobol">SORT</code> with
 								Input Procedure, <code class="language-cobol">SEARCH</code>,
-								<code class="language-cobol">INSPECT</code>)<br />
-								&nbsp;
+								<code class="language-cobol">INSPECT</code>)
 							</p>
-						</td>
-					</tr>
-					<tr>
-						<td height="103" width="27%" style="vertical-align: top">
+						</dd>
+						<dt>
 							<span class="ball-green" aria-hidden="true"></span
 							><a href="Exm-AromaOilFileMainRpt/Exm-AromaOilFileMainRpt.html"
 								>AromamoraMaint&amp;Report</a
 							>
-						</td>
-						<td height="103" width="73%" style="vertical-align: top">
+						</dt>
+						<dd>
 							<p>
 								A program is required which will apply a file of sorted, validated transactions to the
 								Oil-Stock-File and then produce a report based on the contents of both the
@@ -289,17 +241,14 @@
 								<code class="language-cobol">COMPUTE</code>, <code class="language-cobol">READ</code>,
 								<code class="language-cobol">WRITE</code>, <code class="language-cobol">REWRITE</code>,
 								<code class="language-cobol">START</code>
-								)<br />
-								&nbsp;
+								)
 							</p>
-						</td>
-					</tr>
-					<tr>
-						<td height="2" width="27%" style="vertical-align: top">
+						</dd>
+						<dt>
 							<span class="ball-green" aria-hidden="true"></span
 							><a href="Exm-BookshopLectReqRpt/Exm-BookshopLectReqRpt.html">BookshopLecturerReqRpt</a>
-						</td>
-						<td height="2" width="73%" style="vertical-align: top">
+						</dt>
+						<dd>
 							<p>
 								A program is required to produce a Purchase Requirements Report from the Publisher, Book
 								and Purchase Requirements files. The report should be sequenced on ascending Publisher
@@ -311,17 +260,14 @@
 								<code class="language-cobol">TERMINATE</code>, <code class="language-cobol">READ</code>,
 								<code class="language-cobol">WRITE</code>, <code class="language-cobol">REWRITE</code>,
 								<code class="language-cobol">START</code>
-								)<br />
-								&nbsp;
+								)
 							</p>
-						</td>
-					</tr>
-					<tr>
-						<td height="93" width="27%" style="vertical-align: top">
+						</dd>
+						<dt>
 							<span class="ball-green" aria-hidden="true"></span
 							><a href="Exm-BookshopLectReqRpt/Exm-BookshopLectReqRpt.html">ACME Stock Reorder</a>
-						</td>
-						<td height="93" width="73%" style="vertical-align: top">
+						</dt>
+						<dd>
 							<p>
 								A program is required which will process the Stock and Manufacturer files to create an
 								Orders file containing ordering information for all the parts that need to be re-ordered
@@ -334,82 +280,73 @@
 								<code class="language-cobol">REWRITE</code>, Condition Names (level 88s),
 								<code class="language-cobol">EVALUATE</code>,
 								<code class="language-cobol">UNSTRING</code>,
-								<code class="language-cobol">MULTIPLY..ON SIZE ERROR</code>)<br />
-								&nbsp;
+								<code class="language-cobol">MULTIPLY..ON SIZE ERROR</code>)
 							</p>
-						</td>
-					</tr>
-					<tr>
-						<td height="93" width="27%" style="vertical-align: top">
+						</dd>
+						<dt>
 							<span class="ball-green" aria-hidden="true"></span
 							><a href="Exm-FileConversion/Exm-FileConversion.html">File Conversion</a>
-						</td>
-						<td height="93" width="73%" style="vertical-align: top">
-							A program is required to convert the unsorted Client-Names file of free-format, variable
-							length, records into a sorted file of fixed length records. The sorted file must be sorted
-							into ascending Client-Name within ascending County-Name. In addition to converting and
-							sorting the file, the program must ensure that the county name is valid and must convert it
-							to a county number.<br />
-							(Sequential files, <code class="language-cobol">SORT</code> with Input Procedure,
-							Pre-Defined Table of values, <code class="language-cobol">STRING</code>,
-							<code class="language-cobol">UNSTRING</code>, <code class="language-cobol">INSPECT</code>,
-							<code class="language-cobol">SEARCH ALL</code>)<br />
-							&nbsp;
-						</td>
-					</tr>
-					<tr>
-						<td height="29" width="27%" style="vertical-align: top">
+						</dt>
+						<dd>
+							<p>
+								A program is required to convert the unsorted Client-Names file of free-format, variable
+								length, records into a sorted file of fixed length records. The sorted file must be
+								sorted into ascending Client-Name within ascending County-Name. In addition to
+								converting and sorting the file, the program must ensure that the county name is valid
+								and must convert it to a county number.<br />
+								(Sequential files, <code class="language-cobol">SORT</code> with Input Procedure,
+								Pre-Defined Table of values, <code class="language-cobol">STRING</code>,
+								<code class="language-cobol">UNSTRING</code>,
+								<code class="language-cobol">INSPECT</code>,
+								<code class="language-cobol">SEARCH ALL</code>)
+							</p>
+						</dd>
+						<dt>
 							<span class="ball-green" aria-hidden="true"></span
 							><a href="Exm-USSRshipRpt/Exm-USSRshipRpt.html">USSR Ship Report</a>
-						</td>
-						<td height="29" width="73%" style="vertical-align: top">
+						</dt>
+						<dd>
 							<p>
 								A program is required to produce a report detailing the major vessels (Vessels of
 								tonnage 3,500 or greater and all submarines) in each of oceans and major seas of the
 								world.<br />
 								(Sequential files, <code class="language-cobol">SORT</code> with Input Procedure, Print
-								Files, Pre-defined tables, Condition Names)<br />
-								&nbsp;
+								Files, Pre-defined tables, Condition Names)
 							</p>
-						</td>
-					</tr>
-					<tr>
-						<td height="57" width="27%" style="vertical-align: top">
+						</dd>
+						<dt>
 							<span class="ball-green" aria-hidden="true"></span
 							><a href="Exm-SFbyMail/Exm-SFbyMail.html">Science Fiction by mail</a>
-						</td>
-						<td height="57" width="73%" style="vertical-align: top">
-							A program is required to apply the Orders file (containing customer orders) to the Book
-							Stock file and to produce the Processed Orders file.<br />
-							(<code class="language-cobol">CALL</code>, subprograms, Sequential files, Indexed files,
-							<code class="language-cobol">READ</code>, <code class="language-cobol">WRITE</code>,
-							<code class="language-cobol">REWRITE</code>, <code class="language-cobol">COMPUTE</code>,
-							<code class="language-cobol">UNSTRING</code>)<br />
-							&nbsp;
-						</td>
-					</tr>
-					<tr>
-						<td height="65" width="27%" style="vertical-align: top">
+						</dt>
+						<dd>
+							<p>
+								A program is required to apply the Orders file (containing customer orders) to the Book
+								Stock file and to produce the Processed Orders file.<br />
+								(<code class="language-cobol">CALL</code>, subprograms, Sequential files, Indexed files,
+								<code class="language-cobol">READ</code>, <code class="language-cobol">WRITE</code>,
+								<code class="language-cobol">REWRITE</code>,
+								<code class="language-cobol">COMPUTE</code>,
+								<code class="language-cobol">UNSTRING</code>)
+							</p>
+						</dd>
+						<dt>
 							<span class="ball-green" aria-hidden="true"></span
 							><a href="Exm-CSISEmailDomain/Exm-CSISEmailDomain.html">CSISEmailDomain</a>
-						</td>
-						<td height="65" width="73%" style="vertical-align: top">
+						</dt>
+						<dd>
 							<p>
 								A program is required which will produce a file, sorted on ascending email domain, from
 								the unsorted GraduateInfo file.<br />
 								(<code class="language-cobol">SORT</code> with Input Procedure and Output Procedure,
 								Sequential Files, Pre-Defined Tables, Run time filled tables,
-								<code class="language-cobol">SEARCH</code>)<br />
-								&nbsp;
+								<code class="language-cobol">SEARCH</code>)
 							</p>
-						</td>
-					</tr>
-					<tr>
-						<td height="110" width="27%" style="vertical-align: top">
+						</dd>
+						<dt>
 							<span class="ball-green" aria-hidden="true"></span
 							><a href="Exm-RoyaltyPaymentsRpt/Exm-LibRoyaltyRpt.html">LibraryRoyaltiesRpt</a>
-						</td>
-						<td height="110" width="73%" style="vertical-align: top">
+						</dt>
+						<dd>
 							<p>
 								Each time a book is borrowed, the Pascal Memorial Library pays the author a small sum of
 								money as royalty. Royalties are paid to authors through their agents. A report is
@@ -421,73 +358,60 @@
 								<code class="language-cobol">READ..KEY IS</code>,
 								<code class="language-cobol">START</code>, <code class="language-cobol">REWRITE</code>,
 								<code class="language-cobol">WRITE</code>, <code class="language-cobol">MULTIPLY</code>,
-								<code class="language-cobol">SET</code>)<br />
-								&nbsp;
+								<code class="language-cobol">SET</code>)
 							</p>
-						</td>
-					</tr>
-					<tr>
-						<td height="49" width="27%" style="vertical-align: top">
+						</dd>
+						<dt>
 							<span class="ball-green" aria-hidden="true"></span
 							><a href="Exm-TopSupplierRpt/Exm-TopSupplierRpt.html">TopSupplierRpt</a>
-						</td>
-						<td height="49" width="73%" style="vertical-align: top">
+						</dt>
+						<dd>
 							<p>
 								The manager of Metropolis Videos has asked you to write a program to produce a report
 								showing the top three Video Suppliers (by total store video earnings) and for each of
 								the top three the most popular video title (by average earnings) must be shown.<br />
 								(Indexed Files, Relative Files, Print Files, <code class="language-cobol">READ</code>,
 								<code class="language-cobol">START</code>, Tables,
-								<code class="language-cobol">DIVIDE</code>)<br />
-								&nbsp;
+								<code class="language-cobol">DIVIDE</code>)
 							</p>
-						</td>
-					</tr>
-					<tr>
-						<td height="56" width="27%" style="vertical-align: top">
+						</dd>
+						<dt>
 							<span class="ball-green" aria-hidden="true"></span
 							><a href="Exm-BestSellersRpt/Exm-FolioBestSellersRpt.html">FolioBestSellersRpt</a>
-						</td>
-						<td height="56" width="73%" style="vertical-align: top">
-							The Folio Society is a Book Club that sells fine books to customers all over the world. A
-							program is required to print a list of the ten best selling books (by copies sold) in the
-							Book Club.<br />
-							(Sequential Files, Print Files, SORT with Input Procedure and Output Procedure, Tables)<br />
-							&nbsp;
-						</td>
-					</tr>
-					<tr>
-						<td height="56" width="27%" style="vertical-align: top">
+						</dt>
+						<dd>
+							<p>
+								The Folio Society is a Book Club that sells fine books to customers all over the world.
+								A program is required to print a list of the ten best selling books (by copies sold) in
+								the Book Club.<br />
+								(Sequential Files, Print Files, SORT with Input Procedure and Output Procedure, Tables)
+							</p>
+						</dd>
+						<dt>
 							<span class="ball-green" aria-hidden="true"></span
 							><a href="Exm-DueSubsRpt/Exm-DueSubsRpt.html">DueSubsRpt</a>
-						</td>
-						<td height="56" width="73%" style="vertical-align: top">
-							NetNews is a company which runs an NNTP server carrying the complete USENET news feed with
-							over 15,000 news groups. Access to this server is available to internet users all over the
-							world. Users of the system pay a subscription fee for access. The fee may be paid monthly
-							($20), half-yearly ($100) or yearly ($180). A program is required to produce a report
-							showing the subscriptions which are now due. The report will be based on the Due
-							Subscriptions file.<br />
-							(Sequential Files, Print Files, <code class="language-cobol">SORT</code> with Input
-							Procedure, Tables, <code class="language-cobol">SEARCH ALL</code>)<br />
-							&nbsp;
-						</td>
-					</tr>
-				</table>
-				<br />
-			</blockquote>
-			<hr />
-			<h3>Programming Project Specifications</h3>
-			<ul>
-				<table cellpadding="0" cellspacing="0" width="750">
-					<tr>
-						<td height="156" width="27%" style="vertical-align: top">
+						</dt>
+						<dd>
 							<p>
-								<span class="ball-orange" aria-hidden="true"></span
-								><a href="Proj-CSISEvalform/CSISEvalForm.html">CSIS evaluation form report</a>
+								NetNews is a company which runs an NNTP server carrying the complete USENET news feed
+								with over 15,000 news groups. Access to this server is available to internet users all
+								over the world. Users of the system pay a subscription fee for access. The fee may be
+								paid monthly ($20), half-yearly ($100) or yearly ($180). A program is required to
+								produce a report showing the subscriptions which are now due. The report will be based
+								on the Due Subscriptions file.<br />
+								(Sequential Files, Print Files, <code class="language-cobol">SORT</code> with Input
+								Procedure, Tables, <code class="language-cobol">SEARCH ALL</code>)
 							</p>
-						</td>
-						<td height="156" width="73%">
+						</dd>
+					</dl>
+					<hr />
+					<h2>Programming Project Specifications</h2>
+					<dl class="index-grid">
+						<dt>
+							<span class="ball-orange" aria-hidden="true"></span
+							><a href="Proj-CSISEvalform/CSISEvalForm.html">CSIS evaluation form report</a>
+						</dt>
+						<dd>
 							<p>
 								A program is required which will produce a report from the file produced by the
 								Evaluation Form on the CSIS web site. For each country from which the site has been
@@ -497,87 +421,77 @@
 								<li>The name of the country</li>
 								<li>The number of visitors from this country.</li>
 								<li>Most common occupation of visitors from this country</li>
-								<li>
-									The average evaluation of the web site by visitors from this country.<br />
-									<br />
-								</li>
+								<li>The average evaluation of the web site by visitors from this country.</li>
 							</ul>
 							<p>
 								The report must be implemented as an HTML web page and the information on the page
-								should appear in ascending country name sequence.<br />
-								&nbsp;
+								should appear in ascending country name sequence.
 							</p>
-						</td>
-					</tr>
-					<tr>
-						<td height="68" width="27%" style="vertical-align: top">
+						</dd>
+						<dt>
+							<span class="ball-orange" aria-hidden="true"></span
+							><a href="Prj-AromaSalesRpt/Prj-AromaSalesRpt.html">Aroma Sales Report</a>
+						</dt>
+						<dd>
 							<p>
-								<span class="ball-orange" aria-hidden="true"></span
-								><a href="Prj-AromaSalesRpt/Prj-AromaSalesRpt.html">Aroma Sales Report</a>
+								Aromamora PLC is a company which sells essential oils to Aromatherapists, Health Shops,
+								Chemists and other mass users of essential oils. Every month, details of sales to these
+								customers are gathered together into a Sales File . A program is required that will
+								produce a report from this file showing the quantities and values of essential oils
+								purchased.
 							</p>
-						</td>
-						<td height="68" width="73%" style="vertical-align: top">
-							Aromamora PLC is a company which sells essential oils to Aromatherapists, Health Shops,
-							Chemists and other mass users of essential oils. Every month, details of sales to these
-							customers are gathered together into a Sales File . A program is required that will produce
-							a report from this file showing the quantities and values of essential oils purchased.<br />
-							&nbsp;
-						</td>
-					</tr>
-					<tr>
-						<td height="42" width="27%" style="vertical-align: top">
+						</dd>
+						<dt>
 							<span class="ball-orange" aria-hidden="true"></span
 							><a href="Prj-NewtronicsFileMaint/Prj-NewtronicsFileMaint.html"
 								>Newtronics File Maintenance</a
 							>
-						</td>
-						<td height="42" width="73%" style="vertical-align: top">
+						</dt>
+						<dd>
 							<p>
 								A program is required to do file maintenance of the Stock master file and the Supplier
-								master file of Newtronics Plc. using a file of transaction records.<br />
-								&nbsp;
+								master file of Newtronics Plc. using a file of transaction records.
 							</p>
-						</td>
-					</tr>
-					<tr>
-						<td height="42" width="27%" style="vertical-align: top">
+						</dd>
+						<dt>
 							<span class="ball-orange" aria-hidden="true"></span
 							><a href="Prj-AromaInvoicesRpt/Prj-AromaInvoicesRpt.html">Aroma Invoices Report</a>
-						</td>
-						<td height="42" width="73%" style="vertical-align: top">
-							A program is required that will examine the Aromamora Customer and Invoice files and from
-							them produce a report showing the unpaid customer invoices. The Cobol Report-Writer must be
-							used to create the report.<br />
-							&nbsp;
-						</td>
-					</tr>
-					<tr>
-						<td height="42" width="27%" style="vertical-align: top">
+						</dt>
+						<dd>
+							<p>
+								A program is required that will examine the Aromamora Customer and Invoice files and
+								from them produce a report showing the unpaid customer invoices. The Cobol Report-Writer
+								must be used to create the report.
+							</p>
+						</dd>
+						<dt>
 							<span class="ball-orange" aria-hidden="true"></span
 							><a href="Prj-MunsterSurnamesFreqRpt/Prj-MunsterSurnamesFreqRpt.html"
 								>MunsterSurnamesFreqRpt</a
 							>
-						</td>
-						<td height="42" width="73%" style="vertical-align: top">
-							A program is required that will process the Census Population File to produce a report
-							showing the surnames that occur most frequently in the counties of Munster.<br />
-							&nbsp;
-						</td>
-					</tr>
-					<tr>
-						<td height="42" width="27%" style="vertical-align: top">
+						</dt>
+						<dd>
+							<p>
+								A program is required that will process the Census Population File to produce a report
+								showing the surnames that occur most frequently in the counties of Munster.
+							</p>
+						</dd>
+						<dt>
 							<span class="ball-orange" aria-hidden="true"></span
 							><a href="Prj-CAOPointsCalc/Prj-CAOcalculator.html">CAO points calculator</a>
-						</td>
-						<td height="42" width="73%" style="vertical-align: top">
-							A program is required that will process the CAO Applications file and the Leaving
-							Certificate Results file to create a Course Points File and to generate a report showing the
-							number of applicants from each county to the University of Limerick (UL), the number of
-							first choices for each UL course, and the number of first choices for the UL.<br />
-						</td>
-					</tr>
-				</table>
-			</ul>
+						</dt>
+						<dd>
+							<p>
+								A program is required that will process the CAO Applications file and the Leaving
+								Certificate Results file to create a Course Points File and to generate a report showing
+								the number of applicants from each county to the University of Limerick (UL), the number
+								of first choices for each UL course, and the number of first choices for the UL.
+							</p>
+						</dd>
+					</dl>
+					<copyright-notice type="exercises"></copyright-notice>
+				</div>
+			</div>
 		</main>
 	</body>
 </html>

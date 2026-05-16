@@ -17,7 +17,7 @@ const path = require("path");
 const ROOT = path.resolve(__dirname, "..");
 const EXAMPLES_DIR = path.join(ROOT, "examples");
 const BASE_URL = "https://bushidocodes.github.io/limerick-cobol/";
-const OG_IMAGE = "https://bushidocodes.github.io/limerick-cobol/favicon.svg";
+const OG_IMAGE = "https://bushidocodes.github.io/limerick-cobol/pics/og/examples.png";
 const CROSS_LINKS = JSON.parse(fs.readFileSync(path.join(__dirname, "cross-links.json"), "utf8"));
 const MAX_RELATED_PER_GROUP = 4;
 
@@ -29,6 +29,9 @@ const MAX_RELATED_PER_GROUP = 4;
 // `title`    – <title> text and og:title / twitter:title
 // `crumb`    – short label shown as the trailing breadcrumb span
 // `desc`     – full description shown in the <p> and (truncated) in meta tags
+// `runInCe`  – (optional) when true, inject the <run-in-ce> custom element and
+//              its script. Set for examples that work cleanly in Compiler
+//              Explorer's executor sandbox (no data files, single .cbl source).
 //
 // The <related-content> block is sourced from scripts/cross-links.json — see
 // `files` and `families` there for the mapping. To change which lessons or
@@ -43,6 +46,7 @@ const MANIFEST = [
 		title: "ACCEPT and DISPLAY example program",
 		crumb: "ACCEPT and DISPLAY",
 		desc: "The program accepts a simple student record from the user and displays the individual fields. Also shows how the ACCEPT may be used to get and DISPLAY the system time and date.",
+		runInCe: true,
 	},
 	{
 		file: "Accept/Multiplier.html",
@@ -50,6 +54,7 @@ const MANIFEST = [
 		title: "ACCEPT, DISPLAY and MULTIPLY example program",
 		crumb: "Multiplier",
 		desc: "Accepts two single digit numbers from the user, multiplies them together and displays the result.",
+		runInCe: true,
 	},
 	{
 		file: "Accept/Shortest.html",
@@ -57,6 +62,7 @@ const MANIFEST = [
 		title: "The Shortest COBOL program we can have",
 		crumb: "Shortest COBOL Program",
 		desc: "This example program is almost the shortest COBOL program we can have. We could make it shorter still by leaving out the STOP RUN.",
+		runInCe: true,
 	},
 	// ── Conditn ─────────────────────────────────────────────────────────────
 	{
@@ -65,6 +71,7 @@ const MANIFEST = [
 		title: "Condition Names (level 88) example program",
 		crumb: "Condition Names",
 		desc: "An example program demonstrating the use of Condition Names (level 88's).",
+		runInCe: true,
 	},
 	{
 		file: "Conditn/IterIf.html",
@@ -72,6 +79,7 @@ const MANIFEST = [
 		title: "Iteration with IF example program",
 		crumb: "Iteration with IF",
 		desc: "An example program that implements a primitive calculator. The calculator only does additions and multiplications.",
+		runInCe: true,
 	},
 	// ── Indexed ─────────────────────────────────────────────────────────────
 	{
@@ -110,6 +118,7 @@ const MANIFEST = [
 		title: "Mileage counter simulation",
 		crumb: "Mileage Counter",
 		desc: "Demonstrates how the PERFORM..VARYING and the PERFORM..VARYING..AFTER (fourth format) may be used to simulate a mileage counter.",
+		runInCe: true,
 	},
 	{
 		file: "Perform/Perform1.html",
@@ -117,6 +126,7 @@ const MANIFEST = [
 		title: "Perform - Format 1 example program",
 		crumb: "PERFORM Format 1",
 		desc: "An example program demonstrating how the first format of the PERFORM may be used to change the flow of control through a program.",
+		runInCe: true,
 	},
 	{
 		file: "Perform/Perform2.html",
@@ -124,6 +134,7 @@ const MANIFEST = [
 		title: "Perform - Format 2 example program",
 		crumb: "PERFORM Format 2",
 		desc: "Demonstrates the second format of the PERFORM. The PERFORM..TIMES may be used to execute a block of code x number of times.",
+		runInCe: true,
 	},
 	{
 		file: "Perform/Perform3.html",
@@ -131,6 +142,7 @@ const MANIFEST = [
 		title: "Perform - Format 3 example program",
 		crumb: "PERFORM Format 3",
 		desc: "Demonstrates how the PERFORM..UNTIL (third format) may be used to process a stream of values where the length of the stream cannot be determined in advance.",
+		runInCe: true,
 	},
 	{
 		file: "Perform/Perform4.html",
@@ -138,6 +150,7 @@ const MANIFEST = [
 		title: "Perform - Format 4 example program",
 		crumb: "PERFORM Format 4",
 		desc: "Demonstrates how the PERFORM..VARYING and the PERFORM..VARYING..AFTER (fourth format) may be used for counting iteration. Also introduces the WITH TEST BEFORE and WITH TEST AFTER phrases.",
+		runInCe: true,
 	},
 	// ── Relative ────────────────────────────────────────────────────────────
 	{
@@ -244,6 +257,7 @@ const MANIFEST = [
 		title: "String handling - Reference Modification examples",
 		crumb: "Reference Modification",
 		desc: "Solves a number of string handling tasks such as extracting substrings, removing leading or trailing blanks, and finding the location of the first occurrence of a character in a string.",
+		runInCe: true,
 	},
 	{
 		file: "Strings/UnstringFileEg.html",
@@ -344,16 +358,6 @@ function prefix(relFile) {
 }
 
 /**
- * Return the relative path from examples/<relFile> back to examples/default.html.
- * e.g. "Accept/ACCEPT.html"        -> "../default.html"
- *      "SubProg/Multiply/Foo.html" -> "../../default.html"
- */
-function defaultHtmlPath(relFile) {
-	const depth = relFile.split("/").length - 1;
-	return "../".repeat(depth) + "default.html";
-}
-
-/**
  * Build the <related-content> HTML for an example, sourced from cross-links.json.
  * Returns an empty string if the file is not in the cross-links map or has no
  * cross-references.
@@ -413,7 +417,6 @@ function relatedContentHtml(relFile) {
 
 function buildPage(entry) {
 	const pfx = prefix(entry.file);
-	const defPath = defaultHtmlPath(entry.file);
 	const canonical = BASE_URL + "examples/" + entry.file;
 	const metaDesc = escapeAttr(truncate(entry.desc));
 	const metaTitle = escapeAttr(entry.title);
@@ -426,10 +429,15 @@ function buildPage(entry) {
 
 	const relatedEl = relatedContentHtml(entry.file);
 
+	const runInCeScript = entry.runInCe ? `\t\t<script src="${pfx}components/run-in-ce.js" defer></script>\n` : "";
+	const runInCeToolbarEl = entry.runInCe ? `\t\t\t\t\t\t\t<run-in-ce></run-in-ce>\n` : "";
+
 	return `<!doctype html>
 <html lang="en">
 \t<head>
 \t\t<meta name="viewport" content="width=device-width, initial-scale=1" />
+\t\t<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+\t\t<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
 \t\t<script>
 \t\t\t(function () {
 \t\t\t\tvar t = localStorage.getItem("lc-theme");
@@ -446,7 +454,7 @@ function buildPage(entry) {
 \t\t<meta property="og:description" content="${metaDesc}" />
 \t\t<meta property="og:image" content="${OG_IMAGE}" />
 \t\t<!-- Twitter Card -->
-\t\t<meta name="twitter:card" content="summary" />
+\t\t<meta name="twitter:card" content="summary_large_image" />
 \t\t<meta name="twitter:title" content="${metaTitle}" />
 \t\t<meta name="twitter:description" content="${metaDesc}" />
 \t\t<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -459,23 +467,22 @@ function buildPage(entry) {
 \t\t<script src="${pfx}components/page-hero.js" defer></script>
 \t\t<script src="${pfx}components/related-content.js" defer></script>
 \t\t<script src="${pfx}components/copy-button.js" defer></script>
-\t</head>
+\t\t<script src="${pfx}components/site-header.js" defer></script>
+${runInCeScript}\t</head>
 \t<body>
 \t\t<a class="skip-link" href="#main-content">Skip to main content</a>
 \t\t<main id="main-content">
 \t\t\t<div class="page-wrapper">
 \t\t\t\t<div class="section-grid">
 \t\t\t\t\t<div class="section-full">
-\t\t\t\t\t\t<page-hero title="${metaTitle}" eyebrow="COBOL Example"></page-hero>
-\t\t\t\t\t\t<nav aria-label="Breadcrumb">
-\t\t\t\t\t\t\t<a href="${defPath}">Example programs</a> ›
-\t\t\t\t\t\t\t<span>${entry.crumb}</span>
-\t\t\t\t\t\t</nav>
+\t\t\t\t\t\t<page-hero title="${metaTitle}"></page-hero>
 \t\t\t\t\t\t<p>${entry.desc}</p>
-\t\t\t\t\t\t<p><a href="${entry.cbl}" download>Download ${entry.cbl}</a></p>
-${relatedEl}\t\t\t\t\t\t<pre class="language-cobol"><code class="language-cobol">${escapedSource}
+\t\t\t\t\t\t\t<div class="code-toolbar">
+\t\t\t\t\t\t\t<a href="${entry.cbl}" download class="download-btn">Download ${entry.cbl}</a>
+${runInCeToolbarEl}\t\t\t\t\t\t</div>
+\t\t\t\t\t\t<pre class="language-cobol"><code class="language-cobol">${escapedSource}
 </code></pre>
-\t\t\t\t\t</div>
+${relatedEl}\t\t\t\t\t</div>
 \t\t\t\t</div>
 \t\t\t</div>
 \t\t</main>

@@ -1,8 +1,10 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<script>
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<script>
 			(function () {
 				var t = localStorage.getItem("lc-theme");
 				if (t === "dark" || t === "light") {
@@ -20,37 +22,79 @@
 		</script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
-		<title>Basic Procedure Division commands</title>
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "LearningResource",
+				"name": "Basic Procedure Division commands",
+				"description": "The PROCEDURE DIVISION contains the code used to manipulate the data described in the DATA DIVISION . This tutorial examines some of the basic COBOL",
+				"url": "https://bushidocodes.github.io/limerick-cobol/course/COBOLcommands.html",
+				"position": 3,
+				"isPartOf": {
+					"@type": "Course",
+					"name": "COBOL Course",
+					"url": "https://bushidocodes.github.io/limerick-cobol/course/index.html"
+				},
+				"provider": {
+					"@type": "Person",
+					"name": "Michael Coughlan",
+					"affiliation": {
+						"@type": "Organization",
+						"name": "University of Limerick CSIS"
+					}
+				},
+				"educationalLevel": "beginner",
+				"inLanguage": "en",
+				"learningResourceType": "Tutorial"
+			}
+		</script>
+		<title>Basic Procedure Division Commands</title>
 		<meta
 			name="description"
 			content="The PROCEDURE DIVISION contains the code used to manipulate the data described in the DATA DIVISION . This tutorial examines some of the basic COBOL"
 		/>
 		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/COBOLcommands.html" />
+		<link rel="prev" href="https://bushidocodes.github.io/limerick-cobol/course/DataDeclaration.html" />
+		<link rel="next" href="https://bushidocodes.github.io/limerick-cobol/course/Selection.html" />
 		<!-- Open Graph -->
 		<meta property="og:type" content="article" />
 		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/COBOLcommands.html" />
-		<meta property="og:title" content="Basic Procedure Division commands" />
+		<meta property="og:title" content="Basic Procedure Division Commands" />
 		<meta
 			property="og:description"
 			content="The PROCEDURE DIVISION contains the code used to manipulate the data described in the DATA DIVISION . This tutorial examines some of the basic COBOL"
 		/>
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/course.png" />
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary" />
-		<meta name="twitter:title" content="Basic Procedure Division commands" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Basic Procedure Division Commands" />
 		<meta
 			name="twitter:description"
 			content="The PROCEDURE DIVISION contains the code used to manipulate the data described in the DATA DIVISION . This tutorial examines some of the basic COBOL"
 		/>
 		<link href="Resources/css/course.css" rel="stylesheet" />
 		<link href="Resources/css/course-components.css" rel="stylesheet" />
-		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
-		<script src="Resources/vendor/prism/prism.min.js" defer></script>
-		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
+		<link
+			href="Resources/vendor/prism/themes/prism.min.css"
+			rel="stylesheet"
+			integrity="sha384-rCCjoCPCsizaAAYVoz1Q0CmCTvnctK0JkfCSjx7IIxexTBg+uCKtFYycedUjMyA2"
+			crossorigin="anonymous"
+		/>
+		<script
+			src="Resources/vendor/prism/prism.min.js"
+			integrity="sha384-06z5D//U/xpvxZHuUz92xBvq3DqBBFi7Up53HRrbV7Jlv7Yvh/MZ7oenfUe9iCEt"
+			crossorigin="anonymous"
+			defer
+		></script>
+		<script
+			src="Resources/vendor/prism/components/prism-cobol.min.js"
+			integrity="sha384-s4JeL+r7pYtWemgWCY7jgWCWuBQfoHt/88SwBLAitxcMkr8ji8Lp4JvZq9qCv8W6"
+			crossorigin="anonymous"
+			defer
+		></script>
 		<script src="../components/theme-toggle.js" defer></script>
 		<script src="../components/page-hero.js" defer></script>
 		<script src="../components/site-search.js" defer></script>
-		<script src="../components/back-to-top.js" defer></script>
 		<script src="../components/lesson-progress.js" defer></script>
 		<script src="../components/lesson-nav.js" defer></script>
 		<script src="../components/lesson-checkbox.js" defer></script>
@@ -59,6 +103,8 @@
 		<script src="../components/related-content.js" defer></script>
 		<script src="../components/copy-button.js" defer></script>
 		<script src="../components/page-toc.js" defer></script>
+		<script src="../components/lesson-toc.js" defer></script>
+		<script src="../components/site-header.js" defer></script>
 	</head>
 
 	<body>
@@ -66,33 +112,13 @@
 		<main id="main-content">
 			<div class="page-wrapper">
 				<page-toc></page-toc>
-				<div class="page-content">
-					<page-hero title="Basic Procedure Division Commands"></page-hero>
-					<hr />
-					<ul class="toc">
-						<li>
-							<a href="#intro">Introduction</a>
-							Unit aims, objectives, prerequisites.
-						</li>
-						<li>
-							<a href="#part1">Basic User Input and Output</a>
-							This section introduces the ACCEPT and DISPLAY verbs and shows how the ACCEPT may be used to
-							get the system date and time.
-						</li>
-						<li>
-							<a href="#part2">Assignment using the MOVE verb</a>
-							This section demonstrates how assignment is achieved in COBOL.
-						</li>
-						<li>
-							<a href="#part3">Arithmetic in COBOL</a>
-							This section introduces the ADD, SUBTRACT, MULTIPLY, DIVIDE and COMPUTE verbs.
-						</li>
-					</ul>
-					<hr />
-				</div>
-
 				<!-- Introduction -->
 				<div class="section-grid">
+					<div class="section-full">
+						<page-hero title="Basic Procedure Division Commands" reading-time="14 min"></page-hero>
+						<hr />
+						<lesson-toc></lesson-toc>
+					</div>
 					<div class="section-header">
 						<h2 id="intro">Introduction</h2>
 					</div>
@@ -126,20 +152,12 @@
 						</ol>
 						<hr width="50%" />
 					</div>
-					<div class="section-sidebar">
-						<h3>Prerequisites</h3>
-					</div>
-					<div class="section-content">
-						<ul>
-							<li>Introduction to COBOL</li>
-							<li>Declaring data in COBOL</li>
-						</ul>
-					</div>
 				</div>
 
-				<div class="page-content">
-					<hr />
-					<back-to-top></back-to-top>
+				<div class="section-full">
+					<div>
+						<hr />
+					</div>
 				</div>
 
 				<!-- Part 1: Basic User Input and Output -->
@@ -212,7 +230,7 @@
 							<code class="language-cobol">DISPLAY</code> can be used to display several data-items or
 							literals or any combination of these.
 						</p>
-						<h4><code class="language-cobol">DISPLAY</code> notes</h4>
+						<h4>DISPLAY notes</h4>
 						<p>
 							After the items in the display list have been sent to the screen, the
 							<code class="language-cobol">DISPLAY</code> automatically moves the screen cursor to the
@@ -233,7 +251,7 @@
 							to the computer screen.
 						</p>
 						<p>
-							<b> <code class="language-cobol">DISPLAY</code> examples </b>
+							<strong> <code class="language-cobol">DISPLAY</code> examples </strong>
 						</p>
 						<pre class="language-cobol"><code class="language-cobol">DISPLAY "My name is " ProgrammerName.
 DISPLAY "The vat rate is " VatRate.
@@ -257,7 +275,7 @@ DISPLAY PrinterSetupCodes UPON PrinterPort1.
 							The ACCEPT verb is used to get data from the keyboard, a peripheral device, or certain
 							system variables.
 						</p>
-						<h4><code class="language-cobol">ACCEPT</code> notes</h4>
+						<h4>ACCEPT notes</h4>
 						<p>
 							When the first format is used, the <code class="language-cobol">ACCEPT</code> inserts the
 							data typed at the keyboard (or coming from the peripheral device), into the receiving
@@ -330,9 +348,6 @@ DISPLAY PrinterSetupCodes UPON PrinterPort1.
 					</div>
 					<div class="section-sidebar">
 						<h3>ACCEPT and DISPLAY example program</h3>
-						<p class="center-block">
-							<img height="44" src="Resources/pics/program.gif" width="42" alt="" />
-						</p>
 					</div>
 					<div class="section-content">
 						<p>
@@ -399,7 +414,7 @@ Begin.
     STOP RUN.
 </code></pre>
 						<p class="center-block">
-							<b>Results of running AcceptAndDisplay.cbl</b>
+							<strong>Results of running AcceptAndDisplay.cbl</strong>
 						</p>
 						<pre>
 Enter student details using template below
@@ -415,9 +430,10 @@ The time is 14:41
 					</div>
 				</div>
 
-				<div class="page-content">
-					<hr />
-					<back-to-top></back-to-top>
+				<div class="section-full">
+					<div>
+						<hr />
+					</div>
 				</div>
 
 				<!-- Part 2: Assignment using the MOVE verb -->
@@ -466,7 +482,7 @@ The time is 14:41
 							<code class="language-cobol">MOVE</code> is somewhat more complicated and is governed by a
 							number of rules.
 						</p>
-						<h4><code class="language-cobol">MOVE</code> rules</h4>
+						<h4>MOVE rules</h4>
 						<p>
 							In most other programming languages, data is assigned from the source item on the right to
 							the destination item on the left (e.g. Qty = 10;) but in COBOL the
@@ -497,7 +513,7 @@ The time is 14:41
 							items, the item is treated as if it had an assumed decimal point immediately after its
 							rightmost character.
 						</p>
-						<h4><code class="language-cobol">MOVE</code> combinations</h4>
+						<h4>MOVE combinations</h4>
 						<p>
 							Although COBOL is much less restrictive in this respect than many other languages, certain
 							combinations of sending and receiving data types are not permitted and will be rejected by
@@ -533,9 +549,10 @@ The time is 14:41
 					</div>
 				</div>
 
-				<div class="page-content">
-					<hr />
-					<back-to-top></back-to-top>
+				<div class="section-full">
+					<div>
+						<hr />
+					</div>
 				</div>
 
 				<!-- Part 3: Arithmetic in COBOL -->
@@ -587,8 +604,8 @@ The time is 14:41
 						<p>
 							When the <code class="language-cobol">GIVING</code> phrase is used, the data-item following
 							the word <code class="language-cobol">GIVING</code> is the receiving field of the
-							calculation but it is <b>not</b> one of the statement operands (does not contribute to the
-							result). The original values of all the items before the word
+							calculation but it is <strong>not</strong> one of the statement operands (does not
+							contribute to the result). The original values of all the items before the word
 							<code class="language-cobol">GIVING</code> are left intact.
 						</p>
 						<p>
@@ -614,7 +631,7 @@ The time is 14:41
 							<tr>
 								<td colspan="4">
 									<div class="center-block">
-										<b> <code class="language-cobol">ROUNDED</code> examples </b>
+										<strong> <code class="language-cobol">ROUNDED</code> examples </strong>
 									</div>
 								</td>
 							</tr>
@@ -626,26 +643,26 @@ The time is 14:41
 							</tr>
 							<tr>
 								<td>
-									<p><b>PIC 9(3)V9</b></p>
+									<p><strong>PIC 9(3)V9</strong></p>
 								</td>
 								<td>
-									<b>123.2<span style="color: #ff0000">5</span></b>
+									<b>123.2<span class="cobol-highlight">5</span></b>
 								</td>
 								<td><b>123.2</b></td>
 								<td><b>123.3</b></td>
 							</tr>
 							<tr>
-								<td><b>PIC 9(3)V9</b></td>
+								<td><strong>PIC 9(3)V9</strong></td>
 								<td>
-									<b>123.2<span style="color: #ff0000">47</span></b>
+									<b>123.2<span class="cobol-highlight">47</span></b>
 								</td>
 								<td><b>123.2</b></td>
 								<td><b>123.2</b></td>
 							</tr>
 							<tr>
-								<td><b>PIC 9(3)</b></td>
+								<td><strong>PIC 9(3)</strong></td>
 								<td>
-									<b>123.<span style="color: #ff0000">25</span></b>
+									<b>123.<span class="cobol-highlight">25</span></b>
 								</td>
 								<td><b>123</b></td>
 								<td><b>123</b></td>
@@ -662,7 +679,7 @@ The time is 14:41
 							to be contained in the receiving field. When this occurs, there will be truncation of the
 							result. The <code class="language-cobol">ON SIZE ERROR</code> phrase detects this condition.
 						</p>
-						<h4><code class="language-cobol">ON SIZE ERROR</code> notes</h4>
+						<h4>ON SIZE ERROR notes</h4>
 						<p>
 							All the arithmetic verbs allow the <code class="language-cobol">ON SIZE ERROR</code> phrase.
 						</p>
@@ -678,7 +695,7 @@ The time is 14:41
 							deal with it.
 						</p>
 						<p>Division by 0 always causes a SIZE ERROR.</p>
-						<p><code class="language-cobol">ON SIZE ERROR</code> <b>examples</b></p>
+						<p><code class="language-cobol">ON SIZE ERROR</code> <strong>examples</strong></p>
 						<table
 							style="margin: 0 auto"
 							bgcolor="#E1FFE1"
@@ -690,143 +707,186 @@ The time is 14:41
 							<tr>
 								<th bgcolor="#FFFFCC" width="45%">
 									<div class="center-block">
-										<b>
-											<span style="color: #ff0000">Receiving Field</span>
-										</b>
+										<strong>
+											<span class="cobol-highlight">Receiving Field</span>
+										</strong>
 									</div>
 								</th>
 								<th bgcolor="#FFFFCC" width="19%">
 									<div class="center-block">
-										<b>
-											<span style="color: #ff0000">Actual Result</span>
-										</b>
+										<strong>
+											<span class="cobol-highlight">Actual Result</span>
+										</strong>
 									</div>
 								</th>
 								<th bgcolor="#FFFFCC" width="22%">
 									<div class="center-block">
-										<b>
-											<span style="color: #ff0000">Truncated Result</span>
-										</b>
+										<strong>
+											<span class="cobol-highlight">Truncated Result</span>
+										</strong>
 									</div>
 								</th>
 								<th bgcolor="#FFFFCC" width="14%">
 									<div class="center-block">
-										<b>
-											<span style="color: #ff0000">Size Error?</span>
-										</b>
+										<strong>
+											<span class="cobol-highlight">Size Error?</span>
+										</strong>
 									</div>
 								</th>
 							</tr>
 							<tr>
-								<td width="45%"><b>PIC 9(3)V9</b></td>
-								<td width="19%">
-									<b>&nbsp;&nbsp;245.9<span style="color: #ff0000">6</span></b>
+								<td width="45%"><strong>PIC 9(3)V9</strong></td>
+								<td
+									width="19%"
+									style="font-family: monospace; text-align: right; padding-inline-end: 0.5em"
+								>
+									<b>245.9<span class="cobol-highlight">6</span></b>
 								</td>
-								<td width="22%">
-									<b>&nbsp;&nbsp;&nbsp;245.9</b>
+								<td
+									width="22%"
+									style="font-family: monospace; text-align: right; padding-inline-end: 0.5em"
+								>
+									<b>245.9</b>
 								</td>
 								<td width="14%">
 									<div class="center-block">
-										<b>YES</b>
+										<strong>YES</strong>
 									</div>
 								</td>
 							</tr>
 							<tr>
-								<td width="45%"><b>PIC 9(3)V9</b></td>
-								<td width="19%">
-									<b>&nbsp;&nbsp;<span style="color: #ff0000">3</span>245.9</b>
+								<td width="45%"><strong>PIC 9(3)V9</strong></td>
+								<td
+									width="19%"
+									style="font-family: monospace; text-align: right; padding-inline-end: 0.5em"
+								>
+									<b><span class="cobol-highlight">3</span>245.9</b>
 								</td>
-								<td width="22%">
-									<b>&nbsp;&nbsp;&nbsp;245.9</b>
+								<td
+									width="22%"
+									style="font-family: monospace; text-align: right; padding-inline-end: 0.5em"
+								>
+									<b>245.9</b>
 								</td>
 								<td width="14%">
 									<div class="center-block">
-										<b>
+										<strong>
 											<code class="language-cobol">YES</code>
-										</b>
+										</strong>
 									</div>
 								</td>
 							</tr>
 							<tr>
-								<td width="45%"><b>PIC 9(3)</b></td>
-								<td width="19%">
-									<b>&nbsp;&nbsp;324</b>
+								<td width="45%"><strong>PIC 9(3)</strong></td>
+								<td
+									width="19%"
+									style="font-family: monospace; text-align: right; padding-inline-end: 0.5em"
+								>
+									<b>324</b>
 								</td>
-								<td width="22%">
-									<b>&nbsp;&nbsp;&nbsp;324</b>
+								<td
+									width="22%"
+									style="font-family: monospace; text-align: right; padding-inline-end: 0.5em"
+								>
+									<b>324</b>
 								</td>
 								<td width="14%">
 									<div class="center-block">
-										<b>
+										<strong>
 											<code class="language-cobol">NO</code>
-										</b>
+										</strong>
 									</div>
 								</td>
 							</tr>
 							<tr>
-								<td width="45%"><b>PIC 9(3)</b></td>
-								<td width="19%">
-									<b>&nbsp;<span style="color: #ff0000">&nbsp;5</span>324</b>
+								<td width="45%"><strong>PIC 9(3)</strong></td>
+								<td
+									width="19%"
+									style="font-family: monospace; text-align: right; padding-inline-end: 0.5em"
+								>
+									<b><span class="cobol-highlight">5</span>324</b>
 								</td>
-								<td width="22%">
-									<b>&nbsp;&nbsp;&nbsp;324</b>
+								<td
+									width="22%"
+									style="font-family: monospace; text-align: right; padding-inline-end: 0.5em"
+								>
+									<b>324</b>
 								</td>
 								<td width="14%">
 									<div class="center-block">
-										<b>
+										<strong>
 											<code class="language-cobol">YES</code>
-										</b>
+										</strong>
 									</div>
 								</td>
 							</tr>
 							<tr>
-								<td width="45%" style="vertical-align: top"><b>PIC 9(3)V9 not Rounded</b></td>
-								<td width="19%">
-									<b>&nbsp;&nbsp;523.3<span style="color: #ff0000">5</span></b>
+								<td width="45%" style="vertical-align: top"><strong>PIC 9(3)V9 not Rounded</strong></td>
+								<td
+									width="19%"
+									style="font-family: monospace; text-align: right; padding-inline-end: 0.5em"
+								>
+									<b>523.3<span class="cobol-highlight">5</span></b>
 								</td>
-								<td width="22%">
-									<b>&nbsp;&nbsp;&nbsp;523.3</b>
+								<td
+									width="22%"
+									style="font-family: monospace; text-align: right; padding-inline-end: 0.5em"
+								>
+									<b>523.3</b>
 								</td>
 								<td width="14%">
 									<div class="center-block">
-										<b>
+										<strong>
 											<code class="language-cobol">YES</code>
-										</b>
+										</strong>
 									</div>
 								</td>
 							</tr>
 							<tr>
-								<td width="45%"><b>PIC 9(3)V9 Rounded</b></td>
-								<td width="19%">
-									<b>&nbsp;&nbsp;523.3<span style="color: #ff0000">5</span></b>
+								<td width="45%"><strong>PIC 9(3)V9 Rounded</strong></td>
+								<td
+									width="19%"
+									style="font-family: monospace; text-align: right; padding-inline-end: 0.5em"
+								>
+									<b>523.3<span class="cobol-highlight">5</span></b>
 								</td>
-								<td width="22%"><b>&nbsp;&nbsp;&nbsp;523.4</b></td>
+								<td
+									width="22%"
+									style="font-family: monospace; text-align: right; padding-inline-end: 0.5em"
+								>
+									<b>523.4</b>
+								</td>
 								<td width="14%">
 									<div class="center-block">
-										<b>
+										<strong>
 											<code class="language-cobol">NO</code>
-										</b>
+										</strong>
 									</div>
 								</td>
 							</tr>
 							<tr>
-								<td width="45%"><b>PIC 9(3)V9 Rounded</b></td>
-								<td width="19%">
-									<b>
-										<span style="color: #ff0000">&nbsp;&nbsp;3</span>523.3<span
-											style="color: #ff0000"
+								<td width="45%"><strong>PIC 9(3)V9 Rounded</strong></td>
+								<td
+									width="19%"
+									style="font-family: monospace; text-align: right; padding-inline-end: 0.5em"
+								>
+									<b
+										><span class="cobol-highlight">3</span>523.3<span class="cobol-highlight"
 											>5</span
-										>
-									</b>
+										></b
+									>
 								</td>
-								<td width="22%">
-									<b>&nbsp;&nbsp;&nbsp;523.4</b>
+								<td
+									width="22%"
+									style="font-family: monospace; text-align: right; padding-inline-end: 0.5em"
+								>
+									<b>523.4</b>
 								</td>
 								<td width="14%">
 									<div class="center-block">
-										<b>
+										<strong>
 											<code class="language-cobol">YES</code>
-										</b>
+										</strong>
 									</div>
 								</td>
 							</tr>
@@ -843,12 +903,13 @@ The time is 14:41
 						<p>
 							If the <code class="language-cobol">GIVING</code> phrase is used, everything before the word
 							<code class="language-cobol">GIVING</code> is added together and the
-							<b>combined result</b> is moved into each of the Result#i items.
+							<strong>combined result</strong> is moved into each of the Result#i items.
 						</p>
 						<p>
 							If the <code class="language-cobol">GIVING</code> phrase is not used, everything before the
 							word <code class="language-cobol">TO</code> is added together and the
-							<b>combined result</b> is then added to <b>each</b> of the ValueResult#i items in turn.
+							<strong>combined result</strong> is then added to <strong>each</strong> of the ValueResult#i
+							items in turn.
 						</p>
 						<hr width="50%" />
 					</div>
@@ -866,16 +927,16 @@ The time is 14:41
 						</p>
 						<p>
 							If the <code class="language-cobol">GIVING</code> phrase is used, everything before the word
-							<code class="language-cobol">FROM</code> is added together and the <b>combined result</b> is
-							subtracted from the Value#il item after the word
+							<code class="language-cobol">FROM</code> is added together and the
+							<strong>combined result</strong> is subtracted from the Value#il item after the word
 							<code class="language-cobol">FROM</code> and the result is moved into each of the Result#i
 							items.
 						</p>
 						<p>
 							If the <code class="language-cobol">GIVING</code> phrase is not used everything before the
 							word <code class="language-cobol">FROM</code> is added together and the
-							<b>combined result</b> is then subtracted from <b>each</b> of the ValueResult#i items after
-							the word <code class="language-cobol">FROM</code> in turn.
+							<strong>combined result</strong> is then subtracted from <strong>each</strong> of the
+							ValueResult#i items after the word <code class="language-cobol">FROM</code> in turn.
 						</p>
 						<hr width="50%" />
 					</div>
@@ -895,13 +956,13 @@ The time is 14:41
 							If the <code class="language-cobol">GIVING</code> phrase is used, then the item to the left
 							of the word <code class="language-cobol">BY</code> is multiplied by the Value#i item to the
 							right of the word <code class="language-cobol">BY</code> and the result is moved into
-							<b>each</b> of the Result#i items.
+							<strong>each</strong> of the Result#i items.
 						</p>
 						<p>
 							If the <code class="language-cobol">GIVING</code> phrase is not used, then the Value#il to
-							the left of the word <code class="language-cobol">BY</code> is multiplied by <b>each</b> of
-							the ValueResult#i items. The result of each calculation is placed in the ValueResult#i
-							involved in the calculation.
+							the left of the word <code class="language-cobol">BY</code> is multiplied by
+							<strong>each</strong> of the ValueResult#i items. The result of each calculation is placed
+							in the ValueResult#i involved in the calculation.
 						</p>
 						<hr width="50%" />
 					</div>
@@ -910,7 +971,7 @@ The time is 14:41
 					</div>
 					<div class="section-content">
 						<p>The Divide has two main formats. One produces a remainder and the other does not.</p>
-						<p><b>Format1</b></p>
+						<p><strong>Format1</strong></p>
 						<p>
 							<img
 								height="101"
@@ -924,7 +985,7 @@ The time is 14:41
 							of <code class="language-cobol">BY</code> or <code class="language-cobol">INTO</code> is
 							divided by or into the Value#il to the right of <code class="language-cobol">BY</code> or
 							<code class="language-cobol">INTO</code> and the result of the calculation is moved into
-							<b>each</b> of the Result#i items in turn.
+							<strong>each</strong> of the Result#i items in turn.
 						</p>
 						<p>
 							If the <code class="language-cobol">GIVING</code> phrase is not used, the item to the left
@@ -932,7 +993,7 @@ The time is 14:41
 							ValueResult#i items in turn. The result of each calculation is placed in the ValueResult#i
 							involved in the calculation.
 						</p>
-						<p><b>Format2</b></p>
+						<p><strong>Format2</strong></p>
 						<p>
 							<img
 								height="128"
@@ -1077,7 +1138,6 @@ The time is 14:41
 						<hr />
 						<lesson-checkbox lesson="COBOLcommands"></lesson-checkbox>
 						<lesson-nav></lesson-nav>
-						<back-to-top></back-to-top>
 						<copyright-notice></copyright-notice>
 						<last-updated></last-updated>
 					</div>

@@ -1,8 +1,10 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<script>
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<script>
 			(function () {
 				var t = localStorage.getItem("lc-theme");
 				if (t === "dark" || t === "light") {
@@ -20,12 +22,40 @@
 		</script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "LearningResource",
+				"name": "Relative Files",
+				"description": "The aim of this unit is to provide you with a solid understanding of declarations required for Relative files and the Procedure Division verbs used to",
+				"url": "https://bushidocodes.github.io/limerick-cobol/course/RelativeFiles.html",
+				"position": 13,
+				"isPartOf": {
+					"@type": "Course",
+					"name": "COBOL Course",
+					"url": "https://bushidocodes.github.io/limerick-cobol/course/index.html"
+				},
+				"provider": {
+					"@type": "Person",
+					"name": "Michael Coughlan",
+					"affiliation": {
+						"@type": "Organization",
+						"name": "University of Limerick CSIS"
+					}
+				},
+				"educationalLevel": "beginner",
+				"inLanguage": "en",
+				"learningResourceType": "Tutorial"
+			}
+		</script>
 		<title>Relative Files</title>
 		<meta
 			name="description"
 			content="The aim of this unit is to provide you with a solid understanding of declarations required for Relative files and the Procedure Division verbs used to"
 		/>
 		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/RelativeFiles.html" />
+		<link rel="prev" href="https://bushidocodes.github.io/limerick-cobol/course/Intro2DirectAccess.html" />
+		<link rel="next" href="https://bushidocodes.github.io/limerick-cobol/course/IndexedFiles.html" />
 		<!-- Open Graph -->
 		<meta property="og:type" content="article" />
 		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/RelativeFiles.html" />
@@ -34,9 +64,9 @@
 			property="og:description"
 			content="The aim of this unit is to provide you with a solid understanding of declarations required for Relative files and the Procedure Division verbs used to"
 		/>
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/course.png" />
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content="Relative Files" />
 		<meta
 			name="twitter:description"
@@ -44,13 +74,27 @@
 		/>
 		<link href="Resources/css/course.css" rel="stylesheet" />
 		<link href="Resources/css/course-components.css" rel="stylesheet" />
-		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
-		<script src="Resources/vendor/prism/prism.min.js" defer></script>
-		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
+		<link
+			href="Resources/vendor/prism/themes/prism.min.css"
+			rel="stylesheet"
+			integrity="sha384-rCCjoCPCsizaAAYVoz1Q0CmCTvnctK0JkfCSjx7IIxexTBg+uCKtFYycedUjMyA2"
+			crossorigin="anonymous"
+		/>
+		<script
+			src="Resources/vendor/prism/prism.min.js"
+			integrity="sha384-06z5D//U/xpvxZHuUz92xBvq3DqBBFi7Up53HRrbV7Jlv7Yvh/MZ7oenfUe9iCEt"
+			crossorigin="anonymous"
+			defer
+		></script>
+		<script
+			src="Resources/vendor/prism/components/prism-cobol.min.js"
+			integrity="sha384-s4JeL+r7pYtWemgWCY7jgWCWuBQfoHt/88SwBLAitxcMkr8ji8Lp4JvZq9qCv8W6"
+			crossorigin="anonymous"
+			defer
+		></script>
 		<script src="../components/theme-toggle.js" defer></script>
 		<script src="../components/page-hero.js" defer></script>
 		<script src="../components/site-search.js" defer></script>
-		<script src="../components/back-to-top.js" defer></script>
 		<script src="../components/lesson-progress.js" defer></script>
 		<script src="../components/lesson-nav.js" defer></script>
 		<script src="../components/lesson-checkbox.js" defer></script>
@@ -59,43 +103,24 @@
 		<script src="../components/related-content.js" defer></script>
 		<script src="../components/copy-button.js" defer></script>
 		<script src="../components/page-toc.js" defer></script>
+		<script src="../components/lesson-toc.js" defer></script>
+		<script src="../components/site-header.js" defer></script>
 	</head>
 	<body>
 		<a class="skip-link" href="#main-content">Skip to main content</a>
 		<main id="main-content">
 			<div class="page-wrapper">
 				<page-toc></page-toc>
-				<div class="page-content">
-					<page-hero title="Relative Files"></page-hero>
-					<hr />
-					<ul class="toc">
-						<li>
-							<a href="#intro">Introduction</a>
-							Unit aims, objectives and prerequisites.
-						</li>
-						<li>
-							<a href="#progs">A look at some programs that use Relative files</a>
-							We begin with two example programs. The first creates a Relative File from a Sequential file
-							and the second reads and displays records from the Relative file.
-						</li>
-						<li>
-							<a href="#declare">Relative file - declarations</a>
-							Examines the declarations required for a Relative file including the SELECT and ASSIGN
-							clause and the key.
-						</li>
-						<li>
-							<a href="#verbs">Relative file - file processing verbs</a>
-							Examines the Procedure Division verbs used to process Relative files - OPEN, CLOSE, READ,
-							WRITE, REWRITE, DELETE, START
-						</li>
-						<li>
-							<a href="#declaratives">Introduction to Declaratives</a>
-							Introduces Declaratives, showing when and how to use them.
-						</li>
-					</ul>
-				</div>
-				<div class="section-header">
-					<h2 id="intro">Introduction</h2>
+				<div class="section-grid">
+					<div class="section-full">
+						<page-hero title="Relative Files" reading-time="12 min"></page-hero>
+						<hr />
+						<lesson-toc></lesson-toc>
+					</div>
+
+					<div class="section-header">
+						<h2 id="intro">Introduction</h2>
+					</div>
 				</div>
 				<div class="section-grid">
 					<div class="section-sidebar">
@@ -136,20 +161,9 @@
 						</ol>
 					</div>
 				</div>
-				<div class="section-grid">
-					<div class="section-sidebar">
-						<h3>Prerequisites</h3>
-					</div>
-					<div class="section-content">
-						<p>You should be familiar with the material covered in the unit;</p>
-						<ul>
-							<li>Introduction to direct access files</li>
-						</ul>
-					</div>
-				</div>
+				<div class="section-grid"></div>
 				<div class="section-full">
 					<hr />
-					<back-to-top></back-to-top>
 				</div>
 				<div class="section-header">
 					<h2 id="progs">A look at some programs that use Relative files</h2>
@@ -225,7 +239,7 @@ Enter supplier key (2 digits)-&gt; 05
 						<p>
 							If you downloaded the first example program and its data file you should already have the
 							Relative file (it was produced when you ran the first example program). You can use this
-							file with the second Relative file example program.&nbsp;
+							file with the second Relative file example program.
 						</p>
 						<p>
 							<a href="Resources/progs/ReadRelative.cbl">Download Relative file example program 2</a>
@@ -234,7 +248,6 @@ Enter supplier key (2 digits)-&gt; 05
 				</div>
 				<div class="section-full">
 					<hr />
-					<back-to-top></back-to-top>
 				</div>
 				<div class="section-header">
 					<h2 id="declare">Relative file - Declarations</h2>
@@ -257,14 +270,15 @@ Enter supplier key (2 digits)-&gt; 05
 						<h3>Select and Assign clause syntax</h3>
 					</div>
 					<div class="section-content">
-						<p>
+						<figure class="img-figure">
 							<img
 								height="189"
 								src="Resources/pics/I-DFrel1.gif"
 								width="507"
 								alt="Syntax diagram for the SELECT and ASSIGN clause used to declare a relative file in COBOL."
 							/>
-						</p>
+							<figcaption>SELECT and ASSIGN Clause Syntax</figcaption>
+						</figure>
 					</div>
 				</div>
 				<div class="section-grid">
@@ -335,7 +349,6 @@ Enter supplier key (2 digits)-&gt; 05
 				</div>
 				<div class="section-full">
 					<hr />
-					<back-to-top></back-to-top>
 				</div>
 				<div class="section-header">
 					<h2 id="verbs">Relative file - file processing verbs</h2>
@@ -385,24 +398,24 @@ Enter supplier key (2 digits)-&gt; 05
 							The full syntax for the OPEN verbs is shown below. Note the new I-O entry. This is used with
 							direct access files when we intend to update or both read and write to the file.
 						</p>
-						<p>
+						<figure class="img-figure">
 							<img
 								src="Resources/pics/I-DFrel2.gif"
 								alt="Syntax diagram for the OPEN verb applied to relative files, showing INPUT, OUTPUT, I-O, and EXTEND modes."
 								width="225"
 								height="97"
 							/>
-						</p>
+							<figcaption>OPEN Verb Syntax</figcaption>
+						</figure>
 						<h4>Notes</h4>
 						<p>If the file is opened for input then only READ and START will be allowed.</p>
 						<p>If the file is opened for output then only WRITE will be allowed.</p>
 						<p>
-							If the file is opened for I-O then READ, WRITE, START, REWRITE and DELETE will be
-							allowed.&nbsp;
+							If the file is opened for I-O then READ, WRITE, START, REWRITE and DELETE will be allowed.
 						</p>
 						<p>
 							If OPEN INPUT is used, and the file does not possess the OPTIONAL tag, then the file must
-							exist or the OPEN will fail. &nbsp;
+							exist or the OPEN will fail.
 						</p>
 						<p>
 							If OPEN OUTPUT or I-O is used then the file will be created if it does not already exist as
@@ -428,14 +441,15 @@ Enter supplier key (2 digits)-&gt; 05
 						<h3>Reading using a key</h3>
 					</div>
 					<div class="section-content">
-						<p>
+						<figure class="img-figure">
 							<img
 								src="Resources/pics/I-DFrel3.gif"
 								alt="Syntax diagram for the READ verb used to read a record directly from a relative file by key value."
 								width="301"
 								height="111"
 							/>
-						</p>
+							<figcaption>READ Verb Syntax (Direct Access)</figcaption>
+						</figure>
 						<h4>Operation</h4>
 						<p>To read a record directly from a Relative file</p>
 						<ol>
@@ -464,7 +478,7 @@ Enter supplier key (2 digits)-&gt; 05
 							The file must have an ACCESS MODE declaration for the file specifying an ACCESS MODE DYNAMIC
 							or RANDOM.
 						</p>
-						<p>The file must be opened for I-O or INPUT.&nbsp;</p>
+						<p>The file must be opened for I-O or INPUT.</p>
 					</div>
 				</div>
 				<div class="section-grid">
@@ -478,14 +492,15 @@ Enter supplier key (2 digits)-&gt; 05
 							format of the ordinary sequential READ except that in this format the NEXT RECORD phrase is
 							used.
 						</p>
-						<p>
+						<figure class="img-figure">
 							<img
 								src="Resources/pics/I-DFrel4.gif"
 								alt="Syntax diagram for the sequential READ NEXT format used with relative files when ACCESS MODE is DYNAMIC."
 								width="351"
 								height="81"
 							/>
-						</p>
+							<figcaption>READ NEXT Verb Syntax</figcaption>
+						</figure>
 						<h4>Notes</h4>
 						<p>
 							This format is used to access a Relative file sequentially when the ACCESS MODE has been
@@ -514,14 +529,15 @@ Enter supplier key (2 digits)-&gt; 05
 							to a Sequential file, but to write directly to a Relative file a key must be used and this
 							requires a different WRITE format.
 						</p>
-						<p>
+						<figure class="img-figure">
 							<img
 								src="Resources/pics/I-DFrel5.gif"
 								alt="Syntax diagram for the WRITE verb used to write a record directly to a relative file using a key value."
 								width="271"
 								height="82"
 							/>
-						</p>
+							<figcaption>WRITE Verb Syntax (Direct Access)</figcaption>
+						</figure>
 						<h4>Operation</h4>
 						<p>To write a record directly to a Relative file</p>
 						<ol>
@@ -551,14 +567,15 @@ Enter supplier key (2 digits)-&gt; 05
 							The REWRITE is used to update a record in situ by overwriting it. The format of the REWRITE
 							verb is shown below.
 						</p>
-						<p>
+						<figure class="img-figure">
 							<img
 								src="Resources/pics/I-DFrel6.gif"
 								alt="Syntax diagram for the REWRITE verb used to update an existing record in place in a relative file."
 								width="285"
 								height="81"
 							/>
-						</p>
+							<figcaption>REWRITE Verb Syntax</figcaption>
+						</figure>
 						<h4>Operation</h4>
 						<p>The REWRITE is normally used in the following way;</p>
 						<ol>
@@ -588,14 +605,15 @@ Enter supplier key (2 digits)-&gt; 05
 						<h3>The DELETE verb</h3>
 					</div>
 					<div class="section-content">
-						<p>
+						<figure class="img-figure">
 							<img
 								src="Resources/pics/I-DFrel7.gif"
 								alt="Syntax diagram for the DELETE verb used to remove a record from a relative file by its relative record number."
 								width="259"
 								height="73"
 							/>
-						</p>
+							<figcaption>DELETE Verb Syntax</figcaption>
+						</figure>
 						<h4>Operation</h4>
 						<p>To delete a record</p>
 						<ol>
@@ -631,14 +649,15 @@ Enter supplier key (2 digits)-&gt; 05
 							the next record pointer. Where the START verb appears in a program it is usually followed by
 							a sequential READ or WRITE .
 						</p>
-						<p>
+						<figure class="img-figure">
 							<img
 								src="Resources/pics/I-DFrel8.gif"
 								alt="Syntax diagram for the START verb used to position the next-record pointer in a relative file."
 								width="449"
 								height="198"
 							/>
-						</p>
+							<figcaption>START Verb Syntax</figcaption>
+						</figure>
 						<h4>Operation</h4>
 						<p>To position the Next Record Pointer at a particular record</p>
 						<ol>
@@ -671,7 +690,6 @@ Enter supplier key (2 digits)-&gt; 05
 				</div>
 				<div class="section-full">
 					<hr />
-					<back-to-top></back-to-top>
 				</div>
 				<div class="section-header">
 					<h2 id="declaratives">Introduction to Declaratives</h2>
@@ -747,15 +765,16 @@ Begin.</code></pre>
 						<h3>The Use phrase</h3>
 					</div>
 					<div class="section-content">
-						<p>
+						<figure class="img-figure">
 							<img
 								src="Resources/pics/I-DFrel9.gif"
 								alt="Syntax diagram for the USE phrase in COBOL Declaratives, specifying error-handling procedures for file I-O conditions."
 								width="389"
 								height="152"
 							/>
-						</p>
-						<p><b>Notes</b></p>
+							<figcaption>USE Phrase Syntax</figcaption>
+						</figure>
+						<p><strong>Notes</strong></p>
 						<p>
 							A USE statement can be used only in a sentence immediately after a section header in the
 							PROCEDURE DIVISION declaratives area. It must be the only statement in the sentence.
@@ -804,7 +823,6 @@ Begin.</code></pre>
 					<hr />
 					<lesson-checkbox lesson="RelativeFiles"></lesson-checkbox>
 					<lesson-nav></lesson-nav>
-					<back-to-top></back-to-top>
 					<copyright-notice></copyright-notice>
 					<last-updated></last-updated>
 				</div>

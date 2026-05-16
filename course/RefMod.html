@@ -1,8 +1,10 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<script>
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<script>
 			(function () {
 				var t = localStorage.getItem("lc-theme");
 				if (t === "dark" || t === "light") {
@@ -20,37 +22,79 @@
 		</script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
-		<title>Reference Modification</title>
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "LearningResource",
+				"name": "Reference modification and Intrinsic Functions",
+				"description": "The aim of this unit is to provide to provide you with a solid understanding of string manipulation using Reference Modification. It will also introduce",
+				"url": "https://bushidocodes.github.io/limerick-cobol/course/RefMod.html",
+				"position": 23,
+				"isPartOf": {
+					"@type": "Course",
+					"name": "COBOL Course",
+					"url": "https://bushidocodes.github.io/limerick-cobol/course/index.html"
+				},
+				"provider": {
+					"@type": "Person",
+					"name": "Michael Coughlan",
+					"affiliation": {
+						"@type": "Organization",
+						"name": "University of Limerick CSIS"
+					}
+				},
+				"educationalLevel": "beginner",
+				"inLanguage": "en",
+				"learningResourceType": "Tutorial"
+			}
+		</script>
+		<title>Reference Modification and Intrinsic Functions</title>
 		<meta
 			name="description"
 			content="The aim of this unit is to provide to provide you with a solid understanding of string manipulation using Reference Modification. It will also introduce"
 		/>
 		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/RefMod.html" />
+		<link rel="prev" href="https://bushidocodes.github.io/limerick-cobol/course/Unstring.html" />
+		<link rel="next" href="https://bushidocodes.github.io/limerick-cobol/course/ReportWriter.html" />
 		<!-- Open Graph -->
 		<meta property="og:type" content="article" />
 		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/RefMod.html" />
-		<meta property="og:title" content="Reference Modification" />
+		<meta property="og:title" content="Reference Modification and Intrinsic Functions" />
 		<meta
 			property="og:description"
 			content="The aim of this unit is to provide to provide you with a solid understanding of string manipulation using Reference Modification. It will also introduce"
 		/>
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/course.png" />
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary" />
-		<meta name="twitter:title" content="Reference Modification" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Reference Modification and Intrinsic Functions" />
 		<meta
 			name="twitter:description"
 			content="The aim of this unit is to provide to provide you with a solid understanding of string manipulation using Reference Modification. It will also introduce"
 		/>
 		<link href="Resources/css/course.css" rel="stylesheet" />
 		<link href="Resources/css/course-components.css" rel="stylesheet" />
-		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
-		<script src="Resources/vendor/prism/prism.min.js" defer></script>
-		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
+		<link
+			href="Resources/vendor/prism/themes/prism.min.css"
+			rel="stylesheet"
+			integrity="sha384-rCCjoCPCsizaAAYVoz1Q0CmCTvnctK0JkfCSjx7IIxexTBg+uCKtFYycedUjMyA2"
+			crossorigin="anonymous"
+		/>
+		<script
+			src="Resources/vendor/prism/prism.min.js"
+			integrity="sha384-06z5D//U/xpvxZHuUz92xBvq3DqBBFi7Up53HRrbV7Jlv7Yvh/MZ7oenfUe9iCEt"
+			crossorigin="anonymous"
+			defer
+		></script>
+		<script
+			src="Resources/vendor/prism/components/prism-cobol.min.js"
+			integrity="sha384-s4JeL+r7pYtWemgWCY7jgWCWuBQfoHt/88SwBLAitxcMkr8ji8Lp4JvZq9qCv8W6"
+			crossorigin="anonymous"
+			defer
+		></script>
 		<script src="../components/theme-toggle.js" defer></script>
 		<script src="../components/page-hero.js" defer></script>
 		<script src="../components/site-search.js" defer></script>
-		<script src="../components/back-to-top.js" defer></script>
 		<script src="../components/lesson-progress.js" defer></script>
 		<script src="../components/lesson-nav.js" defer></script>
 		<script src="../components/lesson-checkbox.js" defer></script>
@@ -59,52 +103,24 @@
 		<script src="../components/related-content.js" defer></script>
 		<script src="../components/copy-button.js" defer></script>
 		<script src="../components/page-toc.js" defer></script>
+		<script src="../components/lesson-toc.js" defer></script>
+		<script src="../components/site-header.js" defer></script>
 	</head>
 	<body>
 		<a class="skip-link" href="#main-content">Skip to main content</a>
 		<main id="main-content">
 			<div class="page-wrapper">
 				<page-toc></page-toc>
-				<div class="page-content">
-					<page-hero title="Reference Modification and Intrinsic Functions"></page-hero>
-					<hr />
-					<ul class="toc">
-						<li>
-							<a href="#intro">Introduction</a>
-							Unit aims, objectives and prerequisites.
-						</li>
-						<li>
-							<a href="#part1">Reference Modification</a>
-							This section examines the syntax and semantics of Reference Modification. The section ends
-							with some animated examples.
-						</li>
-						<li>
-							<a href="#part2">Intrinsic Functions - Introduction</a>
-							This section introduces COBOL's predefined functions - called Intrinsic Functions. It
-							explains how they may be used and introduces the notation used in the Intrinsic Function
-							definitions in the later sections.
-						</li>
-						<li>
-							<a href="#part3">String Functions</a>
-							This section presents the definitions of the Intrinsic Functions used for string handling .
-							The section ends with some examples.
-						</li>
-						<li>
-							<a href="#part4">Date Functions</a>
-							This section presents the definitions of the Intrinsic Functions used for date manipulations
-							. The section ends with a set of comprehensive examples.
-						</li>
-						<li>
-							<a href="#part5">Miscellaneous Functions</a>
-							This section presents the definitions of the other (mainly maths) Intrinsic Functions
-							including used for string handling . The section ends with an example using the RANDOM
-							Intrinsic Function..
-						</li>
-					</ul>
-					<hr />
-				</div>
-				<!-- Introduction -->
 				<div class="section-grid">
+					<div class="section-full">
+						<page-hero
+							title="Reference Modification and Intrinsic Functions"
+							reading-time="15 min"
+						></page-hero>
+						<hr />
+						<lesson-toc></lesson-toc>
+					</div>
+
 					<div class="section-header">
 						<h2 id="intro">Introduction</h2>
 					</div>
@@ -130,27 +146,9 @@
 							<li>Understand how Intrinsic Functions work.</li>
 							<li>Be able to using Intrinsic Functions for string and date manipulation.</li>
 						</ol>
-						<hr />
-					</div>
-					<div class="section-sidebar">
-						<h3>Prerequisites</h3>
-					</div>
-					<div class="section-content">
-						<p>You should be familiar with the material covered in the unit;</p>
-						<ul>
-							<li>Data Declaration</li>
-							<li>Iteration</li>
-							<li>Selection</li>
-							<li>Tables</li>
-							<li>Edited Pictures</li>
-							<li>The <code class="language-cobol">INSPECT</code> verb</li>
-							<li>The <code class="language-cobol">STRING</code> verb</li>
-							<li>The <code class="language-cobol">UNSTRING</code> verb</li>
-						</ul>
 					</div>
 					<div class="section-full">
 						<hr />
-						<back-to-top></back-to-top>
 					</div>
 				</div>
 				<!-- Reference Modification -->
@@ -1241,7 +1239,6 @@ Begin.
 					<hr />
 					<lesson-checkbox lesson="RefMod"></lesson-checkbox>
 					<lesson-nav></lesson-nav>
-					<back-to-top></back-to-top>
 					<copyright-notice></copyright-notice>
 					<last-updated></last-updated>
 				</div>

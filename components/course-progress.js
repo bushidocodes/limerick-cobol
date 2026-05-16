@@ -5,12 +5,29 @@
 // before — progressive enhancement.
 //
 // Depends on window.LessonProgress + window.COBOL_LESSONS (lesson-progress.js).
+// If the manifest fetch hasn't completed when the element connects, waits for
+// the "lc-lessons-ready" event before rendering.
 //
 // Usage:
 //   <course-progress></course-progress>
 
 class CourseProgress extends HTMLElement {
 	connectedCallback() {
+		if (!window.LessonProgress) return;
+		if (window.COBOL_LESSONS) {
+			this._render();
+		} else {
+			window.addEventListener(
+				window.LessonProgress.READY_EVENT,
+				() => {
+					if (this.isConnected) this._render();
+				},
+				{ once: true },
+			);
+		}
+	}
+
+	_render() {
 		if (!window.LessonProgress) return;
 
 		this.innerHTML = `

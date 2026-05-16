@@ -1,8 +1,10 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<script>
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<script>
 			(function () {
 				var t = localStorage.getItem("lc-theme");
 				if (t === "dark" || t === "light") {
@@ -20,34 +22,79 @@
 		</script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
-		<title>Creating tables - syntax and semantics</title>
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "LearningResource",
+				"name": "Creating tables - syntax and semantics",
+				"description": "",
+				"url": "https://bushidocodes.github.io/limerick-cobol/course/Tables2.html",
+				"position": 16,
+				"isPartOf": {
+					"@type": "Course",
+					"name": "COBOL Course",
+					"url": "https://bushidocodes.github.io/limerick-cobol/course/index.html"
+				},
+				"provider": {
+					"@type": "Person",
+					"name": "Michael Coughlan",
+					"affiliation": {
+						"@type": "Organization",
+						"name": "University of Limerick CSIS"
+					}
+				},
+				"educationalLevel": "beginner",
+				"inLanguage": "en",
+				"learningResourceType": "Tutorial"
+			}
+		</script>
+		<title>Creating Tables - Syntax and Semantics</title>
 		<meta
 			name="description"
 			content='In the "Using Tables" tutorial we examined why we might want to use tables as part of the solution to a programming problem.'
 		/>
 		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/Tables2.html" />
+		<link rel="prev" href="https://bushidocodes.github.io/limerick-cobol/course/Tables1.html" />
+		<link rel="next" href="https://bushidocodes.github.io/limerick-cobol/course/Search.html" />
 		<!-- Open Graph -->
 		<meta property="og:type" content="article" />
 		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/Tables2.html" />
-		<meta property="og:title" content="Creating tables - syntax and semantics" />
+		<meta property="og:title" content="Creating Tables - Syntax and Semantics" />
 		<meta
 			property="og:description"
 			content='In the "Using Tables" tutorial we examined why we might want to use tables as part of the solution to a programming problem.'
 		/>
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/course.png" />
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary" />
-		<meta name="twitter:title" content="Creating tables - syntax and semantics" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Creating Tables - Syntax and Semantics" />
 		<meta
 			name="twitter:description"
 			content='In the "Using Tables" tutorial we examined why we might want to use tables as part of the solution to a programming problem.'
 		/>
 		<link href="Resources/css/course.css" rel="stylesheet" />
 		<link href="Resources/css/course-components.css" rel="stylesheet" />
-		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
-		<script src="Resources/vendor/prism/prism.min.js" defer></script>
-		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
+		<link
+			href="Resources/vendor/prism/themes/prism.min.css"
+			rel="stylesheet"
+			integrity="sha384-rCCjoCPCsizaAAYVoz1Q0CmCTvnctK0JkfCSjx7IIxexTBg+uCKtFYycedUjMyA2"
+			crossorigin="anonymous"
+		/>
+		<script
+			src="Resources/vendor/prism/prism.min.js"
+			integrity="sha384-06z5D//U/xpvxZHuUz92xBvq3DqBBFi7Up53HRrbV7Jlv7Yvh/MZ7oenfUe9iCEt"
+			crossorigin="anonymous"
+			defer
+		></script>
+		<script
+			src="Resources/vendor/prism/components/prism-cobol.min.js"
+			integrity="sha384-s4JeL+r7pYtWemgWCY7jgWCWuBQfoHt/88SwBLAitxcMkr8ji8Lp4JvZq9qCv8W6"
+			crossorigin="anonymous"
+			defer
+		></script>
 		<style type="text/css">
+			/* Page-scoped form-control overrides — bare form/select selectors
+			   would change rendering on any page with a form if promoted. */
 			form select {
 				max-width: 100%;
 				box-sizing: border-box;
@@ -86,7 +133,6 @@
 		<script src="../components/theme-toggle.js" defer></script>
 		<script src="../components/page-hero.js" defer></script>
 		<script src="../components/site-search.js" defer></script>
-		<script src="../components/back-to-top.js" defer></script>
 		<script src="../components/lesson-progress.js" defer></script>
 		<script src="../components/lesson-nav.js" defer></script>
 		<script src="../components/lesson-checkbox.js" defer></script>
@@ -95,6 +141,8 @@
 		<script src="../components/related-content.js" defer></script>
 		<script src="../components/copy-button.js" defer></script>
 		<script src="../components/page-toc.js" defer></script>
+		<script src="../components/lesson-toc.js" defer></script>
+		<script src="../components/site-header.js" defer></script>
 	</head>
 
 	<body>
@@ -104,37 +152,9 @@
 				<page-toc></page-toc>
 				<div class="section-grid">
 					<div class="section-full">
-						<page-hero title="Creating Tables - syntax and semantics"></page-hero>
+						<page-hero title="Creating Tables - Syntax and Semantics" reading-time="27 min"></page-hero>
 						<hr />
-						<ul class="toc">
-							<li>
-								<a href="#intro">Introduction</a>
-								Unit aims, objectives, prerequisites.
-							</li>
-							<li>
-								<a href="#part1">Declaring a single dimension table</a>
-								In this section we demonstrate how the
-								<code class="language-cobol">OCCURS</code> clause is used to declare a single dimension
-								table. We also show how it may be used to declare a variable length table.
-							</li>
-							<li>
-								<a href="#part2">Group items as elements</a>
-								The elements of a table do not have to be elementary items - they can be group items.
-								This section demonstrates how to create a table, the elements of which, are group items.
-							</li>
-							<li>
-								<a href="#part3">Declaring multi-dimension tables</a>
-								This section demonstrates how nested <code class="language-cobol">OCCURS</code> clauses
-								are used to create multi-dimension tables.
-							</li>
-							<li>
-								<a href="#part4">Creating pre-filled tables with the REDEFINES clause.</a>
-								This section first demonstrates non-table related uses for the REDEFINES clause and then
-								shows how it may be used to create pre-filled tables. The new COBOL'85 approaches to
-								creating pre-filled tables and to initialising tables are also demonstrated.
-							</li>
-						</ul>
-						<hr />
+						<lesson-toc></lesson-toc>
 					</div>
 
 					<div class="section-header">
@@ -153,7 +173,7 @@
 							how to create single and multi-dimension tables, how to create variable length tables and
 							how to set up a table pre-filled with data..
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Objectives</h3>
@@ -180,29 +200,10 @@
 								table pre-filled with data.
 							</li>
 						</ol>
-						<hr size="1" />
-					</div>
-					<div class="section-sidebar">
-						<h3>Prerequisites</h3>
-					</div>
-					<div class="section-content">
-						<ul>
-							<li>Introduction to COBOL</li>
-							<li>Declaring data in COBOL</li>
-							<li>Basic Procedure Division Commands</li>
-							<li>Selection Constructs</li>
-							<li>Iteration Constructs</li>
-							<li>Introduction to Sequential files</li>
-							<li>Processing Sequential files</li>
-							<li>Print files and variable length records</li>
-							<li>Sorting and Merging files</li>
-							<li>Using Tables</li>
-						</ul>
 					</div>
 					<div class="section-full">
 						<div>
 							<hr />
-							<back-to-top></back-to-top>
 						</div>
 					</div>
 
@@ -221,7 +222,7 @@
 							In this section we will examine, in more detail, how a single dimension table, like the
 							CountyTaxTable, may be created.
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Tables - general notes</h3>
@@ -254,10 +255,10 @@
 							</li>
 						</ul>
 						<p>A table is stored in memory as a contiguous block of bytes.</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
-						<h3>Using the <code class="language-cobol">OCCURS</code> clause to declare a table</h3>
+						<h3>Using the OCCURS clause to declare a table</h3>
 					</div>
 					<div class="section-content">
 						<p>
@@ -307,7 +308,7 @@
 							When declared like this we can refer to <i>CountyTax(sub)</i> when we want to access an
 							element of the table and <i>CountyTaxTable</i> when we want to refer to the whole table.
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>OCCURS clause syntax and rules</h3>
@@ -328,7 +329,7 @@
 							<p><code class="language-cobol">OCCURS</code> <i>TableSize#l</i> TIMES</p>
 						</blockquote>
 						<p>
-							<b>Rules for the <code class="language-cobol">OCCURS</code> clause</b>
+							<strong>Rules for the <code class="language-cobol">OCCURS</code> clause</strong>
 						</p>
 						<ol>
 							<li>
@@ -344,11 +345,11 @@
 								clause must be subscripted when referred to.
 							</li>
 						</ol>
-						<p><b>Rules for subscripts</b></p>
+						<p><strong>Rules for subscripts</strong></p>
 						<ol>
 							<li>
-								<b></b>Each subscript must be either a positive integer, a data name which represents
-								one, or a simple expression which evaluates to one.
+								Each subscript must be either a positive integer, a data name which represents one, or a
+								simple expression which evaluates to one.
 							</li>
 							<li>
 								The subscript must contain a value between 1 and the number of elements in the
@@ -369,13 +370,10 @@
 							</li>
 							<li>Subscripts must be enclosed in parentheses/brackets.</li>
 						</ol>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Table examples and some SAQ's</h3>
-						<p class="center-block">
-							<img height="46" src="Resources/pics/i-SAQ2.svg" width="32" alt="" />
-						</p>
 					</div>
 					<div class="section-content">
 						<p>
@@ -452,7 +450,7 @@
 								</tr>
 							</table>
 						</div>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Declaring a variable length table.</h3>
@@ -474,7 +472,7 @@
 							<i>LargestSize</i> and is assigned at compile time. Standard COBOL has no mechanism for
 							dynamic memory allocation, although the coming OO-COBOL standard addresses this problem.
 						</p>
-						<p><b>Rules</b></p>
+						<p><strong>Rules</strong></p>
 						<ol>
 							<li>ActualSize#i cannot itself be a data-item in a table.</li>
 							<li>
@@ -482,7 +480,7 @@
 								table.
 							</li>
 						</ol>
-						<p><b>Example</b></p>
+						<p><strong>Example</strong></p>
 						<pre class="language-cobol"><code class="language-cobol">01 BooksReservedTable.
    02 BookId PIC 9(7) OCCURS 1 TO 10
                       DEPENDING ON NumOfReservations. </code></pre>
@@ -490,7 +488,6 @@
 					<div class="section-full">
 						<div>
 							<hr />
-							<back-to-top></back-to-top>
 						</div>
 					</div>
 
@@ -554,13 +551,10 @@
 							<i>CountyTaxDetails</i>, <i>CountyTax</i> and <i>PayerCount</i> in the table above, the form
 							CountyTaxDetails(sub), CountyTax(sub) and PayerCount(sub) must be used.
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Self Assessment Questions and animated example</h3>
-						<p class="center-block">
-							<img height="46" src="Resources/pics/i-SAQ2.svg" width="32" alt="" />
-						</p>
 					</div>
 					<div class="section-content">
 						<p>
@@ -605,13 +599,10 @@ MOVE ZEROS TO CountyTaxTable</code></pre>
 								</p>
 							</details>
 						</div>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Example program</h3>
-						<p class="center-block">
-							<img height="44" src="Resources/pics/program.gif" width="42" alt="" />
-						</p>
 					</div>
 					<div class="section-content">
 						<p>
@@ -702,7 +693,6 @@ DisplayCountyTaxes.
 					<div class="section-full">
 						<div>
 							<hr />
-							<back-to-top></back-to-top>
 						</div>
 					</div>
 
@@ -872,13 +862,10 @@ END-EVALUATE.
 							expresses the data hierarchy inherent in the table description where one
 							<code class="language-cobol">OCCURS</code> clause is subordinate to the another.
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Self Assessment Questions and examples</h3>
-						<p class="center-block">
-							<img height="46" src="Resources/pics/i-SAQ2.svg" width="32" alt="" />
-						</p>
 					</div>
 					<div class="section-content">
 						<p>
@@ -900,7 +887,7 @@ MOVE ZEROS TO Age(3)</code></pre>
 									alt="Click for animation: two-dimension PopulationTable statement effects"
 							/></a>
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Displaying the population report for each county</h3>
@@ -961,7 +948,7 @@ MOVE ZEROS TO Age(3)</code></pre>
 								alt="Diagram of a three-dimension PopulationTable with County (26), Age (3), and Gender (2) containing PopTotal"
 							/>
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Self Assessment Questions and examples</h3>
@@ -987,7 +974,7 @@ MOVE ZEROS TO PopulationTable</code></pre>
 									alt="Click for animation: three-dimension PopulationTable statement effects"
 							/></a>
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>One last tweak to the problem specification.</h3>
@@ -1067,7 +1054,7 @@ MOVE ZEROS TO PopulationTable</code></pre>
 							an <code class="language-cobol">OCCURS</code> clause itself) and <i>PopTotal</i> requires
 							three subscripts (three superordinate <code class="language-cobol">OCCURS</code> clauses).
 						</p>
-						<p><b>Examples of use</b></p>
+						<p><strong>Examples of use</strong></p>
 						<pre class="language-cobol"><code class="language-cobol">MOVE ZEROS TO County(23)
 ADD 1643 TO CarOwnersTotal(15)
 MOVE ZEROS TO Age(17,3)
@@ -1077,7 +1064,6 @@ ADD 56 TO PopTotal(12,3,2)</code></pre>
 					<div class="section-full">
 						<div>
 							<hr />
-							<back-to-top></back-to-top>
 						</div>
 					</div>
 
@@ -1108,7 +1094,7 @@ ADD 56 TO PopTotal(12,3,2)</code></pre>
 							successful when a small amount of data is involved. The standard way to create pre-filled
 							tables in COBOL is to use the <code class="language-cobol">REDEFINES</code> clause.
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Non-tables uses for the REDEFINES clause - some examples</h3>
@@ -1207,7 +1193,7 @@ END-EVALUATE </code></pre>
    02 10Rate                    PIC 99V999.
    02 100Rate  REDEFINES 10Rate PIC 999V99.
    02 1000Rate REDEFINES 10Rate PIC 9999V9.</code></pre>
-						<p><b>Animated versions of the examples above</b></p>
+						<p><strong>Animated versions of the examples above</strong></p>
 						<p class="center-block">
 							<a href="Resources/ppz/TC-Tables7.html"
 								><img
@@ -1217,7 +1203,7 @@ END-EVALUATE </code></pre>
 									alt="Click for animation: REDEFINES clause examples"
 							/></a>
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>REDEFINES syntax and rules</h3>
@@ -1231,7 +1217,7 @@ END-EVALUATE </code></pre>
 								alt="REDEFINES clause syntax diagram"
 							/>
 						</p>
-						<p><b>REDEFINES</b> <b>rules</b></p>
+						<p><strong>REDEFINES</strong> <strong>rules</strong></p>
 						<ol>
 							<li>
 								The <code class="language-cobol">REDEFINES</code> clause must immediately follow
@@ -1266,7 +1252,7 @@ END-EVALUATE </code></pre>
 							</li>
 							<li>There can be no intervening entries that define additional character positions.</li>
 						</ol>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Using the REDEFINES clause to create a pre-filled table.</h3>
@@ -1312,13 +1298,10 @@ END-EVALUATE </code></pre>
 									alt="Click for animation: using REDEFINES to create a pre-filled table"
 							/></a>
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Example program</h3>
-						<p class="center-block">
-							<img height="44" src="Resources/pics/program.gif" width="42" alt="" />
-						</p>
 					</div>
 					<div class="section-content">
 						<p>
@@ -1427,7 +1410,7 @@ DisplayCountyTaxes.
       MOVE PayerCount(Idx) TO PrnPayers
       DISPLAY CountyTaxLine
    END-IF.</code></pre>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Creating pre-filled tables without using the REDEFINES clause.</h3>
@@ -1504,7 +1487,6 @@ DisplayCountyTaxes.
 						<hr />
 						<lesson-checkbox lesson="Tables2"></lesson-checkbox>
 						<lesson-nav></lesson-nav>
-						<back-to-top></back-to-top>
 						<copyright-notice></copyright-notice>
 						<last-updated></last-updated>
 					</div>

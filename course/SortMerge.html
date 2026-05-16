@@ -1,8 +1,10 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<script>
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<script>
 			(function () {
 				var t = localStorage.getItem("lc-theme");
 				if (t === "dark" || t === "light") {
@@ -20,37 +22,79 @@
 		</script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
-		<title>Sorting and Merging files</title>
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "LearningResource",
+				"name": "Sorting and Merging",
+				"description": "As we noted in the tutorial - Processing Sequential Files - it is possible to apply processing to an ordered sequential file that is difficult, or",
+				"url": "https://bushidocodes.github.io/limerick-cobol/course/SortMerge.html",
+				"position": 11,
+				"isPartOf": {
+					"@type": "Course",
+					"name": "COBOL Course",
+					"url": "https://bushidocodes.github.io/limerick-cobol/course/index.html"
+				},
+				"provider": {
+					"@type": "Person",
+					"name": "Michael Coughlan",
+					"affiliation": {
+						"@type": "Organization",
+						"name": "University of Limerick CSIS"
+					}
+				},
+				"educationalLevel": "beginner",
+				"inLanguage": "en",
+				"learningResourceType": "Tutorial"
+			}
+		</script>
+		<title>Sorting and Merging</title>
 		<meta
 			name="description"
 			content="As we noted in the tutorial - Processing Sequential Files - it is possible to apply processing to an ordered sequential file that is difficult, or"
 		/>
 		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/SortMerge.html" />
+		<link rel="prev" href="https://bushidocodes.github.io/limerick-cobol/course/SequentialFiles3.html" />
+		<link rel="next" href="https://bushidocodes.github.io/limerick-cobol/course/Intro2DirectAccess.html" />
 		<!-- Open Graph -->
 		<meta property="og:type" content="article" />
 		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/SortMerge.html" />
-		<meta property="og:title" content="Sorting and Merging files" />
+		<meta property="og:title" content="Sorting and Merging" />
 		<meta
 			property="og:description"
 			content="As we noted in the tutorial - Processing Sequential Files - it is possible to apply processing to an ordered sequential file that is difficult, or"
 		/>
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/course.png" />
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary" />
-		<meta name="twitter:title" content="Sorting and Merging files" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Sorting and Merging" />
 		<meta
 			name="twitter:description"
 			content="As we noted in the tutorial - Processing Sequential Files - it is possible to apply processing to an ordered sequential file that is difficult, or"
 		/>
 		<link href="Resources/css/course.css" rel="stylesheet" />
 		<link href="Resources/css/course-components.css" rel="stylesheet" />
-		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
-		<script src="Resources/vendor/prism/prism.min.js" defer></script>
-		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
+		<link
+			href="Resources/vendor/prism/themes/prism.min.css"
+			rel="stylesheet"
+			integrity="sha384-rCCjoCPCsizaAAYVoz1Q0CmCTvnctK0JkfCSjx7IIxexTBg+uCKtFYycedUjMyA2"
+			crossorigin="anonymous"
+		/>
+		<script
+			src="Resources/vendor/prism/prism.min.js"
+			integrity="sha384-06z5D//U/xpvxZHuUz92xBvq3DqBBFi7Up53HRrbV7Jlv7Yvh/MZ7oenfUe9iCEt"
+			crossorigin="anonymous"
+			defer
+		></script>
+		<script
+			src="Resources/vendor/prism/components/prism-cobol.min.js"
+			integrity="sha384-s4JeL+r7pYtWemgWCY7jgWCWuBQfoHt/88SwBLAitxcMkr8ji8Lp4JvZq9qCv8W6"
+			crossorigin="anonymous"
+			defer
+		></script>
 		<script src="../components/theme-toggle.js" defer></script>
 		<script src="../components/page-hero.js" defer></script>
 		<script src="../components/site-search.js" defer></script>
-		<script src="../components/back-to-top.js" defer></script>
 		<script src="../components/lesson-progress.js" defer></script>
 		<script src="../components/lesson-nav.js" defer></script>
 		<script src="../components/lesson-checkbox.js" defer></script>
@@ -59,6 +103,8 @@
 		<script src="../components/related-content.js" defer></script>
 		<script src="../components/copy-button.js" defer></script>
 		<script src="../components/page-toc.js" defer></script>
+		<script src="../components/lesson-toc.js" defer></script>
+		<script src="../components/site-header.js" defer></script>
 	</head>
 
 	<body>
@@ -66,45 +112,13 @@
 		<main id="main-content">
 			<div class="page-wrapper">
 				<page-toc></page-toc>
-				<div class="page-content">
-					<div>
-						<page-hero title="Sorting and Merging files"></page-hero>
-						<hr />
-						<ul class="toc">
-							<li>
-								<a href="#intro">Introduction</a>
-								Unit aims, objectives, prerequisites.
-							</li>
-							<li>
-								<a href="#part1">Simple SORTing</a>
-								This section introduces a simplified version of
-								<code class="language-cobol">SORT</code> verb syntax, and discusses why we might need to
-								sort a file as part of a solution to a programming problem..
-							</li>
-							<li>
-								<a href="#part2">Sorting with an INPUT PROCEDURE</a>
-								This section introduces a <code class="language-cobol">SORT</code> with an
-								<code class="language-cobol">INPUT PROCEDURE</code> and demonstrates how an INPUT
-								PROCEDURE may be used to filter, or alter, records before they are supplied to the sort
-								process.
-							</li>
-							<li>
-								<a href="#part3">Sorting with an OUTPUT PROCEDURE</a>
-								This section shows how an <code class="language-cobol">OUTPUT PROCEDURE</code> may be
-								used to filter, or alter, records after they have been sorted.
-							</li>
-							<li>
-								<a href="#part4">MERGEing files</a>
-								In this section the <code class="language-cobol">MERGE</code> verb is introduced. The
-								<code class="language-cobol">MERGE</code> verb may be used to merge two or more ordered
-								files.
-							</li>
-						</ul>
-						<hr />
-					</div>
-				</div>
 				<!-- Introduction -->
 				<div class="section-grid">
+					<div class="section-full">
+						<page-hero title="Sorting and Merging" reading-time="27 min"></page-hero>
+						<hr />
+						<lesson-toc></lesson-toc>
+					</div>
 					<div class="section-header">
 						<h2 id="intro">Introduction</h2>
 					</div>
@@ -132,7 +146,7 @@
 							<code class="language-cobol">SORT</code> and
 							<code class="language-cobol">MERGE</code> verbs.
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Objectives</h3>
@@ -169,30 +183,11 @@
 							</li>
 							<li>Understand the significance of the merge keys.</li>
 						</ol>
-						<hr size="1" />
-					</div>
-					<div class="section-sidebar">
-						<h3>Prerequisites</h3>
-					</div>
-					<div class="section-content">
-						<ul>
-							<li>Introduction to COBOL</li>
-							<li>Declaring data in COBOL</li>
-							<li>Basic Procedure Division Commands</li>
-							<li>Selection Constructs</li>
-							<li>Iteration Constructs</li>
-							<li>Introduction to Sequential files</li>
-							<li>Processing Sequential files</li>
-							<li>Print files and variable length records</li>
-						</ul>
 					</div>
 					<div class="section-full">
 						<hr />
-						<back-to-top></back-to-top>
 					</div>
-				</div>
-				<!-- Simple Sorting -->
-				<div class="section-grid">
+
 					<div class="section-header">
 						<h2 id="part1">Simple Sorting</h2>
 					</div>
@@ -217,7 +212,7 @@
 							changes to the <code class="language-cobol">SORT</code>. This is rarely the case when
 							programs rely on a vendor-supplied or "bought in" sort.
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Why sort the file?</h3>
@@ -314,7 +309,7 @@ END-IF</code></pre>
 							>
 							This thinking would lead us to the obvious conclusion - we must sort the calls file.
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Syntax of a simplified SORT</h3>
@@ -325,14 +320,6 @@ END-IF</code></pre>
 								characters, but RECORD SEQUENTIAL files are organized as a simple stream of bytes.
 							</p>
 						</aside>
-						<p class="center-block">
-							<img
-								height="44"
-								src="Resources/pics/program-fragment.svg"
-								width="48"
-								alt="Program fragment"
-							/>
-						</p>
 					</div>
 					<div class="section-content">
 						<p>
@@ -362,7 +349,7 @@ SORT WorkFile ON ASCENDING ProvinceCode
                  USING SalesFile
                  GIVING SortedSalesFile.</code></pre>
 						</blockquote>
-						<h4><code class="language-cobol">SORT</code> notes</h4>
+						<h4>SORT notes</h4>
 						<p>
 							The <i>SDWorkFileName</i> identifies a temporary work file that the
 							<code class="language-cobol">SORT</code> process uses for the sort. It is defined in the
@@ -405,7 +392,7 @@ SORT WorkFile ON ASCENDING ProvinceCode
 							or 7 bit ), <code class="language-cobol">EBCDIC</code>,or user-defined.
 						</p>
 						<p>
-							<b>SORT rules</b>
+							<strong>SORT rules</strong>
 						</p>
 						<ol>
 							<li>
@@ -433,11 +420,12 @@ SORT WorkFile ON ASCENDING ProvinceCode
 							<li>
 								<i>InFileName</i> and <i>OutFileName</i> files are automatically opened by the
 								<code class="language-cobol">SORT</code>. When the
-								<code class="language-cobol">SORT</code> executes they must <b>not</b> be open already.
+								<code class="language-cobol">SORT</code> executes they must <strong>not</strong> be open
+								already.
 							</li>
 						</ol>
 						<p>
-							<b> <code class="language-cobol">SORT</code> example </b>
+							<strong> <code class="language-cobol">SORT</code> example </strong>
 						</p>
 						<pre class="language-cobol"><code class="language-cobol">ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
@@ -510,7 +498,7 @@ Begin.
      USING  CallsFile
      GIVING SortedCallsFile.
 </code></pre>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Using multiple keys.</h3>
@@ -534,7 +522,7 @@ Begin.
 							<code class="language-cobol">SORT</code> statement is the major key and keys get less
 							significant with each successive declaration.
 						</p>
-						<p class="center-block"><b>SortedSalesFile</b></p>
+						<p class="center-block"><strong>SortedSalesFile</strong></p>
 						<table style="margin: 0 auto" bgcolor="#E1FFE1" class="data-table" width="36%">
 							<tr bgcolor="#FFFFCC">
 								<td width="58" style="vertical-align: top">
@@ -656,7 +644,6 @@ etc.</code></pre>
 					</div>
 					<div class="section-full">
 						<hr />
-						<back-to-top></back-to-top>
 					</div>
 				</div>
 				<!-- SORTing with an INPUT PROCEDURE -->
@@ -680,7 +667,7 @@ etc.</code></pre>
 							Since sorting is a disk-based process, and thus comparatively slow, every effort should be
 							made to reduce the amount of data that has to be sorted.
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>SORT syntax with INPUT PROCEDURE</h3>
@@ -729,7 +716,7 @@ SORT WorkFile ON ASCENDING CountryNameWF, CustomerNameWF
 							the records, only the data that is actually required in the sorted file will be sorted.
 						</p>
 						<p>
-							<b> <code class="language-cobol">INPUT PROCEDURE</code> rules </b>
+							<strong> <code class="language-cobol">INPUT PROCEDURE</code> rules </strong>
 						</p>
 						<ol>
 							<li>
@@ -750,7 +737,7 @@ SORT WorkFile ON ASCENDING CountryNameWF, CustomerNameWF
 								used, must not overlap.
 							</li>
 						</ol>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>How a SORT with and INPUT PROCEDURE works.</h3>
@@ -802,7 +789,7 @@ SORT WorkFile ON ASCENDING CountryNameWF, CustomerNameWF
               INPUT PROCEDURE IS SelectForeignGuests
               GIVING SortedGuestsFile.
 </code></pre>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Creating an INPUT PROCEDURE</h3>
@@ -843,7 +830,7 @@ PERFORM UNTIL TerminatingCondition
 END-PERFORM
 CLOSE InFileName</code></pre>
 						</div>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>The Foreign Guests Report - example program</h3>
@@ -854,9 +841,6 @@ CLOSE InFileName</code></pre>
 								table-based solution might also be viable.
 							</p>
 						</aside>
-						<p class="center-block">
-							<img height="44" src="Resources/pics/program.gif" width="42" alt="" />
-						</p>
 					</div>
 					<div class="section-content">
 						<p>
@@ -1001,13 +985,10 @@ PrintReportBody.
    WRITE PrintLine FROM CountryLine
          AFTER ADVANCING 1 LINE.
 </code></pre>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Feeding the SORT from the keyboard - example program</h3>
-						<p class="center-block">
-							<img height="44" src="Resources/pics/program.gif" width="42" alt="" />
-						</p>
 					</div>
 					<div class="section-content">
 						<p>
@@ -1093,7 +1074,6 @@ GetStudentDetails.
 					</div>
 					<div class="section-full">
 						<hr />
-						<back-to-top></back-to-top>
 					</div>
 				</div>
 				<!-- Sorting with an OUTPUT PROCEDURE -->
@@ -1131,7 +1111,7 @@ GetStudentDetails.
 							the sorted records. The resulting sorted file contains summary records, rather than the
 							detail records, contained in the unsorted file.
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>SORT syntax with OUTPUT PROCEDURE</h3>
@@ -1167,7 +1147,7 @@ SORT WorkFile ON ASCENDING KEY SalespersonNumWF
 							been sorted.
 						</p>
 						<p>
-							<b> <code class="language-cobol">OUTPUT PROCEDURE</code> rules </b>
+							<strong> <code class="language-cobol">OUTPUT PROCEDURE</code> rules </strong>
 						</p>
 						<ol>
 							<li>
@@ -1180,7 +1160,7 @@ SORT WorkFile ON ASCENDING KEY SalespersonNumWF
 								<code class="language-cobol">OUTPUT PROCEDURE</code> is used.
 							</li>
 						</ol>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>How the OUTPUT PROCEDURE works</h3>
@@ -1222,7 +1202,7 @@ SORT WorkFile ON ASCENDING KEY SalespersonNumWF
      USING SalesFile
      OUTPUT PROCEDURE IS SummariseSales.
 </code></pre>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Creating an OUTPUT PROCEDURE</h3>
@@ -1241,7 +1221,7 @@ SORT WorkFile ON ASCENDING KEY SalespersonNumWF
 									>INTO</code
 								>
 								<i>Identifier</i>]<br />
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AT END
+								<span style="padding-inline-start: 4.5em; display: inline-block">AT END</span>
 								<i>StatementBlock</i><br />
 								END-RETURN
 							</p>
@@ -1268,13 +1248,10 @@ END-PERFORM
 CLOSE OutFile
 </code></pre>
 						</div>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Sales summary file - example program</h3>
-						<p class="center-block">
-							<img height="44" src="Resources/pics/program.gif" width="42" alt="" />
-						</p>
 					</div>
 					<div class="section-content">
 						<p>
@@ -1342,13 +1319,10 @@ SummariseSales.
     END-PERFORM
     CLOSE SalesSummaryFile.
 </code></pre>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Revised Foreign Guests Report - example program</h3>
-						<p class="center-block">
-							<img height="44" src="Resources/pics/program.gif" width="42" alt="" />
-						</p>
 					</div>
 					<div class="section-content">
 						<p>
@@ -1471,7 +1445,6 @@ PrintReportBody.
 					</div>
 					<div class="section-full">
 						<hr />
-						<back-to-top></back-to-top>
 					</div>
 				</div>
 				<!-- MERGEing files -->
@@ -1497,7 +1470,7 @@ PrintReportBody.
 							and combines them, according to the key values specified. The combined file is then sent to
 							an output file or an <code class="language-cobol">OUTPUT PROCEDURE</code>.
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>MERGE syntax</h3>
@@ -1516,7 +1489,7 @@ PrintReportBody.
    ON ASCENDING KEY TransDateWF, TransCodeWF, StudentIdWF
    USING InsertTransFile, DeleteTransFile, UpdateTransFile
    GIVING CombinedTransFile. </code></pre>
-						<h4><code class="language-cobol">MERGE</code> notes</h4>
+						<h4>MERGE notes</h4>
 						<p>
 							The results of the <code class="language-cobol">MERGE</code> verb are predictable only when
 							the records in the input files are ordered as described in the
@@ -1547,7 +1520,8 @@ PrintReportBody.
 							<i>InFileName</i> and <i>OutFileName</i>, are the names of the input and output files
 							respectively. These files are automatically opened by the
 							<code class="language-cobol">MERGE</code>. When the
-							<code class="language-cobol">MERGE</code> executes they must <b>not</b> be already open.
+							<code class="language-cobol">MERGE</code> executes they must <strong>not</strong> be already
+							open.
 						</p>
 						<p>
 							<i>AlphabetName</i> is an alphabet-name defined in the
@@ -1568,7 +1542,7 @@ PrintReportBody.
 							been merged and must contain at least one
 							<code class="language-cobol">RETURN</code> statement to get the records from the SortFile.
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>MERGE example</h3>
@@ -1636,7 +1610,6 @@ Begin.
 					<hr />
 					<lesson-checkbox lesson="SortMerge"></lesson-checkbox>
 					<lesson-nav></lesson-nav>
-					<back-to-top></back-to-top>
 					<copyright-notice></copyright-notice>
 					<last-updated></last-updated>
 				</div>

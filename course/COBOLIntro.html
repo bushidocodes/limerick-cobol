@@ -1,8 +1,10 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<script>
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<script>
 			(function () {
 				var t = localStorage.getItem("lc-theme");
 				if (t === "dark" || t === "light") {
@@ -20,33 +22,75 @@
 		</script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
-		<title>Introduction to COBOL</title>
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "LearningResource",
+				"name": "The structure of COBOL programs",
+				"description": "To provide a brief introduction to the programming language COBOL. To provide a context in which its uses might be understood. To introduce the",
+				"url": "https://bushidocodes.github.io/limerick-cobol/course/COBOLIntro.html",
+				"position": 1,
+				"isPartOf": {
+					"@type": "Course",
+					"name": "COBOL Course",
+					"url": "https://bushidocodes.github.io/limerick-cobol/course/index.html"
+				},
+				"provider": {
+					"@type": "Person",
+					"name": "Michael Coughlan",
+					"affiliation": {
+						"@type": "Organization",
+						"name": "University of Limerick CSIS"
+					}
+				},
+				"educationalLevel": "beginner",
+				"inLanguage": "en",
+				"learningResourceType": "Tutorial"
+			}
+		</script>
+		<title>The Structure of COBOL Programs</title>
 		<meta
 			name="description"
 			content="To provide a brief introduction to the programming language COBOL. To provide a context in which its uses might be understood. To introduce the"
 		/>
 		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/COBOLIntro.html" />
+		<link rel="next" href="https://bushidocodes.github.io/limerick-cobol/course/DataDeclaration.html" />
 		<!-- Open Graph -->
 		<meta property="og:type" content="article" />
 		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/COBOLIntro.html" />
-		<meta property="og:title" content="Introduction to COBOL" />
+		<meta property="og:title" content="The Structure of COBOL Programs" />
 		<meta
 			property="og:description"
 			content="To provide a brief introduction to the programming language COBOL. To provide a context in which its uses might be understood. To introduce the"
 		/>
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/course.png" />
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary" />
-		<meta name="twitter:title" content="Introduction to COBOL" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="The Structure of COBOL Programs" />
 		<meta
 			name="twitter:description"
 			content="To provide a brief introduction to the programming language COBOL. To provide a context in which its uses might be understood. To introduce the"
 		/>
 		<link href="Resources/css/course.css" rel="stylesheet" />
 		<link href="Resources/css/course-components.css" rel="stylesheet" />
-		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
-		<script src="Resources/vendor/prism/prism.min.js" defer></script>
-		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
+		<link
+			href="Resources/vendor/prism/themes/prism.min.css"
+			rel="stylesheet"
+			integrity="sha384-rCCjoCPCsizaAAYVoz1Q0CmCTvnctK0JkfCSjx7IIxexTBg+uCKtFYycedUjMyA2"
+			crossorigin="anonymous"
+		/>
+		<script
+			src="Resources/vendor/prism/prism.min.js"
+			integrity="sha384-06z5D//U/xpvxZHuUz92xBvq3DqBBFi7Up53HRrbV7Jlv7Yvh/MZ7oenfUe9iCEt"
+			crossorigin="anonymous"
+			defer
+		></script>
+		<script
+			src="Resources/vendor/prism/components/prism-cobol.min.js"
+			integrity="sha384-s4JeL+r7pYtWemgWCY7jgWCWuBQfoHt/88SwBLAitxcMkr8ji8Lp4JvZq9qCv8W6"
+			crossorigin="anonymous"
+			defer
+		></script>
 		<style type="text/css">
 			/* Page-scoped overrides that would change rendering on other course
 			   pages if globalized. ul.construct-list and .animation-row* live in
@@ -75,7 +119,6 @@
 		<script src="../components/theme-toggle.js" defer></script>
 		<script src="../components/page-hero.js" defer></script>
 		<script src="../components/site-search.js" defer></script>
-		<script src="../components/back-to-top.js" defer></script>
 		<script src="../components/lesson-progress.js" defer></script>
 		<script src="../components/lesson-nav.js" defer></script>
 		<script src="../components/lesson-checkbox.js" defer></script>
@@ -84,6 +127,8 @@
 		<script src="../components/related-content.js" defer></script>
 		<script src="../components/copy-button.js" defer></script>
 		<script src="../components/page-toc.js" defer></script>
+		<script src="../components/lesson-toc.js" defer></script>
+		<script src="../components/site-header.js" defer></script>
 	</head>
 
 	<body>
@@ -93,36 +138,9 @@
 				<page-toc></page-toc>
 				<div class="section-grid">
 					<div class="section-full">
-						<page-hero title="Introduction to COBOL"></page-hero>
+						<page-hero title="The Structure of COBOL Programs" reading-time="26 min"></page-hero>
 						<hr />
-						<ul class="toc">
-							<li>
-								<a href="#intro">Introduction</a>
-								Unit aims, objectives, prerequisites.
-							</li>
-							<li>
-								<a href="#part1">What is COBOL?</a>
-								A brief introduction to the COBOL programming language. A historical overview. COBOL's
-								dominance in the business computing domain. Characteristics of COBOL applications. Some
-								reasons for COBOL's success.
-							</li>
-							<li>
-								<a href="#part2">Introduction to Programming</a>
-								This section provides a gentle introduction to programing in general and to programming
-								in COBOL in particular by means of writing some simple COBOL programs.
-							</li>
-							<li>
-								<a href="#part3">COBOL basics</a>
-								This section presents the fundamentals of constructing COBOL programs. It explains the
-								notation used in COBOL syntax diagrams, enumerates the COBOL coding rules, and examines
-								the hierarchical structure of COBOL programs.
-							</li>
-							<li>
-								<a href="#part4">The Four Divisions</a>
-								Provides an introduction to the structure and purpose of the four COBOL divisions.
-							</li>
-						</ul>
-						<hr />
+						<lesson-toc></lesson-toc>
 					</div>
 					<div class="section-header">
 						<h2 id="intro">Introduction</h2>
@@ -137,7 +155,7 @@
 							elements of the language. To provide an introduction to the major structures present in a
 							COBOL program.
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Objectives</h3>
@@ -158,18 +176,10 @@
 								<code class="language-cobol">PROCEDURE</code> divisions.
 							</li>
 						</ol>
-						<hr size="1" />
-					</div>
-					<div class="section-sidebar">
-						<h3>Prerequisites</h3>
-					</div>
-					<div class="section-content">
-						<p>None. This is the first unit in the course.</p>
 					</div>
 					<div class="section-full">
 						<div>
 							<hr />
-							<back-to-top></back-to-top>
 						</div>
 					</div>
 					<div class="section-header">
@@ -196,7 +206,7 @@
 							systems programs. For instance you would not develop an operating system or a compiler using
 							COBOL.
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>How widely used is COBOL?</h3>
@@ -223,8 +233,8 @@
 								In 1999 they reported that over 50% of all new mission-critical applications were still
 								being done in COBOL and their recent estimates indicate that through 2004-2005 15% of
 								all new applications (5 billion lines) will be developed in COBOL while 80% of
-								<b>all</b> deployed applications will include extensions to existing legacy (usually
-								COBOL) programs.
+								<strong>all</strong> deployed applications will include extensions to existing legacy
+								(usually COBOL) programs.
 							</p>
 							<p>
 								Gartner estimates for 2002 are that there are about two million COBOL programmers
@@ -232,7 +242,7 @@
 								programmers.
 							</p>
 						</blockquote>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Surprised by COBOL's success?</h3>
@@ -286,7 +296,7 @@
 							programmers. Many more programmers are involved in coding or maintaining one off, "bespoke",
 							applications. And these programmers generally write their programs in COBOL.
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Some characteristics of COBOL applications</h3>
@@ -317,7 +327,7 @@
 							COBOL applications often deal with enormous volumes of data. Single production files and
 							databases measured in terabytes are not uncommon.
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Some characteristics that contribute to COBOL's success</h3>
@@ -416,7 +426,7 @@
 							have no choice. COBOL's rigid hierarchical structure ensures that these items are restricted
 							to the Environment Division.
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>References and further reading</h3>
@@ -510,7 +520,6 @@
 					<div class="section-full">
 						<div>
 							<hr />
-							<back-to-top></back-to-top>
 						</div>
 					</div>
 					<div class="section-header">
@@ -529,7 +538,7 @@
 							Don't worry if you don't understand these programs at this point. The main purpose of this
 							section is to give you a first look at some simple COBOL programs.
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Let's write a program</h3>
@@ -553,7 +562,7 @@
 							This section introduces COBOL programming by writing some simple COBOL programs using these
 							constructs.
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Sequence Program Specification</h3>
@@ -572,7 +581,7 @@
 								computer executes them in the correct order.
 							</li>
 						</ol>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Program Statements and Data items</h3>
@@ -600,13 +609,13 @@
 							class="language-cobol"
 						><code class="language-cobol">MULTIPLY Num1 BY Num2 GIVING Result.</code></pre>
 						<p>
-							We will need a statement to display the value in the named memory location "<b>Result</b>"
-							on the computer screen -
+							We will need a statement to display the value in the named memory location
+							"<strong>Result</strong>" on the computer screen -
 						</p>
 						<pre
 							class="language-cobol"
 						><code class="language-cobol">DISPLAY "Result is = ", Result.</code></pre>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Getting the Algorithm right</h3>
@@ -665,7 +674,7 @@
 							program it is all to easy to make the mistake of trying to use, or output, the contents of a
 							data item before you have assigned it a value.
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>An annotated look at the COBOL program</h3>
@@ -685,7 +694,7 @@
 									alt="Animation: annotated program"
 							/></a>
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Selection Program Specification</h3>
@@ -717,7 +726,7 @@
 									alt="Animation: selection program"
 							/></a>
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Iteration Program Specification</h3>
@@ -746,7 +755,6 @@
 					<div class="section-full">
 						<div>
 							<hr />
-							<back-to-top></back-to-top>
 						</div>
 					</div>
 					<div class="section-header">
@@ -761,7 +769,7 @@
 							notation used in COBOL syntax diagrams and enumerates the COBOL coding rules. It shows how
 							user-defined names are constructed and examines the structure of COBOL programs.
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>COBOL idiosyncrasies</h3>
@@ -789,7 +797,7 @@
 							to write well structured programs it also still retains elements which, if used, make it
 							difficult, and in some cases impossible, to write good programs.
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>COBOL syntax</h3>
@@ -820,7 +828,7 @@
 							The ellipsis symbol <b>...</b> (three dots), indicates that the preceding syntax element may
 							be repeated at the programmer's discretion.
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Some notes on syntax diagrams</h3>
@@ -900,7 +908,8 @@
 						<p>
 							We must follow the keyword with the name(s) of the numeric data item (or items - note the
 							ellipsis symbol (...)) to be used to receive the result of the expression. The #i suffix at
-							the end of word <b>Result</b> tells us that a numeric identifier/data item must be used.
+							the end of word <strong>Result</strong> tells us that a numeric identifier/data item must be
+							used.
 						</p>
 						<p>
 							Since the ellipsis symbol is placed outside the curly brackets we can interpret this to mean
@@ -925,7 +934,7 @@
 							brackets it must only be used when a <code class="language-cobol">SIZE ERROR</code> or
 							<code class="language-cobol">NOT SIZE ERROR</code> phrase is used.
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>COBOL coding rules</h3>
@@ -960,7 +969,7 @@
 							formatting restrictions.
 						</p>
 						<p class="center-block">
-							<b>Ancient COBOL coding form</b
+							<strong>Ancient COBOL coding form</strong
 							><img
 								src="Resources/pics/CodingForm.jpg"
 								width="498"
@@ -969,7 +978,7 @@
 								style="border: 1px solid"
 							/>
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Name construction</h3>
@@ -992,7 +1001,7 @@
 								<code class="language-cobol">TOTALPAY</code>.
 							</li>
 						</ol>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>The structure of COBOL programs</h3>
@@ -1067,7 +1076,6 @@ PROGRAM-ID.</code></pre>
 					<div class="section-full">
 						<div>
 							<hr />
-							<back-to-top></back-to-top>
 						</div>
 					</div>
 					<div class="section-header">
@@ -1085,14 +1093,14 @@ PROGRAM-ID.</code></pre>
 						<blockquote>
 							<h4 class="center-block">IDENTIFICATION DIVISION.</h4>
 							<p class="center-block">Contains program information</p>
-							<h4 class="center-block"><code class="language-cobol">ENVIRONMENT DIVISION</code>.</h4>
+							<h4 class="center-block">ENVIRONMENT DIVISION.</h4>
 							<p class="center-block">Contains environment information</p>
 							<h4 class="center-block">DATA DIVISION.</h4>
 							<p class="center-block">Contains data descriptions</p>
 							<h4 class="center-block">PROCEDURE DIVISION.</h4>
 							<p class="center-block">Contains the program algorithms</p>
 						</blockquote>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>The IDENTIFICATION DIVISION</h3>
@@ -1136,10 +1144,10 @@ other entries here</code></pre>
 						<pre class="language-cobol"><code class="language-cobol">IDENTIFICATION DIVISION.
 PROGRAM-ID. SequenceProgram.
 AUTHOR. Michael Coughlan.</code></pre>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
-						<h3>The <code class="language-cobol">ENVIRONMENT DIVISION</code></h3>
+						<h3>The ENVIRONMENT DIVISION</h3>
 					</div>
 					<div class="section-content">
 						<p>
@@ -1161,7 +1169,7 @@ AUTHOR. Michael Coughlan.</code></pre>
 							collating sequence, the currency symbol and the decimal point symbol may also be defined
 							here.
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>The DATA DIVISION</h3>
@@ -1209,7 +1217,7 @@ WORKING-STORAGE SECTION.
 01 Num1   PIC 9  VALUE ZEROS.
 01 Num2   PIC 9  VALUE ZEROS.
 01 Result PIC 99 VALUE ZEROS.</code></pre>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>The PROCEDURE DIVISION</h3>
@@ -1258,7 +1266,7 @@ CalculateResult.
 							<code class="language-cobol">PROCEDURE DIVISION</code>. For instance the program shown below
 							is perfectly valid when compiled with the Microfocus NetExpress compiler.
 						</p>
-						<p class="center-block"><b>Minimum COBOL program</b></p>
+						<p class="center-block"><strong>Minimum COBOL program</strong></p>
 						<pre class="language-cobol"><code class="language-cobol">IDENTIFICATION DIVISION.
 PROGRAM-ID. SmallestProgram.
 
@@ -1276,7 +1284,6 @@ DisplayGreeting.
 						<hr />
 						<lesson-checkbox lesson="COBOLIntro"></lesson-checkbox>
 						<lesson-nav></lesson-nav>
-						<back-to-top></back-to-top>
 						<copyright-notice></copyright-notice>
 						<last-updated></last-updated>
 					</div>

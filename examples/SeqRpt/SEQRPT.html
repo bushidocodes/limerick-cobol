@@ -2,20 +2,12 @@
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<script>
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<script>
 			(function () {
 				var t = localStorage.getItem("lc-theme");
-				if (t === "dark" || t === "light") {
-					document.documentElement.setAttribute("data-theme", t);
-					var color = t === "dark" ? "#1a1a1a" : "#ffffff";
-					var meta = document.querySelector('meta[name="theme-color"]:not([media])');
-					if (!meta) {
-						meta = document.createElement("meta");
-						meta.name = "theme-color";
-						document.head.appendChild(meta);
-					}
-					meta.content = color;
-				}
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
 			})();
 		</script>
 		<title>Sequential Student Number Report</title>
@@ -32,9 +24,9 @@
 			property="og:description"
 			content="Reads records from the student file, counts the total number of student records and the number of records for females and males, and prints the results in"
 		/>
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/examples.png" />
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content="Sequential Student Number Report" />
 		<meta
 			name="twitter:description"
@@ -50,6 +42,7 @@
 		<script src="../../components/page-hero.js" defer></script>
 		<script src="../../components/related-content.js" defer></script>
 		<script src="../../components/copy-button.js" defer></script>
+		<script src="../../components/site-header.js" defer></script>
 	</head>
 	<body>
 		<a class="skip-link" href="#main-content">Skip to main content</a>
@@ -57,21 +50,16 @@
 			<div class="page-wrapper">
 				<div class="section-grid">
 					<div class="section-full">
-						<page-hero title="Sequential Student Number Report" eyebrow="COBOL Example"></page-hero>
-						<nav aria-label="Breadcrumb">
-							<a href="../default.html">Example programs</a> ›
-							<span>Student Numbers Report</span>
-						</nav>
+						<page-hero title="Sequential Student Number Report"></page-hero>
 						<p>
 							Reads records from the student file, counts the total number of student records and the
 							number of records for females and males, and prints the results in a short report.
 						</p>
-						<p><a href="StudentNumbersReport.cbl" download>Download StudentNumbersReport.cbl</a></p>
-						<related-content
-							lectures="../../course/SequentialFiles1.html|Sequential Files 1, ../../course/SequentialFiles2.html|Sequential Files 2, ../../course/SequentialFiles3.html|Sequential Files 3"
-							examples="../SeqWrite/SEQWRITE.html|Writing to a Sequential File, ../SeqRead/SEQREAD.html|Reading a Sequential File, ../SeqRead/SEQREADno88.html|Reading a Sequential File (no 88), ../SeqIns/SEQINSERT.html|Inserting Records in a Sequential File"
-							exercises="../../exercises/SeqWrite.html|Writing Records, ../../exercises/SeqRead.html|Reading Sequential Files, ../../exercises/SeqReadIf.html|Counting Records, ../../exercises/SeqInsert.html|Inserting Records"
-						></related-content>
+						<div class="code-toolbar">
+							<a href="StudentNumbersReport.cbl" download class="download-btn"
+								>Download StudentNumbersReport.cbl</a
+							>
+						</div>
 						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION. 
 PROGRAM-ID.  StudentNumbersReport . 
@@ -174,6 +162,11 @@ PrintReportLines.
     WRITE PrintLine FROM FemaleTotalLine 
             AFTER ADVANCING 2 LINES.
 </code></pre>
+						<related-content
+							lectures="../../course/SequentialFiles1.html|Sequential Files 1, ../../course/SequentialFiles2.html|Sequential Files 2, ../../course/SequentialFiles3.html|Sequential Files 3"
+							examples="../SeqWrite/SEQWRITE.html|Writing to a Sequential File, ../SeqRead/SEQREAD.html|Reading a Sequential File, ../SeqRead/SEQREADno88.html|Reading a Sequential File (no 88), ../SeqIns/SEQINSERT.html|Inserting Records in a Sequential File"
+							exercises="../../exercises/SeqWrite.html|Writing Records, ../../exercises/SeqRead.html|Reading Sequential Files, ../../exercises/SeqReadIf.html|Counting Records, ../../exercises/SeqInsert.html|Inserting Records"
+						></related-content>
 					</div>
 				</div>
 			</div>

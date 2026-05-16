@@ -1,8 +1,10 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<script>
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<script>
 			(function () {
 				var t = localStorage.getItem("lc-theme");
 				if (t === "dark" || t === "light") {
@@ -20,12 +22,40 @@
 		</script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "LearningResource",
+				"name": "Processing Sequential files",
+				"description": "The records in a Sequential file are organized serially, one after another, but the records in the file may be ordered or unordered. The serial",
+				"url": "https://bushidocodes.github.io/limerick-cobol/course/SequentialFiles2.html",
+				"position": 7,
+				"isPartOf": {
+					"@type": "Course",
+					"name": "COBOL Course",
+					"url": "https://bushidocodes.github.io/limerick-cobol/course/index.html"
+				},
+				"provider": {
+					"@type": "Person",
+					"name": "Michael Coughlan",
+					"affiliation": {
+						"@type": "Organization",
+						"name": "University of Limerick CSIS"
+					}
+				},
+				"educationalLevel": "beginner",
+				"inLanguage": "en",
+				"learningResourceType": "Tutorial"
+			}
+		</script>
 		<title>Processing Sequential Files</title>
 		<meta
 			name="description"
 			content="The records in a Sequential file are organized serially, one after another, but the records in the file may be ordered or unordered. The serial"
 		/>
 		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/SequentialFiles2.html" />
+		<link rel="prev" href="https://bushidocodes.github.io/limerick-cobol/course/SequentialFiles1.html" />
+		<link rel="next" href="https://bushidocodes.github.io/limerick-cobol/course/EditedPics.html" />
 		<!-- Open Graph -->
 		<meta property="og:type" content="article" />
 		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/SequentialFiles2.html" />
@@ -34,9 +64,9 @@
 			property="og:description"
 			content="The records in a Sequential file are organized serially, one after another, but the records in the file may be ordered or unordered. The serial"
 		/>
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/course.png" />
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content="Processing Sequential Files" />
 		<meta
 			name="twitter:description"
@@ -44,13 +74,27 @@
 		/>
 		<link href="Resources/css/course.css" rel="stylesheet" />
 		<link href="Resources/css/course-components.css" rel="stylesheet" />
-		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
-		<script src="Resources/vendor/prism/prism.min.js" defer></script>
-		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
+		<link
+			href="Resources/vendor/prism/themes/prism.min.css"
+			rel="stylesheet"
+			integrity="sha384-rCCjoCPCsizaAAYVoz1Q0CmCTvnctK0JkfCSjx7IIxexTBg+uCKtFYycedUjMyA2"
+			crossorigin="anonymous"
+		/>
+		<script
+			src="Resources/vendor/prism/prism.min.js"
+			integrity="sha384-06z5D//U/xpvxZHuUz92xBvq3DqBBFi7Up53HRrbV7Jlv7Yvh/MZ7oenfUe9iCEt"
+			crossorigin="anonymous"
+			defer
+		></script>
+		<script
+			src="Resources/vendor/prism/components/prism-cobol.min.js"
+			integrity="sha384-s4JeL+r7pYtWemgWCY7jgWCWuBQfoHt/88SwBLAitxcMkr8ji8Lp4JvZq9qCv8W6"
+			crossorigin="anonymous"
+			defer
+		></script>
 		<script src="../components/theme-toggle.js" defer></script>
 		<script src="../components/page-hero.js" defer></script>
 		<script src="../components/site-search.js" defer></script>
-		<script src="../components/back-to-top.js" defer></script>
 		<script src="../components/lesson-progress.js" defer></script>
 		<script src="../components/lesson-nav.js" defer></script>
 		<script src="../components/lesson-checkbox.js" defer></script>
@@ -59,6 +103,8 @@
 		<script src="../components/related-content.js" defer></script>
 		<script src="../components/copy-button.js" defer></script>
 		<script src="../components/page-toc.js" defer></script>
+		<script src="../components/lesson-toc.js" defer></script>
+		<script src="../components/site-header.js" defer></script>
 	</head>
 
 	<body>
@@ -66,36 +112,13 @@
 		<main id="main-content">
 			<div class="page-wrapper">
 				<page-toc></page-toc>
-				<div class="page-content">
-					<page-hero title="Processing Sequential Files"></page-hero>
-					<hr />
-					<ul class="toc">
-						<li>
-							<a href="#intro">Introduction</a>
-							Unit aims, objectives, prerequisites.
-						</li>
-						<li>
-							<a href="#part1">Organization and Access</a>
-							This section introduces the concepts of file organization and access. It describes how
-							Sequential files are organized and introduces the idea of ordered and unordered Sequential
-							files.
-						</li>
-						<li>
-							<a href="#part2">Processing unordered Sequential files</a>
-							This section explores the processing restrictions of unordered Sequential files. It
-							demonstrates that, while records can be easily added to unordered files, deleting and
-							updating records is not really feasible.
-						</li>
-						<li>
-							<a href="#part3">Processing ordered Sequential files</a>
-							This section demonstrates how to use a file of batched transactions to insert (add), delete
-							and update records in an ordered Sequential file..
-						</li>
-					</ul>
-					<hr />
-				</div>
-				<!-- Introduction -->
 				<div class="section-grid">
+					<div class="section-full">
+						<page-hero title="Processing Sequential Files" reading-time="9 min"></page-hero>
+						<hr />
+						<lesson-toc></lesson-toc>
+					</div>
+
 					<div class="section-header">
 						<h2 id="intro">Introduction</h2>
 					</div>
@@ -125,25 +148,10 @@
 							<li>Understand the processing limitations imposed by an unordered Sequential file</li>
 							<li>Be able to add, delete and update records in an ordered Sequential file.</li>
 						</ol>
-						<hr width="50%" />
-					</div>
-					<div class="section-sidebar">
-						<h3>Prerequisites</h3>
-					</div>
-					<div class="section-content">
-						<ul>
-							<li>Introduction to COBOL</li>
-							<li>Declaring data in COBOL</li>
-							<li>Basic Procedure Division Commands</li>
-							<li>Selection Constructs</li>
-							<li>Iteration Constructs</li>
-							<li>Introduction to Sequential files</li>
-						</ul>
 					</div>
 					<div class="section-full">
 						<div>
 							<hr />
-							<back-to-top></back-to-top>
 						</div>
 					</div>
 				</div>
@@ -237,7 +245,6 @@
 					<div class="section-full">
 						<div>
 							<hr />
-							<back-to-top></back-to-top>
 						</div>
 					</div>
 				</div>
@@ -304,10 +311,10 @@
 						</p>
 						<p>
 							Records in a Sequential file can not be deleted or updated "in situ". The only way to
-							<b>delete</b> records from a Sequential file, is to create a new file which does not contain
-							them; and the only way to <b>update</b> records in a Sequential file, is to create a new
-							file which contains the updated records. Because both these operations rely on record
-							matching, they do not work for unordered Sequential files.
+							<strong>delete</strong> records from a Sequential file, is to create a new file which does
+							not contain them; and the only way to <strong>update</strong> records in a Sequential file,
+							is to create a new file which contains the updated records. Because both these operations
+							rely on record matching, they do not work for unordered Sequential files.
 						</p>
 						<hr width="50%" />
 					</div>
@@ -365,12 +372,10 @@
 									alt="Click for animation: attempting to batch-delete records from an unordered sequential file"
 							/></a>
 						</p>
-						<hr width="50%" />
 					</div>
 					<div class="section-full">
 						<div>
 							<hr />
-							<back-to-top></back-to-top>
 						</div>
 					</div>
 				</div>
@@ -421,17 +426,6 @@
 					</div>
 					<div class="section-sidebar">
 						<h3>Self Assessment questions</h3>
-						<p class="center-block">
-							<img
-								height="44"
-								src="Resources/pics/program-fragment.svg"
-								width="48"
-								alt="Program fragment"
-							/>
-						</p>
-						<p class="center-block">
-							<img height="46" src="Resources/pics/i-SAQ2.svg" width="32" alt="" />
-						</p>
 					</div>
 					<div class="section-content">
 						<p>
@@ -474,8 +468,8 @@ END-PERFORM
 							<div class="qa-row">
 								<div class="qa-label">Q2</div>
 								<div class="qa-question">
-									Why do you think the complex condition <i>EndTF <b>AND</b> EndMF</i> has been used
-									to terminate the loop?
+									Why do you think the complex condition <i>EndTF <strong>AND</strong> EndMF</i> has
+									been used to terminate the loop?
 								</div>
 								<div class="qa-answer">
 									<details class="saq-reveal">
@@ -582,7 +576,6 @@ END-PERFORM
 					<hr />
 					<lesson-checkbox lesson="SequentialFiles2"></lesson-checkbox>
 					<lesson-nav></lesson-nav>
-					<back-to-top></back-to-top>
 					<copyright-notice></copyright-notice>
 					<last-updated></last-updated>
 				</div>

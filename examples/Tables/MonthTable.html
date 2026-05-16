@@ -2,20 +2,12 @@
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<script>
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<script>
 			(function () {
 				var t = localStorage.getItem("lc-theme");
-				if (t === "dark" || t === "light") {
-					document.documentElement.setAttribute("data-theme", t);
-					var color = t === "dark" ? "#1a1a1a" : "#ffffff";
-					var meta = document.querySelector('meta[name="theme-color"]:not([media])');
-					if (!meta) {
-						meta = document.createElement("meta");
-						meta.name = "theme-color";
-						document.head.appendChild(meta);
-					}
-					meta.content = color;
-				}
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
 			})();
 		</script>
 		<title>Tables - Counts number of students born in each month</title>
@@ -35,9 +27,9 @@
 			property="og:description"
 			content="Counts the number of students born in each month using a pre-filled table of month names and displays the result."
 		/>
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/examples.png" />
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content="Tables - Counts number of students born in each month" />
 		<meta
 			name="twitter:description"
@@ -53,6 +45,7 @@
 		<script src="../../components/page-hero.js" defer></script>
 		<script src="../../components/related-content.js" defer></script>
 		<script src="../../components/copy-button.js" defer></script>
+		<script src="../../components/site-header.js" defer></script>
 	</head>
 	<body>
 		<a class="skip-link" href="#main-content">Skip to main content</a>
@@ -60,23 +53,14 @@
 			<div class="page-wrapper">
 				<div class="section-grid">
 					<div class="section-full">
-						<page-hero
-							title="Tables - Counts number of students born in each month"
-							eyebrow="COBOL Example"
-						></page-hero>
-						<nav aria-label="Breadcrumb">
-							<a href="../default.html">Example programs</a> ›
-							<span>Month Table</span>
-						</nav>
+						<page-hero title="Tables - Counts number of students born in each month"></page-hero>
 						<p>
 							Counts the number of students born in each month using a pre-filled table of month names and
 							displays the result.
 						</p>
-						<p><a href="MonthTable.cbl" download>Download MonthTable.cbl</a></p>
-						<related-content
-							lectures="../../course/Tables1.html|Tables 1, ../../course/Tables2.html|Tables 2, ../../course/Search.html|SEARCH and SEARCH ALL"
-							exercises="../../exercises/MonthTable.html|Using Tables Exercise"
-						></related-content>
+						<div class="code-toolbar">
+							<a href="MonthTable.cbl" download class="download-btn">Download MonthTable.cbl</a>
+						</div>
 						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID.  MonthTable.
@@ -153,6 +137,10 @@ Begin.
    CLOSE StudentFile
    STOP RUN.
 </code></pre>
+						<related-content
+							lectures="../../course/Tables1.html|Tables 1, ../../course/Tables2.html|Tables 2, ../../course/Search.html|SEARCH and SEARCH ALL"
+							exercises="../../exercises/MonthTable.html|Using Tables Exercise"
+						></related-content>
 					</div>
 				</div>
 			</div>

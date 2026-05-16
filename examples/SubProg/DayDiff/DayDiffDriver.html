@@ -2,20 +2,12 @@
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<script>
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<script>
 			(function () {
 				var t = localStorage.getItem("lc-theme");
-				if (t === "dark" || t === "light") {
-					document.documentElement.setAttribute("data-theme", t);
-					var color = t === "dark" ? "#1a1a1a" : "#ffffff";
-					var meta = document.querySelector('meta[name="theme-color"]:not([media])');
-					if (!meta) {
-						meta = document.createElement("meta");
-						meta.name = "theme-color";
-						document.head.appendChild(meta);
-					}
-					meta.content = color;
-				}
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
 			})();
 		</script>
 		<title>Get difference between dates driver program</title>
@@ -38,9 +30,9 @@
 			property="og:description"
 			content="A driver program that accepts two dates from the user and displays the difference in days between them. Uses the Validate sub-program and also contains a"
 		/>
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/examples.png" />
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content="Get difference between dates driver program" />
 		<meta
 			name="twitter:description"
@@ -56,6 +48,7 @@
 		<script src="../../../components/page-hero.js" defer></script>
 		<script src="../../../components/related-content.js" defer></script>
 		<script src="../../../components/copy-button.js" defer></script>
+		<script src="../../../components/site-header.js" defer></script>
 	</head>
 	<body>
 		<a class="skip-link" href="#main-content">Skip to main content</a>
@@ -63,24 +56,15 @@
 			<div class="page-wrapper">
 				<div class="section-grid">
 					<div class="section-full">
-						<page-hero
-							title="Get difference between dates driver program"
-							eyebrow="COBOL Example"
-						></page-hero>
-						<nav aria-label="Breadcrumb">
-							<a href="../../default.html">Example programs</a> ›
-							<span>Day Difference Driver</span>
-						</nav>
+						<page-hero title="Get difference between dates driver program"></page-hero>
 						<p>
 							A driver program that accepts two dates from the user and displays the difference in days
 							between them. Uses the Validate sub-program and also contains a number of contained
 							sub-programs.
 						</p>
-						<p><a href="DayDiffDriver.cbl" download>Download DayDiffDriver.cbl</a></p>
-						<related-content
-							lectures="../../../course/Subprograms.html|Subprograms"
-							examples="../Multiply/DriverProg.html|Subprogram Driver, ../Multiply/MultiplyNums.html|MultiplyNums Subprogram, ../Multiply/Fickle.html|Fickle Subprogram (State Memory), ../Multiply/Steadfast.html|Steadfast Subprogram (IS INITIAL)"
-						></related-content>
+						<div class="code-toolbar">
+							<a href="DayDiffDriver.cbl" download class="download-btn">Download DayDiffDriver.cbl</a>
+						</div>
 						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
 PROGRAM-ID. DayDiffDriver.
@@ -277,6 +261,10 @@ END PROGRAM GetDayDiff.
 
 END PROGRAM DayDiffDriver.
 </code></pre>
+						<related-content
+							lectures="../../../course/Subprograms.html|Subprograms"
+							examples="../Multiply/DriverProg.html|Subprogram Driver, ../Multiply/MultiplyNums.html|MultiplyNums Subprogram, ../Multiply/Fickle.html|Fickle Subprogram (State Memory), ../Multiply/Steadfast.html|Steadfast Subprogram (IS INITIAL)"
+						></related-content>
 					</div>
 				</div>
 			</div>

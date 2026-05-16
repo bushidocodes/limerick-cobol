@@ -1,8 +1,10 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<script>
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<script>
 			(function () {
 				var t = localStorage.getItem("lc-theme");
 				if (t === "dark" || t === "light") {
@@ -20,26 +22,71 @@
 		</script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
-		<title>The COPY verb</title>
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "LearningResource",
+				"name": "The COPY verb",
+				"description": "COBOL programming lesson on The COPY verb.",
+				"url": "https://bushidocodes.github.io/limerick-cobol/course/Copy.html",
+				"position": 19,
+				"isPartOf": {
+					"@type": "Course",
+					"name": "COBOL Course",
+					"url": "https://bushidocodes.github.io/limerick-cobol/course/index.html"
+				},
+				"provider": {
+					"@type": "Person",
+					"name": "Michael Coughlan",
+					"affiliation": {
+						"@type": "Organization",
+						"name": "University of Limerick CSIS"
+					}
+				},
+				"educationalLevel": "beginner",
+				"inLanguage": "en",
+				"learningResourceType": "Tutorial"
+			}
+		</script>
+		<title>The COPY Verb</title>
 		<meta name="description" content="COBOL programming lesson on The COPY verb." />
 		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/Copy.html" />
+		<link rel="prev" href="https://bushidocodes.github.io/limerick-cobol/course/Subprograms.html" />
+		<link rel="next" href="https://bushidocodes.github.io/limerick-cobol/course/Inspect.html" />
 		<!-- Open Graph -->
 		<meta property="og:type" content="article" />
 		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/Copy.html" />
-		<meta property="og:title" content="The COPY verb" />
+		<meta property="og:title" content="The COPY Verb" />
 		<meta property="og:description" content="COBOL programming lesson on The COPY verb." />
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/favicon.svg" />
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/course.png" />
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary" />
-		<meta name="twitter:title" content="The COPY verb" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="The COPY Verb" />
 		<meta name="twitter:description" content="COBOL programming lesson on The COPY verb." />
 		<link href="Resources/css/course.css" rel="stylesheet" />
 		<link href="Resources/css/course-components.css" rel="stylesheet" />
-		<link href="Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
-		<script src="Resources/vendor/prism/prism.min.js" defer></script>
-		<script src="Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
+		<link
+			href="Resources/vendor/prism/themes/prism.min.css"
+			rel="stylesheet"
+			integrity="sha384-rCCjoCPCsizaAAYVoz1Q0CmCTvnctK0JkfCSjx7IIxexTBg+uCKtFYycedUjMyA2"
+			crossorigin="anonymous"
+		/>
+		<script
+			src="Resources/vendor/prism/prism.min.js"
+			integrity="sha384-06z5D//U/xpvxZHuUz92xBvq3DqBBFi7Up53HRrbV7Jlv7Yvh/MZ7oenfUe9iCEt"
+			crossorigin="anonymous"
+			defer
+		></script>
+		<script
+			src="Resources/vendor/prism/components/prism-cobol.min.js"
+			integrity="sha384-s4JeL+r7pYtWemgWCY7jgWCWuBQfoHt/88SwBLAitxcMkr8ji8Lp4JvZq9qCv8W6"
+			crossorigin="anonymous"
+			defer
+		></script>
 		<style type="text/css">
-			/* Page-scoped overrides. .code-section* lives in course-components.css. */
+			/* Page-scoped overrides — .section-grid > * would change padding on all
+			   course pages; .page-wrapper border removal would affect all pages at
+			   mobile. .code-section* lives in course-components.css. */
 			.section-grid > * {
 				padding: 4px;
 			}
@@ -53,7 +100,6 @@
 		<script src="../components/theme-toggle.js" defer></script>
 		<script src="../components/page-hero.js" defer></script>
 		<script src="../components/site-search.js" defer></script>
-		<script src="../components/back-to-top.js" defer></script>
 		<script src="../components/lesson-progress.js" defer></script>
 		<script src="../components/lesson-nav.js" defer></script>
 		<script src="../components/lesson-checkbox.js" defer></script>
@@ -62,6 +108,8 @@
 		<script src="../components/related-content.js" defer></script>
 		<script src="../components/copy-button.js" defer></script>
 		<script src="../components/page-toc.js" defer></script>
+		<script src="../components/lesson-toc.js" defer></script>
+		<script src="../components/site-header.js" defer></script>
 	</head>
 
 	<body>
@@ -72,33 +120,9 @@
 				<div class="section-grid">
 					<!-- Header -->
 					<div class="section-full">
-						<page-hero title="The COPY verb"></page-hero>
+						<page-hero title="The COPY Verb" reading-time="14 min"></page-hero>
 						<hr />
-						<ul class="toc">
-							<li>
-								<a href="#intro">Introduction</a>
-								Unit aims, objectives, prerequisites.
-							</li>
-							<li>
-								<a href="#part1">Using COPY statements</a>
-								Introduction to the <code class="language-cobol">COPY</code> verb. Using the
-								<code class="language-cobol">COPY</code> verb when creating large software systems
-							</li>
-							<li>
-								<a href="#part2">The COPY verb - Syntax and Semantics</a>
-								The <code class="language-cobol">COPY</code> syntax. How the
-								<code class="language-cobol">COPY</code> works. How the
-								<code class="language-cobol">REPLACING</code> phrase works.
-								<code class="language-cobol">COPY</code> rules.
-							</li>
-							<li>
-								<a href="#part3">COPY examples</a>
-								Four example programs showing the program source text before processing the
-								<code class="language-cobol">COPY</code> statements, the copy library text, and the
-								program source text after processing the
-								<code class="language-cobol">COPY</code> statements in the program.
-							</li>
-						</ul>
+						<lesson-toc></lesson-toc>
 						<hr />
 					</div>
 					<!-- Section: Introduction -->
@@ -132,7 +156,7 @@
 						</p>
 						<p>The unit ends with a number of example programs.</p>
 
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Objectives</h3>
@@ -147,7 +171,7 @@
 								sections of it as required.
 							</li>
 						</ol>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>Prerequisites</h3>
@@ -177,7 +201,6 @@
 					<!-- Navigation -->
 					<div class="section-full">
 						<hr />
-						<back-to-top></back-to-top>
 					</div>
 					<!-- Section: Using the COPY verb -->
 					<div class="section-header">
@@ -214,11 +237,11 @@
 							of the <code class="language-cobol">COPY</code> verb.
 						</p>
 
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>
-							<b>Using the COPY verb in large software systems</b>
+							<strong>Using the COPY verb in large software systems</strong>
 						</h3>
 					</div>
 					<div>
@@ -256,12 +279,11 @@
 							recompilation of any affected programs. If a copy library were not used each affected
 							program would have to be changed
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<!-- Navigation -->
 					<div class="section-full">
 						<hr />
-						<back-to-top></back-to-top>
 					</div>
 					<!-- Section: COPY Syntax and Semantics -->
 					<div class="section-header">
@@ -307,10 +329,12 @@
 								</li>
 								<li>Any literal including opening and closing quotes</li>
 								<li>
-									Any separator other than;<br />
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A space<br />
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A Pseudo-Text delimiter<br />
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A Comma
+									Any separator other than;
+									<ul>
+										<li>A space</li>
+										<li>A Pseudo-Text delimiter</li>
+										<li>A Comma</li>
+									</ul>
 								</li>
 							</ul>
 							<ul>
@@ -321,56 +345,56 @@
 								<li>Any other sequence of contiguous characters bounded by separators.</li>
 							</ul>
 
-							<p><b>Text Word examples</b></p>
+							<p><strong>Text Word examples</strong></p>
 							<blockquote>
 								<p>
-									<b>MOVE</b><br />
+									<strong>MOVE</strong><br />
 									1 Text Word
 								</p>
 								<p>
-									<b>MOVE Total TO Print-Total</b><br />
-									4 Text Words - <span style="color: #0000ff"><b>MOVE</b></span>
-									<b>
+									<strong>MOVE Total TO Print-Total</strong><br />
+									4 Text Words - <span style="color: #0000ff"><strong>MOVE</strong></span>
+									<strong>
 										<span style="color: #0000ff">
-											<span style="color: #ff0000">Total</span> TO
-											<span style="color: #ff0000">Print-Total</span>
+											<span class="cobol-highlight">Total</span> TO
+											<span class="cobol-highlight">Print-Total</span>
 										</span>
-									</b>
+									</strong>
 								</p>
 								<p>
-									<b>MOVE Total TO Print-Total.</b><br />
-									5 Text Words - <span style="color: #0000ff"><b>MOVE</b></span>
-									<b>
-										<span style="color: #ff0000">Total</span>
+									<strong>MOVE Total TO Print-Total.</strong><br />
+									5 Text Words - <span style="color: #0000ff"><strong>MOVE</strong></span>
+									<strong>
+										<span class="cobol-highlight">Total</span>
 										<span style="color: #0000ff">TO</span>
-										<span style="color: #ff0000">Print-Total</span>
+										<span class="cobol-highlight">Print-Total</span>
 										<span style="color: #0000ff">.</span>
-									</b>
+									</strong>
 								</p>
 								<p>
-									<b>PIC S9(4)V9(6)</b><br />
+									<strong>PIC S9(4)V9(6)</strong><br />
 									9 Text words -
-									<b>
+									<strong>
 										<span style="color: #0000ff">PIC</span>
 										<span style="color: #0000ff">
-											<span style="color: #ff0000">S9</span> (
-											<span style="color: #ff0000">4</span> )
-											<span style="color: #ff0000">V9</span> (
-											<span style="color: #ff0000">6</span> )
+											<span class="cobol-highlight">S9</span> (
+											<span class="cobol-highlight">4</span> )
+											<span class="cobol-highlight">V9</span> (
+											<span class="cobol-highlight">6</span> )
 										</span>
-									</b>
+									</strong>
 								</p>
 								<p>
-									<b>"PIC S9(4)V9(6)"</b><br />
-									1 Text word - <span style="color: #0000ff"><b>"PIC S9(4)V9(6)"</b></span>
+									<strong>"PIC S9(4)V9(6)"</strong><br />
+									1 Text word - <span style="color: #0000ff"><strong>"PIC S9(4)V9(6)"</strong></span>
 								</p>
 							</blockquote>
 						</div>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>
-							<b>How the COPY works</b>
+							<strong>How the COPY works</strong>
 						</h3>
 					</div>
 					<div>
@@ -390,7 +414,7 @@ COPY CopyFile5 REPLACING X(3) BY X(19).
 COPY CopyFile3 IN EGLIB.
 COPY CopyFile5 REPLACING ==X(3)== BY ==X(19)==.
 COPY CopyFile4 IN EGLIB.</code></pre>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>How the REPLACING phrase works</h3>
@@ -410,7 +434,7 @@ COPY CopyFile4 IN EGLIB.</code></pre>
 							Comment lines in the library text is or in TextWord2 are copied into the target text
 							unchanged.
 						</p>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<div class="section-sidebar">
 						<h3>COPY Rules</h3>
@@ -451,12 +475,11 @@ COPY CopyFile4 IN EGLIB.</code></pre>
 								For example - (Prefix) or :Prefix:
 							</li>
 						</ol>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<!-- Navigation -->
 					<div class="section-full">
 						<hr />
-						<back-to-top></back-to-top>
 					</div>
 					<!-- Section: COPY examples -->
 					<div class="section-header">
@@ -466,34 +489,34 @@ COPY CopyFile4 IN EGLIB.</code></pre>
 					<div class="section-sidebar">
 						<h3>COPY Example1</h3>
 						<p class="center-block">
-							<b>
+							<strong>
 								<img height="62" src="Resources/pics/aai-Legend.gif" width="65" alt="" />
-							</b>
+							</strong>
 						</p>
 						<p>
 							Text in
-							<span style="color: #006600"><b>green</b></span>
+							<span style="color: #006600"><strong>green</strong></span>
 							is the copy statement in the source text before processing.
 						</p>
 						<p>
 							Text in
-							<b>
-								<span style="color: #ff0000">red</span>
-							</b>
+							<strong>
+								<span class="cobol-highlight">red</span>
+							</strong>
 							is the copied library text which may have been altered by the REPLACING phrase if one was
 							present and found matching text in the library file.
 						</p>
 						<p>
 							Text in
-							<b>
+							<strong>
 								<span style="color: #cccccc">grey</span>
-							</b>
+							</strong>
 							is the COPY statement which has been applied.
 						</p>
 					</div>
 					<div>
 						<div class="code-section">
-							<b>Source Text</b>
+							<strong>Source Text</strong>
 
 							<pre
 								class="language-cobol"
@@ -581,7 +604,7 @@ BeginProg.
    END-PERFORM
    STOP RUN.</code></pre>
 						</div>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<!-- Example 2 -->
 					<div class="section-sidebar">
@@ -623,7 +646,7 @@ BeginProg.
 					</div>
 					<div>
 						<div class="code-section">
-							<b>Source Text</b>
+							<strong>Source Text</strong>
 
 							<pre
 								class="language-cobol"
@@ -741,7 +764,7 @@ BeginProg.
 STOP RUN.
 </code></pre>
 						</div>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<!-- Example 3 -->
 					<div class="section-sidebar">
@@ -775,8 +798,9 @@ STOP RUN.
 							<p>
 								This looks the same as number 5 but what is actually happening is that the series of
 								textwords<br />
-								<b>X</b> and <b>(</b> and <b>3</b> and <b>)</b> is replaced by the series
-								<b>X ( 19 )</b>
+								<strong>X</strong> and <strong>(</strong> and <strong>3</strong> and
+								<strong>)</strong> is replaced by the series
+								<strong>X ( 19 )</strong>
 							</p>
 							<h4>Note7</h4>
 							<p>
@@ -789,7 +813,7 @@ STOP RUN.
 					</div>
 					<div>
 						<div class="code-section">
-							<b>Source Text</b>
+							<strong>Source Text</strong>
 
 							<pre
 								class="language-cobol"
@@ -887,7 +911,7 @@ BeginProg.
    STOP RUN.
 </code></pre>
 						</div>
-						<hr size="1" />
+						<hr class="thin-rule" />
 					</div>
 					<!-- Example 4 -->
 					<div class="section-sidebar">
@@ -907,7 +931,7 @@ BeginProg.
 					</div>
 					<div>
 						<div class="code-section">
-							<b>Source Text</b>
+							<strong>Source Text</strong>
 
 							<pre class="language-cobol"><code class="language-cobol">
        &gt;&gt;SOURCE FORMAT IS FREE
@@ -989,7 +1013,6 @@ COPY CopyFile7 REPLACING N1 BY Num1
 					<hr />
 					<lesson-checkbox lesson="Copy"></lesson-checkbox>
 					<lesson-nav></lesson-nav>
-					<back-to-top></back-to-top>
 					<copyright-notice></copyright-notice>
 					<last-updated></last-updated>
 				</div>

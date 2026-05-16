@@ -3,6 +3,8 @@
 	"private": true,
 	"description": "Static-site checks for the Limerick COBOL tutorial.",
 	"scripts": {
+		"build:icons": "node scripts/generate-icons.js",
+		"build:og-images": "node scripts/generate-og-images.js",
 		"build:sitemap": "node scripts/build-sitemap.js",
 		"build:search-index": "node scripts/build-search-index.js && prettier --write search-index.json",
 		"check:search-index": "node scripts/build-search-index.js && prettier --write search-index.json && git diff --exit-code search-index.json",
@@ -11,21 +13,31 @@
 		"serve": "http-server . --cors -c-1 -p 8000 --silent",
 		"validate": "html-validate index.html 404.html \"course/**/*.html\" \"examples/**/*.html\" \"exercises/**/*.html\" \"lectures/**/*.html\"",
 		"check:img-dims": "node scripts/check-img-dimensions.js",
+		"fix:img-dims": "node scripts/add-img-dimensions.js",
 		"links:run": "linkinator http://localhost:8000 --config linkinator.config.json",
 		"links": "start-server-and-test serve http://localhost:8000 links:run",
 		"a11y:run": "pa11y-ci --config .pa11yci.js",
 		"a11y": "start-server-and-test serve http://localhost:8000 a11y:run",
+		"build:lesson-jsonld": "node scripts/generate-lesson-jsonld.js && prettier --write \"course/**/*.html\"",
+		"check:lesson-jsonld": "node scripts/generate-lesson-jsonld.js && prettier --write \"course/**/*.html\" && git diff --exit-code course/lesson-meta.json \"course/**/*.html\"",
+		"build:lesson-index": "node scripts/build-lesson-index.js && prettier --write course/index.html",
+		"check:lesson-index": "node scripts/build-lesson-index.js && prettier --write course/index.html && git diff --exit-code course/index.html",
+		"build:reading-time": "node scripts/add-reading-time.js && prettier --write \"course/**/*.html\"",
+		"check:reading-time": "node scripts/add-reading-time.js && prettier --write \"course/**/*.html\" && git diff --exit-code \"course/**/*.html\"",
+		"build:prev-next-links": "node scripts/add-prev-next-links.js && prettier --write \"course/**/*.html\"",
+		"check:prev-next-links": "node scripts/add-prev-next-links.js && prettier --write \"course/**/*.html\" && git diff --exit-code \"course/**/*.html\"",
 		"check:assets": "node scripts/check-assets.js",
 		"format:check": "prettier --check .",
 		"format:write": "prettier --write .",
 		"check": "npm run check:examples && npm run check:search-index && npm run validate && npm run check:assets && npm run check:img-dims && npm run links && npm run a11y"
 	},
 	"devDependencies": {
-		"html-validate": "^10.15.0",
+		"@resvg/resvg-js": "^2.6.2",
+		"html-validate": "^11.1.0",
 		"http-server": "^14.1.1",
 		"linkinator": "^7.6.1",
-		"pa11y-ci": "^4.0.0",
+		"pa11y-ci": "^4.1.1",
 		"prettier": "^3.0.0",
-		"start-server-and-test": "^3.0.4"
+		"start-server-and-test": "^3.0.5"
 	}
 }
