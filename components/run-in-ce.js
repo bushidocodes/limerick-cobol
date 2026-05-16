@@ -59,14 +59,21 @@ class RunInCE extends HTMLElement {
 }
 
 function buildCEUrl(source, files = []) {
+	// When extra files are present, append their basenames to the compiler
+	// options so GnuCOBOL compiles all sources together into one executable
+	// (e.g. "cobc -x -free Driver.cbl Validate.cbl"). Without this, CE only
+	// compiles the main source and the CALL'd subprogram modules aren't found
+	// at runtime.
+	const extraNames = files.map((f) => f.filename).join(" ");
+	const options = files.length > 0 ? `${COMPILER_OPTIONS} ${extraNames}` : COMPILER_OPTIONS;
 	const session = {
 		id: 1,
 		language: "cobol",
 		source: source,
-		compilers: [{ id: COMPILER_ID, options: COMPILER_OPTIONS }],
+		compilers: [{ id: COMPILER_ID, options: options }],
 		executors: [
 			{
-				compiler: { id: COMPILER_ID, options: COMPILER_OPTIONS, libs: [] },
+				compiler: { id: COMPILER_ID, options: options, libs: [] },
 				stdin: "",
 			},
 		],
