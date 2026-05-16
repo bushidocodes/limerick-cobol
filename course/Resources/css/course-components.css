@@ -121,6 +121,9 @@
 		justify-content: center;
 		grid-column: 3;
 		grid-row: 1;
+		/* 44×44 minimum tap target (Apple HIG / WCAG 2.5.5). */
+		min-width: 44px;
+		min-height: 44px;
 		padding: 0.3em 0.5em;
 		background: none;
 		border: 1px solid var(--color-border-mute);
@@ -339,6 +342,14 @@ body :is(h1, h2, h3, h4, h5, h6) code[class*="language-"] .token {
 	height: 1.1em;
 	cursor: pointer;
 	margin: 0;
+}
+
+/* Touch devices need a larger checkbox to comfortably tap. */
+@media (pointer: coarse), (max-width: 600px) {
+	.lesson-checkbox-input {
+		width: 1.6em;
+		height: 1.6em;
+	}
 }
 
 .lesson-checkbox-meta {
@@ -1110,6 +1121,15 @@ body pre[class*="language-"] {
 	border-color: #388e3c;
 }
 
+/* Touch devices need a 44×44 minimum tap target (Apple HIG / WCAG 2.5.5). */
+@media (pointer: coarse), (max-width: 600px) {
+	.copy-button {
+		min-width: 44px;
+		min-height: 44px;
+		padding: 0.5em 0.85em;
+	}
+}
+
 /* ============================================================================
    "Run on Compiler Explorer" link button (components/run-in-ce.js)
    Visually mirrors .copy-button but rendered inline in document flow rather than
@@ -1203,6 +1223,16 @@ body pre[class*="language-"] {
 		transition:
 			background-color 0.15s,
 			color 0.15s;
+	}
+}
+
+/* Touch devices need a 44×44 minimum tap target (Apple HIG / WCAG 2.5.5);
+   the default sizing is comfortable for a mouse but cramped under a fingertip. */
+@media (pointer: coarse), (max-width: 600px) {
+	.theme-toggle__btn {
+		min-width: 44px;
+		min-height: 44px;
+		padding: 0.4em 0.6em;
 	}
 }
 
