@@ -249,6 +249,7 @@ const MANIFEST = [
 		title: "Sequential Student Number Report",
 		crumb: "Student Numbers Report",
 		desc: "Reads records from the student file, counts the total number of student records and the number of records for females and males, and prints the results in a short report.",
+		rpt: "STUDENTS.rpt",
 	},
 	// ── SeqUpd ──────────────────────────────────────────────────────────────
 	{
@@ -416,6 +417,30 @@ function sampleDataHtml(entry) {
 }
 
 /**
+ * Build a sample-output <pre> block for the .rpt file listed in entry.rpt.
+ * Strips form-feed characters and trims trailing whitespace from each line so
+ * the fixed-width COBOL report renders cleanly in the browser.
+ * Returns an empty string when entry.rpt is not set or the file is missing.
+ */
+function sampleOutputHtml(entry) {
+	if (!entry.rpt) return "";
+	const dir = path.join(EXAMPLES_DIR, path.dirname(entry.file));
+	const rptPath = path.join(dir, entry.rpt);
+	if (!fs.existsSync(rptPath)) return "";
+	const raw = fs.readFileSync(rptPath, "utf8");
+	const cleaned = raw
+		.replace(/\f/g, "")
+		.replace(/\r\n/g, "\n")
+		.split("\n")
+		.map((line) => line.trimEnd())
+		.join("\n")
+		.replace(/^\n+/, "")
+		.replace(/\s+$/, "");
+	const escaped = escapeHtml(cleaned);
+	return `\t\t\t\t\t\t<h2>Sample output</h2>\n\t\t\t\t\t\t<pre>${escaped}\n</pre>\n`;
+}
+
+/**
  * Return the path prefix to reach the repo root from examples/<relFile>.
  * e.g. "Accept/ACCEPT.html"        -> "../../"
  *      "SubProg/Multiply/Foo.html" -> "../../../"
@@ -497,6 +522,7 @@ function buildPage(entry) {
 
 	const relatedEl = relatedContentHtml(entry.file);
 	const sampleDataEl = sampleDataHtml(entry);
+	const sampleOutputEl = sampleOutputHtml(entry);
 
 	const runInCeScript = entry.runInCe ? `\t\t<script src="${pfx}components/run-in-ce.js" defer></script>\n` : "";
 	const runInCeToolbarEl = entry.runInCe ? `\t\t\t\t\t\t\t<run-in-ce></run-in-ce>\n` : "";
@@ -564,7 +590,7 @@ ${sampleDataEl}\t\t\t\t\t\t\t<div class="code-toolbar">
 ${runInCeToolbarEl}\t\t\t\t\t\t</div>
 \t\t\t\t\t\t<pre class="language-cobol"><code class="language-cobol">${escapedSource}
 </code></pre>
-${relatedEl}\t\t\t\t\t\t<copyright-notice type="examples"></copyright-notice>
+${sampleOutputEl}${relatedEl}\t\t\t\t\t\t<copyright-notice type="examples"></copyright-notice>
 \t\t\t\t\t\t<last-updated></last-updated>
 \t\t\t\t\t\t<edit-on-github></edit-on-github>
 \t\t\t\t\t</div>
