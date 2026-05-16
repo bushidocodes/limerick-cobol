@@ -7,17 +7,7 @@
 		<script>
 			(function () {
 				var t = localStorage.getItem("lc-theme");
-				if (t === "dark" || t === "light") {
-					document.documentElement.setAttribute("data-theme", t);
-					var color = t === "dark" ? "#1a1a1a" : "#ffffff";
-					var meta = document.querySelector('meta[name="theme-color"]:not([media])');
-					if (!meta) {
-						meta = document.createElement("meta");
-						meta.name = "theme-color";
-						document.head.appendChild(meta);
-					}
-					meta.content = color;
-				}
+				if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
 			})();
 		</script>
 		<title>String handling - Unpacking and size-validating comma separated records</title>
