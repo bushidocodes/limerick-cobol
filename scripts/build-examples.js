@@ -358,16 +358,6 @@ function prefix(relFile) {
 }
 
 /**
- * Return the relative path from examples/<relFile> back to examples/index.html.
- * e.g. "Accept/ACCEPT.html"        -> "../index.html"
- *      "SubProg/Multiply/Foo.html" -> "../../index.html"
- */
-function defaultHtmlPath(relFile) {
-	const depth = relFile.split("/").length - 1;
-	return "../".repeat(depth) + "index.html";
-}
-
-/**
  * Build the <related-content> HTML for an example, sourced from cross-links.json.
  * Returns an empty string if the file is not in the cross-links map or has no
  * cross-references.
@@ -427,7 +417,6 @@ function relatedContentHtml(relFile) {
 
 function buildPage(entry) {
 	const pfx = prefix(entry.file);
-	const defPath = defaultHtmlPath(entry.file);
 	const canonical = BASE_URL + "examples/" + entry.file;
 	const metaDesc = escapeAttr(truncate(entry.desc));
 	const metaTitle = escapeAttr(entry.title);
@@ -487,10 +476,6 @@ ${runInCeScript}\t</head>
 \t\t\t\t<div class="section-grid">
 \t\t\t\t\t<div class="section-full">
 \t\t\t\t\t\t<page-hero title="${metaTitle}"></page-hero>
-\t\t\t\t\t\t<nav aria-label="Breadcrumb">
-\t\t\t\t\t\t\t<a href="${defPath}">Example programs</a> ›
-\t\t\t\t\t\t\t<span>${entry.crumb}</span>
-\t\t\t\t\t\t</nav>
 \t\t\t\t\t\t<p>${entry.desc}</p>
 \t\t\t\t\t\t\t<div class="code-toolbar">
 \t\t\t\t\t\t\t<a href="${entry.cbl}" download class="download-btn">Download ${entry.cbl}</a>
