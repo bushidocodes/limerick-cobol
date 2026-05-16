@@ -9,9 +9,13 @@
 //
 // Optional attribute:
 //   extra="foo.cbl bar.cbl"  — space-separated list of additional .cbl files to
-//   include as the CE session's `files` array. Paths are resolved relative to the
+//   fetch and concatenate into the CE source. Paths are resolved relative to the
 //   current page URL. Use this for multi-file examples where the main source calls
 //   external subprograms.
+//
+//   GnuCOBOL requires an END PROGRAM marker between separate program units in a
+//   single source file. buildCEUrl extracts each program's PROGRAM-ID and injects
+//   the required END PROGRAM terminators before concatenating the extra files.
 //
 // Light DOM (no shadow root) so .run-in-ce styles in course-components.css apply.
 
@@ -58,29 +62,45 @@ class RunInCE extends HTMLElement {
 	}
 }
 
+// Extract the PROGRAM-ID name from a COBOL source block.
+// Returns the bare program name (stops before IS INITIAL / IS COMMON / etc.).
+function extractProgramId(src) {
+	const match = src.match(/^\s*PROGRAM-ID\s*\.\s*([\w-]+)/im);
+	return match ? match[1] : null;
+}
+
 function buildCEUrl(source, files = []) {
-	// When extra files are present, append their basenames to the compiler
-	// options so GnuCOBOL compiles all sources together into one executable
-	// (e.g. "cobc -x -free Driver.cbl Validate.cbl"). Without this, CE only
-	// compiles the main source and the CALL'd subprogram modules aren't found
-	// at runtime.
-	const extraNames = files.map((f) => f.filename).join(" ");
-	const options = files.length > 0 ? `${COMPILER_OPTIONS} ${extraNames}` : COMPILER_OPTIONS;
+	// Concatenate extra subprogram sources after the main source.
+	// GnuCOBOL 3.2 requires an END PROGRAM terminator between separate program
+	// units in a single file. Inject it after each block (except the last) by
+	// reading the PROGRAM-ID from that block. Simpler and more reliable than
+	// CE's session `files` array, which only populates editor tabs and never
+	// reaches the compiler's input file.
+	let combined;
+	if (files.length > 0) {
+		const parts = [source, ...files.map((f) => f.contents)];
+		combined = parts
+			.map((src, i) => {
+				if (i === parts.length - 1) return src; // last — no terminator needed
+				const id = extractProgramId(src);
+				return id ? src + "\nEND PROGRAM " + id + ".\n" : src + "\n";
+			})
+			.join("\n");
+	} else {
+		combined = source;
+	}
 	const session = {
 		id: 1,
 		language: "cobol",
-		source: source,
-		compilers: [{ id: COMPILER_ID, options: options }],
+		source: combined,
+		compilers: [{ id: COMPILER_ID, options: COMPILER_OPTIONS }],
 		executors: [
 			{
-				compiler: { id: COMPILER_ID, options: options, libs: [] },
+				compiler: { id: COMPILER_ID, options: COMPILER_OPTIONS, libs: [] },
 				stdin: "",
 			},
 		],
 	};
-	if (files.length > 0) {
-		session.files = files;
-	}
 	const state = { sessions: [session] };
 	// CE's /clientstate/ endpoint accepts base64-encoded JSON. btoa is Latin1-only,
 	// so escape any code points above 0x7E to \uXXXX before encoding. The JSON
