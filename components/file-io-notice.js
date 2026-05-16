@@ -10,7 +10,7 @@ class FileIONotice extends HTMLElement {
 		const p = document.createElement("p");
 		p.innerHTML =
 			"<strong>Run locally:</strong> This program reads or writes data files and cannot run inside a browser-based sandbox. " +
-			'Download the <code>.cbl</code> source above and compile it with ' +
+			"Download the <code>.cbl</code> source above and compile it with " +
 			'<a href="https://gnucobol.sourceforge.io/" target="_blank" rel="noopener">GnuCOBOL</a>.';
 		this.appendChild(p);
 	}
