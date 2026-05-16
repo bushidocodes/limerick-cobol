@@ -8,8 +8,8 @@
 // on the right edge so the toggle scrolls away with the bar.
 //
 // Scope: skipped entirely on viewer shells that don't have a <main>. On the
-// site home page (where the trail would be just "Home") the breadcrumb nav
-// is omitted but the bar still renders so the theme-toggle remains reachable.
+// site home page the trail is a single "Home" crumb (rendered as the current
+// page, non-link with aria-current="page").
 //
 // Labels: top-level directories (course, exercises, examples, lectures) map
 // to friendly titles via TOP_LEVEL_SECTIONS. The leaf page uses
@@ -104,8 +104,9 @@
 		if (!here.startsWith(sitePath)) return null;
 
 		let rel = here.slice(sitePath.length).replace(/^\/+/, "");
-		// A bare "" or "index.html" at site root means the home page.
-		if (rel === "" || rel === "index.html") return null;
+		// A bare "" or "index.html" at site root means the home page —
+		// render a single "Home" crumb marked as the current page.
+		if (rel === "" || rel === "index.html") return [{ href: null, label: "Home" }];
 		rel = rel.replace(/\/index\.html$/, "/");
 
 		const parts = rel.split("/").filter(Boolean);
@@ -180,11 +181,11 @@
 		const inner = document.createElement("div");
 		inner.className = "breadcrumb-bar-inner";
 
-		if (crumbs && crumbs.length >= 2) {
+		if (crumbs && crumbs.length >= 1) {
 			inner.appendChild(renderCrumbs(crumbs));
 		} else {
-			// Spacer keeps the theme-toggle right-aligned on pages without a
-			// breadcrumb trail (e.g. the site home).
+			// Spacer keeps the theme-toggle right-aligned on pages where
+			// buildCrumbs returns no trail at all.
 			const spacer = document.createElement("div");
 			spacer.className = "breadcrumb-bar-spacer";
 			inner.appendChild(spacer);
