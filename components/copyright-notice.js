@@ -33,8 +33,11 @@ class CopyrightNotice extends HTMLElement {
 		this.innerHTML = `
 			<hr>
 			${this._getContent(type)}
-			<edit-on-github></edit-on-github>
 		`;
+		// Insert after <last-updated> sibling when present so the footer order is:
+		// copyright → last updated → help improve this page.
+		const anchor = this.nextElementSibling?.tagName === "LAST-UPDATED" ? this.nextElementSibling : this;
+		anchor.insertAdjacentElement("afterend", document.createElement("edit-on-github"));
 	}
 
 	disconnectedCallback() {}
