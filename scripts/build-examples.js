@@ -374,9 +374,7 @@ function sampleDataHtml(entry) {
 		const shown = allLines.slice(0, MAX_FIXTURE_ROWS);
 		const total = allLines.length;
 		const suffix =
-			total > MAX_FIXTURE_ROWS
-				? ` (first ${MAX_FIXTURE_ROWS} of ${total} records)`
-				: ` (${total} records)`;
+			total > MAX_FIXTURE_ROWS ? ` (first ${MAX_FIXTURE_ROWS} of ${total} records)` : ` (${total} records)`;
 		const escaped = escapeHtml(shown.join("\n"));
 		html +=
 			`\t\t\t\t\t\t<details class="sample-data">\n` +
