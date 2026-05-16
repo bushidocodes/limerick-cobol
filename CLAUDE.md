@@ -39,6 +39,8 @@ Runs `html-validate` against all HTML pages. Run after any HTML edits.
 
 The launch.json server name is `limerick-cobol` (serves the repo root via `http-server`). Start it with `preview_start("limerick-cobol")` — port is auto-assigned. Use the preview tools to verify layout, breadcrumb, and hero-title changes before committing.
 
+Use `preview_inspect` with explicit `styles` to verify computed dimensions and colours — it is more reliable than screenshots for style assertions.
+
 ## Formatting
 
 ```bash
@@ -52,8 +54,24 @@ Prettier runs automatically in CI on every PR merge. Run it locally after editin
 - Reference the issue being fixed with `Fixes #NNN` in the commit message body so GitHub closes it on merge.
 - Open PRs with `gh pr create` from the worktree branch.
 
+## CSS architecture
+
+Two stylesheets are loaded on every page:
+
+- `course/Resources/css/course.css` — design tokens (CSS custom properties), base element and reset styles, dark-mode overrides, print styles. Touch this when changing colours or tokens.
+- `course/Resources/css/course-components.css` — all component classes (`.site-header`, `.page-wrapper`, `.page-toc`, `.edit-on-github`, etc.) and breakpoint layout rules. New visual rules go here.
+
+## Component scripts
+
+`components/` holds JS web components auto-injected on every page:
+
+- `site-header.js` — sticky header (logo, primary nav, search input)
+- `breadcrumbs.js` — secondary sticky bar with breadcrumb trail and theme toggle
+- `course-sidebar.js` — left-rail course outline, visible at ≥1100 px
+- `page-toc.js` — right-rail in-page TOC; standalone at ≥1100 px, three-column with course-sidebar at ≥1280 px
+
 ## Key conventions
 
 - `<page-hero title="…">` is the source of truth for page titles. Keep `<title>`, `og:title`, and `twitter:title` in sync with it.
 - The viewport meta tag must be the **first** element inside `<head>` to prevent FOUC from layout reflow.
-- Exercises live in `exercises/`, lectures in `course/`, code examples in `examples/`.
+- Tutorials live in `course/`, exercises in `exercises/`, lectures in `lectures/`, code examples in `examples/`.
