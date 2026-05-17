@@ -13,7 +13,8 @@
 //
 // Scope: the sidebar renders only when the current page is part of the
 // course — either its pathname is listed in the manifest, or it lives under
-// the /course/ directory (so the course index and glossary also show it).
+// the /course/ directory (so the glossary shows it too). The course index
+// itself is excluded, since its main content is already the full outline.
 // Outside that scope, connectedCallback removes the element silently.
 //
 // Layout: a sibling rule in course-components.css gives .page-wrapper a grid
@@ -41,6 +42,10 @@
 
 	function currentPath() {
 		return new URL(location.href).pathname;
+	}
+
+	function isCourseHome() {
+		return /\/course\/(index\.html)?$/.test(currentPath());
 	}
 
 	function isInCourseScope(manifest) {
@@ -116,7 +121,7 @@
 				.then((r) => r.json())
 				.then((manifest) => {
 					if (!this.isConnected) return;
-					if (!isInCourseScope(manifest)) {
+					if (!isInCourseScope(manifest) || isCourseHome()) {
 						this.remove();
 						return;
 					}
@@ -139,6 +144,7 @@
 		// Exercise/example pages can still opt in by adding <course-sidebar>
 		// manually if desired.
 		if (!/\/course\//.test(location.pathname)) return;
+		if (isCourseHome()) return;
 		const pageWrapper = document.querySelector(".page-wrapper");
 		if (!pageWrapper) return;
 		const el = document.createElement("course-sidebar");

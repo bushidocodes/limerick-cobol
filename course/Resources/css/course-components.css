@@ -279,6 +279,13 @@ dl.index-grid.bullet-orange {
 	padding: 5px;
 }
 
+/* Breathing room between stacked data-tables (e.g. examples/index.html lists
+   one table per topic, and captions would otherwise sit flush against the
+   previous table's bottom border). */
+.data-table + .data-table {
+	margin-top: 1.5em;
+}
+
 /* Sidebar "additional detail" marker. Replaces the legacy 30×37 px i-Detail.gif
    icon with the 🔍 emoji. font-size 32px sits between the original box's width
    and height for a comparable visual footprint; vertical-align: middle keeps
@@ -2135,7 +2142,9 @@ nav.page-breadcrumbs {
      page-toc right (mirrors MDN's CSS docs).
    ============================================================================ */
 
-course-sidebar {
+course-sidebar,
+examples-sidebar,
+exercises-sidebar {
 	display: none;
 }
 
@@ -2256,7 +2265,9 @@ course-sidebar {
    and re-shows the inline lesson-toc so the reader still has an in-page
    index. */
 @media (min-width: 1100px) {
-	.page-wrapper:has(course-sidebar) {
+	.page-wrapper:has(course-sidebar),
+	.page-wrapper:has(examples-sidebar),
+	.page-wrapper:has(exercises-sidebar) {
 		display: grid;
 		grid-template-columns: 220px minmax(0, 715px);
 		column-gap: 2em;
@@ -2265,7 +2276,9 @@ course-sidebar {
 		align-items: start;
 	}
 
-	.page-wrapper:has(course-sidebar) > *:not(course-sidebar):not(page-toc) {
+	.page-wrapper:has(course-sidebar) > *:not(course-sidebar):not(page-toc),
+	.page-wrapper:has(examples-sidebar) > *:not(examples-sidebar):not(page-toc),
+	.page-wrapper:has(exercises-sidebar) > *:not(exercises-sidebar):not(page-toc) {
 		grid-column: 2;
 		min-width: 0;
 	}
@@ -2285,7 +2298,9 @@ course-sidebar {
 	   The 2-col layout uses max-width 967px so the offset is
 	   `max(0px, (50vw - 967px / 2))`. The 3-col layout below overrides
 	   for max-width 1199px. */
-	.page-wrapper:has(course-sidebar) > course-sidebar {
+	.page-wrapper:has(course-sidebar) > course-sidebar,
+	.page-wrapper:has(examples-sidebar) > examples-sidebar,
+	.page-wrapper:has(exercises-sidebar) > exercises-sidebar {
 		display: block;
 		position: fixed;
 		top: calc(var(--site-bar-height) + 1em);
@@ -2347,6 +2362,8 @@ course-sidebar {
 
 @media print {
 	course-sidebar,
+	examples-sidebar,
+	exercises-sidebar,
 	page-breadcrumbs {
 		display: none !important;
 	}

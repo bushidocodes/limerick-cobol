@@ -1,8 +1,8 @@
        >>SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
-PROGRAM-ID.  ShortestProgram.
+PROGRAM-ID.  HelloWorld.
 
 PROCEDURE DIVISION.
-DisplayPrompt.
-    DISPLAY "I did it".
+DisplayGreeting.
+    DISPLAY "Hello World".
     STOP RUN.

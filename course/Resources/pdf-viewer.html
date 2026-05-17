@@ -159,10 +159,15 @@
 					);
 					const dpr = window.devicePixelRatio || 1;
 					const viewport = page.getViewport({ scale: scale * dpr });
-					canvas.width = Math.floor(viewport.width);
-					canvas.height = Math.floor(viewport.height);
-					canvas.style.width = Math.floor(viewport.width / dpr) + "px";
-					canvas.style.height = Math.floor(viewport.height / dpr) + "px";
+
+					// Render onto an off-screen canvas so the visible canvas keeps
+					// showing the previous slide until the new one is ready. Writing
+					// to canvas.width directly would clear it and reveal the white
+					// CSS background for the duration of the async render.
+					const offscreen = document.createElement("canvas");
+					offscreen.width = Math.floor(viewport.width);
+					offscreen.height = Math.floor(viewport.height);
+
 					if (renderTask) {
 						try {
 							renderTask.cancel();
@@ -170,7 +175,7 @@
 							/* ignore */
 						}
 					}
-					renderTask = page.render({ canvasContext: ctx, viewport });
+					renderTask = page.render({ canvasContext: offscreen.getContext("2d"), viewport });
 					try {
 						await renderTask.promise;
 					} catch (e) {
@@ -178,6 +183,15 @@
 						throw e;
 					}
 					if (token !== renderToken) return;
+
+					// Resize + drawImage in a single synchronous block; the browser
+					// paints the final bitmap without a cleared intermediate frame.
+					canvas.width = offscreen.width;
+					canvas.height = offscreen.height;
+					canvas.style.width = Math.floor(viewport.width / dpr) + "px";
+					canvas.style.height = Math.floor(viewport.height / dpr) + "px";
+					ctx.drawImage(offscreen, 0, 0);
+
 					pageInfo.textContent = pageNum + " / " + pdf.numPages;
 					prevBtn.disabled = pageNum <= 1;
 					nextBtn.disabled = pageNum >= pdf.numPages;
@@ -193,7 +207,7 @@
 
 				prevBtn.addEventListener("click", () => go(-1));
 				nextBtn.addEventListener("click", () => go(1));
-				document.addEventListener("keydown", (e) => {
+				function onKeyDown(e) {
 					if (e.key === "ArrowLeft" || e.key === "PageUp") {
 						go(-1);
 						e.preventDefault();
@@ -208,8 +222,43 @@
 						currentPage = pdf.numPages;
 						render(pdf.numPages);
 						e.preventDefault();
+					} else if (e.key === "Escape") {
+						// Bubble Escape up to the host lecture page. Same-origin
+						// guarantees access to the parent's back link; we wrap in
+						// try/catch so a future cross-origin embed still degrades
+						// gracefully to history.back().
+						e.preventDefault();
+						let backHref = null;
+						try {
+							if (window.parent !== window) {
+								backHref = window.parent.document.querySelector(".viewer-back-link")?.href || null;
+							}
+						} catch (_) {
+							/* cross-origin parent — leave backHref null */
+						}
+						if (backHref) {
+							window.parent.location.href = backHref;
+						} else {
+							history.back();
+						}
 					}
-				});
+				}
+
+				document.addEventListener("keydown", onKeyDown);
+
+				// Also catch keys from the host lecture page so arrows / page-up /
+				// page-down work before the user clicks into the iframe. Keyboard
+				// events don't cross iframe boundaries, so this is the only way to
+				// avoid a "click the slide first" gotcha. Cross-origin embedding
+				// will throw on document access; in that case keys work once focus
+				// lands inside the iframe.
+				try {
+					if (window.parent !== window) {
+						window.parent.document.addEventListener("keydown", onKeyDown);
+					}
+				} catch (_) {
+					/* cross-origin parent — handler stays scoped to this document */
+				}
 
 				let resizeTimer;
 				window.addEventListener("resize", () => {

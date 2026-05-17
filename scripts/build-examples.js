@@ -27,6 +27,28 @@ const OG_IMAGE = "https://bushidocodes.github.io/limerick-cobol/pics/og/examples
 const CROSS_LINKS = JSON.parse(fs.readFileSync(path.join(__dirname, "cross-links.json"), "utf8"));
 const MAX_RELATED_PER_GROUP = 4;
 
+// Maps the first path segment of each example to its sidebar topic. The order
+// here also defines the topic order shown in <examples-sidebar>, so keep it
+// aligned with the section ordering on examples/index.html.
+const TOPIC_BY_DIR = {
+	Accept: "Console I/O",
+	Conditn: "Selection and Iteration",
+	Perform: "Selection and Iteration",
+	SeqWrite: "Sequential Files",
+	SeqRead: "Sequential Files",
+	SeqIns: "Sequential Files",
+	SeqRpt: "Sequential Files",
+	SeqUpd: "Sequential Files",
+	Sort: "Sorting and Merging",
+	Merge: "Sorting and Merging",
+	Relative: "Direct Access Files",
+	Indexed: "Direct Access Files",
+	SubProg: "Sub-programs",
+	Strings: "String Handling",
+	ReportWriter: "Report Writer",
+	Tables: "Tables",
+};
+
 // ---------------------------------------------------------------------------
 // Manifest
 // Each entry maps one .cbl source file to the data needed for its HTML page.
@@ -47,6 +69,14 @@ const MAX_RELATED_PER_GROUP = 4;
 const MANIFEST = [
 	// ── Accept ──────────────────────────────────────────────────────────────
 	{
+		file: "Accept/HelloWorld.html",
+		cbl: "HelloWorld.cbl",
+		title: "Hello World",
+		crumb: "Hello World",
+		desc: 'A minimal COBOL program that displays "Hello World". About as short as a working COBOL program can get — you could trim it further by leaving out the STOP RUN.',
+		runInCe: true,
+	},
+	{
 		file: "Accept/ACCEPT.html",
 		cbl: "AcceptAndDisplay.cbl",
 		title: "ACCEPT and DISPLAY example program",
@@ -55,26 +85,11 @@ const MANIFEST = [
 		runInCe: true,
 	},
 	{
-		file: "Accept/GettingStarted.html",
-		cbl: "gettingstarted.cbl",
-		title: "Getting Started exercise program",
-		crumb: "Getting Started",
-		desc: "An intentionally incorrect exercise program. The ACCEPT and MULTIPLY statements are in the wrong order, so the multiplication always uses the uninitialised value of Num2. Students are asked to rewrite it so that it prompts the user for both inputs before computing the result.",
-	},
-	{
 		file: "Accept/Multiplier.html",
 		cbl: "Multiplier.cbl",
 		title: "ACCEPT, DISPLAY and MULTIPLY example program",
 		crumb: "Multiplier",
 		desc: "Accepts two single digit numbers from the user, multiplies them together and displays the result.",
-		runInCe: true,
-	},
-	{
-		file: "Accept/Shortest.html",
-		cbl: "ShortestProgram.cbl",
-		title: "The Shortest COBOL program we can have",
-		crumb: "Shortest COBOL Program",
-		desc: "This example program is almost the shortest COBOL program we can have. We could make it shorter still by leaving out the STOP RUN.",
 		runInCe: true,
 	},
 	// ── Conditn ─────────────────────────────────────────────────────────────
@@ -594,6 +609,7 @@ function buildPage(entry) {
 \t\t<script src="${pfx}components/related-content.js" defer></script>
 \t\t<script src="${pfx}components/copy-button.js" defer></script>
 \t\t<script src="${pfx}components/site-header.js" defer></script>
+\t\t<script src="${pfx}components/examples-sidebar.js" defer></script>
 \t\t<script src="${pfx}components/copyright-notice.js" defer></script>
 \t\t<script src="${pfx}components/last-updated.js" defer></script>
 \t\t<script src="${pfx}components/edit-on-github.js" defer></script>
@@ -624,10 +640,41 @@ ${sampleOutputEl}${relatedEl}\t\t\t\t\t\t<copyright-notice type="examples"></cop
 }
 
 // ---------------------------------------------------------------------------
+// Runtime manifest for <examples-sidebar>
+// Groups MANIFEST entries by topic (derived from the first path segment) and
+// writes examples/example-manifest.json — fetched by components/examples-sidebar.js.
+// ---------------------------------------------------------------------------
+
+function writeExampleManifest() {
+	const byTopic = new Map();
+	const topicOrder = [];
+	for (const label of Object.values(TOPIC_BY_DIR)) {
+		if (!byTopic.has(label)) {
+			byTopic.set(label, []);
+			topicOrder.push(label);
+		}
+	}
+
+	for (const entry of MANIFEST) {
+		const dir = entry.file.split("/")[0];
+		const topic = TOPIC_BY_DIR[dir];
+		if (!topic) throw new Error(`No TOPIC_BY_DIR entry for directory "${dir}" (file: ${entry.file})`);
+		byTopic.get(topic).push({ file: entry.file, title: entry.crumb });
+	}
+
+	const manifest = {
+		topics: topicOrder.map((label) => ({ label, links: byTopic.get(label) })),
+	};
+	const outPath = path.join(EXAMPLES_DIR, "example-manifest.json");
+	fs.writeFileSync(outPath, JSON.stringify(manifest, null, "\t") + "\n", "utf8");
+	return outPath;
+}
+
+// ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
 
-module.exports = { MANIFEST, EXAMPLES_DIR };
+module.exports = { MANIFEST, EXAMPLES_DIR, TOPIC_BY_DIR };
 
 if (require.main === module) {
 	console.log("Building example HTML pages from .cbl sources…\n");
@@ -646,6 +693,14 @@ if (require.main === module) {
 			console.error(`  ERR ${entry.file}: ${err.message}`);
 			fail++;
 		}
+	}
+
+	try {
+		const outPath = writeExampleManifest();
+		console.log(`\n  OK  ${path.relative(ROOT, outPath)}`);
+	} catch (err) {
+		console.error(`\n  ERR example-manifest.json: ${err.message}`);
+		fail++;
 	}
 
 	console.log(`\nDone. ${ok} written, ${fail} failed.`);
