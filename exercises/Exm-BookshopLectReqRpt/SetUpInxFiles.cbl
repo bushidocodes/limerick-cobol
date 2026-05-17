@@ -3,7 +3,7 @@ IDENTIFICATION DIVISION.
 PROGRAM-ID.  SetUpInxFiles.
 AUTHOR.  MICHAEL COUGHLAN.
 *>Originally written for VAX COBOL 1991
-*>Converted to Microfocus COBOL 2002
+*>Converted to GnuCOBOL 2002
 *>Sets up the indexed files for the DP291-91-EXAM
 *>The Campus Bookshop Purchase Requirements Report
 *>DP291-91-EXAM

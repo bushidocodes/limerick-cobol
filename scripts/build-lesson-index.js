@@ -54,7 +54,7 @@ function buildTopicsHTML(topics) {
 				)
 				.join("");
 			const divider = isLast ? "" : `<div class="topic-divider"></div>`;
-			return `<h2 class="topic-label" id="${slug}"><span class="ball-red" aria-hidden="true"></span>${escapeHTML(topic.label)}</h2><div class="topic-links">${description}${links}</div>${divider}`;
+			return `<h2 class="topic-label" id="${slug}">${escapeHTML(topic.label)}</h2><div class="topic-links">${description}${links}</div>${divider}`;
 		})
 		.join("");
 }

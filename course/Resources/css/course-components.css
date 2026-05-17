@@ -121,15 +121,17 @@
 		justify-content: center;
 		grid-column: 3;
 		grid-row: 1;
-		/* 44×44 minimum tap target (Apple HIG / WCAG 2.5.5). */
+		/* 44×44 minimum tap target (Apple HIG / WCAG 2.5.5). Outer geometry
+		   and icon weight are tuned to visually match .theme-toggle__trigger
+		   so the two buttons read as siblings at the same viewport. */
 		min-width: 44px;
 		min-height: 44px;
 		padding: 0.3em 0.5em;
 		background: none;
 		border: 1px solid var(--color-border-mute);
-		border-radius: 3px;
+		border-radius: 4px;
 		cursor: pointer;
-		font-size: 1.25em;
+		font-size: 1em;
 		line-height: 1;
 		color: var(--color-text);
 	}
@@ -225,18 +227,37 @@ body :is(h1, h2, h3, h4, h5, h6) code[class*="language-"] .token {
 	text-shadow: none;
 }
 
-/* Decorative disc bullet — replaces BallBlueG.gif (13×13 px) used inline
-   in h3 headings on lectures/index.html. Sized and coloured to match the
-   original blue ball. Inline-block so it sits on the text baseline. */
-.ball-blue {
+/* Decorative disc bullet — replaces the legacy BallRed/Blue/Green/OrangeG.gif
+   icons. Rendered as a ::before pseudo-element on .topic-label and on each
+   dl.index-grid > dt so the bullet lives in CSS instead of empty aria-hidden
+   spans. Colour is driven by the --bullet-color custom property, set per
+   section. ul/li bullets use ::marker instead. */
+.topic-label::before,
+dl.index-grid > dt::before {
+	content: "";
 	display: inline-block;
 	width: 13px;
 	height: 13px;
 	border-radius: 50%;
-	background-color: #0066cc;
 	vertical-align: middle;
-	margin-left: 5px;
-	margin-right: 5px;
+	margin: 0 5px;
+	background-color: var(--bullet-color);
+}
+
+.topic-label {
+	--bullet-color: #cc3300;
+}
+
+dl.index-grid {
+	--bullet-color: #0066cc;
+}
+
+dl.index-grid.bullet-green {
+	--bullet-color: #2e7d32;
+}
+
+dl.index-grid.bullet-orange {
+	--bullet-color: #e07b00;
 }
 
 .center-block {
@@ -952,18 +973,6 @@ details[open].saq-reveal summary::before {
 	background-color: #b3334d;
 }
 
-/* Decorative disc bullet — replaces BallRedG.gif (13×13 px) */
-.ball-red {
-	display: inline-block;
-	width: 13px;
-	height: 13px;
-	border-radius: 50%;
-	background-color: #cc3300;
-	vertical-align: middle;
-	margin-left: 4px;
-	margin-right: 4px;
-}
-
 /* Course content link icons — replace i-Tut.gif, i-exercise.gif, i-SAQ.gif */
 .icon-tut,
 .icon-exercise,
@@ -1172,54 +1181,91 @@ body pre[class*="language-"] {
 }
 
 /* ============================================================================
-   Theme-toggle button group (components/theme-toggle.js)
-   Three side-by-side buttons: Light | Auto | Dark. The active button uses a
-   filled style derived from the site's header palette so it's distinct without
-   needing a separate accent color.
+   Theme-toggle dropdown (components/theme-toggle.js)
+   Single trigger button showing the current mode's icon; clicking opens a
+   menu with three rows (OS default | Light | Dark) — MDN-style. The active
+   row uses the site header palette as a filled marker.
    ============================================================================ */
 
 .theme-toggle {
-	display: inline-flex;
-	border: 1px solid var(--color-border-mute);
-	border-radius: 4px;
-	overflow: hidden;
+	position: relative;
+	display: inline-block;
 	margin-top: 0.5em;
 }
 
-.theme-toggle__btn {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 0.7em;
-	font-weight: bold;
-	letter-spacing: 0.06em;
-	text-transform: uppercase;
-	padding: 0.2em 0.5em;
+.theme-toggle__trigger {
 	background: transparent;
 	color: inherit;
-	border: none;
-	border-right: 1px solid var(--color-border-mute);
+	border: 1px solid var(--color-border-mute);
+	border-radius: 4px;
 	cursor: pointer;
-	line-height: 1.4;
+	padding: 0.3em 0.5em;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
+	line-height: 1;
 }
 
-.theme-toggle__btn:last-child {
-	border-right: none;
+.theme-toggle__trigger:hover {
+	background-color: var(--color-panel-bg);
 }
 
-.theme-toggle__btn:focus-visible {
+.theme-toggle__trigger:focus-visible {
 	outline: 2px solid currentColor;
 	outline-offset: -2px;
 }
 
-.theme-toggle__btn--active {
+.theme-toggle__menu {
+	position: absolute;
+	top: calc(100% + 4px);
+	right: 0;
+	margin: 0;
+	padding: 4px 0;
+	list-style: none;
+	background-color: var(--color-bg);
+	border: 1px solid var(--color-border-mute);
+	border-radius: 4px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+	min-width: 140px;
+	/* Above the breadcrumb bar (z-index 199) and site header (z-index 200) so
+	   the menu stays visible while both are sticky-stacked at the top. */
+	z-index: 1000;
+}
+
+.theme-toggle__menu[hidden] {
+	display: none;
+}
+
+.theme-toggle__menuitem {
+	display: flex;
+	align-items: center;
+	gap: 0.6em;
+	width: 100%;
+	padding: 0.45em 0.85em;
+	background: transparent;
+	color: inherit;
+	border: none;
+	font: inherit;
+	font-size: 0.9em;
+	text-align: left;
+	cursor: pointer;
+	white-space: nowrap;
+}
+
+.theme-toggle__menuitem:hover,
+.theme-toggle__menuitem:focus-visible {
+	background-color: var(--color-panel-bg);
+	outline: none;
+}
+
+.theme-toggle__menuitem[aria-checked="true"] {
 	background-color: var(--color-header-bg);
 	color: var(--color-header-text);
 }
 
 @media (prefers-reduced-motion: no-preference) {
-	.theme-toggle__btn {
+	.theme-toggle__trigger,
+	.theme-toggle__menuitem {
 		transition:
 			background-color 0.15s,
 			color 0.15s;
@@ -1227,12 +1273,18 @@ body pre[class*="language-"] {
 }
 
 /* Touch devices need a 44×44 minimum tap target (Apple HIG / WCAG 2.5.5);
-   the default sizing is comfortable for a mouse but cramped under a fingertip. */
-@media (pointer: coarse), (max-width: 600px) {
-	.theme-toggle__btn {
+   the default sizing is comfortable for a mouse but cramped under a fingertip.
+   The 720px threshold mirrors the hamburger button's display rule, so when the
+   hamburger is visible the trigger matches its size. */
+@media (pointer: coarse), (max-width: 720px) {
+	.theme-toggle__trigger {
 		min-width: 44px;
 		min-height: 44px;
-		padding: 0.4em 0.6em;
+	}
+
+	.theme-toggle__menuitem {
+		min-height: 44px;
+		padding: 0.6em 0.85em;
 	}
 }
 
@@ -1967,10 +2019,12 @@ page-breadcrumbs {
 	margin-top: 0;
 }
 
-/* At narrow viewports, stack the breadcrumb trail and theme toggle vertically
-   so a long breadcrumb chain (e.g. Home › Course › Topic › Page) that wraps
-   to a second line doesn't cause the toggle to overlap the wrapped text. */
-@media (max-width: 480px) {
+/* Only at ultra-narrow viewports (≤360px) do we stack the breadcrumb trail
+   and theme toggle vertically. Above this width even a 4-level breadcrumb
+   like Home › Course › Topic › Page fits on one row thanks to the leaf
+   truncation rule at ≤600px below. Stacking earlier (the previous 480px
+   breakpoint) wasted vertical space on common mobile sizes. */
+@media (max-width: 360px) {
 	.breadcrumb-bar-inner {
 		flex-wrap: wrap;
 		align-items: flex-start;
