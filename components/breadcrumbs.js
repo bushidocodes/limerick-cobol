@@ -73,7 +73,7 @@
 		"exercises/Prj-NewtronicsFileMaint": "Newtronics File Maintenance Project",
 		"exercises/Proj-CSISEvalform": "CSIS Evaluation Form Project",
 		// examples
-		"examples/Accept": "ACCEPT & DISPLAY",
+		"examples/Accept": "Console I/O",
 		"examples/Conditn": "Conditions & IF",
 		"examples/Indexed": "Indexed Files",
 		"examples/Merge": "Merge Files",
