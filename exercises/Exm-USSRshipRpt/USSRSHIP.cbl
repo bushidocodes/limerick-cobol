@@ -3,7 +3,7 @@ IDENTIFICATION DIVISION.
 PROGRAM-ID.  DP173EXAM.
 AUTHOR.  Michael Coughlan.
 *>Originally written for VAX COBOL 1983
-*>Converted to Microfocus COBOL 2002#
+*>Converted to GnuCOBOL 2002#
 *>One of a series of "Big Brother" or security based specs
 *> as we approached 1984 
 

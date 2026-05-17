@@ -4,7 +4,7 @@ PROGRAM-ID.  Seq2Direct.
 AUTHOR.  MICHAEL COUGHLAN.
 *>DP291-90-EXAM-SETUP.
 *>Originally written for VAX COBOL 1991
-*>Converted to Microfocus NetExpress 2002
+*>Converted to GnuCOBOL 2002
 
 
 ENVIRONMENT DIVISION.

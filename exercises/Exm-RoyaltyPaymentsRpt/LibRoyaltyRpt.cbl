@@ -4,7 +4,7 @@ PROGRAM-ID.   LibRoyaltyRpt.
 AUTHOR.  MICHAEL COUGHLAN.
 *> DP291-1991-Exam.
 *>Originally written for VAX COBOL 1991
-*>Converted to Microfocus NetExpress 2002
+*>Converted to GnuCOBOL 2002
 
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
