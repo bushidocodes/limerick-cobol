@@ -8,15 +8,16 @@ const config = {
 		standard: "WCAG2AA",
 		timeout: 30000,
 		wait: 500,
-		concurrency: 4,
 		chromeLaunchConfig: {
 			// --disable-dev-shm-usage works around GitHub Actions' 64 MB /dev/shm,
 			// the most common cause of puppeteer Chrome crashes in CI. The others
-			// trim memory pressure further. Without these, Chrome OOM-kills under
-			// the full ~170-URL scan and pa11y reports `Target.closeTarget` errors.
-			args: ["--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu", "--no-zygote"],
+			// trim memory pressure further.
+			args: ["--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu"],
 		},
 	},
+	// concurrency must be a root-level option for pa11y-ci to honor it.
+	// (Under defaults it is passed to pa11y itself, which ignores it.)
+	concurrency: 2,
 	// Debt ledger: each entry is a known pre-existing violation with an open issue tracking its removal.
 	ignore: [],
 };
