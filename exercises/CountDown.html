@@ -76,16 +76,22 @@
 						<p>
 							Download the
 							<a href="../examples/Conditn/Iteration-Calculator.cbl">Iteration-Calculator.cbl</a> program
-							and save it to the \WorkArea directory on drive D:.
+							and save it to your working folder, then open it in your text editor.
 						</p>
-						<p>Load the program into the GnuCOBOL environment.</p>
 					</section>
 
 					<section>
 						<h2>Examining IterCalc</h2>
+						<p>Compile and run the program with the <code>cobc</code> compiler:</p>
+						<figure class="example-run">
+							<figcaption>Terminal</figcaption>
+							<pre><samp>$ <kbd>cobc -x Iteration-Calculator.cbl</kbd>
+$ <kbd>./Iteration-Calculator</kbd></samp></pre>
+						</figure>
 						<p>
-							Compile and run the program Iteration-Calculator.cbl. Use the Animator to step through the
-							program and examine the contents of the Variables/Identifiers.
+							Read the source carefully to trace how the variables change. To watch their values as the
+							program runs, temporarily add <code class="language-cobol">DISPLAY</code> statements, or
+							compile with <code>cobc -x -g</code> and step through the program under <code>gdb</code>.
 						</p>
 						<p>Examine the program and attempt to answer the following questions:</p>
 						<ol>
@@ -102,8 +108,10 @@
 							</li>
 						</ol>
 						<p>
-							Test your answers by running the program and using the Animator to follow the flow of
-							control through the program (Step) and to examine the contents of the variables.
+							Test your answers by running the program and observing its output. Adding temporary
+							<code class="language-cobol">DISPLAY</code> statements (or stepping through the program under
+							<code>gdb</code>) lets you follow the flow of control and examine the contents of the
+							variables.
 						</p>
 					</section>
 
@@ -142,10 +150,9 @@ Result is = 6</samp></pre>
 					<section>
 						<h2>Making a new program</h2>
 						<p>
-							Amend the program again. This time create a new program called Countdown.cbl (use
-							<b><i>Save As</i></b> from the GnuCOBOL <b><i>File</i></b> menu). This program should get
-							the user's name from the keyboard and should then display a count-down before displaying the
-							name that was entered.
+							Amend the program again. This time save it as a new program called Countdown.cbl. This
+							program should get the user's name from the keyboard and should then display a count-down
+							before displaying the name that was entered.
 						</p>
 						<p>
 							The program should produce results similar to those shown in the example run below. For
