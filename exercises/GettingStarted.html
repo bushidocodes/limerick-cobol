@@ -22,27 +22,33 @@
 		</script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
-		<title>Getting Started with the GnuCOBOL Environment</title>
-		<meta name="description" content="COBOL programming exercise: Getting Started with the GnuCOBOL Environment." />
+		<title>Getting Started with GnuCOBOL</title>
+		<meta
+			name="description"
+			content="COBOL programming exercise: install GnuCOBOL, then compile and run your first COBOL program from the terminal with cobc."
+		/>
 		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/exercises/GettingStarted.html" />
 		<!-- Open Graph -->
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/exercises/GettingStarted.html" />
-		<meta property="og:title" content="Getting Started with the GnuCOBOL Environment" />
+		<meta property="og:title" content="Getting Started with GnuCOBOL" />
 		<meta
 			property="og:description"
-			content="COBOL programming exercise: Getting Started with the GnuCOBOL Environment."
+			content="COBOL programming exercise: install GnuCOBOL, then compile and run your first COBOL program from the terminal with cobc."
 		/>
 		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/exercises.png" />
 		<!-- Twitter Card -->
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="Getting Started with the GnuCOBOL Environment" />
+		<meta name="twitter:title" content="Getting Started with GnuCOBOL" />
 		<meta
 			name="twitter:description"
-			content="COBOL programming exercise: Getting Started with the GnuCOBOL Environment."
+			content="COBOL programming exercise: install GnuCOBOL, then compile and run your first COBOL program from the terminal with cobc."
 		/>
 		<link href="../course/Resources/css/course.css" rel="stylesheet" />
 		<link href="../course/Resources/css/course-components.css" rel="stylesheet" />
+		<link href="../course/Resources/vendor/prism/themes/prism.min.css" rel="stylesheet" />
+		<script src="../course/Resources/vendor/prism/prism.min.js" defer></script>
+		<script src="../course/Resources/vendor/prism/components/prism-cobol.min.js" defer></script>
 		<script src="../components/theme-toggle.js" defer></script>
 		<script src="../components/page-hero.js" defer></script>
 		<script src="../components/site-search.js" defer></script>
@@ -50,6 +56,8 @@
 		<script src="../components/related-content.js" defer></script>
 		<script src="../components/site-header.js" defer></script>
 		<script src="../components/last-updated.js" defer></script>
+		<script src="../components/copy-button.js" defer></script>
+		<script src="../components/run-in-ce.js" defer></script>
 		<script src="../components/exercise-progress.js" defer></script>
 		<script src="../components/exercises-sidebar.js" defer></script>
 		<script src="../components/exercises-nav.js" defer></script>
@@ -59,7 +67,7 @@
 		<main id="main-content">
 			<div class="page-wrapper">
 				<div class="page-content">
-					<page-hero title="Getting Started with the GnuCOBOL Environment"></page-hero>
+					<page-hero title="Getting Started with GnuCOBOL"></page-hero>
 					<p class="center-block">
 						<code class="language-cobol">ACCEPT</code>, <code class="language-cobol">DISPLAY</code>,
 						<code class="language-cobol">MULTIPLY</code>, <code class="language-cobol">COMPUTE</code>
@@ -67,199 +75,213 @@
 					<hr />
 
 					<section>
-						<h2>Starting GnuCOBOL</h2>
+						<h2>About GnuCOBOL</h2>
 						<p>
-							We will start by loading an existing COBOL program into the development environment and then
-							compiling and running the program.
+							The compiler we use for this course is
+							<a href="https://gnucobol.sourceforge.io/" rel="noopener">GnuCOBOL</a>, a free, open-source
+							COBOL compiler. Unlike a graphical IDE, GnuCOBOL is a command-line tool: you write your
+							program in any text editor, then use the <code>cobc</code> compiler in a terminal to turn the
+							source into a native program you can run.
 						</p>
 						<p>
-							The development environment we are using for this course is GnuCOBOL. GnuCOBOL is an
-							Integrated Development Environment (IDE) supporting an Object Oriented version of COBOL. The
-							OO-COBOL supported by GnuCOBOL is a preview of the coming standard.
-						</p>
-						<p>
-							To load the program, click on the
-							<a href="gettingstarted.cbl">GettingStarted.cbl</a> link. This will allow you (depending on
-							how your browser is set up) to either download the file to your local hard disk or load it
-							directly into the GnuCOBOL environment.
-						</p>
-						<p>
-							If you download the program you should save it to the \WorkArea directory on the drive D:.
-							When the file has been downloaded, start GnuCOBOL and load the program using the
-							<b><i>File</i></b> option in the main menu bar.
-						</p>
-						<p>
-							If you load it directly into the GnuCOBOL environment you should use the
-							<b><i>Save As</i></b> option in the <b><i>File</i></b> menu to save it as GettingStarted.cbl
-							to the \WorkArea directory.
-						</p>
-						<p>
-							The GnuCOBOL programming environment should now be running with the GettingStarted.cbl file
-							loaded.
+							The whole workflow is three steps &mdash; <b>edit</b> the source, <b>compile</b> it with
+							<code>cobc</code>, then <b>run</b> the program. In this exercise you will install GnuCOBOL,
+							then compile and run your first COBOL program.
 						</p>
 					</section>
 
 					<section>
-						<h2>Configuring the GnuCOBOL environment</h2>
+						<h2>Installing GnuCOBOL</h2>
 						<p>
-							The default GnuCOBOL Environment makes it difficult to write programs the way we would like
-							so we need to make some changes to it.
+							Pick the instructions for your operating system. Each one installs the
+							<code>cobc</code> compiler and the runtime libraries it needs.
 						</p>
+
+						<h3>Linux (Debian / Ubuntu) or Windows via WSL</h3>
 						<p>
-							From the GnuCOBOL <b><i>Options</i></b> menu select <b><i>Edit</i></b
-							>. This brings up a dialogue box with a number of tabs. Make sure the
-							<b><i>Profile</i></b> tab has the focus.
+							On a Debian-based distribution &mdash; including an Ubuntu installation running under the
+							<a href="https://learn.microsoft.com/windows/wsl/install" rel="noopener"
+								>Windows Subsystem for Linux</a
+							>
+							&mdash; install the <code>gnucobol</code> package with <code>apt</code>:
 						</p>
+						<figure class="example-run">
+							<figcaption>Terminal</figcaption>
+							<pre><samp>$ <kbd>sudo apt update</kbd>
+$ <kbd>sudo apt install gnucobol</kbd></samp></pre>
+						</figure>
 						<p>
-							In the <b><i>Margins</i></b> option change the left margin to 0.
+							On Windows, this is the smoothest path: open a terminal, run
+							<kbd>wsl --install</kbd> (once) to set up Ubuntu, then run the two commands above inside the
+							Ubuntu shell.
 						</p>
+
+						<h3>macOS</h3>
+						<p>Install with <a href="https://brew.sh/" rel="noopener">Homebrew</a>:</p>
+						<figure class="example-run">
+							<figcaption>Terminal</figcaption>
+							<pre><samp>$ <kbd>brew install gnucobol</kbd></samp></pre>
+						</figure>
+
+						<h3>Windows (native, without WSL)</h3>
 						<p>
-							Now select the <b><i>Blocks/Clipboard</i></b> tab.
+							If you prefer a native Windows compiler, download a pre-built GnuCOBOL binary distribution
+							from the <a href="https://gnucobol.sourceforge.io/" rel="noopener">GnuCOBOL website</a>, unzip
+							it, and add its <code>bin</code> directory to your <code>PATH</code> so that
+							<code>cobc</code> is available from PowerShell or the Command Prompt.
 						</p>
+
+						<h3>Check the install</h3>
 						<p>
-							In the "<b><i>Selecting line blocks and column blocks</i></b
-							>" option select "Select column blocks when dragging, except when in prefix area".
+							Whichever route you took, confirm <code>cobc</code> is on your <code>PATH</code> by asking it
+							for its version:
 						</p>
+						<figure class="example-run">
+							<figcaption>Terminal</figcaption>
+							<pre><samp>$ <kbd>cobc --version</kbd>
+cobc (GnuCOBOL) 3.2.0
+...</samp></pre>
+						</figure>
 						<p>
-							Select <b><i>OK</i></b> to close the dialogue box and observe the results.
+							The exact version number will vary &mdash; any reasonably recent 3.x or later release works
+							for this course. If the shell reports &ldquo;command not found&rdquo;, the
+							<code>bin</code> directory is not on your <code>PATH</code> yet.
+						</p>
+					</section>
+
+					<section>
+						<h2>Getting the program</h2>
+						<p>
+							We will start with an existing COBOL program. Download
+							<a href="gettingstarted.cbl" download>GettingStarted.cbl</a> and save it to a working folder
+							you can find again &mdash; for example a <code>cobol</code> folder in your home directory. The
+							full source is shown below.
+						</p>
+						<div class="code-toolbar">
+							<a href="gettingstarted.cbl" download class="download-btn">Download GettingStarted.cbl</a>
+							<run-in-ce></run-in-ce>
+						</div>
+						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
+IDENTIFICATION DIVISION.
+PROGRAM-ID.  GettingStarted.
+AUTHOR.  Michael Coughlan.
+*&gt; This program should accept two numbers from the user, multiply them together
+*&gt; and then display the result.  Unfortunately it does not work correctly.
+*&gt; Re-write the program so that it prompts the user for input and displays
+*&gt; the correct result.
+
+
+DATA DIVISION.
+
+WORKING-STORAGE SECTION.
+01  Num1                                PIC 9  VALUE ZEROS.
+01  Num2                                PIC 9  VALUE ZEROS.
+01  Result                              PIC 99 VALUE ZEROS.
+
+PROCEDURE DIVISION.
+Calc-Result.
+    ACCEPT Num1.
+    MULTIPLY Num1 BY Num2 GIVING Result.
+    ACCEPT Num2.
+    DISPLAY "Result is = ", Result.
+    STOP RUN.
+</code></pre>
+						<p>
+							This program is meant to accept two numbers, multiply them, and display the result &mdash;
+							but it has a couple of bugs. You will fix them later in the exercise.
 						</p>
 					</section>
 
 					<section>
 						<h2>Compiling the program</h2>
 						<p>
-							Click on the tick icon<img
-								src="i-tick.gif"
-								height="24"
-								width="24"
-								alt=""
-								style="margin-left: 7px; margin-right: 7px"
-							/>in the GnuCOBOL toolbar. This compiles the program.
+							Open a terminal and change into the folder where you saved the file. Compile it with the
+							<code>-x</code> flag, which tells <code>cobc</code> to build a standalone executable program
+							(rather than a callable module):
+						</p>
+						<figure class="example-run">
+							<figcaption>Terminal</figcaption>
+							<pre><samp>$ <kbd>cd ~/cobol</kbd>
+$ <kbd>cobc -x gettingstarted.cbl</kbd></samp></pre>
+						</figure>
+						<p>
+							On success <code>cobc</code> prints nothing and writes an executable next to the source:
+							<code>gettingstarted</code> on Linux and macOS, or <code>gettingstarted.exe</code> on Windows.
+						</p>
+						<p>
+							This source begins with the <code>&gt;&gt;SOURCE FORMAT IS FREE</code> directive, so
+							<code>cobc</code> already knows to read it as free-format COBOL. If you write a program
+							<em>without</em> that directive and use free-format layout, pass the <code>-free</code> flag as
+							well: <code>cobc -x -free yourprogram.cbl</code>.
 						</p>
 					</section>
 
 					<section>
-						<h2>Starting to run the program</h2>
+						<h2>Running the program</h2>
+						<p>Run the executable you just built.</p>
+						<p>On Linux, macOS, or WSL:</p>
+						<figure class="example-run">
+							<figcaption>Terminal</figcaption>
+							<pre><samp>$ <kbd>./gettingstarted</kbd>
+<kbd>3</kbd>
+<kbd>5</kbd>
+Result is = 00</samp></pre>
+						</figure>
+						<p>On native Windows, from PowerShell or the Command Prompt:</p>
+						<figure class="example-run">
+							<figcaption>Terminal</figcaption>
+							<pre><samp>&gt; <kbd>.\gettingstarted.exe</kbd>
+<kbd>3</kbd>
+<kbd>5</kbd>
+Result is = 00</samp></pre>
+						</figure>
 						<p>
-							For the time being we will run our COBOL programs from within the GnuCOBOL Animator. Later
-							in the course we will create standalone programs (.EXEs).
-						</p>
-						<p>
-							Position the cursor over program statement "ACCEPT Num1.". Click the right mouse button.
-							From the menu which appears select <i><b>Set Breakpoint</b>.</i>
-						</p>
-						<p>
-							Now select "<b><i>Start Animating</i></b
-							>" from within the <b><i>Animate</i></b> menu option and choose <b><i>OK</i></b> from the
-							dialogue box which appears.
-						</p>
-						<p>
-							The program starts to run, the first statement in the Procedure Division is highlighted but
-							is not executed.
-						</p>
-					</section>
-
-					<section>
-						<h2>Using the Animator</h2>
-						<p>
-							Before we continue with running the program let's have a look at some of the facilities the
-							Animator provides.
-						</p>
-						<p>
-							Right click on the variable Num1 in the program statement "MULTIPLY Num1 BY Num2 GIVING
-							Result. " Take note of all the options that appear in the right-click menu.
-						</p>
-						<p>Let's suppose that we want to find out the size and type of Num1.</p>
-						<p>
-							To do this select <b><i>Locate "Num1"</i></b> from the right-click menu.
-						</p>
-						<p>
-							The cursor jumps up to the Num1 declaration. Now right-click on a blank part of the program
-							text and select "<b><i>Return</i></b
-							>" from the right-click menu.
-						</p>
-						<p>The cursor jumps back to where it came from.</p>
-						<p>Now let's examine two ways of monitoring the contents of variables.</p>
-						<p>
-							In the program statement "MULTIPLY Num1 BY Num2 GIVING Result." right click on the variable
-							Num1.
-						</p>
-						<p>
-							Select "<b><i>Examine Num1</i></b
-							>" from the right-click menu. From the "Examine List" dialogue that appears select the
-							<b><i>Monitor</i></b> option. This creates a little window which is used to monitor the
-							contents of the variable Num1.
-						</p>
-						<p>
-							Right-click on Num2 and select "<b><i>Examine Num2</i></b
-							>" from the right-click menu. From the dialogue that appears select the "<b
-								><i>Add to List</i></b
-							>" option. This creates a "Watch list" window and adds Num2 to the watch list.
-						</p>
-						<p>Do the same for the Result variable.</p>
-						<p>The watch list window should now have two entries - Num2 and Result.</p>
-					</section>
-
-					<section>
-						<h2>Continuing with the program run</h2>
-						<p>Let's go back to running the program.</p>
-						<p>
-							From the GnuCOBOL toolbar select the Step icon<img
-								src="i-step.gif"
-								height="23"
-								width="23"
-								alt=""
-								style="margin-left: 7px; margin-right: 7px"
-							/>(if you position the cursor over each icon for a short time the computer will display a
-							label for it). You can also select step from the <b><i>Animate</i></b> menu or by pressing
-							Ctrl-S.
-						</p>
-						<p>
-							The first Procedure Division statement should now be executed. A console window is created
-							and has the focus and the program waits for the user (that's you) to enter the first number.
-							Enter the value 3 and press return.
-						</p>
-						<p>The focus returns to the GnuCOBOL environment.</p>
-						<p>Look at the monitoring window for the Num1 variable. Note the contents.</p>
-						<p>Click on the Step icon again to execute the Multiply instruction.</p>
-						<p>
-							Note that the contents of the Result variable in the watch list window do not change
-							(3*0=0).
-						</p>
-						<p>
-							Click on the step icon again and this time enter 5 in the console window and press return.
-						</p>
-						<p>Note the value that has been assigned to Num2 in the watch list window.</p>
-						<p>Click on the step icon again to execute the Display instruction.</p>
-						<p>
-							Note that this time the console window does not take the focus. You have to click on the
-							console window to give it the focus.
-						</p>
-						<p>Note that the program produces the wrong answer.</p>
-						<p>Click on the step icon again to execute the STOP-RUN.</p>
-						<p>
-							Select "<b><i>Stop Animating</i></b
-							>" from the <b><i>Animate</i></b> menu.
-						</p>
-						<p>
-							Select "<b><i>NO</i></b
-							>" in response to the question "Do you want to keep the project created for the animate
-							session".
+							Notice two problems. First, the program never tells you what to type &mdash; it just waits
+							silently for input, so you have to know to enter the two numbers. Second, the answer is wrong:
+							entering 3 and 5 should give 15, but it prints <samp>00</samp>. That is because the
+							<code class="language-cobol">MULTIPLY</code> runs <em>before</em> the second number is accepted,
+							so it multiplies by zero.
 						</p>
 					</section>
 
 					<section>
-						<h2>Fixing the Program</h2>
+						<h2>The edit&ndash;compile&ndash;run loop</h2>
+						<p>This is the loop you will repeat throughout the course:</p>
+						<ol>
+							<li>Edit the <code>.cbl</code> source in your text editor and save it.</li>
+							<li>Recompile it: <code>cobc -x gettingstarted.cbl</code>.</li>
+							<li>Run the program again and check the result.</li>
+						</ol>
 						<p>
-							Change the program so that it prompts the user for input (hint
-							<code class="language-cobol">DISPLAY WITH NO ADVANCING</code>) and produces the correct
-							answer.
+							There is no IDE to configure and no debugger to start &mdash; just your editor, the compiler,
+							and the terminal.
+						</p>
+					</section>
+
+					<section>
+						<h2>Fixing the program</h2>
+						<p>
+							Change the program so that it prompts the user before each input and produces the correct
+							answer. To print a prompt and leave the cursor on the same line so the user can type beside
+							it, use <code class="language-cobol">DISPLAY</code> with the
+							<code class="language-cobol">WITH NO ADVANCING</code> phrase, for example:
+						</p>
+						<p class="center-block">
+							<code class="language-cobol">DISPLAY "Enter the first number: " WITH NO ADVANCING</code>
+						</p>
+						<p>
+							You will also need to move the <code class="language-cobol">MULTIPLY</code> so that it runs
+							only after <em>both</em> numbers have been accepted. After each change, recompile and rerun to
+							confirm the fix.
 						</p>
 					</section>
 
 					<section>
 						<h2>Conclusion</h2>
-						<p>See if you can replace the MULTIPLY statement by the equivalent COMPUTE statement.</p>
+						<p>
+							See if you can replace the <code class="language-cobol">MULTIPLY</code> statement with the
+							equivalent <code class="language-cobol">COMPUTE</code> statement.
+						</p>
 						<p>The format for the COMPUTE is</p>
 						<p class="center-block">
 							<code class="language-cobol">COMPUTE</code> <i>result</i> = <i>operand operator operand</i>
