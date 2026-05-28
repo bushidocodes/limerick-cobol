@@ -223,7 +223,7 @@
 								<p>Below we see the results produced by two runs of the program.</p>
 								<pre
 									class="language-cobol"
-								><code class="language-cobol">RUN OF INDEX-EG2.EXE USING VIDEOCODE KEY
+								><code class="language-cobol">Reading sequentially by VideoCode (the primary key):
 Enter key : 1=VideoCode, 2=VideoTitle -&gt;1
 00121  FLIGHT OF THE CONDOR, THE     03
 00333  PREDATOR                      02
@@ -254,7 +254,7 @@ Enter key : 1=VideoCode, 2=VideoTitle -&gt;1
 
 
 
-RUN OF INDEX-EG2 USING VIDEOTITLE KEY
+Reading sequentially by VideoTitle (the alternate key):
 Enter key : 1=VideoCode, 2=VideoTitle -&gt;2
 17001  ALIEN                         07
 17002  ALIENS                        07
@@ -311,29 +311,27 @@ Enter key : 1=VideoCode, 2=VideoTitle -&gt;2
 									></iframe>
 								</p>
 								<p>Below we see the results produced by a number of runs of the program.</p>
-								<pre
-									class="language-cobol"
-								><code class="language-cobol">RUN OF INDEX-EG3.EXE USING VIDEOCODE
+								<pre class="language-cobol"><code class="language-cobol">Reading directly by VideoCode:
 Chose key VideoCode = 1,  VideoTitle = 2 -&gt;  1
 Enter Video Code (5 digits) -&gt; 02121
 02121    DIRTY DANCING                               04
 
-RUN OF INDEX-EG3.EXE USING VIDEOCODE
+Reading directly by VideoCode:
 Chose key VideoCode = 1,  VideoTitle = 2 -&gt;  1
 Enter Video Code (5 digits) -&gt; 05051
 05051    OVERBOARD                                   01
 
-RUN OF INDEX-EG3.EXE USING VIDEOTITLE
+Reading directly by VideoTitle:
 Chose key VideoCode = 1,  VideoTitle = 2 -&gt;  2
 Enter Video Title (40 chars) -&gt; OVERBOARD
 05051    OVERBOARD                                   01
 
-RUN OF INDEX-EG3.EXE USING VIDEOTITLE
+Reading directly by VideoTitle:
 Chose key VideoCode = 1,  VideoTitle = 2 -&gt;  2
 Enter Video Title (40 chars) -&gt; DIRTY DANCING
 02121    DIRTY DANCING                               04
 
-RUN OF INDEX-EG3.EXE USING NON EXISTENT VIDEOCODE
+Reading directly by a VideoCode that does not exist:
 Chose key VideoCode = 1,  VideoTitle = 2 -&gt;  1
 Enter Video Code (5 digits) -&gt; 44444
 VIDEO STATUS :- 23</code></pre>
