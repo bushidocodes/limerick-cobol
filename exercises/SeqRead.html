@@ -79,13 +79,13 @@
 						</p>
 						<p>
 							Download the <a href="../examples/SeqRead/Seqread.cbl">SeqRead.cbl</a> program and save it
-							to the WorkArea directory on drive D:.
+							to your working folder.
 						</p>
 						<p>
 							Download the data file <a href="../examples/SeqRead/STUDENTS.dat">Students.dat</a> and save
 							it to the same place.
 						</p>
-						<p>Load SeqRead.cbl into the GnuCOBOL environment.</p>
+						<p>Open SeqRead.cbl in your text editor.</p>
 					</section>
 
 					<section>
@@ -94,32 +94,22 @@
 							Examine the program carefully, paying particular attention to the way the end of file is
 							handled. Note the use of the condition name EndOfStudentFile.
 						</p>
+						<p>Compile the program with the <code>cobc</code> compiler, then run it:</p>
+						<figure class="example-run">
+							<figcaption>Terminal</figcaption>
+							<pre><samp>$ <kbd>cobc -x SeqRead.cbl</kbd>
+$ <kbd>./SeqRead</kbd></samp></pre>
+						</figure>
 						<p>
-							Compile the program.<img
-								src="i-tick.gif"
-								height="24"
-								width="24"
-								alt=""
-								style="margin-left: 7px; margin-right: 7px"
-							/>
+							GnuCOBOL has no built-in interactive debugger. You can answer the size questions below by
+							reading the record description in the program and adding up the
+							<code class="language-cobol">PIC</code> clause lengths. To watch how StudentDetails,
+							StudentName, Initials, DateOfBirth and MOBirth change as the program runs, temporarily add
+							<code class="language-cobol">DISPLAY</code> statements for them and recompile. (For
+							source-level stepping you can also compile with <code>cobc -x -g</code> and run the program
+							under <code>gdb</code>.)
 						</p>
-						<p>
-							Set a breakpoint at the first statement in the Procedure Division (move the cursor over the
-							statement, right-click and select Set Breakpoint from the menu which appears).<br />
-							Use the Animator to step<img
-								src="i-step.gif"
-								height="23"
-								width="23"
-								alt=""
-								style="margin-left: 7px; margin-right: 7px"
-							/>through the program.
-						</p>
-						<p>
-							Assign the variables StudentDetails, StudentName, Initials, DateOfBirth and MOBirth to the
-							watch list (Right-click on the variable, select <b><i>Examine</i></b> from menu and then
-							<b><i>Add to list</i></b> from dialogue box).
-						</p>
-						<p>As the program runs attempt to answer the following questions:</p>
+						<p>As you read and run the program, attempt to answer the following questions:</p>
 						<ol>
 							<li>What is the size (in characters) of the StudentDetails record?</li>
 							<li>What is the size of StudentName?</li>
