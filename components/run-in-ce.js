@@ -69,19 +69,27 @@ function extractProgramId(src) {
 	return match ? match[1] : null;
 }
 
+// True when a source block already closes with its own END PROGRAM statement.
+// Multi-program .cbl files (e.g. DayDiffDriver) carry their own terminators, so
+// injecting another would leave a dangling END PROGRAM.
+function endsWithEndProgram(src) {
+	return /END\s+PROGRAM\s+[\w-]+\s*\.\s*$/i.test(src);
+}
+
 function buildCEUrl(source, files = []) {
 	// Concatenate extra subprogram sources after the main source.
 	// GnuCOBOL 3.2 requires an END PROGRAM terminator between separate program
 	// units in a single file. Inject it after each block (except the last) by
-	// reading the PROGRAM-ID from that block. Simpler and more reliable than
-	// CE's session `files` array, which only populates editor tabs and never
-	// reaches the compiler's input file.
+	// reading the PROGRAM-ID from that block — unless the block already ends with
+	// its own END PROGRAM. Simpler and more reliable than CE's session `files`
+	// array, which only populates editor tabs and never reaches the compiler.
 	let combined;
 	if (files.length > 0) {
 		const parts = [source, ...files.map((f) => f.contents)];
 		combined = parts
 			.map((src, i) => {
 				if (i === parts.length - 1) return src; // last — no terminator needed
+				if (endsWithEndProgram(src)) return src; // already terminated
 				const id = extractProgramId(src);
 				return id ? src + "\nEND PROGRAM " + id + ".\n" : src + "\n";
 			})
