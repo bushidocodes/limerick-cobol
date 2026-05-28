@@ -80,8 +80,8 @@
 							The compiler we use for this course is
 							<a href="https://gnucobol.sourceforge.io/" rel="noopener">GnuCOBOL</a>, a free, open-source
 							COBOL compiler. Unlike a graphical IDE, GnuCOBOL is a command-line tool: you write your
-							program in any text editor, then use the <code>cobc</code> compiler in a terminal to turn the
-							source into a native program you can run.
+							program in any text editor, then use the <code>cobc</code> compiler in a terminal to turn
+							the source into a native program you can run.
 						</p>
 						<p>
 							The whole workflow is three steps &mdash; <b>edit</b> the source, <b>compile</b> it with
@@ -126,15 +126,15 @@ $ <kbd>sudo apt install gnucobol</kbd></samp></pre>
 						<h3>Windows (native, without WSL)</h3>
 						<p>
 							If you prefer a native Windows compiler, download a pre-built GnuCOBOL binary distribution
-							from the <a href="https://gnucobol.sourceforge.io/" rel="noopener">GnuCOBOL website</a>, unzip
-							it, and add its <code>bin</code> directory to your <code>PATH</code> so that
+							from the <a href="https://gnucobol.sourceforge.io/" rel="noopener">GnuCOBOL website</a>,
+							unzip it, and add its <code>bin</code> directory to your <code>PATH</code> so that
 							<code>cobc</code> is available from PowerShell or the Command Prompt.
 						</p>
 
 						<h3>Check the install</h3>
 						<p>
-							Whichever route you took, confirm <code>cobc</code> is on your <code>PATH</code> by asking it
-							for its version:
+							Whichever route you took, confirm <code>cobc</code> is on your <code>PATH</code> by asking
+							it for its version:
 						</p>
 						<figure class="example-run">
 							<figcaption>Terminal</figcaption>
@@ -154,8 +154,8 @@ cobc (GnuCOBOL) 3.2.0
 						<p>
 							We will start with an existing COBOL program. Download
 							<a href="gettingstarted.cbl" download>GettingStarted.cbl</a> and save it to a working folder
-							you can find again &mdash; for example a <code>cobol</code> folder in your home directory. The
-							full source is shown below.
+							you can find again &mdash; for example a <code>cobol</code> folder in your home directory.
+							The full source is shown below.
 						</p>
 						<div class="code-toolbar">
 							<a href="gettingstarted.cbl" download class="download-btn">Download GettingStarted.cbl</a>
@@ -206,13 +206,14 @@ $ <kbd>cobc -x gettingstarted.cbl</kbd></samp></pre>
 						</figure>
 						<p>
 							On success <code>cobc</code> prints nothing and writes an executable next to the source:
-							<code>gettingstarted</code> on Linux and macOS, or <code>gettingstarted.exe</code> on Windows.
+							<code>gettingstarted</code> on Linux and macOS, or <code>gettingstarted.exe</code> on
+							Windows.
 						</p>
 						<p>
 							This source begins with the <code>&gt;&gt;SOURCE FORMAT IS FREE</code> directive, so
 							<code>cobc</code> already knows to read it as free-format COBOL. If you write a program
-							<em>without</em> that directive and use free-format layout, pass the <code>-free</code> flag as
-							well: <code>cobc -x -free yourprogram.cbl</code>.
+							<em>without</em> that directive and use free-format layout, pass the <code>-free</code> flag
+							as well: <code>cobc -x -free yourprogram.cbl</code>.
 						</p>
 					</section>
 
@@ -237,10 +238,10 @@ Result is = 00</samp></pre>
 						</figure>
 						<p>
 							Notice two problems. First, the program never tells you what to type &mdash; it just waits
-							silently for input, so you have to know to enter the two numbers. Second, the answer is wrong:
-							entering 3 and 5 should give 15, but it prints <samp>00</samp>. That is because the
-							<code class="language-cobol">MULTIPLY</code> runs <em>before</em> the second number is accepted,
-							so it multiplies by zero.
+							silently for input, so you have to know to enter the two numbers. Second, the answer is
+							wrong: entering 3 and 5 should give 15, but it prints <samp>00</samp>. That is because the
+							<code class="language-cobol">MULTIPLY</code> runs <em>before</em> the second number is
+							accepted, so it multiplies by zero.
 						</p>
 					</section>
 
@@ -253,8 +254,8 @@ Result is = 00</samp></pre>
 							<li>Run the program again and check the result.</li>
 						</ol>
 						<p>
-							There is no IDE to configure and no debugger to start &mdash; just your editor, the compiler,
-							and the terminal.
+							There is no IDE to configure and no debugger to start &mdash; just your editor, the
+							compiler, and the terminal.
 						</p>
 					</section>
 
@@ -271,8 +272,8 @@ Result is = 00</samp></pre>
 						</p>
 						<p>
 							You will also need to move the <code class="language-cobol">MULTIPLY</code> so that it runs
-							only after <em>both</em> numbers have been accepted. After each change, recompile and rerun to
-							confirm the fix.
+							only after <em>both</em> numbers have been accepted. After each change, recompile and rerun
+							to confirm the fix.
 						</p>
 					</section>
 
