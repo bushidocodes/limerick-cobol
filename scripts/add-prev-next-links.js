@@ -18,36 +18,20 @@ const path = require("path");
 
 const REPO_ROOT = path.resolve(__dirname, "..");
 const COURSE_DIR = path.join(REPO_ROOT, "course");
+const MANIFEST_PATH = path.join(COURSE_DIR, "lesson-manifest.json");
 const BASE_URL = "https://bushidocodes.github.io/limerick-cobol/course/";
 
-// Lesson sequence — mirrors the array in components/lesson-progress.js.
-const LESSON_SEQUENCE = [
-	{ file: "COBOLIntro.html" },
-	{ file: "DataDeclaration.html" },
-	{ file: "COBOLcommands.html" },
-	{ file: "Selection.html" },
-	{ file: "Iteration.html" },
-	{ file: "SequentialFiles1.html" },
-	{ file: "SequentialFiles2.html" },
-	{ file: "EditedPics.html" },
-	{ file: "Usage.html" },
-	{ file: "SequentialFiles3.html" },
-	{ file: "SortMerge.html" },
-	{ file: "Intro2DirectAccess.html" },
-	{ file: "RelativeFiles.html" },
-	{ file: "IndexedFiles.html" },
-	{ file: "Tables1.html" },
-	{ file: "Tables2.html" },
-	{ file: "Search.html" },
-	{ file: "Subprograms.html" },
-	{ file: "Copy.html" },
-	{ file: "Inspect.html" },
-	{ file: "String.html" },
-	{ file: "Unstring.html" },
-	{ file: "RefMod.html" },
-	{ file: "ReportWriter.html" },
-	{ file: "ReportWriterSS.html" },
-];
+const manifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, "utf8"));
+const _seen = new Set();
+const LESSON_SEQUENCE = [];
+for (const topic of manifest.topics) {
+	for (const link of topic.links) {
+		if (link.type === "tutorial" && !_seen.has(link.file)) {
+			_seen.add(link.file);
+			LESSON_SEQUENCE.push({ file: link.file });
+		}
+	}
+}
 
 /**
  * Build the prev/next link tag block to inject.
