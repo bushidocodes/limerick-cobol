@@ -625,7 +625,7 @@ ${runInCeScript}\t</head>
 \t\t\t\t<div class="section-grid">
 \t\t\t\t\t<div class="section-full">
 \t\t\t\t\t\t<page-hero title="${metaTitle}"></page-hero>
-\t\t\t\t\t\t<p>${entry.desc}</p>
+\t\t\t\t\t\t<p>${escapeHtml(entry.desc)}</p>
 ${sampleDataEl}\t\t\t\t\t\t\t<div class="code-toolbar">
 \t\t\t\t\t\t\t<a href="${entry.cbl}" download class="download-btn">Download ${entry.cbl}</a>
 ${runInCeToolbarEl}\t\t\t\t\t\t</div>
