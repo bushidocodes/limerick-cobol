@@ -17,37 +17,21 @@ const path = require("path");
 
 const REPO_ROOT = path.resolve(__dirname, "..");
 const COURSE_DIR = path.join(REPO_ROOT, "course");
+const MANIFEST_PATH = path.join(COURSE_DIR, "lesson-manifest.json");
 
 const WPM = 200;
 
-// Mirrors LESSON_SEQUENCE in generate-lesson-jsonld.js.
-const LESSON_FILES = [
-	"COBOLIntro.html",
-	"DataDeclaration.html",
-	"COBOLcommands.html",
-	"Selection.html",
-	"Iteration.html",
-	"SequentialFiles1.html",
-	"SequentialFiles2.html",
-	"EditedPics.html",
-	"Usage.html",
-	"SequentialFiles3.html",
-	"SortMerge.html",
-	"Intro2DirectAccess.html",
-	"RelativeFiles.html",
-	"IndexedFiles.html",
-	"Tables1.html",
-	"Tables2.html",
-	"Search.html",
-	"Subprograms.html",
-	"Copy.html",
-	"Inspect.html",
-	"String.html",
-	"Unstring.html",
-	"RefMod.html",
-	"ReportWriter.html",
-	"ReportWriterSS.html",
-];
+const manifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, "utf8"));
+const _seen = new Set();
+const LESSON_FILES = [];
+for (const topic of manifest.topics) {
+	for (const link of topic.links) {
+		if (link.type === "tutorial" && !_seen.has(link.file)) {
+			_seen.add(link.file);
+			LESSON_FILES.push(link.file);
+		}
+	}
+}
 
 /** Extract visible text from the <body> element, stripping scripts and tags. */
 function extractBodyText(html) {
