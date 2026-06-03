@@ -96,7 +96,7 @@ function buildJsonLdBlock(entry) {
 function injectJsonLd(html, block) {
 	// Strip existing LearningResource block (idempotency).
 	html = html.replace(
-		/\t\t<script type="application\/ld\+json">\n\t\t\t\{[\s\S]*?"@type": "LearningResource"[\s\S]*?<\/script>\n/,
+		/\t\t<script type="application\/ld\+json">\n\t\t\t\{[\s\S]*?"@type": "LearningResource"[\s\S]*?<\/script>\n/g,
 		"",
 	);
 
