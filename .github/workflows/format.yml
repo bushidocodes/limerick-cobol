@@ -4,7 +4,7 @@ name: auto-format
 # dimensions) and runs prettier on every PR, committing any changes back to the
 # PR branch. Skips PRs from forks because GITHUB_TOKEN can't push to forked
 # repos — fork contributors will see `format:check` fail and need to run
-# `npm run format:write` locally before pushing.
+# `pnpm run format:write` locally before pushing.
 
 on:
     pull_request:
@@ -26,18 +26,21 @@ jobs:
               with:
                   ref: ${{ github.head_ref }}
                   token: ${{ secrets.GITHUB_TOKEN }}
+            - uses: pnpm/action-setup@v4
+              with:
+                  run_install: false
             - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
               with:
                   node-version: "22"
-                  cache: "npm"
-            - run: npm ci
+                  cache: "pnpm"
+            - run: pnpm install --frozen-lockfile
 
             - name: Configure git
               run: |
                   git config user.name "github-actions[bot]"
                   git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-            - run: npm run build:sitemap
+            - run: pnpm run build:sitemap
             - name: Commit sitemap if changed
               run: |
                   if [[ -n "$(git status --porcelain)" ]]; then
@@ -48,7 +51,7 @@ jobs:
             # build:examples must run before build:search-index (the index reads
             # titles/descriptions from examples HTML) and before
             # add-img-dimensions (which patches missing <img> dims).
-            - run: npm run build:examples
+            - run: pnpm run build:examples
             - name: Commit examples if changed
               run: |
                   if [[ -n "$(git status --porcelain)" ]]; then
@@ -56,7 +59,7 @@ jobs:
                     git commit -m "chore: auto-regenerate examples HTML from .cbl sources"
                   fi
 
-            - run: npm run build:search-index
+            - run: pnpm run build:search-index
             - name: Commit search index if changed
               run: |
                   if [[ -n "$(git status --porcelain)" ]]; then
