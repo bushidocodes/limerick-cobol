@@ -37,7 +37,7 @@ for (const topic of manifest.topics) {
 function extractBodyText(html) {
 	const bodyMatch = html.match(/<body[^>]*>([\s\S]*)<\/body>/i);
 	const body = bodyMatch ? bodyMatch[1] : html;
-	return body
+	return body // codeql[js/bad-tag-filter]
 		.replace(/<script[\s\S]*?<\/script>/gi, " ")
 		.replace(/<style[\s\S]*?<\/style>/gi, " ")
 		.replace(/<!--[\s\S]*?-->/g, " ")

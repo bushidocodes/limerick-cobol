@@ -113,12 +113,12 @@ function extractCssRefs(css) {
 function decodeHtmlEntities(str) {
 	// Decode the handful of entities that commonly appear in href/src values.
 	return str
-		.replace(/&amp;/g, "&")
 		.replace(/&lt;/g, "<")
 		.replace(/&gt;/g, ">")
 		.replace(/&quot;/g, '"')
 		.replace(/&#(\d+);/g, (_, code) => String.fromCharCode(Number(code)))
-		.replace(/&#x([0-9a-fA-F]+);/g, (_, hex) => String.fromCharCode(parseInt(hex, 16)));
+		.replace(/&#x([0-9a-fA-F]+);/g, (_, hex) => String.fromCharCode(parseInt(hex, 16)))
+		.replace(/&amp;/g, "&");
 }
 
 // ---------------------------------------------------------------------------

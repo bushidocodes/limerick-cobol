@@ -48,35 +48,68 @@
 	ensureScript("breadcrumbs.js");
 	ensureScript("course-sidebar.js");
 
-	function buildNavItems() {
-		const path = location.pathname;
-		return NAV_SECTIONS.map((s) => {
-			const isActive = new RegExp("/" + s.dir + "/").test(path);
-			const attrs = isActive ? ' data-active aria-current="page"' : "";
-			return `<li><a href="${baseUrl}${s.entry}"${attrs}>${s.label}</a></li>`;
-		}).join("");
-	}
-
-	function buildNavHTML() {
-		return `<nav class="site-nav" aria-label="Primary"><ul>${buildNavItems()}</ul></nav>`;
+	function buildNavUl() {
+		const navPath = location.pathname;
+		const ul = document.createElement("ul");
+		NAV_SECTIONS.forEach((s) => {
+			const isActive = new RegExp("/" + s.dir + "/").test(navPath);
+			const li = document.createElement("li");
+			const a = document.createElement("a");
+			a.href = baseUrl + s.entry;
+			if (isActive) {
+				a.setAttribute("data-active", "");
+				a.setAttribute("aria-current", "page");
+			}
+			a.textContent = s.label;
+			li.appendChild(a);
+			ul.appendChild(li);
+		});
+		return ul;
 	}
 
 	function inject() {
 		if (document.querySelector(".site-header")) return;
 		const header = document.createElement("header");
 		header.className = "site-header";
-		header.innerHTML =
-			`<a class="site-header__logo" href="${homeUrl}">` +
-			`<img src="${faviconUrl}" alt="COBOL Tutorial" width="32" height="28">` +
-			`</a>${buildNavHTML()}<site-search></site-search>` +
-			`<button class="site-header__hamburger" type="button" ` +
-			`aria-expanded="false" aria-controls="${MOBILE_NAV_ID}" ` +
-			`aria-label="Open navigation">` +
-			`<span aria-hidden="true">&#9776;</span>` +
-			`</button>` +
-			`<nav id="${MOBILE_NAV_ID}" class="site-nav-mobile" aria-label="Primary" hidden>` +
-			`<ul>${buildNavItems()}</ul>` +
-			`</nav>`;
+
+		const logo = document.createElement("a");
+		logo.className = "site-header__logo";
+		logo.href = homeUrl;
+		const logoImg = document.createElement("img");
+		logoImg.src = faviconUrl;
+		logoImg.alt = "COBOL Tutorial";
+		logoImg.width = 32;
+		logoImg.height = 28;
+		logo.appendChild(logoImg);
+		header.appendChild(logo);
+
+		const nav = document.createElement("nav");
+		nav.className = "site-nav";
+		nav.setAttribute("aria-label", "Primary");
+		nav.appendChild(buildNavUl());
+		header.appendChild(nav);
+
+		header.appendChild(document.createElement("site-search"));
+
+		const btn = document.createElement("button");
+		btn.className = "site-header__hamburger";
+		btn.type = "button";
+		btn.setAttribute("aria-expanded", "false");
+		btn.setAttribute("aria-controls", MOBILE_NAV_ID);
+		btn.setAttribute("aria-label", "Open navigation");
+		const hamburgerSpan = document.createElement("span");
+		hamburgerSpan.setAttribute("aria-hidden", "true");
+		hamburgerSpan.textContent = "☰";
+		btn.appendChild(hamburgerSpan);
+		header.appendChild(btn);
+
+		const mobileNav = document.createElement("nav");
+		mobileNav.id = MOBILE_NAV_ID;
+		mobileNav.className = "site-nav-mobile";
+		mobileNav.setAttribute("aria-label", "Primary");
+		mobileNav.hidden = true;
+		mobileNav.appendChild(buildNavUl());
+		header.appendChild(mobileNav);
 
 		const skipLink = document.body.querySelector("a.skip-link");
 		if (skipLink) {
@@ -84,9 +117,6 @@
 		} else {
 			document.body.prepend(header);
 		}
-
-		const btn = header.querySelector(".site-header__hamburger");
-		const mobileNav = header.querySelector(`#${MOBILE_NAV_ID}`);
 
 		function openMenu() {
 			mobileNav.removeAttribute("hidden");

@@ -64,12 +64,10 @@ TOC_UL_RE = re.compile(
     re.DOTALL | re.IGNORECASE,
 )
 LI_RE = re.compile(r'<li\b[^>]*>(.*?)</li>', re.DOTALL | re.IGNORECASE)
-# Trailing <br>/<br/> sequences (possibly nested in stray empty </font>, </b>,
-# whitespace, etc.) at the end of a block of content.
-TRAILING_BR_RE = re.compile(
-    r'(?:\s*<br\s*/?\s*>)+\s*$',
-    re.IGNORECASE,
-)
+# Matches a single trailing <br> tag (with optional whitespace) at the end of a
+# string.  Used iteratively in strip_trailing_brs_in_block() rather than as a
+# repeating group so that nested quantifiers don't create a ReDoS risk.
+_SINGLE_TRAILING_BR_RE = re.compile(r'\s*<br\s*/?>\s*$', re.IGNORECASE)
 
 
 def toc_css(ball_url: str) -> str:
@@ -136,7 +134,11 @@ def strip_trailing_brs_in_block(content: str) -> str:
         if open_re.search(inside):
             return open_re.sub('', inside).rstrip()
         return inside + m.group(2)
-    return TRAILING_BR_RE.sub('', content)
+    prev = None
+    while content != prev:
+        prev = content
+        content = _SINGLE_TRAILING_BR_RE.sub('', content)
+    return content
 
 
 WRAPPER_RE = re.compile(
