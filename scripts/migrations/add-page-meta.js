@@ -38,13 +38,13 @@ function stripTags(html) {
 
 function decodeEntities(str) {
 	return str
-		.replace(/&amp;/g, "&")
 		.replace(/&lt;/g, "<")
 		.replace(/&gt;/g, ">")
 		.replace(/&quot;/g, '"')
 		.replace(/&apos;/g, "'")
 		.replace(/&nbsp;/g, " ")
-		.replace(/&#(\d+);/g, (_, n) => String.fromCharCode(parseInt(n, 10)));
+		.replace(/&#(\d+);/g, (_, n) => String.fromCharCode(parseInt(n, 10)))
+		.replace(/&amp;/g, "&");
 }
 
 function cleanText(html) {
