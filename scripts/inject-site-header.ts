@@ -7,6 +7,8 @@
 import fs from "fs";
 import path from "path";
 
+import { collectHtmlFiles } from "./lib/html-files.js";
+
 const ROOT = path.resolve(__dirname, "..");
 
 const SKIP_GLOBS = [
@@ -16,16 +18,6 @@ const SKIP_GLOBS = [
 	/[\\/]course[\\/]Resources[\\/]build-viewer\.html$/,
 	/[\\/]course[\\/]Resources[\\/]pdf-viewer\.html$/,
 ];
-
-function walk(dir: string, out: string[] = []): string[] {
-	for (const name of fs.readdirSync(dir)) {
-		const full = path.join(dir, name);
-		const stat = fs.statSync(full);
-		if (stat.isDirectory()) walk(full, out);
-		else if (full.endsWith(".html")) out.push(full);
-	}
-	return out;
-}
 
 function relComponentsPath(htmlFile: string): string {
 	const componentsDir = path.join(ROOT, "components");
@@ -38,7 +30,7 @@ function relComponentsPath(htmlFile: string): string {
 let touched = 0;
 let skipped = 0;
 
-for (const file of walk(ROOT)) {
+for (const file of collectHtmlFiles(ROOT)) {
 	if (SKIP_GLOBS.some((re) => re.test(file))) continue;
 	const html = fs.readFileSync(file, "utf8");
 

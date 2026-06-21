@@ -15,27 +15,15 @@
 import fs from "fs";
 import path from "path";
 
+import { readJson } from "./lib/json.js";
+import { tutorialSequence, type LessonManifest } from "./lib/lessons.js";
+
 const REPO_ROOT = path.resolve(__dirname, "..");
 const COURSE_DIR = path.join(REPO_ROOT, "course");
 const META_PATH = path.join(COURSE_DIR, "lesson-meta.json");
 const MANIFEST_PATH = path.join(COURSE_DIR, "lesson-manifest.json");
 
 const COURSE_URL = "https://bushidocodes.github.io/limerick-cobol/course/index.html";
-
-interface TopicLink {
-	type: string;
-	file: string;
-	title: string;
-}
-
-interface LessonManifest {
-	topics: { links: TopicLink[] }[];
-}
-
-interface LessonSeqEntry {
-	file: string;
-	title: string;
-}
 
 interface MetaEntry {
 	position: number;
@@ -47,17 +35,7 @@ interface MetaEntry {
 
 // Derive the ordered tutorial sequence from lesson-manifest.json, deduplicating
 // any file that appears in multiple topic groups.
-const manifest: LessonManifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, "utf8"));
-const _seen = new Set<string>();
-const LESSON_SEQUENCE: LessonSeqEntry[] = [];
-for (const topic of manifest.topics) {
-	for (const link of topic.links) {
-		if (link.type === "tutorial" && !_seen.has(link.file)) {
-			_seen.add(link.file);
-			LESSON_SEQUENCE.push({ file: link.file, title: link.title });
-		}
-	}
-}
+const LESSON_SEQUENCE = tutorialSequence(readJson<LessonManifest>(MANIFEST_PATH));
 
 /** Extract <meta name="description" content="..."> value from raw HTML. */
 function extractDescription(html: string): string {
@@ -129,7 +107,7 @@ function main(): void {
 	// If lesson-meta.json already exists, load it so hand-edited fields survive.
 	const existing: Record<string, Partial<MetaEntry>> = {};
 	if (fs.existsSync(META_PATH)) {
-		const parsed: MetaEntry[] = JSON.parse(fs.readFileSync(META_PATH, "utf8"));
+		const parsed = readJson<MetaEntry[]>(META_PATH);
 		for (const e of parsed) {
 			existing[e.file] = e;
 		}
