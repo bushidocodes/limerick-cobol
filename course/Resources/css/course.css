@@ -348,9 +348,7 @@ ul.toc a {
 /* Recolor legacy <table>/<tr>/<td> bgcolor="..." attribute markup via CSS
    background-color, which wins over the deprecated HTML attribute. Lets the
    theme tokens drive colors on pages that haven't been migrated to component
-   classes. The `i` flag matches the hex value case-insensitively, so one
-   selector covers every casing an author might have written (#CCFFFF, #ccffff,
-   …) — no need to enumerate both. */
+   classes. */
 table[bgcolor="#993300" i],
 table[bgcolor="#990000" i],
 tr[bgcolor="#993300" i],
@@ -504,7 +502,7 @@ td[bgcolor="#FFFFCC" i] h4 {
    value, but the actual `color` declaration sits in the element's `style`
    attribute, whose specificity (1,0,0,0) outranks any author selector
    without `!important`. */
-[style*="color: #cccccc" i] {
+[style*="color: #CCCCCC" i] {
 	color: var(--color-text-muted) !important;
 }
 
@@ -518,8 +516,8 @@ td[bgcolor="#FFFFCC" i] h4 {
    maps to #ff8a8a for legibility on dark panel backgrounds. `!important` is
    required for the same reason as the #cccccc rule above — we're overriding
    an inline `style="color:..."` declaration. */
-[style*="color: #ff0000" i],
-[style*="color: #e32d00" i] {
+[style*="color: #FF0000" i],
+[style*="color: #E32D00" i] {
 	color: var(--color-danger) !important;
 }
 
@@ -648,12 +646,12 @@ body .token.function {
 	/* Override inline `style="color: #..."` spans baked into legacy code
 	   samples. These attribute selectors target the raw inline value, so
 	   `!important` is required to beat the inline declaration. */
-	:root:not([data-theme="light"]) [style*="color: #0000ff" i] {
+	:root:not([data-theme="light"]) [style*="color: #0000FF" i] {
 		color: var(--color-link) !important;
 	}
 
-	:root:not([data-theme="light"]) [style*="color: #ff0000" i],
-	:root:not([data-theme="light"]) [style*="color: #e32d00" i] {
+	:root:not([data-theme="light"]) [style*="color: #FF0000" i],
+	:root:not([data-theme="light"]) [style*="color: #E32D00" i] {
 		color: var(--color-danger) !important;
 	}
 
@@ -661,14 +659,14 @@ body .token.function {
 		color: var(--color-inline-green) !important;
 	}
 
-	:root:not([data-theme="light"]) [style*="color: #cccccc" i] {
+	:root:not([data-theme="light"]) [style*="color: #CCCCCC" i] {
 		color: var(--color-text-muted) !important;
 	}
 
 	/* Inline background-color: #ffffff stays white in dark mode, leaving light
 	   inherited text on a white canvas — very low contrast. Map to the dark
 	   page background so normal dark-mode text colours apply. */
-	:root:not([data-theme="light"]) [style*="background-color: #ffffff" i] {
+	:root:not([data-theme="light"]) [style*="background-color: #FFFFFF" i] {
 		background-color: var(--color-bg) !important;
 	}
 
@@ -752,12 +750,12 @@ body .token.function {
 	--img-filter: invert(0.92) hue-rotate(180deg);
 }
 
-:root[data-theme="dark"] [style*="color: #0000ff" i] {
+:root[data-theme="dark"] [style*="color: #0000FF" i] {
 	color: var(--color-link) !important;
 }
 
-:root[data-theme="dark"] [style*="color: #ff0000" i],
-:root[data-theme="dark"] [style*="color: #e32d00" i] {
+:root[data-theme="dark"] [style*="color: #FF0000" i],
+:root[data-theme="dark"] [style*="color: #E32D00" i] {
 	color: var(--color-danger) !important;
 }
 
@@ -765,11 +763,11 @@ body .token.function {
 	color: var(--color-inline-green) !important;
 }
 
-:root[data-theme="dark"] [style*="color: #cccccc" i] {
+:root[data-theme="dark"] [style*="color: #CCCCCC" i] {
 	color: var(--color-text-muted) !important;
 }
 
-:root[data-theme="dark"] [style*="background-color: #ffffff" i] {
+:root[data-theme="dark"] [style*="background-color: #FFFFFF" i] {
 	background-color: var(--color-bg) !important;
 }
 
