@@ -32,8 +32,8 @@ interface SearchEntry {
 }
 
 function extractTitle(html: string): string {
-	const m = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
-	return m ? collapseWhitespace(decodeEntities(m[1])) : "";
+	const title = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1];
+	return title !== undefined ? collapseWhitespace(decodeEntities(title)) : "";
 }
 
 function extractMetaDescription(html: string): string {
@@ -42,8 +42,8 @@ function extractMetaDescription(html: string): string {
 	while ((m = metaRe.exec(html))) {
 		const tag = m[0];
 		if (!/\bname\s*=\s*["']description["']/i.test(tag)) continue;
-		const c = tag.match(/\bcontent\s*=\s*["']([^"']*)["']/i);
-		if (c) return collapseWhitespace(decodeEntities(c[1]));
+		const content = tag.match(/\bcontent\s*=\s*["']([^"']*)["']/i)?.[1];
+		if (content !== undefined) return collapseWhitespace(decodeEntities(content));
 	}
 	return "";
 }

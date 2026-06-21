@@ -112,7 +112,7 @@ function toRelativeHref(fromFile: string, toFile: string): string {
 	const fromDir = path.dirname(path.join(REPO_ROOT, fromFile));
 	const toAbs = path.join(REPO_ROOT, toFile);
 	const rel = path.relative(fromDir, toAbs);
-	return rel.split(path.sep).join("/");
+	return rel.replaceAll(path.sep, "/");
 }
 
 function formatGroupAttribute(fromFile: string, items: CrossLink[]): string {
