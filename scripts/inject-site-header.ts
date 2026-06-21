@@ -43,7 +43,7 @@ for (const file of collectHtmlFiles(ROOT)) {
 	}
 
 	const src = relComponentsPath(file);
-	const tag = `\t\t<script src="${src}" defer></script>`;
+	const tag = `\t\t<script src="${src}" type="module"></script>`;
 
 	// Insert just before </head>. Match the existing indentation pattern.
 	const newHtml = html.replace(/([ \t]*)<\/head>/, (_m, indent) => `${tag}\n${indent}</head>`);

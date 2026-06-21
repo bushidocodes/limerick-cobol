@@ -21,18 +21,11 @@
 // when :has(course-sidebar) matches. Hidden below ~1100px so narrow viewports
 // fall back to the existing top-of-page lesson-toc.
 
-(function () {
-	function computeBaseUrl() {
-		const scripts = document.querySelectorAll("script[src]");
-		for (const s of scripts) {
-			if (/components\/course-sidebar\.js(\?|$)/.test(s.src)) {
-				return s.src.replace(/components\/course-sidebar\.js(\?.*)?$/, "");
-			}
-		}
-		return "";
-	}
+import { siteBaseUrl } from "./util/base.js";
+import { onReady } from "./util/dom.js";
 
-	const baseUrl = computeBaseUrl();
+(function () {
+	const baseUrl = siteBaseUrl(import.meta.url);
 	const manifestUrl = baseUrl + "course/lesson-manifest.json";
 	const courseHomeUrl = baseUrl + "course/index.html";
 
@@ -151,9 +144,5 @@
 		pageWrapper.insertBefore(el, pageWrapper.firstChild);
 	}
 
-	if (document.readyState === "loading") {
-		document.addEventListener("DOMContentLoaded", autoInject);
-	} else {
-		autoInject();
-	}
+	onReady(autoInject);
 })();
