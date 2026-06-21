@@ -38,8 +38,6 @@ class ExercisesNav extends HTMLElement {
 
 		this.innerHTML = `<nav class="lesson-nav" aria-label="Exercise navigation">${prevHTML}${positionHTML}${nextHTML}</nav>`;
 	}
-
-	disconnectedCallback() {}
 }
 
 customElements.define("exercises-nav", ExercisesNav);

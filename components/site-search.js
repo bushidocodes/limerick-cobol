@@ -42,6 +42,7 @@ class SiteSearch extends HTMLElement {
 	#status = null;
 	#pointer = -1;
 	#listboxId = "";
+	#abort = null;
 
 	// Show the long placeholder only when the input is wide enough to display
 	// it without truncation. Below this, the (Ctrl+K) hint and even
@@ -84,29 +85,45 @@ class SiteSearch extends HTMLElement {
 		this.#results = this.querySelector(".site-search__results");
 		this.#status = this.querySelector(".site-search__status");
 
+		// All instance listeners share one signal so disconnectedCallback can
+		// detach them in one shot — notably the change listener on the static
+		// #SHORT_MQL media query, which would otherwise outlive the element.
+		this.#abort = new AbortController();
+		const { signal } = this.#abort;
+
 		const updatePlaceholder = () => {
 			this.#input.placeholder = SiteSearch.#SHORT_MQL.matches
 				? SiteSearch.#SHORT_PLACEHOLDER
 				: SiteSearch.#FULL_PLACEHOLDER;
 		};
 		updatePlaceholder();
-		SiteSearch.#SHORT_MQL.addEventListener("change", updatePlaceholder);
+		SiteSearch.#SHORT_MQL.addEventListener("change", updatePlaceholder, { signal });
 
-		this.#input.addEventListener("focus", () => this.#ensureLoaded());
-		this.#input.addEventListener("input", () => this.#render());
-		this.#input.addEventListener("keydown", (e) => this.#onInputKeydown(e));
-		this.#input.addEventListener("blur", () => {
-			// Allow click on a result to fire before closing.
-			window.setTimeout(() => {
-				if (!this.contains(document.activeElement)) this.#close();
-			}, 120);
-		});
+		this.#input.addEventListener("focus", () => this.#ensureLoaded(), { signal });
+		this.#input.addEventListener("input", () => this.#render(), { signal });
+		this.#input.addEventListener("keydown", (e) => this.#onInputKeydown(e), { signal });
+		this.#input.addEventListener(
+			"blur",
+			() => {
+				// Allow click on a result to fire before closing.
+				window.setTimeout(() => {
+					if (!this.contains(document.activeElement)) this.#close();
+				}, 120);
+			},
+			{ signal },
+		);
 
 		// Avoid double-binding when the element is placed more than once.
+		// The global Ctrl/Cmd+K handler is intentionally process-wide (it serves
+		// every instance), so it is not tied to this element's abort signal.
 		if (!globalKeyBound) {
 			document.addEventListener("keydown", SiteSearch.#onGlobalKeydown);
 			globalKeyBound = true;
 		}
+	}
+
+	disconnectedCallback() {
+		this.#abort?.abort();
 	}
 
 	/** Focus the first site-search input on the page. Used by Cmd/Ctrl+K. */
@@ -290,7 +307,7 @@ class SiteSearch extends HTMLElement {
 		items.forEach((el, i) => {
 			const active = i === idx;
 			el.classList.toggle("site-search__result--active", active);
-			el.setAttribute("aria-selected", active ? "true" : "false");
+			el.setAttribute("aria-selected", String(active));
 		});
 		const current = items[idx];
 		if (current) {

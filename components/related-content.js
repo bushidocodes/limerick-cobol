@@ -52,8 +52,6 @@ class RelatedContent extends HTMLElement {
 		</aside>`;
 	}
 
-	disconnectedCallback() {}
-
 	/** Parse "path1.html|Label 1, path2.html|Label 2" into [{href, title}]. */
 	_parseLinks(raw) {
 		return raw

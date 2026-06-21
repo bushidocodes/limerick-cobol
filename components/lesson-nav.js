@@ -28,7 +28,7 @@ class LessonNav extends HTMLElement {
 
 		// Determine the current page filename from the URL path.
 		const segments = window.location.pathname.split("/");
-		const currentFile = segments[segments.length - 1];
+		const currentFile = segments.at(-1);
 
 		const index = LESSONS.findIndex((l) => l.file === currentFile);
 		if (index === -1) {
@@ -52,8 +52,6 @@ class LessonNav extends HTMLElement {
 
 		this.innerHTML = `<nav class="lesson-nav" aria-label="Lesson navigation">${prevHTML}${positionHTML}${nextHTML}</nav>`;
 	}
-
-	disconnectedCallback() {}
 }
 
 customElements.define("lesson-nav", LessonNav);
