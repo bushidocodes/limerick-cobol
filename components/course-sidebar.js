@@ -23,6 +23,7 @@
 
 import { siteBaseUrl } from "./util/base.js";
 import { onReady } from "./util/dom.js";
+import { renderSidebar } from "./util/sidebar.js";
 
 (function () {
 	const baseUrl = siteBaseUrl(import.meta.url);
@@ -54,57 +55,15 @@ import { onReady } from "./util/dom.js";
 
 	function render(host, manifest) {
 		const cur = currentPath();
-
-		const nav = document.createElement("nav");
-		nav.className = "course-sidebar";
-		nav.setAttribute("aria-label", "Course outline");
-
-		const heading = document.createElement("p");
-		heading.className = "course-sidebar-heading";
-		const headingLink = document.createElement("a");
-		headingLink.href = courseHomeUrl;
-		headingLink.textContent = "COBOL Course";
-		heading.appendChild(headingLink);
-		nav.appendChild(heading);
-
-		const list = document.createElement("ol");
-		list.className = "course-sidebar-topics";
-
-		for (const topic of manifest.topics) {
-			const topicLi = document.createElement("li");
-			topicLi.className = "course-sidebar-topic";
-
-			const topicLabel = document.createElement("p");
-			topicLabel.className = "course-sidebar-topic-label";
-			topicLabel.textContent = topic.label;
-			topicLi.appendChild(topicLabel);
-
-			const linksUl = document.createElement("ul");
-			linksUl.className = "course-sidebar-links";
-
-			let topicHasActive = false;
-			for (const link of topic.links) {
-				const li = document.createElement("li");
-				li.className = `course-sidebar-link course-sidebar-link--${link.type}`;
-				const a = document.createElement("a");
-				a.href = new URL(link.file, manifestUrl).toString();
-				a.textContent = link.title;
-				if (resolvePath(link.file) === cur) {
-					a.setAttribute("data-active", "");
-					a.setAttribute("aria-current", "page");
-					topicHasActive = true;
-				}
-				li.appendChild(a);
-				linksUl.appendChild(li);
-			}
-
-			if (topicHasActive) topicLi.setAttribute("data-active-topic", "");
-			topicLi.appendChild(linksUl);
-			list.appendChild(topicLi);
-		}
-
-		nav.appendChild(list);
-		host.appendChild(nav);
+		renderSidebar(host, {
+			ariaLabel: "Course outline",
+			homeUrl: courseHomeUrl,
+			homeLabel: "COBOL Course",
+			topics: manifest.topics,
+			hrefFor: (link) => new URL(link.file, manifestUrl).toString(),
+			isActive: (link) => resolvePath(link.file) === cur,
+			linkClass: (link) => `course-sidebar-link course-sidebar-link--${link.type}`,
+		});
 	}
 
 	class CourseSidebar extends HTMLElement {
