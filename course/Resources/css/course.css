@@ -349,86 +349,65 @@ ul.toc a {
    background-color, which wins over the deprecated HTML attribute. Lets the
    theme tokens drive colors on pages that haven't been migrated to component
    classes. */
-table[bgcolor="#993300"],
-table[bgcolor="#990000"],
-tr[bgcolor="#993300"],
-tr[bgcolor="#990000"],
-td[bgcolor="#993300"],
-td[bgcolor="#990000"] {
+table[bgcolor="#993300" i],
+table[bgcolor="#990000" i],
+tr[bgcolor="#993300" i],
+tr[bgcolor="#990000" i],
+td[bgcolor="#993300" i],
+td[bgcolor="#990000" i] {
 	background-color: var(--color-header-bg);
 }
 
-table[bgcolor="#FFFFCC"],
-table[bgcolor="#ffffcc"],
-tr[bgcolor="#FFFFCC"],
-tr[bgcolor="#ffffcc"],
-td[bgcolor="#FFFFCC"],
-td[bgcolor="#ffffcc"],
-th[bgcolor="#FFFFCC"],
-th[bgcolor="#ffffcc"] {
+table[bgcolor="#FFFFCC" i],
+tr[bgcolor="#FFFFCC" i],
+td[bgcolor="#FFFFCC" i],
+th[bgcolor="#FFFFCC" i] {
 	background-color: var(--color-panel-bg);
 }
 
-table[bgcolor="#FFFFFF"],
-table[bgcolor="#ffffff"],
-tr[bgcolor="#FFFFFF"],
-tr[bgcolor="#ffffff"],
-td[bgcolor="#FFFFFF"],
-td[bgcolor="#ffffff"] {
+table[bgcolor="#FFFFFF" i],
+tr[bgcolor="#FFFFFF" i],
+td[bgcolor="#FFFFFF" i] {
 	background-color: var(--color-bg);
 }
 
-table[bgcolor="#E1FFE1"],
-table[bgcolor="#e1ffe1"],
-table[bgcolor="#D2FFD2"],
-table[bgcolor="#d2ffd2"],
-table[bgcolor="#DDFFDD"],
-table[bgcolor="#ddffdd"],
-tr[bgcolor="#E1FFE1"],
-tr[bgcolor="#e1ffe1"],
-tr[bgcolor="#D2FFD2"],
-tr[bgcolor="#d2ffd2"],
-tr[bgcolor="#DDFFDD"],
-tr[bgcolor="#ddffdd"],
-td[bgcolor="#E1FFE1"],
-td[bgcolor="#e1ffe1"],
-td[bgcolor="#D2FFD2"],
-td[bgcolor="#d2ffd2"],
-td[bgcolor="#DDFFDD"],
-td[bgcolor="#ddffdd"] {
+table[bgcolor="#E1FFE1" i],
+table[bgcolor="#D2FFD2" i],
+table[bgcolor="#DDFFDD" i],
+tr[bgcolor="#E1FFE1" i],
+tr[bgcolor="#D2FFD2" i],
+tr[bgcolor="#DDFFDD" i],
+td[bgcolor="#E1FFE1" i],
+td[bgcolor="#D2FFD2" i],
+td[bgcolor="#DDFFDD" i] {
 	background-color: var(--color-code-bg);
 }
 
-table[bgcolor="#DDFFFF"],
-table[bgcolor="#ddffff"],
-tr[bgcolor="#DDFFFF"],
-tr[bgcolor="#ddffff"],
-td[bgcolor="#DDFFFF"],
-td[bgcolor="#ddffff"] {
+table[bgcolor="#DDFFFF" i],
+table[bgcolor="#CCFFFF" i],
+tr[bgcolor="#DDFFFF" i],
+tr[bgcolor="#CCFFFF" i],
+td[bgcolor="#DDFFFF" i],
+td[bgcolor="#CCFFFF" i] {
 	background-color: var(--color-results-bg);
 }
 
-table[bgcolor="#E8E8E8"],
-table[bgcolor="#e8e8e8"],
-tr[bgcolor="#E8E8E8"],
-tr[bgcolor="#e8e8e8"],
-td[bgcolor="#E8E8E8"],
-td[bgcolor="#e8e8e8"] {
+table[bgcolor="#E8E8E8" i],
+tr[bgcolor="#E8E8E8" i],
+td[bgcolor="#E8E8E8" i] {
 	background-color: var(--color-cell-label-bg);
 }
 
-td[bgcolor="#993300"] h2,
-td[bgcolor="#990000"] h2,
-tr[bgcolor="#993300"] h2,
-tr[bgcolor="#990000"] h2 {
+td[bgcolor="#993300" i] h2,
+td[bgcolor="#990000" i] h2,
+tr[bgcolor="#993300" i] h2,
+tr[bgcolor="#990000" i] h2 {
 	color: var(--color-header-text);
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-td[bgcolor="#FFFFCC"] h3,
-td[bgcolor="#FFFFCC"] h4,
-td[bgcolor="#ffffcc"] h3,
-td[bgcolor="#ffffcc"] h4 {
+td[bgcolor="#FFFFCC" i] h3,
+td[bgcolor="#FFFFCC" i] h4 {
 	color: var(--color-panel-text);
 	font-family: Arial, Helvetica, sans-serif;
 }
@@ -523,10 +502,7 @@ td[bgcolor="#ffffcc"] h4 {
    value, but the actual `color` declaration sits in the element's `style`
    attribute, whose specificity (1,0,0,0) outranks any author selector
    without `!important`. */
-[style*="color:#cccccc"],
-[style*="color: #cccccc"],
-[style*="color:#CCCCCC"],
-[style*="color: #CCCCCC"] {
+[style*="color: #CCCCCC" i] {
 	color: var(--color-text-muted) !important;
 }
 
@@ -540,10 +516,8 @@ td[bgcolor="#ffffcc"] h4 {
    maps to #ff8a8a for legibility on dark panel backgrounds. `!important` is
    required for the same reason as the #cccccc rule above — we're overriding
    an inline `style="color:..."` declaration. */
-[style*="color:#ff0000"],
-[style*="color: #ff0000"],
-[style*="color:#FF0000"],
-[style*="color: #FF0000"] {
+[style*="color: #FF0000" i],
+[style*="color: #E32D00" i] {
 	color: var(--color-danger) !important;
 }
 
@@ -672,66 +646,36 @@ body .token.function {
 	/* Override inline `style="color: #..."` spans baked into legacy code
 	   samples. These attribute selectors target the raw inline value, so
 	   `!important` is required to beat the inline declaration. */
-	:root:not([data-theme="light"]) [style*="color:#0000ff"],
-	:root:not([data-theme="light"]) [style*="color: #0000ff"],
-	:root:not([data-theme="light"]) [style*="color:#0000FF"],
-	:root:not([data-theme="light"]) [style*="color: #0000FF"] {
+	:root:not([data-theme="light"]) [style*="color: #0000FF" i] {
 		color: var(--color-link) !important;
 	}
 
-	:root:not([data-theme="light"]) [style*="color:#993300"],
-	:root:not([data-theme="light"]) [style*="color: #993300"] {
-		color: var(--color-inline-warm) !important;
-	}
-
-	:root:not([data-theme="light"]) [style*="color:#000099"],
-	:root:not([data-theme="light"]) [style*="color: #000099"] {
-		color: var(--color-emphasis) !important;
-	}
-
-	:root:not([data-theme="light"]) [style*="color:#800000"],
-	:root:not([data-theme="light"]) [style*="color: #800000"] {
-		color: var(--color-panel-text) !important;
-	}
-
-	:root:not([data-theme="light"]) [style*="color:#ff0000"],
-	:root:not([data-theme="light"]) [style*="color: #ff0000"],
-	:root:not([data-theme="light"]) [style*="color:#FF0000"],
-	:root:not([data-theme="light"]) [style*="color: #FF0000"] {
+	:root:not([data-theme="light"]) [style*="color: #FF0000" i],
+	:root:not([data-theme="light"]) [style*="color: #E32D00" i] {
 		color: var(--color-danger) !important;
 	}
 
-	:root:not([data-theme="light"]) [style*="color:#006600"],
-	:root:not([data-theme="light"]) [style*="color: #006600"] {
+	:root:not([data-theme="light"]) [style*="color: #006600" i] {
 		color: var(--color-inline-green) !important;
 	}
 
-	:root:not([data-theme="light"]) [style*="color:#cccccc"],
-	:root:not([data-theme="light"]) [style*="color: #cccccc"],
-	:root:not([data-theme="light"]) [style*="color:#CCCCCC"],
-	:root:not([data-theme="light"]) [style*="color: #CCCCCC"] {
+	:root:not([data-theme="light"]) [style*="color: #CCCCCC" i] {
 		color: var(--color-text-muted) !important;
 	}
 
 	/* Inline background-color: #ffffff stays white in dark mode, leaving light
 	   inherited text on a white canvas — very low contrast. Map to the dark
 	   page background so normal dark-mode text colours apply. */
-	:root:not([data-theme="light"]) [style*="background-color: #ffffff"],
-	:root:not([data-theme="light"]) [style*="background-color:#ffffff"],
-	:root:not([data-theme="light"]) [style*="background-color: #FFFFFF"],
-	:root:not([data-theme="light"]) [style*="background-color:#FFFFFF"] {
+	:root:not([data-theme="light"]) [style*="background-color: #FFFFFF" i] {
 		background-color: var(--color-bg) !important;
 	}
 
 	/* #CCCCCC has no matching light-mode token (only used as decorative
 	   spacer cells), so it's remapped only in dark mode. Uses the same
 	   --color-cell-label-bg as #E8E8E8 since both are gray. */
-	:root:not([data-theme="light"]) table[bgcolor="#CCCCCC"],
-	:root:not([data-theme="light"]) table[bgcolor="#cccccc"],
-	:root:not([data-theme="light"]) tr[bgcolor="#CCCCCC"],
-	:root:not([data-theme="light"]) tr[bgcolor="#cccccc"],
-	:root:not([data-theme="light"]) td[bgcolor="#CCCCCC"],
-	:root:not([data-theme="light"]) td[bgcolor="#cccccc"] {
+	:root:not([data-theme="light"]) table[bgcolor="#CCCCCC" i],
+	:root:not([data-theme="light"]) tr[bgcolor="#CCCCCC" i],
+	:root:not([data-theme="light"]) td[bgcolor="#CCCCCC" i] {
 		background-color: var(--color-cell-label-bg);
 	}
 }
@@ -806,60 +750,30 @@ body .token.function {
 	--img-filter: invert(0.92) hue-rotate(180deg);
 }
 
-:root[data-theme="dark"] [style*="color:#0000ff"],
-:root[data-theme="dark"] [style*="color: #0000ff"],
-:root[data-theme="dark"] [style*="color:#0000FF"],
-:root[data-theme="dark"] [style*="color: #0000FF"] {
+:root[data-theme="dark"] [style*="color: #0000FF" i] {
 	color: var(--color-link) !important;
 }
 
-:root[data-theme="dark"] [style*="color:#993300"],
-:root[data-theme="dark"] [style*="color: #993300"] {
-	color: var(--color-inline-warm) !important;
-}
-
-:root[data-theme="dark"] [style*="color:#000099"],
-:root[data-theme="dark"] [style*="color: #000099"] {
-	color: var(--color-emphasis) !important;
-}
-
-:root[data-theme="dark"] [style*="color:#800000"],
-:root[data-theme="dark"] [style*="color: #800000"] {
-	color: var(--color-panel-text) !important;
-}
-
-:root[data-theme="dark"] [style*="color:#ff0000"],
-:root[data-theme="dark"] [style*="color: #ff0000"],
-:root[data-theme="dark"] [style*="color:#FF0000"],
-:root[data-theme="dark"] [style*="color: #FF0000"] {
+:root[data-theme="dark"] [style*="color: #FF0000" i],
+:root[data-theme="dark"] [style*="color: #E32D00" i] {
 	color: var(--color-danger) !important;
 }
 
-:root[data-theme="dark"] [style*="color:#006600"],
-:root[data-theme="dark"] [style*="color: #006600"] {
+:root[data-theme="dark"] [style*="color: #006600" i] {
 	color: var(--color-inline-green) !important;
 }
 
-:root[data-theme="dark"] [style*="color:#cccccc"],
-:root[data-theme="dark"] [style*="color: #cccccc"],
-:root[data-theme="dark"] [style*="color:#CCCCCC"],
-:root[data-theme="dark"] [style*="color: #CCCCCC"] {
+:root[data-theme="dark"] [style*="color: #CCCCCC" i] {
 	color: var(--color-text-muted) !important;
 }
 
-:root[data-theme="dark"] [style*="background-color: #ffffff"],
-:root[data-theme="dark"] [style*="background-color:#ffffff"],
-:root[data-theme="dark"] [style*="background-color: #FFFFFF"],
-:root[data-theme="dark"] [style*="background-color:#FFFFFF"] {
+:root[data-theme="dark"] [style*="background-color: #FFFFFF" i] {
 	background-color: var(--color-bg) !important;
 }
 
-:root[data-theme="dark"] table[bgcolor="#CCCCCC"],
-:root[data-theme="dark"] table[bgcolor="#cccccc"],
-:root[data-theme="dark"] tr[bgcolor="#CCCCCC"],
-:root[data-theme="dark"] tr[bgcolor="#cccccc"],
-:root[data-theme="dark"] td[bgcolor="#CCCCCC"],
-:root[data-theme="dark"] td[bgcolor="#cccccc"] {
+:root[data-theme="dark"] table[bgcolor="#CCCCCC" i],
+:root[data-theme="dark"] tr[bgcolor="#CCCCCC" i],
+:root[data-theme="dark"] td[bgcolor="#CCCCCC" i] {
 	background-color: var(--color-cell-label-bg);
 }
 

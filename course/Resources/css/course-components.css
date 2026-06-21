@@ -2369,26 +2369,29 @@ exercises-sidebar {
 	}
 }
 
-/* Fixed back-link pill on iframe-only viewer pages (lectures and PPZ slide decks) */
-.viewer-back-link {
+/* Fixed back-link pill on iframe-only viewer pages (lectures and PPZ slide decks).
+   Colors route through the theme tokens (not hardcoded #fff/#333) so the pill's
+   background and text flip together under BOTH theming mechanisms — the
+   prefers-color-scheme media query and the [data-theme] attribute. The
+   :link/:visited pseudo-classes raise specificity to (0,2,0), beating the global
+   `a:link { color: var(--color-link) }` rule (0,1,1). Without them the text
+   inherits --color-link, which becomes a light blue in dark mode and fails
+   contrast (1.8:1) against the pill — the original `color: #333` never applied. */
+.viewer-back-link,
+.viewer-back-link:link,
+.viewer-back-link:visited {
 	position: fixed;
 	top: 8px;
 	left: 8px;
 	z-index: 9999;
-	background: #fff;
+	background: var(--color-bg);
 	padding: 4px 8px;
-	border: 1px solid #999;
+	border: 1px solid var(--color-border-mute);
 	border-radius: 3px;
 	font-family: sans-serif;
 	font-size: 0.85rem;
 	text-decoration: none;
-	color: #333;
-}
-
-[data-theme="dark"] .viewer-back-link {
-	background: #1a1a1a;
-	border-color: #555;
-	color: #e0e0e0;
+	color: var(--color-text);
 }
 
 /* Sample data viewer (examples/*.html) */
