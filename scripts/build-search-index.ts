@@ -16,6 +16,7 @@ import fs from "fs";
 import path from "path";
 
 import { collectHtmlFiles } from "./lib/html-files.js";
+import { collapseWhitespace, decodeEntities } from "./lib/html-text.js";
 
 const REPO_ROOT = path.resolve(__dirname, "..");
 const OUTPUT_PATH = path.join(REPO_ROOT, "search-index.json");
@@ -28,20 +29,6 @@ interface SearchEntry {
 	t: string;
 	d: string;
 	s: string;
-}
-
-function decodeEntities(s: string): string {
-	return s
-		.replace(/&lt;/g, "<")
-		.replace(/&gt;/g, ">")
-		.replace(/&quot;/g, '"')
-		.replace(/&#39;/g, "'")
-		.replace(/&nbsp;/g, " ")
-		.replace(/&amp;/g, "&");
-}
-
-function collapseWhitespace(s: string): string {
-	return s.replace(/\s+/g, " ").trim();
 }
 
 function extractTitle(html: string): string {

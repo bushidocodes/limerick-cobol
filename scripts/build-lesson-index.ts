@@ -12,6 +12,7 @@
 import fs from "fs";
 import path from "path";
 
+import { escapeHtml } from "./lib/html-text.js";
 import { readJson } from "./lib/json.js";
 
 const REPO_ROOT = path.resolve(__dirname, "..");
@@ -51,17 +52,13 @@ function slugify(s: string): string {
 		.replace(/^-+|-+$/g, "");
 }
 
-function escapeHTML(s: string): string {
-	return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-}
-
 function buildTopicsHTML(topics: Topic[]): string {
 	return topics
 		.map((topic, i) => {
 			const isLast = i === topics.length - 1;
 			const slug = slugify(topic.label);
 			const description = topic.description
-				? `<p class="topic-description">${escapeHTML(topic.description)}</p>`
+				? `<p class="topic-description">${escapeHtml(topic.description)}</p>`
 				: "";
 			const links = topic.links
 				.map(
@@ -70,7 +67,7 @@ function buildTopicsHTML(topics: Topic[]): string {
 				)
 				.join("");
 			const divider = isLast ? "" : `<div class="topic-divider"></div>`;
-			return `<h2 class="topic-label" id="${slug}">${escapeHTML(topic.label)}</h2><div class="topic-links">${description}${links}</div>${divider}`;
+			return `<h2 class="topic-label" id="${slug}">${escapeHtml(topic.label)}</h2><div class="topic-links">${description}${links}</div>${divider}`;
 		})
 		.join("");
 }

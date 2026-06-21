@@ -23,6 +23,8 @@
 import fs from "fs";
 import path from "path";
 
+import { readJson } from "./lib/json.js";
+
 const REPO_ROOT = path.resolve(__dirname, "..");
 const CROSS_LINKS_PATH = path.join(__dirname, "cross-links.json");
 const MAX_ITEMS_PER_GROUP = 4;
@@ -48,7 +50,7 @@ interface PageLinks {
 	exercises: CrossLink[];
 }
 
-const data: CrossLinksData = JSON.parse(fs.readFileSync(CROSS_LINKS_PATH, "utf8"));
+const data = readJson<CrossLinksData>(CROSS_LINKS_PATH);
 
 function resolvePageLinks(filePath: string): PageLinks {
 	const familyNames = data.files[filePath] || [];

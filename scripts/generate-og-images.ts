@@ -13,6 +13,8 @@ import { Resvg } from "@resvg/resvg-js";
 import fs from "fs";
 import path from "path";
 
+import { escapeHtml } from "./lib/html-text.js";
+
 const OUT_DIR = path.resolve(__dirname, "../pics/og");
 const WIDTH = 1200;
 const HEIGHT = 630;
@@ -24,10 +26,6 @@ const SECTIONS = [
 	{ id: "exercises", label: "Exercises", subtitle: "Hands-on COBOL programming practice" },
 	{ id: "lectures", label: "Lectures", subtitle: "COBOL programming slide presentations" },
 ];
-
-function esc(str: string): string {
-	return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-}
 
 function buildSvg(label: string, subtitle: string): string {
 	return `<?xml version="1.0" encoding="UTF-8"?>
@@ -57,10 +55,10 @@ function buildSvg(label: string, subtitle: string): string {
   <rect x="80" y="195" width="1040" height="2" fill="#1976D2" opacity="0.5"/>
 
   <!-- Section heading -->
-  <text x="80" y="355" font-family="sans-serif" font-size="90" fill="#FFFFFF" font-weight="900">${esc(label)}</text>
+  <text x="80" y="355" font-family="sans-serif" font-size="90" fill="#FFFFFF" font-weight="900">${escapeHtml(label)}</text>
 
   <!-- Subtitle -->
-  <text x="80" y="435" font-family="sans-serif" font-size="34" fill="#90CAF9">${esc(subtitle)}</text>
+  <text x="80" y="435" font-family="sans-serif" font-size="34" fill="#90CAF9">${escapeHtml(subtitle)}</text>
 
   <!-- Bottom accent bar -->
   <rect x="80" y="564" width="140" height="6" fill="#42A5F5" rx="3"/>

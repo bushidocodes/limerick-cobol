@@ -18,6 +18,9 @@
 import fs from "fs";
 import path from "path";
 
+import { escapeAttr, escapeHtml } from "./lib/html-text.js";
+import { readJson } from "./lib/json.js";
+
 const ROOT = path.resolve(__dirname, "..");
 const EXAMPLES_DIR = path.join(ROOT, "examples");
 const BASE_URL = "https://bushidocodes.github.io/limerick-cobol/";
@@ -38,7 +41,7 @@ interface CrossLinksData {
 	pairs?: Record<string, CrossLink>;
 }
 
-const CROSS_LINKS: CrossLinksData = JSON.parse(fs.readFileSync(path.join(__dirname, "cross-links.json"), "utf8"));
+const CROSS_LINKS = readJson<CrossLinksData>(path.join(__dirname, "cross-links.json"));
 const MAX_RELATED_PER_GROUP = 4;
 
 // Maps the first path segment of each example to its sidebar topic. The order
@@ -427,14 +430,6 @@ const MANIFEST: ManifestEntry[] = [
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
-
-function escapeHtml(str: string): string {
-	return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-}
-
-function escapeAttr(str: string): string {
-	return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-}
 
 /** Truncate description to ≤155 chars, breaking at a word boundary. */
 function truncate(text: string, max = 155): string {
