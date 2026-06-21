@@ -534,7 +534,7 @@ function relatedContentHtml(relFile: string): string {
 	const fromDir = path.dirname(path.join(ROOT, key));
 	const toRelHref = (repoRelTarget: string): string => {
 		const abs = path.join(ROOT, repoRelTarget);
-		return path.relative(fromDir, abs).split(path.sep).join("/");
+		return path.relative(fromDir, abs).replaceAll(path.sep, "/");
 	};
 
 	const formatGroup = (map: Map<string, string>): string => {

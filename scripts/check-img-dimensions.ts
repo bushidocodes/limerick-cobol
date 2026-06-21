@@ -21,8 +21,7 @@ for (const dir of SCAN_DIRS) {
 			const missingHeight = !/\bheight\s*=/i.test(tag);
 			if (missingWidth || missingHeight) {
 				const missing = [missingWidth && "width", missingHeight && "height"].filter(Boolean).join(", ");
-				const srcMatch = tag.match(/\bsrc\s*=\s*["']([^"']+)["']/i);
-				const src = srcMatch ? srcMatch[1] : "(unknown src)";
+				const src = tag.match(/\bsrc\s*=\s*["']([^"']+)["']/i)?.[1] ?? "(unknown src)";
 				console.error(`${path.relative(ROOT, file)}: <img src="${src}"> missing ${missing}`);
 				violations++;
 			}

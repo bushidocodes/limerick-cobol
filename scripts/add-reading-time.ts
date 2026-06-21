@@ -26,8 +26,7 @@ const LESSON_FILES = tutorialSequence(readJson<LessonManifest>(MANIFEST_PATH)).m
 
 /** Extract visible text from the <body> element, stripping scripts and tags. */
 function extractBodyText(html: string): string {
-	const bodyMatch = html.match(/<body[^>]*>([\s\S]*)<\/body>/i);
-	const body = bodyMatch ? bodyMatch[1] : html;
+	const body = html.match(/<body[^>]*>([\s\S]*)<\/body>/i)?.[1] ?? html;
 	return body
 		.replace(/<script[\s\S]*?<\/script(?:\s[^>]*)?>/gi, " ")
 		.replace(/<style[\s\S]*?<\/style(?:\s[^>]*)?>/gi, " ")

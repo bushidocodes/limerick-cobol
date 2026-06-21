@@ -39,14 +39,12 @@ const LESSON_SEQUENCE = tutorialSequence(readJson<LessonManifest>(MANIFEST_PATH)
 
 /** Extract <meta name="description" content="..."> value from raw HTML. */
 function extractDescription(html: string): string {
-	const m = html.match(/<meta\s+name="description"\s+content="([^"]+)"/);
-	return m ? m[1] : "";
+	return html.match(/<meta\s+name="description"\s+content="([^"]+)"/)?.[1] ?? "";
 }
 
 /** Extract <link rel="canonical" href="..."> value from raw HTML. */
 function extractCanonical(html: string): string {
-	const m = html.match(/<link\s+rel="canonical"\s+href="([^"]+)"/);
-	return m ? m[1] : "";
+	return html.match(/<link\s+rel="canonical"\s+href="([^"]+)"/)?.[1] ?? "";
 }
 
 /**
