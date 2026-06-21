@@ -20,18 +20,11 @@
 // course/lesson-manifest.json, fetched after the initial render so the bar
 // shows up immediately and the leaf upgrades when the manifest resolves.
 
-(function () {
-	function computeBaseUrl() {
-		const scripts = document.querySelectorAll("script[src]");
-		for (const s of scripts) {
-			if (/components\/breadcrumbs\.js(\?|$)/.test(s.src)) {
-				return s.src.replace(/components\/breadcrumbs\.js(\?.*)?$/, "");
-			}
-		}
-		return "";
-	}
+import { siteBaseUrl } from "./util/base.js";
+import { onReady } from "./util/dom.js";
 
-	const baseUrl = computeBaseUrl();
+(function () {
+	const baseUrl = siteBaseUrl(import.meta.url);
 	const homeUrl = baseUrl + "index.html";
 	const sitePath = new URL(baseUrl || "./", location.href).pathname;
 
@@ -308,9 +301,5 @@
 		main.insertBefore(el, main.firstChild);
 	}
 
-	if (document.readyState === "loading") {
-		document.addEventListener("DOMContentLoaded", autoInject);
-	} else {
-		autoInject();
-	}
+	onReady(autoInject);
 })();

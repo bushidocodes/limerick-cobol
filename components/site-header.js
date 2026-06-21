@@ -5,15 +5,11 @@
 //
 // Loads theme-toggle.js and site-search.js on demand if they haven't already
 // been included by the host page, so callers only need a single <script> tag.
+import { siteBaseUrl } from "./util/base.js";
+import { onReady } from "./util/dom.js";
+
 (function () {
-	const scripts = document.querySelectorAll("script[src]");
-	let baseUrl = "";
-	for (const s of scripts) {
-		if (/components\/site-header\.js(\?|$)/.test(s.src)) {
-			baseUrl = s.src.replace(/components\/site-header\.js(\?.*)?$/, "");
-			break;
-		}
-	}
+	const baseUrl = siteBaseUrl(import.meta.url);
 
 	const componentsBase = baseUrl + "components/";
 	const homeUrl = baseUrl + "index.html";
@@ -32,21 +28,24 @@
 
 	const MOBILE_NAV_ID = "site-nav-mobile";
 
-	function ensureScript(filename) {
+	function ensureScript(filename, { module = false } = {}) {
 		if (document.querySelector(`script[src*="components/${filename}"]`)) return;
 		const s = document.createElement("script");
 		s.src = componentsBase + filename;
-		s.defer = true;
+		if (module) s.type = "module";
+		else s.defer = true;
 		document.head.appendChild(s);
 	}
 
 	// theme-toggle is no longer in the site-header — it lives in the
 	// secondary breadcrumb bar (mounted by breadcrumbs.js). Still loaded
 	// here so it's available across every page that ships site-header.js.
+	// breadcrumbs.js and course-sidebar.js are ES modules and must be injected
+	// with type="module"; theme-toggle.js and site-search.js are classic scripts.
 	ensureScript("theme-toggle.js");
 	ensureScript("site-search.js");
-	ensureScript("breadcrumbs.js");
-	ensureScript("course-sidebar.js");
+	ensureScript("breadcrumbs.js", { module: true });
+	ensureScript("course-sidebar.js", { module: true });
 
 	function buildNavUl() {
 		const navPath = location.pathname;
@@ -187,9 +186,5 @@
 		}
 	}
 
-	if (document.readyState === "loading") {
-		document.addEventListener("DOMContentLoaded", inject);
-	} else {
-		inject();
-	}
+	onReady(inject);
 })();

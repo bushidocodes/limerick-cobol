@@ -14,18 +14,11 @@
 // Layout: shares the .page-wrapper :has(...) grid rules with course-sidebar
 // in course-components.css. Hidden below ~1100px.
 
-(function () {
-	function computeBaseUrl() {
-		const scripts = document.querySelectorAll("script[src]");
-		for (const s of scripts) {
-			if (/components\/exercises-sidebar\.js(\?|$)/.test(s.src)) {
-				return s.src.replace(/components\/exercises-sidebar\.js(\?.*)?$/, "");
-			}
-		}
-		return "";
-	}
+import { siteBaseUrl } from "./util/base.js";
+import { onReady } from "./util/dom.js";
 
-	const baseUrl = computeBaseUrl();
+(function () {
+	const baseUrl = siteBaseUrl(import.meta.url);
 	const exercisesRootUrl = baseUrl + "exercises/";
 	const exercisesHomeUrl = exercisesRootUrl + "index.html";
 
@@ -144,9 +137,5 @@
 		pageWrapper.insertBefore(el, pageWrapper.firstChild);
 	}
 
-	if (document.readyState === "loading") {
-		document.addEventListener("DOMContentLoaded", autoInject);
-	} else {
-		autoInject();
-	}
+	onReady(autoInject);
 })();

@@ -632,8 +632,8 @@ function buildPage(entry: ManifestEntry): string {
 \t\t<script src="${pfx}components/page-hero.js" defer></script>
 \t\t<script src="${pfx}components/related-content.js" defer></script>
 \t\t<script src="${pfx}components/copy-button.js" defer></script>
-\t\t<script src="${pfx}components/site-header.js" defer></script>
-\t\t<script src="${pfx}components/examples-sidebar.js" defer></script>
+\t\t<script src="${pfx}components/site-header.js" type="module"></script>
+\t\t<script src="${pfx}components/examples-sidebar.js" type="module"></script>
 \t\t<script src="${pfx}components/copyright-notice.js" defer></script>
 \t\t<script src="${pfx}components/last-updated.js" defer></script>
 \t\t<script src="${pfx}components/edit-on-github.js" defer></script>
