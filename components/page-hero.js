@@ -24,8 +24,6 @@ class PageHero extends HTMLElement {
 			this.querySelector(".page-hero-reading-time").textContent = `~${readingTime} read`;
 		}
 	}
-
-	disconnectedCallback() {}
 }
 
 customElements.define("page-hero", PageHero);
