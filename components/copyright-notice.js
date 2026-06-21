@@ -15,6 +15,12 @@ const COMPONENTS_DIR = (() => {
 	return me?.src ? new URL("./", me.src).href : null;
 })();
 
+// Absolute URL so the link resolves from any page depth (course/,
+// exercises/Exm-…/, etc.) and on both deployment surfaces (GitHub Pages and
+// local dev). The course material was relicensed under MIT after Michael
+// Coughlan relinquished copyright — see LICENSE and README.md.
+const LICENSE_URL = "https://github.com/bushidocodes/limerick-cobol/blob/master/LICENSE";
+
 function ensureEditOnGithubLoaded() {
 	if (customElements.get("edit-on-github")) return;
 	if (!COMPONENTS_DIR) return;
@@ -50,30 +56,20 @@ class CopyrightNotice extends HTMLElement {
 	disconnectedCallback() {}
 
 	_getContent(type) {
-		switch (type) {
-			case "project":
-				return `
-					<h3>Copyright Notice</h3>
-					<p class="left">This COBOL project specification is the copyright property of Michael Coughlan. You have permission to use this material for your own personal use but you may not reproduce it in any published work without written permission from the author.</p>
-				`;
-			case "examples":
-				return `
-					<h3>Copyright Notice</h3>
-					<p class="left">These programs are the copyright property of Michael Coughlan. You have permission to use these programs for your own personal use but you may not reproduce them in any published work without written permission from the author.</p>
-				`;
-			case "exercises":
-				return `
-					<h3>Copyright Notice</h3>
-					<p class="left">These COBOL programming exercises, program specifications, and sample programs are the copyright property of Michael Coughlan. You have permission to use these materials for your own personal use but you may not reproduce them in any published work without written permission from the author.</p>
-				`;
-			default:
-				return `
-					<h3>Copyright Notice</h3>
-					<p class="center">These COBOL course materials are the copyright property of Michael Coughlan.</p>
-					<p class="left">All rights reserved. No part of these course materials may be reproduced in any form or by any means - graphic, electronic, mechanical, photocopying, printing, recording, taping or stored in an information storage and retrieval system - without the written permission of the author.</p>
-					<p class="center">(c) Michael Coughlan</p>
-				`;
-		}
+		// `material` names the relevant artifact per page type; the licensing and
+		// attribution language below is identical across all of them.
+		const material = {
+			project: "This COBOL project specification was",
+			examples: "These programs were",
+			exercises: "These COBOL programming exercises, program specifications, and sample programs were",
+			course: "These COBOL course materials were",
+		};
+		const subject = material[type] || material.course;
+		return `
+			<h3>License</h3>
+			<p class="left">${subject} originally created by Michael Coughlan at the University of Limerick. Michael Coughlan has relinquished copyright and authorized their release under an open-source license.</p>
+			<p class="left">This site and its course materials are licensed under the <a href="${LICENSE_URL}" rel="noopener" target="_blank">MIT License</a>. You are free to use, copy, modify, and share them — including commercially — provided the copyright notice and attribution to the original author are preserved.</p>
+		`;
 	}
 }
 
