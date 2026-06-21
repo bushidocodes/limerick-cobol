@@ -27,12 +27,12 @@ npm run serve   # http://localhost:8000
 
 CI runs validation and link checks on every PR (see [.github/workflows/checks.yml](.github/workflows/checks.yml)):
 
-| Script             | What it does                                             | In CI?        |
-| ------------------ | -------------------------------------------------------- | ------------- |
-| `npm run validate` | HTML parse / structure check via `html-validate`         | yes           |
-| `npm run links`    | Internal link check via `linkinator` (externals skipped) | yes           |
+| Script             | What it does                                             | In CI?         |
+| ------------------ | -------------------------------------------------------- | -------------- |
+| `npm run validate` | HTML parse / structure check via `html-validate`         | yes            |
+| `npm run links`    | Internal link check via `linkinator` (externals skipped) | yes            |
 | `npm run a11y`     | WCAG 2.1 AA scan via `pa11y-ci` (all pages)              | local + weekly |
-| `npm run check`    | Runs all checks locally                                  | —             |
+| `npm run check`    | Runs all checks locally                                  | —              |
 
 The a11y scan is slow, so it does **not** block PRs — run `npm run a11y` locally before pushing. A scheduled weekly job ([.github/workflows/a11y-full.yml](.github/workflows/a11y-full.yml)) runs the full scan as a non-blocking safety net.
 
