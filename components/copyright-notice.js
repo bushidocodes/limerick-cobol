@@ -39,10 +39,9 @@ function ensureEditOnGithubLoaded() {
 class CopyrightNotice extends HTMLElement {
 	connectedCallback() {
 		ensureEditOnGithubLoaded();
-		const type = this.getAttribute("type") || "course";
 		this.innerHTML = `
 			<hr>
-			${this._getContent(type)}
+			${this._getContent()}
 		`;
 		// Insert after <last-updated> sibling when present so the footer order is:
 		// copyright → last updated → help improve this page. Skip if the page
@@ -55,20 +54,10 @@ class CopyrightNotice extends HTMLElement {
 
 	disconnectedCallback() {}
 
-	_getContent(type) {
-		// `material` names the relevant artifact per page type; the licensing and
-		// attribution language below is identical across all of them.
-		const material = {
-			project: "This COBOL project specification was",
-			examples: "These programs were",
-			exercises: "These COBOL programming exercises, program specifications, and sample programs were",
-			course: "These COBOL course materials were",
-		};
-		const subject = material[type] || material.course;
+	_getContent() {
+		// Concise footer credit; full licensing/provenance lives in LICENSE and README.md.
 		return `
-			<h3>License</h3>
-			<p class="left">${subject} originally created by Michael Coughlan at the University of Limerick. Michael Coughlan has relinquished copyright and authorized their release under an open-source license.</p>
-			<p class="left">This site and its course materials are licensed under the <a href="${LICENSE_URL}" rel="noopener" target="_blank">MIT License</a>. You are free to use, copy, modify, and share them — including commercially — provided the copyright notice and attribution to the original author are preserved.</p>
+			<p class="left">Originally created by Michael Coughlan, University of Limerick. Licensed under the <a href="${LICENSE_URL}" rel="noopener" target="_blank">MIT License</a>.</p>
 		`;
 	}
 }
