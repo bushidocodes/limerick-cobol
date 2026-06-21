@@ -3,7 +3,7 @@
 // the rendered markup reuses .course-sidebar* class names so a single CSS
 // ruleset styles both rails.
 //
-// Data source: examples/example-manifest.json (emitted by scripts/build-examples.js
+// Data source: examples/example-manifest.json (emitted by scripts/build-examples.ts
 // alongside the HTML pages).
 //
 // Auto-injection: an IIFE at the bottom inserts <examples-sidebar> as the

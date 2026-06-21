@@ -195,7 +195,7 @@
 		host.appendChild(inner);
 	}
 
-	// Mirrors scripts/build-lesson-index.js so the topic anchor produced here
+	// Mirrors scripts/build-lesson-index.ts so the topic anchor produced here
 	// matches the #ids generated for course/index.html.
 	function slugify(s) {
 		return s

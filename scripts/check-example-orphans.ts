@@ -1,19 +1,16 @@
 #!/usr/bin/env node
 /**
- * check-example-orphans.js
+ * check-example-orphans.ts
  *
  * Fails CI if any .cbl file exists under examples/ without a matching entry
- * in the MANIFEST defined in build-examples.js.
+ * in the MANIFEST defined in build-examples.ts.
  *
  * Usage:  npm run check:example-orphans
  */
 
-"use strict";
-
-const fs = require("fs");
-const path = require("path");
-
-const { MANIFEST, EXAMPLES_DIR } = require("./build-examples.js");
+import fs from "fs";
+import path from "path";
+import { MANIFEST, EXAMPLES_DIR } from "./build-examples.js";
 
 // Build the set of manifest-referenced .cbl paths (relative to EXAMPLES_DIR,
 // forward slashes) so we can compare against on-disk files.
@@ -25,7 +22,7 @@ const manifestPaths = new Set(
 );
 
 // Walk examples/ and collect every .cbl file.
-function walkCbl(dir, results = []) {
+function walkCbl(dir: string, results: string[] = []): string[] {
 	for (const name of fs.readdirSync(dir)) {
 		const full = path.join(dir, name);
 		if (fs.statSync(full).isDirectory()) {
@@ -48,6 +45,6 @@ if (orphans.length === 0) {
 	for (const p of orphans) {
 		console.error(`  examples/${p}`);
 	}
-	console.error("\nAdd each file to the MANIFEST in scripts/build-examples.js or remove it.");
+	console.error("\nAdd each file to the MANIFEST in scripts/build-examples.ts or remove it.");
 	process.exit(1);
 }

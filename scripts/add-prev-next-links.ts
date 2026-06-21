@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * add-prev-next-links.js
+ * add-prev-next-links.ts
  *
  * For each lesson page in course/, injects <link rel="prev"> and
  * <link rel="next"> tags immediately after <link rel="canonical">.
@@ -11,19 +11,31 @@
  * Idempotent — re-running replaces any existing prev/next link tags.
  */
 
-"use strict";
-
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
 
 const REPO_ROOT = path.resolve(__dirname, "..");
 const COURSE_DIR = path.join(REPO_ROOT, "course");
 const MANIFEST_PATH = path.join(COURSE_DIR, "lesson-manifest.json");
 const BASE_URL = "https://bushidocodes.github.io/limerick-cobol/course/";
 
-const manifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, "utf8"));
-const _seen = new Set();
-const LESSON_SEQUENCE = [];
+interface TopicLink {
+	type: string;
+	file: string;
+	title: string;
+}
+
+interface LessonManifest {
+	topics: { links: TopicLink[] }[];
+}
+
+interface LessonRef {
+	file: string;
+}
+
+const manifest: LessonManifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, "utf8"));
+const _seen = new Set<string>();
+const LESSON_SEQUENCE: LessonRef[] = [];
 for (const topic of manifest.topics) {
 	for (const link of topic.links) {
 		if (link.type === "tutorial" && !_seen.has(link.file)) {
@@ -37,8 +49,8 @@ for (const topic of manifest.topics) {
  * Build the prev/next link tag block to inject.
  * Returns only the tags that apply (first lesson has no prev, last has no next).
  */
-function buildLinkBlock(prev, next) {
-	const lines = [];
+function buildLinkBlock(prev: LessonRef | null, next: LessonRef | null): string {
+	const lines: string[] = [];
 	if (prev) lines.push(`\t\t<link rel="prev" href="${BASE_URL}${prev.file}" />`);
 	if (next) lines.push(`\t\t<link rel="next" href="${BASE_URL}${next.file}" />`);
 	return lines.join("\n");
@@ -48,7 +60,7 @@ function buildLinkBlock(prev, next) {
  * Remove any existing prev/next link tags, then inject new ones immediately
  * after the <link rel="canonical"> tag.
  */
-function injectPrevNextLinks(html, prev, next) {
+function injectPrevNextLinks(html: string, prev: LessonRef | null, next: LessonRef | null): string {
 	// Strip existing prev/next tags (idempotency).
 	html = html.replace(/\t\t<link rel="(?:prev|next)"[^\n]+\n/g, "");
 
@@ -59,7 +71,7 @@ function injectPrevNextLinks(html, prev, next) {
 	return html.replace(/(\t\t<link rel="canonical"[^\n]+\n)/, `$1${block}\n`);
 }
 
-function main() {
+function main(): void {
 	for (let i = 0; i < LESSON_SEQUENCE.length; i++) {
 		const { file } = LESSON_SEQUENCE[i];
 		const filePath = path.join(COURSE_DIR, file);

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * generate-icons.js
+ * generate-icons.ts
  *
  * Produces apple-touch-icon.png (180×180) and Android Chrome variants
  * (192×192, 512×512) from the site's hex logo SVG.
@@ -12,11 +12,9 @@
  * Run: npm run build:icons
  */
 
-"use strict";
-
-const { Resvg } = require("@resvg/resvg-js");
-const fs = require("fs");
-const path = require("path");
+import { Resvg } from "@resvg/resvg-js";
+import fs from "fs";
+import path from "path";
 
 const ROOT = path.resolve(__dirname, "..");
 
@@ -26,7 +24,7 @@ const ICONS = [
 	{ name: "android-chrome-512x512.png", size: 512 },
 ];
 
-function buildIconSvg() {
+function buildIconSvg(): string {
 	return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <rect width="100" height="100" fill="#ffffff"/>
   <g transform="translate(0, 6.5)">
@@ -39,7 +37,7 @@ function buildIconSvg() {
 </svg>`;
 }
 
-function main() {
+function main(): void {
 	const svg = buildIconSvg();
 
 	for (const { name, size } of ICONS) {

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * build-examples.js
+ * build-examples.ts
  *
  * Generates each examples/<topic>/<NAME>.html from its sibling .cbl COBOL
  * source file. Re-run this script whenever a .cbl file is edited, then run
@@ -15,22 +15,36 @@
  * Usage:  npm run build:examples
  */
 
-"use strict";
-
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
 
 const ROOT = path.resolve(__dirname, "..");
 const EXAMPLES_DIR = path.join(ROOT, "examples");
 const BASE_URL = "https://bushidocodes.github.io/limerick-cobol/";
 const OG_IMAGE = "https://bushidocodes.github.io/limerick-cobol/pics/og/examples.png";
-const CROSS_LINKS = JSON.parse(fs.readFileSync(path.join(__dirname, "cross-links.json"), "utf8"));
+
+/** A pair of [relative href, link title] as stored in cross-links.json. */
+type CrossLink = [href: string, title: string];
+
+interface CrossLinkFamily {
+	lectures?: CrossLink[];
+	examples?: CrossLink[];
+	exercises?: CrossLink[];
+}
+
+interface CrossLinksData {
+	files: Record<string, string[]>;
+	families: Record<string, CrossLinkFamily>;
+	pairs?: Record<string, CrossLink>;
+}
+
+const CROSS_LINKS: CrossLinksData = JSON.parse(fs.readFileSync(path.join(__dirname, "cross-links.json"), "utf8"));
 const MAX_RELATED_PER_GROUP = 4;
 
 // Maps the first path segment of each example to its sidebar topic. The order
 // here also defines the topic order shown in <examples-sidebar>, so keep it
 // aligned with the section ordering on examples/index.html.
-const TOPIC_BY_DIR = {
+const TOPIC_BY_DIR: Record<string, string> = {
 	Accept: "Console I/O",
 	Conditn: "Selection and Iteration",
 	Perform: "Selection and Iteration",
@@ -66,7 +80,18 @@ const TOPIC_BY_DIR = {
 // sibling examples a page links to, edit cross-links.json, not this manifest.
 // ---------------------------------------------------------------------------
 
-const MANIFEST = [
+interface ManifestEntry {
+	file: string;
+	cbl: string;
+	title: string;
+	crumb: string;
+	desc: string;
+	runInCe?: boolean | string;
+	fixtures?: string[];
+	rpt?: string;
+}
+
+const MANIFEST: ManifestEntry[] = [
 	// ── Accept ──────────────────────────────────────────────────────────────
 	{
 		file: "Accept/HelloWorld.html",
@@ -403,16 +428,16 @@ const MANIFEST = [
 // Helpers
 // ---------------------------------------------------------------------------
 
-function escapeHtml(str) {
+function escapeHtml(str: string): string {
 	return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
-function escapeAttr(str) {
+function escapeAttr(str: string): string {
 	return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
 /** Truncate description to ≤155 chars, breaking at a word boundary. */
-function truncate(text, max = 155) {
+function truncate(text: string, max = 155): string {
 	if (text.length <= max) return text;
 	const cut = text.lastIndexOf(" ", max);
 	return (cut > 80 ? text.slice(0, cut) : text.slice(0, max)).trimEnd();
@@ -424,7 +449,7 @@ const MAX_FIXTURE_ROWS = 5;
  * Build collapsible <details> blocks for each fixture file listed in entry.fixtures.
  * Missing files are silently skipped so entries can be declared defensively.
  */
-function sampleDataHtml(entry) {
+function sampleDataHtml(entry: ManifestEntry): string {
 	if (!entry.fixtures || !entry.fixtures.length) return "";
 	const dir = path.join(EXAMPLES_DIR, path.dirname(entry.file));
 	let html = "";
@@ -453,7 +478,7 @@ function sampleDataHtml(entry) {
  * the fixed-width COBOL report renders cleanly in the browser.
  * Returns an empty string when entry.rpt is not set or the file is missing.
  */
-function sampleOutputHtml(entry) {
+function sampleOutputHtml(entry: ManifestEntry): string {
 	if (!entry.rpt) return "";
 	const dir = path.join(EXAMPLES_DIR, path.dirname(entry.file));
 	const rptPath = path.join(dir, entry.rpt);
@@ -476,7 +501,7 @@ function sampleOutputHtml(entry) {
  * e.g. "Accept/ACCEPT.html"        -> "../../"
  *      "SubProg/Multiply/Foo.html" -> "../../../"
  */
-function prefix(relFile) {
+function prefix(relFile: string): string {
 	const depth = relFile.split("/").length - 1;
 	return "../".repeat(depth + 1);
 }
@@ -486,16 +511,16 @@ function prefix(relFile) {
  * Returns an empty string if the file is not in the cross-links map or has no
  * cross-references.
  */
-function relatedContentHtml(relFile) {
+function relatedContentHtml(relFile: string): string {
 	const key = "examples/" + relFile;
 	const familyNames = CROSS_LINKS.files[key];
 	if (!familyNames || !familyNames.length) return "";
 
-	const lectureMap = new Map();
-	const exampleMap = new Map();
-	const exerciseMap = new Map();
+	const lectureMap = new Map<string, string>();
+	const exampleMap = new Map<string, string>();
+	const exerciseMap = new Map<string, string>();
 
-	const add = (map, items) => {
+	const add = (map: Map<string, string>, items?: CrossLink[]) => {
 		if (!items) return;
 		for (const [href, title] of items) {
 			if (href === key) continue;
@@ -512,13 +537,13 @@ function relatedContentHtml(relFile) {
 	}
 
 	const fromDir = path.dirname(path.join(ROOT, key));
-	const toRelHref = (repoRelTarget) => {
+	const toRelHref = (repoRelTarget: string): string => {
 		const abs = path.join(ROOT, repoRelTarget);
 		return path.relative(fromDir, abs).split(path.sep).join("/");
 	};
 
-	const formatGroup = (map) => {
-		const items = [];
+	const formatGroup = (map: Map<string, string>): string => {
+		const items: string[] = [];
 		for (const [href, title] of map) {
 			items.push(`${toRelHref(href)}|${title}`);
 			if (items.length >= MAX_RELATED_PER_GROUP) break;
@@ -526,7 +551,7 @@ function relatedContentHtml(relFile) {
 		return items.join(", ");
 	};
 
-	const attrs = [];
+	const attrs: string[] = [];
 	if (lectureMap.size) attrs.push(`lectures="${escapeAttr(formatGroup(lectureMap))}"`);
 	if (exampleMap.size) attrs.push(`examples="${escapeAttr(formatGroup(exampleMap))}"`);
 	if (exerciseMap.size) attrs.push(`exercises="${escapeAttr(formatGroup(exerciseMap))}"`);
@@ -539,7 +564,7 @@ function relatedContentHtml(relFile) {
 // Page builder
 // ---------------------------------------------------------------------------
 
-function buildPage(entry) {
+function buildPage(entry: ManifestEntry): string {
 	const pfx = prefix(entry.file);
 	const canonical = BASE_URL + "examples/" + entry.file;
 	const metaDesc = escapeAttr(truncate(entry.desc));
@@ -564,9 +589,9 @@ function buildPage(entry) {
 	// time anyone runs `npm run build:examples` (which CI runs on every PR).
 	// Edit the template in this file — or the .cbl source — instead.
 	return `<!doctype html>
-<!-- Generated by scripts/build-examples.js from the sibling .cbl source.
+<!-- Generated by scripts/build-examples.ts from the sibling .cbl source.
      Do not edit by hand — run \`npm run build:examples\` after editing
-     either the .cbl or the template in scripts/build-examples.js. -->
+     either the .cbl or the template in scripts/build-examples.ts. -->
 <html lang="en">
 \t<head>
 \t\t<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -649,9 +674,14 @@ ${sampleOutputEl}${relatedEl}\t\t\t\t\t\t<copyright-notice type="examples"></cop
 // writes examples/example-manifest.json — fetched by components/examples-sidebar.js.
 // ---------------------------------------------------------------------------
 
-function writeExampleManifest() {
-	const byTopic = new Map();
-	const topicOrder = [];
+interface SidebarLink {
+	file: string;
+	title: string;
+}
+
+function writeExampleManifest(): string {
+	const byTopic = new Map<string, SidebarLink[]>();
+	const topicOrder: string[] = [];
 	for (const label of Object.values(TOPIC_BY_DIR)) {
 		if (!byTopic.has(label)) {
 			byTopic.set(label, []);
@@ -663,7 +693,7 @@ function writeExampleManifest() {
 		const dir = entry.file.split("/")[0];
 		const topic = TOPIC_BY_DIR[dir];
 		if (!topic) throw new Error(`No TOPIC_BY_DIR entry for directory "${dir}" (file: ${entry.file})`);
-		byTopic.get(topic).push({ file: entry.file, title: entry.crumb });
+		byTopic.get(topic)!.push({ file: entry.file, title: entry.crumb });
 	}
 
 	const manifest = {
@@ -678,7 +708,7 @@ function writeExampleManifest() {
 // Main
 // ---------------------------------------------------------------------------
 
-module.exports = { MANIFEST, EXAMPLES_DIR, TOPIC_BY_DIR };
+export { MANIFEST, EXAMPLES_DIR, TOPIC_BY_DIR };
 
 if (require.main === module) {
 	console.log("Building example HTML pages from .cbl sources…\n");
@@ -694,7 +724,7 @@ if (require.main === module) {
 			console.log(`  OK  ${entry.file}`);
 			ok++;
 		} catch (err) {
-			console.error(`  ERR ${entry.file}: ${err.message}`);
+			console.error(`  ERR ${entry.file}: ${(err as Error).message}`);
 			fail++;
 		}
 	}
@@ -703,7 +733,7 @@ if (require.main === module) {
 		const outPath = writeExampleManifest();
 		console.log(`\n  OK  ${path.relative(ROOT, outPath)}`);
 	} catch (err) {
-		console.error(`\n  ERR example-manifest.json: ${err.message}`);
+		console.error(`\n  ERR example-manifest.json: ${(err as Error).message}`);
 		fail++;
 	}
 

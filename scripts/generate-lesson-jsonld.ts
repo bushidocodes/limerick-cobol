@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * generate-lesson-jsonld.js
+ * generate-lesson-jsonld.ts
  *
  * For each lesson page in course/, reads title / description / canonical URL
  * from the existing HTML meta tags, builds a LearningResource JSON-LD block,
@@ -12,10 +12,8 @@
  * Idempotent — re-running replaces the existing LearningResource block.
  */
 
-"use strict";
-
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
 
 const REPO_ROOT = path.resolve(__dirname, "..");
 const COURSE_DIR = path.join(REPO_ROOT, "course");
@@ -24,11 +22,34 @@ const MANIFEST_PATH = path.join(COURSE_DIR, "lesson-manifest.json");
 
 const COURSE_URL = "https://bushidocodes.github.io/limerick-cobol/course/index.html";
 
+interface TopicLink {
+	type: string;
+	file: string;
+	title: string;
+}
+
+interface LessonManifest {
+	topics: { links: TopicLink[] }[];
+}
+
+interface LessonSeqEntry {
+	file: string;
+	title: string;
+}
+
+interface MetaEntry {
+	position: number;
+	file: string;
+	title: string;
+	description: string;
+	url: string;
+}
+
 // Derive the ordered tutorial sequence from lesson-manifest.json, deduplicating
 // any file that appears in multiple topic groups.
-const manifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, "utf8"));
-const _seen = new Set();
-const LESSON_SEQUENCE = [];
+const manifest: LessonManifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, "utf8"));
+const _seen = new Set<string>();
+const LESSON_SEQUENCE: LessonSeqEntry[] = [];
 for (const topic of manifest.topics) {
 	for (const link of topic.links) {
 		if (link.type === "tutorial" && !_seen.has(link.file)) {
@@ -39,13 +60,13 @@ for (const topic of manifest.topics) {
 }
 
 /** Extract <meta name="description" content="..."> value from raw HTML. */
-function extractDescription(html) {
+function extractDescription(html: string): string {
 	const m = html.match(/<meta\s+name="description"\s+content="([^"]+)"/);
 	return m ? m[1] : "";
 }
 
 /** Extract <link rel="canonical" href="..."> value from raw HTML. */
-function extractCanonical(html) {
+function extractCanonical(html: string): string {
 	const m = html.match(/<link\s+rel="canonical"\s+href="([^"]+)"/);
 	return m ? m[1] : "";
 }
@@ -54,7 +75,7 @@ function extractCanonical(html) {
  * Build the JSON-LD <script> block string with tab indentation matching the
  * surrounding HTML (two tabs for the tag, three tabs for JSON content).
  */
-function buildJsonLdBlock(entry) {
+function buildJsonLdBlock(entry: MetaEntry): string {
 	const ld = {
 		"@context": "https://schema.org",
 		"@type": "LearningResource",
@@ -93,7 +114,7 @@ function buildJsonLdBlock(entry) {
  * Remove any existing LearningResource JSON-LD block from the HTML string,
  * then inject the new block immediately after the <link rel="icon"> tag.
  */
-function injectJsonLd(html, block) {
+function injectJsonLd(html: string, block: string): string {
 	// Strip existing LearningResource block (idempotency).
 	html = html.replace(
 		/\t\t<script type="application\/ld\+json">\n\t\t\t\{[\s\S]*?"@type": "LearningResource"[\s\S]*?<\/script>\n/g,
@@ -104,17 +125,17 @@ function injectJsonLd(html, block) {
 	return html.replace(/(\t\t<link rel="icon"[^\n]+\n)/, `$1${block}\n`);
 }
 
-function main() {
+function main(): void {
 	// If lesson-meta.json already exists, load it so hand-edited fields survive.
-	let existing = {};
+	const existing: Record<string, Partial<MetaEntry>> = {};
 	if (fs.existsSync(META_PATH)) {
-		const parsed = JSON.parse(fs.readFileSync(META_PATH, "utf8"));
+		const parsed: MetaEntry[] = JSON.parse(fs.readFileSync(META_PATH, "utf8"));
 		for (const e of parsed) {
 			existing[e.file] = e;
 		}
 	}
 
-	const manifest = [];
+	const manifestOut: MetaEntry[] = [];
 
 	for (let i = 0; i < LESSON_SEQUENCE.length; i++) {
 		const { file, title } = LESSON_SEQUENCE[i];
@@ -129,14 +150,14 @@ function main() {
 
 		// Prefer values from existing manifest (hand-editable), fall back to HTML.
 		const prev = existing[file] || {};
-		const entry = {
+		const entry: MetaEntry = {
 			position: i + 1,
 			file,
 			title: prev.title || title,
 			description: prev.description || extractDescription(html),
 			url: prev.url || extractCanonical(html),
 		};
-		manifest.push(entry);
+		manifestOut.push(entry);
 
 		const block = buildJsonLdBlock(entry);
 		html = injectJsonLd(html, block);
@@ -145,8 +166,8 @@ function main() {
 		console.log(`  OK    ${file}`);
 	}
 
-	fs.writeFileSync(META_PATH, JSON.stringify(manifest, null, "\t") + "\n", "utf8");
-	console.log(`\nWrote course/lesson-meta.json (${manifest.length} entries).`);
+	fs.writeFileSync(META_PATH, JSON.stringify(manifestOut, null, "\t") + "\n", "utf8");
+	console.log(`\nWrote course/lesson-meta.json (${manifestOut.length} entries).`);
 }
 
 main();

@@ -1,11 +1,11 @@
-// One-shot tool: inserts <script src=".../components/site-header.js" defer>
+// Idempotent tool: inserts <script src=".../components/site-header.js" defer>
 // into every HTML page in the repo, computing the correct relative path from
 // each file. Skips iframe/viewer shells where a sticky header doesn't belong.
 //
 // Idempotent: a second run does nothing if the tag is already present.
 
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
 
 const ROOT = path.resolve(__dirname, "..");
 
@@ -17,7 +17,7 @@ const SKIP_GLOBS = [
 	/[\\/]course[\\/]Resources[\\/]pdf-viewer\.html$/,
 ];
 
-function walk(dir, out = []) {
+function walk(dir: string, out: string[] = []): string[] {
 	for (const name of fs.readdirSync(dir)) {
 		const full = path.join(dir, name);
 		const stat = fs.statSync(full);
@@ -27,7 +27,7 @@ function walk(dir, out = []) {
 	return out;
 }
 
-function relComponentsPath(htmlFile) {
+function relComponentsPath(htmlFile: string): string {
 	const componentsDir = path.join(ROOT, "components");
 	const fileDir = path.dirname(htmlFile);
 	let rel = path.relative(fileDir, componentsDir).replace(/\\/g, "/");
@@ -40,7 +40,7 @@ let skipped = 0;
 
 for (const file of walk(ROOT)) {
 	if (SKIP_GLOBS.some((re) => re.test(file))) continue;
-	let html = fs.readFileSync(file, "utf8");
+	const html = fs.readFileSync(file, "utf8");
 
 	// Skip fullscreen-iframe viewer shells (e.g. lectures/*.html PDF wrappers).
 	if (/body style="margin: 0; padding: 0"/.test(html)) continue;
@@ -54,7 +54,7 @@ for (const file of walk(ROOT)) {
 	const tag = `\t\t<script src="${src}" defer></script>`;
 
 	// Insert just before </head>. Match the existing indentation pattern.
-	const newHtml = html.replace(/([ \t]*)<\/head>/, (m, indent) => `${tag}\n${indent}</head>`);
+	const newHtml = html.replace(/([ \t]*)<\/head>/, (_m, indent) => `${tag}\n${indent}</head>`);
 
 	if (newHtml === html) {
 		console.warn("no </head> found, skipping:", path.relative(ROOT, file));

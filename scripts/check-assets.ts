@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * check-assets.js
+ * check-assets.ts
  *
  * Walk every *.html and *.css file in the repo (skipping node_modules, .git,
  * .claude, .playwright-mcp) and verify that:
@@ -12,10 +12,8 @@
  * Exit code 1  – one or more broken references found.
  */
 
-"use strict";
-
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
 
 // ---------------------------------------------------------------------------
 // Config
@@ -28,12 +26,23 @@ const SKIP_DIRS = new Set(["node_modules", ".git", ".claude", ".playwright-mcp"]
 // Patterns that should never be treated as local file references.
 const SKIP_PREFIXES = ["http://", "https://", "ftp://", "mailto:", "data:", "//"];
 
+interface BrokenRef {
+	ref: string;
+	resolved?: string;
+	note?: string;
+}
+
+interface FileReport {
+	file: string;
+	broken: BrokenRef[];
+}
+
 // ---------------------------------------------------------------------------
 // Walk the directory tree and collect *.html files
 // ---------------------------------------------------------------------------
 
-function walkFilesByExtension(dir, ext, results = []) {
-	let entries;
+function walkFilesByExtension(dir: string, ext: string, results: string[] = []): string[] {
+	let entries: fs.Dirent[];
 	try {
 		entries = fs.readdirSync(dir, { withFileTypes: true });
 	} catch {
@@ -63,9 +72,9 @@ const ATTR_RE = /(?:src|href)\s*=\s*(?:"([^"]+)"|'([^']+)')/gi;
 // Match CSS url("..."), url('...'), url(...) — captures the inner path.
 const CSS_URL_RE = /url\(\s*(?:"([^"]+)"|'([^']+)'|([^)'"]\S*?))\s*\)/gi;
 
-function extractRefs(html) {
-	const refs = [];
-	let match;
+function extractRefs(html: string): string[] {
+	const refs: string[] = [];
+	let match: RegExpExecArray | null;
 	ATTR_RE.lastIndex = 0;
 	while ((match = ATTR_RE.exec(html)) !== null) {
 		refs.push(match[1] ?? match[2]);
@@ -76,9 +85,9 @@ function extractRefs(html) {
 // Match id="..." and id='...' attributes.
 const ID_RE = /\bid\s*=\s*(?:"([^"]+)"|'([^']+)')/gi;
 
-function extractIds(html) {
-	const ids = new Set();
-	let match;
+function extractIds(html: string): Set<string> {
+	const ids = new Set<string>();
+	let match: RegExpExecArray | null;
 	ID_RE.lastIndex = 0;
 	while ((match = ID_RE.exec(html)) !== null) {
 		ids.add(match[1] ?? match[2]);
@@ -86,7 +95,7 @@ function extractIds(html) {
 	return ids;
 }
 
-function isLocalRef(ref) {
+function isLocalRef(ref: string): boolean {
 	for (const prefix of SKIP_PREFIXES) {
 		if (ref.startsWith(prefix)) return false;
 	}
@@ -95,14 +104,14 @@ function isLocalRef(ref) {
 	return true;
 }
 
-function stripQueryAndFragment(ref) {
+function stripQueryAndFragment(ref: string): string {
 	// Remove query string and fragment
 	return ref.replace(/[?#].*$/, "");
 }
 
-function extractCssRefs(css) {
-	const refs = [];
-	let match;
+function extractCssRefs(css: string): string[] {
+	const refs: string[] = [];
+	let match: RegExpExecArray | null;
 	CSS_URL_RE.lastIndex = 0;
 	while ((match = CSS_URL_RE.exec(css)) !== null) {
 		refs.push(match[1] ?? match[2] ?? match[3]);
@@ -110,14 +119,14 @@ function extractCssRefs(css) {
 	return refs;
 }
 
-function decodeHtmlEntities(str) {
+function decodeHtmlEntities(str: string): string {
 	// Decode the handful of entities that commonly appear in href/src values.
 	return str
 		.replace(/&lt;/g, "<")
 		.replace(/&gt;/g, ">")
 		.replace(/&quot;/g, '"')
-		.replace(/&#(\d+);/g, (_, code) => String.fromCharCode(Number(code)))
-		.replace(/&#x([0-9a-fA-F]+);/g, (_, hex) => String.fromCharCode(parseInt(hex, 16)))
+		.replace(/&#(\d+);/g, (_, code: string) => String.fromCharCode(Number(code)))
+		.replace(/&#x([0-9a-fA-F]+);/g, (_, hex: string) => String.fromCharCode(parseInt(hex, 16)))
 		.replace(/&amp;/g, "&");
 }
 
@@ -129,11 +138,11 @@ const htmlFiles = walkFilesByExtension(REPO_ROOT, ".html");
 const cssFiles = walkFilesByExtension(REPO_ROOT, ".css");
 
 let totalBroken = 0;
-const report = [];
+const report: FileReport[] = [];
 
 for (const htmlFile of htmlFiles) {
 	const htmlDir = path.dirname(htmlFile);
-	let html;
+	let html: string;
 	try {
 		html = fs.readFileSync(htmlFile, "utf8");
 	} catch {
@@ -142,7 +151,7 @@ for (const htmlFile of htmlFiles) {
 
 	const refs = extractRefs(html);
 	const ids = extractIds(html);
-	const broken = [];
+	const broken: BrokenRef[] = [];
 
 	for (const rawRef of refs) {
 		// Validate intra-page anchor fragments (#target).
@@ -173,7 +182,7 @@ for (const htmlFile of htmlFiles) {
 
 for (const cssFile of cssFiles) {
 	const cssDir = path.dirname(cssFile);
-	let css;
+	let css: string;
 	try {
 		css = fs.readFileSync(cssFile, "utf8");
 	} catch {
@@ -181,7 +190,7 @@ for (const cssFile of cssFiles) {
 	}
 
 	const refs = extractCssRefs(css);
-	const broken = [];
+	const broken: BrokenRef[] = [];
 
 	for (const rawRef of refs) {
 		if (!isLocalRef(rawRef)) continue;

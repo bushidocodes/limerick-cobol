@@ -67,7 +67,7 @@ jobs:
                     git commit -m "chore: auto-regenerate search-index.json"
                   fi
 
-            - run: node scripts/add-img-dimensions.js
+            - run: pnpm run fix:img-dims
             - name: Commit image dimensions if changed
               run: |
                   if [[ -n "$(git status --porcelain)" ]]; then
