@@ -15,6 +15,8 @@
 import fs from "fs";
 import path from "path";
 
+import { collectHtmlFiles } from "./lib/html-files.js";
+
 const REPO_ROOT = path.resolve(__dirname, "..");
 const OUTPUT_PATH = path.join(REPO_ROOT, "search-index.json");
 
@@ -26,20 +28,6 @@ interface SearchEntry {
 	t: string;
 	d: string;
 	s: string;
-}
-
-/** Recursively collect *.html under `dir`, skipping SKIP_DIRS. */
-function collectHtmlFiles(dir: string): string[] {
-	const results: string[] = [];
-	for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-		const full = path.join(dir, entry.name);
-		if (entry.isDirectory()) {
-			if (!SKIP_DIRS.has(entry.name)) results.push(...collectHtmlFiles(full));
-		} else if (entry.isFile() && entry.name.endsWith(".html")) {
-			results.push(full);
-		}
-	}
-	return results;
 }
 
 function decodeEntities(s: string): string {
@@ -78,7 +66,7 @@ function buildIndex(): void {
 	for (const dir of SCAN_DIRS) {
 		const abs = path.join(REPO_ROOT, dir);
 		if (!fs.existsSync(abs)) continue;
-		for (const file of collectHtmlFiles(abs)) {
+		for (const file of collectHtmlFiles(abs, SKIP_DIRS)) {
 			const html = fs.readFileSync(file, "utf8");
 			const title = extractTitle(html);
 			if (!title) continue;

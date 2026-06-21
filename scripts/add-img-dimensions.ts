@@ -3,6 +3,8 @@
 import fs from "fs";
 import path from "path";
 
+import { collectHtmlFiles } from "./lib/html-files.js";
+
 const ROOT = path.resolve(__dirname, "..");
 const SCAN_DIRS = ["course", "lectures", "exercises", "examples"];
 
@@ -46,20 +48,6 @@ function getImageDimensions(imgPath: string): Dimensions | null {
 	if (ext === ".png") return readPngDimensions(buf);
 	if (ext === ".jpg" || ext === ".jpeg") return readJpgDimensions(buf);
 	return null;
-}
-
-function collectHtmlFiles(dir: string): string[] {
-	const results: string[] = [];
-	if (!fs.existsSync(dir)) return results;
-	for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-		const full = path.join(dir, entry.name);
-		if (entry.isDirectory()) {
-			results.push(...collectHtmlFiles(full));
-		} else if (entry.name.endsWith(".html")) {
-			results.push(full);
-		}
-	}
-	return results;
 }
 
 function processFile(htmlPath: string): boolean {

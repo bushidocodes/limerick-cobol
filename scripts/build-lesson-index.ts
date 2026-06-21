@@ -12,6 +12,8 @@
 import fs from "fs";
 import path from "path";
 
+import { readJson } from "./lib/json.js";
+
 const REPO_ROOT = path.resolve(__dirname, "..");
 const MANIFEST_PATH = path.join(REPO_ROOT, "course", "lesson-manifest.json");
 const INDEX_PATH = path.join(REPO_ROOT, "course", "index.html");
@@ -74,7 +76,7 @@ function buildTopicsHTML(topics: Topic[]): string {
 }
 
 function main(): void {
-	const manifest: LessonManifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, "utf8"));
+	const manifest = readJson<LessonManifest>(MANIFEST_PATH);
 	let html = fs.readFileSync(INDEX_PATH, "utf8");
 
 	const beginIdx = html.indexOf(SENTINEL_BEGIN);

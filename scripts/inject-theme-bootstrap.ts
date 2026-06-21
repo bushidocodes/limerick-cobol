@@ -8,6 +8,8 @@
 import fs from "fs";
 import path from "path";
 
+import { collectHtmlFiles } from "./lib/html-files.js";
+
 const ROOT = path.resolve(__dirname, "..");
 
 const SKIP = [
@@ -36,19 +38,9 @@ const BOOTSTRAP =
 	`\t\t\t})();\n` +
 	`\t\t</script>`;
 
-function walk(dir: string, out: string[] = []): string[] {
-	for (const name of fs.readdirSync(dir)) {
-		const full = path.join(dir, name);
-		const stat = fs.statSync(full);
-		if (stat.isDirectory()) walk(full, out);
-		else if (full.endsWith(".html")) out.push(full);
-	}
-	return out;
-}
-
 let touched = 0;
 
-for (const file of walk(ROOT)) {
+for (const file of collectHtmlFiles(ROOT)) {
 	if (SKIP.some((re) => re.test(file))) continue;
 	const html = fs.readFileSync(file, "utf8");
 

@@ -14,42 +14,21 @@
 import fs from "fs";
 import path from "path";
 
+import { readJson } from "./lib/json.js";
+import { tutorialSequence, type LessonManifest, type TopicLink } from "./lib/lessons.js";
+
 const REPO_ROOT = path.resolve(__dirname, "..");
 const COURSE_DIR = path.join(REPO_ROOT, "course");
 const MANIFEST_PATH = path.join(COURSE_DIR, "lesson-manifest.json");
 const BASE_URL = "https://bushidocodes.github.io/limerick-cobol/course/";
 
-interface TopicLink {
-	type: string;
-	file: string;
-	title: string;
-}
-
-interface LessonManifest {
-	topics: { links: TopicLink[] }[];
-}
-
-interface LessonRef {
-	file: string;
-}
-
-const manifest: LessonManifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, "utf8"));
-const _seen = new Set<string>();
-const LESSON_SEQUENCE: LessonRef[] = [];
-for (const topic of manifest.topics) {
-	for (const link of topic.links) {
-		if (link.type === "tutorial" && !_seen.has(link.file)) {
-			_seen.add(link.file);
-			LESSON_SEQUENCE.push({ file: link.file });
-		}
-	}
-}
+const LESSON_SEQUENCE = tutorialSequence(readJson<LessonManifest>(MANIFEST_PATH));
 
 /**
  * Build the prev/next link tag block to inject.
  * Returns only the tags that apply (first lesson has no prev, last has no next).
  */
-function buildLinkBlock(prev: LessonRef | null, next: LessonRef | null): string {
+function buildLinkBlock(prev: TopicLink | null, next: TopicLink | null): string {
 	const lines: string[] = [];
 	if (prev) lines.push(`\t\t<link rel="prev" href="${BASE_URL}${prev.file}" />`);
 	if (next) lines.push(`\t\t<link rel="next" href="${BASE_URL}${next.file}" />`);
@@ -60,7 +39,7 @@ function buildLinkBlock(prev: LessonRef | null, next: LessonRef | null): string 
  * Remove any existing prev/next link tags, then inject new ones immediately
  * after the <link rel="canonical"> tag.
  */
-function injectPrevNextLinks(html: string, prev: LessonRef | null, next: LessonRef | null): string {
+function injectPrevNextLinks(html: string, prev: TopicLink | null, next: TopicLink | null): string {
 	// Strip existing prev/next tags (idempotency).
 	html = html.replace(/\t\t<link rel="(?:prev|next)"[^\n]+\n/g, "");
 

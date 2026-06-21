@@ -13,33 +13,16 @@
 import fs from "fs";
 import path from "path";
 
+import { readJson } from "./lib/json.js";
+import { tutorialSequence, type LessonManifest } from "./lib/lessons.js";
+
 const REPO_ROOT = path.resolve(__dirname, "..");
 const COURSE_DIR = path.join(REPO_ROOT, "course");
 const MANIFEST_PATH = path.join(COURSE_DIR, "lesson-manifest.json");
 
 const WPM = 200;
 
-interface TopicLink {
-	type: string;
-	file: string;
-	title: string;
-}
-
-interface LessonManifest {
-	topics: { links: TopicLink[] }[];
-}
-
-const manifest: LessonManifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, "utf8"));
-const _seen = new Set<string>();
-const LESSON_FILES: string[] = [];
-for (const topic of manifest.topics) {
-	for (const link of topic.links) {
-		if (link.type === "tutorial" && !_seen.has(link.file)) {
-			_seen.add(link.file);
-			LESSON_FILES.push(link.file);
-		}
-	}
-}
+const LESSON_FILES = tutorialSequence(readJson<LessonManifest>(MANIFEST_PATH)).map((link) => link.file);
 
 /** Extract visible text from the <body> element, stripping scripts and tags. */
 function extractBodyText(html: string): string {
