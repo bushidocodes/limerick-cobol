@@ -11,4 +11,4 @@
 - [ ] `npm run validate` passes
 - [ ] `npm run links` passes
 - [ ] `npm run format:check` passes
-- [ ] `npm run a11y` passes (if this PR touches page content or styling)
+- [ ] `npm run a11y` passes locally (not run in CI; required if this PR touches page content or styling)

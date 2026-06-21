@@ -11,12 +11,10 @@ permissions:
 
 jobs:
     checks:
-        name: Validate, links, and accessibility
+        name: Validate and links
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
-              with:
-                  fetch-depth: 0
             - uses: pnpm/action-setup@v4
               with:
                   run_install: false
@@ -38,45 +36,10 @@ jobs:
             - run: pnpm run check:assets
             - run: pnpm run check:img-dims
             - run: pnpm run links
-            - name: Accessibility check
-              run: |
-                  if [ -n "${{ github.base_ref }}" ]; then
-                    # PR: diff against the target branch.
-                    BASE="origin/${{ github.base_ref }}"
-
-                    # Full scan if any shared assets changed (they affect every page).
-                    if git diff --name-only "$BASE"...HEAD \
-                        | grep -qE '^(components/|course/Resources/)'; then
-                      echo "Shared assets changed — running full a11y scan"
-                      npm run a11y
-                      exit
-                    fi
-                  else
-                    # Push to master: diff against the previous commit.
-                    # The full ~175-URL scan OOMs Chrome on the Actions runner
-                    # (Target.closeTarget cascade after ~60 pages). PRs already
-                    # ran a partial scan before merge, so diffing HEAD~1 gives
-                    # the right per-change coverage without the OOM risk.
-                    # A scheduled weekly job runs the full scan.
-                    BASE="HEAD~1"
-                  fi
-
-                  # Partial scan: only the HTML files touched in this push/PR.
-                  mapfile -t URLS < <(
-                    git diff --name-only "$BASE"...HEAD \
-                      | grep '\.html$' \
-                      | sed 's|^|http://localhost:8000/|'
-                  )
-
-                  if [ ${#URLS[@]} -eq 0 ]; then
-                    echo "No HTML files changed — skipping a11y"
-                    exit
-                  fi
-
-                  echo "Running a11y on ${#URLS[@]} changed file(s):"
-                  printf '  %s\n' "${URLS[@]}"
-                  PA11Y_PARTIAL=1 npx start-server-and-test 'pnpm run serve' http://localhost:8000 \
-                    "npx pa11y-ci --config .pa11yci.js ${URLS[*]}"
+            # Accessibility (pa11y) is intentionally NOT run here — it is slow
+            # and must not block PRs. Run `npm run a11y` locally instead. A
+            # scheduled weekly job (.github/workflows/a11y-full.yml) runs the
+            # full scan as a non-blocking safety net.
 
     typos:
         name: Spell check (typos)
