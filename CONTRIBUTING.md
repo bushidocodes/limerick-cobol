@@ -72,7 +72,7 @@ message should mention which phase is being applied, e.g. `Apply Phase 4 moderni
 
 1. Run `npm run check` — fix any failures before opening the PR.
 2. Fill in the PR template (screenshots encouraged for visual changes).
-3. The CI suite runs `validate`, `links`, `a11y`, and `format:check` automatically.
+3. The CI suite runs `validate`, `links`, and `format:check` automatically. The slow `a11y` scan is **not** run in CI — run `npm run a11y` locally before pushing (a scheduled weekly job runs the full scan as a non-blocking safety net).
 
 ## Dependencies and CVEs
 
