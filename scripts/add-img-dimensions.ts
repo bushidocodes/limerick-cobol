@@ -1,25 +1,29 @@
 #!/usr/bin/env node
-"use strict";
 
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
 
 const ROOT = path.resolve(__dirname, "..");
 const SCAN_DIRS = ["course", "lectures", "exercises", "examples"];
 
+interface Dimensions {
+	width: number;
+	height: number;
+}
+
 // Inline dimension readers — no external deps needed.
 
-function readGifDimensions(buf) {
+function readGifDimensions(buf: Buffer): Dimensions {
 	// GIF header: signature (6) + width (2 LE) + height (2 LE)
 	return { width: buf.readUInt16LE(6), height: buf.readUInt16LE(8) };
 }
 
-function readPngDimensions(buf) {
+function readPngDimensions(buf: Buffer): Dimensions {
 	// PNG IHDR chunk starts at byte 16: width (4 BE) + height (4 BE)
 	return { width: buf.readUInt32BE(16), height: buf.readUInt32BE(20) };
 }
 
-function readJpgDimensions(buf) {
+function readJpgDimensions(buf: Buffer): Dimensions | null {
 	// Scan for SOF0/SOF1/SOF2 markers (0xFF 0xC0-0xC3)
 	let i = 2;
 	while (i + 8 < buf.length) {
@@ -34,7 +38,7 @@ function readJpgDimensions(buf) {
 	return null;
 }
 
-function getImageDimensions(imgPath) {
+function getImageDimensions(imgPath: string): Dimensions | null {
 	if (!fs.existsSync(imgPath)) return null;
 	const buf = fs.readFileSync(imgPath);
 	const ext = path.extname(imgPath).toLowerCase();
@@ -44,8 +48,8 @@ function getImageDimensions(imgPath) {
 	return null;
 }
 
-function collectHtmlFiles(dir) {
-	const results = [];
+function collectHtmlFiles(dir: string): string[] {
+	const results: string[] = [];
 	if (!fs.existsSync(dir)) return results;
 	for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
 		const full = path.join(dir, entry.name);
@@ -58,7 +62,7 @@ function collectHtmlFiles(dir) {
 	return results;
 }
 
-function processFile(htmlPath) {
+function processFile(htmlPath: string): boolean {
 	const original = fs.readFileSync(htmlPath, "utf8");
 	let changed = false;
 
@@ -80,7 +84,7 @@ function processFile(htmlPath) {
 			return tag;
 		}
 
-		const attrs = [];
+		const attrs: string[] = [];
 		if (!hasWidth) attrs.push(`width="${dims.width}"`);
 		if (!hasHeight) attrs.push(`height="${dims.height}"`);
 

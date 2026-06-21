@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 /**
- * build-sitemap.js
+ * build-sitemap.ts
  * Walks the repo, finds every *.html file, and emits sitemap.xml at the repo root.
  */
 
-const fs = require("fs");
-const path = require("path");
-const { collectHtmlFiles, REPO_ROOT } = require("./collect-html");
+import fs from "fs";
+import path from "path";
+import { execSync } from "child_process";
+import { collectHtmlFiles, REPO_ROOT } from "./collect-html.js";
 
 const BASE_URL = "https://bushidocodes.github.io/limerick-cobol/";
 const OUTPUT_PATH = path.join(REPO_ROOT, "sitemap.xml");
@@ -14,12 +15,10 @@ const OUTPUT_PATH = path.join(REPO_ROOT, "sitemap.xml");
 /**
  * Get ISO-8601 last-modified date for a file via git log.
  * Falls back to the file's mtime if git fails.
- * @param {string} filePath
- * @returns {string} YYYY-MM-DD
+ * @returns YYYY-MM-DD
  */
-function getLastMod(filePath) {
+function getLastMod(filePath: string): string {
 	try {
-		const { execSync } = require("child_process");
 		const result = execSync(`git log -1 --format=%cI -- "${filePath}"`, {
 			cwd: REPO_ROOT,
 			stdio: ["ignore", "pipe", "ignore"],
@@ -29,24 +28,20 @@ function getLastMod(filePath) {
 		if (result) {
 			return result.slice(0, 10);
 		}
-	} catch (_) {
+	} catch {
 		// fall through to mtime
 	}
 	const stat = fs.statSync(filePath);
 	return stat.mtime.toISOString().slice(0, 10);
 }
 
-/**
- * Convert an absolute file path to its public URL.
- * @param {string} filePath
- * @returns {string}
- */
-function toUrl(filePath) {
+/** Convert an absolute file path to its public URL. */
+function toUrl(filePath: string): string {
 	const rel = path.relative(REPO_ROOT, filePath).replace(/\\/g, "/");
 	return BASE_URL + rel;
 }
 
-function buildSitemap() {
+function buildSitemap(): void {
 	const htmlFiles = collectHtmlFiles().sort();
 
 	const urls = htmlFiles.map((file) => {

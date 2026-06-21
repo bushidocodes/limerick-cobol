@@ -1,16 +1,15 @@
 #!/usr/bin/env node
-"use strict";
 
 // Fails (exit 1) if any <img> in the scanned directories is missing width or height.
 
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
 
 const ROOT = path.resolve(__dirname, "..");
 const SCAN_DIRS = ["course", "lectures", "exercises", "examples"];
 
-function collectHtmlFiles(dir) {
-	const results = [];
+function collectHtmlFiles(dir: string): string[] {
+	const results: string[] = [];
 	if (!fs.existsSync(dir)) return results;
 	for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
 		const full = path.join(dir, entry.name);

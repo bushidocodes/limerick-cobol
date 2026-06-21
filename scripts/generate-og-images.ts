@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * generate-og-images.js
+ * generate-og-images.ts
  *
  * Produces one 1200×630 PNG per site section in pics/og/.
  * Social platforms (Twitter/X, Slack, Discord, LinkedIn) require PNG/JPG —
@@ -9,11 +9,9 @@
  * Run: npm run build:og-images
  */
 
-"use strict";
-
-const { Resvg } = require("@resvg/resvg-js");
-const fs = require("fs");
-const path = require("path");
+import { Resvg } from "@resvg/resvg-js";
+import fs from "fs";
+import path from "path";
 
 const OUT_DIR = path.resolve(__dirname, "../pics/og");
 const WIDTH = 1200;
@@ -27,11 +25,11 @@ const SECTIONS = [
 	{ id: "lectures", label: "Lectures", subtitle: "COBOL programming slide presentations" },
 ];
 
-function esc(str) {
+function esc(str: string): string {
 	return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
-function buildSvg(label, subtitle) {
+function buildSvg(label: string, subtitle: string): string {
 	return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HEIGHT}">
   <!-- Background: two-tone dark blue -->
@@ -69,7 +67,7 @@ function buildSvg(label, subtitle) {
 </svg>`;
 }
 
-function main() {
+function main(): void {
 	fs.mkdirSync(OUT_DIR, { recursive: true });
 
 	for (const { id, label, subtitle } of SECTIONS) {

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * add-reading-time.js
+ * add-reading-time.ts
  *
  * Estimates reading time for each course lesson from its body word count and
  * stamps the result onto <page-hero reading-time="X min">. Re-running updates
@@ -10,10 +10,8 @@
  * Minimum displayed: 1 min.
  */
 
-"use strict";
-
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
 
 const REPO_ROOT = path.resolve(__dirname, "..");
 const COURSE_DIR = path.join(REPO_ROOT, "course");
@@ -21,9 +19,19 @@ const MANIFEST_PATH = path.join(COURSE_DIR, "lesson-manifest.json");
 
 const WPM = 200;
 
-const manifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, "utf8"));
-const _seen = new Set();
-const LESSON_FILES = [];
+interface TopicLink {
+	type: string;
+	file: string;
+	title: string;
+}
+
+interface LessonManifest {
+	topics: { links: TopicLink[] }[];
+}
+
+const manifest: LessonManifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, "utf8"));
+const _seen = new Set<string>();
+const LESSON_FILES: string[] = [];
 for (const topic of manifest.topics) {
 	for (const link of topic.links) {
 		if (link.type === "tutorial" && !_seen.has(link.file)) {
@@ -34,7 +42,7 @@ for (const topic of manifest.topics) {
 }
 
 /** Extract visible text from the <body> element, stripping scripts and tags. */
-function extractBodyText(html) {
+function extractBodyText(html: string): string {
 	const bodyMatch = html.match(/<body[^>]*>([\s\S]*)<\/body>/i);
 	const body = bodyMatch ? bodyMatch[1] : html;
 	return body
@@ -48,15 +56,15 @@ function extractBodyText(html) {
 		.trim();
 }
 
-function countWords(text) {
+function countWords(text: string): number {
 	return text.split(/\s+/).filter(Boolean).length;
 }
 
-function readingMinutes(wordCount) {
+function readingMinutes(wordCount: number): number {
 	return Math.max(1, Math.round(wordCount / WPM));
 }
 
-function main() {
+function main(): void {
 	for (const file of LESSON_FILES) {
 		const filePath = path.join(COURSE_DIR, file);
 		if (!fs.existsSync(filePath)) {

@@ -1,12 +1,12 @@
-// One-shot tool: inserts the synchronous theme-bootstrap <script> into every
+// Idempotent tool: inserts the synchronous theme-bootstrap <script> into every
 // HTML page that's missing it. The script reads localStorage('lc-theme') and
 // sets data-theme on <html> before paint to avoid FOUC.
 //
 // Inserts after the last <meta name="theme-color"> tag (or after the viewport
 // meta if no theme-color exists). Idempotent.
 
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
 
 const ROOT = path.resolve(__dirname, "..");
 
@@ -36,7 +36,7 @@ const BOOTSTRAP =
 	`\t\t\t})();\n` +
 	`\t\t</script>`;
 
-function walk(dir, out = []) {
+function walk(dir: string, out: string[] = []): string[] {
 	for (const name of fs.readdirSync(dir)) {
 		const full = path.join(dir, name);
 		const stat = fs.statSync(full);
@@ -50,7 +50,7 @@ let touched = 0;
 
 for (const file of walk(ROOT)) {
 	if (SKIP.some((re) => re.test(file))) continue;
-	let html = fs.readFileSync(file, "utf8");
+	const html = fs.readFileSync(file, "utf8");
 
 	// Check if the file has the bootstrap script and replace it
 	const bootstrapRe =
@@ -74,10 +74,10 @@ for (const file of walk(ROOT)) {
 	// Find the last <meta name="theme-color" ...> tag and insert after it.
 	const themeColorRe = /([ \t]*<meta\s+name="theme-color"[^>]*\/?>)/g;
 	const matches = [...html.matchAll(themeColorRe)];
-	let newHtml;
+	let newHtml: string;
 	if (matches.length > 0) {
 		const last = matches[matches.length - 1];
-		const insertAt = last.index + last[0].length;
+		const insertAt = last.index! + last[0].length;
 		newHtml = html.slice(0, insertAt) + "\n" + BOOTSTRAP + html.slice(insertAt);
 	} else {
 		// Fall back to inserting after viewport meta.

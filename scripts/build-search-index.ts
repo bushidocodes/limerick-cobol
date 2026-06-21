@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * build-search-index.js
+ * build-search-index.ts
  * Walks course/, exercises/, examples/, lectures/ and emits search-index.json
  * at the repo root. Each entry contains:
  *   p — repo-relative path (slash-separated)
@@ -12,8 +12,8 @@
  * aren't user-facing destinations. Pages without a <title> are also skipped.
  */
 
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
 
 const REPO_ROOT = path.resolve(__dirname, "..");
 const OUTPUT_PATH = path.join(REPO_ROOT, "search-index.json");
@@ -21,9 +21,16 @@ const OUTPUT_PATH = path.join(REPO_ROOT, "search-index.json");
 const SCAN_DIRS = ["course", "exercises", "examples", "lectures"];
 const SKIP_DIRS = new Set(["Resources", "vendor", ".playwright-mcp", "node_modules", ".claude"]);
 
+interface SearchEntry {
+	p: string;
+	t: string;
+	d: string;
+	s: string;
+}
+
 /** Recursively collect *.html under `dir`, skipping SKIP_DIRS. */
-function collectHtmlFiles(dir) {
-	const results = [];
+function collectHtmlFiles(dir: string): string[] {
+	const results: string[] = [];
 	for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
 		const full = path.join(dir, entry.name);
 		if (entry.isDirectory()) {
@@ -35,7 +42,7 @@ function collectHtmlFiles(dir) {
 	return results;
 }
 
-function decodeEntities(s) {
+function decodeEntities(s: string): string {
 	return s
 		.replace(/&lt;/g, "<")
 		.replace(/&gt;/g, ">")
@@ -45,18 +52,18 @@ function decodeEntities(s) {
 		.replace(/&amp;/g, "&");
 }
 
-function collapseWhitespace(s) {
+function collapseWhitespace(s: string): string {
 	return s.replace(/\s+/g, " ").trim();
 }
 
-function extractTitle(html) {
+function extractTitle(html: string): string {
 	const m = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
 	return m ? collapseWhitespace(decodeEntities(m[1])) : "";
 }
 
-function extractMetaDescription(html) {
+function extractMetaDescription(html: string): string {
 	const metaRe = /<meta\b[^>]*>/gi;
-	let m;
+	let m: RegExpExecArray | null;
 	while ((m = metaRe.exec(html))) {
 		const tag = m[0];
 		if (!/\bname\s*=\s*["']description["']/i.test(tag)) continue;
@@ -66,8 +73,8 @@ function extractMetaDescription(html) {
 	return "";
 }
 
-function buildIndex() {
-	const entries = [];
+function buildIndex(): void {
+	const entries: SearchEntry[] = [];
 	for (const dir of SCAN_DIRS) {
 		const abs = path.join(REPO_ROOT, dir);
 		if (!fs.existsSync(abs)) continue;
