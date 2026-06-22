@@ -496,19 +496,25 @@ td[bgcolor="#FFFFCC" i] h4 {
 	grid-template-columns: 175px 1fr;
 }
 
+/* Section title row spanning the grid. Migrated from the legacy filled
+   maroon bar (var(--color-header-bg) + amber text) to an MDN-style heading:
+   dark bold text on the page background with a warm brand-coloured bottom
+   rule. --color-inline-warm adapts per theme (#993300 light / #ff9966 dark)
+   so the accent reads in both. */
 .section-header {
 	grid-column: 1 / -1;
-	background-color: var(--color-header-bg);
-	padding: 4px;
+	background-color: transparent;
+	padding: 0.4em 0.1em 0.3em;
+	border-bottom: 2px solid var(--color-inline-warm);
 	min-width: 0;
-	text-align: center;
+	text-align: left;
 }
 
 .section-header h2,
 .section-header h3 {
-	color: var(--color-header-text);
+	color: var(--color-text);
 	font-family: var(--font-sans);
-	margin: 0.3em 0;
+	margin: 0.2em 0;
 }
 
 .section-sidebar {
