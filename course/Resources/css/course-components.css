@@ -258,19 +258,40 @@ dl.index-grid.bullet-orange {
 	text-align: center;
 }
 
-/* Reproduces <table border="1" cellspacing="1" cellpadding="5"> exactly:
-   1px outer border, 1px gap between cells, 1px border on every cell, 5px
-   cell padding. Verified against legacy renderings before the Phase 4 sweep. */
+/* MDN-style data table: collapsed borders, a subtle filled header row, and
+   light horizontal row separators instead of the legacy full 1px grid
+   (was border="1" cellspacing="1" cellpadding="5"). Vertical rules are
+   dropped — generous cell padding keeps the columns legible. */
 .data-table {
-	border-collapse: separate;
-	border-spacing: 1px;
-	border: 1px solid;
+	border-collapse: collapse;
+	border: 1px solid var(--color-border-soft);
+}
+
+.data-table caption {
+	caption-side: top;
+	text-align: left;
+	font-weight: 700;
+	padding: 0 0 0.4em;
 }
 
 .data-table > * > tr > th,
 .data-table > * > tr > td {
-	border: 1px solid;
-	padding: 5px;
+	border: none;
+	border-bottom: 1px solid var(--color-border-soft);
+	padding: 8px 12px;
+	text-align: left;
+	vertical-align: top;
+}
+
+.data-table > thead > tr > th {
+	background-color: var(--color-cell-label-bg);
+	border-bottom: 2px solid var(--color-border-mute);
+	vertical-align: bottom;
+}
+
+/* The outer 1px border already closes the bottom edge. */
+.data-table > tbody > tr:last-child > td {
+	border-bottom: none;
 }
 
 /* Breathing room between stacked data-tables (e.g. examples/index.html lists
