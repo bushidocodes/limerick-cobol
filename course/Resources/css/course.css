@@ -324,11 +324,6 @@ body {
 		height: auto;
 	}
 
-	td[bgcolor="#993300"] > h2,
-	td[bgcolor="#993300"] > h3 {
-		margin: 0.3em 0;
-	}
-
 	blockquote {
 		margin-left: 12px;
 		margin-right: 12px;
@@ -412,56 +407,6 @@ ul.toc a {
 	display: block;
 	font-weight: bold;
 	font-size: larger;
-}
-
-/* Recolor legacy <table>/<tr>/<td> bgcolor="..." attribute markup via CSS
-   background-color, which wins over the deprecated HTML attribute. Lets the
-   theme tokens drive colors on pages that haven't been migrated to component
-   classes. */
-table[bgcolor="#FFFFCC" i],
-tr[bgcolor="#FFFFCC" i],
-td[bgcolor="#FFFFCC" i],
-th[bgcolor="#FFFFCC" i] {
-	background-color: var(--color-panel-bg);
-}
-
-table[bgcolor="#FFFFFF" i],
-tr[bgcolor="#FFFFFF" i],
-td[bgcolor="#FFFFFF" i] {
-	background-color: var(--color-bg);
-}
-
-table[bgcolor="#E1FFE1" i],
-table[bgcolor="#D2FFD2" i],
-table[bgcolor="#DDFFDD" i],
-tr[bgcolor="#E1FFE1" i],
-tr[bgcolor="#D2FFD2" i],
-tr[bgcolor="#DDFFDD" i],
-td[bgcolor="#E1FFE1" i],
-td[bgcolor="#D2FFD2" i],
-td[bgcolor="#DDFFDD" i] {
-	background-color: var(--color-code-bg);
-}
-
-table[bgcolor="#DDFFFF" i],
-table[bgcolor="#CCFFFF" i],
-tr[bgcolor="#DDFFFF" i],
-tr[bgcolor="#CCFFFF" i],
-td[bgcolor="#DDFFFF" i],
-td[bgcolor="#CCFFFF" i] {
-	background-color: var(--color-results-bg);
-}
-
-table[bgcolor="#E8E8E8" i],
-tr[bgcolor="#E8E8E8" i],
-td[bgcolor="#E8E8E8" i] {
-	background-color: var(--color-cell-label-bg);
-}
-
-td[bgcolor="#FFFFCC" i] h3,
-td[bgcolor="#FFFFCC" i] h4 {
-	color: var(--color-panel-text);
-	font-family: var(--font-sans);
 }
 
 /* Shared course-page layout */
@@ -730,15 +675,6 @@ body .token.function {
 	:root:not([data-theme="light"]) [style*="background-color: #FFFFFF" i] {
 		background-color: var(--color-bg) !important;
 	}
-
-	/* #CCCCCC has no matching light-mode token (only used as decorative
-	   spacer cells), so it's remapped only in dark mode. Uses the same
-	   --color-cell-label-bg as #E8E8E8 since both are gray. */
-	:root:not([data-theme="light"]) table[bgcolor="#CCCCCC" i],
-	:root:not([data-theme="light"]) tr[bgcolor="#CCCCCC" i],
-	:root:not([data-theme="light"]) td[bgcolor="#CCCCCC" i] {
-		background-color: var(--color-cell-label-bg);
-	}
 }
 
 /* Manual dark override — same non-token rules as the @media block above,
@@ -830,12 +766,6 @@ body .token.function {
 
 :root[data-theme="dark"] [style*="background-color: #FFFFFF" i] {
 	background-color: var(--color-bg) !important;
-}
-
-:root[data-theme="dark"] table[bgcolor="#CCCCCC" i],
-:root[data-theme="dark"] tr[bgcolor="#CCCCCC" i],
-:root[data-theme="dark"] td[bgcolor="#CCCCCC" i] {
-	background-color: var(--color-cell-label-bg);
 }
 
 /* ============================================================================
