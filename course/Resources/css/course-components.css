@@ -310,23 +310,36 @@ dl.index-grid.bullet-orange {
 	border-bottom: none;
 }
 
-/* Legacy data tables colour themselves with inline bgcolor attributes
-   (green/cyan body tint + #FFFFCC header cells), which the global remaps
-   turn into the panel/code tokens. Inside a .data-table, override those so
-   these tables match the modern semantic ones: a plain body and the same
-   neutral header fill the <thead> rule above applies. Scoped to .data-table,
-   so legacy bgcolor markup elsewhere is unaffected. The extra class raises
-   specificity above the global table[bgcolor] / td[bgcolor] remaps. */
+/* Legacy data tables colour themselves with inline bgcolor attributes —
+   green/cyan body tints (#E1FFE1, #D2FFD2, #DDFFDD, #DDFFFF, #CCFFFF),
+   #FFFFCC header markers, and grey structural cells (#E8E8E8, #CCCCCC) —
+   applied at table, row OR cell level and turned into theme tokens by the
+   global bgcolor remaps. Inside a .data-table, override all of them so every
+   data table matches the modern semantic ones:
+     1. blanket every inline tint to a plain body;
+     2. re-apply the neutral header fill for #FFFFCC headers (row- or
+        cell-level), with the 2px underline the <thead> rule uses;
+     3. keep grey structural cells, mapped to that same neutral grey.
+   Scoped to .data-table so bgcolor markup elsewhere is untouched; the extra
+   class outranks the global table/tr/td[bgcolor] remaps, and the later
+   re-apply rules outrank the blanket by source order (equal specificity). */
 .data-table[bgcolor],
-.data-table td[bgcolor="#E1FFE1" i],
-.data-table td[bgcolor="#DDFFDD" i],
-.data-table td[bgcolor="#DDFFFF" i],
-.data-table td[bgcolor="#FFFFFF" i] {
+.data-table tr[bgcolor],
+.data-table td[bgcolor] {
 	background-color: transparent;
 }
 
-.data-table td[bgcolor="#FFFFCC" i] {
+.data-table tr[bgcolor="#FFFFCC" i] > td,
+.data-table tr[bgcolor="#FFFFCC" i] > th,
+.data-table td[bgcolor="#FFFFCC" i],
+.data-table td[bgcolor="#E8E8E8" i],
+.data-table td[bgcolor="#CCCCCC" i] {
 	background-color: var(--color-cell-label-bg);
+}
+
+.data-table tr[bgcolor="#FFFFCC" i] > td,
+.data-table tr[bgcolor="#FFFFCC" i] > th,
+.data-table td[bgcolor="#FFFFCC" i] {
 	border-bottom: 2px solid var(--color-border-mute);
 }
 
