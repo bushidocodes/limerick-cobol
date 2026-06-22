@@ -258,19 +258,89 @@ dl.index-grid.bullet-orange {
 	text-align: center;
 }
 
-/* Reproduces <table border="1" cellspacing="1" cellpadding="5"> exactly:
-   1px outer border, 1px gap between cells, 1px border on every cell, 5px
-   cell padding. Verified against legacy renderings before the Phase 4 sweep. */
+/* MDN-style data table: collapsed borders, a subtle filled header row, and
+   light horizontal row separators instead of the legacy full 1px grid
+   (was border="1" cellspacing="1" cellpadding="5"). Vertical rules are
+   dropped — generous cell padding keeps the columns legible. */
 .data-table {
-	border-collapse: separate;
-	border-spacing: 1px;
-	border: 1px solid;
+	border-collapse: collapse;
+	border: 1px solid var(--color-border-soft);
+}
+
+.data-table caption {
+	caption-side: top;
+	text-align: left;
+	font-weight: 700;
+	padding: 0 0 0.4em;
 }
 
 .data-table > * > tr > th,
 .data-table > * > tr > td {
-	border: 1px solid;
-	padding: 5px;
+	border: none;
+	border-bottom: 1px solid var(--color-border-soft);
+	padding: 8px;
+	text-align: left;
+	vertical-align: top;
+}
+
+/* When a data table is wider than its column (e.g. the multi-column example
+   index on a narrow screen), scroll the container horizontally instead of
+   letting .page-wrapper's overflow:hidden (rounded corners) clip the right
+   columns. Scoped with :has() to only the containers that actually hold a
+   table, so no scrollbar appears elsewhere. The table itself stays a native
+   <table> — preserving fixed widths, rowspans and centring on legacy tables
+   — and simply scrolls into view when it can't fit. */
+.page-content:has(.data-table),
+.section-content:has(.data-table),
+.section-full:has(.data-table) {
+	overflow-x: auto;
+}
+
+/* `> * >` (not `> thead >`) so header cells get the fill whether the table
+   uses a real <thead> or — as several legacy tables do — <th> rows inside
+   <tbody>. */
+.data-table > * > tr > th {
+	background-color: var(--color-cell-label-bg);
+	border-bottom: 2px solid var(--color-border-mute);
+	vertical-align: bottom;
+}
+
+/* The outer 1px border already closes the bottom edge. */
+.data-table > tbody > tr:last-child > td {
+	border-bottom: none;
+}
+
+/* Legacy data tables colour themselves with inline bgcolor attributes —
+   green/cyan body tints (#E1FFE1, #D2FFD2, #DDFFDD, #DDFFFF, #CCFFFF),
+   #FFFFCC header markers, and grey structural cells (#E8E8E8, #CCCCCC) —
+   applied at table, row OR cell level and turned into theme tokens by the
+   global bgcolor remaps. Inside a .data-table, override all of them so every
+   data table matches the modern semantic ones:
+     1. blanket every inline tint to a plain body;
+     2. re-apply the neutral header fill for #FFFFCC headers (row- or
+        cell-level), with the 2px underline the <thead> rule uses;
+     3. keep grey structural cells, mapped to that same neutral grey.
+   Scoped to .data-table so bgcolor markup elsewhere is untouched; the extra
+   class outranks the global table/tr/td[bgcolor] remaps, and the later
+   re-apply rules outrank the blanket by source order (equal specificity). */
+.data-table[bgcolor],
+.data-table tr[bgcolor],
+.data-table td[bgcolor] {
+	background-color: transparent;
+}
+
+.data-table tr[bgcolor="#FFFFCC" i] > td,
+.data-table tr[bgcolor="#FFFFCC" i] > th,
+.data-table td[bgcolor="#FFFFCC" i],
+.data-table td[bgcolor="#E8E8E8" i],
+.data-table td[bgcolor="#CCCCCC" i] {
+	background-color: var(--color-cell-label-bg);
+}
+
+.data-table tr[bgcolor="#FFFFCC" i] > td,
+.data-table tr[bgcolor="#FFFFCC" i] > th,
+.data-table td[bgcolor="#FFFFCC" i] {
+	border-bottom: 2px solid var(--color-border-mute);
 }
 
 /* Breathing room between stacked data-tables (e.g. examples/index.html lists
