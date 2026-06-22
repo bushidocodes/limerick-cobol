@@ -1,16 +1,30 @@
 :root {
 	color-scheme: light dark;
 
+	/* Type stacks. A system-UI-first sans (the same family MDN renders for most
+	   users) replaces the browser-default serif for body copy and chrome; a
+	   modern monospace stack handles code. Routed through tokens so every
+	   component picks up the same fonts. */
+	--font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Inter, "Helvetica Neue", Arial, sans-serif;
+	--font-mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Consolas, "Liberation Mono", Menlo, monospace;
+
+	/* Corner radii for framed surfaces (content frame, cards, code blocks). */
+	--radius-sm: 4px;
+	--radius: 8px;
+
+	/* Soft elevation shadow for the content frame and pop-overs. */
+	--shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.06);
+
 	--color-bg: #ffffff;
-	--color-text: #000000;
+	--color-text: #1b1b1b;
 
 	--color-link: #1d4ed8;
 	--color-link-visited: #6366cc;
 	--color-link-active: #0b1f5e;
 
 	--color-header-bg: #993300;
-	--color-header-text: #ffff00;
-	--color-panel-bg: #ffffcc;
+	--color-header-text: #ffe066;
+	--color-panel-bg: #fdf3e3;
 	--color-panel-text: #800000;
 	--color-code-bg: #e1ffe1;
 	--color-results-bg: #ddffff;
@@ -148,7 +162,33 @@ body {
 	margin: 0;
 	background-color: var(--color-bg);
 	color: var(--color-text);
-	line-height: 1.55;
+	font-family: var(--font-sans);
+	font-size: 16px;
+	line-height: 1.6;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
+}
+
+/* Headings: tighter leading and a touch more weight than the body — the
+   MDN content rhythm. They inherit --font-sans from body. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	line-height: 1.25;
+	font-weight: 700;
+}
+
+/* Monospace everywhere code appears, including legacy <tt>. */
+pre,
+code,
+kbd,
+samp,
+tt {
+	font-family: var(--font-mono);
 }
 
 a:link {
@@ -218,13 +258,24 @@ body code[class*="language-"] {
 	overflow-wrap: break-word;
 }
 
+/* The `body` prefix lifts specificity to (0,1,2) so these win over
+   prism.min.css's `pre[class*="language-"]` (0,1,1), routing Prism blocks
+   through the same mono stack as the rest of the site. */
+body pre[class*="language-"],
+body code[class*="language-"] {
+	font-family: var(--font-mono);
+}
+
 /* Reserve room on the right for the absolutely-positioned .copy-button
    injected by components/copy-button.js (top: 0.4em; right: 0.4em). Without
    this, short one-line snippets and any line that reaches the right edge
    render directly under the button. 4em comfortably clears the button at
-   its mobile tap-target size (50×44 from PR #606). */
+   its mobile tap-target size (50×44 from PR #606). The soft border + radius
+   give the code block the rounded card look used elsewhere on the page. */
 body pre[class*="language-"] {
 	padding-right: 4em;
+	border-radius: var(--radius);
+	border: 1px solid var(--color-border-soft);
 }
 
 body {
@@ -403,22 +454,25 @@ td[bgcolor="#990000" i] h2,
 tr[bgcolor="#993300" i] h2,
 tr[bgcolor="#990000" i] h2 {
 	color: var(--color-header-text);
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: var(--font-sans);
 }
 
 td[bgcolor="#FFFFCC" i] h3,
 td[bgcolor="#FFFFCC" i] h4 {
 	color: var(--color-panel-text);
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: var(--font-sans);
 }
 
 /* Shared course-page layout */
 
 .page-wrapper {
 	max-width: 715px;
-	margin: 0 auto;
-	border: 1px solid;
+	margin: 1.5em auto;
+	border: 1px solid var(--color-border-soft);
+	border-radius: var(--radius);
+	box-shadow: var(--shadow-card);
 	box-sizing: border-box;
+	overflow: hidden;
 }
 
 .page-content {
@@ -453,7 +507,7 @@ td[bgcolor="#FFFFCC" i] h4 {
 .section-header h2,
 .section-header h3 {
 	color: var(--color-header-text);
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: var(--font-sans);
 	margin: 0.3em 0;
 }
 
@@ -466,7 +520,7 @@ td[bgcolor="#FFFFCC" i] h4 {
 .section-sidebar h3,
 .section-sidebar h4 {
 	color: var(--color-panel-text);
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: var(--font-sans);
 }
 
 .section-content {
