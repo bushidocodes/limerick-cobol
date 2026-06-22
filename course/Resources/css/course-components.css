@@ -265,17 +265,6 @@ dl.index-grid.bullet-orange {
 .data-table {
 	border-collapse: collapse;
 	border: 1px solid var(--color-border-soft);
-	/* Scroll horizontally rather than overflow the page when the table is
-	   wider than its column — e.g. on narrow screens the unbreakable program
-	   names set a min-width that exceeds the viewport. display:block makes the
-	   table its own scroll container; width:max-content + max-width:100% keeps
-	   it content-sized but capped to the available space. Without this the
-	   .page-wrapper's overflow:hidden (rounded corners) would clip the right
-	   columns instead. */
-	display: block;
-	width: max-content;
-	max-width: 100%;
-	overflow-x: auto;
 }
 
 .data-table caption {
@@ -289,9 +278,22 @@ dl.index-grid.bullet-orange {
 .data-table > * > tr > td {
 	border: none;
 	border-bottom: 1px solid var(--color-border-soft);
-	padding: 8px 12px;
+	padding: 8px;
 	text-align: left;
 	vertical-align: top;
+}
+
+/* When a data table is wider than its column (e.g. the multi-column example
+   index on a narrow screen), scroll the container horizontally instead of
+   letting .page-wrapper's overflow:hidden (rounded corners) clip the right
+   columns. Scoped with :has() to only the containers that actually hold a
+   table, so no scrollbar appears elsewhere. The table itself stays a native
+   <table> — preserving fixed widths, rowspans and centring on legacy tables
+   — and simply scrolls into view when it can't fit. */
+.page-content:has(.data-table),
+.section-content:has(.data-table),
+.section-full:has(.data-table) {
+	overflow-x: auto;
 }
 
 .data-table > thead > tr > th {
