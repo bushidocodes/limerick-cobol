@@ -17,7 +17,8 @@
 	column-gap: 0.75em;
 	padding: 0.25em 0.5em;
 	background-color: var(--color-bg);
-	border-bottom: 1px solid var(--color-border-mute);
+	border-bottom: 1px solid var(--color-border-soft);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 	box-sizing: border-box;
 }
 
@@ -68,7 +69,7 @@
 .site-nav a {
 	display: inline-block;
 	padding: 0.25em 0.6em;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: var(--font-sans);
 	font-size: 0.9em;
 	text-decoration: none;
 	color: var(--color-text);
@@ -78,7 +79,7 @@
 }
 
 .site-nav a:hover {
-	background-color: var(--color-border-mute);
+	background-color: var(--color-cell-label-bg);
 }
 
 .site-nav a[data-active] {
@@ -137,7 +138,7 @@
 	}
 
 	.site-header__hamburger:hover {
-		background-color: var(--color-border-mute);
+		background-color: var(--color-cell-label-bg);
 	}
 
 	.site-header__hamburger:focus-visible {
@@ -161,14 +162,14 @@
 	.site-nav-mobile a {
 		display: block;
 		padding: 0.5em 0.75em;
-		font-family: Arial, Helvetica, sans-serif;
+		font-family: var(--font-sans);
 		font-size: 0.95em;
 		text-decoration: none;
 		color: var(--color-text);
 	}
 
 	.site-nav-mobile a:hover {
-		background-color: var(--color-border-mute);
+		background-color: var(--color-cell-label-bg);
 	}
 
 	.site-nav-mobile a[data-active] {
@@ -210,7 +211,7 @@ nav[aria-label="Breadcrumb"] {
    colour override. */
 .page-hero-reading-time {
 	margin: 0.1em 0 0;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: var(--font-sans);
 	font-size: 0.8em;
 	opacity: 0.65;
 }
@@ -323,7 +324,7 @@ dl.index-grid.bullet-orange {
    neighbour links are present; text-align stays inside in case the row wraps. */
 .lesson-nav-position {
 	font-size: 0.85em;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: var(--font-sans);
 	color: var(--color-panel-text);
 	font-weight: bold;
 	letter-spacing: 0.04em;
@@ -424,7 +425,7 @@ dl.index-grid.bullet-orange {
 }
 
 .course-progress-reset {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: var(--font-sans);
 	font-size: 0.8em;
 	font-weight: bold;
 	letter-spacing: 0.04em;
@@ -488,7 +489,7 @@ dl.index-grid.bullet-orange {
 
 ul.construct-list {
 	list-style-type: disc;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: var(--font-sans);
 	font-weight: bold;
 	color: var(--color-emphasis);
 	font-size: 1.5em;
@@ -910,8 +911,11 @@ details[open].saq-reveal summary::before {
 	max-width: 100%;
 	margin-left: auto;
 	margin-right: auto;
-	border: 1px solid;
+	border: 1px solid var(--color-border-soft);
+	border-radius: var(--radius);
+	box-shadow: var(--shadow-card);
 	padding: 1px;
+	overflow: hidden;
 	box-sizing: border-box;
 }
 
@@ -991,7 +995,7 @@ details[open].saq-reveal summary::before {
 	width: 22px;
 	height: 21px;
 	border-radius: 3px;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: var(--font-sans);
 	font-size: 12px;
 	font-weight: bold;
 	color: #fff;
@@ -1431,7 +1435,7 @@ dl.exam-meta {
 
 dl.exam-meta dt {
 	font-weight: bold;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: var(--font-sans);
 	color: var(--color-panel-text);
 }
 
@@ -1499,7 +1503,7 @@ figure.example-run {
 figure.example-run figcaption {
 	background-color: var(--color-panel-bg);
 	color: var(--color-panel-text);
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: var(--font-sans);
 	font-weight: bold;
 	padding: 4px 10px;
 	border-bottom: 1px solid;
@@ -1537,7 +1541,7 @@ related-content {
 }
 
 .related-heading {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: var(--font-sans);
 	font-size: 1em;
 	font-weight: bold;
 	margin: 0 0 0.4em;
@@ -1550,7 +1554,7 @@ related-content {
 }
 
 .related-group-label {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: var(--font-sans);
 	font-size: 0.85em;
 	font-weight: bold;
 	margin: 0 0 0.2em;
@@ -1597,7 +1601,7 @@ lesson-toc {
 }
 
 .page-toc-heading {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: var(--font-sans);
 	font-size: 0.9em;
 	font-weight: bold;
 	text-transform: uppercase;
@@ -1664,6 +1668,9 @@ lesson-toc {
 		column-gap: 2em;
 		max-width: 947px;
 		border: none;
+		border-radius: 0;
+		box-shadow: none;
+		overflow: visible;
 	}
 
 	.page-wrapper:has(page-toc) > *:not(page-toc) {
@@ -1936,7 +1943,7 @@ edit-on-github {
 
 .edit-on-github-heading {
 	margin: 0 0 0.25em;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: var(--font-sans);
 	font-size: 0.9em;
 	font-weight: bold;
 	text-transform: uppercase;
@@ -1995,7 +2002,7 @@ page-breadcrumbs {
 	   sticky-stacked at the top of the viewport. */
 	z-index: 199;
 	background-color: var(--color-bg);
-	border-bottom: 1px solid var(--color-border-mute);
+	border-bottom: 1px solid var(--color-border-soft);
 	box-sizing: border-box;
 }
 
@@ -2154,7 +2161,7 @@ exercises-sidebar {
 }
 
 .course-sidebar-heading {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: var(--font-sans);
 	font-size: 0.9em;
 	font-weight: bold;
 	text-transform: uppercase;
@@ -2184,7 +2191,7 @@ exercises-sidebar {
 }
 
 .course-sidebar-topic-label {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: var(--font-sans);
 	font-size: 0.85em;
 	font-weight: bold;
 	text-transform: uppercase;
@@ -2273,6 +2280,9 @@ exercises-sidebar {
 		column-gap: 2em;
 		max-width: 967px;
 		border: none;
+		border-radius: 0;
+		box-shadow: none;
+		overflow: visible;
 		align-items: start;
 	}
 
@@ -2388,7 +2398,7 @@ exercises-sidebar {
 	padding: 4px 8px;
 	border: 1px solid var(--color-border-mute);
 	border-radius: 3px;
-	font-family: sans-serif;
+	font-family: var(--font-sans);
 	font-size: 0.85rem;
 	text-decoration: none;
 	color: var(--color-text);
