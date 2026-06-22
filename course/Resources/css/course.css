@@ -29,6 +29,13 @@
 	--color-cell-label-bg: #e8e8e8;
 	--color-emphasis: #000099;
 
+	/* Utility buttons (download / copy / run). Shared so the three controls
+	   stay consistent; hover shifts the background rather than dimming opacity.
+	   Dark values live in the dark-theme blocks below. */
+	--btn-bg: #f0f0f0;
+	--btn-bg-hover: #e3e3e3;
+	--btn-border: #bbbbbb;
+
 	--site-header-height: 3em;
 	/* site-header (--site-header-height) + secondary breadcrumb bar. Used by
 	   sticky sidebars (page-toc, course-sidebar) so they sit below both bars
@@ -150,6 +157,23 @@
 	--prism-function: #90c8ff;
 	--prism-number: #f8d57e;
 	--prism-operator: #d8a0ff;
+}
+
+/* Dark-theme values for the utility-button tokens (see :root above). Kept in
+   their own block — applied under both the OS-preference and manual-override
+   conditions — so the button rules stay theme-agnostic. */
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) {
+		--btn-bg: #2e2e2e;
+		--btn-bg-hover: #3a3a3a;
+		--btn-border: #555555;
+	}
+}
+
+:root[data-theme="dark"] {
+	--btn-bg: #2e2e2e;
+	--btn-bg-hover: #3a3a3a;
+	--btn-border: #555555;
 }
 
 body {
