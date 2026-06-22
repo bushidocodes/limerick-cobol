@@ -1102,33 +1102,24 @@ details[open].saq-reveal summary::before {
 	font-size: 0.9em;
 	line-height: 1.4;
 	cursor: pointer;
-	border-radius: 3px;
-	background-color: #f0f0f0;
-	color: #333;
-	border: 1px solid #bbb;
+	border-radius: var(--radius-sm);
+	background-color: var(--btn-bg);
+	color: var(--color-text);
+	border: 1px solid var(--btn-border);
 	text-decoration: none;
-	transition: opacity 0.15s;
+	transition:
+		background-color 0.15s,
+		border-color 0.15s;
 }
 
-.download-btn:hover,
-.download-btn:focus {
-	opacity: 0.85;
-	outline: 2px solid currentColor;
+.download-btn:hover {
+	background-color: var(--btn-bg-hover);
+	border-color: var(--color-border-mute);
+}
+
+.download-btn:focus-visible {
+	outline: 2px solid var(--color-link);
 	outline-offset: 1px;
-}
-
-@media (prefers-color-scheme: dark) {
-	:root:not([data-theme="light"]) .download-btn {
-		background-color: #2e2e2e;
-		color: #ddd;
-		border-color: #555;
-	}
-}
-
-:root[data-theme="dark"] .download-btn {
-	background-color: #2e2e2e;
-	color: #ddd;
-	border-color: #555;
 }
 
 /* ============================================================================
@@ -1151,23 +1142,27 @@ body pre[class*="language-"] {
 	font-size: 0.75em;
 	line-height: 1.4;
 	cursor: pointer;
-	border-radius: 3px;
-	/* Light-theme colours */
-	background-color: #f0f0f0;
-	color: #333;
-	border: 1px solid #bbb;
+	border-radius: var(--radius-sm);
+	background-color: var(--btn-bg);
+	color: var(--color-text);
+	border: 1px solid var(--btn-border);
+	/* Semi-transparent so it recedes over the code until hovered. */
 	opacity: 0.8;
 	transition:
 		opacity 0.15s,
 		background-color 0.15s,
-		color 0.15s,
 		border-color 0.15s;
 }
 
-.copy-button:hover,
-.copy-button:focus {
+.copy-button:hover {
 	opacity: 1;
-	outline: 2px solid currentColor;
+	background-color: var(--btn-bg-hover);
+	border-color: var(--color-border-mute);
+}
+
+.copy-button:focus-visible {
+	opacity: 1;
+	outline: 2px solid var(--color-link);
 	outline-offset: 1px;
 }
 
@@ -1178,24 +1173,14 @@ body pre[class*="language-"] {
 	opacity: 1;
 }
 
+/* Base colours come from the --btn-* tokens (theme-aware). Only the success
+   state needs an explicit dark override. */
 @media (prefers-color-scheme: dark) {
-	:root:not([data-theme="light"]) .copy-button {
-		background-color: #2e2e2e;
-		color: #ddd;
-		border-color: #555;
-	}
-
 	:root:not([data-theme="light"]) .copy-button.is-success {
 		background-color: #1b3a1e;
 		color: #66bb6a;
 		border-color: #388e3c;
 	}
-}
-
-:root[data-theme="dark"] .copy-button {
-	background-color: #2e2e2e;
-	color: #ddd;
-	border-color: #555;
 }
 
 :root[data-theme="dark"] .copy-button.is-success {
@@ -1225,33 +1210,34 @@ body pre[class*="language-"] {
 	font-size: 0.9em;
 	line-height: 1.4;
 	cursor: pointer;
-	border-radius: 3px;
-	background-color: #f0f0f0;
-	color: #333;
-	border: 1px solid #bbb;
+	border-radius: var(--radius-sm);
+	background-color: var(--btn-bg);
+	color: var(--color-text);
+	border: 1px solid var(--btn-border);
 	text-decoration: none;
-	transition: opacity 0.15s;
+	transition:
+		background-color 0.15s,
+		border-color 0.15s;
 }
 
-.run-in-ce:hover,
-.run-in-ce:focus {
-	opacity: 0.85;
-	outline: 2px solid currentColor;
+.run-in-ce:hover {
+	background-color: var(--btn-bg-hover);
+	border-color: var(--color-border-mute);
+}
+
+.run-in-ce:focus-visible {
+	outline: 2px solid var(--color-link);
 	outline-offset: 1px;
 }
 
-@media (prefers-color-scheme: dark) {
-	:root:not([data-theme="light"]) .run-in-ce {
-		background-color: #2e2e2e;
-		color: #ddd;
-		border-color: #555;
-	}
-}
-
-:root[data-theme="dark"] .run-in-ce {
-	background-color: #2e2e2e;
-	color: #ddd;
-	border-color: #555;
+/* These buttons are <a> elements; the :link/:visited pseudo-classes raise
+   specificity above the global a:link rule so the text stays neutral (like
+   the <button>-based copy button) rather than inheriting link blue. */
+.download-btn:link,
+.download-btn:visited,
+.run-in-ce:link,
+.run-in-ce:visited {
+	color: var(--color-text);
 }
 
 /* ============================================================================
