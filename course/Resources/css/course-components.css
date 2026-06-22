@@ -296,7 +296,10 @@ dl.index-grid.bullet-orange {
 	overflow-x: auto;
 }
 
-.data-table > thead > tr > th {
+/* `> * >` (not `> thead >`) so header cells get the fill whether the table
+   uses a real <thead> or — as several legacy tables do — <th> rows inside
+   <tbody>. */
+.data-table > * > tr > th {
 	background-color: var(--color-cell-label-bg);
 	border-bottom: 2px solid var(--color-border-mute);
 	vertical-align: bottom;
@@ -305,6 +308,26 @@ dl.index-grid.bullet-orange {
 /* The outer 1px border already closes the bottom edge. */
 .data-table > tbody > tr:last-child > td {
 	border-bottom: none;
+}
+
+/* Legacy data tables colour themselves with inline bgcolor attributes
+   (green/cyan body tint + #FFFFCC header cells), which the global remaps
+   turn into the panel/code tokens. Inside a .data-table, override those so
+   these tables match the modern semantic ones: a plain body and the same
+   neutral header fill the <thead> rule above applies. Scoped to .data-table,
+   so legacy bgcolor markup elsewhere is unaffected. The extra class raises
+   specificity above the global table[bgcolor] / td[bgcolor] remaps. */
+.data-table[bgcolor],
+.data-table td[bgcolor="#E1FFE1" i],
+.data-table td[bgcolor="#DDFFDD" i],
+.data-table td[bgcolor="#DDFFFF" i],
+.data-table td[bgcolor="#FFFFFF" i] {
+	background-color: transparent;
+}
+
+.data-table td[bgcolor="#FFFFCC" i] {
+	background-color: var(--color-cell-label-bg);
+	border-bottom: 2px solid var(--color-border-mute);
 }
 
 /* Breathing room between stacked data-tables (e.g. examples/index.html lists
