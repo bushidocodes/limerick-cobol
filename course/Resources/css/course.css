@@ -22,8 +22,6 @@
 	--color-link-visited: #6366cc;
 	--color-link-active: #0b1f5e;
 
-	--color-header-bg: #993300;
-	--color-header-text: #ffe066;
 	--color-panel-bg: #fdf3e3;
 	--color-panel-text: #800000;
 	--color-code-bg: #edf7ed;
@@ -88,8 +86,6 @@
 		--color-link-visited: #a5b4fc;
 		--color-link-active: #bfdbfe;
 
-		--color-header-bg: #6b2400;
-		--color-header-text: #ffe066;
 		--color-panel-bg: #3a3520;
 		--color-panel-text: #ffd9d9;
 		--color-code-bg: #1f2e1f;
@@ -128,8 +124,6 @@
 	--color-link-visited: #a5b4fc;
 	--color-link-active: #6ee06e;
 
-	--color-header-bg: #6b2400;
-	--color-header-text: #ffe066;
 	--color-panel-bg: #3a3520;
 	--color-panel-text: #ffd9d9;
 	--color-code-bg: #1f2e1f;
@@ -367,8 +361,8 @@ body {
 	height: auto;
 	overflow: visible;
 	padding: 0.5em 1em;
-	background-color: var(--color-header-bg);
-	color: var(--color-header-text);
+	background-color: var(--color-inline-warm);
+	color: var(--color-bg);
 	font-weight: bold;
 	z-index: 9999;
 	text-decoration: none;
@@ -400,15 +394,6 @@ ul.toc a {
    background-color, which wins over the deprecated HTML attribute. Lets the
    theme tokens drive colors on pages that haven't been migrated to component
    classes. */
-table[bgcolor="#993300" i],
-table[bgcolor="#990000" i],
-tr[bgcolor="#993300" i],
-tr[bgcolor="#990000" i],
-td[bgcolor="#993300" i],
-td[bgcolor="#990000" i] {
-	background-color: var(--color-header-bg);
-}
-
 table[bgcolor="#FFFFCC" i],
 tr[bgcolor="#FFFFCC" i],
 td[bgcolor="#FFFFCC" i],
@@ -447,14 +432,6 @@ table[bgcolor="#E8E8E8" i],
 tr[bgcolor="#E8E8E8" i],
 td[bgcolor="#E8E8E8" i] {
 	background-color: var(--color-cell-label-bg);
-}
-
-td[bgcolor="#993300" i] h2,
-td[bgcolor="#990000" i] h2,
-tr[bgcolor="#993300" i] h2,
-tr[bgcolor="#990000" i] h2 {
-	color: var(--color-header-text);
-	font-family: var(--font-sans);
 }
 
 td[bgcolor="#FFFFCC" i] h3,
@@ -496,19 +473,25 @@ td[bgcolor="#FFFFCC" i] h4 {
 	grid-template-columns: 175px 1fr;
 }
 
+/* Section title row spanning the grid. Migrated from the legacy filled
+   maroon bar (solid maroon + amber text) to an MDN-style heading:
+   dark bold text on the page background with a warm brand-coloured bottom
+   rule. --color-inline-warm adapts per theme (#993300 light / #ff9966 dark)
+   so the accent reads in both. */
 .section-header {
 	grid-column: 1 / -1;
-	background-color: var(--color-header-bg);
-	padding: 4px;
+	background-color: transparent;
+	padding: 0.4em 0.1em 0.3em;
+	border-bottom: 2px solid var(--color-inline-warm);
 	min-width: 0;
-	text-align: center;
+	text-align: left;
 }
 
 .section-header h2,
 .section-header h3 {
-	color: var(--color-header-text);
+	color: var(--color-text);
 	font-family: var(--font-sans);
-	margin: 0.3em 0;
+	margin: 0.2em 0;
 }
 
 .section-sidebar {
@@ -844,8 +827,6 @@ body .token.function {
 		--color-link: #00c;
 		--color-link-visited: #609;
 		--color-link-active: #009b00;
-		--color-header-bg: #993300;
-		--color-header-text: #ffff00;
 		--color-panel-bg: #ffffcc;
 		--color-panel-text: #800000;
 		--color-code-bg: #edf7ed;

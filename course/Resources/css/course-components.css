@@ -82,19 +82,12 @@
 	background-color: var(--color-cell-label-bg);
 }
 
+/* Active section underline. --color-inline-warm carries the warm brand
+   accent and already adapts per theme (#993300 light / #ff9966 dark), so
+   no separate dark-mode override is needed. */
 .site-nav a[data-active] {
 	font-weight: bold;
-	border-bottom-color: var(--color-header-bg);
-}
-
-@media (prefers-color-scheme: dark) {
-	:root:not([data-theme="light"]) .site-nav a[data-active] {
-		border-bottom-color: #ff9966;
-	}
-}
-
-:root[data-theme="dark"] .site-nav a[data-active] {
-	border-bottom-color: #ff9966;
+	border-bottom-color: var(--color-inline-warm);
 }
 
 /* Hidden on desktop; the @media (max-width: 720px) block below shows it. */
@@ -174,7 +167,7 @@
 
 	.site-nav-mobile a[data-active] {
 		font-weight: bold;
-		border-left: 3px solid var(--color-header-bg);
+		border-left: 3px solid var(--color-inline-warm);
 		padding-left: calc(0.75em - 3px);
 	}
 }
@@ -1270,8 +1263,8 @@ body pre[class*="language-"] {
 }
 
 .theme-toggle__menuitem[aria-checked="true"] {
-	background-color: var(--color-header-bg);
-	color: var(--color-header-text);
+	background-color: var(--color-inline-warm);
+	color: var(--color-bg);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -1635,18 +1628,8 @@ lesson-toc {
 }
 
 .page-toc-list a[data-active] {
-	border-left-color: var(--color-header-bg);
+	border-left-color: var(--color-inline-warm);
 	font-weight: bold;
-}
-
-@media (prefers-color-scheme: dark) {
-	:root:not([data-theme="light"]) .page-toc-list a[data-active] {
-		border-left-color: #ff9966;
-	}
-}
-
-:root[data-theme="dark"] .page-toc-list a[data-active] {
-	border-left-color: #ff9966;
 }
 
 .page-toc-h3 a {
@@ -2227,18 +2210,8 @@ exercises-sidebar {
 }
 
 .course-sidebar-link a[data-active] {
-	border-left-color: var(--color-header-bg);
+	border-left-color: var(--color-inline-warm);
 	font-weight: bold;
-}
-
-@media (prefers-color-scheme: dark) {
-	:root:not([data-theme="light"]) .course-sidebar-link a[data-active] {
-		border-left-color: #ff9966;
-	}
-}
-
-:root[data-theme="dark"] .course-sidebar-link a[data-active] {
-	border-left-color: #ff9966;
 }
 
 /* Subtle type marker so the reader can tell tutorials from exercises and
