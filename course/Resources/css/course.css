@@ -15,26 +15,30 @@
 	/* Soft elevation shadow for the content frame and pop-overs. */
 	--shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.06);
 
-	--color-bg: #ffffff;
-	--color-text: #1b1b1b;
+	/* Theme-varying colours use light-dark(): first value for a light
+	   color-scheme, second for dark. color-scheme is `light dark` by default
+	   (follows the OS) and pinned by the :root[data-theme="..."] rules below, so
+	   each token resolves correctly for both the OS preference and the manual
+	   toggle — no separate dark rulesets needed. */
+	--color-bg: light-dark(#ffffff, #1a1a1a);
+	--color-text: light-dark(#1b1b1b, #e6e6e6);
 
-	--color-link: #1d4ed8;
-	--color-link-visited: #6366cc;
-	--color-link-active: #0b1f5e;
+	--color-link: light-dark(#1d4ed8, #93c5fd);
+	--color-link-visited: light-dark(#6366cc, #a5b4fc);
+	--color-link-active: light-dark(#0b1f5e, #bfdbfe);
 
-	--color-panel-bg: #fdf3e3;
-	--color-panel-text: #800000;
-	--color-code-bg: #edf7ed;
-	--color-results-bg: #eaf4fb;
-	--color-cell-label-bg: #e8e8e8;
-	--color-emphasis: #000099;
+	--color-panel-bg: light-dark(#fdf3e3, #3a3520);
+	--color-panel-text: light-dark(#800000, #ffd9d9);
+	--color-code-bg: light-dark(#edf7ed, #1f2e1f);
+	--color-results-bg: light-dark(#eaf4fb, #1a2e2e);
+	--color-cell-label-bg: light-dark(#e8e8e8, #2d2d2d);
+	--color-emphasis: light-dark(#000099, #8aa8ff);
 
 	/* Utility buttons (download / copy / run). Shared so the three controls
-	   stay consistent; hover shifts the background rather than dimming opacity.
-	   Dark values live in the dark-theme blocks below. */
-	--btn-bg: #f0f0f0;
-	--btn-bg-hover: #e3e3e3;
-	--btn-border: #bbbbbb;
+	   stay consistent; hover shifts the background rather than dimming opacity. */
+	--btn-bg: light-dark(#f0f0f0, #2e2e2e);
+	--btn-bg-hover: light-dark(#e3e3e3, #3a3a3a);
+	--btn-border: light-dark(#bbbbbb, #555555);
 
 	--site-header-height: 3em;
 	/* site-header (--site-header-height) + secondary breadcrumb bar. Used by
@@ -48,25 +52,25 @@
 	scroll-padding-top: calc(var(--site-bar-height) + 0.5em);
 
 	--color-border: currentColor;
-	--color-border-soft: #cccccc;
-	--color-border-mute: #999999;
+	--color-border-soft: light-dark(#cccccc, #444444);
+	--color-border-mute: light-dark(#999999, #666666);
 
-	--color-text-muted: #6a6a6a;
-	--color-danger: #c00000;
-	--color-inline-warm: #993300;
-	--color-inline-green: #006600;
-	--color-syntax-highlight: #c00000;
-	--color-toc-marker: #2e7d32;
+	--color-text-muted: light-dark(#6a6a6a, #a0a0a0);
+	--color-danger: light-dark(#c00000, #ff8a8a);
+	--color-inline-warm: light-dark(#993300, #ff9966);
+	--color-inline-green: light-dark(#006600, #7ec47e);
+	--color-syntax-highlight: light-dark(#c00000, #ff8a8a);
+	--color-toc-marker: light-dark(#2e7d32, #66bb6a);
 
-	--prism-bg: #f5f2f0;
-	--prism-text: #000000;
-	--prism-keyword: #006fa1;
-	--prism-string: #447a00;
-	--prism-punctuation: #6a6a6a;
-	--prism-comment: #546e7a;
-	--prism-function: #c03a58;
-	--prism-number: currentColor;
-	--prism-operator: currentColor;
+	--prism-bg: light-dark(#f5f2f0, #1f1f1f);
+	--prism-text: light-dark(#000000, #e6e6e6);
+	--prism-keyword: light-dark(#006fa1, #ff9d6e);
+	--prism-string: light-dark(#447a00, #b5e8a3);
+	--prism-punctuation: light-dark(#6a6a6a, #c8c8c8);
+	--prism-comment: light-dark(#546e7a, #8a8a8a);
+	--prism-function: light-dark(#c03a58, #90c8ff);
+	--prism-number: light-dark(currentColor, #f8d57e);
+	--prism-operator: light-dark(currentColor, #d8a0ff);
 
 	/* Dark-mode image inversion. Light/print leave it at `none`; the dark
 	   rulesets override it to actually invert. Routing through a custom
@@ -81,99 +85,6 @@
 }
 :root[data-theme="dark"] {
 	color-scheme: dark;
-}
-
-@media (prefers-color-scheme: dark) {
-	/* :not([data-theme="light"]) lets a manual Light override beat the OS. */
-	:root:not([data-theme="light"]) {
-		--color-bg: #1a1a1a;
-		--color-text: #e6e6e6;
-
-		--color-link: #93c5fd;
-		--color-link-visited: #a5b4fc;
-		--color-link-active: #bfdbfe;
-
-		--color-panel-bg: #3a3520;
-		--color-panel-text: #ffd9d9;
-		--color-code-bg: #1f2e1f;
-		--color-results-bg: #1a2e2e;
-		--color-cell-label-bg: #2d2d2d;
-		--color-emphasis: #8aa8ff;
-
-		--color-border-soft: #444444;
-		--color-border-mute: #666666;
-
-		--color-text-muted: #a0a0a0;
-		--color-danger: #ff8a8a;
-		--color-inline-warm: #ff9966;
-		--color-inline-green: #7ec47e;
-		--color-syntax-highlight: #ff8a8a;
-		--color-toc-marker: #66bb6a;
-
-		--prism-bg: #1f1f1f;
-		--prism-text: #e6e6e6;
-		--prism-keyword: #ff9d6e;
-		--prism-string: #b5e8a3;
-		--prism-punctuation: #c8c8c8;
-		--prism-comment: #8a8a8a;
-		--prism-function: #90c8ff;
-		--prism-number: #f8d57e;
-		--prism-operator: #d8a0ff;
-	}
-}
-
-/* Manual dark override — same tokens, applied regardless of OS preference. */
-:root[data-theme="dark"] {
-	--color-bg: #1a1a1a;
-	--color-text: #e6e6e6;
-
-	--color-link: #6ea8ff;
-	--color-link-visited: #a5b4fc;
-	--color-link-active: #6ee06e;
-
-	--color-panel-bg: #3a3520;
-	--color-panel-text: #ffd9d9;
-	--color-code-bg: #1f2e1f;
-	--color-results-bg: #1a2e2e;
-	--color-cell-label-bg: #2d2d2d;
-	--color-emphasis: #8aa8ff;
-
-	--color-border-soft: #444444;
-	--color-border-mute: #666666;
-
-	--color-text-muted: #a0a0a0;
-	--color-danger: #ff8a8a;
-	--color-inline-warm: #ff9966;
-	--color-inline-green: #7ec47e;
-	--color-syntax-highlight: #ff8a8a;
-	--color-toc-marker: #66bb6a;
-
-	--prism-bg: #1f1f1f;
-	--prism-text: #e6e6e6;
-	--prism-keyword: #ff9d6e;
-	--prism-string: #b5e8a3;
-	--prism-punctuation: #c8c8c8;
-	--prism-comment: #8a8a8a;
-	--prism-function: #90c8ff;
-	--prism-number: #f8d57e;
-	--prism-operator: #d8a0ff;
-}
-
-/* Dark-theme values for the utility-button tokens (see :root above). Kept in
-   their own block — applied under both the OS-preference and manual-override
-   conditions — so the button rules stay theme-agnostic. */
-@media (prefers-color-scheme: dark) {
-	:root:not([data-theme="light"]) {
-		--btn-bg: #2e2e2e;
-		--btn-bg-hover: #3a3a3a;
-		--btn-border: #555555;
-	}
-}
-
-:root[data-theme="dark"] {
-	--btn-bg: #2e2e2e;
-	--btn-bg-hover: #3a3a3a;
-	--btn-border: #555555;
 }
 
 body {
