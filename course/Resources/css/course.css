@@ -499,32 +499,24 @@ ul.toc a {
 	}
 }
 
-/* Inline style colour corrections — light mode.
-   Legacy <span style="color: #cccccc"> fails 4.5:1 against any light
-   background. Remap to a dark grey that passes without the rule being
-   visible in dark mode (the dark-mode block below uses higher-specificity
-   :root:not([data-theme="light"]) selectors and overrides this).
-   `!important` is required: attribute selectors only see the raw inline
-   value, but the actual `color` declaration sits in the element's `style`
-   attribute, whose specificity (1,0,0,0) outranks any author selector
-   without `!important`. */
-[style*="color: #CCCCCC" i] {
-	color: var(--color-text-muted) !important;
-}
-
 .cobol-highlight {
 	color: var(--color-syntax-highlight);
 }
 
-/* Legacy <span style="color: #ff0000"> fails 4.5:1 against light backgrounds
-   (#E1FFE1 gives 3.73:1, #FFFFCC gives 3.89:1, white gives 4:1). Remap to a
-   darker red. Dark-mode override below uses higher-specificity selectors and
-   maps to #ff8a8a for legibility on dark panel backgrounds. `!important` is
-   required for the same reason as the #cccccc rule above — we're overriding
-   an inline `style="color:..."` declaration. */
-[style*="color: #FF0000" i],
-[style*="color: #E32D00" i] {
-	color: var(--color-danger) !important;
+/* Inline-text highlight colours, routed through theme tokens (these replaced
+   legacy <span style="color: #..."> markup). `.cobol-highlight` above covers the
+   red emphasis; the rest map to the matching token so they stay legible in both
+   themes. */
+.text-emphasis {
+	color: var(--color-emphasis);
+}
+
+.text-success {
+	color: var(--color-inline-green);
+}
+
+.text-subtle {
+	color: var(--color-text-muted);
 }
 
 /* ============================================================================
@@ -648,41 +640,11 @@ body .token.function {
 	:root:not([data-theme="light"]) {
 		--img-filter: invert(0.92) hue-rotate(180deg);
 	}
-
-	/* Override inline `style="color: #..."` spans baked into legacy code
-	   samples. These attribute selectors target the raw inline value, so
-	   `!important` is required to beat the inline declaration. */
-	:root:not([data-theme="light"]) [style*="color: #0000FF" i] {
-		color: var(--color-link) !important;
-	}
-
-	:root:not([data-theme="light"]) [style*="color: #FF0000" i],
-	:root:not([data-theme="light"]) [style*="color: #E32D00" i] {
-		color: var(--color-danger) !important;
-	}
-
-	:root:not([data-theme="light"]) [style*="color: #006600" i] {
-		color: var(--color-inline-green) !important;
-	}
-
-	:root:not([data-theme="light"]) [style*="color: #CCCCCC" i] {
-		color: var(--color-text-muted) !important;
-	}
-
-	/* Inline background-color: #ffffff stays white in dark mode, leaving light
-	   inherited text on a white canvas — very low contrast. Map to the dark
-	   page background so normal dark-mode text colours apply. */
-	:root:not([data-theme="light"]) [style*="background-color: #FFFFFF" i] {
-		background-color: var(--color-bg) !important;
-	}
 }
 
-/* Manual dark override — same non-token rules as the @media block above,
-   applied regardless of OS preference. The `[style*="..."]` overrides below
-   need `!important` for the same reason as their @media-dark twins: they
-   target the raw inline-style attribute, but the actual `color` /
-   `background-color` declaration sits in `style=""` at specificity (1,0,0,0)
-   and can't be beaten without it. */
+/* Manual dark override — same non-token rules as the @media block above
+   (Prism token colours and image inversion), applied regardless of OS
+   preference. */
 :root[data-theme="dark"] body pre[class*="language-"],
 :root[data-theme="dark"] body code[class*="language-"] {
 	background: var(--prism-bg);
@@ -745,27 +707,6 @@ body .token.function {
 
 :root[data-theme="dark"] {
 	--img-filter: invert(0.92) hue-rotate(180deg);
-}
-
-:root[data-theme="dark"] [style*="color: #0000FF" i] {
-	color: var(--color-link) !important;
-}
-
-:root[data-theme="dark"] [style*="color: #FF0000" i],
-:root[data-theme="dark"] [style*="color: #E32D00" i] {
-	color: var(--color-danger) !important;
-}
-
-:root[data-theme="dark"] [style*="color: #006600" i] {
-	color: var(--color-inline-green) !important;
-}
-
-:root[data-theme="dark"] [style*="color: #CCCCCC" i] {
-	color: var(--color-text-muted) !important;
-}
-
-:root[data-theme="dark"] [style*="background-color: #FFFFFF" i] {
-	background-color: var(--color-bg) !important;
 }
 
 /* ============================================================================

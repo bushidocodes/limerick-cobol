@@ -291,7 +291,7 @@ INPUT-OUTPUT SECTION.
 FILE-CONTROL.
     SELECT SalesFile ASSIGN TO "GBPAY.dat"
            ORGANIZATION IS LINE SEQUENTIAL.
-    <span style="color: #FF0000"><b>SELECT PrintFile ASSIGN TO "SALESREPORT.lpt".</b></span>
+    <span class="cobol-highlight"><b>SELECT PrintFile ASSIGN TO "SALESREPORT.lpt".</b></span>
 
 
 DATA DIVISION.
@@ -303,14 +303,14 @@ FD  SalesFile.
     02 SalesPersonNum   PIC 9.
     02 ValueOfSale      PIC 9(4)V99.
 
-<b><span style="color: #FF0000">FD  PrintFile
+<b><span class="cobol-highlight">FD  PrintFile
     REPORT IS SalesReport.
 
 </span></b>    : intervening entries :
     : intervening entries :
 
 REPORT SECTION.
-<b><span style="color: #e32d00">RD  SalesReport</span></b>
+<b><span class="cobol-highlight">RD  SalesReport</span></b>
     CONTROLS ARE FINAL
                  CityCode
                  SalesPersonNum
@@ -771,9 +771,9 @@ REPORT SECTION.
 						<pre>01  DetailLine TYPE IS DETAIL.
     02 LINE IS PLUS 1.
        03 COLUMN 1      PIC X(9)
-                        SOURCE CityName(CityCode) <span style="color: #FF0000"><b>GROUP INDICATE</b></span>.
+                        SOURCE CityName(CityCode) <span class="cobol-highlight"><b>GROUP INDICATE</b></span>.
        03 COLUMN 15     PIC 9
-                        SOURCE SalesPersonNum  <b><span style="color: #FF0000">GROUP INDICATE</span></b>.
+                        SOURCE SalesPersonNum  <b><span class="cobol-highlight">GROUP INDICATE</span></b>.
        03 COLUMN 25     PIC $$,$$$.99 SOURCE ValueOfSale.</pre>
 						<p>
 							The <code class="language-cobol">GROUP INDICATE</code> clause can only appear in a
@@ -844,21 +844,21 @@ REPORT SECTION.
     TYPE IS CONTROL FOOTING SalesPersonNum  NEXT GROUP PLUS 2.
                       :<i> other entries</i> :
                       :<i> other entries</i> :
-       03 <span style="color: #FF0000"><b>SMS</b></span> COLUMN 45 PIC $$$$$,$$$.99 <span style="color: #FF0000"><b>SUM ValueOfSale</b></span>.
+       03 <span class="cobol-highlight"><b>SMS</b></span> COLUMN 45 PIC $$$$$,$$$.99 <span class="cobol-highlight"><b>SUM ValueOfSale</b></span>.
 
 
 
 01  CityGrp TYPE IS CONTROL FOOTING CityCode NEXT GROUP PLUS 2.
                       :<i> other entries</i> :
                       :<i> other entries</i> :
-       03 <b><span style="color: #FF0000">CS</span></b> COLUMN 45  PIC $$$$$,$$$.99 <span style="color: #FF0000"><b>SUM SMS</b></span>.
+       03 <b><span class="cobol-highlight">CS</span></b> COLUMN 45  PIC $$$$$,$$$.99 <span class="cobol-highlight"><b>SUM SMS</b></span>.
 
 
 
 01  TotalSalesGrp TYPE IS CONTROL FOOTING FINAL.
                       :<i> other entries</i> :
                       :<i> other entries</i> :
-       03 COLUMN 45     PIC $$$$$,$$$.99 <b><span style="color: #FF0000">SUM CS</span></b>.</pre>
+       03 COLUMN 45     PIC $$$$$,$$$.99 <b><span class="cobol-highlight">SUM CS</span></b>.</pre>
 						<hr />
 						<h3><b>Cross Footing</b></h3>
 						<p>
@@ -872,9 +872,9 @@ REPORT SECTION.
     TYPE IS CONTROL FOOTING ShopNum  NEXT GROUP PLUS 2.
                       :<i> other entries</i> :
                       :<i> other entries</i> :
-       03 <span style="color: #FF0000"><b>SPS</b></span> COLUMN 20 PIC $$$,$$$.99  <span style="color: #FF0000"><b>SUM SalesPersonSale</b></span>.
-       03 <span style="color: #FF0000"><b>SCS</b></span> COLUMN 40 PIC $$$,$$$.99  <span style="color: #FF0000"><b>SUM CounterSale</b></span>.
-       03     COLUMN 60 PIC $$$$,$$$.99 <span style="color: #FF0000"><b>SUM SPS, SCS</b></span>.
+       03 <span class="cobol-highlight"><b>SPS</b></span> COLUMN 20 PIC $$$,$$$.99  <span class="cobol-highlight"><b>SUM SalesPersonSale</b></span>.
+       03 <span class="cobol-highlight"><b>SCS</b></span> COLUMN 40 PIC $$$,$$$.99  <span class="cobol-highlight"><b>SUM CounterSale</b></span>.
+       03     COLUMN 60 PIC $$$$,$$$.99 <span class="cobol-highlight"><b>SUM SPS, SCS</b></span>.
 </pre>
 						<h3>Rules</h3>
 						<ol>
@@ -984,7 +984,7 @@ REPORT SECTION.
        03 COLUMN 1      PIC X(29)
                         VALUE "Programmer - Michael Coughlan".
        03 COLUMN 45     PIC X(6) VALUE "Page :".
-       03 COLUMN 52     PIC Z9 SOURCE<b><span style="color: #FF0000"> PAGE-COUNTER.</span></b></pre>
+       03 COLUMN 52     PIC Z9 SOURCE<b><span class="cobol-highlight"> PAGE-COUNTER.</span></b></pre>
 						<hr />
 					</div>
 				</div>
@@ -1274,7 +1274,7 @@ Programmer - Michael Coughlan               Page :  1
 					</div>
 					<div class="section-content">
 						<pre>PROCEDURE DIVISION.
-<b><span style="color: #FF0000">DECLARATIVES.
+<b><span class="cobol-highlight">DECLARATIVES.
 Calc SECTION.
     USE BEFORE REPORTING SalesPersonGrp.
 Calculate-Salary.
@@ -1321,7 +1321,7 @@ CheckShopSales SECTION.
     USE BEFORE REPORTING ShopTotalGrp.
 PrintMajorShopsOnly.
     IF SalesTotal &lt; 10000<b>
-       <span style="color: #e32d00">SUPPRESS PRINTING</span>
+       <span class="cobol-highlight">SUPPRESS PRINTING</span>
 </b>    END-IF.
 END DECLARATIVES.</pre>
 						<hr />
