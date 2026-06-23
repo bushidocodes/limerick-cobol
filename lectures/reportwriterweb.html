@@ -663,7 +663,7 @@ Programmer - Michael Coughlan               Page :  1
 						<hr />
 						<pre>REPORT SECTION.
 RD  SalesReport
-    CONTROLS ARE <b><span style="color: #FF0000">FINAL
+    CONTROLS ARE <b><span class="cobol-highlight">FINAL
                  CityCode</span></b>
                  SalesPersonNum
     PAGE LIMIT IS 66
@@ -709,9 +709,9 @@ RD  SalesReport
        03 COLUMN 15     PIC X(21) VALUE "Sales for salesperson".
        03 COLUMN 37     PIC 9 SOURCE SalesPersonNum.
        03 COLUMN 43     PIC X VALUE "=".
-       03 <b><span style="color: #FF0000">SMS</span></b> COLUMN 45 PIC $$$$$,$$$.99 SUM ValueOfSale.
+       03 <b><span class="cobol-highlight">SMS</span></b> COLUMN 45 PIC $$$$$,$$$.99 SUM ValueOfSale.
 
-<b><span style="color: #FF0000">
+<b><span class="cobol-highlight">
 01  CityGrp TYPE IS CONTROL FOOTING CityCode NEXT GROUP PLUS 2.
     02 LINE IS PLUS 2.
        03 COLUMN 15     PIC X(9) VALUE "Sales for".
@@ -960,7 +960,7 @@ RD  SalesReport
        03 COLUMN 43     PIC X VALUE "=".
        03 SMS COLUMN 45 PIC $$$$$,$$$.99 SUM ValueOfSale.
 
-<b><span style="color: #FF0000">    02 LINE IS PLUS 1.
+<b><span class="cobol-highlight">    02 LINE IS PLUS 1.
        03 COLUMN 15     PIC X(19) VALUE "Sales commission is".
        03 COLUMN 43     PIC X VALUE "=".
        03 COLUMN 45     PIC $$$$$,$$$.99 SOURCE Commission.
@@ -989,7 +989,7 @@ RD  SalesReport
        03 COLUMN 43     PIC X VALUE "=".
        03 CS COLUMN 45  PIC $$$$$,$$$.99 SUM SMS.
 
-<b><span style="color: #FF0000">    02 LINE IS PLUS 1.
+<b><span class="cobol-highlight">    02 LINE IS PLUS 1.
        03 COLUMN 15     PIC X(12)
                         VALUE "Current city".
        03 COLUMN 43     PIC X VALUE "=".
@@ -1019,7 +1019,7 @@ RD  SalesReport
 
 
 PROCEDURE DIVISION.
-<b><span style="color: #FF0000">DECLARATIVES.
+<b><span class="cobol-highlight">DECLARATIVES.
 Calc SECTION.
     USE BEFORE REPORTING SalesPersonGrp.
 Calculate-Salary.
@@ -1045,7 +1045,7 @@ Begin.
 
 
 PrintSalaryReport.
-<b><span style="color: #FF0000">    MOVE CityCode TO CityNow.
+<b><span class="cobol-highlight">    MOVE CityCode TO CityNow.
     MOVE SalesPersonNum  TO SalesPersonNow.</span></b>
     GENERATE DetailLine.
     READ SalesFile
