@@ -310,37 +310,25 @@ dl.index-grid.bullet-orange {
 	border-bottom: none;
 }
 
-/* Legacy data tables colour themselves with inline bgcolor attributes —
-   green/cyan body tints (#E1FFE1, #D2FFD2, #DDFFDD, #DDFFFF, #CCFFFF),
-   #FFFFCC header markers, and grey structural cells (#E8E8E8, #CCCCCC) —
-   applied at table, row OR cell level and turned into theme tokens by the
-   global bgcolor remaps. Inside a .data-table, override all of them so every
-   data table matches the modern semantic ones:
-     1. blanket every inline tint to a plain body;
-     2. re-apply the neutral header fill for #FFFFCC headers (row- or
-        cell-level), with the 2px underline the <thead> rule uses;
-     3. keep grey structural cells, mapped to that same neutral grey.
-   Scoped to .data-table so bgcolor markup elsewhere is untouched; the extra
-   class outranks the global table/tr/td[bgcolor] remaps, and the later
-   re-apply rules outrank the blanket by source order (equal specificity). */
-.data-table[bgcolor],
-.data-table tr[bgcolor],
-.data-table td[bgcolor] {
-	background-color: transparent;
-}
-
-.data-table tr[bgcolor="#FFFFCC" i] > td,
-.data-table tr[bgcolor="#FFFFCC" i] > th,
-.data-table td[bgcolor="#FFFFCC" i],
-.data-table td[bgcolor="#E8E8E8" i],
-.data-table td[bgcolor="#CCCCCC" i] {
+/* Header-marker / label fill for data-table cells. `.row-label` marks a whole
+   label row; `.cell-label` marks an individual key cell — both get the neutral
+   fill plus the 2px underline the <thead> rule uses. These replaced the legacy
+   #FFFFCC bgcolor markup the course/exercise pages used (the green/cyan body
+   tints they also carried simply became a plain body and were dropped). */
+.data-table tr.row-label > td,
+.data-table tr.row-label > th,
+.data-table td.cell-label,
+.data-table th.cell-label {
 	background-color: var(--color-cell-label-bg);
+	border-bottom: 2px solid var(--color-border-mute);
 }
 
-.data-table tr[bgcolor="#FFFFCC" i] > td,
-.data-table tr[bgcolor="#FFFFCC" i] > th,
-.data-table td[bgcolor="#FFFFCC" i] {
-	border-bottom: 2px solid var(--color-border-mute);
+/* Grey structural/spacer cells (replacing the legacy #E8E8E8 / #CCCCCC bgcolor
+   markup): the same neutral fill but no header underline — they keep the default
+   row separator. */
+.data-table td.cell-muted,
+.data-table th.cell-muted {
+	background-color: var(--color-cell-label-bg);
 }
 
 /* Breathing room between stacked data-tables (e.g. examples/index.html lists
