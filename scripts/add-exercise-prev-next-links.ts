@@ -20,32 +20,12 @@
 import fs from "fs";
 import path from "path";
 
+import { loadExerciseSequence, type ExerciseEntry } from "./lib/exercises.js";
+
 const REPO_ROOT = path.resolve(__dirname, "..");
 const EXERCISES_DIR = path.join(REPO_ROOT, "exercises");
 const PROGRESS_PATH = path.join(REPO_ROOT, "components", "exercise-progress.js");
 const BASE_URL = "https://bushidocodes.github.io/limerick-cobol/exercises/";
-
-interface ExerciseEntry {
-	topic: string;
-	file: string;
-	title: string;
-}
-
-/**
- * Evaluate components/exercise-progress.js in a sandbox and return the frozen
- * COBOL_EXERCISES array. The file assigns `window.COBOL_EXERCISES = ...`, so we
- * pass a stand-in `window` object and read it back out.
- */
-function loadSequence(progressPath: string): ExerciseEntry[] {
-	const code = fs.readFileSync(progressPath, "utf8");
-	const win: { COBOL_EXERCISES?: ExerciseEntry[] } = {};
-	// eslint-disable-next-line @typescript-eslint/no-implied-eval
-	new Function("window", code)(win);
-	if (!win.COBOL_EXERCISES) {
-		throw new Error(`COBOL_EXERCISES not found in ${progressPath}`);
-	}
-	return win.COBOL_EXERCISES;
-}
 
 /**
  * Build the prev/next link tag block to inject.
@@ -76,7 +56,7 @@ function injectPrevNextLinks(html: string, prev: ExerciseEntry | null, next: Exe
 }
 
 function main(): void {
-	const sequence = loadSequence(PROGRESS_PATH);
+	const sequence = loadExerciseSequence(PROGRESS_PATH);
 
 	for (let i = 0; i < sequence.length; i++) {
 		const { file } = sequence[i];
