@@ -15,7 +15,8 @@ import fs from "fs";
 import path from "path";
 
 import { readJson } from "./lib/json.js";
-import { tutorialSequence, type LessonManifest, type TopicLink } from "./lib/lessons.js";
+import { tutorialSequence, type LessonManifest } from "./lib/lessons.js";
+import { injectPrevNextLinks } from "./lib/prev-next.js";
 
 const REPO_ROOT = path.resolve(__dirname, "..");
 const COURSE_DIR = path.join(REPO_ROOT, "course");
@@ -23,32 +24,6 @@ const MANIFEST_PATH = path.join(COURSE_DIR, "lesson-manifest.json");
 const BASE_URL = "https://bushidocodes.github.io/limerick-cobol/course/";
 
 const LESSON_SEQUENCE = tutorialSequence(readJson<LessonManifest>(MANIFEST_PATH));
-
-/**
- * Build the prev/next link tag block to inject.
- * Returns only the tags that apply (first lesson has no prev, last has no next).
- */
-function buildLinkBlock(prev: TopicLink | null, next: TopicLink | null): string {
-	const lines: string[] = [];
-	if (prev) lines.push(`\t\t<link rel="prev" href="${BASE_URL}${prev.file}" />`);
-	if (next) lines.push(`\t\t<link rel="next" href="${BASE_URL}${next.file}" />`);
-	return lines.join("\n");
-}
-
-/**
- * Remove any existing prev/next link tags, then inject new ones immediately
- * after the <link rel="canonical"> tag.
- */
-function injectPrevNextLinks(html: string, prev: TopicLink | null, next: TopicLink | null): string {
-	// Strip existing prev/next tags (idempotency).
-	html = html.replace(/\t\t<link rel="(?:prev|next)"[^\n]+\n/g, "");
-
-	const block = buildLinkBlock(prev, next);
-	if (!block) return html;
-
-	// Insert after <link rel="canonical" ...>.
-	return html.replace(/(\t\t<link rel="canonical"[^\n]+\n)/, `$1${block}\n`);
-}
 
 function main(): void {
 	for (let i = 0; i < LESSON_SEQUENCE.length; i++) {
@@ -60,11 +35,11 @@ function main(): void {
 			continue;
 		}
 
-		const prev = i > 0 ? LESSON_SEQUENCE[i - 1] : null;
-		const next = i < LESSON_SEQUENCE.length - 1 ? LESSON_SEQUENCE[i + 1] : null;
+		const prev = i > 0 ? LESSON_SEQUENCE[i - 1].file : null;
+		const next = i < LESSON_SEQUENCE.length - 1 ? LESSON_SEQUENCE[i + 1].file : null;
 
 		let html = fs.readFileSync(filePath, "utf8");
-		html = injectPrevNextLinks(html, prev, next);
+		html = injectPrevNextLinks(html, prev, next, BASE_URL);
 		fs.writeFileSync(filePath, html, "utf8");
 		console.log(`  OK    ${file}`);
 	}

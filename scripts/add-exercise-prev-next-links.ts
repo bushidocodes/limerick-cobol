@@ -20,40 +20,13 @@
 import fs from "fs";
 import path from "path";
 
-import { loadExerciseSequence, type ExerciseEntry } from "./lib/exercises.js";
+import { loadExerciseSequence } from "./lib/exercises.js";
+import { injectPrevNextLinks } from "./lib/prev-next.js";
 
 const REPO_ROOT = path.resolve(__dirname, "..");
 const EXERCISES_DIR = path.join(REPO_ROOT, "exercises");
 const PROGRESS_PATH = path.join(REPO_ROOT, "components", "exercise-progress.js");
 const BASE_URL = "https://bushidocodes.github.io/limerick-cobol/exercises/";
-
-/**
- * Build the prev/next link tag block to inject.
- * Returns only the tags that apply (first exercise has no prev, last has no next).
- */
-function buildLinkBlock(prev: ExerciseEntry | null, next: ExerciseEntry | null): string {
-	const lines: string[] = [];
-	if (prev) lines.push(`\t\t<link rel="prev" href="${BASE_URL}${prev.file}" />`);
-	if (next) lines.push(`\t\t<link rel="next" href="${BASE_URL}${next.file}" />`);
-	return lines.join("\n");
-}
-
-/**
- * Remove any existing prev/next link tags, then inject new ones immediately
- * after the <link rel="canonical"> tag. The `[^>]*` spans newlines (it only
- * stops at the tag's own closing `>`), so both single-line and prettier-wrapped
- * multi-line <link> tags are matched.
- */
-function injectPrevNextLinks(html: string, prev: ExerciseEntry | null, next: ExerciseEntry | null): string {
-	// Strip existing prev/next tags (idempotency).
-	html = html.replace(/\t\t<link[^>]*rel="(?:prev|next)"[^>]*\/>\n/g, "");
-
-	const block = buildLinkBlock(prev, next);
-	if (!block) return html;
-
-	// Insert after the <link rel="canonical" ... /> tag.
-	return html.replace(/(\t\t<link[^>]*rel="canonical"[^>]*\/>\n)/, `$1${block}\n`);
-}
 
 function main(): void {
 	const sequence = loadExerciseSequence(PROGRESS_PATH);
@@ -67,11 +40,11 @@ function main(): void {
 			continue;
 		}
 
-		const prev = i > 0 ? sequence[i - 1] : null;
-		const next = i < sequence.length - 1 ? sequence[i + 1] : null;
+		const prev = i > 0 ? sequence[i - 1].file : null;
+		const next = i < sequence.length - 1 ? sequence[i + 1].file : null;
 
 		let html = fs.readFileSync(filePath, "utf8");
-		html = injectPrevNextLinks(html, prev, next);
+		html = injectPrevNextLinks(html, prev, next, BASE_URL);
 		fs.writeFileSync(filePath, html, "utf8");
 		console.log(`  OK    ${file}`);
 	}
