@@ -16,6 +16,7 @@ import fs from "fs";
 import path from "path";
 
 import { readJson } from "./lib/json.js";
+import { buildLearningResourceBlock, extractCanonical, extractDescription, injectJsonLd } from "./lib/jsonld.js";
 import { tutorialSequence, type LessonManifest } from "./lib/lessons.js";
 
 const REPO_ROOT = path.resolve(__dirname, "..");
@@ -37,24 +38,9 @@ interface MetaEntry {
 // any file that appears in multiple topic groups.
 const LESSON_SEQUENCE = tutorialSequence(readJson<LessonManifest>(MANIFEST_PATH));
 
-/** Extract <meta name="description" content="..."> value from raw HTML. */
-function extractDescription(html: string): string {
-	return html.match(/<meta\s+name="description"\s+content="([^"]+)"/)?.[1] ?? "";
-}
-
-/** Extract <link rel="canonical" href="..."> value from raw HTML. */
-function extractCanonical(html: string): string {
-	return html.match(/<link\s+rel="canonical"\s+href="([^"]+)"/)?.[1] ?? "";
-}
-
-/**
- * Build the JSON-LD <script> block string with tab indentation matching the
- * surrounding HTML (two tabs for the tag, three tabs for JSON content).
- */
+/** Build the course LearningResource block for a lesson manifest entry. */
 function buildJsonLdBlock(entry: MetaEntry): string {
-	const ld = {
-		"@context": "https://schema.org",
-		"@type": "LearningResource",
+	return buildLearningResourceBlock({
 		name: entry.title,
 		description: entry.description,
 		url: entry.url,
@@ -64,41 +50,8 @@ function buildJsonLdBlock(entry: MetaEntry): string {
 			name: "COBOL Course",
 			url: COURSE_URL,
 		},
-		provider: {
-			"@type": "Person",
-			name: "Michael Coughlan",
-			affiliation: {
-				"@type": "Organization",
-				name: "University of Limerick CSIS",
-			},
-		},
-		educationalLevel: "beginner",
-		inLanguage: "en",
 		learningResourceType: "Tutorial",
-	};
-
-	// Indent inner JSON with three tabs to match course/index.html style.
-	const inner = JSON.stringify(ld, null, "\t")
-		.split("\n")
-		.map((line, i) => (i === 0 ? line : "\t\t\t" + line))
-		.join("\n");
-
-	return `\t\t<script type="application/ld+json">\n\t\t\t${inner}\n\t\t</script>`;
-}
-
-/**
- * Remove any existing LearningResource JSON-LD block from the HTML string,
- * then inject the new block immediately after the <link rel="icon"> tag.
- */
-function injectJsonLd(html: string, block: string): string {
-	// Strip existing LearningResource block (idempotency).
-	html = html.replace(
-		/\t\t<script type="application\/ld\+json">\n\t\t\t\{[\s\S]*?"@type": "LearningResource"[\s\S]*?<\/script>\n/g,
-		"",
-	);
-
-	// Insert after <link rel="icon" ...>.
-	return html.replace(/(\t\t<link rel="icon"[^\n]+\n)/, `$1${block}\n`);
+	});
 }
 
 function main(): void {
