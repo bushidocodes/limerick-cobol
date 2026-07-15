@@ -20,7 +20,9 @@ import path from "path";
 
 import { escapeAttr, escapeHtml } from "./lib/html-text.js";
 import { readJson } from "./lib/json.js";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 const EXAMPLES_DIR = path.join(ROOT, "examples");
 const BASE_URL = "https://bushidocodes.github.io/limerick-cobol/";
@@ -705,7 +707,9 @@ function writeExampleManifest(): string {
 
 export { EXAMPLES_DIR, MANIFEST, TOPIC_BY_DIR };
 
-if (require.main === module) {
+const isMain = Boolean(process.argv[1]) && import.meta.url === pathToFileURL(path.resolve(process.argv[1]!)).href;
+
+if (isMain) {
 	console.log("Building example HTML pages from .cbl sources…\n");
 
 	let ok = 0;

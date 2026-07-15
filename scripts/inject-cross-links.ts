@@ -24,7 +24,9 @@ import fs from "fs";
 import path from "path";
 
 import { readJson } from "./lib/json.js";
+import { fileURLToPath } from "node:url";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, "..");
 const CROSS_LINKS_PATH = path.join(__dirname, "cross-links.json");
 const MAX_ITEMS_PER_GROUP = 4;

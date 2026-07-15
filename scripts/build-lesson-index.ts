@@ -14,7 +14,9 @@ import path from "path";
 
 import { escapeHtml } from "./lib/html-text.js";
 import { readJson } from "./lib/json.js";
+import { fileURLToPath } from "node:url";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, "..");
 const MANIFEST_PATH = path.join(REPO_ROOT, "course", "lesson-manifest.json");
 const INDEX_PATH = path.join(REPO_ROOT, "course", "index.html");
