@@ -42,6 +42,7 @@ This runs in sequence:
 | `npm run links`        | Internal link check via `linkinator` (externals skipped) |
 | `npm run a11y`         | WCAG 2.1 AA scan via `pa11y-ci` (sample of pages)        |
 | `npm run format:check` | Biome formatting check                                   |
+| `npm run lint`         | Biome lint + format check (`biome check`)                |
 
 You can run any step individually. `npm run a11y` spins up a local server automatically.
 

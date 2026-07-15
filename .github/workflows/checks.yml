@@ -31,6 +31,12 @@ jobs:
                   github.event_name == 'push' ||
                   github.event.pull_request.head.repo.full_name != github.repository
               run: pnpm run format:check
+            # Same fork/push condition as format:check — auto-format may still
+            # be rewriting the branch on non-fork PRs.
+            - if: |
+                  github.event_name == 'push' ||
+                  github.event.pull_request.head.repo.full_name != github.repository
+              run: pnpm run lint
             - run: pnpm run validate
             - run: pnpm run check:lesson-index
             - run: pnpm run check:assets

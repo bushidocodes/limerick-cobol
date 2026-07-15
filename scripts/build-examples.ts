@@ -703,7 +703,7 @@ function writeExampleManifest(): string {
 // Main
 // ---------------------------------------------------------------------------
 
-export { MANIFEST, EXAMPLES_DIR, TOPIC_BY_DIR };
+export { EXAMPLES_DIR, MANIFEST, TOPIC_BY_DIR };
 
 if (require.main === module) {
 	console.log("Building example HTML pages from .cbl sources…\n");
