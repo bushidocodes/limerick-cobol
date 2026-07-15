@@ -67,10 +67,10 @@ Only move to static analysis (reading CSS/HTML) if the screenshots are inconclus
 ## Formatting
 
 ```bash
-pnpm run format:write
+npx prettier --write .
 ```
 
-Biome formats and lints HTML/JS/TS/CSS/JSON automatically in CI. Run `pnpm run format:write` / `pnpm run lint:fix` locally after edits to avoid a style-only follow-up commit. Vendored assets under `course/Resources/vendor/` are excluded. A11y lint rules are off (pa11y covers accessibility).
+Prettier runs automatically in CI on every PR merge. Run it locally after editing JS or JSON files to avoid a style-only follow-up commit. HTML files are hand-authored and intentionally excluded from prettier.
 
 ## Generated files
 
@@ -93,7 +93,7 @@ Several other scripts modify HTML files **in place** — `add-img-dimensions`, `
 
 The `scripts/` build/check tooling is **TypeScript**, run directly with [`tsx`](https://tsx.is) — no compile step (e.g. `tsx scripts/build-sitemap.ts`, wired into the `package.json` `build:*` / `check:*` scripts). Run `npm run typecheck` (`tsc --noEmit`) to type-check; it is the first step of `npm run check` and the `tsconfig.json` covers `scripts/**`.
 
-The one exception is `scripts/collect-html.js`, which stays **plain CommonJS JS**: it is `require()`d by `.pa11yci.js`, which `pa11y-ci` loads in its own Node process (it cannot consume a `.ts` module or use `tsx`). The TypeScript scripts import it via `./collect-html.js`.
+`scripts/collect-html.js` is plain ESM (shared by TypeScript scripts via `./collect-html.js`). The one remaining CommonJS file is `.pa11yci.cjs`: `pa11y-ci` loads config with `require()`, so that bridge file dynamically imports the ESM helper (pa11y-ci accepts a Promise-valued config).
 
 ## Build scripts
 
