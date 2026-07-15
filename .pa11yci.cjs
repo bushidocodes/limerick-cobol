@@ -30,9 +30,7 @@ module.exports = import("./scripts/collect-html.js").then(({ collectHtmlFiles, R
 			//     default per-test incognito contexts crash under load, and each
 			//     failure then burns the full 30s timeout. Sharing the default context
 			//     is safe here — no page writes cookies/localStorage during a scan.
-			...(process.env.CI
-				? {}
-				: { concurrency: os.cpus().length, useIncognitoBrowserContext: false }),
+			...(process.env.CI ? {} : { concurrency: os.cpus().length, useIncognitoBrowserContext: false }),
 			chromeLaunchConfig: {
 				// --disable-dev-shm-usage works around GitHub Actions' 64 MB /dev/shm,
 				// the most common cause of puppeteer Chrome crashes in CI. The others
