@@ -10,7 +10,7 @@
 
 import fs from "fs";
 import path from "path";
-import { MANIFEST, EXAMPLES_DIR } from "./build-examples.js";
+import { EXAMPLES_DIR, MANIFEST } from "./build-examples.js";
 
 // Build the set of manifest-referenced .cbl paths (relative to EXAMPLES_DIR,
 // forward slashes) so we can compare against on-disk files.

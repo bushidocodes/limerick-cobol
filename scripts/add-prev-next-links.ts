@@ -15,7 +15,7 @@ import fs from "fs";
 import path from "path";
 
 import { readJson } from "./lib/json.js";
-import { tutorialSequence, type LessonManifest } from "./lib/lessons.js";
+import { type LessonManifest, tutorialSequence } from "./lib/lessons.js";
 import { injectPrevNextLinks } from "./lib/prev-next.js";
 
 const REPO_ROOT = path.resolve(__dirname, "..");

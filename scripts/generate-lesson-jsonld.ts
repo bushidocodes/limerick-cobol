@@ -17,7 +17,7 @@ import path from "path";
 
 import { readJson } from "./lib/json.js";
 import { buildLearningResourceBlock, extractCanonical, extractDescription, injectJsonLd } from "./lib/jsonld.js";
-import { tutorialSequence, type LessonManifest } from "./lib/lessons.js";
+import { type LessonManifest, tutorialSequence } from "./lib/lessons.js";
 
 const REPO_ROOT = path.resolve(__dirname, "..");
 const COURSE_DIR = path.join(REPO_ROOT, "course");

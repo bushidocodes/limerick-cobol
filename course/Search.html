@@ -1,27 +1,27 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
 		<script>
-			(function () {
-				var t = localStorage.getItem("lc-theme");
-				if (t === "dark" || t === "light") {
-					document.documentElement.setAttribute("data-theme", t);
-					var color = t === "dark" ? "#1a1a1a" : "#ffffff";
-					var meta = document.querySelector('meta[name="theme-color"]:not([media])');
-					if (!meta) {
-						meta = document.createElement("meta");
-						meta.name = "theme-color";
-						document.head.appendChild(meta);
-					}
-					meta.content = color;
+		(function () {
+			var t = localStorage.getItem("lc-theme");
+			if (t === "dark" || t === "light") {
+				document.documentElement.setAttribute("data-theme", t);
+				var color = t === "dark" ? "#1a1a1a" : "#ffffff";
+				var meta = document.querySelector('meta[name="theme-color"]:not([media])');
+				if (!meta) {
+					meta = document.createElement("meta");
+					meta.name = "theme-color";
+					document.head.appendChild(meta);
 				}
-			})();
+				meta.content = color;
+			}
+		})();
 		</script>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="icon" type="image/svg+xml" href="../favicon.svg">
 		<script type="application/ld+json">
 			{
 				"@context": "https://schema.org",
@@ -52,34 +52,34 @@
 		<meta
 			name="description"
 			content="The task of searching a table to determine whether it contains a particular value is a common operation. The method used to search a table depends heavily"
-		/>
-		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/Search.html" />
-		<link rel="prev" href="https://bushidocodes.github.io/limerick-cobol/course/Tables2.html" />
-		<link rel="next" href="https://bushidocodes.github.io/limerick-cobol/course/Subprograms.html" />
+		>
+		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/Search.html">
+		<link rel="prev" href="https://bushidocodes.github.io/limerick-cobol/course/Tables2.html">
+		<link rel="next" href="https://bushidocodes.github.io/limerick-cobol/course/Subprograms.html">
 		<!-- Open Graph -->
-		<meta property="og:type" content="article" />
-		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/Search.html" />
-		<meta property="og:title" content="Searching Tables" />
+		<meta property="og:type" content="article">
+		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/Search.html">
+		<meta property="og:title" content="Searching Tables">
 		<meta
 			property="og:description"
 			content="The task of searching a table to determine whether it contains a particular value is a common operation. The method used to search a table depends heavily"
-		/>
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/course.png" />
+		>
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/course.png">
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="Searching Tables" />
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="Searching Tables">
 		<meta
 			name="twitter:description"
 			content="The task of searching a table to determine whether it contains a particular value is a common operation. The method used to search a table depends heavily"
-		/>
-		<link href="Resources/css/course.css" rel="stylesheet" />
-		<link href="Resources/css/course-components.css" rel="stylesheet" />
+		>
+		<link href="Resources/css/course.css" rel="stylesheet">
+		<link href="Resources/css/course-components.css" rel="stylesheet">
 		<link
 			href="Resources/vendor/prism/themes/prism.min.css"
 			rel="stylesheet"
 			integrity="sha384-rCCjoCPCsizaAAYVoz1Q0CmCTvnctK0JkfCSjx7IIxexTBg+uCKtFYycedUjMyA2"
 			crossorigin="anonymous"
-		/>
+		>
 		<script
 			src="Resources/vendor/prism/prism.min.js"
 			integrity="sha384-06z5D//U/xpvxZHuUz92xBvq3DqBBFi7Up53HRrbV7Jlv7Yvh/MZ7oenfUe9iCEt"
@@ -117,7 +117,7 @@
 				<div class="section-grid">
 					<div class="section-full">
 						<page-hero title="Searching Tables" reading-time="20 min"></page-hero>
-						<hr />
+						<hr>
 						<lesson-toc></lesson-toc>
 					</div>
 
@@ -145,16 +145,23 @@
 						</p>
 						<p>
 							This tutorial introduces the syntax and rules of operation of the
-							<code class="language-cobol">SEARCH</code> and
-							<code class="language-cobol">SEARCH ALL</code> verbs. It introduces the extensions to the
-							<code class="language-cobol">OCCURS</code> clause that are required when the
-							<code class="language-cobol">SEARCH</code> or
-							<code class="language-cobol">SEARCH ALL</code> is used. It shows how the SET verb may be
-							used to alter the value of an index and it demonstrates how the
-							<code class="language-cobol">SEARCH</code> and
-							<code class="language-cobol">SEARCH ALL</code> may be used to search a table.
+							<code class="language-cobol">SEARCH</code>
+							and
+							<code class="language-cobol">SEARCH ALL</code>
+							verbs. It introduces the extensions to the
+							<code class="language-cobol">OCCURS</code>
+							clause that are required when the
+							<code class="language-cobol">SEARCH</code>
+							or
+							<code class="language-cobol">SEARCH ALL</code>
+							is used. It shows how the SET verb may be used to alter the value of an index and it
+							demonstrates how the
+							<code class="language-cobol">SEARCH</code>
+							and
+							<code class="language-cobol">SEARCH ALL</code>
+							may be used to search a table.
 						</p>
-						<hr class="thin-rule" />
+						<hr class="thin-rule">
 					</div>
 				</div>
 				<div class="section-grid">
@@ -181,12 +188,12 @@
 							</li>
 							<li>Understand how a binary search works.</li>
 						</ol>
-						<hr class="thin-rule" />
+						<hr class="thin-rule">
 					</div>
 				</div>
 				<div class="section-grid"></div>
 				<div class="section-full">
-					<hr />
+					<hr>
 				</div>
 				<div class="section-header">
 					<h2 id="part1">Occurs clause extensions</h2>
@@ -198,18 +205,24 @@
 					<div class="section-content">
 						<p>
 							When the <code class="language-cobol">SEARCH</code> and
-							<code class="language-cobol">SEARCH ALL</code> are used the normal table declarations are no
-							longer sufficient and the <code class="language-cobol">OCCURS</code> clause must be extended
-							with the <code class="language-cobol">INDEXED BY</code> phrase and, in the case of the
+							<code class="language-cobol">SEARCH ALL</code>
+							are used the normal table declarations are no longer sufficient and the
+							<code class="language-cobol">OCCURS</code>
+							clause must be extended with the
+							<code class="language-cobol">INDEXED BY</code>
+							phrase and, in the case of the
 							<code class="language-cobol">SEARCH ALL</code>, by the
-							<code class="language-cobol">KEY IS</code> phrase.
+							<code class="language-cobol">KEY IS</code>
+							phrase.
 						</p>
 						<p>
 							The full syntax of the <code class="language-cobol">OCCURS</code> clause, including the
-							<code class="language-cobol">INDEXED BY</code> and
-							<code class="language-cobol">KEY IS</code> phrases is shown below.
+							<code class="language-cobol">INDEXED BY</code>
+							and
+							<code class="language-cobol">KEY IS</code>
+							phrases is shown below.
 						</p>
-						<hr class="thin-rule" />
+						<hr class="thin-rule">
 					</div>
 				</div>
 				<div class="section-grid">
@@ -223,7 +236,7 @@
 								src="Resources/pics/Search1.gif"
 								width="331"
 								alt="Full OCCURS clause syntax diagram showing INDEXED BY and KEY IS extensions"
-							/>
+							>
 						</p>
 					</div>
 				</div>
@@ -234,17 +247,20 @@
 					<div class="section-content">
 						<p>
 							Before the <code class="language-cobol">SEARCH</code> or
-							<code class="language-cobol">SEARCH ALL</code> can be used to search a table, the table must
-							be defined as having an index item associated with it.
+							<code class="language-cobol">SEARCH ALL</code>
+							can be used to search a table, the table must be defined as having an index item associated
+							with it.
 						</p>
 						<p>
 							The index is specified by the <i>IndexName</i> given in the
-							<code class="language-cobol">INDEXED BY</code> phrase.
+							<code class="language-cobol">INDEXED BY</code>
+							phrase.
 						</p>
 						<p>
 							The index defined in a table declaration is associated with that table and is the subscript
 							which the <code class="language-cobol">SEARCH</code> or
-							<code class="language-cobol">SEARCH ALL</code> uses to access the table.
+							<code class="language-cobol">SEARCH ALL</code>
+							uses to access the table.
 						</p>
 						<p>
 							Using an index makes the searching more efficient. Since the index is linked to a particular
@@ -253,19 +269,22 @@
 						</p>
 						<p>
 							The only entry that needs to be made for an <i>IndexName</i> is to use it in an
-							<code class="language-cobol">INDEXED BY</code> phrase. There is no need to define a picture
-							clause for it, because the compiler handles its declaration automatically.
+							<code class="language-cobol">INDEXED BY</code>
+							phrase. There is no need to define a picture clause for it, because the compiler handles its
+							declaration automatically.
 						</p>
 						<p>
 							Because an index has a special internal representation it cannot be displayed and can only
 							be assigned a value, or have its value assigned, by the
-							<code class="language-cobol">SET</code> verb. The
-							<code class="language-cobol">MOVE</code> cannot be used with a table index.
+							<code class="language-cobol">SET</code>
+							verb. The
+							<code class="language-cobol">MOVE</code>
+							cannot be used with a table index.
 						</p>
 						<p>
 							Normal arithmetic cannot be performed on a table index. The
-							<code class="language-cobol">SET</code> verb must be used to increment or decrement the
-							value of an index item.
+							<code class="language-cobol">SET</code>
+							verb must be used to increment or decrement the value of an index item.
 						</p>
 					</div>
 				</div>
@@ -284,13 +303,13 @@
 							Before a table can be searched with the <code class="language-cobol">SEARCH ALL</code>, the
 							key field must be identified by using the <code class="language-cobol">KEY IS</code> phrase
 							in the table declaration. As well as identifying the key field, the
-							<code class="language-cobol">KEY IS</code> phrase specifies whether the table is in
-							ascending or descending order.
+							<code class="language-cobol">KEY IS</code>
+							phrase specifies whether the table is in ascending or descending order.
 						</p>
 					</div>
 				</div>
 				<div class="section-full">
-					<hr />
+					<hr>
 				</div>
 				<div class="section-header">
 					<h2 id="part2">The SEARCH verb</h2>
@@ -303,7 +322,8 @@
 						<p>
 							When the values in a table are not ordered, the only way to find the item we seek is to
 							search through the table sequentially, element by element. In COBOL, the
-							<code class="language-cobol">SEARCH</code> verb is used to search a table sequentially.
+							<code class="language-cobol">SEARCH</code>
+							verb is used to search a table sequentially.
 						</p>
 					</div>
 				</div>
@@ -318,18 +338,22 @@
 								src="Resources/pics/Search2.gif"
 								width="374"
 								alt="SEARCH verb syntax diagram"
-							/>
+							>
 						</p>
 						<p>
 							<strong> <code class="language-cobol">SEARCH</code> rules </strong>
 						</p>
 						<ol>
 							<li>
-								<i>TableName</i> must identify a data-item in the table hierarchy with both
-								<code class="language-cobol">OCCURS</code> and
-								<code class="language-cobol">INDEXED BY</code> clauses. The index specified in the
-								<code class="language-cobol">INDEXED BY</code> clause of <i>TableName</i> is the
-								controlling index of the <code class="language-cobol">SEARCH</code>.
+								<i>TableName</i>
+								must identify a data-item in the table hierarchy with both
+								<code class="language-cobol">OCCURS</code>
+								and
+								<code class="language-cobol">INDEXED BY</code>
+								clauses. The index specified in the
+								<code class="language-cobol">INDEXED BY</code>
+								clause of <i>TableName</i> is the controlling index of the
+								<code class="language-cobol">SEARCH</code>.
 							</li>
 							<li>
 								The <code class="language-cobol">SEARCH</code> can only be used if the table to be
@@ -350,15 +374,16 @@
 							<li>
 								The starting value of the table index is under the control of the programmer. The
 								programmer must ensure that, when the
-								<code class="language-cobol">SEARCH</code> executes, the table index points to some
-								element in the table (for instance, it cannot have a value of 0 or be greater than the
-								size of the table).
+								<code class="language-cobol">SEARCH</code>
+								executes, the table index points to some element in the table (for instance, it cannot
+								have a value of 0 or be greater than the size of the table).
 							</li>
 							<li>
 								The <code class="language-cobol">VARYING</code> phrase is only required when we require
 								data-item to mirror the values of the table index. When the
-								<code class="language-cobol">VARYING</code> phrase is used, and the associated data-item
-								is not the table index, then the data-item is varied along with the index.
+								<code class="language-cobol">VARYING</code>
+								phrase is used, and the associated data-item is not the table index, then the data-item
+								is varied along with the index.
 							</li>
 							<li>
 								The <code class="language-cobol">AT END</code> phrase allows the programmer to specify
@@ -368,17 +393,21 @@
 								When the <code class="language-cobol">AT END</code> is specified, and the index is
 								incremented beyond the highest legal occurrence for the table (i.e. the item has not
 								been found), then the statements following the
-								<code class="language-cobol">AT END</code> will be executed and the
-								<code class="language-cobol">SEARCH</code> will terminate.
+								<code class="language-cobol">AT END</code>
+								will be executed and the
+								<code class="language-cobol">SEARCH</code>
+								will terminate.
 							</li>
 							<li>
 								The conditions attached to the <code class="language-cobol">SEARCH</code> are evaluated
 								in turn and as soon as one is true the statements following the
-								<code class="language-cobol">WHEN</code> phrase are executed and the
-								<code class="language-cobol">SEARCH</code> ends.
+								<code class="language-cobol">WHEN</code>
+								phrase are executed and the
+								<code class="language-cobol">SEARCH</code>
+								ends.
 							</li>
 						</ul>
-						<hr class="thin-rule" />
+						<hr class="thin-rule">
 					</div>
 				</div>
 				<div class="section-grid">
@@ -390,16 +419,20 @@
 							The <code class="language-cobol">SET</code> verb is used for a number of unrelated purposes.
 							We have already seen how the <code class="language-cobol">SET</code> verb may be used to set
 							a condition name to true. This section introduces the versions of the
-							<code class="language-cobol">SET</code> verb used to manipulate table indexes.
+							<code class="language-cobol">SET</code>
+							verb used to manipulate table indexes.
 						</p>
 						<p>
 							Because an index item has a special internal representation designed to optimize searching,
 							it cannot be used in any type of normal arithmetic operation (<code class="language-cobol"
 								>ADD</code
 							>, <code class="language-cobol">SUBTRACT</code> etc.) or even in a
-							<code class="language-cobol">MOVE</code> or
-							<code class="language-cobol">DISPLAY</code> statement. For index items, all these operations
-							must be handled by the <code class="language-cobol">SET</code> verb.
+							<code class="language-cobol">MOVE</code>
+							or
+							<code class="language-cobol">DISPLAY</code>
+							statement. For index items, all these operations must be handled by the
+							<code class="language-cobol">SET</code>
+							verb.
 						</p>
 						<p>
 							The versions of the <code class="language-cobol">SET</code> verb shown below are used to
@@ -412,7 +445,7 @@
 								src="Resources/pics/Search4.gif"
 								width="326"
 								alt="SET verb syntax diagram for manipulating table indexes"
-							/>
+							>
 						</p>
 					</div>
 				</div>
@@ -423,8 +456,9 @@
 					<div class="section-content">
 						<p>
 							The example program below accepts an upper case letter from the user and then uses the
-							<code class="language-cobol">SEARCH</code> verb to search a pre-filled table of letters to
-							find and display the position of the letter in the alphabet.
+							<code class="language-cobol">SEARCH</code>
+							verb to search a pre-filled table of letters to find and display the position of the letter
+							in the alphabet.
 						</p>
 						<p>
 							Because a table index can be tricky to manipulate (can't display it, can't move it) the
@@ -484,7 +518,7 @@ Begin.
             DISPLAY LetterIn, " is in position ", PrnPos
     END-SEARCH
     STOP RUN.</code></pre>
-						<hr class="thin-rule" />
+						<hr class="thin-rule">
 					</div>
 				</div>
 				<div class="section-grid">
@@ -503,9 +537,12 @@ Begin.
 						</p>
 						<p>
 							The <code class="language-cobol">VARYING</code> phrase is used in this
-							<code class="language-cobol">SEARCH</code> example so that we don't have to set the
-							<i>Idx</i> to the <i>CountyIdx</i>. We can not use <i>CountyIdx</i> as a subscript for the
-							<i>CountyTaxTable</i> because it is bound to the <i>CountyNameTable</i>.
+							<code class="language-cobol">SEARCH</code>
+							example so that we don't have to set the
+							<i>Idx</i>
+							to the <i>CountyIdx</i>. We can not use <i>CountyIdx</i> as a subscript for the
+							<i>CountyTaxTable</i>
+							because it is bound to the <i>CountyNameTable</i>.
 						</p>
 						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
@@ -609,7 +646,7 @@ DisplayCountyTaxes.
 					</div>
 				</div>
 				<div class="section-full">
-					<hr />
+					<hr>
 				</div>
 				<div class="section-header">
 					<h2 id="part3">Searching multi-dimension tables</h2>
@@ -621,12 +658,17 @@ DisplayCountyTaxes.
 					<div class="section-content">
 						<p>
 							When the <code class="language-cobol">SEARCH</code> verb is used, the target of the
-							<code class="language-cobol">SEARCH</code> must be an item in the table with both an
-							<code class="language-cobol">OCCURS</code> clause and an
-							<code class="language-cobol">INDEXED BY</code> phrase. The index item specified in the
-							<code class="language-cobol">INDEXED BY</code> phrase is the controlling index of the
-							search. The controlling index governs the submission of the elements, or element items, for
-							examination by the <code class="language-cobol">WHEN</code> phrase of the
+							<code class="language-cobol">SEARCH</code>
+							must be an item in the table with both an
+							<code class="language-cobol">OCCURS</code>
+							clause and an
+							<code class="language-cobol">INDEXED BY</code>
+							phrase. The index item specified in the
+							<code class="language-cobol">INDEXED BY</code>
+							phrase is the controlling index of the search. The controlling index governs the submission
+							of the elements, or element items, for examination by the
+							<code class="language-cobol">WHEN</code>
+							phrase of the
 							<code class="language-cobol">SEARCH</code>. A <code class="language-cobol">SEARCH</code> can
 							only have one controlling index.
 						</p>
@@ -652,20 +694,22 @@ DisplayCountyTaxes.
 								height="170"
 								src="Resources/pics/Search5.gif"
 								width="411"
-							/>
+							>
 						</div>
 						<p>
 							Suppose we want to search the table to discover which room is occupied by customer 126789.
 							We can't use the <code class="language-cobol">SEARCH</code> to search the whole
 							two-dimension table directly but we can use the
-							<code class="language-cobol">SEARCH</code> to search the table floor by floor. In other
-							words, we can treat the table as if it were a collection of floor tables and we use the
-							<code class="language-cobol">SEARCH</code> to search all the rooms in a particular floor
-							table.
+							<code class="language-cobol">SEARCH</code>
+							to search the table floor by floor. In other words, we can treat the table as if it were a
+							collection of floor tables and we use the
+							<code class="language-cobol">SEARCH</code>
+							to search all the rooms in a particular floor table.
 						</p>
 						<p>
 							The example program below demonstrates how the
-							<code class="language-cobol">SEARCH</code> verb may be used to search the two-dimension
+							<code class="language-cobol">SEARCH</code>
+							verb may be used to search the two-dimension
 							<i>HotelOccupancyTable</i>.
 						</p>
 					</div>
@@ -737,7 +781,7 @@ LoadTable.
       END-READ
    END-PERFORM
    CLOSE OccupancyFile.</code></pre>
-						<hr class="thin-rule" />
+						<hr class="thin-rule">
 					</div>
 				</div>
 				<div class="section-grid">
@@ -765,7 +809,7 @@ LoadTable.
 								src="Resources/pics/Search6.gif"
 								width="469"
 								alt="Diagram of the race results table showing races and finishing positions"
-							/>
+							>
 						</p>
 						<p>
 							In the example program below, the first dimension of the table is searched to find the
@@ -868,7 +912,7 @@ END-SEARCH</code></pre>
 					</div>
 				</div>
 				<div class="section-full">
-					<hr />
+					<hr>
 				</div>
 				<div class="section-header">
 					<h2 id="part4">The SEARCH ALL verb</h2>
@@ -886,7 +930,7 @@ END-SEARCH</code></pre>
 							be identified by using the <code class="language-cobol">KEY IS</code> phrase in the table
 							declaration.
 						</p>
-						<hr class="thin-rule" />
+						<hr class="thin-rule">
 					</div>
 				</div>
 				<div class="section-grid">
@@ -900,7 +944,7 @@ END-SEARCH</code></pre>
 								src="Resources/pics/Search3.gif"
 								width="492"
 								alt="SEARCH ALL verb syntax diagram"
-							/>
+							>
 						</p>
 						<p>
 							<strong> <code class="language-cobol">SEARCH ALL</code> rules </strong>
@@ -909,12 +953,15 @@ END-SEARCH</code></pre>
 							<li>
 								The <code class="language-cobol">OCCURS</code> clause of the table to be searched must
 								have a <code class="language-cobol">KEY IS</code> clause in addition to an
-								<code class="language-cobol">INDEXED BY</code> clause.
+								<code class="language-cobol">INDEXED BY</code>
+								clause.
 							</li>
 							<li>
 								The <i>ElementIdentifier</i> must be the item referenced by the
-								<code class="language-cobol">KEY IS</code> phrase of the table's
-								<code class="language-cobol">OCCURS</code> clause.
+								<code class="language-cobol">KEY IS</code>
+								phrase of the table's
+								<code class="language-cobol">OCCURS</code>
+								clause.
 							</li>
 							<li>
 								The <i>ConditionName</i> must have only one value and it must be associated with a
@@ -930,19 +977,21 @@ END-SEARCH</code></pre>
 						<p>
 							When the <code class="language-cobol">SEARCH ALL</code> is used, the programmer does not
 							need to set the table index to a starting value because the
-							<code class="language-cobol">SEARCH ALL</code> controls it automatically.
+							<code class="language-cobol">SEARCH ALL</code>
+							controls it automatically.
 						</p>
 						<h4>Some problems using the SEARCH ALL</h4>
 						<p>
 							If the table to be searched is only partially populated, the
-							<code class="language-cobol">SEARCH ALL</code> may not work correctly. If the table is
-							ordered in ascending sequence then, to get the
-							<code class="language-cobol">SEARCH ALL</code> to function correctly, the unpopulated
-							elements must be filled with <code class="language-cobol">HIGH-VALUES</code>. If the table
-							is in descending sequence, the unpopulated elements should be filled with
+							<code class="language-cobol">SEARCH ALL</code>
+							may not work correctly. If the table is ordered in ascending sequence then, to get the
+							<code class="language-cobol">SEARCH ALL</code>
+							to function correctly, the unpopulated elements must be filled with
+							<code class="language-cobol">HIGH-VALUES</code>. If the table is in descending sequence, the
+							unpopulated elements should be filled with
 							<code class="language-cobol">LOW-VALUES</code>.
 						</p>
-						<hr class="thin-rule" />
+						<hr class="thin-rule">
 					</div>
 				</div>
 				<div class="section-grid">
@@ -1004,7 +1053,8 @@ END-SEARCH.</code></pre>
 									src="Resources/pics/i-Animation.gif"
 									width="62"
 									alt="Click for animation: binary search on the letter table"
-							/></a>
+								></a
+							>
 						</p>
 						<p>The full program for searching the letter table is given below.</p>
 					</div>
@@ -1050,7 +1100,7 @@ Begin.
     END-SEARCH
     STOP RUN.
 </code></pre>
-						<hr class="thin-rule" />
+						<hr class="thin-rule">
 					</div>
 				</div>
 				<div class="section-grid">
@@ -1060,8 +1110,8 @@ Begin.
 					<div class="section-content">
 						<p>
 							In this example, we revisit the County Tax Report program once more. This time we use the
-							<code class="language-cobol">SEARCH ALL</code> to search the pre-filled table of county
-							names.
+							<code class="language-cobol">SEARCH ALL</code>
+							to search the pre-filled table of county names.
 						</p>
 						<p>The new parts of the program are coloured red.</p>
 						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
@@ -1172,7 +1222,7 @@ DisplayCountyTaxes.
 					lectures="../lectures/search.html|SEARCH and SEARCH ALL Lecture"
 					examples="../examples/Tables/MonthTable.html|Month Table – Counting with a Table"
 				></related-content>
-				<hr />
+				<hr>
 				<lesson-checkbox lesson="Search"></lesson-checkbox>
 				<lesson-nav></lesson-nav>
 				<copyright-notice></copyright-notice>

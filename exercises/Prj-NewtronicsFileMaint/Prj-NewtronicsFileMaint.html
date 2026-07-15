@@ -1,27 +1,27 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
 		<script>
-			(function () {
-				var t = localStorage.getItem("lc-theme");
-				if (t === "dark" || t === "light") {
-					document.documentElement.setAttribute("data-theme", t);
-					var color = t === "dark" ? "#1a1a1a" : "#ffffff";
-					var meta = document.querySelector('meta[name="theme-color"]:not([media])');
-					if (!meta) {
-						meta = document.createElement("meta");
-						meta.name = "theme-color";
-						document.head.appendChild(meta);
-					}
-					meta.content = color;
+		(function () {
+			var t = localStorage.getItem("lc-theme");
+			if (t === "dark" || t === "light") {
+				document.documentElement.setAttribute("data-theme", t);
+				var color = t === "dark" ? "#1a1a1a" : "#ffffff";
+				var meta = document.querySelector('meta[name="theme-color"]:not([media])');
+				if (!meta) {
+					meta = document.createElement("meta");
+					meta.name = "theme-color";
+					document.head.appendChild(meta);
 				}
-			})();
+				meta.content = color;
+			}
+		})();
 		</script>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
 		<script type="application/ld+json">
 			{
 				"@context": "https://schema.org",
@@ -52,72 +52,72 @@
 		<meta
 			name="description"
 			content="Newtronics Plc. is a company which sells electronic parts (diodes, transistors, IC's, LED's thermostats etc.) and goods. Currently, the company is being"
-		/>
+		>
 		<link
 			rel="canonical"
 			href="https://bushidocodes.github.io/limerick-cobol/exercises/Prj-NewtronicsFileMaint/Prj-NewtronicsFileMaint.html"
-		/>
+		>
 		<link
 			rel="prev"
 			href="https://bushidocodes.github.io/limerick-cobol/exercises/Prj-AromaSalesRpt/Prj-AromaSalesRpt.html"
-		/>
+		>
 		<link
 			rel="next"
 			href="https://bushidocodes.github.io/limerick-cobol/exercises/Prj-AromaInvoicesRpt/Prj-AromaInvoicesRpt.html"
-		/>
+		>
 		<!-- Open Graph -->
-		<meta property="og:type" content="website" />
+		<meta property="og:type" content="website">
 		<meta
 			property="og:url"
 			content="https://bushidocodes.github.io/limerick-cobol/exercises/Prj-NewtronicsFileMaint/Prj-NewtronicsFileMaint.html"
-		/>
-		<meta property="og:title" content="Newtronics Plc. File Maintenance Program" />
+		>
+		<meta property="og:title" content="Newtronics Plc. File Maintenance Program">
 		<meta
 			property="og:description"
 			content="Newtronics Plc. is a company which sells electronic parts (diodes, transistors, IC's, LED's thermostats etc.) and goods. Currently, the company is being"
-		/>
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/exercises.png" />
+		>
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/exercises.png">
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="Newtronics Plc. File Maintenance Program" />
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="Newtronics Plc. File Maintenance Program">
 		<meta
 			name="twitter:description"
 			content="Newtronics Plc. is a company which sells electronic parts (diodes, transistors, IC's, LED's thermostats etc.) and goods. Currently, the company is being"
-		/>
-		<link href="../../course/Resources/css/course.css" rel="stylesheet" />
-		<link href="../../course/Resources/css/course-components.css" rel="stylesheet" />
+		>
+		<link href="../../course/Resources/css/course.css" rel="stylesheet">
+		<link href="../../course/Resources/css/course-components.css" rel="stylesheet">
 		<style>
-			/* Page-specific: CSS grid layout for the spec body and the
-			   StockNumber check-digit calculation breakdown. Preserved from
-			   the partial modernization that pre-dated the shared theme. */
-			.calc-steps {
-				max-width: 613px;
-			}
+		/* Page-specific: CSS grid layout for the spec body and the
+							   StockNumber check-digit calculation breakdown. Preserved from
+							   the partial modernization that pre-dated the shared theme. */
+		.calc-steps {
+			max-width: 613px;
+		}
 
+		.calc-step {
+			display: flex;
+			align-items: flex-start;
+			margin-bottom: 0.5em;
+		}
+
+		.calc-label {
+			flex: 0 0 99px;
+			white-space: nowrap;
+		}
+
+		.calc-desc {
+			flex: 1;
+		}
+
+		@media (max-width: 600px) {
 			.calc-step {
-				display: flex;
-				align-items: flex-start;
-				margin-bottom: 0.5em;
+				flex-direction: column;
 			}
 
 			.calc-label {
-				flex: 0 0 99px;
-				white-space: nowrap;
+				flex: none;
 			}
-
-			.calc-desc {
-				flex: 1;
-			}
-
-			@media (max-width: 600px) {
-				.calc-step {
-					flex-direction: column;
-				}
-
-				.calc-label {
-					flex: none;
-				}
-			}
+		}
 		</style>
 		<script src="../../components/theme-toggle.js" defer></script>
 		<script src="../../components/page-hero.js" defer></script>
@@ -137,7 +137,7 @@
 			<div class="page-wrapper">
 				<div class="page-content">
 					<page-hero title="Newtronics Plc. File Maintenance Program"></page-hero>
-					<hr />
+					<hr>
 
 					<dl class="exam-meta">
 						<dt>Time to complete</dt>
@@ -147,7 +147,7 @@
 							<p>None available. You will have to develop your own test data.</p>
 						</dd>
 					</dl>
-					<hr />
+					<hr>
 
 					<section>
 						<h2>Introduction</h2>
@@ -210,7 +210,7 @@
 							</tr>
 						</table>
 						<p>
-							<b>Transaction Record Descriptions</b><br />
+							<b>Transaction Record Descriptions</b><br>
 							Descriptions of the different types of transaction record are shown below.
 						</p>
 
@@ -593,39 +593,39 @@
 						</p>
 						<blockquote>
 							<p>
-								<b>General Validation</b><br />
+								<b>General Validation</b><br>
 								Ensure that the Transaction-Type is numeric and within range 1 to 7.
 							</p>
 							<p>
-								<b>General Transaction Record Validation</b><br />
+								<b>General Transaction Record Validation</b><br>
 								Ensure that the Stock-Number is numeric and that the check digit is correct (implement
 								check digit validation as a contained sub-program with no Global data).&nbsp;
 							</p>
 							<p>
-								<b>Delete Stock Record Special Validation</b><br />
+								<b>Delete Stock Record Special Validation</b><br>
 								Ensure that the record does exist in the master file and that&nbsp; the Qty-In-Stock in
 								the master file record is zero.&nbsp; If all is OK&nbsp; write the Stock Master File
 								record to the Stock Archive File and then delete the master file record.
 							</p>
 							<p>
-								<b>Insert Stock Record Special Validation</b><br />
+								<b>Insert Stock Record Special Validation</b><br>
 								Ensure that the record does not already exist and that there is a corresponding record
 								in the Supplier Master File.&nbsp; Ensure that the Qty-In-Stock, Price, Reorder-Level
 								and Reorder-Qty fields are numeric and initialized to zero.&nbsp; If all is OK&nbsp;
 								insert the record.
 							</p>
 							<p>
-								<b>Adjust Special Validation</b><br />
+								<b>Adjust Special Validation</b><br>
 								Ensure that the record does exist in the master file.&nbsp; If all is OK update the
 								master record.
 							</p>
 							<p>
-								<b>Insert Supplier Record Special Validation</b><br />
+								<b>Insert Supplier Record Special Validation</b><br>
 								Ensure that the record does not already exist.&nbsp; If all is OK then insert the
 								record.
 							</p>
 							<p>
-								<b>Delete Supplier Record Special Validation</b><br />
+								<b>Delete Supplier Record Special Validation</b><br>
 								Ensure that the record does exist and that there are no records with this SupplierNumber
 								left in the Stock Master File. If all is OK delete the master file record.
 							</p>
@@ -673,8 +673,9 @@ Check Digit       =            4</pre>
 								<span class="calc-label">161/11 = 7 &nbsp;&nbsp;</span>
 								<span class="calc-desc"
 									>Divide the <span style="text-transform: uppercase">Sum Of Results</span> by
-									<span style="text-transform: uppercase">Modulus</span> 11 giving
-									<span style="text-transform: uppercase">Remainder</span>.<br />
+									<span style="text-transform: uppercase">Modulus</span>
+									11 giving
+									<span style="text-transform: uppercase">Remainder</span>.<br>
 									&nbsp;
 								</span>
 							</div>
@@ -683,7 +684,7 @@ Check Digit       =            4</pre>
 								<span class="calc-desc"
 									>Subtract&nbsp; the <span style="text-transform: uppercase">Remainder</span> from
 									the <span style="text-transform: uppercase">Modulus</span> giving
-									<span style="text-transform: uppercase">CheckDigit</span>.&nbsp;<br />
+									<span style="text-transform: uppercase">CheckDigit</span>.&nbsp;<br>
 									StockNumbers that yield check digits of 10 and 11 are invalid StockNumbers.
 								</span>
 							</div>
@@ -691,9 +692,9 @@ Check Digit       =            4</pre>
 						<p class="h1">So the check digit is 4.</p>
 						<p>
 							If you only want to discover whether a check digit is correct or not then get the
-							<span style="text-transform: uppercase">Sum Of Results</span> as above,&nbsp; add the check
-							digit to it and divide by 11.&nbsp; If there is no remainder then the check digit is
-							correct.
+							<span style="text-transform: uppercase">Sum Of Results</span>
+							as above,&nbsp; add the check digit to it and divide by 11.&nbsp; If there is no remainder
+							then the check digit is correct.
 						</p>
 					</section>
 
@@ -703,7 +704,7 @@ Check Digit       =            4</pre>
 							examples="../../examples/Indexed/Seq2Index.html|Sequential to Indexed File, ../../examples/Indexed/SeqReadIdx.html|Reading an Indexed File Sequentially, ../../examples/Indexed/DirectReadIdx.html|Reading an Indexed File Directly, ../../examples/SeqWrite/SEQWRITE.html|Writing to a Sequential File"
 							exercises="../SeqWrite.html|Writing Records, ../SeqRead.html|Reading Sequential Files, ../SeqReadIf.html|Counting Records, ../SeqInsert.html|Inserting Records"
 						></related-content>
-						<hr />
+						<hr>
 						<exercises-nav></exercises-nav>
 						<copyright-notice type="project"></copyright-notice>
 						<last-updated></last-updated>

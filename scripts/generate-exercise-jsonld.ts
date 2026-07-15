@@ -15,7 +15,7 @@
  * <meta name="description"> / <link rel="canonical">.
  *
  * Idempotent — re-running replaces the existing LearningResource block. Run
- * prettier afterwards (the build:* script does) to normalise formatting.
+ * Biome format afterwards (the build:* script does) to normalise formatting.
  */
 
 import fs from "fs";

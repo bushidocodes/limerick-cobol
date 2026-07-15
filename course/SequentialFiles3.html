@@ -1,27 +1,27 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
 		<script>
-			(function () {
-				var t = localStorage.getItem("lc-theme");
-				if (t === "dark" || t === "light") {
-					document.documentElement.setAttribute("data-theme", t);
-					var color = t === "dark" ? "#1a1a1a" : "#ffffff";
-					var meta = document.querySelector('meta[name="theme-color"]:not([media])');
-					if (!meta) {
-						meta = document.createElement("meta");
-						meta.name = "theme-color";
-						document.head.appendChild(meta);
-					}
-					meta.content = color;
+		(function () {
+			var t = localStorage.getItem("lc-theme");
+			if (t === "dark" || t === "light") {
+				document.documentElement.setAttribute("data-theme", t);
+				var color = t === "dark" ? "#1a1a1a" : "#ffffff";
+				var meta = document.querySelector('meta[name="theme-color"]:not([media])');
+				if (!meta) {
+					meta = document.createElement("meta");
+					meta.name = "theme-color";
+					document.head.appendChild(meta);
 				}
-			})();
+				meta.content = color;
+			}
+		})();
 		</script>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="icon" type="image/svg+xml" href="../favicon.svg">
 		<script type="application/ld+json">
 			{
 				"@context": "https://schema.org",
@@ -52,34 +52,34 @@
 		<meta
 			name="description"
 			content="This tutorial covers a number of topics including; COBOL print files, multiple record-type files, variable length records, and run-time file name"
-		/>
-		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/SequentialFiles3.html" />
-		<link rel="prev" href="https://bushidocodes.github.io/limerick-cobol/course/Usage.html" />
-		<link rel="next" href="https://bushidocodes.github.io/limerick-cobol/course/SortMerge.html" />
+		>
+		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/SequentialFiles3.html">
+		<link rel="prev" href="https://bushidocodes.github.io/limerick-cobol/course/Usage.html">
+		<link rel="next" href="https://bushidocodes.github.io/limerick-cobol/course/SortMerge.html">
 		<!-- Open Graph -->
-		<meta property="og:type" content="article" />
-		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/SequentialFiles3.html" />
-		<meta property="og:title" content="COBOL Print Files and Variable-Length Records" />
+		<meta property="og:type" content="article">
+		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/SequentialFiles3.html">
+		<meta property="og:title" content="COBOL Print Files and Variable-Length Records">
 		<meta
 			property="og:description"
 			content="This tutorial covers a number of topics including; COBOL print files, multiple record-type files, variable length records, and run-time file name"
-		/>
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/course.png" />
+		>
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/course.png">
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="COBOL Print Files and Variable-Length Records" />
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="COBOL Print Files and Variable-Length Records">
 		<meta
 			name="twitter:description"
 			content="This tutorial covers a number of topics including; COBOL print files, multiple record-type files, variable length records, and run-time file name"
-		/>
-		<link href="Resources/css/course.css" rel="stylesheet" />
-		<link href="Resources/css/course-components.css" rel="stylesheet" />
+		>
+		<link href="Resources/css/course.css" rel="stylesheet">
+		<link href="Resources/css/course-components.css" rel="stylesheet">
 		<link
 			href="Resources/vendor/prism/themes/prism.min.css"
 			rel="stylesheet"
 			integrity="sha384-rCCjoCPCsizaAAYVoz1Q0CmCTvnctK0JkfCSjx7IIxexTBg+uCKtFYycedUjMyA2"
 			crossorigin="anonymous"
-		/>
+		>
 		<script
 			src="Resources/vendor/prism/prism.min.js"
 			integrity="sha384-06z5D//U/xpvxZHuUz92xBvq3DqBBFi7Up53HRrbV7Jlv7Yvh/MZ7oenfUe9iCEt"
@@ -120,7 +120,7 @@
 							title="COBOL Print Files and Variable-Length Records"
 							reading-time="18 min"
 						></page-hero>
-						<hr />
+						<hr>
 						<lesson-toc></lesson-toc>
 					</div>
 
@@ -135,7 +135,7 @@
 							This tutorial covers a number of topics including; COBOL print files, multiple record-type
 							files, variable length records, and run-time file name assignment.
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>Objectives</h3>
@@ -156,7 +156,8 @@
 							<li>Know how to set up different kinds of variable length record.</li>
 							<li>
 								Understand how variable length records, declared with the
-								<code class="language-cobol">DEPENDING ON</code> phrase, work.
+								<code class="language-cobol">DEPENDING ON</code>
+								phrase, work.
 							</li>
 							<li>
 								Be able set up a file so that the file name can be assigned at run-time rather than at
@@ -166,7 +167,7 @@
 					</div>
 					<div class="section-full">
 						<div>
-							<hr />
+							<hr>
 						</div>
 					</div>
 				</div>
@@ -190,7 +191,7 @@
 							This section demonstrates how files, which contain a number of different types of record,
 							may be declared and used.
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>Implications of multiple record types</h3>
@@ -205,7 +206,7 @@
 							(30 characters), and an update may be somewhere between these two depending on which fields,
 							and how many of them, are being updated.
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>Declaring a multiple record-type file</h3>
@@ -257,12 +258,12 @@ FD TransFile.
 							single 'record buffer' for the file! And this 'record buffer' is only able to store a single
 							record at a time!
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>Multiple record-types - one record buffer</h3>
 						<p class="center-block">
-							<img height="62" src="Resources/pics/i-Animation.gif" width="62" alt="" />
+							<img height="62" src="Resources/pics/i-Animation.gif" width="62" alt="">
 						</p>
 						<p>Click on the diagram opposite to see how the records map on to the buffer</p>
 					</div>
@@ -287,14 +288,15 @@ FD TransFile.
 									src="Resources/pics/MultRec.gif"
 									width="458"
 									alt="Diagram showing how multiple record types (InsertRec, DeleteRec, UpdateRec) map onto a single shared record buffer"
-							/></a>
+								></a
+							>
 						</p>
 					</div>
 					<div class="section-sidebar">
 						<h3>Implications of record mappings</h3>
 						<aside>
 							<p class="center-block">
-								<span class="i-detail" aria-hidden="true">🔍</span><br />
+								<span class="i-detail" aria-hidden="true">🔍</span><br>
 								Actually, in the GnuCOBOL version of COBOL, when a record is smaller than the record
 								buffer the rest of the buffer is filled with spaces. So in the example opposite, the
 								NewCourseCode would display spaces.
@@ -318,7 +320,7 @@ FD TransFile.
 							buffer, then it only makes sense to refer to StudentId and NewCourseCode. We can still
 							access the values in StudentName or DateOfBirth but they will not be meaningful.
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>The type-code.</h3>
@@ -338,7 +340,7 @@ FD TransFile.
 							record and is usually one character in size, but it can be placed anywhere in the record, be
 							of any size, and be any type of character.
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>The revised record descriptions.</h3>
@@ -348,7 +350,7 @@ FD TransFile.
 								src="Resources/pics/program-fragment.svg"
 								width="48"
 								alt="Program fragment"
-							/>
+							>
 						</h3>
 					</div>
 					<div class="section-content">
@@ -403,11 +405,12 @@ FD TransFile.
 						<p>
 							But even though it is legal to declare TransCode in all the records, and even though we must
 							declare the storage for TransCode in all the records, we don't actually need to use the
-							<i>name</i> TransCode in all the records. Since all the records map on to the same area of
-							storage, it does not matter which TransCode we refer to - they all access the same value in
-							the record. So if an update record is in the buffer, a statement referring to
-							<i>TransCode <code class="language-cobol">OF</code> InsertRec,</i> will still access the
-							correct value.
+							<i>name</i>
+							TransCode in all the records. Since all the records map on to the same area of storage, it
+							does not matter which TransCode we refer to - they all access the same value in the record.
+							So if an update record is in the buffer, a statement referring to
+							<i>TransCode <code class="language-cobol">OF</code> InsertRec,</i>
+							will still access the correct value.
 						</p>
 						<p>
 							The same logic applies to the StudentId. The StudentId is in the same place in all three
@@ -418,7 +421,7 @@ FD TransFile.
 							When an area of storage must be declared but we don't care what name we give it, we use the
 							special name - <code class="language-cobol">FILLER</code>.
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>Using FILLER in the transaction records.</h3>
@@ -428,7 +431,7 @@ FD TransFile.
 								src="Resources/pics/program-fragment.svg"
 								width="48"
 								alt="Program fragment"
-							/>
+							>
 						</h3>
 					</div>
 					<div class="section-content">
@@ -479,12 +482,12 @@ FD TransFile.
 								src="Resources/pics/SeqFile2.gif"
 								width="480"
 								alt="Record schematic showing TransCode and StudentId in InsertRec mapping onto the FILLER areas in DeleteRec and UpdateRec"
-							/>
+							>
 						</p>
 					</div>
 					<div class="section-full">
 						<div>
-							<hr />
+							<hr>
 						</div>
 					</div>
 				</div>
@@ -502,10 +505,10 @@ FD TransFile.
 							for a programming language. COBOL allows programmers to write to the printer, either
 							directly or through an intermediate print file. COBOL treats the printer as a serial file,
 							but uses a special variant of the
-							<code class="language-cobol">WRITE</code> verb to control the placement of lines on the
-							page.
+							<code class="language-cobol">WRITE</code>
+							verb to control the placement of lines on the page.
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>Setting up a print file</h3>
@@ -525,9 +528,9 @@ FD TransFile.
 								src="Resources/pics/Printfile.gif"
 								width="475"
 								alt="Diagram showing one print file assigned to a physical printer and another assigned to a disk file"
-							/>
+							>
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>Declaring print lines</h3>
@@ -583,7 +586,7 @@ FD TransFile.
 </code></pre>
 							</li>
 						</ul>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>Problems with multiple print records.</h3>
@@ -600,14 +603,15 @@ FD TransFile.
 							print records in the
 							<code class="language-cobol">FILE SECTION</code>, there is a COBOL rule which states that,
 							in the <code class="language-cobol">FILE SECTION</code>, the
-							<code class="language-cobol">VALUE</code> clause can only be used with Condition Names (i.e.
-							it cannot be used to give an initial value to an item).
+							<code class="language-cobol">VALUE</code>
+							clause can only be used with Condition Names (i.e. it cannot be used to give an initial
+							value to an item).
 						</p>
 						<p>
 							If the print records cannot be set up in the file's FD entry in the
 							<code class="language-cobol">FILE SECTION</code>. How do we set up a print file?
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>Setting up a print file</h3>
@@ -628,9 +632,9 @@ FD TransFile.
 								src="Resources/pics/Printfile2.gif"
 								width="430"
 								alt="Diagram showing print line records declared in Working-Storage being moved to the PrintLine record buffer in the File Section before being written to the print file"
-							/>
+							>
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>The WRITE format revisited.</h3>
@@ -647,7 +651,7 @@ FD TransFile.
 								src="Resources/pics/Printfile3.gif"
 								width="417"
 								alt="WRITE verb syntax diagram for print files, including the ADVANCING clause for page control"
-							/>
+							>
 						</p>
 						<h4>WRITE notes</h4>
 						<p>
@@ -660,7 +664,8 @@ FD TransFile.
 						</p>
 						<p>
 							MnemonicName refers to a vendor-specific page control command. It is defined in the
-							<code class="language-cobol">SPECIAL-NAMES</code> paragraph.
+							<code class="language-cobol">SPECIAL-NAMES</code>
+							paragraph.
 						</p>
 						<p>
 							When writing to print files the <code class="language-cobol">WRITE..FROM</code> option is
@@ -669,10 +674,12 @@ FD TransFile.
 							the source area into the record buffer before the contents of the record buffer are written
 							to the file. The <code class="language-cobol">WRITE..FROM</code> is the equivalent of a
 							<code class="language-cobol">MOVE</code>
-							<i>SourceItem <code class="language-cobol">TO</code> RecordBuffer</i> statement followed by
-							a <code class="language-cobol">WRITE</code> <i>RecordBuffer</i> statement.
+							<i>SourceItem <code class="language-cobol">TO</code> RecordBuffer</i>
+							statement followed by a <code class="language-cobol">WRITE</code>
+							<i>RecordBuffer</i>
+							statement.
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>Bringing it all together.</h3>
@@ -790,7 +797,7 @@ PrintPageHeadings.
 					</div>
 					<div class="section-full">
 						<div>
-							<hr />
+							<hr>
 						</div>
 					</div>
 				</div>
@@ -813,17 +820,20 @@ PrintPageHeadings.
 							This section demonstrates how files, containing variable-length records, may be declared and
 							processed.
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>FD entries for variable length records</h3>
 						<aside>
 							<p class="center-block">
-								<span class="i-detail" aria-hidden="true">🔍</span><br />
+								<span class="i-detail" aria-hidden="true">🔍</span><br>
 								The <code class="language-cobol">RECORD CONTAINS</code> clause does much the same as the
-								<code class="language-cobol">RECORD..VARYING</code> clause without the
-								<code class="language-cobol">DEPENDING ON</code> phrase, but the
-								<code class="language-cobol">RECORD..VARYING</code> clause is the more versatile.
+								<code class="language-cobol">RECORD..VARYING</code>
+								clause without the
+								<code class="language-cobol">DEPENDING ON</code>
+								phrase, but the
+								<code class="language-cobol">RECORD..VARYING</code>
+								clause is the more versatile.
 							</p>
 						</aside>
 					</div>
@@ -834,7 +844,8 @@ PrintPageHeadings.
 							followed by the filename. An FD entry can be more complicated than this, and can have a
 							large number of subordinate clauses (see your vendor manual or help files). Among these
 							clauses is the
-							<code class="language-cobol">RECORD IS VARYING IN SIZE</code> clause.
+							<code class="language-cobol">RECORD IS VARYING IN SIZE</code>
+							clause.
 						</p>
 						<p>
 							The <code class="language-cobol">RECORD IS VARYING IN SIZE</code> clause allows us to
@@ -847,14 +858,15 @@ PrintPageHeadings.
 								src="Resources/pics/SeqFile3.gif"
 								width="426"
 								alt="RECORD IS VARYING IN SIZE syntax diagram showing the FROM, TO, CHARACTERS, and DEPENDING ON phrases"
-							/>
+							>
 						</p>
 						<h4>Notes</h4>
 						<p>
 							The <code class="language-cobol">RECORD IS VARYING IN SIZE</code> clause, without the
-							<code class="language-cobol">DEPENDING ON</code> phrase, is not strictly required because
-							the compiler can this information out from the record sizes. That is why it was not included
-							in the multiple record-type declarations in the first section.
+							<code class="language-cobol">DEPENDING ON</code>
+							phrase, is not strictly required because the compiler can this information out from the
+							record sizes. That is why it was not included in the multiple record-type declarations in
+							the first section.
 						</p>
 						<p>
 							The RecordSize#i in the <code class="language-cobol">DEPENDING ON</code> phase must be an
@@ -870,7 +882,7 @@ FD Stringfile
    RECORD IS VARYING IN SIZE
    FROM 1 TO 80 CHARACTERS
    DEPENDING ON StringSize.</code></pre>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>How variable-length records, declared with the DEPENDING ON phrase, work.</h3>
@@ -878,17 +890,21 @@ FD Stringfile
 					<div class="section-content">
 						<p>
 							When a record is read from a file, defined with the
-							<code class="language-cobol">RECORD IS VARYING IN SIZE.. DEPENDING ON</code> phrase, the
-							size of the record read into the buffer is moved into the data-item <i>RecordSize#i</i> (see
-							the example program below).
+							<code class="language-cobol">RECORD IS VARYING IN SIZE.. DEPENDING ON</code>
+							phrase, the size of the record read into the buffer is moved into the data-item
+							<i>RecordSize#i</i>
+							(see the example program below).
 						</p>
 						<p>
 							To write to a file, defined with the
-							<code class="language-cobol">RECORD IS VARYING IN SIZE.. DEPENDING ON</code> phrase, the
-							size of the record to be written must first be moved to <i>RecordSize#i</i> data-item, and
-							then the <code class="language-cobol">WRITE</code> statement must be executed.
+							<code class="language-cobol">RECORD IS VARYING IN SIZE.. DEPENDING ON</code>
+							phrase, the size of the record to be written must first be moved to
+							<i>RecordSize#i</i>
+							data-item, and then the
+							<code class="language-cobol">WRITE</code>
+							statement must be executed.
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>Example program</h3>
@@ -914,8 +930,9 @@ FD Stringfile
 							<li>
 								This program uses Reference Modification to display the variable-length string that has
 								been read into the record buffer. The form
-								<i>StringRec(1:StringSize)</i> extracts the characters in StringRec, from the character
-								at position 1, to the character at position StringSize.
+								<i>StringRec(1:StringSize)</i>
+								extracts the characters in StringRec, from the character at position 1, to the character
+								at position StringSize.
 							</li>
 						</ul>
 						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
@@ -1025,7 +1042,7 @@ DisplayTransactions.
 							examples="../examples/SeqIns/SEQINSERT.html|Inserting Records in a Sequential File, ../examples/SeqRpt/SEQRPT.html|Sequential Student Number Report"
 							exercises="../exercises/SeqInsert.html|Inserting Records in a Sequential File, ../exercises/SeqUpdate.html|Updating a Sequential File"
 						></related-content>
-						<hr />
+						<hr>
 						<lesson-checkbox lesson="SequentialFiles3"></lesson-checkbox>
 						<lesson-nav></lesson-nav>
 						<copyright-notice></copyright-notice>

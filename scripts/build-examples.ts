@@ -4,7 +4,7 @@
  *
  * Generates each examples/<topic>/<NAME>.html from its sibling .cbl COBOL
  * source file. Re-run this script whenever a .cbl file is edited, then run
- * prettier to normalise formatting before committing.
+ * Biome format to normalise formatting before committing.
  *
  * IMPORTANT: examples/**\/*.html is GENERATED OUTPUT. Manual edits to those
  * files are lost on the next `npm run build:examples` (which CI runs on
@@ -703,7 +703,7 @@ function writeExampleManifest(): string {
 // Main
 // ---------------------------------------------------------------------------
 
-export { MANIFEST, EXAMPLES_DIR, TOPIC_BY_DIR };
+export { EXAMPLES_DIR, MANIFEST, TOPIC_BY_DIR };
 
 if (require.main === module) {
 	console.log("Building example HTML pages from .cbl sources…\n");

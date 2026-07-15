@@ -1,27 +1,27 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
 		<script>
-			(function () {
-				var t = localStorage.getItem("lc-theme");
-				if (t === "dark" || t === "light") {
-					document.documentElement.setAttribute("data-theme", t);
-					var color = t === "dark" ? "#1a1a1a" : "#ffffff";
-					var meta = document.querySelector('meta[name="theme-color"]:not([media])');
-					if (!meta) {
-						meta = document.createElement("meta");
-						meta.name = "theme-color";
-						document.head.appendChild(meta);
-					}
-					meta.content = color;
+		(function () {
+			var t = localStorage.getItem("lc-theme");
+			if (t === "dark" || t === "light") {
+				document.documentElement.setAttribute("data-theme", t);
+				var color = t === "dark" ? "#1a1a1a" : "#ffffff";
+				var meta = document.querySelector('meta[name="theme-color"]:not([media])');
+				if (!meta) {
+					meta = document.createElement("meta");
+					meta.name = "theme-color";
+					document.head.appendChild(meta);
 				}
-			})();
+				meta.content = color;
+			}
+		})();
 		</script>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
 		<script type="application/ld+json">
 			{
 				"@context": "https://schema.org",
@@ -52,40 +52,40 @@
 		<meta
 			name="description"
 			content="Two months before the beginning of each semester the Campus Bookshop produces a Purchase Requirements Report. This report details the books that have to be"
-		/>
+		>
 		<link
 			rel="canonical"
 			href="https://bushidocodes.github.io/limerick-cobol/exercises/Exm-BookshopLectReqRpt/Exm-BookshopLectReqRpt.html"
-		/>
+		>
 		<link
 			rel="prev"
 			href="https://bushidocodes.github.io/limerick-cobol/exercises/Exm-AromaOilFileMainRpt/Exm-AromaOilFileMainRpt.html"
-		/>
+		>
 		<link
 			rel="next"
 			href="https://bushidocodes.github.io/limerick-cobol/exercises/Exm-AcmeStockReorder/Exm-AcmeStockReorder.html"
-		/>
+		>
 		<!-- Open Graph -->
-		<meta property="og:type" content="website" />
+		<meta property="og:type" content="website">
 		<meta
 			property="og:url"
 			content="https://bushidocodes.github.io/limerick-cobol/exercises/Exm-BookshopLectReqRpt/Exm-BookshopLectReqRpt.html"
-		/>
-		<meta property="og:title" content="Campus Bookshop Purchase Requirements Report (Exam Paper)" />
+		>
+		<meta property="og:title" content="Campus Bookshop Purchase Requirements Report (Exam Paper)">
 		<meta
 			property="og:description"
 			content="Two months before the beginning of each semester the Campus Bookshop produces a Purchase Requirements Report. This report details the books that have to be"
-		/>
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/exercises.png" />
+		>
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/exercises.png">
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="Campus Bookshop Purchase Requirements Report (Exam Paper)" />
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="Campus Bookshop Purchase Requirements Report (Exam Paper)">
 		<meta
 			name="twitter:description"
 			content="Two months before the beginning of each semester the Campus Bookshop produces a Purchase Requirements Report. This report details the books that have to be"
-		/>
-		<link href="../../course/Resources/css/course.css" rel="stylesheet" />
-		<link href="../../course/Resources/css/course-components.css" rel="stylesheet" />
+		>
+		<link href="../../course/Resources/css/course.css" rel="stylesheet">
+		<link href="../../course/Resources/css/course-components.css" rel="stylesheet">
 		<script src="../../components/theme-toggle.js" defer></script>
 		<script src="../../components/page-hero.js" defer></script>
 		<script src="../../components/site-search.js" defer></script>
@@ -104,29 +104,30 @@
 			<div class="page-wrapper">
 				<div class="page-content">
 					<page-hero title="Campus Bookshop Purchase Requirements Report"></page-hero>
-					<hr />
+					<hr>
 
 					<dl class="exam-meta">
 						<dt>Time to complete</dt>
 						<dd>This is a tough one. Allow 6 hours continuous.</dd>
 						<dt>Program Download</dt>
 						<dd>
-							<a href="BookshopRpt91.cbl">BookshopRpt91.cbl</a> is a model answer. Don't look at this
-							until you have made your own attempt at the program.
+							<a href="BookshopRpt91.cbl">BookshopRpt91.cbl</a>
+							is a model answer. Don't look at this until you have made your own attempt at the program.
 						</dd>
 						<dt>Example Output</dt>
 						<dd>
 							<p>
-								<a href="BOOKSHOP.rpt">Bookshop.rpt</a> (The Campus bookshop Lecturer Purchase
-								Requirements Report)
+								<a href="BOOKSHOP.rpt">Bookshop.rpt</a>
+								(The Campus bookshop Lecturer Purchase Requirements Report)
 							</p>
 						</dd>
 						<dt>Example Input</dt>
 						<dd>
 							<p>
-								<a href="IN-PREQ.dat">In-PReq.dat</a> and <a href="IN-BOOK.dat">In-Book.dat</a> and
-								<a href="IN-PUB.dat">In-Pub.dat</a> are sequential files that be converted into the
-								following indexed files -
+								<a href="IN-PREQ.dat">In-PReq.dat</a>
+								and <a href="IN-BOOK.dat">In-Book.dat</a> and
+								<a href="IN-PUB.dat">In-Pub.dat</a>
+								are sequential files that be converted into the following indexed files -
 							</p>
 							<ul>
 								<li>The Purchase Requirements File (PRFILE.dat)</li>
@@ -145,7 +146,7 @@
 							REWRITE, START
 						</dd>
 					</dl>
-					<hr />
+					<hr>
 
 					<section>
 						<h2>Introduction</h2>
@@ -153,7 +154,7 @@
 							Two months before the beginning of each semester the Campus Bookshop produces a Purchase
 							Requirements Report. This report details the books that have to be purchased for the coming
 							semester. In the past this was done manually but now management have decided to computerise
-							the operation.<br />
+							the operation.<br>
 							Accordingly, lecturers' requirements have been captured and the results used to update a
 							Purchase Requirements File. This is a permanent file which contains details of the
 							lecturers' book requirements for both semesters.
@@ -332,14 +333,14 @@
 					<section>
 						<h2>Print Specification</h2>
 						<p>
-							<b>Notes</b><br />
-							The report must be produced using the Report Writer.<br />
-							The Publisher-Name must be suppressed after its first occurrence.<br />
+							<b>Notes</b><br>
+							The report must be produced using the Report Writer.<br>
+							The Publisher-Name must be suppressed after its first occurrence.<br>
 							The headings should be printed at the top of each page and the words *** END OF REPORT ***
-							should be printed on line 56 on the last page of the report.<br />
-							Ordinarily a new page is required after line 50.<br />
+							should be printed on line 56 on the last page of the report.<br>
+							Ordinarily a new page is required after line 50.<br>
 							The Qty field which is a synonym for Copies-Required should be zero suppressed up to but not
-							including the last digit.<br />
+							including the last digit.<br>
 							The page number field should also be zero suppressed.
 						</p>
 						<p class="center-block">
@@ -349,8 +350,9 @@
 									src="SExm-BookshopLectReqRpt.gif"
 									width="304"
 									style="border: 1px solid"
-									alt="Thumbnail of the print layout specification for the Bookshop Lecturer Requirements Report, showing book detail rows grouped by publisher with author, title, and quantity columns, page headings, and an end-of-report marker." /></a
-							><br />
+									alt="Thumbnail of the print layout specification for the Bookshop Lecturer Requirements Report, showing book detail rows grouped by publisher with author, title, and quantity columns, page headings, and an end-of-report marker."
+								></a
+							><br>
 							Click to view full version
 						</p>
 					</section>
@@ -360,7 +362,7 @@
 							lectures="../../course/IndexedFiles.html|Indexed Files, ../../course/Intro2DirectAccess.html|Introduction to Direct Access, ../../course/ReportWriter.html|Report Writer, ../../course/ReportWriterSS.html|Report Writer – Syntax and Semantics"
 							examples="Prg-BookshopLectReqRpt.html|Bookshop Lecturer Requirements – Sample Solution, ../../examples/Indexed/Seq2Index.html|Sequential to Indexed File, ../../examples/Indexed/SeqReadIdx.html|Reading an Indexed File Sequentially, ../../examples/Indexed/DirectReadIdx.html|Reading an Indexed File Directly"
 						></related-content>
-						<hr />
+						<hr>
 						<exercises-nav></exercises-nav>
 						<copyright-notice type="exercises"></copyright-notice>
 						<last-updated></last-updated>

@@ -41,7 +41,8 @@ This runs in sequence:
 | `npm run validate`     | HTML parse / structure check via `html-validate`         |
 | `npm run links`        | Internal link check via `linkinator` (externals skipped) |
 | `npm run a11y`         | WCAG 2.1 AA scan via `pa11y-ci` (sample of pages)        |
-| `npm run format:check` | Prettier formatting check                                |
+| `npm run format:check` | Biome formatting check                                   |
+| `npm run lint`         | Biome lint + format check (`biome check`)                |
 
 You can run any step individually. `npm run a11y` spins up a local server automatically.
 
@@ -79,6 +80,6 @@ message should mention which phase is being applied, e.g. `Apply Phase 4 moderni
 Dependency CVEs are handled by [Dependabot](.github/dependabot.yml), which
 opens weekly npm update PRs and additional PRs for GitHub security advisories.
 CI does **not** run `npm audit` — all dev dependencies (`html-validate`,
-`linkinator`, `pa11y-ci`, `prettier`, `http-server`, `start-server-and-test`)
+`linkinator`, `pa11y-ci`, `biome`, `http-server`, `start-server-and-test`)
 are build-time tools that never ship to users, so a failing audit shouldn't
 gate PRs. If you want a local check, run `npm audit` manually.

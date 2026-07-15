@@ -1,27 +1,27 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
 		<script>
-			(function () {
-				var t = localStorage.getItem("lc-theme");
-				if (t === "dark" || t === "light") {
-					document.documentElement.setAttribute("data-theme", t);
-					var color = t === "dark" ? "#1a1a1a" : "#ffffff";
-					var meta = document.querySelector('meta[name="theme-color"]:not([media])');
-					if (!meta) {
-						meta = document.createElement("meta");
-						meta.name = "theme-color";
-						document.head.appendChild(meta);
-					}
-					meta.content = color;
+		(function () {
+			var t = localStorage.getItem("lc-theme");
+			if (t === "dark" || t === "light") {
+				document.documentElement.setAttribute("data-theme", t);
+				var color = t === "dark" ? "#1a1a1a" : "#ffffff";
+				var meta = document.querySelector('meta[name="theme-color"]:not([media])');
+				if (!meta) {
+					meta = document.createElement("meta");
+					meta.name = "theme-color";
+					document.head.appendChild(meta);
 				}
-			})();
+				meta.content = color;
+			}
+		})();
 		</script>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
 		<script type="application/ld+json">
 			{
 				"@context": "https://schema.org",
@@ -52,37 +52,37 @@
 		<meta
 			name="description"
 			content="At the beginning of each term Student Services creates a report showing those students whose fees are still outstanding. Until now this report was created"
-		/>
+		>
 		<link
 			rel="canonical"
 			href="https://bushidocodes.github.io/limerick-cobol/exercises/Exm-StudFeesRpt/Exm-StudPay.html"
-		/>
-		<link rel="prev" href="https://bushidocodes.github.io/limerick-cobol/exercises/MonthTable.html" />
+		>
+		<link rel="prev" href="https://bushidocodes.github.io/limerick-cobol/exercises/MonthTable.html">
 		<link
 			rel="next"
 			href="https://bushidocodes.github.io/limerick-cobol/exercises/Exm-AromaSalesRpt/Exm-AromaSalesSummaryRpt.html"
-		/>
+		>
 		<!-- Open Graph -->
-		<meta property="og:type" content="website" />
+		<meta property="og:type" content="website">
 		<meta
 			property="og:url"
 			content="https://bushidocodes.github.io/limerick-cobol/exercises/Exm-StudFeesRpt/Exm-StudPay.html"
-		/>
-		<meta property="og:title" content="Student Fee Payment Update and Report" />
+		>
+		<meta property="og:title" content="Student Fee Payment Update and Report">
 		<meta
 			property="og:description"
 			content="At the beginning of each term Student Services creates a report showing those students whose fees are still outstanding. Until now this report was created"
-		/>
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/exercises.png" />
+		>
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/exercises.png">
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="Student Fee Payment Update and Report" />
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="Student Fee Payment Update and Report">
 		<meta
 			name="twitter:description"
 			content="At the beginning of each term Student Services creates a report showing those students whose fees are still outstanding. Until now this report was created"
-		/>
-		<link href="../../course/Resources/css/course.css" rel="stylesheet" />
-		<link href="../../course/Resources/css/course-components.css" rel="stylesheet" />
+		>
+		<link href="../../course/Resources/css/course.css" rel="stylesheet">
+		<link href="../../course/Resources/css/course-components.css" rel="stylesheet">
 		<script src="../../components/theme-toggle.js" defer></script>
 		<script src="../../components/page-hero.js" defer></script>
 		<script src="../../components/site-search.js" defer></script>
@@ -101,30 +101,32 @@
 			<div class="page-wrapper">
 				<div class="page-content">
 					<page-hero title="Student Fee Payment Update and Report"></page-hero>
-					<hr />
+					<hr>
 
 					<dl class="exam-meta">
 						<dt>Time to complete</dt>
 						<dd>Allow 4-5 hours continuous</dd>
 						<dt>Program Download</dt>
 						<dd>
-							<a href="STUDFEES.cbl">Studfees.cbl</a> is a model answer. Don't look at this until you have
-							made your own attempt at the program.
+							<a href="STUDFEES.cbl">Studfees.cbl</a>
+							is a model answer. Don't look at this until you have made your own attempt at the program.
 						</dd>
 						<dt>Example Output</dt>
 						<dd><a href="FEES.rpt">Fees.rpt</a> (Outstanding Fees Report)</dd>
 						<dt>Example Input</dt>
 						<dd>
 							<p>
-								<a href="STUDPAY.dat">StudPay.dat</a> (A sequential file recording student payments)<br />
-								<a href="STUDIN.dat">StudIn.dat</a> (This is a sequential file which can be converted
-								into the indexed file StudMast.dat by means of this <a href="SETSFEES.cbl">program</a>
+								<a href="STUDPAY.dat">StudPay.dat</a>
+								(A sequential file recording student payments)<br>
+								<a href="STUDIN.dat">StudIn.dat</a>
+								(This is a sequential file which can be converted into the indexed file StudMast.dat by
+								means of this <a href="SETSFEES.cbl">program</a>
 							</p>
 						</dd>
 						<dt>Major Constructs</dt>
 						<dd>Indexed Files, Print Files</dd>
 					</dl>
-					<hr />
+					<hr>
 
 					<section>
 						<h2>Introduction</h2>
@@ -144,11 +146,11 @@
 						<p>
 							A program is required which will use the payment records in the Student Payments File to
 							update the Amount-Paid field in the Student Master File and which will then use the Student
-							Master File to produce a report showing the fees outstanding.<br />
+							Master File to produce a report showing the fees outstanding.<br>
 							Fees may be paid in one payment or in increments. Therefore when the Amount-Paid field is
 							updated the value of the payment should be added to the current value of the Amount-Paid
 							field. There is no need to take overpayment of fees into account (i.e. the value in the
-							Amount-Paid field will never exceed that in the Fees-Owed field .<br />
+							Amount-Paid field will never exceed that in the Fees-Owed field .<br>
 							The OUTSTANDING FEES REPORT should be printed sequenced on ascending Student-Name. Only
 							records where the Amount-Paid field is less than the Fees-Owed field should be shown. At the
 							end of the report the total amount outstanding should be shown.
@@ -276,8 +278,9 @@
 									src="Exm-StudFeePaymentRpts.gif"
 									width="314"
 									alt="Sample student fee payment report"
-									style="border: 1px solid" /></a
-							><br />
+									style="border: 1px solid"
+								></a
+							><br>
 							Click for full size version
 						</p>
 					</section>
@@ -287,7 +290,7 @@
 							lectures="../../course/IndexedFiles.html|Indexed Files, ../../course/Intro2DirectAccess.html|Introduction to Direct Access, ../../course/ReportWriter.html|Report Writer, ../../course/ReportWriterSS.html|Report Writer – Syntax and Semantics"
 							examples="Prg-StudPay.html|Student Fees Report – Sample Solution, ../../examples/Indexed/Seq2Index.html|Sequential to Indexed File, ../../examples/Indexed/SeqReadIdx.html|Reading an Indexed File Sequentially, ../../examples/Indexed/DirectReadIdx.html|Reading an Indexed File Directly"
 						></related-content>
-						<hr />
+						<hr>
 						<exercises-nav></exercises-nav>
 						<copyright-notice type="exercises"></copyright-notice>
 						<last-updated></last-updated>

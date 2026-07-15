@@ -1,27 +1,27 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
 		<script>
-			(function () {
-				var t = localStorage.getItem("lc-theme");
-				if (t === "dark" || t === "light") {
-					document.documentElement.setAttribute("data-theme", t);
-					var color = t === "dark" ? "#1a1a1a" : "#ffffff";
-					var meta = document.querySelector('meta[name="theme-color"]:not([media])');
-					if (!meta) {
-						meta = document.createElement("meta");
-						meta.name = "theme-color";
-						document.head.appendChild(meta);
-					}
-					meta.content = color;
+		(function () {
+			var t = localStorage.getItem("lc-theme");
+			if (t === "dark" || t === "light") {
+				document.documentElement.setAttribute("data-theme", t);
+				var color = t === "dark" ? "#1a1a1a" : "#ffffff";
+				var meta = document.querySelector('meta[name="theme-color"]:not([media])');
+				if (!meta) {
+					meta = document.createElement("meta");
+					meta.name = "theme-color";
+					document.head.appendChild(meta);
 				}
-			})();
+				meta.content = color;
+			}
+		})();
 		</script>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="icon" type="image/svg+xml" href="../favicon.svg">
 		<script type="application/ld+json">
 			{
 				"@context": "https://schema.org",
@@ -52,34 +52,34 @@
 		<meta
 			name="description"
 			content="Files are repositories of data that reside on backing storage (hard disk, magnetic tape or CD-ROM). Nowadays, files are used to store a variety of"
-		/>
-		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/SequentialFiles1.html" />
-		<link rel="prev" href="https://bushidocodes.github.io/limerick-cobol/course/Iteration.html" />
-		<link rel="next" href="https://bushidocodes.github.io/limerick-cobol/course/SequentialFiles2.html" />
+		>
+		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/SequentialFiles1.html">
+		<link rel="prev" href="https://bushidocodes.github.io/limerick-cobol/course/Iteration.html">
+		<link rel="next" href="https://bushidocodes.github.io/limerick-cobol/course/SequentialFiles2.html">
 		<!-- Open Graph -->
-		<meta property="og:type" content="article" />
-		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/SequentialFiles1.html" />
-		<meta property="og:title" content="Introduction to Sequential Files" />
+		<meta property="og:type" content="article">
+		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/SequentialFiles1.html">
+		<meta property="og:title" content="Introduction to Sequential Files">
 		<meta
 			property="og:description"
 			content="Files are repositories of data that reside on backing storage (hard disk, magnetic tape or CD-ROM). Nowadays, files are used to store a variety of"
-		/>
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/course.png" />
+		>
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/course.png">
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="Introduction to Sequential Files" />
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="Introduction to Sequential Files">
 		<meta
 			name="twitter:description"
 			content="Files are repositories of data that reside on backing storage (hard disk, magnetic tape or CD-ROM). Nowadays, files are used to store a variety of"
-		/>
-		<link href="Resources/css/course.css" rel="stylesheet" />
-		<link href="Resources/css/course-components.css" rel="stylesheet" />
+		>
+		<link href="Resources/css/course.css" rel="stylesheet">
+		<link href="Resources/css/course-components.css" rel="stylesheet">
 		<link
 			href="Resources/vendor/prism/themes/prism.min.css"
 			rel="stylesheet"
 			integrity="sha384-rCCjoCPCsizaAAYVoz1Q0CmCTvnctK0JkfCSjx7IIxexTBg+uCKtFYycedUjMyA2"
 			crossorigin="anonymous"
-		/>
+		>
 		<script
 			src="Resources/vendor/prism/prism.min.js"
 			integrity="sha384-06z5D//U/xpvxZHuUz92xBvq3DqBBFi7Up53HRrbV7Jlv7Yvh/MZ7oenfUe9iCEt"
@@ -117,7 +117,7 @@
 				<div class="section-grid">
 					<div class="section-full">
 						<page-hero title="Introduction to Sequential Files" reading-time="15 min"></page-hero>
-						<hr />
+						<hr>
 						<lesson-toc></lesson-toc>
 					</div>
 
@@ -152,7 +152,7 @@
 							a particular record without having to read any of the preceding records.
 						</p>
 						<p>In this tutorial, you will discover how COBOL may be used to process serial files.</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>Objectives</h3>
@@ -166,13 +166,14 @@
 							<li>
 								Be able to use the <code class="language-cobol">READ</code>,
 								<code class="language-cobol">WRITE</code>, <code class="language-cobol">OPEN</code> and
-								<code class="language-cobol">CLOSE</code> verbs to process a Sequential File.
+								<code class="language-cobol">CLOSE</code>
+								verbs to process a Sequential File.
 							</li>
 						</ol>
 					</div>
 					<div class="section-full">
 						<div>
-							<hr />
+							<hr>
 						</div>
 					</div>
 				</div>
@@ -192,7 +193,7 @@
 							information have been recorded about a great many instances of the same object. Record-based
 							files are used to record this information.
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>Files, Records, Fields</h3>
@@ -213,7 +214,7 @@
 								object (e.g. StudentName, DateOfBirth).
 							</li>
 						</ul>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>Record instance vs Record type</h3>
@@ -230,7 +231,8 @@
 						<p>
 							For instance, in the student details file, illustrated below, the occurrences of the student
 							records are actual values in the file. The record type/template describes the
-							<i>structure</i> of each record occurrence.
+							<i>structure</i>
+							of each record occurrence.
 						</p>
 						<p class="center-block">
 							<img
@@ -238,9 +240,9 @@
 								src="Resources/pics/FileSeq1.gif"
 								width="472"
 								alt="Student details file showing record occurrences mapped to the record type template"
-							/>
+							>
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>The record buffer</h3>
@@ -274,9 +276,9 @@
 								src="Resources/pics/FileSeq2.gif"
 								width="471"
 								alt="Diagram showing a record being read from a sequential file into the record buffer in RAM"
-							/>
+							>
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>Some implications of "buffers"</h3>
@@ -302,7 +304,7 @@
 					</div>
 					<div class="section-full">
 						<div>
-							<hr />
+							<hr>
 						</div>
 					</div>
 				</div>
@@ -315,7 +317,7 @@
 						<h3>Introduction</h3>
 						<aside>
 							<p class="center-block">
-								<span class="i-detail" aria-hidden="true">🔍</span><br />
+								<span class="i-detail" aria-hidden="true">🔍</span><br>
 								This is for demonstration only. In reality we would need to include far more items and
 								some of the fields would have to be considerably larger.
 							</p>
@@ -339,7 +341,7 @@
 							<li>Course Code</li>
 							<li>Gender</li>
 						</ul>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>Creating a record</h3>
@@ -397,7 +399,7 @@
 							In this description, StudentName is a group item consisting of Surname and Initials, and
 							DateOfBirth consists of YOBirth, MOBirth and DOBirth.
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>Declaring a record buffer in your program</h3>
@@ -405,11 +407,14 @@
 					<div class="section-content">
 						<p>
 							The record type/template/buffer of every file used in a program must be described in the
-							<code class="language-cobol">FILE SECTION</code> by means of an
-							<code class="language-cobol">FD</code> (file description) entry. The
-							<code class="language-cobol">FD</code> entry consists of the letters
-							<code class="language-cobol">FD</code> and an internal name that the programmer assigns to
-							the file.
+							<code class="language-cobol">FILE SECTION</code>
+							by means of an
+							<code class="language-cobol">FD</code>
+							(file description) entry. The
+							<code class="language-cobol">FD</code>
+							entry consists of the letters
+							<code class="language-cobol">FD</code>
+							and an internal name that the programmer assigns to the file.
 						</p>
 						<p>So the full file description for the students file might be:</p>
 						<pre class="language-cobol"><code class="language-cobol">DATA DIVISION.
@@ -430,7 +435,7 @@ FD StudentFile.
 							Note that we have assigned the name StudentFile as the internal file name. The actual name
 							of the file on disk is <i>Students.dat</i>.
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>The SELECT and ASSIGN clause</h3>
@@ -444,12 +449,18 @@ FD StudentFile.
 						<p>
 							The internal file name used in a file's <code class="language-cobol">FD</code> entry is
 							connected to an external file (on disk, tape or CD-ROM) by means of the
-							<code class="language-cobol">SELECT</code> and
-							<code class="language-cobol">ASSIGN</code> clause. The
-							<code class="language-cobol">SELECT</code> and
-							<code class="language-cobol">ASSIGN</code> clause is an entry in the
-							<code class="language-cobol">FILE-CONTROL</code> paragraph in the
-							<code class="language-cobol">INPUT-OUTPUT SECTION</code> in the
+							<code class="language-cobol">SELECT</code>
+							and
+							<code class="language-cobol">ASSIGN</code>
+							clause. The
+							<code class="language-cobol">SELECT</code>
+							and
+							<code class="language-cobol">ASSIGN</code>
+							clause is an entry in the
+							<code class="language-cobol">FILE-CONTROL</code>
+							paragraph in the
+							<code class="language-cobol">INPUT-OUTPUT SECTION</code>
+							in the
 							<code class="language-cobol">ENVIRONMENT DIVISION</code>.
 						</p>
 						<pre class="language-cobol"><code class="language-cobol">ENVIRONMENT DIVISION.
@@ -476,14 +487,14 @@ FD StudentFile.
 						<h3>SELECT and ASSIGN syntax for Sequential files</h3>
 						<aside>
 							<p class="center-block">
-								<span class="i-detail" aria-hidden="true">🔍</span><br />
+								<span class="i-detail" aria-hidden="true">🔍</span><br>
 								The Select and Assign clause has far more entries (even for Sequential files) than those
 								we show here; but we will examine the other entries in later tutorials.
 							</p>
 						</aside>
 						<aside>
 							<p class="center-block">
-								<span class="i-detail" aria-hidden="true">🔍</span><br />
+								<span class="i-detail" aria-hidden="true">🔍</span><br>
 								We are only going to deal with statically assigned file names for the moment, but it is
 								possible to assign a file name to a file at run-time.
 							</p>
@@ -496,23 +507,24 @@ FD StudentFile.
 								src="Resources/pics/FileSeq3.gif"
 								width="375"
 								alt="SELECT and ASSIGN syntax diagram for Sequential files"
-							/>
+							>
 						</p>
 						<p>The GnuCOBOL compiler recognizes two kinds of Sequential File organization</p>
 						<p class="center-block">
-							<code class="language-cobol">LINE SEQUENTIAL</code><br />
+							<code class="language-cobol">LINE SEQUENTIAL</code><br>
 							and
-							<br /><code class="language-cobol">RECORD SEQUENTIAL</code>.
+							<br><code class="language-cobol">RECORD SEQUENTIAL</code>.
 						</p>
 						<p>
-							<code class="language-cobol">LINE SEQUENTIAL</code> files, are files in which each record is
-							followed by the carriage return and line feed characters. These are the kind of files
-							produced by a text editor such as Notepad.
+							<code class="language-cobol">LINE SEQUENTIAL</code>
+							files, are files in which each record is followed by the carriage return and line feed
+							characters. These are the kind of files produced by a text editor such as Notepad.
 						</p>
 						<p>
-							<code class="language-cobol">RECORD SEQUENTIAL</code> files, are files where the file
-							consists of a stream of bytes. Only the fact that we know the size of each record allows us
-							to retrieve them. Files that are not record based, can be processed by defining them as
+							<code class="language-cobol">RECORD SEQUENTIAL</code>
+							files, are files where the file consists of a stream of bytes. Only the fact that we know
+							the size of each record allows us to retrieve them. Files that are not record based, can be
+							processed by defining them as
 							<code class="language-cobol">RECORD SEQUENTIAL</code>.
 						</p>
 						<p>
@@ -527,7 +539,7 @@ FD StudentFile.
 SELECT StudentFile
        ASSIGN TO "A:\Students.dat"
 </code></pre>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>What is the purpose of the SELECT and ASSIGN clause?</h3>
@@ -535,17 +547,20 @@ SELECT StudentFile
 					<div class="section-content">
 						<p>
 							The <code class="language-cobol">SELECT</code> and
-							<code class="language-cobol">ASSIGN</code> clause allows us to assign a meaningful name to
-							an actual file on a storage device. The advantage of this is that it makes our programs more
-							readable and more easy to maintain. If the location of the file, or the medium on which the
-							file is held, changes then the only change we need to make to our program, is to change the
-							entry in the <code class="language-cobol">SELECT</code> and
-							<code class="language-cobol">ASSIGN</code> clause.
+							<code class="language-cobol">ASSIGN</code>
+							clause allows us to assign a meaningful name to an actual file on a storage device. The
+							advantage of this is that it makes our programs more readable and more easy to maintain. If
+							the location of the file, or the medium on which the file is held, changes then the only
+							change we need to make to our program, is to change the entry in the
+							<code class="language-cobol">SELECT</code>
+							and
+							<code class="language-cobol">ASSIGN</code>
+							clause.
 						</p>
 					</div>
 					<div class="section-full">
 						<div>
-							<hr />
+							<hr>
 						</div>
 					</div>
 				</div>
@@ -569,13 +584,13 @@ SELECT StudentFile
 							Failure to do so may result in data not being written to the file or users being prevented
 							from accessing the file.
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>The OPEN verb</h3>
 						<aside>
 							<p class="center-block">
-								<img height="44" src="Resources/pics/i-LightBulbTip.svg" width="42" alt="" /><br />
+								<img height="44" src="Resources/pics/i-LightBulbTip.svg" width="42" alt=""><br>
 								Although, as you can see from the ellipses in the syntax diagram, it is possible to open
 								a number of files with one OPEN statement it not advisable to do so. If an error is
 								detected on opening a file and you have used only one statement to open all the files,
@@ -591,7 +606,7 @@ SELECT StudentFile
 								src="Resources/pics/FileSeq4.gif"
 								width="277"
 								alt="OPEN verb syntax diagram for Sequential files"
-							/>
+							>
 						</p>
 						<p>
 							Before your program can access the data in an input file or place data in an output file,
@@ -608,8 +623,10 @@ SELECT StudentFile
 						<h4>OPEN notes</h4>
 						<p>
 							When a file is opened for
-							<code class="language-cobol">INPUT</code> or <code class="language-cobol">EXTEND</code>, the
-							file must exist or the <code class="language-cobol">OPEN</code> will fail.
+							<code class="language-cobol">INPUT</code>
+							or <code class="language-cobol">EXTEND</code>, the file must exist or the
+							<code class="language-cobol">OPEN</code>
+							will fail.
 						</p>
 						<p>
 							When a file is opened for <code class="language-cobol">INPUT</code>, the
@@ -625,7 +642,7 @@ SELECT StudentFile
 							When a file is opened for <code class="language-cobol">OUTPUT</code>, it is created if it
 							does not exist, and is overwritten, if it already exists.
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>The CLOSE verb</h3>
@@ -637,7 +654,7 @@ SELECT StudentFile
 							Failure to do so may result in some data not being written to the file or users being
 							prevented from accessing the file.
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>The READ verb</h3>
@@ -649,7 +666,7 @@ SELECT StudentFile
 								src="Resources/pics/FileSeq5.gif"
 								width="288"
 								alt="READ verb syntax diagram for Sequential files"
-							/>
+							>
 						</p>
 						<p>
 							Once the system has opened a file and made it available to the program it is the programmers
@@ -664,10 +681,14 @@ SELECT StudentFile
 						<h4>READ notes</h4>
 						<p>
 							When the
-							<code class="language-cobol">READ</code> attempts to read a record from the file and
-							encounters the end of file marker, the <code class="language-cobol">AT END</code> is
-							triggered and the <i>StatementBlock</i> following the
-							<code class="language-cobol">AT END</code> is executed.
+							<code class="language-cobol">READ</code>
+							attempts to read a record from the file and encounters the end of file marker, the
+							<code class="language-cobol">AT END</code>
+							is triggered and the
+							<i>StatementBlock</i>
+							following the
+							<code class="language-cobol">AT END</code>
+							is executed.
 						</p>
 						<p>
 							Using the <code class="language-cobol">INTO</code> <i>Identifier</i> clause, causes the data
@@ -686,12 +707,12 @@ SELECT StudentFile
 							The animation below demonstrates how the <code class="language-cobol">READ</code> works.
 							When a record is read it is copied from the backing storage file into the record buffer in
 							<code class="language-cobol">RAM</code>. When an attempt to
-							<code class="language-cobol">READ</code> detects the end of file the
-							<code class="language-cobol">AT END</code> is triggered and the condition name EndOfFile is
-							set to true. Since the condition name is set up as shown below, setting it to true fills the
-							whole record with <code class="language-cobol">HIGH</code>-<code class="language-cobol"
-								>VALUES</code
-							>.
+							<code class="language-cobol">READ</code>
+							detects the end of file the
+							<code class="language-cobol">AT END</code>
+							is triggered and the condition name EndOfFile is set to true. Since the condition name is
+							set up as shown below, setting it to true fills the whole record with
+							<code class="language-cobol">HIGH</code>-<code class="language-cobol">VALUES</code>.
 						</p>
 						<pre class="language-cobol"><code class="language-cobol">FD StudentFile.
 01 StudentRec.
@@ -707,15 +728,16 @@ SELECT StudentFile
 									src="Resources/pics/i-Animation.gif"
 									width="62"
 									alt="Click for animation: how the READ verb works with sequential files"
-							/></a>
+								></a
+							>
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>The WRITE verb</h3>
 						<aside>
 							<p class="center-block">
-								<span class="i-detail" aria-hidden="true">🔍</span><br />
+								<span class="i-detail" aria-hidden="true">🔍</span><br>
 								The <code class="language-cobol">WRITE</code> format actually contains a number of other
 								entries but these relate to writing to print files and will be covered in subsequent
 								tutorials.
@@ -724,9 +746,8 @@ SELECT StudentFile
 					</div>
 					<div class="section-content">
 						<p>
-							<code class="language-cobol">WRITE</code> RecordName [<code class="language-cobol"
-								>FROM</code
-							>
+							<code class="language-cobol">WRITE</code>
+							RecordName [<code class="language-cobol">FROM</code>
 							Identifier]
 						</p>
 						<p>
@@ -736,17 +757,22 @@ SELECT StudentFile
 						<p>
 							To <code class="language-cobol">WRITE</code> data to a file we must move the data to the
 							record buffer (declared in the FD entry) and then
-							<code class="language-cobol">WRITE</code> the contents of record buffer to the file.
+							<code class="language-cobol">WRITE</code>
+							the contents of record buffer to the file.
 						</p>
 						<p>
 							When the <code class="language-cobol">WRITE..FROM</code> is used the data contained in the
-							<i>Identifier</i> is copied into the record buffer and is then written to the file. The
-							<code class="language-cobol">WRITE..FROM</code> is the equivalent of a
+							<i>Identifier</i>
+							is copied into the record buffer and is then written to the file. The
+							<code class="language-cobol">WRITE..FROM</code>
+							is the equivalent of a
 							<code class="language-cobol">MOVE</code>
-							<i>Identifier <code class="language-cobol">TO</code> RecordBuffer</i> statement followed by
-							a <i> <code class="language-cobol">WRITE</code> RecordBuffer </i> statement.
+							<i>Identifier <code class="language-cobol">TO</code> RecordBuffer</i>
+							statement followed by a
+							<i> <code class="language-cobol">WRITE</code> RecordBuffer </i>
+							statement.
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>Read a file, Write a record</h3>
@@ -755,7 +781,8 @@ SELECT StudentFile
 						<p>
 							If you were paying close attention to the syntax diagrams above you probably noticed that
 							while we <code class="language-cobol">READ</code> a file, we must
-							<code class="language-cobol">WRITE</code> a record.
+							<code class="language-cobol">WRITE</code>
+							a record.
 						</p>
 						<p>
 							The reason we read a file but write a record, is that a file can contain a number of
@@ -773,7 +800,7 @@ SELECT StudentFile
 							When we write a record to the a file we have to specify which of the record types we want to
 							write; so we must - <i> <code class="language-cobol">WRITE</code> RecordName </i> .
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 					<div class="section-sidebar">
 						<h3>Example Program</h3>
@@ -854,7 +881,7 @@ GetStudentRecord.
 						examples="../examples/SeqWrite/SEQWRITE.html|Writing to a Sequential File, ../examples/SeqRead/SEQREAD.html|Reading a Sequential File"
 						exercises="../exercises/SeqWrite.html|Writing Records to a Sequential File"
 					></related-content>
-					<hr />
+					<hr>
 					<lesson-checkbox lesson="SequentialFiles1"></lesson-checkbox>
 					<lesson-nav></lesson-nav>
 					<copyright-notice></copyright-notice>

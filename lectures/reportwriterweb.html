@@ -1,145 +1,145 @@
 ﻿<!doctype html>
 <html lang="en">
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
 		<script>
-			(function () {
-				var t = localStorage.getItem("lc-theme");
-				if (t === "dark" || t === "light") {
-					document.documentElement.setAttribute("data-theme", t);
-					var color = t === "dark" ? "#1a1a1a" : "#ffffff";
-					var meta = document.querySelector('meta[name="theme-color"]:not([media])');
-					if (!meta) {
-						meta = document.createElement("meta");
-						meta.name = "theme-color";
-						document.head.appendChild(meta);
-					}
-					meta.content = color;
+		(function () {
+			var t = localStorage.getItem("lc-theme");
+			if (t === "dark" || t === "light") {
+				document.documentElement.setAttribute("data-theme", t);
+				var color = t === "dark" ? "#1a1a1a" : "#ffffff";
+				var meta = document.querySelector('meta[name="theme-color"]:not([media])');
+				if (!meta) {
+					meta = document.createElement("meta");
+					meta.name = "theme-color";
+					document.head.appendChild(meta);
 				}
-			})();
+				meta.content = color;
+			}
+		})();
 		</script>
-		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
-		<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
-		<link rel="manifest" href="../manifest.json" />
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+		<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+		<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+		<link rel="manifest" href="../manifest.json">
 		<title>COBOL Report Writer</title>
-		<meta name="description" content="COBOL lecture slides covering COBOL Report Writer." />
-		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/lectures/reportwriterweb.html" />
+		<meta name="description" content="COBOL lecture slides covering COBOL Report Writer.">
+		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/lectures/reportwriterweb.html">
 		<!-- Open Graph -->
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/lectures/reportwriterweb.html" />
-		<meta property="og:title" content="COBOL Report Writer" />
-		<meta property="og:description" content="COBOL lecture slides covering COBOL Report Writer." />
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/lectures.png" />
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/lectures/reportwriterweb.html">
+		<meta property="og:title" content="COBOL Report Writer">
+		<meta property="og:description" content="COBOL lecture slides covering COBOL Report Writer.">
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/lectures.png">
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="COBOL Report Writer" />
-		<meta name="twitter:description" content="COBOL lecture slides covering COBOL Report Writer." />
-		<link href="../course/Resources/css/course.css" rel="stylesheet" />
-		<link href="../course/Resources/css/course-components.css" rel="stylesheet" />
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="COBOL Report Writer">
+		<meta name="twitter:description" content="COBOL lecture slides covering COBOL Report Writer.">
+		<link href="../course/Resources/css/course.css" rel="stylesheet">
+		<link href="../course/Resources/css/course-components.css" rel="stylesheet">
 		<style>
-			ul.toc {
-				list-style-type: disc;
-				padding-left: 2.5em;
-				margin: 1em 0;
-			}
+		ul.toc {
+			list-style-type: disc;
+			padding-left: 2.5em;
+			margin: 1em 0;
+		}
 
-			ul.toc ::marker {
-				color: #2e7d32;
-			}
+		ul.toc ::marker {
+			color: #2e7d32;
+		}
 
-			ul.toc > li {
-				padding-left: 0.4em;
-				margin-bottom: 0.6em;
-			}
+		ul.toc > li {
+			padding-left: 0.4em;
+			margin-bottom: 0.6em;
+		}
 
-			ul.toc a {
-				font-weight: bold;
-			}
+		ul.toc a {
+			font-weight: bold;
+		}
 
-			.section-header h2 {
-				color: var(--color-text);
-				font-family: Arial, Helvetica, sans-serif;
-			}
+		.section-header h2 {
+			color: var(--color-text);
+			font-family: Arial, Helvetica, sans-serif;
+		}
 
-			.section-sidebar h3 {
-				color: var(--color-panel-text);
-				font-family: Arial, Helvetica, sans-serif;
-			}
+		.section-sidebar h3 {
+			color: var(--color-panel-text);
+			font-family: Arial, Helvetica, sans-serif;
+		}
 
-			.page-wrapper {
-				max-width: 715px;
-				margin: 0 auto;
-				border: 1px solid;
-				box-sizing: border-box;
-			}
+		.page-wrapper {
+			max-width: 715px;
+			margin: 0 auto;
+			border: 1px solid;
+			box-sizing: border-box;
+		}
 
-			.page-content {
-				padding: 2px;
-			}
+		.page-content {
+			padding: 2px;
+		}
 
-			.page-footer {
-				padding: 2px;
+		.page-footer {
+			padding: 2px;
+		}
+
+		.section-grid {
+			display: grid;
+			grid-template-columns: 175px 1fr;
+		}
+
+		.section-header {
+			grid-column: 1 / -1;
+			background-color: transparent;
+			padding: 4px;
+			min-width: 0;
+			border-bottom: 1px solid;
+		}
+
+		.section-sidebar {
+			background-color: var(--color-panel-bg);
+			padding: 4px;
+			align-self: stretch;
+			min-width: 0;
+			border-right: 1px solid;
+			border-bottom: 1px solid;
+		}
+
+		.section-content {
+			padding: 4px;
+			align-self: start;
+			min-width: 0;
+			overflow: hidden;
+			border-bottom: 1px solid;
+		}
+
+		.section-full {
+			grid-column: 1 / -1;
+			padding: 4px;
+			min-width: 0;
+			border-bottom: 1px solid;
+		}
+
+		.section-full:last-child {
+			border-bottom: none;
+		}
+
+		@media (max-width: 600px) {
+			.section-header h2,
+			.section-header h3 {
+				margin: 0.3em 0;
 			}
 
 			.section-grid {
-				display: grid;
-				grid-template-columns: 175px 1fr;
+				display: block;
 			}
 
-			.section-header {
-				grid-column: 1 / -1;
-				background-color: transparent;
-				padding: 4px;
-				min-width: 0;
-				border-bottom: 1px solid;
+			.section-sidebar h3,
+			.section-sidebar p {
+				margin: 0.2em 0;
 			}
-
-			.section-sidebar {
-				background-color: var(--color-panel-bg);
-				padding: 4px;
-				align-self: stretch;
-				min-width: 0;
-				border-right: 1px solid;
-				border-bottom: 1px solid;
-			}
-
-			.section-content {
-				padding: 4px;
-				align-self: start;
-				min-width: 0;
-				overflow: hidden;
-				border-bottom: 1px solid;
-			}
-
-			.section-full {
-				grid-column: 1 / -1;
-				padding: 4px;
-				min-width: 0;
-				border-bottom: 1px solid;
-			}
-
-			.section-full:last-child {
-				border-bottom: none;
-			}
-
-			@media (max-width: 600px) {
-				.section-header h2,
-				.section-header h3 {
-					margin: 0.3em 0;
-				}
-
-				.section-grid {
-					display: block;
-				}
-
-				.section-sidebar h3,
-				.section-sidebar p {
-					margin: 0.2em 0;
-				}
-			}
+		}
 		</style>
 		<script src="../components/copyright-notice.js" defer></script>
 		<script src="../components/last-updated.js" defer></script>
@@ -150,38 +150,38 @@
 			<div class="page-content">
 				<div style="text-align: center">
 					<h2>
-						<img alt="Cobol Course" height="56" src="t-cobolcourse.gif" width="161" />
+						<img alt="Cobol Course" height="56" src="t-cobolcourse.gif" width="161">
 					</h2>
 					<h2><b>The COBOL Report Writer</b></h2>
-					<hr />
+					<hr>
 				</div>
 				<ul class="toc">
 					<li>
-						<a href="#intro">Introduction</a><br />
+						<a href="#intro">Introduction</a><br>
 						Unit aims, objectives and prerequisites.
 					</li>
 					<li>
-						<a href="#part1">The Report Writer in action</a><br />
+						<a href="#part1">The Report Writer in action</a><br>
 						This section examines a report produced by a Report Writer program and then examines the
 						Procedure Division of the program that produced the report.
 					</li>
 					<li>
-						<a href="#part1b">How the Report Writer works</a><br />
+						<a href="#part1b">How the Report Writer works</a><br>
 						This section explains how the Report Writer works. It examines the seven report groups a report
 						produced by a Report Writer program and then examines the Procedure Division of the program that
 						produced the report.
 					</li>
 					<li>
-						<a href="#part2">Let's write a Report Writer program</a><br />
+						<a href="#part2">Let's write a Report Writer program</a><br>
 						This section uses learning by doing as its mode of instruction. We learn how to write a simple
 						version of the report program shown in the previous section.
 					</li>
 					<li>
-						<a href="#part3">Let's add some features to our Report Program</a><br />
+						<a href="#part3">Let's add some features to our Report Program</a><br>
 						In this section we amend the report program to include more functionality.
 					</li>
 					<li>
-						<a href="#part4">Report Writer Declaratives</a><br />
+						<a href="#part4">Report Writer Declaratives</a><br>
 						When the requirements of the report do not coincide with the way the Report Writer works
 						Declaratives can be used to extend the functionality of the Report Writer.
 					</li>
@@ -216,7 +216,7 @@
 							In the next unit we examine the syntax and semantics of the Report Writer clauses and verbs
 							in detail.
 						</p>
-						<hr />
+						<hr>
 					</div>
 					<div class="section-sidebar">
 						<h3>Objectives</h3>
@@ -237,7 +237,7 @@
 							</li>
 							<li>Understand how and when to use Declaratives.</li>
 						</ol>
-						<hr />
+						<hr>
 					</div>
 					<div class="section-sidebar">
 						<h3>Prerequisites</h3>
@@ -257,7 +257,7 @@
 						</ul>
 					</div>
 					<div class="section-full">
-						<hr />
+						<hr>
 					</div>
 
 					<div class="section-header">
@@ -277,7 +277,7 @@
 							The COBOL Report Writer is very large. It includes many new DATA DIVISION entries, including
 							a REPORT SECTION, and a number of new PROCEDURE DIVISION verbs.
 						</p>
-						<hr />
+						<hr>
 					</div>
 					<div class="section-sidebar">
 						<h3 style="text-align: center">An example report - with animated commentary.</h3>
@@ -298,7 +298,7 @@
 							title="Report Writer animated commentary part 1 (PDF slides)"
 							width="425"
 						></iframe>
-						<hr />
+						<hr>
 					</div>
 					<div class="section-sidebar">
 						<h3 style="text-align: center">The Procedure Division that produces the sales report</h3>
@@ -306,13 +306,16 @@
 					<div class="section-content">
 						<p>
 							In a program that did not use the Report Writer, the
-							<code class="language-cobol">PROCEDURE DIVISION</code> required to produce the sales report
-							shown above would occupy a hundred lines or so of code. When the
-							<code class="language-cobol">REPORT WRITER</code> is used, only the
-							<code class="language-cobol">PROCEDURE DIVISION</code> shown below is required.
+							<code class="language-cobol">PROCEDURE DIVISION</code>
+							required to produce the sales report shown above would occupy a hundred lines or so of code.
+							When the
+							<code class="language-cobol">REPORT WRITER</code>
+							is used, only the
+							<code class="language-cobol">PROCEDURE DIVISION</code>
+							shown below is required.
 						</p>
 						<p>All the work of printing the report is being done in just 10 statements.</p>
-						<hr />
+						<hr>
 						<pre>
 PROCEDURE DIVISION.
 Begin.
@@ -334,7 +337,7 @@ PrintSalaryReport.
     READ SalesFile
           AT END SET EndOfFile TO TRUE
     END-READ.                                                       </pre>
-						<hr />
+						<hr>
 					</div>
 					<div class="section-sidebar">
 						<h3 style="text-align: center">So much work, so little Procedure Division code</h3>
@@ -342,14 +345,15 @@ PrintSalaryReport.
 					<div class="section-content">
 						<p>
 							How can so much work be done in so little
-							<code class="language-cobol">PROCEDURE DIVISION</code> code? How does the report writer know
-							that page headings are required or that it is time to print the salesperson or city totals.
+							<code class="language-cobol">PROCEDURE DIVISION</code>
+							code? How does the report writer know that page headings are required or that it is time to
+							print the salesperson or city totals.
 						</p>
 						<p>
 							To achieve so much in so little
-							<code class="language-cobol">PROCEDURE DIVISION</code> code, the Report Writer uses a
-							declarative approach to programming rather than the procedural one familiar to most
-							programmers.
+							<code class="language-cobol">PROCEDURE DIVISION</code>
+							code, the Report Writer uses a declarative approach to programming rather than the
+							procedural one familiar to most programmers.
 						</p>
 						<p>
 							When the Report Writer is used, the programmer declares <b>what</b> to print when a page
@@ -358,11 +362,12 @@ PrintSalaryReport.
 						</p>
 						<p>
 							In keeping with the adage that "there is no such thing as free lunch", the
-							<code class="language-cobol">PROCEDURE DIVISION</code> of a Report Writer program is short
-							because most of the work is actually done in the (greatly expanded)
+							<code class="language-cobol">PROCEDURE DIVISION</code>
+							of a Report Writer program is short because most of the work is actually done in the
+							(greatly expanded)
 							<code class="language-cobol">DATA DIVISION</code>.
 						</p>
-						<hr />
+						<hr>
 					</div>
 
 					<div class="section-header">
@@ -391,48 +396,34 @@ PrintSalaryReport.
 							below). The indentation shows the importance/order of execution of the report groups.
 						</p>
 						<blockquote>
-							<p>
-								REPORT HEADING or RH group<br />
-								- printed once at the beginning of the report
-							</p>
+							<p>REPORT HEADING or RH group<br>- printed once at the beginning of the report</p>
 						</blockquote>
 						<ol>
 							<blockquote>
-								<p>
-									PAGE HEADING of PH group<br />
-									- printed at the top of each page
-								</p>
+								<p>PAGE HEADING of PH group<br>- printed at the top of each page</p>
 								<blockquote>
 									<p>
-										CONTROL HEADING or CH group<br />
+										CONTROL HEADING or CH group<br>
 										- printed at the beginning of each control break
 									</p>
 									<blockquote>
 										<p>
-											DETAIL or DE group<br />
+											DETAIL or DE group<br>
 											- printed each time the GENERATE statement is executed
 										</p>
 									</blockquote>
-									<p>
-										CONTROL FOOTING or CF group<br />
-										- printed at the end of each control break
-									</p>
+									<p>CONTROL FOOTING or CF group<br>- printed at the end of each control break</p>
 								</blockquote>
-								<p>
-									PAGE FOOTING or PF group<br />
-									- printed at the bottom of each page
-								</p>
+								<p>PAGE FOOTING or PF group<br>- printed at the bottom of each page</p>
 							</blockquote>
 						</ol>
 						<blockquote>
-							<p>
-								REPORT FOOTING or RF group<br />
-								- printed once at the end of the report.
-							</p>
+							<p>REPORT FOOTING or RF group<br>- printed once at the end of the report.</p>
 						</blockquote>
 						<p>
 							Report Groups are defined as records in the
-							<code class="language-cobol">REPORT SECTION</code> of the
+							<code class="language-cobol">REPORT SECTION</code>
+							of the
 							<code class="language-cobol">DATA DIVISION</code>. Most groups are defined once for each
 							report, but control groups are defined for each control break item. For instance, in the
 							example program, control footings are defined on the SalesPersonNumber, the CityCode and
@@ -444,9 +435,10 @@ PrintSalaryReport.
 							An ordinary control group is defined on some control break data-item. The Report Writer
 							monitors the contents of the data-item and when the value in the item changes a control
 							break is automatically initiated and the
-							<code class="language-cobol">CONTROL FOOTING</code> group (if there is one) is printed.
+							<code class="language-cobol">CONTROL FOOTING</code>
+							group (if there is one) is printed.
 						</p>
-						<hr />
+						<hr>
 					</div>
 					<div class="section-sidebar">
 						<h3 style="text-align: center">Report writing made easy</h3>
@@ -462,8 +454,10 @@ PrintSalaryReport.
 						<ul>
 							<li>
 								Allowing simple vertical and horizontal placement of printed items using the
-								<code class="language-cobol">LINE IS</code> and
-								<code class="language-cobol">COLUMN IS</code> phrases in the data declaration
+								<code class="language-cobol">LINE IS</code>
+								and
+								<code class="language-cobol">COLUMN IS</code>
+								phrases in the data declaration
 							</li>
 							<li>Automatically moving data values to output items</li>
 							<li>
@@ -519,7 +513,7 @@ PrintSalaryReport.
 							</li>
 							<li>the total value of sales for each salesperson</li>
 						</ul>
-						<hr />
+						<hr>
 					</div>
 					<div class="section-sidebar">
 						<h3>A simple report</h3>
@@ -584,7 +578,7 @@ Cork          1           $333.50
 
 Programmer - Michael Coughlan               Page :  1
                                                     </pre>
-						<hr />
+						<hr>
 					</div>
 					<div class="section-sidebar">
 						<h3>Code &amp; Commentary</h3>
@@ -615,7 +609,7 @@ Programmer - Michael Coughlan               Page :  1
 						<p>
 							What changes do we have to make to our program to get it to print the city and final totals?
 						</p>
-						<hr />
+						<hr>
 					</div>
 					<div class="section-sidebar">
 						<h3>Printing the city total</h3>
@@ -623,11 +617,11 @@ Programmer - Michael Coughlan               Page :  1
 					<div class="section-content">
 						<p>
 							If we want to print the city total we must set up a report group for it describing
-							<b>what</b> we want printed. To describe <b>when</b> we want the group printed, we must
-							specify that the group is a CONTROL FOOTING group and we must identify the CityCode as the
-							control break data-item. Since the city control break is senior to the salesperson control
-							break we must indicate this by placing CityCode before SalespersonNumber in the CONTROLS are
-							phrase.
+							<b>what</b>
+							we want printed. To describe <b>when</b> we want the group printed, we must specify that the
+							group is a CONTROL FOOTING group and we must identify the CityCode as the control break
+							data-item. Since the city control break is senior to the salesperson control break we must
+							indicate this by placing CityCode before SalespersonNumber in the CONTROLS are phrase.
 						</p>
 						<p>
 							The total for the city is automatically accumulated by means of the SUM clause. Every time a
@@ -639,7 +633,7 @@ Programmer - Michael Coughlan               Page :  1
 							The item that prints the city total has also been given a name. This is so that we can refer
 							to it in the final total SUM phrase.
 						</p>
-						<hr />
+						<hr>
 					</div>
 					<div class="section-sidebar">
 						<h3>Printing a Final Total</h3>
@@ -661,7 +655,7 @@ Programmer - Michael Coughlan               Page :  1
 						<h3>REPORT SECTION changes</h3>
 					</div>
 					<div class="section-content">
-						<hr />
+						<hr>
 						<pre>REPORT SECTION.
 RD  SalesReport
     CONTROLS ARE <b><span class="cobol-highlight">FINAL
@@ -737,7 +731,7 @@ RD  SalesReport
        03 COLUMN 52     PIC Z9 SOURCE PAGE-COUNTER.
 
 </pre>
-						<hr />
+						<hr>
 					</div>
 					<div class="section-sidebar">
 						<h3>Changes to the Procedure Division</h3>
@@ -749,7 +743,7 @@ RD  SalesReport
 						</p>
 						<p>Why none at all!!!</p>
 						<p>The Procedure Division code remains exactly the same.</p>
-						<hr />
+						<hr>
 					</div>
 
 					<div class="section-header">
@@ -764,8 +758,8 @@ RD  SalesReport
 							way the Report Writer does things. But sometimes, the structure or requirements of the
 							report are such that the standard Report Writer alone is an insufficient tool. In these
 							cases,
-							<code class="language-cobol">DECLARATIVES</code> may be used to extend the functionality of
-							the Report Writer.
+							<code class="language-cobol">DECLARATIVES</code>
+							may be used to extend the functionality of the Report Writer.
 						</p>
 						<p>
 							The <code class="language-cobol">USE BEFORE REPORTING</code> phrase allows code specified in
@@ -775,7 +769,7 @@ RD  SalesReport
 							Writer can not do automatically or by selectively stopping the report group from being
 							printed (using the <code class="language-cobol">SUPPRESS PRINTING</code> command).
 						</p>
-						<hr />
+						<hr>
 					</div>
 					<div class="section-sidebar">
 						<h3>Calculating the salesperson's commission and salary</h3>
@@ -795,19 +789,24 @@ RD  SalesReport
 						<p>
 							Calculating the commission requires more than just simple addition so the Report Writer
 							cannot handle it automatically. To calculate the commission are
-							<code class="language-cobol">DECLARATIVES</code> are required. The
-							<code class="language-cobol">USE BEFORE REPORTING</code> Salespsn-Line phrase in the
-							<code class="language-cobol">DECLARATIVES</code> allows these items to be calculated when
-							the Salespsn-Number control footer group is about to be printed.
+							<code class="language-cobol">DECLARATIVES</code>
+							are required. The
+							<code class="language-cobol">USE BEFORE REPORTING</code>
+							Salespsn-Line phrase in the
+							<code class="language-cobol">DECLARATIVES</code>
+							allows these items to be calculated when the Salespsn-Number control footer group is about
+							to be printed.
 						</p>
 						<p>
 							In the example program, <code class="language-cobol">DECLARATIVES</code> are used because
 							the Report Writer cannot automatically calculate a salesperson's commission and salary. The
-							<code class="language-cobol">USE BEFORE REPORTING</code> SalesPersonGrp phrase in the
-							<code class="language-cobol">DECLARATIVES</code> allows these items to be calculated when
-							the SalesPersonGrp control footer group is about to be printed.
+							<code class="language-cobol">USE BEFORE REPORTING</code>
+							SalesPersonGrp phrase in the
+							<code class="language-cobol">DECLARATIVES</code>
+							allows these items to be calculated when the SalesPersonGrp control footer group is about to
+							be printed.
 						</p>
-						<hr />
+						<hr>
 					</div>
 					<div class="section-sidebar">
 						<h3>Values of control break items</h3>
@@ -836,7 +835,7 @@ RD  SalesReport
 							currently in the file buffer. In the city footing we will show the city code for the city
 							whose total sales have just been printed and the city code currently in the file buffer.
 						</p>
-						<hr />
+						<hr>
 					</div>
 					<div class="section-sidebar">
 						<h3>The full program and the report it produces</h3>
@@ -1052,7 +1051,7 @@ PrintSalaryReport.
     READ SalesFile
           AT END SET EndOfFile TO TRUE
     END-READ.</pre>
-						<hr />
+						<hr>
 						<pre>
            An example COBOL Report Program
      Bible Salesperson - Sales and Salary Report
@@ -1107,7 +1106,7 @@ Belfast       1           $111.50
 
 
 Programmer - Michael Coughlan               Page :  1 </pre>
-						<hr />
+						<hr>
 					</div>
 					<div class="section-sidebar">
 						<h3>Referencing control break items - summary</h3>
@@ -1122,7 +1121,7 @@ Programmer - Michael Coughlan               Page :  1 </pre>
 				</div>
 			</div>
 			<div class="page-footer">
-				<hr />
+				<hr>
 				<copyright-notice></copyright-notice>
 				<last-updated></last-updated>
 			</div>

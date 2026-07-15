@@ -67,10 +67,10 @@ Only move to static analysis (reading CSS/HTML) if the screenshots are inconclus
 ## Formatting
 
 ```bash
-npx prettier --write .
+pnpm run format:write
 ```
 
-Prettier runs automatically in CI on every PR merge. Run it locally after editing JS or JSON files to avoid a style-only follow-up commit. HTML files are hand-authored and intentionally excluded from prettier.
+Biome formats and lints HTML/JS/TS/CSS/JSON automatically in CI. Run `pnpm run format:write` / `pnpm run lint:fix` locally after edits to avoid a style-only follow-up commit. Vendored assets under `course/Resources/vendor/` are excluded. A11y lint rules are off (pa11y covers accessibility).
 
 ## Generated files
 

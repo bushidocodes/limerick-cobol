@@ -1,27 +1,27 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
 		<script>
-			(function () {
-				var t = localStorage.getItem("lc-theme");
-				if (t === "dark" || t === "light") {
-					document.documentElement.setAttribute("data-theme", t);
-					var color = t === "dark" ? "#1a1a1a" : "#ffffff";
-					var meta = document.querySelector('meta[name="theme-color"]:not([media])');
-					if (!meta) {
-						meta = document.createElement("meta");
-						meta.name = "theme-color";
-						document.head.appendChild(meta);
-					}
-					meta.content = color;
+		(function () {
+			var t = localStorage.getItem("lc-theme");
+			if (t === "dark" || t === "light") {
+				document.documentElement.setAttribute("data-theme", t);
+				var color = t === "dark" ? "#1a1a1a" : "#ffffff";
+				var meta = document.querySelector('meta[name="theme-color"]:not([media])');
+				if (!meta) {
+					meta = document.createElement("meta");
+					meta.name = "theme-color";
+					document.head.appendChild(meta);
 				}
-			})();
+				meta.content = color;
+			}
+		})();
 		</script>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="icon" type="image/svg+xml" href="../favicon.svg">
 		<script type="application/ld+json">
 			{
 				"@context": "https://schema.org",
@@ -52,34 +52,34 @@
 		<meta
 			name="description"
 			content="In most procedural languages, If and Case/Switch are the only selection constructs supported. COBOL supports advanced versions of both of these constructs,"
-		/>
-		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/Selection.html" />
-		<link rel="prev" href="https://bushidocodes.github.io/limerick-cobol/course/COBOLcommands.html" />
-		<link rel="next" href="https://bushidocodes.github.io/limerick-cobol/course/Iteration.html" />
+		>
+		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/Selection.html">
+		<link rel="prev" href="https://bushidocodes.github.io/limerick-cobol/course/COBOLcommands.html">
+		<link rel="next" href="https://bushidocodes.github.io/limerick-cobol/course/Iteration.html">
 		<!-- Open Graph -->
-		<meta property="og:type" content="article" />
-		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/Selection.html" />
-		<meta property="og:title" content="Selection in COBOL" />
+		<meta property="og:type" content="article">
+		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/Selection.html">
+		<meta property="og:title" content="Selection in COBOL">
 		<meta
 			property="og:description"
 			content="In most procedural languages, If and Case/Switch are the only selection constructs supported. COBOL supports advanced versions of both of these constructs,"
-		/>
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/course.png" />
+		>
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/course.png">
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="Selection in COBOL" />
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="Selection in COBOL">
 		<meta
 			name="twitter:description"
 			content="In most procedural languages, If and Case/Switch are the only selection constructs supported. COBOL supports advanced versions of both of these constructs,"
-		/>
-		<link href="Resources/css/course.css" rel="stylesheet" />
-		<link href="Resources/css/course-components.css" rel="stylesheet" />
+		>
+		<link href="Resources/css/course.css" rel="stylesheet">
+		<link href="Resources/css/course-components.css" rel="stylesheet">
 		<link
 			href="Resources/vendor/prism/themes/prism.min.css"
 			rel="stylesheet"
 			integrity="sha384-rCCjoCPCsizaAAYVoz1Q0CmCTvnctK0JkfCSjx7IIxexTBg+uCKtFYycedUjMyA2"
 			crossorigin="anonymous"
-		/>
+		>
 		<script
 			src="Resources/vendor/prism/prism.min.js"
 			integrity="sha384-06z5D//U/xpvxZHuUz92xBvq3DqBBFi7Up53HRrbV7Jlv7Yvh/MZ7oenfUe9iCEt"
@@ -93,16 +93,16 @@
 			defer
 		></script>
 		<style type="text/css">
-			/* Page-scoped table mobile override (display:block + scroll). The
-			   .eval-row*, .code-compare*, and .condition-types-box* component
-			   classes live in course-components.css. */
-			@media (max-width: 600px) {
-				table {
-					max-width: 100%;
-					overflow-x: auto;
-					display: block;
-				}
+		/* Page-scoped table mobile override (display:block + scroll). The
+							   .eval-row*, .code-compare*, and .condition-types-box* component
+							   classes live in course-components.css. */
+		@media (max-width: 600px) {
+			table {
+				max-width: 100%;
+				overflow-x: auto;
+				display: block;
 			}
+		}
 		</style>
 		<script src="../components/theme-toggle.js" defer></script>
 		<script src="../components/page-hero.js" defer></script>
@@ -130,7 +130,7 @@
 				<div class="section-grid">
 					<div class="section-full">
 						<page-hero title="Selection in COBOL" reading-time="20 min"></page-hero>
-						<hr />
+						<hr>
 						<lesson-toc></lesson-toc>
 					</div>
 					<div class="section-header">
@@ -148,11 +148,12 @@
 						</p>
 						<p>
 							In this tutorial we will examine COBOL's selection constructs, the
-							<code class="language-cobol">IF</code> and the
-							<code class="language-cobol">EVALUATE</code> and we will demonstrate how to create and use
-							Condition Names.
+							<code class="language-cobol">IF</code>
+							and the
+							<code class="language-cobol">EVALUATE</code>
+							and we will demonstrate how to create and use Condition Names.
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 
 					<div class="section-sidebar">
@@ -167,7 +168,8 @@
 							</li>
 							<li>
 								Know the condition precedence rules and be able to create complex conditions using
-								<code class="language-cobol">AND</code> and <code class="language-cobol">OR</code>.
+								<code class="language-cobol">AND</code>
+								and <code class="language-cobol">OR</code>.
 							</li>
 							<li>Know how to use Implied subjects.</li>
 							<li>Be able to create nested <code class="language-cobol">IF</code> statements.</li>
@@ -183,7 +185,7 @@
 
 					<div class="section-full">
 						<div class="center-block">
-							<hr />
+							<hr>
 						</div>
 					</div>
 
@@ -207,7 +209,7 @@
 							An IF statement allows the programmer to specify that the block of code is to be executed
 							only if the condition attached to the IF statement is satisfied.
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 
 					<div class="section-sidebar">
@@ -220,17 +222,19 @@
 								src="Resources/pics/Select1.gif"
 								width="379"
 								alt="IF statement syntax diagram"
-							/>
+							>
 						</p>
 						<p>
 							When an <code class="language-cobol">IF</code> statement is encountered in a program, the
 							StatementBlock following the <code class="language-cobol">THEN</code> is executed, if the
 							condition is true, and the StatementBlock following the
-							<code class="language-cobol">ELSE</code> (is used) is executed, if the condition is false.
+							<code class="language-cobol">ELSE</code>
+							(is used) is executed, if the condition is false.
 						</p>
 						<p>
 							The StatementBlock(s) can include any valid COBOL statement including further
-							<code class="language-cobol">IF</code> constructs,
+							<code class="language-cobol">IF</code>
+							constructs,
 							<code class="language-cobol">PERFORM</code>s, etc.
 						</p>
 					</div>
@@ -282,7 +286,7 @@ Statement6.</code></pre>
 							make and, once made, it is difficult to spot. A full stop is small and unobtrusive compared
 							to an <code class="language-cobol">END-IF</code>.
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 
 					<div class="section-sidebar">
@@ -331,7 +335,7 @@ Statement6.</code></pre>
 										src="Resources/pics/Select2.gif"
 										width="484"
 										alt="Relation Condition syntax diagram showing comparison operators (less than, equal to, greater than)"
-									/>
+									>
 								</p>
 								<p>
 									The syntax of a Relation Condition is shown above. As you can see from the diagram a
@@ -362,7 +366,7 @@ Statement6.</code></pre>
 						<h3>Class Conditions</h3>
 						<aside>
 							<p class="center-block">
-								<img height="44" src="Resources/pics/i-LightBulbTip.svg" width="42" alt="" />
+								<img height="44" src="Resources/pics/i-LightBulbTip.svg" width="42" alt="">
 							</p>
 							<p>
 								Although this course will not cover the SPECIAL-NAMES paragraph in detail it is useful
@@ -370,9 +374,9 @@ Statement6.</code></pre>
 							</p>
 							<p>
 								As well as setting up a class name, the SPECIAL-NAMES paragraph allows you to do such
-								things as;<br />
-								Specify the collating sequence - e.g. ASCII or EBCDIC<br />
-								Specify the currency sign<br />
+								things as;<br>
+								Specify the collating sequence - e.g. ASCII or EBCDIC<br>
+								Specify the currency sign<br>
 								Create User Defined Figurative constants.
 							</p>
 						</aside>
@@ -384,20 +388,23 @@ Statement6.</code></pre>
 								src="Resources/pics/Select3.gif"
 								width="312"
 								alt="Class Condition syntax diagram"
-							/>
+							>
 						</p>
 						<p>
 							Although COBOL data-items are not "strongly typed", they do fall into some broad categories
 							or classes, such as numeric or alphanumeric. A Class Condition may be used to determine
 							whether the value of data-item is a member of one these classes. For instance, a
-							<code class="language-cobol">NUMERIC</code> Class Condition might be used on an alphanumeric
-							(PIC X) or a numeric (<code class="language-cobol">PIC 9</code>) data-item to see if it
-							contained numeric data.
+							<code class="language-cobol">NUMERIC</code>
+							Class Condition might be used on an alphanumeric (PIC X) or a numeric (<code
+								class="language-cobol"
+								>PIC 9</code
+							>) data-item to see if it contained numeric data.
 						</p>
 						<p>
 							The UserDefinedClassName is a name that a programmer can assign to a set of characters. The
 							programmer must use the <code class="language-cobol">CLASS</code> clause of the
-							<code class="language-cobol">SPECIAL-NAMES</code> paragraph, of the
+							<code class="language-cobol">SPECIAL-NAMES</code>
+							paragraph, of the
 							<code class="language-cobol">CONFIGURATION SECTION</code>, in the
 							<code class="language-cobol">ENVIRONMENT DIVISION</code>, to assign a class name to a set of
 							characters.
@@ -435,7 +442,7 @@ END-IF</code></pre>
 								src="Resources/pics/Select4.gif"
 								width="313"
 								alt="Sign Condition syntax diagram"
-							/>
+							>
 						</p>
 						<p>
 							The Sign Condition determines whether or not the value of an arithmetic expression is less
@@ -448,7 +455,7 @@ END-IF</code></pre>
 						<h3>Complex Conditions</h3>
 						<aside>
 							<p class="center-block">
-								<img height="44" src="Resources/pics/i-LightBulbTip.svg" width="42" alt="" />
+								<img height="44" src="Resources/pics/i-LightBulbTip.svg" width="42" alt="">
 							</p>
 							<p>
 								You can see from the <code class="language-cobol">IF Amnt1</code> example, that figuring
@@ -464,7 +471,7 @@ END-IF</code></pre>
 								src="Resources/pics/Select5.gif"
 								width="228"
 								alt="Complex Condition syntax diagram showing the AND and OR conjunction operators"
-							/>
+							>
 						</p>
 						<p>
 							Complex Conditions are formed by combining two or more simple conditions using the
@@ -479,9 +486,9 @@ END-IF</code></pre>
 						</p>
 						<table width="100%" style="display: table; table-layout: fixed" class="data-table">
 							<colgroup>
-								<col style="width: 23%" />
-								<col style="width: 35%" />
-								<col style="width: 42%" />
+								<col style="width: 23%">
+								<col style="width: 35%">
+								<col style="width: 42%">
 							</colgroup>
 							<tr class="row-label">
 								<th style="text-align: center">
@@ -531,20 +538,21 @@ END-IF
 						<blockquote>
 							<p>
 								The <code class="language-cobol">NOT</code> takes precedence so we must write -
-								<code class="language-cobol">NOT</code> <strong>(Amnt1 &lt;10)</strong>.<br />
-								The <code class="language-cobol">AND</code> is next in precedence so we must bracket
-								-<br />
+								<code class="language-cobol">NOT</code> <strong>(Amnt1 &lt;10)</strong>.<br>
+								The <code class="language-cobol">AND</code> is next in precedence so we must bracket -<br>
 								<span style="padding-inline-start: 2em; display: inline-block"
 									><strong
 										>((Amnt2=50) <code class="language-cobol">AND</code> (Amnt3 &gt; 150))</strong
 									></span
-								>.<br />
+								>.<br>
 								Finally the <code class="language-cobol">OR</code> is evaluated to give the full
-								condition as -<br />
+								condition as -<br>
 								<span style="padding-inline-start: 2em; display: inline-block"
-									>(<code class="language-cobol">NOT</code> (Amnt1 &lt; 10))</span
+									>(<code class="language-cobol">NOT</code>
+									(Amnt1 &lt; 10))</span
 								>
-								<code class="language-cobol">OR</code> ((Amnt2 = 50)
+								<code class="language-cobol">OR</code>
+								((Amnt2 = 50)
 								<code class="language-cobol">AND</code>
 								(Amnt3 &gt; 150))
 							</p>
@@ -555,9 +563,12 @@ END-IF
 								<th class="cell-label" scope="row" width="16%" style="text-align: center">Condition</th>
 								<td width="84%">
 									<p style="text-align: center; margin: 0.3em 0">
-										(<code class="language-cobol">NOT</code> (Amnt1 &lt; 10))
-										<code class="language-cobol">OR</code> ((Amnt2 = 50)
-										<code class="language-cobol">AND</code> (Amnt3 &gt; 150))
+										(<code class="language-cobol">NOT</code>
+										(Amnt1 &lt; 10))
+										<code class="language-cobol">OR</code>
+										((Amnt2 = 50)
+										<code class="language-cobol">AND</code>
+										(Amnt3 &gt; 150))
 									</p>
 								</td>
 							</tr>
@@ -605,9 +616,12 @@ END-IF
 								<th class="cell-label" scope="row" width="16%" style="text-align: center">Condition</th>
 								<td width="84%">
 									<p style="text-align: center; margin: 0.3em 0">
-										<code class="language-cobol">NOT</code> ((Amnt1 &lt; 10)
-										<code class="language-cobol">OR</code> (Amnt2 = 50))
-										<code class="language-cobol">AND</code> (Amnt3 &gt; 150)
+										<code class="language-cobol">NOT</code>
+										((Amnt1 &lt; 10)
+										<code class="language-cobol">OR</code>
+										(Amnt2 = 50))
+										<code class="language-cobol">AND</code>
+										(Amnt3 &gt; 150)
 									</p>
 								</td>
 							</tr>
@@ -665,13 +679,15 @@ END-IF
 							Complex Condition true if all the Simple Conditions are true?
 						</p>
 						<p class="center-block">
-							<code class="language-cobol">IF NOT</code> (((Amnt1 &lt; 10)
+							<code class="language-cobol">IF NOT</code>
+							(((Amnt1 &lt; 10)
 							<code class="language-cobol">OR</code>
 							(Amnt2 = 50))
-							<code class="language-cobol">AND</code> (Amnt3 &gt; 150))
+							<code class="language-cobol">AND</code>
+							(Amnt3 &gt; 150))
 							<code class="language-cobol">THEN</code>
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 
 					<div class="section-sidebar">
@@ -717,7 +733,7 @@ IF VarA &gt; VarB AND VarC AND VarD
    DISPLAY "VarA is the Greatest" &lt;
 END-IF
 *&gt; The Implied Subject is - VarA &gt;</code></pre>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 
 					<div class="section-sidebar">
@@ -817,7 +833,7 @@ END-IF
 
 					<div class="section-full">
 						<div class="center-block">
-							<hr />
+							<hr>
 						</div>
 					</div>
 				</div>
@@ -834,10 +850,12 @@ END-IF
 					<div class="section-content">
 						<p>
 							Wherever a condition can occur, such as in an
-							<code class="language-cobol">IF</code> statement or an
-							<code class="language-cobol">EVALUATE</code> or a
-							<code class="language-cobol">PERFORM..UNTIL</code> , a Condition Name (Level 88) may be
-							used.
+							<code class="language-cobol">IF</code>
+							statement or an
+							<code class="language-cobol">EVALUATE</code>
+							or a
+							<code class="language-cobol">PERFORM..UNTIL</code>
+							, a Condition Name (Level 88) may be used.
 						</p>
 						<p>
 							Condition Names are defined in the <code class="language-cobol">DATA DIVISION</code> using
@@ -849,7 +867,7 @@ END-IF
 							data-item can hold.
 						</p>
 						<p>Like a condition, a Condition Name evaluates to True or False.</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 
 					<div class="section-sidebar">
@@ -862,7 +880,7 @@ END-IF
 								src="Resources/pics/Select6.gif"
 								width="501"
 								alt="Condition Name syntax diagram"
-							/>
+							>
 						</p>
 						<p>
 							When used with Condition Names, the <code class="language-cobol">VALUE</code> clause does
@@ -928,7 +946,7 @@ END-IF
 								the associated data-item.
 							</li>
 						</ul>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 
 					<div class="section-sidebar">
@@ -946,9 +964,10 @@ END-IF
 									height="62"
 									src="Resources/pics/i-Animation.gif"
 									width="62"
-							/></a>
+								></a
+							>
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 
 					<div class="section-sidebar">
@@ -960,7 +979,8 @@ END-IF
 							condition names below. In this example, the programmer has replaced the conditions that
 							tested EUCountryCode, with Condition Names that do the same thing. Then he replaced the
 							statement -
-							<i>IF EUCountryCode = 2</i> by <i>IF CodeIs2</i>.
+							<i>IF EUCountryCode = 2</i>
+							by <i>IF CodeIs2</i>.
 						</p>
 						<pre class="language-cobol"><code class="language-cobol">01 EUCountryCode PIC 99.
    88 CodeIs1 VALUE 1.
@@ -1004,7 +1024,7 @@ END-IF
 
 					<div class="section-full">
 						<div class="center-block">
-							<hr />
+							<hr>
 						</div>
 					</div>
 				</div>
@@ -1028,19 +1048,21 @@ END-IF
 							In this section, we show how the <code class="language-cobol">SET</code> verb may be used to
 							set a Condition Name to True.
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 
 					<div class="section-sidebar">
 						<h3>SET syntax</h3>
 					</div>
 					<div class="section-content">
-						<p>SET {ConditionName} ... TO TRUE</p>
+						<p>SET { ConditionName} ... TO TRUE</p>
 						<p>
 							A Condition Name is set to true when one of the condition values mentioned in its
-							<code class="language-cobol">VALUE</code> clause is moved into its associated data-item. But
-							you can also set a Condition Name to true using the
-							<code class="language-cobol">SET</code> verb.
+							<code class="language-cobol">VALUE</code>
+							clause is moved into its associated data-item. But you can also set a Condition Name to true
+							using the
+							<code class="language-cobol">SET</code>
+							verb.
 						</p>
 						<p>
 							When the <code class="language-cobol">SET</code> verb is used to set a Condition Name, the
@@ -1054,7 +1076,7 @@ END-IF
 							may change the value of its associated data-item.
 						</p>
 						<p>It is not (at present) possible to set a condition name to False.</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 
 					<div class="section-sidebar">
@@ -1073,9 +1095,10 @@ END-IF
 									height="62"
 									src="Resources/pics/i-Animation.gif"
 									width="62"
-							/></a>
+								></a
+							>
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 
 					<div class="section-sidebar">
@@ -1084,10 +1107,12 @@ END-IF
 					<div class="section-content">
 						<p>
 							The animation above demonstrated a simplified version of how the
-							<code class="language-cobol">SET</code> verb may be used with Sequential Files. One problem
-							with the approach shown, is that the Condition Name has to be declared in the
-							<code class="language-cobol">WORKING-STORAGE SECTION</code> and there may be hundreds of
-							lines of code separating it from the file whose end it is signalling.
+							<code class="language-cobol">SET</code>
+							verb may be used with Sequential Files. One problem with the approach shown, is that the
+							Condition Name has to be declared in the
+							<code class="language-cobol">WORKING-STORAGE SECTION</code>
+							and there may be hundreds of lines of code separating it from the file whose end it is
+							signalling.
 						</p>
 						<p>
 							In the program fragment below, a somewhat different approach to setting an end of file
@@ -1096,8 +1121,10 @@ END-IF
 						<p>
 							In this example, the EndOfStudentFile Condition Name is attached to the StudentDetails
 							record. When EndOfStudentFile is set to true, every character of the record is filled with
-							<code class="language-cobol">HIGH-VALUES</code> (the highest
-							<code class="language-cobol">ASCII</code> value the character can hold).
+							<code class="language-cobol">HIGH-VALUES</code>
+							(the highest
+							<code class="language-cobol">ASCII</code>
+							value the character can hold).
 						</p>
 						<p>
 							Filling the record with <code class="language-cobol">HIGH-VALUES</code> produces a useful
@@ -1139,7 +1166,7 @@ Begin.
 
 					<div class="section-full">
 						<div class="center-block">
-							<hr />
+							<hr>
 						</div>
 					</div>
 				</div>
@@ -1164,7 +1191,7 @@ Begin.
 							works, but you'll want to examine the syntax diagram in combination with the examples to
 							gain a fuller understanding.
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 
 					<div class="section-sidebar">
@@ -1177,7 +1204,7 @@ Begin.
 								src="Resources/pics/Select7.gif"
 								width="523"
 								alt="EVALUATE statement syntax diagram"
-							/>
+							>
 						</p>
 						<h4>EVALUATE notes</h4>
 						<p>
@@ -1190,7 +1217,8 @@ Begin.
 						</p>
 						<p>
 							The number of subjects must be equal to the number of objects and the type of each
-							<i>subject</i> must be compatible with the type of its corresponding <i>object</i>.
+							<i>subject</i>
+							must be compatible with the type of its corresponding <i>object</i>.
 						</p>
 						<p>
 							The keyword <code class="language-cobol">ALSO</code> must be used to separate each object
@@ -1199,19 +1227,23 @@ Begin.
 						<p>
 							Only one <code class="language-cobol">WHEN</code> branch is chosen per execution of the
 							<code class="language-cobol">EVALUATE</code>, and the checking of the
-							<code class="language-cobol">WHEN</code> branches is done from top to bottom.
+							<code class="language-cobol">WHEN</code>
+							branches is done from top to bottom.
 						</p>
 						<p>
 							If none of the <code class="language-cobol">WHEN</code> branches can be chosen, and a
-							<code class="language-cobol">WHEN OTHER</code> phrase exists, the
-							<code class="language-cobol">WHEN OTHER</code> branch is executed.
+							<code class="language-cobol">WHEN OTHER</code>
+							phrase exists, the
+							<code class="language-cobol">WHEN OTHER</code>
+							branch is executed.
 						</p>
 						<p>
 							If none of the <code class="language-cobol">WHEN</code> branches can be chosen, and there is
 							no <code class="language-cobol">WHEN OTHER</code> phrase, the
-							<code class="language-cobol">EVALUATE</code> simply terminates.
+							<code class="language-cobol">EVALUATE</code>
+							simply terminates.
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 
 					<div class="section-sidebar">
@@ -1229,7 +1261,7 @@ Begin.
 								src="Resources/pics/eval1.gif"
 								width="450"
 								alt="Ten-character edit-field array used by the EVALUATE example"
-							/>
+							>
 						</p>
 						<p>What sort of functionality do we want to implement?</p>
 						<ul>
@@ -1256,8 +1288,8 @@ Begin.
 						<p>
 							Let's assume we can get a character from the keyboard and that we have used Condition Names
 							to detect the left-arrow, right-arrow and delete characters. What kind of an
-							<code class="language-cobol">EVALUATE</code> statement would we need to implement the rest
-							of the functionality.
+							<code class="language-cobol">EVALUATE</code>
+							statement would we need to implement the rest of the functionality.
 						</p>
 						<pre class="language-cobol"><code class="language-cobol">EVALUATE TRUE   ALSO Position
    WHEN L-Arrow ALSO 2 THRU 10 SUBTRACT 1 FROM Position
@@ -1277,7 +1309,8 @@ END-EVALUATE
 							the first <strong>object</strong> after the <code class="language-cobol">WHEN</code> clause
 							must specify a condition to be compatible with its <strong>subject</strong>, and the second
 							must specify a value or range of values. So the first
-							<code class="language-cobol">WHEN</code> clause reads as -
+							<code class="language-cobol">WHEN</code>
+							clause reads as -
 							<i
 								>When the L-Arrow Condition Name is true and the data-item Position has a value in the
 								range 2-10 then we subtract 1 from the Position</i
@@ -1287,7 +1320,7 @@ END-EVALUATE
 							Finally, in a language you are already familiar with, write a Switch/Case statement to do
 							the same thing as the <code class="language-cobol">EVALUATE</code> above does.
 						</p>
-						<hr width="50%" />
+						<hr width="50%">
 					</div>
 
 					<div class="section-sidebar">
@@ -1296,8 +1329,9 @@ END-EVALUATE
 					<div class="section-content">
 						<p>
 							As you have already seen in the example above, the
-							<code class="language-cobol">EVALUATE</code> is very powerful construct; but where it really
-							shines is implementing decision table logic. Consider the example below.
+							<code class="language-cobol">EVALUATE</code>
+							is very powerful construct; but where it really shines is implementing decision table logic.
+							Consider the example below.
 						</p>
 						<p>
 							Jupiter Books - the largest on-line bookstore in the galaxy - sells books, through the
@@ -1308,7 +1342,8 @@ END-EVALUATE
 						<p>
 							Jupiter Books uses a decision table to decide what discount to apply. The decision table and
 							the
-							<code class="language-cobol">EVALUATE</code> which implements it are shown below.
+							<code class="language-cobol">EVALUATE</code>
+							which implements it are shown below.
 						</p>
 						<table class="data-table" width="83%" style="margin-inline: auto">
 							<tr class="row-label" style="vertical-align: top">
@@ -1455,10 +1490,10 @@ END-EVALUATE
 						<p>
 							Notice how easily and clearly the decision table is implemented using an
 							<code class="language-cobol">EVALUATE</code>. Not only is the
-							<code class="language-cobol">EVALUATE</code> clear but there is no temptation to take
-							shortcuts which may cause problems later. For instance, at the moment, a discount of 23% is
-							offered in two places in the table. A programmer writing in C might be tempted to take
-							advantage of this by coding;
+							<code class="language-cobol">EVALUATE</code>
+							clear but there is no temptation to take shortcuts which may cause problems later. For
+							instance, at the moment, a discount of 23% is offered in two places in the table. A
+							programmer writing in C might be tempted to take advantage of this by coding;
 						</p>
 						<pre
 							class="language-cobol"
@@ -1481,7 +1516,7 @@ END-EVALUATE
 							lectures="../lectures/conditions.html|Conditions Lecture"
 							examples="../examples/Conditn/Conditions.html|Conditions – Condition Names Example, ../examples/Conditn/IterIf.html|IterIf – Conditions in a Loop"
 						></related-content>
-						<hr />
+						<hr>
 						<lesson-checkbox lesson="Selection"></lesson-checkbox>
 						<lesson-nav></lesson-nav>
 						<copyright-notice></copyright-notice>

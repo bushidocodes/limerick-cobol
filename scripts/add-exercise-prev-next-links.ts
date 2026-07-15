@@ -14,7 +14,7 @@
  *
  * Uses absolute URLs matching the canonical href base. Idempotent — re-running
  * replaces any existing prev/next link tags (single- or multi-line). Run
- * prettier afterwards (the build:* script does) to normalise wrapping.
+ * Biome format afterwards (the build:* script does) to normalise wrapping.
  */
 
 import fs from "fs";

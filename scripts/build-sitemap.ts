@@ -1,12 +1,13 @@
 #!/usr/bin/env node
+
 /**
  * build-sitemap.ts
  * Walks the repo, finds every *.html file, and emits sitemap.xml at the repo root.
  */
 
+import { execSync } from "child_process";
 import fs from "fs";
 import path from "path";
-import { execSync } from "child_process";
 import { collectHtmlFiles, REPO_ROOT } from "./collect-html.js";
 
 const BASE_URL = "https://bushidocodes.github.io/limerick-cobol/";

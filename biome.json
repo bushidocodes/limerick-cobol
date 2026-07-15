@@ -1,0 +1,125 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.5.4/schema.json",
+	"vcs": {
+		"enabled": true,
+		"clientKind": "git",
+		"useIgnoreFile": true
+	},
+	"files": {
+		"ignoreUnknown": true,
+		"includes": [
+			"**",
+			"!!course/Resources/vendor",
+			"!!pnpm-lock.yaml",
+			"!!sitemap.xml",
+			"!!node_modules",
+			"!!.claude",
+			"!!.playwright-mcp",
+			"!!**/*.{png,jpg,jpeg,gif,ico,webp,svg,pdf,cbl,cob,woff,woff2,ttf,eot,mp3,mp4,zip}"
+		]
+	},
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "tab",
+		"indentWidth": 4,
+		"lineWidth": 120,
+		"lineEnding": "lf"
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"preset": "recommended",
+			"a11y": {
+				"recommended": false
+			},
+			"correctness": {
+				"noUnusedVariables": "warn",
+				"noUnusedImports": "warn",
+				"noUnusedFunctionParameters": "off",
+				"noInnerDeclarations": "off",
+				"useParseIntRadix": "off"
+			},
+			"style": {
+				"useConst": "warn",
+				"useTemplate": "off",
+				"useImportType": "off",
+				"useNodejsImportProtocol": "off",
+				"noNonNullAssertion": "off",
+				"useNumberNamespace": "off",
+				"noDescendingSpecificity": "off"
+			},
+			"suspicious": {
+				"noExplicitAny": "off",
+				"noConsole": "off",
+				"noRedeclare": "off",
+				"noAssignInExpressions": "off",
+				"noDoubleEquals": "off",
+				"noImplicitAnyLet": "off",
+				"useIterableCallbackReturn": "off",
+				"noDocumentCookie": "off"
+			},
+			"complexity": {
+				"noBannedTypes": "off",
+				"noForEach": "off",
+				"noCommaOperator": "off",
+				"useOptionalChain": "off",
+				"useLiteralKeys": "off",
+				"useArrowFunction": "off",
+				"noImportantStyles": "off"
+			},
+			"security": {
+				"noDangerouslySetInnerHtml": "off"
+			}
+		}
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "double",
+			"semicolons": "always",
+			"trailingCommas": "all",
+			"arrowParentheses": "always"
+		}
+	},
+	"json": {
+		"formatter": {
+			"trailingCommas": "none"
+		}
+	},
+	"html": {
+		"formatter": {
+			"enabled": true
+		}
+	},
+	"css": {
+		"formatter": {
+			"enabled": true
+		},
+		"linter": {
+			"enabled": true
+		}
+	},
+	"assist": {
+		"enabled": true,
+		"actions": {
+			"source": {
+				"organizeImports": "on"
+			}
+		}
+	},
+	"overrides": [
+		{
+			"includes": ["scripts/**/*.ts", "components/**/*.js", "*.js", ".pa11yci.js"],
+			"linter": {
+				"rules": {
+					"correctness": {
+						"noUnusedVariables": "error",
+						"noUnusedImports": "error"
+					},
+					"style": {
+						"useConst": "error"
+					}
+				}
+			}
+		}
+	]
+}

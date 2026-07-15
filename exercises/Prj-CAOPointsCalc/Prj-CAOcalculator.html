@@ -1,27 +1,27 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
 		<script>
-			(function () {
-				var t = localStorage.getItem("lc-theme");
-				if (t === "dark" || t === "light") {
-					document.documentElement.setAttribute("data-theme", t);
-					var color = t === "dark" ? "#1a1a1a" : "#ffffff";
-					var meta = document.querySelector('meta[name="theme-color"]:not([media])');
-					if (!meta) {
-						meta = document.createElement("meta");
-						meta.name = "theme-color";
-						document.head.appendChild(meta);
-					}
-					meta.content = color;
+		(function () {
+			var t = localStorage.getItem("lc-theme");
+			if (t === "dark" || t === "light") {
+				document.documentElement.setAttribute("data-theme", t);
+				var color = t === "dark" ? "#1a1a1a" : "#ffffff";
+				var meta = document.querySelector('meta[name="theme-color"]:not([media])');
+				if (!meta) {
+					meta = document.createElement("meta");
+					meta.name = "theme-color";
+					document.head.appendChild(meta);
 				}
-			})();
+				meta.content = color;
+			}
+		})();
 		</script>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
 		<script type="application/ld+json">
 			{
 				"@context": "https://schema.org",
@@ -52,36 +52,36 @@
 		<meta
 			name="description"
 			content="The Central Applications Office (CAO) provides a centralised applications mechanism to many of the third level institutions in Ireland. Students wishing to"
-		/>
+		>
 		<link
 			rel="canonical"
 			href="https://bushidocodes.github.io/limerick-cobol/exercises/Prj-CAOPointsCalc/Prj-CAOcalculator.html"
-		/>
+		>
 		<link
 			rel="prev"
 			href="https://bushidocodes.github.io/limerick-cobol/exercises/Prj-MunsterSurnamesFreqRpt/Prj-MunsterSurnamesFreqRpt.html"
-		/>
+		>
 		<!-- Open Graph -->
-		<meta property="og:type" content="website" />
+		<meta property="og:type" content="website">
 		<meta
 			property="og:url"
 			content="https://bushidocodes.github.io/limerick-cobol/exercises/Prj-CAOPointsCalc/Prj-CAOcalculator.html"
-		/>
-		<meta property="og:title" content="UL CAO points calculator and Report" />
+		>
+		<meta property="og:title" content="UL CAO points calculator and Report">
 		<meta
 			property="og:description"
 			content="The Central Applications Office (CAO) provides a centralised applications mechanism to many of the third level institutions in Ireland. Students wishing to"
-		/>
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/exercises.png" />
+		>
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/exercises.png">
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="UL CAO points calculator and Report" />
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="UL CAO points calculator and Report">
 		<meta
 			name="twitter:description"
 			content="The Central Applications Office (CAO) provides a centralised applications mechanism to many of the third level institutions in Ireland. Students wishing to"
-		/>
-		<link href="../../course/Resources/css/course.css" rel="stylesheet" />
-		<link href="../../course/Resources/css/course-components.css" rel="stylesheet" />
+		>
+		<link href="../../course/Resources/css/course.css" rel="stylesheet">
+		<link href="../../course/Resources/css/course-components.css" rel="stylesheet">
 		<script src="../../components/theme-toggle.js" defer></script>
 		<script src="../../components/page-hero.js" defer></script>
 		<script src="../../components/site-search.js" defer></script>
@@ -100,7 +100,7 @@
 			<div class="page-wrapper">
 				<div class="page-content">
 					<page-hero title="UL CAO points calculator and Report"></page-hero>
-					<hr />
+					<hr>
 
 					<dl class="exam-meta">
 						<dt>Time to complete</dt>
@@ -108,17 +108,17 @@
 						<dt>Test Data Files</dt>
 						<dd>
 							<p>
-								<a href="CAOAPPS.dat">CAOapps.dat</a><br />
+								<a href="CAOAPPS.dat">CAOapps.dat</a><br>
 								(The CAO applications file)
 							</p>
 							<p>
-								LC-Results.dat<br />
+								LC-Results.dat<br>
 								(The Leaving Certificate results file. This file is not available for download. You will
 								have to make up your own test data file.)
 							</p>
 						</dd>
 					</dl>
-					<hr />
+					<hr>
 
 					<section>
 						<h2>Introduction</h2>
@@ -201,12 +201,12 @@
 							</table>
 						</div>
 						<p>
-							<b>Note</b><br />
+							<b>Note</b><br>
 							Elements of the Applicant-Address are separated from one another by commas. You are
 							guaranteed that the last item in the address is the county name. The county name will be
 							preceded by the letters Co. and a space. The address may be upper case, lower case or a
-							mixture.<br />
-							E.g. 13 Winchester Drive,Castletroy,Ennis,Co. Clare<br />
+							mixture.<br>
+							E.g. 13 Winchester Drive,Castletroy,Ennis,Co. Clare<br>
 							Wilderness Co. ,LittleVillage, co. Waterford
 						</p>
 
@@ -319,9 +319,9 @@
 							Applicants who do not satisfy these requirements must be awarded zero points.
 						</p>
 						<p>
-							The following are valid languages;<br />
-							IRS = Irish, ENG = English, FRH = French, SPH = Spanish, GER = German,<br />
-							ITA = Italian, DUT = Dutch, DAN = Danish, GRM = Greek (modern),<br />
+							The following are valid languages;<br>
+							IRS = Irish, ENG = English, FRH = French, SPH = Spanish, GER = German,<br>
+							ITA = Italian, DUT = Dutch, DAN = Danish, GRM = Greek (modern),<br>
 							POR = Portuguese, RUS = Russian
 						</p>
 					</section>
@@ -662,7 +662,7 @@
 							examples="../../examples/SeqWrite/SEQWRITE.html|Writing to a Sequential File, ../../examples/SeqRead/SEQREAD.html|Reading a Sequential File, ../../examples/SeqRead/SEQREADno88.html|Reading a Sequential File (no 88), ../../examples/SeqIns/SEQINSERT.html|Inserting Records in a Sequential File"
 							exercises="../SeqWrite.html|Writing Records, ../SeqRead.html|Reading Sequential Files, ../SeqReadIf.html|Counting Records, ../SeqInsert.html|Inserting Records"
 						></related-content>
-						<hr />
+						<hr>
 						<exercises-nav></exercises-nav>
 						<copyright-notice type="project"></copyright-notice>
 						<last-updated></last-updated>
