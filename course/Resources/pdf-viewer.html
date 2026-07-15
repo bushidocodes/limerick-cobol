@@ -1,107 +1,107 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
-		<meta charset="utf-8" />
-		<meta name="robots" content="noindex" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+		<meta charset="utf-8">
+		<meta name="robots" content="noindex">
 		<title>PDF slide viewer</title>
-		<meta name="description" content="COBOL programming lesson on PDF slide viewer." />
-		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/Resources/pdf-viewer.html" />
+		<meta name="description" content="COBOL programming lesson on PDF slide viewer.">
+		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/Resources/pdf-viewer.html">
 		<!-- Open Graph -->
-		<meta property="og:type" content="article" />
+		<meta property="og:type" content="article">
 		<meta
 			property="og:url"
 			content="https://bushidocodes.github.io/limerick-cobol/course/Resources/pdf-viewer.html"
-		/>
-		<meta property="og:title" content="PDF slide viewer" />
-		<meta property="og:description" content="COBOL programming lesson on PDF slide viewer." />
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/course.png" />
+		>
+		<meta property="og:title" content="PDF slide viewer">
+		<meta property="og:description" content="COBOL programming lesson on PDF slide viewer.">
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/course.png">
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="PDF slide viewer" />
-		<meta name="twitter:description" content="COBOL programming lesson on PDF slide viewer." />
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="PDF slide viewer">
+		<meta name="twitter:description" content="COBOL programming lesson on PDF slide viewer.">
 
 		<style>
-			html,
-			body {
-				margin: 0;
-				padding: 0;
-				height: 100%;
-				background: #2a2a2a;
-				color: #eee;
-				font-family: Arial, Helvetica, sans-serif;
-				overflow: hidden;
-			}
+		html,
+		body {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			background: #2a2a2a;
+			color: #eee;
+			font-family: Arial, Helvetica, sans-serif;
+			overflow: hidden;
+		}
 
-			body {
-				display: flex;
-				flex-direction: column;
-			}
+		body {
+			display: flex;
+			flex-direction: column;
+		}
 
-			#stage {
-				flex: 1 1 auto;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				overflow: hidden;
-				min-height: 0;
-			}
+		#stage {
+			flex: 1 1 auto;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			overflow: hidden;
+			min-height: 0;
+		}
 
-			#canvas {
-				display: block;
-				max-width: 100%;
-				max-height: 100%;
-				background: #fff;
-				box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
-			}
+		#canvas {
+			display: block;
+			max-width: 100%;
+			max-height: 100%;
+			background: #fff;
+			box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+		}
 
-			#controls {
-				flex: 0 0 auto;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				gap: 10px;
-				padding: 6px 8px;
-				background: #1d1d1d;
-				border-top: 1px solid #444;
-				font-size: 12px;
-				user-select: none;
-			}
+		#controls {
+			flex: 0 0 auto;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 10px;
+			padding: 6px 8px;
+			background: #1d1d1d;
+			border-top: 1px solid #444;
+			font-size: 12px;
+			user-select: none;
+		}
 
-			#controls button {
-				background: #444;
-				color: #eee;
-				border: 1px solid #666;
-				border-radius: 3px;
-				padding: 3px 10px;
-				cursor: pointer;
-				font: inherit;
-			}
+		#controls button {
+			background: #444;
+			color: #eee;
+			border: 1px solid #666;
+			border-radius: 3px;
+			padding: 3px 10px;
+			cursor: pointer;
+			font: inherit;
+		}
 
-			#controls button:hover:not(:disabled) {
-				background: #555;
-			}
+		#controls button:hover:not(:disabled) {
+			background: #555;
+		}
 
-			#controls button:disabled {
-				opacity: 0.4;
-				cursor: default;
-			}
+		#controls button:disabled {
+			opacity: 0.4;
+			cursor: default;
+		}
 
-			#pageInfo {
-				min-width: 60px;
-				text-align: center;
-			}
+		#pageInfo {
+			min-width: 60px;
+			text-align: center;
+		}
 
-			#status {
-				position: absolute;
-				inset: 0;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				pointer-events: none;
-			}
+		#status {
+			position: absolute;
+			inset: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			pointer-events: none;
+		}
 		</style>
 	</head>
 	<body>
@@ -119,165 +119,162 @@
 			crossorigin="anonymous"
 		></script>
 		<script>
-			(function () {
-				const params = new URLSearchParams(location.search);
-				const src = params.get("src");
-				const startPage = Math.max(1, parseInt(params.get("page") || "1", 10) || 1);
-				const stage = document.getElementById("stage");
-				const canvas = document.getElementById("canvas");
-				const ctx = canvas.getContext("2d");
-				const prevBtn = document.getElementById("prev");
-				const nextBtn = document.getElementById("next");
-				const pageInfo = document.getElementById("pageInfo");
-				const status = document.getElementById("status");
+		(function () {
+			const params = new URLSearchParams(location.search);
+			const src = params.get("src");
+			const startPage = Math.max(1, parseInt(params.get("page") || "1", 10) || 1);
+			const stage = document.getElementById("stage");
+			const canvas = document.getElementById("canvas");
+			const ctx = canvas.getContext("2d");
+			const prevBtn = document.getElementById("prev");
+			const nextBtn = document.getElementById("next");
+			const pageInfo = document.getElementById("pageInfo");
+			const status = document.getElementById("status");
 
-				if (!src) {
-					status.textContent = "Missing ?src= parameter";
-					return;
-				}
-				if (!window.pdfjsLib) {
-					status.textContent = "PDF library failed to load";
-					return;
-				}
-				pdfjsLib.GlobalWorkerOptions.workerSrc = "vendor/pdfjs/pdf.worker.min.js";
+			if (!src) {
+				status.textContent = "Missing ?src= parameter";
+				return;
+			}
+			if (!window.pdfjsLib) {
+				status.textContent = "PDF library failed to load";
+				return;
+			}
+			pdfjsLib.GlobalWorkerOptions.workerSrc = "vendor/pdfjs/pdf.worker.min.js";
 
-				let pdf = null;
-				let currentPage = startPage;
-				let renderTask = null;
-				let renderToken = 0;
+			let pdf = null;
+			let currentPage = startPage;
+			let renderTask = null;
+			let renderToken = 0;
 
-				async function render(pageNum) {
-					if (!pdf) return;
-					const token = ++renderToken;
-					const page = await pdf.getPage(pageNum);
-					if (token !== renderToken) return;
-					const stageRect = stage.getBoundingClientRect();
-					const baseViewport = page.getViewport({ scale: 1 });
-					const scale = Math.min(
-						stageRect.width / baseViewport.width,
-						stageRect.height / baseViewport.height,
-					);
-					const dpr = window.devicePixelRatio || 1;
-					const viewport = page.getViewport({ scale: scale * dpr });
+			async function render(pageNum) {
+				if (!pdf) return;
+				const token = ++renderToken;
+				const page = await pdf.getPage(pageNum);
+				if (token !== renderToken) return;
+				const stageRect = stage.getBoundingClientRect();
+				const baseViewport = page.getViewport({ scale: 1 });
+				const scale = Math.min(stageRect.width / baseViewport.width, stageRect.height / baseViewport.height);
+				const dpr = window.devicePixelRatio || 1;
+				const viewport = page.getViewport({ scale: scale * dpr });
 
-					// Render onto an off-screen canvas so the visible canvas keeps
-					// showing the previous slide until the new one is ready. Writing
-					// to canvas.width directly would clear it and reveal the white
-					// CSS background for the duration of the async render.
-					const offscreen = document.createElement("canvas");
-					offscreen.width = Math.floor(viewport.width);
-					offscreen.height = Math.floor(viewport.height);
+				// Render onto an off-screen canvas so the visible canvas keeps
+				// showing the previous slide until the new one is ready. Writing
+				// to canvas.width directly would clear it and reveal the white
+				// CSS background for the duration of the async render.
+				const offscreen = document.createElement("canvas");
+				offscreen.width = Math.floor(viewport.width);
+				offscreen.height = Math.floor(viewport.height);
 
-					if (renderTask) {
-						try {
-							renderTask.cancel();
-						} catch (e) {
-							/* ignore */
-						}
-					}
-					renderTask = page.render({ canvasContext: offscreen.getContext("2d"), viewport });
+				if (renderTask) {
 					try {
-						await renderTask.promise;
+						renderTask.cancel();
 					} catch (e) {
-						if (e && e.name === "RenderingCancelledException") return;
-						throw e;
-					}
-					if (token !== renderToken) return;
-
-					// Resize + drawImage in a single synchronous block; the browser
-					// paints the final bitmap without a cleared intermediate frame.
-					canvas.width = offscreen.width;
-					canvas.height = offscreen.height;
-					canvas.style.width = Math.floor(viewport.width / dpr) + "px";
-					canvas.style.height = Math.floor(viewport.height / dpr) + "px";
-					ctx.drawImage(offscreen, 0, 0);
-
-					pageInfo.textContent = pageNum + " / " + pdf.numPages;
-					prevBtn.disabled = pageNum <= 1;
-					nextBtn.disabled = pageNum >= pdf.numPages;
-				}
-
-				function go(delta) {
-					if (!pdf) return;
-					const next = Math.min(pdf.numPages, Math.max(1, currentPage + delta));
-					if (next === currentPage) return;
-					currentPage = next;
-					render(currentPage);
-				}
-
-				prevBtn.addEventListener("click", () => go(-1));
-				nextBtn.addEventListener("click", () => go(1));
-				function onKeyDown(e) {
-					if (e.key === "ArrowLeft" || e.key === "PageUp") {
-						go(-1);
-						e.preventDefault();
-					} else if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") {
-						go(1);
-						e.preventDefault();
-					} else if (e.key === "Home") {
-						currentPage = 1;
-						render(1);
-						e.preventDefault();
-					} else if (e.key === "End" && pdf) {
-						currentPage = pdf.numPages;
-						render(pdf.numPages);
-						e.preventDefault();
-					} else if (e.key === "Escape") {
-						// Bubble Escape up to the host lecture page. Same-origin
-						// guarantees access to the parent's back link; we wrap in
-						// try/catch so a future cross-origin embed still degrades
-						// gracefully to history.back().
-						e.preventDefault();
-						let backHref = null;
-						try {
-							if (window.parent !== window) {
-								backHref = window.parent.document.querySelector(".viewer-back-link")?.href || null;
-							}
-						} catch (_) {
-							/* cross-origin parent — leave backHref null */
-						}
-						if (backHref) {
-							window.parent.location.href = backHref;
-						} else {
-							history.back();
-						}
+						/* ignore */
 					}
 				}
-
-				document.addEventListener("keydown", onKeyDown);
-
-				// Also catch keys from the host lecture page so arrows / page-up /
-				// page-down work before the user clicks into the iframe. Keyboard
-				// events don't cross iframe boundaries, so this is the only way to
-				// avoid a "click the slide first" gotcha. Cross-origin embedding
-				// will throw on document access; in that case keys work once focus
-				// lands inside the iframe.
+				renderTask = page.render({ canvasContext: offscreen.getContext("2d"), viewport });
 				try {
-					if (window.parent !== window) {
-						window.parent.document.addEventListener("keydown", onKeyDown);
-					}
-				} catch (_) {
-					/* cross-origin parent — handler stays scoped to this document */
+					await renderTask.promise;
+				} catch (e) {
+					if (e && e.name === "RenderingCancelledException") return;
+					throw e;
 				}
+				if (token !== renderToken) return;
 
-				let resizeTimer;
-				window.addEventListener("resize", () => {
-					clearTimeout(resizeTimer);
-					resizeTimer = setTimeout(() => render(currentPage), 100);
+				// Resize + drawImage in a single synchronous block; the browser
+				// paints the final bitmap without a cleared intermediate frame.
+				canvas.width = offscreen.width;
+				canvas.height = offscreen.height;
+				canvas.style.width = Math.floor(viewport.width / dpr) + "px";
+				canvas.style.height = Math.floor(viewport.height / dpr) + "px";
+				ctx.drawImage(offscreen, 0, 0);
+
+				pageInfo.textContent = pageNum + " / " + pdf.numPages;
+				prevBtn.disabled = pageNum <= 1;
+				nextBtn.disabled = pageNum >= pdf.numPages;
+			}
+
+			function go(delta) {
+				if (!pdf) return;
+				const next = Math.min(pdf.numPages, Math.max(1, currentPage + delta));
+				if (next === currentPage) return;
+				currentPage = next;
+				render(currentPage);
+			}
+
+			prevBtn.addEventListener("click", () => go(-1));
+			nextBtn.addEventListener("click", () => go(1));
+			function onKeyDown(e) {
+				if (e.key === "ArrowLeft" || e.key === "PageUp") {
+					go(-1);
+					e.preventDefault();
+				} else if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") {
+					go(1);
+					e.preventDefault();
+				} else if (e.key === "Home") {
+					currentPage = 1;
+					render(1);
+					e.preventDefault();
+				} else if (e.key === "End" && pdf) {
+					currentPage = pdf.numPages;
+					render(pdf.numPages);
+					e.preventDefault();
+				} else if (e.key === "Escape") {
+					// Bubble Escape up to the host lecture page. Same-origin
+					// guarantees access to the parent's back link; we wrap in
+					// try/catch so a future cross-origin embed still degrades
+					// gracefully to history.back().
+					e.preventDefault();
+					let backHref = null;
+					try {
+						if (window.parent !== window) {
+							backHref = window.parent.document.querySelector(".viewer-back-link")?.href || null;
+						}
+					} catch (_) {
+						/* cross-origin parent — leave backHref null */
+					}
+					if (backHref) {
+						window.parent.location.href = backHref;
+					} else {
+						history.back();
+					}
+				}
+			}
+
+			document.addEventListener("keydown", onKeyDown);
+
+			// Also catch keys from the host lecture page so arrows / page-up /
+			// page-down work before the user clicks into the iframe. Keyboard
+			// events don't cross iframe boundaries, so this is the only way to
+			// avoid a "click the slide first" gotcha. Cross-origin embedding
+			// will throw on document access; in that case keys work once focus
+			// lands inside the iframe.
+			try {
+				if (window.parent !== window) {
+					window.parent.document.addEventListener("keydown", onKeyDown);
+				}
+			} catch (_) {
+				/* cross-origin parent — handler stays scoped to this document */
+			}
+
+			let resizeTimer;
+			window.addEventListener("resize", () => {
+				clearTimeout(resizeTimer);
+				resizeTimer = setTimeout(() => render(currentPage), 100);
+			});
+
+			pdfjsLib
+				.getDocument(src)
+				.promise.then((doc) => {
+					pdf = doc;
+					currentPage = Math.min(currentPage, pdf.numPages);
+					status.style.display = "none";
+					render(currentPage);
+				})
+				.catch((err) => {
+					status.textContent = "Failed to load PDF: " + (err && err.message ? err.message : err);
 				});
-
-				pdfjsLib
-					.getDocument(src)
-					.promise.then((doc) => {
-						pdf = doc;
-						currentPage = Math.min(currentPage, pdf.numPages);
-						status.style.display = "none";
-						render(currentPage);
-					})
-					.catch((err) => {
-						status.textContent = "Failed to load PDF: " + (err && err.message ? err.message : err);
-					});
-			})();
+		})();
 		</script>
 	</body>
 </html>

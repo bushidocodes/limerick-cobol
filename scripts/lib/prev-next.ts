@@ -21,7 +21,7 @@ export function buildPrevNextBlock(prevFile: string | null, nextFile: string | n
  * Remove any existing prev/next link tags, then inject new ones immediately
  * after the <link rel="canonical"> tag. Idempotent. The `[^>]*` spans newlines
  * (it only stops at the tag's own closing `>`), so both single-line and
- * prettier-wrapped multi-line <link> tags are matched.
+ * formatter-wrapped multi-line <link> tags are matched.
  */
 export function injectPrevNextLinks(
 	html: string,

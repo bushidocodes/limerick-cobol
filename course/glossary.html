@@ -1,45 +1,45 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
 		<script>
-			(function () {
-				var t = localStorage.getItem("lc-theme");
-				if (t === "dark" || t === "light") {
-					document.documentElement.setAttribute("data-theme", t);
-					var color = t === "dark" ? "#1a1a1a" : "#ffffff";
-					var meta = document.querySelector('meta[name="theme-color"]:not([media])');
-					if (!meta) {
-						meta = document.createElement("meta");
-						meta.name = "theme-color";
-						document.head.appendChild(meta);
-					}
-					meta.content = color;
+		(function () {
+			var t = localStorage.getItem("lc-theme");
+			if (t === "dark" || t === "light") {
+				document.documentElement.setAttribute("data-theme", t);
+				var color = t === "dark" ? "#1a1a1a" : "#ffffff";
+				var meta = document.querySelector('meta[name="theme-color"]:not([media])');
+				if (!meta) {
+					meta = document.createElement("meta");
+					meta.name = "theme-color";
+					document.head.appendChild(meta);
 				}
-			})();
+				meta.content = color;
+			}
+		})();
 		</script>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="icon" type="image/svg+xml" href="../favicon.svg">
 		<title>Glossary of COBOL Keywords and Concepts</title>
 		<meta
 			name="description"
 			content="Alphabetical glossary of COBOL keywords and concepts taught in the Limerick COBOL course. Each entry links to the lesson where the term is first introduced."
-		/>
+		>
 		<meta
 			name="keywords"
 			content="COBOL glossary, COBOL keywords, COBOL terminology, COBOL reference, PERFORM, EVALUATE, OCCURS, REDEFINES, PIC, LINKAGE SECTION"
-		/>
-		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/glossary.html" />
-		<link href="Resources/css/course.css" rel="stylesheet" />
-		<link href="Resources/css/course-components.css" rel="stylesheet" />
+		>
+		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/glossary.html">
+		<link href="Resources/css/course.css" rel="stylesheet">
+		<link href="Resources/css/course-components.css" rel="stylesheet">
 		<link
 			rel="stylesheet"
 			href="Resources/vendor/prism/themes/prism.min.css"
 			integrity="sha384-rCCjoCPCsizaAAYVoz1Q0CmCTvnctK0JkfCSjx7IIxexTBg+uCKtFYycedUjMyA2"
 			crossorigin="anonymous"
-		/>
+		>
 		<script
 			src="Resources/vendor/prism/prism.min.js"
 			integrity="sha384-06z5D//U/xpvxZHuUz92xBvq3DqBBFi7Up53HRrbV7Jlv7Yvh/MZ7oenfUe9iCEt"
@@ -53,215 +53,215 @@
 			defer
 		></script>
 		<!-- Open Graph -->
-		<meta property="og:type" content="article" />
-		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/glossary.html" />
-		<meta property="og:title" content="Glossary of COBOL Keywords and Concepts" />
+		<meta property="og:type" content="article">
+		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/glossary.html">
+		<meta property="og:title" content="Glossary of COBOL Keywords and Concepts">
 		<meta
 			property="og:description"
 			content="Alphabetical glossary of COBOL keywords and concepts. Each entry links to the lesson where the term is first introduced."
-		/>
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/course.png" />
+		>
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/course.png">
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="Glossary of COBOL Keywords and Concepts" />
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="Glossary of COBOL Keywords and Concepts">
 		<meta
 			name="twitter:description"
 			content="Alphabetical glossary of COBOL keywords and concepts. Each entry links to the lesson where the term is first introduced."
-		/>
+		>
 		<style type="text/css">
-			.glossary-intro {
-				max-width: 760px;
-				margin: 0 auto 1em;
-				padding: 0 4px;
-			}
+		.glossary-intro {
+			max-width: 760px;
+			margin: 0 auto 1em;
+			padding: 0 4px;
+		}
 
-			.glossary-toolbar {
-				max-width: 760px;
-				margin: 0.5em auto 1em;
-				padding: 0 4px;
-				display: flex;
-				flex-wrap: wrap;
-				align-items: baseline;
-				gap: 0.6em;
-			}
+		.glossary-toolbar {
+			max-width: 760px;
+			margin: 0.5em auto 1em;
+			padding: 0 4px;
+			display: flex;
+			flex-wrap: wrap;
+			align-items: baseline;
+			gap: 0.6em;
+		}
 
-			.glossary-toolbar label {
-				font-weight: bold;
-			}
+		.glossary-toolbar label {
+			font-weight: bold;
+		}
 
-			.glossary-toolbar input[type="search"] {
-				flex: 1 1 220px;
-				min-width: 160px;
-				padding: 0.3em 0.5em;
-				font: inherit;
-				border: 1px solid var(--color-border-mute);
-				border-radius: 3px;
-				background-color: var(--color-bg);
-				color: var(--color-text);
-			}
+		.glossary-toolbar input[type="search"] {
+			flex: 1 1 220px;
+			min-width: 160px;
+			padding: 0.3em 0.5em;
+			font: inherit;
+			border: 1px solid var(--color-border-mute);
+			border-radius: 3px;
+			background-color: var(--color-bg);
+			color: var(--color-text);
+		}
 
-			.glossary-toolbar input[type="search"]:focus-visible {
-				outline: 2px solid var(--color-link);
-				outline-offset: 1px;
-			}
+		.glossary-toolbar input[type="search"]:focus-visible {
+			outline: 2px solid var(--color-link);
+			outline-offset: 1px;
+		}
 
-			.glossary-filter-status {
-				font-size: 0.9em;
-				font-style: italic;
-				color: var(--color-panel-text);
-			}
+		.glossary-filter-status {
+			font-size: 0.9em;
+			font-style: italic;
+			color: var(--color-panel-text);
+		}
 
-			nav.glossary-toc {
-				max-width: 760px;
-				margin: 0 auto 1.5em;
-				padding: 0 4px;
-			}
+		nav.glossary-toc {
+			max-width: 760px;
+			margin: 0 auto 1.5em;
+			padding: 0 4px;
+		}
 
-			ul.glossary-toc-list {
-				list-style: none;
-				margin: 0;
-				padding: 0;
-				display: flex;
-				flex-wrap: wrap;
-				gap: 0.4em 0.8em;
-			}
+		ul.glossary-toc-list {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.4em 0.8em;
+		}
 
-			ul.glossary-toc-list li {
-				font-size: 0.95em;
-			}
+		ul.glossary-toc-list li {
+			font-size: 0.95em;
+		}
 
-			ul.glossary-toc-list a {
-				font-weight: bold;
-			}
+		ul.glossary-toc-list a {
+			font-weight: bold;
+		}
 
-			.glossary-section {
-				max-width: 760px;
-				margin: 0 auto 1.5em;
-				padding: 0 4px;
-			}
+		.glossary-section {
+			max-width: 760px;
+			margin: 0 auto 1.5em;
+			padding: 0 4px;
+		}
 
-			.glossary-section h2 {
-				font-family: Arial, Helvetica, sans-serif;
-				color: var(--color-panel-text);
-				border-bottom: 1px solid var(--color-border-soft);
-				padding-bottom: 0.2em;
-				margin-bottom: 0.5em;
-			}
+		.glossary-section h2 {
+			font-family: Arial, Helvetica, sans-serif;
+			color: var(--color-panel-text);
+			border-bottom: 1px solid var(--color-border-soft);
+			padding-bottom: 0.2em;
+			margin-bottom: 0.5em;
+		}
 
-			table.glossary-table {
-				width: 100%;
-				border-collapse: separate;
-				border-spacing: 1px;
-				border: 1px solid;
-			}
+		table.glossary-table {
+			width: 100%;
+			border-collapse: separate;
+			border-spacing: 1px;
+			border: 1px solid;
+		}
 
+		table.glossary-table th,
+		table.glossary-table td {
+			border: 1px solid;
+			padding: 5px 7px;
+			text-align: left;
+			vertical-align: top;
+		}
+
+		table.glossary-table thead th {
+			background-color: var(--color-panel-bg);
+			color: var(--color-panel-text);
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		table.glossary-table tbody tr:nth-child(even) td {
+			background-color: var(--color-cell-label-bg);
+		}
+
+		/* Term column: monospace and slightly narrower so definitions get room. */
+		table.glossary-table td.term {
+			font-family: ui-monospace, "SF Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+			font-weight: bold;
+			white-space: nowrap;
+			width: 22%;
+		}
+
+		table.glossary-table td.def {
+			width: 60%;
+		}
+
+		table.glossary-table td.ref {
+			width: 18%;
+			font-size: 0.9em;
+		}
+
+		/* When the filter has hidden every row in a section, the section
+			   itself is hidden via [hidden]; CSS only needs the row case. */
+		table.glossary-table tbody tr[hidden] {
+			display: none;
+		}
+
+		@media (max-width: 600px) {
+			table.glossary-table,
+			table.glossary-table thead,
+			table.glossary-table tbody,
+			table.glossary-table tr,
 			table.glossary-table th,
 			table.glossary-table td {
-				border: 1px solid;
-				padding: 5px 7px;
-				text-align: left;
-				vertical-align: top;
+				display: block;
+				width: auto !important;
 			}
 
-			table.glossary-table thead th {
-				background-color: var(--color-panel-bg);
-				color: var(--color-panel-text);
+			table.glossary-table thead {
+				/* Header row is meaningless once the table is stacked. */
+				position: absolute;
+				left: -9999px;
+			}
+
+			table.glossary-table tbody tr {
+				border: 1px solid var(--color-border-soft);
+				margin: 0 0 0.6em;
+				padding: 4px 6px;
+			}
+
+			table.glossary-table td {
+				border: none;
+				padding: 2px 0;
+				white-space: normal;
+			}
+
+			table.glossary-table td.term {
+				white-space: normal;
+				font-size: 1.05em;
+			}
+
+			table.glossary-table td.def::before {
+				content: "Definition: ";
+				font-weight: bold;
 				font-family: Arial, Helvetica, sans-serif;
+				color: var(--color-panel-text);
+			}
+
+			table.glossary-table td.ref::before {
+				content: "Introduced in: ";
+				font-weight: bold;
+				font-family: Arial, Helvetica, sans-serif;
+				color: var(--color-panel-text);
 			}
 
 			table.glossary-table tbody tr:nth-child(even) td {
-				background-color: var(--color-cell-label-bg);
+				background-color: transparent;
 			}
+		}
 
-			/* Term column: monospace and slightly narrower so definitions get room. */
-			table.glossary-table td.term {
-				font-family: ui-monospace, "SF Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
-				font-weight: bold;
-				white-space: nowrap;
-				width: 22%;
-			}
-
-			table.glossary-table td.def {
-				width: 60%;
-			}
-
-			table.glossary-table td.ref {
-				width: 18%;
-				font-size: 0.9em;
-			}
-
-			/* When the filter has hidden every row in a section, the section
-			   itself is hidden via [hidden]; CSS only needs the row case. */
-			table.glossary-table tbody tr[hidden] {
-				display: none;
-			}
-
-			@media (max-width: 600px) {
-				table.glossary-table,
-				table.glossary-table thead,
-				table.glossary-table tbody,
-				table.glossary-table tr,
-				table.glossary-table th,
-				table.glossary-table td {
-					display: block;
-					width: auto !important;
-				}
-
-				table.glossary-table thead {
-					/* Header row is meaningless once the table is stacked. */
-					position: absolute;
-					left: -9999px;
-				}
-
-				table.glossary-table tbody tr {
-					border: 1px solid var(--color-border-soft);
-					margin: 0 0 0.6em;
-					padding: 4px 6px;
-				}
-
-				table.glossary-table td {
-					border: none;
-					padding: 2px 0;
-					white-space: normal;
-				}
-
-				table.glossary-table td.term {
-					white-space: normal;
-					font-size: 1.05em;
-				}
-
-				table.glossary-table td.def::before {
-					content: "Definition: ";
-					font-weight: bold;
-					font-family: Arial, Helvetica, sans-serif;
-					color: var(--color-panel-text);
-				}
-
-				table.glossary-table td.ref::before {
-					content: "Introduced in: ";
-					font-weight: bold;
-					font-family: Arial, Helvetica, sans-serif;
-					color: var(--color-panel-text);
-				}
-
-				table.glossary-table tbody tr:nth-child(even) td {
-					background-color: transparent;
-				}
-			}
-
-			@media (prefers-color-scheme: dark) {
-				:root:not([data-theme="light"]) table.glossary-table,
-				:root:not([data-theme="light"]) table.glossary-table th,
-				:root:not([data-theme="light"]) table.glossary-table td {
-					border-color: #888;
-				}
-			}
-
-			:root[data-theme="dark"] table.glossary-table,
-			:root[data-theme="dark"] table.glossary-table th,
-			:root[data-theme="dark"] table.glossary-table td {
+		@media (prefers-color-scheme: dark) {
+			:root:not([data-theme="light"]) table.glossary-table,
+			:root:not([data-theme="light"]) table.glossary-table th,
+			:root:not([data-theme="light"]) table.glossary-table td {
 				border-color: #888;
 			}
+		}
+
+		:root[data-theme="dark"] table.glossary-table,
+		:root[data-theme="dark"] table.glossary-table th,
+		:root[data-theme="dark"] table.glossary-table td {
+			border-color: #888;
+		}
 		</style>
 		<script src="../components/theme-toggle.js" defer></script>
 		<script src="../components/page-hero.js" defer></script>
@@ -276,7 +276,7 @@
 		<a class="skip-link" href="#main-content">Skip to main content</a>
 		<main id="main-content">
 			<page-hero title="Glossary of COBOL Keywords and Concepts"></page-hero>
-			<hr />
+			<hr>
 			<div class="glossary-intro">
 				<p>
 					An alphabetical reference for the COBOL keywords and concepts taught across the
@@ -286,8 +286,8 @@
 				</p>
 				<p>
 					Entries are grouped by topic and ordered alphabetically within each group. Use the
-					<strong>Filter terms</strong> box to narrow the list as you type, or jump straight to a section
-					using the links below.
+					<strong>Filter terms</strong>
+					box to narrow the list as you type, or jump straight to a section using the links below.
 				</p>
 			</div>
 
@@ -298,7 +298,7 @@
 					id="glossary-filter"
 					placeholder="e.g. PERFORM, level number, intrinsic"
 					autocomplete="off"
-				/>
+				>
 				<span
 					id="glossary-filter-status"
 					class="glossary-filter-status"
@@ -322,7 +322,7 @@
 				</ul>
 			</nav>
 
-			<hr />
+			<hr>
 
 			<section class="glossary-section" id="program-structure" aria-labelledby="program-structure-h">
 				<h2 id="program-structure-h">Program structure &amp; divisions</h2>
@@ -339,8 +339,9 @@
 							<td class="term"><code class="language-cobol">AUTHOR</code></td>
 							<td class="def">
 								Optional paragraph in the
-								<code class="language-cobol">IDENTIFICATION DIVISION</code> that names the program's
-								author. Considered obsolete in modern COBOL but commonly seen in teaching examples.
+								<code class="language-cobol">IDENTIFICATION DIVISION</code>
+								that names the program's author. Considered obsolete in modern COBOL but commonly seen
+								in teaching examples.
 							</td>
 							<td class="ref"><a href="COBOLIntro.html#part4">Four Divisions</a></td>
 						</tr>
@@ -385,8 +386,8 @@
 							<td class="term"><code class="language-cobol">ENVIRONMENT DIVISION</code></td>
 							<td class="def">
 								Division that describes the computer environment — most importantly the
-								<code class="language-cobol">FILE-CONTROL</code> paragraph mapping logical files to
-								external storage.
+								<code class="language-cobol">FILE-CONTROL</code>
+								paragraph mapping logical files to external storage.
 							</td>
 							<td class="ref"><a href="COBOLIntro.html#part4">Four Divisions</a></td>
 						</tr>
@@ -456,7 +457,8 @@
 								A named group of paragraphs in the
 								<code class="language-cobol">PROCEDURE DIVISION</code>; also the partitioning unit
 								inside <code class="language-cobol">DATA</code> and
-								<code class="language-cobol">ENVIRONMENT</code> divisions (e.g.
+								<code class="language-cobol">ENVIRONMENT</code>
+								divisions (e.g.
 								<code class="language-cobol">WORKING-STORAGE SECTION</code>).
 							</td>
 							<td class="ref"><a href="COBOLIntro.html#part4">Four Divisions</a></td>
@@ -527,24 +529,29 @@
 						</tr>
 						<tr>
 							<td class="term">
-								<code class="language-cobol">COMP</code> /
+								<code class="language-cobol">COMP</code>
+								/
 								<code class="language-cobol">COMPUTATIONAL</code>
 							</td>
 							<td class="def">
-								<code class="language-cobol">USAGE</code> that stores numeric data in the machine's
-								native binary form, more compact and faster than
-								<code class="language-cobol">DISPLAY</code> for arithmetic.
+								<code class="language-cobol">USAGE</code>
+								that stores numeric data in the machine's native binary form, more compact and faster
+								than
+								<code class="language-cobol">DISPLAY</code>
+								for arithmetic.
 							</td>
 							<td class="ref"><a href="Usage.html#part1">The USAGE clause</a></td>
 						</tr>
 						<tr>
 							<td class="term">
-								<code class="language-cobol">COMP-3</code> /
+								<code class="language-cobol">COMP-3</code>
+								/
 								<code class="language-cobol">PACKED-DECIMAL</code>
 							</td>
 							<td class="def">
-								<code class="language-cobol">USAGE</code> storing decimal digits two-per-byte with a
-								sign half-byte. Common in mainframe data interchange.
+								<code class="language-cobol">USAGE</code>
+								storing decimal digits two-per-byte with a sign half-byte. Common in mainframe data
+								interchange.
 							</td>
 							<td class="ref"><a href="Usage.html#part1">The USAGE clause</a></td>
 						</tr>
@@ -590,13 +597,15 @@
 							<td class="term">group item</td>
 							<td class="def">
 								A composite data item that has subordinate items but no
-								<code class="language-cobol">PIC</code> clause of its own.
+								<code class="language-cobol">PIC</code>
+								clause of its own.
 							</td>
 							<td class="ref"><a href="DataDeclaration.html#part3">Group / elementary items</a></td>
 						</tr>
 						<tr>
 							<td class="term">
-								<code class="language-cobol">HIGH-VALUE</code> /
+								<code class="language-cobol">HIGH-VALUE</code>
+								/
 								<code class="language-cobol">LOW-VALUE</code>
 							</td>
 							<td class="def">
@@ -619,8 +628,8 @@
 							<td class="def">
 								Data item declared with picture symbols <code class="language-cobol">9</code> (digits)
 								and optional <code class="language-cobol">S</code> (sign) and
-								<code class="language-cobol">V</code> (assumed decimal point); can be used in
-								arithmetic.
+								<code class="language-cobol">V</code>
+								(assumed decimal point); can be used in arithmetic.
 							</td>
 							<td class="ref"><a href="DataDeclaration.html#part1">Categories of data</a></td>
 						</tr>
@@ -634,11 +643,13 @@
 						</tr>
 						<tr>
 							<td class="term">
-								<code class="language-cobol">PICTURE</code> / <code class="language-cobol">PIC</code>
+								<code class="language-cobol">PICTURE</code>
+								/ <code class="language-cobol">PIC</code>
 							</td>
 							<td class="def">
 								Clause that declares an elementary item's category and size — for example
-								<code class="language-cobol">PIC X(10)</code> or
+								<code class="language-cobol">PIC X(10)</code>
+								or
 								<code class="language-cobol">PIC 9(5)V99</code>.
 							</td>
 							<td class="ref"><a href="DataDeclaration.html#part2">Declaring data</a></td>
@@ -654,7 +665,8 @@
 						</tr>
 						<tr>
 							<td class="term">
-								<code class="language-cobol">SPACE</code> / <code class="language-cobol">SPACES</code>
+								<code class="language-cobol">SPACE</code>
+								/ <code class="language-cobol">SPACES</code>
 							</td>
 							<td class="def">
 								Figurative constants whose value is the space character, repeated to fill the receiving
@@ -679,7 +691,8 @@
 						</tr>
 						<tr>
 							<td class="term">
-								<code class="language-cobol">ZERO</code> / <code class="language-cobol">ZEROS</code> /
+								<code class="language-cobol">ZERO</code>
+								/ <code class="language-cobol">ZEROS</code> /
 								<code class="language-cobol">ZEROES</code>
 							</td>
 							<td class="def">
@@ -707,8 +720,8 @@
 							<td class="term"><code class="language-cobol">ACCEPT</code></td>
 							<td class="def">
 								Reads data from the console (or, in some dialects, a system source such as
-								<code class="language-cobol">DATE</code> or <code class="language-cobol">TIME</code>)
-								into a data item.
+								<code class="language-cobol">DATE</code>
+								or <code class="language-cobol">TIME</code>) into a data item.
 							</td>
 							<td class="ref"><a href="COBOLcommands.html#part1">User Input and Output</a></td>
 						</tr>
@@ -737,8 +750,10 @@
 							<td class="term"><code class="language-cobol">DIVIDE</code></td>
 							<td class="def">
 								Performs division between operands; supports
-								<code class="language-cobol">GIVING</code> and
-								<code class="language-cobol">REMAINDER</code> phrases.
+								<code class="language-cobol">GIVING</code>
+								and
+								<code class="language-cobol">REMAINDER</code>
+								phrases.
 							</td>
 							<td class="ref"><a href="COBOLcommands.html#part3">Arithmetic</a></td>
 						</tr>
@@ -759,7 +774,8 @@
 							<td class="term"><code class="language-cobol">MULTIPLY</code></td>
 							<td class="def">
 								Multiplies operands; supports <code class="language-cobol">MULTIPLY A BY B</code> and
-								<code class="language-cobol">GIVING</code> forms.
+								<code class="language-cobol">GIVING</code>
+								forms.
 							</td>
 							<td class="ref"><a href="COBOLcommands.html#part3">Arithmetic</a></td>
 						</tr>
@@ -847,7 +863,8 @@
 							<td class="term"><code class="language-cobol">IF</code></td>
 							<td class="def">
 								Selection verb that executes one branch when the condition is true and an optional
-								<code class="language-cobol">ELSE</code> branch otherwise; terminated by a period or
+								<code class="language-cobol">ELSE</code>
+								branch otherwise; terminated by a period or
 								<code class="language-cobol">END-IF</code>.
 							</td>
 							<td class="ref"><a href="Selection.html#part1">Selection using IF</a></td>
@@ -865,9 +882,10 @@
 						<tr>
 							<td class="term">PERFORM (in-line)</td>
 							<td class="def">
-								<code class="language-cobol">PERFORM</code> written as
-								<code class="language-cobol">PERFORM … END-PERFORM</code> that executes the statement
-								block directly rather than naming a paragraph.
+								<code class="language-cobol">PERFORM</code>
+								written as
+								<code class="language-cobol">PERFORM … END-PERFORM</code>
+								that executes the statement block directly rather than naming a paragraph.
 							</td>
 							<td class="ref"><a href="Iteration.html#part3">PERFORM..TIMES</a></td>
 						</tr>
@@ -891,10 +909,9 @@
 						<tr>
 							<td class="term"><code class="language-cobol">PERFORM..VARYING</code></td>
 							<td class="def">
-								<code class="language-cobol">PERFORM</code> with a controlled counter (<code
-									class="language-cobol"
-									>FROM…BY…UNTIL</code
-								>) — COBOL's counted loop.
+								<code class="language-cobol">PERFORM</code>
+								with a controlled counter (<code class="language-cobol">FROM…BY…UNTIL</code>) — COBOL's
+								counted loop.
 							</td>
 							<td class="ref"><a href="Iteration.html#part5">PERFORM..VARYING</a></td>
 						</tr>
@@ -910,8 +927,10 @@
 							<td class="term"><code class="language-cobol">SET</code> (condition)</td>
 							<td class="def">
 								Sets a condition-name's parent to the appropriate value — for example
-								<code class="language-cobol">SET EndOfFile TO TRUE</code> stores
-								<code class="language-cobol">'Y'</code> in the parent item.
+								<code class="language-cobol">SET EndOfFile TO TRUE</code>
+								stores
+								<code class="language-cobol">'Y'</code>
+								in the parent item.
 							</td>
 							<td class="ref"><a href="Selection.html#part3">SET with Condition Names</a></td>
 						</tr>
@@ -953,8 +972,9 @@
 						<tr>
 							<td class="term"><code class="language-cobol">ASSIGN</code></td>
 							<td class="def">
-								<code class="language-cobol">SELECT</code> clause that maps the internal file name to
-								the external file (a path, a device, or an implementation-defined name).
+								<code class="language-cobol">SELECT</code>
+								clause that maps the internal file name to the external file (a path, a device, or an
+								implementation-defined name).
 							</td>
 							<td class="ref"><a href="SequentialFiles1.html#part2">Declaring files</a></td>
 						</tr>
@@ -976,7 +996,8 @@
 							<td class="term"><code class="language-cobol">DECLARATIVES</code></td>
 							<td class="def">
 								Optional section at the top of the
-								<code class="language-cobol">PROCEDURE DIVISION</code> whose paragraphs run only when a
+								<code class="language-cobol">PROCEDURE DIVISION</code>
+								whose paragraphs run only when a
 								<code class="language-cobol">USE</code>-named event occurs — usually I/O errors.
 							</td>
 							<td class="ref"><a href="RelativeFiles.html#declaratives">Declaratives</a></td>
@@ -984,7 +1005,8 @@
 						<tr>
 							<td class="term"><code class="language-cobol">FD</code></td>
 							<td class="def">
-								<i>File Description</i> entry in the <code class="language-cobol">FILE SECTION</code>
+								<i>File Description</i>
+								entry in the <code class="language-cobol">FILE SECTION</code>
 								that names a file's record layout(s) and characteristics.
 							</td>
 							<td class="ref"><a href="SequentialFiles1.html#part2">Declaring files</a></td>
@@ -1019,8 +1041,8 @@
 								Phrase on <code class="language-cobol">READ</code>,
 								<code class="language-cobol">WRITE</code>, <code class="language-cobol">REWRITE</code>,
 								<code class="language-cobol">DELETE</code>, or
-								<code class="language-cobol">START</code> for keyed files that runs when the operation
-								fails because of a key problem.
+								<code class="language-cobol">START</code>
+								for keyed files that runs when the operation fails because of a key problem.
 							</td>
 							<td class="ref"><a href="RelativeFiles.html#verbs">Relative file verbs</a></td>
 						</tr>
@@ -1029,7 +1051,8 @@
 							<td class="def">
 								Establishes an <code class="language-cobol">INPUT</code>,
 								<code class="language-cobol">OUTPUT</code>, <code class="language-cobol">I-O</code>, or
-								<code class="language-cobol">EXTEND</code> link to a file.
+								<code class="language-cobol">EXTEND</code>
+								link to a file.
 							</td>
 							<td class="ref"><a href="SequentialFiles1.html#part3">File handling verbs</a></td>
 						</tr>
@@ -1065,8 +1088,8 @@
 						<tr>
 							<td class="term"><code class="language-cobol">SELECT</code></td>
 							<td class="def">
-								<code class="language-cobol">ENVIRONMENT DIVISION</code> clause that introduces a file's
-								name and its <code class="language-cobol">ASSIGN</code>,
+								<code class="language-cobol">ENVIRONMENT DIVISION</code>
+								clause that introduces a file's name and its <code class="language-cobol">ASSIGN</code>,
 								<code class="language-cobol">ORGANIZATION</code>,
 								<code class="language-cobol">ACCESS MODE</code>, and other attributes.
 							</td>
@@ -1109,7 +1132,8 @@
 					<tbody>
 						<tr>
 							<td class="term">
-								<code class="language-cobol">ASCENDING</code> /
+								<code class="language-cobol">ASCENDING</code>
+								/
 								<code class="language-cobol">DESCENDING</code>
 							</td>
 							<td class="def">
@@ -1123,8 +1147,10 @@
 							<td class="term"><code class="language-cobol">GIVING</code> (Sort/Merge)</td>
 							<td class="def">
 								Phrase on <code class="language-cobol">SORT</code> /
-								<code class="language-cobol">MERGE</code> that names the output file when no
-								<code class="language-cobol">OUTPUT PROCEDURE</code> is supplied.
+								<code class="language-cobol">MERGE</code>
+								that names the output file when no
+								<code class="language-cobol">OUTPUT PROCEDURE</code>
+								is supplied.
 							</td>
 							<td class="ref"><a href="SortMerge.html#part1">Simple Sorting</a></td>
 						</tr>
@@ -1133,7 +1159,8 @@
 							<td class="def">
 								Paragraph (or section) executed by <code class="language-cobol">SORT</code> to feed
 								records via <code class="language-cobol">RELEASE</code> rather than from a
-								<code class="language-cobol">USING</code> file.
+								<code class="language-cobol">USING</code>
+								file.
 							</td>
 							<td class="ref"><a href="SortMerge.html#part2">SORT with INPUT PROCEDURE</a></td>
 						</tr>
@@ -1148,9 +1175,12 @@
 							<td class="term"><code class="language-cobol">OUTPUT PROCEDURE</code></td>
 							<td class="def">
 								Paragraph (or section) executed by <code class="language-cobol">SORT</code> /
-								<code class="language-cobol">MERGE</code> to consume sorted records via
-								<code class="language-cobol">RETURN</code> rather than writing a
-								<code class="language-cobol">GIVING</code> file.
+								<code class="language-cobol">MERGE</code>
+								to consume sorted records via
+								<code class="language-cobol">RETURN</code>
+								rather than writing a
+								<code class="language-cobol">GIVING</code>
+								file.
 							</td>
 							<td class="ref"><a href="SortMerge.html#part3">SORT with OUTPUT PROCEDURE</a></td>
 						</tr>
@@ -1179,8 +1209,10 @@
 							<td class="term"><code class="language-cobol">USING</code> (Sort/Merge)</td>
 							<td class="def">
 								Phrase on <code class="language-cobol">SORT</code> /
-								<code class="language-cobol">MERGE</code> that names the input file(s) when no
-								<code class="language-cobol">INPUT PROCEDURE</code> is supplied.
+								<code class="language-cobol">MERGE</code>
+								that names the input file(s) when no
+								<code class="language-cobol">INPUT PROCEDURE</code>
+								is supplied.
 							</td>
 							<td class="ref"><a href="SortMerge.html#part1">Simple Sorting</a></td>
 						</tr>
@@ -1203,16 +1235,20 @@
 							<td class="term">index (table)</td>
 							<td class="def">
 								A specialised pointer associated with a table; the
-								<code class="language-cobol">SEARCH</code> verb walks an index, and
-								<code class="language-cobol">SET</code> assigns to one.
+								<code class="language-cobol">SEARCH</code>
+								verb walks an index, and
+								<code class="language-cobol">SET</code>
+								assigns to one.
 							</td>
 							<td class="ref"><a href="Search.html#part1">OCCURS clause extensions</a></td>
 						</tr>
 						<tr>
 							<td class="term"><code class="language-cobol">INDEXED BY</code></td>
 							<td class="def">
-								<code class="language-cobol">OCCURS</code> phrase that names an index for the table;
-								required for <code class="language-cobol">SEARCH</code> and
+								<code class="language-cobol">OCCURS</code>
+								phrase that names an index for the table; required for
+								<code class="language-cobol">SEARCH</code>
+								and
 								<code class="language-cobol">SEARCH ALL</code>.
 							</td>
 							<td class="ref"><a href="Search.html#part1">OCCURS clause extensions</a></td>
@@ -1229,7 +1265,8 @@
 							<td class="term"><code class="language-cobol">SEARCH</code></td>
 							<td class="def">
 								Linear search through a table using an index; runs an action when a
-								<code class="language-cobol">WHEN</code> condition matches.
+								<code class="language-cobol">WHEN</code>
+								condition matches.
 							</td>
 							<td class="ref"><a href="Search.html#part2">The SEARCH verb</a></td>
 						</tr>
@@ -1237,7 +1274,8 @@
 							<td class="term"><code class="language-cobol">SEARCH ALL</code></td>
 							<td class="def">
 								Binary search through a table sorted on its key; faster than
-								<code class="language-cobol">SEARCH</code> but requires the table to be in key order.
+								<code class="language-cobol">SEARCH</code>
+								but requires the table to be in key order.
 							</td>
 							<td class="ref"><a href="Search.html#part4">The SEARCH ALL verb</a></td>
 						</tr>
@@ -1275,8 +1313,9 @@
 						<tr>
 							<td class="term"><code class="language-cobol">BY CONTENT</code></td>
 							<td class="def">
-								<code class="language-cobol">CALL USING</code> phrase that passes a copy of the argument
-								so the called program cannot change the caller's data.
+								<code class="language-cobol">CALL USING</code>
+								phrase that passes a copy of the argument so the called program cannot change the
+								caller's data.
 							</td>
 							<td class="ref"><a href="Subprograms.html#part1">The CALL verb</a></td>
 						</tr>
@@ -1291,8 +1330,8 @@
 						<tr>
 							<td class="term"><code class="language-cobol">BY VALUE</code></td>
 							<td class="def">
-								<code class="language-cobol">CALL USING</code> phrase that passes a numeric or pointer
-								value rather than a storage address.
+								<code class="language-cobol">CALL USING</code>
+								phrase that passes a numeric or pointer value rather than a storage address.
 							</td>
 							<td class="ref"><a href="Subprograms.html#part1">The CALL verb</a></td>
 						</tr>
@@ -1315,15 +1354,16 @@
 							<td class="term"><code class="language-cobol">COPY</code></td>
 							<td class="def">
 								Compile-time directive that splices the contents of a copybook into the source at the
-								<code class="language-cobol">COPY</code> point.
+								<code class="language-cobol">COPY</code>
+								point.
 							</td>
 							<td class="ref"><a href="Copy.html#part1">Using the COPY verb</a></td>
 						</tr>
 						<tr>
 							<td class="term"><code class="language-cobol">COPY..REPLACING</code></td>
 							<td class="def">
-								<code class="language-cobol">COPY</code> variant that performs textual substitution as
-								the copybook is included.
+								<code class="language-cobol">COPY</code>
+								variant that performs textual substitution as the copybook is included.
 							</td>
 							<td class="ref"><a href="Copy.html#part2">COPY..REPLACING</a></td>
 						</tr>
@@ -1352,7 +1392,8 @@
 							<td class="term"><code class="language-cobol">GOBACK</code></td>
 							<td class="def">
 								Returns control to the caller, behaving as
-								<code class="language-cobol">STOP RUN</code> when used in the main program and as
+								<code class="language-cobol">STOP RUN</code>
+								when used in the main program and as
 								<code class="language-cobol">EXIT PROGRAM</code>
 								when used in a subprogram.
 							</td>
@@ -1361,9 +1402,10 @@
 						<tr>
 							<td class="term"><code class="language-cobol">USING</code> (subprograms)</td>
 							<td class="def">
-								<code class="language-cobol">PROCEDURE DIVISION</code> phrase that lists the parameters
-								a program expects from <code class="language-cobol">CALL … USING</code>; the
-								corresponding items live in the <code class="language-cobol">LINKAGE SECTION</code>.
+								<code class="language-cobol">PROCEDURE DIVISION</code>
+								phrase that lists the parameters a program expects from
+								<code class="language-cobol">CALL … USING</code>; the corresponding items live in the
+								<code class="language-cobol">LINKAGE SECTION</code>.
 							</td>
 							<td class="ref"><a href="Subprograms.html#part1">The CALL verb</a></td>
 						</tr>
@@ -1385,7 +1427,8 @@
 						<tr>
 							<td class="term"><code class="language-cobol">DELIMITED BY</code></td>
 							<td class="def">
-								<code class="language-cobol">STRING</code> /
+								<code class="language-cobol">STRING</code>
+								/
 								<code class="language-cobol">UNSTRING</code>
 								phrase that names the character(s) that bound the substring being moved.
 							</td>
@@ -1421,7 +1464,8 @@
 							<td class="term"><code class="language-cobol">STRING</code> (verb)</td>
 							<td class="def">
 								Concatenates one or more source items into a single destination item under
-								<code class="language-cobol">DELIMITED BY</code> rules.
+								<code class="language-cobol">DELIMITED BY</code>
+								rules.
 							</td>
 							<td class="ref"><a href="String.html#verb">The STRING verb</a></td>
 						</tr>
@@ -1451,8 +1495,8 @@
 						<tr>
 							<td class="term"><code class="language-cobol">CONTROL</code></td>
 							<td class="def">
-								<code class="language-cobol">RD</code> clause that names data items whose changes
-								trigger control breaks (headings / footings).
+								<code class="language-cobol">RD</code>
+								clause that names data items whose changes trigger control breaks (headings / footings).
 							</td>
 							<td class="ref"><a href="ReportWriterSS.html#part2">RD Entries</a></td>
 						</tr>
@@ -1467,8 +1511,9 @@
 						<tr>
 							<td class="term"><code class="language-cobol">GENERATE</code></td>
 							<td class="def">
-								<code class="language-cobol">PROCEDURE DIVISION</code> verb that produces a detail (or
-								summary) report line and triggers any required headings or footings.
+								<code class="language-cobol">PROCEDURE DIVISION</code>
+								verb that produces a detail (or summary) report line and triggers any required headings
+								or footings.
 							</td>
 							<td class="ref"><a href="ReportWriterSS.html#part6">Procedure Division verbs</a></td>
 						</tr>
@@ -1500,18 +1545,23 @@
 						<tr>
 							<td class="term"><code class="language-cobol">RD</code></td>
 							<td class="def">
-								<i>Report Description</i> entry in the
-								<code class="language-cobol">REPORT SECTION</code> that defines a report's
+								<i>Report Description</i>
+								entry in the
+								<code class="language-cobol">REPORT SECTION</code>
+								that defines a report's
 								<code class="language-cobol">CONTROL</code>s,
-								<code class="language-cobol">PAGE</code> layout, and report groups.
+								<code class="language-cobol">PAGE</code>
+								layout, and report groups.
 							</td>
 							<td class="ref"><a href="ReportWriterSS.html#part2">RD Entries</a></td>
 						</tr>
 						<tr>
 							<td class="term"><code class="language-cobol">REPORT SECTION</code></td>
 							<td class="def">
-								<code class="language-cobol">DATA DIVISION</code> section where each report's
-								<code class="language-cobol">RD</code> and report groups are declared.
+								<code class="language-cobol">DATA DIVISION</code>
+								section where each report's
+								<code class="language-cobol">RD</code>
+								and report groups are declared.
 							</td>
 							<td class="ref"><a href="ReportWriterSS.html#part1">Report File entries</a></td>
 						</tr>
@@ -1531,8 +1581,8 @@
 						<tr>
 							<td class="term"><code class="language-cobol">USE BEFORE REPORTING</code></td>
 							<td class="def">
-								<code class="language-cobol">DECLARATIVES</code> phrase that runs a paragraph just
-								before a given report group is generated.
+								<code class="language-cobol">DECLARATIVES</code>
+								phrase that runs a paragraph just before a given report group is generated.
 							</td>
 							<td class="ref"><a href="ReportWriterSS.html#part7">Declaratives</a></td>
 						</tr>
@@ -1544,7 +1594,7 @@
 				lectures="../lectures/index.html|Lecture Notes"
 			></related-content>
 
-			<hr />
+			<hr>
 
 			<copyright-notice></copyright-notice>
 			<last-updated></last-updated>
@@ -1552,44 +1602,44 @@
 		</main>
 
 		<script>
-			(function () {
-				var input = document.getElementById("glossary-filter");
-				if (!input) return;
-				var status = document.getElementById("glossary-filter-status");
-				var sections = Array.prototype.slice.call(document.querySelectorAll(".glossary-section"));
+		(function () {
+			var input = document.getElementById("glossary-filter");
+			if (!input) return;
+			var status = document.getElementById("glossary-filter-status");
+			var sections = Array.prototype.slice.call(document.querySelectorAll(".glossary-section"));
 
-				function filter() {
-					var q = input.value.trim().toLowerCase();
-					var matches = 0;
-					var total = 0;
-					sections.forEach(function (section) {
-						var sectionMatches = 0;
-						var rows = section.querySelectorAll("tbody tr");
-						rows.forEach(function (row) {
-							total++;
-							var text = row.textContent.toLowerCase();
-							var match = !q || text.indexOf(q) !== -1;
-							row.hidden = !match;
-							if (match) {
-								matches++;
-								sectionMatches++;
-							}
-						});
-						section.hidden = q && sectionMatches === 0;
-					});
-					if (status) {
-						if (!q) {
-							status.textContent = "";
-						} else if (matches === 0) {
-							status.textContent = "No terms match.";
-						} else {
-							status.textContent = matches + " of " + total + " terms match.";
+			function filter() {
+				var q = input.value.trim().toLowerCase();
+				var matches = 0;
+				var total = 0;
+				sections.forEach(function (section) {
+					var sectionMatches = 0;
+					var rows = section.querySelectorAll("tbody tr");
+					rows.forEach(function (row) {
+						total++;
+						var text = row.textContent.toLowerCase();
+						var match = !q || text.indexOf(q) !== -1;
+						row.hidden = !match;
+						if (match) {
+							matches++;
+							sectionMatches++;
 						}
+					});
+					section.hidden = q && sectionMatches === 0;
+				});
+				if (status) {
+					if (!q) {
+						status.textContent = "";
+					} else if (matches === 0) {
+						status.textContent = "No terms match.";
+					} else {
+						status.textContent = matches + " of " + total + " terms match.";
 					}
 				}
+			}
 
-				input.addEventListener("input", filter);
-			})();
+			input.addEventListener("input", filter);
+		})();
 		</script>
 	</body>
 </html>

@@ -67,10 +67,10 @@ Only move to static analysis (reading CSS/HTML) if the screenshots are inconclus
 ## Formatting
 
 ```bash
-npx prettier --write .
+pnpm run format:write
 ```
 
-Prettier runs automatically in CI on every PR merge. Run it locally after editing JS or JSON files to avoid a style-only follow-up commit. HTML files are hand-authored and intentionally excluded from prettier.
+Biome formats HTML/JS/JSON (and related) automatically in CI via the auto-format workflow. Run `pnpm run format:write` locally after edits to avoid a style-only follow-up commit. Vendored assets under `course/Resources/vendor/` are excluded.
 
 ## Generated files
 

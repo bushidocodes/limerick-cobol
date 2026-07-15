@@ -1,27 +1,27 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
 		<script>
-			(function () {
-				var t = localStorage.getItem("lc-theme");
-				if (t === "dark" || t === "light") {
-					document.documentElement.setAttribute("data-theme", t);
-					var color = t === "dark" ? "#1a1a1a" : "#ffffff";
-					var meta = document.querySelector('meta[name="theme-color"]:not([media])');
-					if (!meta) {
-						meta = document.createElement("meta");
-						meta.name = "theme-color";
-						document.head.appendChild(meta);
-					}
-					meta.content = color;
+		(function () {
+			var t = localStorage.getItem("lc-theme");
+			if (t === "dark" || t === "light") {
+				document.documentElement.setAttribute("data-theme", t);
+				var color = t === "dark" ? "#1a1a1a" : "#ffffff";
+				var meta = document.querySelector('meta[name="theme-color"]:not([media])');
+				if (!meta) {
+					meta = document.createElement("meta");
+					meta.name = "theme-color";
+					document.head.appendChild(meta);
 				}
-			})();
+				meta.content = color;
+			}
+		})();
 		</script>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="icon" type="image/svg+xml" href="../favicon.svg">
 		<script type="application/ld+json">
 			{
 				"@context": "https://schema.org",
@@ -52,34 +52,34 @@
 		<meta
 			name="description"
 			content="The aim of this unit is to provide you with a solid understanding of string manipulation using Reference Modification. It will also introduce"
-		/>
-		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/RefMod.html" />
-		<link rel="prev" href="https://bushidocodes.github.io/limerick-cobol/course/Unstring.html" />
-		<link rel="next" href="https://bushidocodes.github.io/limerick-cobol/course/ReportWriter.html" />
+		>
+		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/RefMod.html">
+		<link rel="prev" href="https://bushidocodes.github.io/limerick-cobol/course/Unstring.html">
+		<link rel="next" href="https://bushidocodes.github.io/limerick-cobol/course/ReportWriter.html">
 		<!-- Open Graph -->
-		<meta property="og:type" content="article" />
-		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/RefMod.html" />
-		<meta property="og:title" content="Reference Modification and Intrinsic Functions" />
+		<meta property="og:type" content="article">
+		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/RefMod.html">
+		<meta property="og:title" content="Reference Modification and Intrinsic Functions">
 		<meta
 			property="og:description"
 			content="The aim of this unit is to provide you with a solid understanding of string manipulation using Reference Modification. It will also introduce"
-		/>
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/course.png" />
+		>
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/course.png">
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="Reference Modification and Intrinsic Functions" />
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="Reference Modification and Intrinsic Functions">
 		<meta
 			name="twitter:description"
 			content="The aim of this unit is to provide you with a solid understanding of string manipulation using Reference Modification. It will also introduce"
-		/>
-		<link href="Resources/css/course.css" rel="stylesheet" />
-		<link href="Resources/css/course-components.css" rel="stylesheet" />
+		>
+		<link href="Resources/css/course.css" rel="stylesheet">
+		<link href="Resources/css/course-components.css" rel="stylesheet">
 		<link
 			href="Resources/vendor/prism/themes/prism.min.css"
 			rel="stylesheet"
 			integrity="sha384-rCCjoCPCsizaAAYVoz1Q0CmCTvnctK0JkfCSjx7IIxexTBg+uCKtFYycedUjMyA2"
 			crossorigin="anonymous"
-		/>
+		>
 		<script
 			src="Resources/vendor/prism/prism.min.js"
 			integrity="sha384-06z5D//U/xpvxZHuUz92xBvq3DqBBFi7Up53HRrbV7Jlv7Yvh/MZ7oenfUe9iCEt"
@@ -119,7 +119,7 @@
 							title="Reference Modification and Intrinsic Functions"
 							reading-time="14 min"
 						></page-hero>
-						<hr />
+						<hr>
 						<lesson-toc></lesson-toc>
 					</div>
 
@@ -135,7 +135,7 @@
 							using Reference Modification. It will also introduce you to Intrinsic Functions and will
 							show how strings may be manipulated using the String Intrinsic Functions.
 						</p>
-						<hr />
+						<hr>
 					</div>
 					<div class="section-sidebar">
 						<h3>Objectives</h3>
@@ -150,7 +150,7 @@
 						</ol>
 					</div>
 					<div class="section-full">
-						<hr />
+						<hr>
 					</div>
 				</div>
 				<!-- Reference Modification -->
@@ -180,8 +180,10 @@
 							<p><b>DataName(</b><i>StartPos</i> [<b>:</b><i>SubStrLength</i>]<b>)</b></p>
 						</blockquote>
 						<p>
-							<i>StartPos</i> is the character position of the first character in the sub-string and
-							<i>SubStrLength</i> is number of characters in the substring.
+							<i>StartPos</i>
+							is the character position of the first character in the sub-string and
+							<i>SubStrLength</i>
+							is number of characters in the substring.
 						</p>
 						<p>
 							As the square brackets indicate, the SubStrLength may be omitted, and in that case the
@@ -190,7 +192,7 @@
 						<p>
 							Reference Modification may be used almost anywhere an alphanumeric data-item is permitted.
 						</p>
-						<hr />
+						<hr>
 					</div>
 					<div class="section-sidebar">
 						<h3>Examples</h3>
@@ -210,7 +212,7 @@
 								title="Reference modification examples animation"
 							></iframe>
 						</p>
-						<hr />
+						<hr>
 					</div>
 				</div>
 				<!-- Intrinsic Functions -->
@@ -230,7 +232,7 @@
 							These functions fall into three broad categories : date functions, numeric functions and
 							string functions.
 						</p>
-						<hr />
+						<hr>
 					</div>
 					<div class="section-sidebar">
 						<h3>Using Intrinsic Functions</h3>
@@ -248,7 +250,7 @@
 							Wherever a literal with the same type as the function result may be referenced, the
 							Intrinsic Function may be referenced.
 						</p>
-						<hr />
+						<hr>
 					</div>
 					<div class="section-sidebar">
 						<h3>Intrinsic Function Notes</h3>
@@ -272,7 +274,7 @@
 								required (because it may return a non-integer value).
 							</li>
 						</ul>
-						<hr />
+						<hr>
 					</div>
 					<div class="section-sidebar">
 						<h3>Intrinsic Function Template</h3>
@@ -295,8 +297,9 @@
 							<p><code class="language-cobol">FUNCTION</code> FunctionName(<i>Parameters</i>)</p>
 						</blockquote>
 						<p>
-							<i>FunctionName</i> is the name of the function and <i>Parameters</i> is one or more
-							parameters supplied to the function.
+							<i>FunctionName</i>
+							is the name of the function and <i>Parameters</i> is one or more parameters supplied to the
+							function.
 						</p>
 						<p>Example declarations.</p>
 						<pre
@@ -305,7 +308,7 @@
 						<pre
 							class="language-cobol"
 						><code class="language-cobol">DISPLAY FUNCTION UPPER-CASE("this will be in upper case").</code></pre>
-						<hr />
+						<hr>
 					</div>
 					<div class="section-sidebar">
 						<h3>Intrinsic Function Notation</h3>
@@ -333,7 +336,7 @@
 							<li><b>Any</b> indicates that any type may be used</li>
 						</ul>
 						<p>
-							Where a function takes a parameter list (indicated by <b>{Any}...</b> in the function
+							Where a function takes a parameter list (indicated by <b>{ Any}...</b> in the function
 							definition) the parameter list may be replaced by an array. The reserved word ALL is used as
 							the array subscript to indicate all the elements of the array.
 						</p>
@@ -343,7 +346,7 @@
 						><code class="language-cobol">MOVE FUNCTION ORD-MAX(12 23 03 78 65) TO OrdPos
                      or
 MOVE FUNCTION ORD-MAX(IntElement(ALL)) TO OrdPos             </code></pre>
-						<hr />
+						<hr>
 					</div>
 				</div>
 				<!-- String Functions -->
@@ -389,7 +392,7 @@ MOVE FUNCTION ORD-MAX(IntElement(ALL)) TO OrdPos             </code></pre>
 								</tr>
 								<tr>
 									<td width="34%" style="vertical-align: top">
-										<p>ORD-MAX({Any}...)</p>
+										<p>ORD-MAX( { Any}...)</p>
 									</td>
 									<td width="20%" style="vertical-align: top">
 										<div class="center-block">Integer</div>
@@ -401,7 +404,7 @@ MOVE FUNCTION ORD-MAX(IntElement(ALL)) TO OrdPos             </code></pre>
 									</td>
 								</tr>
 								<tr>
-									<td width="34%" style="vertical-align: top">ORD-MIN({Any}...)</td>
+									<td width="34%" style="vertical-align: top">ORD-MIN( { Any}...)</td>
 									<td width="20%" style="vertical-align: top">
 										<div class="center-block">Integer</div>
 									</td>
@@ -431,7 +434,8 @@ MOVE FUNCTION ORD-MAX(IntElement(ALL)) TO OrdPos             </code></pre>
 									<td width="46%" style="vertical-align: top">
 										<p>
 											Returns a character string with the characters in
-											<b>Alph</b> reversed.
+											<b>Alph</b>
+											reversed.
 										</p>
 									</td>
 								</tr>
@@ -465,14 +469,14 @@ MOVE FUNCTION ORD-MAX(IntElement(ALL)) TO OrdPos             </code></pre>
 								</tr>
 							</table>
 						</div>
-						<hr />
+						<hr>
 					</div>
 					<div class="section-sidebar">
 						<h3>Examples</h3>
 					</div>
 					<div class="section-content">
 						<p>The statements in the following examples produce the results shown below.</p>
-						<hr />
+						<hr>
 						<pre class="language-cobol"><code class="language-cobol">IDENTIFICATION DIVISION.
 PROGRAM-ID. StringFunctions.
 AUTHOR. Michael Coughlan.
@@ -504,36 +508,36 @@ Begin.
   DISPLAY FUNCTION UPPER-CASE(xString)
   DISPLAY FUNCTION LOWER-CASE(xString)
   STOP RUN.</code></pre>
-						<hr />
+						<hr>
 						<div class="results-box">
 							<div class="results-box-header">Results</div>
 							<div class="results-two-col">
 								<div>
-									Display 1 =<br />
-									Display 2 =<br />
-									Display 3 =<br />
-									Display 4 =<br />
-									Display 5 =<br />
-									Display 6 =<br />
-									Display 7 =<br />
-									Display 8 =<br />
+									Display 1 =<br>
+									Display 2 =<br>
+									Display 3 =<br>
+									Display 4 =<br>
+									Display 5 =<br>
+									Display 6 =<br>
+									Display 7 =<br>
+									Display 8 =<br>
 									Display 9 =
 								</div>
 								<div>
-									Character at pos 39 is = <b>&amp;</b><br />
-									Ord pos of A is = <b>66</b><br />
+									Character at pos 39 is = <b>&amp;</b><br>
+									Ord pos of A is = <b>66</b><br>
 									Highest character in sequence is at pos <b>03</b>
-									<br />
-									Lowest character in sequence is at pos <b>02</b><br />
-									Number <b>78</b> is the highest in array<br />
-									Length of xString is <b>38</b><br />
-									<b>gnirts ciremunahpla eht si sihT</b><br />
-									<b>THIS IS THE ALPHANUMERIC STRING</b><br />
+									<br>
+									Lowest character in sequence is at pos <b>02</b><br>
+									Number <b>78</b> is the highest in array<br>
+									Length of xString is <b>38</b><br>
+									<b>gnirts ciremunahpla eht si sihT</b><br>
+									<b>THIS IS THE ALPHANUMERIC STRING</b><br>
 									<b>this is the alphanumeric string</b>
 								</div>
 							</div>
 						</div>
-						<hr />
+						<hr>
 					</div>
 				</div>
 				<!-- Date Functions -->
@@ -642,7 +646,7 @@ Begin.
 								</tr>
 							</table>
 						</div>
-						<hr />
+						<hr>
 					</div>
 					<div class="section-sidebar">
 						<h3>Examples</h3>
@@ -652,7 +656,7 @@ Begin.
 							The example program below uses most of the date functions described in the table above. The
 							results from running the program are shown below.
 						</p>
-						<hr />
+						<hr>
 						<pre class="language-cobol"><code class="language-cobol">IDENTIFICATION DIVISION.
 PROGRAM-ID. DateFunctions.
 AUTHOR. Michael Coughlan.
@@ -725,20 +729,20 @@ Begin.
   NumOfDays " days time will be " MonthD "/" DayD "/" YearD
   STOP RUN.
 </code></pre>
-						<hr />
+						<hr>
 						<div class="results-box">
 							<div class="results-box-header">Results</div>
 							<div>
-								Current Date is 01/26/1998<br />
-								Current Time is 12:20:17<br />
-								The local time is - GMT +00:00<br />
-								Enter the date of the bill (yyyymmdd) 19971227<br />
-								This bill is due today<br />
-								Enter the number of days - 365<br />
+								Current Date is 01/26/1998<br>
+								Current Time is 12:20:17<br>
+								The local time is - GMT +00:00<br>
+								Enter the date of the bill (yyyymmdd) 19971227<br>
+								This bill is due today<br>
+								Enter the number of days - 365<br>
 								The date in 365 days time will be 01/27/1999
 							</div>
 						</div>
-						<hr />
+						<hr>
 					</div>
 				</div>
 				<!-- Miscellaneous Functions -->
@@ -863,7 +867,7 @@ Begin.
 									<td width="43%" style="vertical-align: top">
 										<p>
 											Returns a numeric value that approximates the logarithm to the base e
-											(natural log) of <b>PosNum</b>.<br />
+											(natural log) of <b>PosNum</b>.<br>
 											PosNum must be greater than 0.
 										</p>
 									</td>
@@ -876,13 +880,13 @@ Begin.
 									<td width="43%" style="vertical-align: top">
 										Returns a numeric value that approximates the logarithm to the base 10 of
 										<b>PosNum</b>.
-										<br />
+										<br>
 										PosNum must be greater than 0.
 									</td>
 								</tr>
 								<tr>
 									<td width="36%" style="vertical-align: top">
-										<p>MAX({Any}...)</p>
+										<p>MAX( { Any}...)</p>
 									</td>
 									<td width="21%" style="vertical-align: top">
 										Depends on type of <b>Any</b> see note.
@@ -890,17 +894,20 @@ Begin.
 									<td width="43%" style="vertical-align: top">
 										<p>
 											Takes a parameter list and returns the content of whichever parameter
-											contains the maximum value.<br />
-											Note. The returned type depends upon the parameter types as follows;<br />
-											<b>Alphanumeric</b> if parameters are Alphabetic or Alphnumeric.<br />
-											<b>Integer</b> if all are integer.<br />
-											<b>Numeric</b> if all are Numeric or mixed with Integer.<br />
+											contains the maximum value.<br>
+											Note. The returned type depends upon the parameter types as follows;<br>
+											<b>Alphanumeric</b>
+											if parameters are Alphabetic or Alphnumeric.<br>
+											<b>Integer</b>
+											if all are integer.<br>
+											<b>Numeric</b>
+											if all are Numeric or mixed with Integer.<br>
 											An array may be used instead of the parameter list.
 										</p>
 									</td>
 								</tr>
 								<tr>
-									<td width="36%" style="vertical-align: top">MEAN({Num}...)</td>
+									<td width="36%" style="vertical-align: top">MEAN( { Num}...)</td>
 									<td width="21%" style="vertical-align: top">
 										<div class="center-block">Numeric</div>
 									</td>
@@ -910,7 +917,7 @@ Begin.
 									</td>
 								</tr>
 								<tr>
-									<td width="36%" style="vertical-align: top">MEDIAN({Num}...)</td>
+									<td width="36%" style="vertical-align: top">MEDIAN( { Num}...)</td>
 									<td width="21%" style="vertical-align: top">
 										<div class="center-block">Numeric</div>
 									</td>
@@ -920,7 +927,7 @@ Begin.
 									</td>
 								</tr>
 								<tr>
-									<td width="36%" style="vertical-align: top">MIDRANGE({Num}...)</td>
+									<td width="36%" style="vertical-align: top">MIDRANGE( { Num}...)</td>
 									<td width="21%" style="vertical-align: top">
 										<div class="center-block">Numeric</div>
 									</td>
@@ -931,7 +938,7 @@ Begin.
 								</tr>
 								<tr>
 									<td width="36%" style="vertical-align: top">
-										<p>MIN({Any}...)</p>
+										<p>MIN( { Any}...)</p>
 									</td>
 									<td width="21%" style="vertical-align: top">
 										Depends on type of <b>Any</b> see note in MAX above.
@@ -949,8 +956,11 @@ Begin.
 									<td width="43%" style="vertical-align: top">
 										<p>
 											Returns an integer value defined as
-											<b>Int1</b> ï¿½ (<b>Int2</b> *
-											<code class="language-cobol">FUNCTION</code> INTEGER (Int1 / Int2)).
+											<b>Int1</b>
+											ï¿½ (<b>Int2</b>
+											*
+											<code class="language-cobol">FUNCTION</code>
+											INTEGER (Int1 / Int2)).
 										</p>
 									</td>
 								</tr>
@@ -966,28 +976,26 @@ Begin.
 									</td>
 								</tr>
 								<tr>
-									<td width="36%" style="vertical-align: top">
-										PRESENT-VALUE(Num1<br />
-										{Num2}...)
-									</td>
+									<td width="36%" style="vertical-align: top">PRESENT-VALUE(Num1<br>{ Num2}...)</td>
 									<td width="21%" style="vertical-align: top">
 										<div class="center-block">Numeric</div>
 									</td>
 									<td width="43%" style="vertical-align: top">
 										<p>
 											Returns the amount to be invested today to produce a future value at a
-											particular rate of interest.<br />
-											<b>Num1</b> is the percent interest rate expressed as a decimal value (.7 =
-											7%).<br />
-											<b>Num2</b> is the future desired value at the end of the period.
+											particular rate of interest.<br>
+											<b>Num1</b>
+											is the percent interest rate expressed as a decimal value (.7 = 7%).<br>
+											<b>Num2</b>
+											is the future desired value at the end of the period.
 										</p>
 									</td>
 								</tr>
 								<tr>
 									<td width="36%" style="vertical-align: top">
 										<p>
-											RANDOM(PosInt)<br />
-											or<br />
+											RANDOM(PosInt)<br>
+											or<br>
 											RANDOM
 										</p>
 									</td>
@@ -996,15 +1004,15 @@ Begin.
 									</td>
 									<td width="43%" style="vertical-align: top">
 										<p>
-											Returns a numeric value that is a pseudo-random number.<br />
+											Returns a numeric value that is a pseudo-random number.<br>
 											If a parameter is used then <b>PosInt</b> is the seed. Subsequent references
-											without the parameter return the next number in the sequence.<br />
+											without the parameter return the next number in the sequence.<br>
 											A value &gt;0 and &lt;1 will be returned.
 										</p>
 									</td>
 								</tr>
 								<tr>
-									<td width="36%" style="vertical-align: top">RANGE({Num1}...)</td>
+									<td width="36%" style="vertical-align: top">RANGE( { Num1}...)</td>
 									<td width="21%" style="vertical-align: top">
 										<div class="center-block">
 											Integer if all parameter are Integer else Numeric
@@ -1045,7 +1053,7 @@ Begin.
 									</td>
 								</tr>
 								<tr>
-									<td width="36%" style="vertical-align: top">STANDARD-DEVIATION({Num}...)</td>
+									<td width="36%" style="vertical-align: top">STANDARD-DEVIATION( { Num}...)</td>
 									<td width="21%" style="vertical-align: top">
 										<div class="center-block">Numeric</div>
 									</td>
@@ -1054,7 +1062,7 @@ Begin.
 									</td>
 								</tr>
 								<tr>
-									<td width="36%" style="vertical-align: top">SUM({Num}...)</td>
+									<td width="36%" style="vertical-align: top">SUM( { Num}...)</td>
 									<td width="21%" style="vertical-align: top">
 										<div class="center-block">
 											Integer if all parameter are Integer else Numeric
@@ -1073,7 +1081,7 @@ Begin.
 									</td>
 								</tr>
 								<tr>
-									<td width="36%" style="vertical-align: top">VARIANCE({Num}...)</td>
+									<td width="36%" style="vertical-align: top">VARIANCE( { Num}...)</td>
 									<td width="21%" style="vertical-align: top">
 										<div class="center-block">Numeric</div>
 									</td>
@@ -1083,7 +1091,7 @@ Begin.
 								</tr>
 							</table>
 						</div>
-						<hr />
+						<hr>
 					</div>
 					<div class="section-sidebar">
 						<h3>General Examples</h3>
@@ -1093,7 +1101,7 @@ Begin.
 							The example program below uses many of the functions described in the table above. The
 							results from running the program are shown below.
 						</p>
-						<hr />
+						<hr>
 						<pre class="language-cobol"><code class="language-cobol">IDENTIFICATION DIVISION.
 PROGRAM-ID.  OtherFunctions.
 AUTHOR.  Michael Coughlan.
@@ -1138,22 +1146,22 @@ Begin.
   MOVE FUNCTION VARIANCE(Ielement(ALL)) TO IResult
   DISPLAY "The variance of the values is " IResult
   STOP RUN.</code></pre>
-						<hr />
+						<hr>
 						<div class="results-box">
 							<div class="results-box-header">Results</div>
 							<div>
 								<p>
-									Max value is = 00545<br />
-									Max value is = 00078<br />
-									Median value is = 00023<br />
-									Midrange value is = 00040<br />
-									Min value is = 00003<br />
-									The sum of the values is 00181<br />
+									Max value is = 00545<br>
+									Max value is = 00078<br>
+									Median value is = 00023<br>
+									Midrange value is = 00040<br>
+									Min value is = 00003<br>
+									The sum of the values is 00181<br>
 									The variance of the values is 00887
 								</p>
 							</div>
 						</div>
-						<hr />
+						<hr>
 					</div>
 					<div class="section-sidebar">
 						<h3>Lotto Example</h3>
@@ -1173,12 +1181,12 @@ Begin.
 						</p>
 						<blockquote>
 							<p>
-								i + 1 is the position where the current number was inserted<br />
-								j is the first position where the current number was found<br />
+								i + 1 is the position where the current number was inserted<br>
+								j is the first position where the current number was found<br>
 								If i + 1 = j then the current number has no duplicates.
 							</p>
 						</blockquote>
-						<hr />
+						<hr>
 						<pre class="language-cobol"><code class="language-cobol">IDENTIFICATION DIVISION.
 PROGRAM-ID.  Lotto.
 AUTHOR.  Michael Coughlan.
@@ -1220,7 +1228,7 @@ Begin.
 						lectures="../lectures/inspect.html|INSPECT Verb Lecture"
 						examples="../examples/Strings/RefMod.html|Reference Modification Examples"
 					></related-content>
-					<hr />
+					<hr>
 					<lesson-checkbox lesson="RefMod"></lesson-checkbox>
 					<lesson-nav></lesson-nav>
 					<copyright-notice></copyright-notice>

@@ -1,27 +1,27 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
 		<script>
-			(function () {
-				var t = localStorage.getItem("lc-theme");
-				if (t === "dark" || t === "light") {
-					document.documentElement.setAttribute("data-theme", t);
-					var color = t === "dark" ? "#1a1a1a" : "#ffffff";
-					var meta = document.querySelector('meta[name="theme-color"]:not([media])');
-					if (!meta) {
-						meta = document.createElement("meta");
-						meta.name = "theme-color";
-						document.head.appendChild(meta);
-					}
-					meta.content = color;
+		(function () {
+			var t = localStorage.getItem("lc-theme");
+			if (t === "dark" || t === "light") {
+				document.documentElement.setAttribute("data-theme", t);
+				var color = t === "dark" ? "#1a1a1a" : "#ffffff";
+				var meta = document.querySelector('meta[name="theme-color"]:not([media])');
+				if (!meta) {
+					meta = document.createElement("meta");
+					meta.name = "theme-color";
+					document.head.appendChild(meta);
 				}
-			})();
+				meta.content = color;
+			}
+		})();
 		</script>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="icon" type="image/svg+xml" href="../favicon.svg">
 		<script type="application/ld+json">
 			{
 				"@context": "https://schema.org",
@@ -52,34 +52,34 @@
 		<meta
 			name="description"
 			content='In most programming languages the term "array" is used to describe repeated, or multiple- occurrence, data-items. COBOL uses the term - "table".'
-		/>
-		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/Tables1.html" />
-		<link rel="prev" href="https://bushidocodes.github.io/limerick-cobol/course/IndexedFiles.html" />
-		<link rel="next" href="https://bushidocodes.github.io/limerick-cobol/course/Tables2.html" />
+		>
+		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/Tables1.html">
+		<link rel="prev" href="https://bushidocodes.github.io/limerick-cobol/course/IndexedFiles.html">
+		<link rel="next" href="https://bushidocodes.github.io/limerick-cobol/course/Tables2.html">
 		<!-- Open Graph -->
-		<meta property="og:type" content="article" />
-		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/Tables1.html" />
-		<meta property="og:title" content="Using Tables" />
+		<meta property="og:type" content="article">
+		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/Tables1.html">
+		<meta property="og:title" content="Using Tables">
 		<meta
 			property="og:description"
 			content='In most programming languages the term "array" is used to describe repeated, or multiple- occurrence, data-items. COBOL uses the term - "table".'
-		/>
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/course.png" />
+		>
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/course.png">
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="Using Tables" />
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="Using Tables">
 		<meta
 			name="twitter:description"
 			content='In most programming languages the term "array" is used to describe repeated, or multiple- occurrence, data-items. COBOL uses the term - "table".'
-		/>
-		<link href="Resources/css/course.css" rel="stylesheet" />
-		<link href="Resources/css/course-components.css" rel="stylesheet" />
+		>
+		<link href="Resources/css/course.css" rel="stylesheet">
+		<link href="Resources/css/course-components.css" rel="stylesheet">
 		<link
 			href="Resources/vendor/prism/themes/prism.min.css"
 			rel="stylesheet"
 			integrity="sha384-rCCjoCPCsizaAAYVoz1Q0CmCTvnctK0JkfCSjx7IIxexTBg+uCKtFYycedUjMyA2"
 			crossorigin="anonymous"
-		/>
+		>
 		<script
 			src="Resources/vendor/prism/prism.min.js"
 			integrity="sha384-06z5D//U/xpvxZHuUz92xBvq3DqBBFi7Up53HRrbV7Jlv7Yvh/MZ7oenfUe9iCEt"
@@ -117,7 +117,7 @@
 				<div class="section-grid">
 					<div class="section-full">
 						<page-hero title="Using Tables" reading-time="10 min"></page-hero>
-						<hr />
+						<hr>
 						<lesson-toc></lesson-toc>
 					</div>
 
@@ -137,7 +137,7 @@
 							certain kinds of problems.
 						</p>
 
-						<hr class="thin-rule" />
+						<hr class="thin-rule">
 					</div>
 					<div class="section-sidebar">
 						<h3>Objectives</h3>
@@ -157,7 +157,7 @@
 						</ol>
 					</div>
 					<div class="section-full">
-						<hr />
+						<hr>
 					</div>
 				</div>
 
@@ -227,8 +227,8 @@ Begin.
 						<p>
 							Another solution that we might adopt is to create 26 variables to hold the county tax
 							totals. Then, in the program, we could use an
-							<code class="language-cobol">EVALUATE</code> statement to add the TaxPaid to the appropriate
-							total. For example -
+							<code class="language-cobol">EVALUATE</code>
+							statement to add the TaxPaid to the appropriate total. For example -
 						</p>
 
 						<blockquote>
@@ -246,9 +246,11 @@ END-EVALUATE</code></pre>
 						<div>
 							<p>
 								But this solution is not very satisfactory. We have to have a specific
-								<code class="language-cobol">WHEN</code> branch to process each county and we have to
-								declare 26 variables to hold the tax totals. And when we want to print the results we
-								have to have 26 <code class="language-cobol">DISPLAY</code> statements such as -
+								<code class="language-cobol">WHEN</code>
+								branch to process each county and we have to declare 26 variables to hold the tax
+								totals. And when we want to print the results we have to have 26
+								<code class="language-cobol">DISPLAY</code>
+								statements such as -
 							</p>
 						</div>
 						<blockquote>
@@ -266,10 +268,11 @@ DISPLAY "County 3 total is ", County3TaxTotal
 							<p>
 								But the suggestion above does contain the germ of a satisfactory solution to the
 								problem. It is interesting to note that the processing of each
-								<code class="language-cobol">WHEN</code> branch is exactly the same - the TaxPaid is
-								added to a particular county total variable. We could replace all 26
-								<code class="language-cobol">WHEN</code> branches with one statement if we could
-								generalize it to something like -
+								<code class="language-cobol">WHEN</code>
+								branch is exactly the same - the TaxPaid is added to a particular county total variable.
+								We could replace all 26
+								<code class="language-cobol">WHEN</code>
+								branches with one statement if we could generalize it to something like -
 								<i>ADD the TaxPaid TO the CountyTotal location indicated by the CountyCode</i>.
 							</p>
 							<p>
@@ -287,7 +290,7 @@ DISPLAY "County 3 total is ", County3TaxTotal
 						</div>
 					</div>
 					<div class="section-full">
-						<hr />
+						<hr>
 					</div>
 				</div>
 
@@ -320,7 +323,7 @@ DISPLAY "County 3 total is ", County3TaxTotal
 								index/subscript in brackets (see examples below).
 							</li>
 						</ul>
-						<hr class="thin-rule" />
+						<hr class="thin-rule">
 					</div>
 					<div class="section-sidebar">
 						<h3>Declaring the CountyTax table</h3>
@@ -331,7 +334,8 @@ DISPLAY "County 3 total is ", County3TaxTotal
 									src="Resources/pics/i-Animation.gif"
 									width="62"
 									alt="Click for animation: CountyTax table declaration and usage"
-							/></a>
+								></a
+							>
 						</p>
 						If TaxPaid has a value of 74.75 what do you think each of the program statements opposite will
 						do when they execute. Click on the diagram or the icon to see an animated answer.
@@ -340,7 +344,8 @@ DISPLAY "County 3 total is ", County3TaxTotal
 						<p>
 							In COBOL, a table is declared by specifying the type (or structure) of a single item
 							(element) of the table and then specifying that the data-item is to be repeated
-							<i>x</i> number of times. For instance, the CountyTax table might be defined as -
+							<i>x</i>
+							number of times. For instance, the CountyTax table might be defined as -
 						</p>
 						<pre class="language-cobol"><code class="language-cobol">01 CountyTaxTable.
    02 CountyTax       PIC 9(8)V99  OCCURS 26 TIMES.</code></pre>
@@ -362,13 +367,14 @@ DISPLAY "County 3 total is ", County3TaxTotal
 									src="Resources/pics/Tables1.gif"
 									width="456"
 									alt="Diagram of the CountyTax table showing 26 elements indexed by CountyCode"
-							/></a>
+								></a
+							>
 						</p>
 						<pre class="language-cobol"><code class="language-cobol">MOVE 10 TO CountyTax(3)
 ADD TaxPaid TO CountyTax(CountyCode)
 ADD TaxPaid TO CountyTax(CountyCode + 1)
 ADD TaxPaid TO CountyTax(CountyCode - 2)</code></pre>
-						<hr class="thin-rule" />
+						<hr class="thin-rule">
 					</div>
 					<div class="section-sidebar">
 						<h3>The County Tax Report program</h3>
@@ -408,7 +414,7 @@ Begin.
    STOP RUN.</code></pre>
 					</div>
 					<div class="section-full">
-						<hr />
+						<hr>
 					</div>
 				</div>
 
@@ -445,8 +451,9 @@ Begin.
 END-EVALUATE.</code></pre>
 						<p>
 							But this solution is not very satisfactory. It is simply reverting to the 26
-							<code class="language-cobol">WHEN</code> branch solution presented earlier. But this time,
-							we know that there must be a more elegant solution. And there is!
+							<code class="language-cobol">WHEN</code>
+							branch solution presented earlier. But this time, we know that there must be a more elegant
+							solution. And there is!
 						</p>
 						<p>
 							If we declare a CountyName table and fill its elements with the names of the counties, we
@@ -483,9 +490,10 @@ Begin.
 					<div class="section-content">
 						<p>
 							In the next tutorial we will examine how we can use the
-							<code class="language-cobol">REDEFINES</code> clause to set up a predefined table of values.
-							For the moment, we won't concern ourselves with the exact mechanics of setting up the
-							CountyName table but we can represent it diagrammatically as follows;
+							<code class="language-cobol">REDEFINES</code>
+							clause to set up a predefined table of values. For the moment, we won't concern ourselves
+							with the exact mechanics of setting up the CountyName table but we can represent it
+							diagrammatically as follows;
 						</p>
 						<p class="center-block">
 							<img
@@ -493,16 +501,18 @@ Begin.
 								src="Resources/pics/Tables2.gif"
 								width="459"
 								alt="Diagram of the CountyName table showing county names indexed by position"
-							/>
+							>
 						</p>
 						<p>
 							The elements of the table may be referenced in the usual way, so the statement
-							<code class="language-cobol">DISPLAY</code> CountyName(3) will display the value "Cork" and
-							<code class="language-cobol">DISPLAY</code> CountyName(5) will display "Dublin".
+							<code class="language-cobol">DISPLAY</code>
+							CountyName(3) will display the value "Cork" and
+							<code class="language-cobol">DISPLAY</code>
+							CountyName(5) will display "Dublin".
 						</p>
 					</div>
 					<div class="section-full">
-						<hr />
+						<hr>
 					</div>
 				</div>
 
@@ -519,7 +529,8 @@ Begin.
 							In the County Tax Report program, it proved very convenient that the tax records used a code
 							to represent the county instead of using the actual county name. By using the CountyCode as
 							a direct index into the CountyTax table we were able use the statement
-							<i>ADD TaxPaid TO CountyTax(CountyCode)</i> to add the TaxPaid to the appropriate total.
+							<i>ADD TaxPaid TO CountyTax(CountyCode)</i>
+							to add the TaxPaid to the appropriate total.
 						</p>
 						<p>
 							Sometimes, however, things are not arranged so conveniently. Suppose that instead of a
@@ -535,7 +546,7 @@ Begin.
 							How could we get the program to work then? How would we know, which element of the CountyTax
 							table to add the TaxPaid to?
 						</p>
-						<hr class="thin-rule" />
+						<hr class="thin-rule">
 					</div>
 					<div class="section-sidebar">
 						<h3>An EVALUATE based solution</h3>
@@ -549,7 +560,8 @@ Begin.
 						</p>
 						<p>
 							One approach we might try, is the now discredited
-							<code class="language-cobol">EVALUATE</code> based solution. For example -
+							<code class="language-cobol">EVALUATE</code>
+							based solution. For example -
 						</p>
 						<pre class="language-cobol"><code class="language-cobol">EVALUATE County
    WHEN "Carlow" MOVE 1 TO CountyNum
@@ -593,7 +605,8 @@ ADD TaxPaid TO CountyTax(CountyNum)</code></pre>
 									src="Resources/pics/i-Animation.gif"
 									width="62"
 									alt="Click for animation: PERFORM VARYING to search CountyName table"
-							/></a>
+								></a
+							>
 						</p>
 						<p>and you can see where it fits into the County Tax Report program, in the example below.</p>
 						<pre class="language-cobol"><code class="language-cobol">PROCEDURE DIVISION.
@@ -628,7 +641,7 @@ Begin.
 						examples="../examples/Tables/MonthTable.html|Month Table – Counting with a Table"
 						exercises="../exercises/MonthTable.html|Using Tables Exercise"
 					></related-content>
-					<hr />
+					<hr>
 					<lesson-checkbox lesson="Tables1"></lesson-checkbox>
 					<lesson-nav></lesson-nav>
 					<copyright-notice></copyright-notice>

@@ -1,27 +1,27 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
 		<script>
-			(function () {
-				var t = localStorage.getItem("lc-theme");
-				if (t === "dark" || t === "light") {
-					document.documentElement.setAttribute("data-theme", t);
-					var color = t === "dark" ? "#1a1a1a" : "#ffffff";
-					var meta = document.querySelector('meta[name="theme-color"]:not([media])');
-					if (!meta) {
-						meta = document.createElement("meta");
-						meta.name = "theme-color";
-						document.head.appendChild(meta);
-					}
-					meta.content = color;
+		(function () {
+			var t = localStorage.getItem("lc-theme");
+			if (t === "dark" || t === "light") {
+				document.documentElement.setAttribute("data-theme", t);
+				var color = t === "dark" ? "#1a1a1a" : "#ffffff";
+				var meta = document.querySelector('meta[name="theme-color"]:not([media])');
+				if (!meta) {
+					meta = document.createElement("meta");
+					meta.name = "theme-color";
+					document.head.appendChild(meta);
 				}
-			})();
+				meta.content = color;
+			}
+		})();
 		</script>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
 		<script type="application/ld+json">
 			{
 				"@context": "https://schema.org",
@@ -52,40 +52,40 @@
 		<meta
 			name="description"
 			content="The FlyByNight travel agency sends its customers all over the world. For each booking a record is created in the Booking Master file (BOOKING.dat). Each"
-		/>
+		>
 		<link
 			rel="canonical"
 			href="https://bushidocodes.github.io/limerick-cobol/exercises/Exm-FlyByNightTravel/Exm-FlyByNight.html"
-		/>
+		>
 		<link
 			rel="prev"
 			href="https://bushidocodes.github.io/limerick-cobol/exercises/Exm-AromaSalesRpt/Exm-AromaSalesSummaryRpt.html"
-		/>
+		>
 		<link
 			rel="next"
 			href="https://bushidocodes.github.io/limerick-cobol/exercises/Exm-AromaOilFileMainRpt/Exm-AromaOilFileMainRpt.html"
-		/>
+		>
 		<!-- Open Graph -->
-		<meta property="og:type" content="website" />
+		<meta property="og:type" content="website">
 		<meta
 			property="og:url"
 			content="https://bushidocodes.github.io/limerick-cobol/exercises/Exm-FlyByNightTravel/Exm-FlyByNight.html"
-		/>
-		<meta property="og:title" content="Fly By Night Travel Agency Sorted Summary File (Exam Question)" />
+		>
+		<meta property="og:title" content="Fly By Night Travel Agency Sorted Summary File (Exam Question)">
 		<meta
 			property="og:description"
 			content="The FlyByNight travel agency sends its customers all over the world. For each booking a record is created in the Booking Master file (BOOKING.dat). Each"
-		/>
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/exercises.png" />
+		>
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/exercises.png">
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="Fly By Night Travel Agency Sorted Summary File (Exam Question)" />
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="Fly By Night Travel Agency Sorted Summary File (Exam Question)">
 		<meta
 			name="twitter:description"
 			content="The FlyByNight travel agency sends its customers all over the world. For each booking a record is created in the Booking Master file (BOOKING.dat). Each"
-		/>
-		<link href="../../course/Resources/css/course.css" rel="stylesheet" />
-		<link href="../../course/Resources/css/course-components.css" rel="stylesheet" />
+		>
+		<link href="../../course/Resources/css/course.css" rel="stylesheet">
+		<link href="../../course/Resources/css/course-components.css" rel="stylesheet">
 		<script src="../../components/theme-toggle.js" defer></script>
 		<script src="../../components/page-hero.js" defer></script>
 		<script src="../../components/site-search.js" defer></script>
@@ -104,22 +104,23 @@
 			<div class="page-wrapper">
 				<div class="page-content">
 					<page-hero title="Fly By Night Travel Agency Sorted Summary File"></page-hero>
-					<hr />
+					<hr>
 
 					<dl class="exam-meta">
 						<dt>Time to complete</dt>
 						<dd>Allow 4-5 hours continuous</dd>
 						<dt>Program Download</dt>
 						<dd>
-							<a href="FlyByNight.cbl">FlyByNight.cbl</a> is a model answer. Don't look at this until you
-							have made your own attempt at the program.
+							<a href="FlyByNight.cbl">FlyByNight.cbl</a>
+							is a model answer. Don't look at this until you have made your own attempt at the program.
 						</dd>
 						<dt>Example Output</dt>
 						<dd>
 							<p>
-								<a href="SUMMARY.dat">Summary.dat</a> (The sorted Summary file)<br />
-								<a href="BOOKSORT.dat">BookSort.dat</a> (The sorted Bookings file with non-tourists
-								removed)
+								<a href="SUMMARY.dat">Summary.dat</a>
+								(The sorted Summary file)<br>
+								<a href="BOOKSORT.dat">BookSort.dat</a>
+								(The sorted Bookings file with non-tourists removed)
 							</p>
 						</dd>
 						<dt>Example Input</dt>
@@ -129,7 +130,7 @@
 						<dt>Major Constructs</dt>
 						<dd>Indexed Files, Print Files</dd>
 					</dl>
-					<hr />
+					<hr>
 
 					<section>
 						<h2>Introduction</h2>
@@ -271,7 +272,7 @@
 							well as the insurance charges that travelling to them will incur.
 						</p>
 						<p>
-							Afghanistan 50%, Cambodia 24%, Corsica 18%, El Salvador 85%,<br />
+							Afghanistan 50%, Cambodia 24%, Corsica 18%, El Salvador 85%,<br>
 							Haiti 21%, Honduras 23%, Israel 11%, Iran 57%, Iraq 33%,
 						</p>
 						<p>
@@ -289,11 +290,11 @@
 						<p>For each group of records for a particular Destination;</p>
 						<blockquote>
 							<p>
-								Sum all the Males, Females and Children.<br />
-								Sum all the Booking-Charges.<br />
+								Sum all the Males, Females and Children.<br>
+								Sum all the Booking-Charges.<br>
 								When all the records for the group have been processed check to see if the destination
 								is in the insurance surcharge group. If it is, work out the insurance charge and add it
-								to the Total-Booking-Charges giving the Total-Receipts.<br />
+								to the Total-Booking-Charges giving the Total-Receipts.<br>
 								Set up the output record and write it to the Summary File.
 							</p>
 						</blockquote>
@@ -305,7 +306,7 @@
 							examples="Prg-FlyByNight.html|FlyByNight Travel – Sample Solution, ../../examples/Sort/InputSort.html|SORT with Input Procedure, ../../examples/Sort/MaleSort.html|SORT with Output Procedure, ../../examples/Merge/Merge.html|Merging Files"
 							exercises="../SortIP.html|Sorting a Sequential File, ../MonthTable.html|Using Tables Exercise"
 						></related-content>
-						<hr />
+						<hr>
 						<exercises-nav></exercises-nav>
 						<copyright-notice type="exercises"></copyright-notice>
 						<last-updated></last-updated>

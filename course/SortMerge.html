@@ -1,27 +1,27 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
 		<script>
-			(function () {
-				var t = localStorage.getItem("lc-theme");
-				if (t === "dark" || t === "light") {
-					document.documentElement.setAttribute("data-theme", t);
-					var color = t === "dark" ? "#1a1a1a" : "#ffffff";
-					var meta = document.querySelector('meta[name="theme-color"]:not([media])');
-					if (!meta) {
-						meta = document.createElement("meta");
-						meta.name = "theme-color";
-						document.head.appendChild(meta);
-					}
-					meta.content = color;
+		(function () {
+			var t = localStorage.getItem("lc-theme");
+			if (t === "dark" || t === "light") {
+				document.documentElement.setAttribute("data-theme", t);
+				var color = t === "dark" ? "#1a1a1a" : "#ffffff";
+				var meta = document.querySelector('meta[name="theme-color"]:not([media])');
+				if (!meta) {
+					meta = document.createElement("meta");
+					meta.name = "theme-color";
+					document.head.appendChild(meta);
 				}
-			})();
+				meta.content = color;
+			}
+		})();
 		</script>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="icon" type="image/svg+xml" href="../favicon.svg">
 		<script type="application/ld+json">
 			{
 				"@context": "https://schema.org",
@@ -52,34 +52,34 @@
 		<meta
 			name="description"
 			content="As we noted in the tutorial - Processing Sequential Files - it is possible to apply processing to an ordered sequential file that is difficult, or"
-		/>
-		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/SortMerge.html" />
-		<link rel="prev" href="https://bushidocodes.github.io/limerick-cobol/course/SequentialFiles3.html" />
-		<link rel="next" href="https://bushidocodes.github.io/limerick-cobol/course/Intro2DirectAccess.html" />
+		>
+		<link rel="canonical" href="https://bushidocodes.github.io/limerick-cobol/course/SortMerge.html">
+		<link rel="prev" href="https://bushidocodes.github.io/limerick-cobol/course/SequentialFiles3.html">
+		<link rel="next" href="https://bushidocodes.github.io/limerick-cobol/course/Intro2DirectAccess.html">
 		<!-- Open Graph -->
-		<meta property="og:type" content="article" />
-		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/SortMerge.html" />
-		<meta property="og:title" content="Sorting and Merging" />
+		<meta property="og:type" content="article">
+		<meta property="og:url" content="https://bushidocodes.github.io/limerick-cobol/course/SortMerge.html">
+		<meta property="og:title" content="Sorting and Merging">
 		<meta
 			property="og:description"
 			content="As we noted in the tutorial - Processing Sequential Files - it is possible to apply processing to an ordered sequential file that is difficult, or"
-		/>
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/course.png" />
+		>
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/course.png">
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="Sorting and Merging" />
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="Sorting and Merging">
 		<meta
 			name="twitter:description"
 			content="As we noted in the tutorial - Processing Sequential Files - it is possible to apply processing to an ordered sequential file that is difficult, or"
-		/>
-		<link href="Resources/css/course.css" rel="stylesheet" />
-		<link href="Resources/css/course-components.css" rel="stylesheet" />
+		>
+		<link href="Resources/css/course.css" rel="stylesheet">
+		<link href="Resources/css/course-components.css" rel="stylesheet">
 		<link
 			href="Resources/vendor/prism/themes/prism.min.css"
 			rel="stylesheet"
 			integrity="sha384-rCCjoCPCsizaAAYVoz1Q0CmCTvnctK0JkfCSjx7IIxexTBg+uCKtFYycedUjMyA2"
 			crossorigin="anonymous"
-		/>
+		>
 		<script
 			src="Resources/vendor/prism/prism.min.js"
 			integrity="sha384-06z5D//U/xpvxZHuUz92xBvq3DqBBFi7Up53HRrbV7Jlv7Yvh/MZ7oenfUe9iCEt"
@@ -118,7 +118,7 @@
 				<div class="section-grid">
 					<div class="section-full">
 						<page-hero title="Sorting and Merging" reading-time="26 min"></page-hero>
-						<hr />
+						<hr>
 						<lesson-toc></lesson-toc>
 					</div>
 					<div class="section-header">
@@ -141,14 +141,17 @@
 						<p>
 							Sometimes, when two or more files are ordered on the same key field or fields, we may want
 							to combine them into one single ordered file. COBOL provides the
-							<code class="language-cobol">MERGE</code> verb for this purpose.
+							<code class="language-cobol">MERGE</code>
+							verb for this purpose.
 						</p>
 						<p>
 							This tutorial explores the syntax, semantics, and use of the
-							<code class="language-cobol">SORT</code> and
-							<code class="language-cobol">MERGE</code> verbs.
+							<code class="language-cobol">SORT</code>
+							and
+							<code class="language-cobol">MERGE</code>
+							verbs.
 						</p>
-						<hr class="thin-rule" />
+						<hr class="thin-rule">
 					</div>
 					<div class="section-sidebar">
 						<h3>Objectives</h3>
@@ -162,8 +165,10 @@
 							</li>
 							<li>
 								Understand the role of the temporary work file and the
-								<code class="language-cobol">USING</code> and
-								<code class="language-cobol">GIVING</code> files.
+								<code class="language-cobol">USING</code>
+								and
+								<code class="language-cobol">GIVING</code>
+								files.
 							</li>
 							<li>
 								Be able to apply the <code class="language-cobol">SORT</code> to sort a file on
@@ -171,8 +176,10 @@
 							</li>
 							<li>
 								Understand why you might want to use an
-								<code class="language-cobol">INPUT PROCEDURE</code> or an
-								<code class="language-cobol">OUTPUT PROCEDURE</code> to filter or alter records.
+								<code class="language-cobol">INPUT PROCEDURE</code>
+								or an
+								<code class="language-cobol">OUTPUT PROCEDURE</code>
+								to filter or alter records.
 							</li>
 							<li>
 								Know the difference between an <code class="language-cobol">INPUT PROCEDURE</code> and
@@ -187,7 +194,7 @@
 						</ol>
 					</div>
 					<div class="section-full">
-						<hr />
+						<hr>
 					</div>
 
 					<div class="section-header">
@@ -214,7 +221,7 @@
 							changes to the <code class="language-cobol">SORT</code>. This is rarely the case when
 							programs rely on a vendor-supplied or "bought in" sort.
 						</p>
-						<hr class="thin-rule" />
+						<hr class="thin-rule">
 					</div>
 					<div class="section-sidebar">
 						<h3>Why sort the file?</h3>
@@ -225,7 +232,8 @@
 							easy if the file is ordered. In these situations, an obvious part of the solution is to sort
 							the file. This is an approach to problem solving sometimes called, "beneficial wishful
 							thinking". We start by thinking
-							<i>if only this file were ordered, then it would be easy to write the code to process it</i
+							<i
+								>if only this file were ordered, then it would be easy to write the code to process it</i
 							>, and then take the next logical step which is - "Well then, let's sort the file first".
 						</p>
 						<p>Consider the following specification;</p>
@@ -311,13 +319,13 @@ END-IF</code></pre>
 							>
 							This thinking would lead us to the obvious conclusion - we must sort the calls file.
 						</p>
-						<hr class="thin-rule" />
+						<hr class="thin-rule">
 					</div>
 					<div class="section-sidebar">
 						<h3>Syntax of a simplified SORT</h3>
 						<aside>
 							<p class="center-block">
-								<span class="i-detail" aria-hidden="true">🔍</span><br />
+								<span class="i-detail" aria-hidden="true">🔍</span><br>
 								Records in LINE SEQUENTIAL files are followed by the carriage return and line feed
 								characters, but RECORD SEQUENTIAL files are organized as a simple stream of bytes.
 							</p>
@@ -327,8 +335,9 @@ END-IF</code></pre>
 						<p>
 							The syntax for a simplified version of the <code class="language-cobol">SORT</code> is shown
 							below. The <code class="language-cobol">SORT</code> takes the records in the
-							<i>InFileName</i> file, sorts them on the <i>SortKeyIdentifier</i> key or keys and writes
-							the sorted records to the <i>OutFileName</i> file.
+							<i>InFileName</i>
+							file, sorts them on the <i>SortKeyIdentifier</i> key or keys and writes the sorted records
+							to the <i>OutFileName</i> file.
 						</p>
 						<p>
 							<img
@@ -336,7 +345,7 @@ END-IF</code></pre>
 								src="Resources/pics/Sort1.gif"
 								width="436"
 								alt="Simplified SORT verb syntax diagram"
-							/>
+							>
 						</p>
 						<p>e.g.</p>
 						<blockquote>
@@ -354,12 +363,17 @@ SORT WorkFile ON ASCENDING ProvinceCode
 						<h4>SORT notes</h4>
 						<p>
 							The <i>SDWorkFileName</i> identifies a temporary work file that the
-							<code class="language-cobol">SORT</code> process uses for the sort. It is defined in the
-							<code class="language-cobol">FILE SECTION</code> using an
-							<code class="language-cobol">SD</code> (Stream/Sort Description) entry. Even though the work
-							file is a temporary file, it must still have an associated
-							<code class="language-cobol">SELECT</code> and
-							<code class="language-cobol">ASSIGN</code> clause in the
+							<code class="language-cobol">SORT</code>
+							process uses for the sort. It is defined in the
+							<code class="language-cobol">FILE SECTION</code>
+							using an
+							<code class="language-cobol">SD</code>
+							(Stream/Sort Description) entry. Even though the work file is a temporary file, it must
+							still have an associated
+							<code class="language-cobol">SELECT</code>
+							and
+							<code class="language-cobol">ASSIGN</code>
+							clause in the
 							<code class="language-cobol">ENVIRONMENT DIVISION</code>.
 						</p>
 						<p>
@@ -376,8 +390,8 @@ SORT WorkFile ON ASCENDING ProvinceCode
 							from left to right (leftmost key is most significant, rightmost is least significant).
 						</p>
 						<p>
-							<i>InFileName</i> and <i>OutFileName</i>, are the names of the input and output files
-							respectively.
+							<i>InFileName</i>
+							and <i>OutFileName</i>, are the names of the input and output files respectively.
 						</p>
 						<p>
 							If the <code class="language-cobol">DUPLICATES</code> clause is used then, when the file has
@@ -386,8 +400,10 @@ SORT WorkFile ON ASCENDING ProvinceCode
 							order of records with duplicate keys is undefined.
 						</p>
 						<p>
-							<i>AlphabetName</i> is an alphabet-name defined in the
-							<code class="language-cobol">SPECIAL-NAMES</code> paragraph of the
+							<i>AlphabetName</i>
+							is an alphabet-name defined in the
+							<code class="language-cobol">SPECIAL-NAMES</code>
+							paragraph of the
 							<code class="language-cobol">ENVIRONMENT DIVISION</code>. This clause is used to select the
 							character set the <code class="language-cobol">SORT</code> verb uses for collating the
 							records in the file. The character set may be <code class="language-cobol">ASCII</code> (8
@@ -399,8 +415,10 @@ SORT WorkFile ON ASCENDING ProvinceCode
 						<ol>
 							<li>
 								The <code class="language-cobol">SORT</code> can be used anywhere in the
-								<code class="language-cobol">PROCEDURE DIVISION</code> except in an
-								<code class="language-cobol">INPUT</code> or
+								<code class="language-cobol">PROCEDURE DIVISION</code>
+								except in an
+								<code class="language-cobol">INPUT</code>
+								or
 								<code class="language-cobol">OUTPUT PROCEDURE</code>, or another
 								<code class="language-cobol">SORT</code>, or a
 								<code class="language-cobol">MERGE</code>, or in the
@@ -416,14 +434,16 @@ SORT WorkFile ON ASCENDING ProvinceCode
 							</li>
 							<li>
 								The <i>SortKeyIdentifier</i> description cannot contain an
-								<code class="language-cobol">OCCURS</code> clause (i.e., it can't be a table/array) nor
-								can it be subordinate to an entry that does contain one.
+								<code class="language-cobol">OCCURS</code>
+								clause (i.e., it can't be a table/array) nor can it be subordinate to an entry that does
+								contain one.
 							</li>
 							<li>
-								<i>InFileName</i> and <i>OutFileName</i> files are automatically opened by the
+								<i>InFileName</i>
+								and <i>OutFileName</i> files are automatically opened by the
 								<code class="language-cobol">SORT</code>. When the
-								<code class="language-cobol">SORT</code> executes they must <strong>not</strong> be open
-								already.
+								<code class="language-cobol">SORT</code>
+								executes they must <strong>not</strong> be open already.
 							</li>
 						</ol>
 						<p>
@@ -484,7 +504,8 @@ Begin.
 						<p>
 							Remember - the <code class="language-cobol">SORT</code> automatically opens the CallsFile
 							and the SortedCallsFile. These files must not be open when the
-							<code class="language-cobol">SORT</code> executes or it will fail.
+							<code class="language-cobol">SORT</code>
+							executes or it will fail.
 						</p>
 						<p class="center-block">
 							<img
@@ -492,7 +513,7 @@ Begin.
 								src="Resources/pics/Sort2.gif"
 								width="470"
 								alt="Diagram showing how a simple SORT moves records from input file through work file to sorted output file"
-							/>
+							>
 						</p>
 						<pre
 							class="language-cobol"
@@ -500,7 +521,7 @@ Begin.
      USING  CallsFile
      GIVING SortedCallsFile.
 </code></pre>
-						<hr class="thin-rule" />
+						<hr class="thin-rule">
 					</div>
 					<div class="section-sidebar">
 						<h3>Using multiple keys.</h3>
@@ -520,9 +541,10 @@ Begin.
 						<p>
 							Notice that ProvinceCode is the major key, and that VendorNumber is only in descending
 							sequence,
-							<i>within</i> ProvinceCode. The first key named in a
-							<code class="language-cobol">SORT</code> statement is the major key and keys get less
-							significant with each successive declaration.
+							<i>within</i>
+							ProvinceCode. The first key named in a
+							<code class="language-cobol">SORT</code>
+							statement is the major key and keys get less significant with each successive declaration.
 						</p>
 						<p class="center-block"><strong>SortedSalesFile</strong></p>
 						<table style="margin: 0 auto" class="data-table" width="36%">
@@ -530,8 +552,8 @@ Begin.
 								<td width="58" style="vertical-align: top">
 									<p class="center-block">
 										<b
-											>Ascending<br />
-											Province<br />
+											>Ascending<br>
+											Province<br>
 											Code</b
 										>
 									</p>
@@ -539,8 +561,8 @@ Begin.
 								<td width="64" style="vertical-align: top">
 									<div class="center-block">
 										<b
-											>Descending<br />
-											Vendor<br />
+											>Descending<br>
+											Vendor<br>
 											Number</b
 										>
 									</div>
@@ -548,7 +570,7 @@ Begin.
 								<td width="45" style="vertical-align: top">
 									<div class="center-block">
 										<b
-											>Remaining<br />
+											>Remaining<br>
 											Record</b
 										>
 									</div>
@@ -645,7 +667,7 @@ etc.</code></pre>
 						</table>
 					</div>
 					<div class="section-full">
-						<hr />
+						<hr>
 					</div>
 				</div>
 				<!-- SORTing with an INPUT PROCEDURE -->
@@ -661,15 +683,15 @@ etc.</code></pre>
 							Some times, not all the records in an unsorted file are required in the sorted file. Other
 							times, it may be that the sorted file records require additional, altered, or fewer fields,
 							than the unsorted records. In these cases, an
-							<code class="language-cobol">INPUT PROCEDURE</code> can be used to eliminate unwanted
-							records, or to alter the format of the records, before they are submitted to the sort
-							process.
+							<code class="language-cobol">INPUT PROCEDURE</code>
+							can be used to eliminate unwanted records, or to alter the format of the records, before
+							they are submitted to the sort process.
 						</p>
 						<p>
 							Since sorting is a disk-based process, and thus comparatively slow, every effort should be
 							made to reduce the amount of data that has to be sorted.
 						</p>
-						<hr class="thin-rule" />
+						<hr class="thin-rule">
 					</div>
 					<div class="section-sidebar">
 						<h3>SORT syntax with INPUT PROCEDURE</h3>
@@ -681,7 +703,7 @@ etc.</code></pre>
 								src="Resources/pics/Sort3.gif"
 								width="486"
 								alt="SORT verb syntax diagram with INPUT PROCEDURE"
-							/>
+							>
 						</p>
 						e.g.
 						<pre class="language-cobol"><code class="language-cobol">
@@ -700,10 +722,12 @@ SORT WorkFile ON ASCENDING CountryNameWF, CustomerNameWF
 						<h4>INPUT PROCEDURE notes</h4>
 						<p>
 							When an <code class="language-cobol">INPUT PROCEDURE</code> is used, it replaces the
-							<code class="language-cobol">USING</code> phrase. The <i>ProcName</i> in the
-							<code class="language-cobol">INPUT PROCEDURE</code> phrase, identifies a block of code, that
-							uses the <code class="language-cobol">RELEASE</code> verb to supply records to the sort
-							process.
+							<code class="language-cobol">USING</code>
+							phrase. The <i>ProcName</i> in the
+							<code class="language-cobol">INPUT PROCEDURE</code>
+							phrase, identifies a block of code, that uses the
+							<code class="language-cobol">RELEASE</code>
+							verb to supply records to the sort process.
 						</p>
 						<p>
 							The <code class="language-cobol">INPUT PROCEDURE</code> must finish before the sort process
@@ -714,8 +738,9 @@ SORT WorkFile ON ASCENDING CountryNameWF, CustomerNameWF
 						<p>
 							An <code class="language-cobol">INPUT PROCEDURE</code> allows us to select which records,
 							and what type of records, will be submitted to the sort process. Because an
-							<code class="language-cobol">INPUT PROCEDURE</code> executes before the sort process sorts
-							the records, only the data that is actually required in the sorted file will be sorted.
+							<code class="language-cobol">INPUT PROCEDURE</code>
+							executes before the sort process sorts the records, only the data that is actually required
+							in the sorted file will be sorted.
 						</p>
 						<p>
 							<strong> <code class="language-cobol">INPUT PROCEDURE</code> rules </strong>
@@ -723,23 +748,25 @@ SORT WorkFile ON ASCENDING CountryNameWF, CustomerNameWF
 						<ol>
 							<li>
 								The <code class="language-cobol">INPUT PROCEDURE</code> must contain at least one
-								<code class="language-cobol">RELEASE</code> statement to transfer the records to the
+								<code class="language-cobol">RELEASE</code>
+								statement to transfer the records to the
 								<i>SDWorkFileName</i>.
 							</li>
 							<li>
 								The old COBOL rules for the <code class="language-cobol">SORT</code> verb stated that
 								the <code class="language-cobol">INPUT</code> and
-								<code class="language-cobol">OUTPUT</code> procedures had to be self-contained sections
-								of code, and could not be entered from elsewhere in the program.
+								<code class="language-cobol">OUTPUT</code>
+								procedures had to be self-contained sections of code, and could not be entered from
+								elsewhere in the program.
 							</li>
 							<li>
 								In COBOL '85, <code class="language-cobol">INPUT</code> and
-								<code class="language-cobol">OUTPUT</code> procedures can be any contiguous group of
-								paragraphs or sections. The only restriction is that the range of paragraphs or sections
-								used, must not overlap.
+								<code class="language-cobol">OUTPUT</code>
+								procedures can be any contiguous group of paragraphs or sections. The only restriction
+								is that the range of paragraphs or sections used, must not overlap.
 							</li>
 						</ol>
-						<hr class="thin-rule" />
+						<hr class="thin-rule">
 					</div>
 					<div class="section-sidebar">
 						<h3>How a SORT with and INPUT PROCEDURE works.</h3>
@@ -747,24 +774,33 @@ SORT WorkFile ON ASCENDING CountryNameWF, CustomerNameWF
 					<div class="section-content">
 						<p>
 							A simple <code class="language-cobol">SORT</code> works by taking records from the
-							<code class="language-cobol">USING</code> file, sorting them, and then writing them to the
-							<code class="language-cobol">GIVING</code> file. When an
-							<code class="language-cobol">INPUT PROCEDURE</code> is used, there is no
-							<code class="language-cobol">USING</code> file, so the
-							<code class="language-cobol">SORT</code> process has to get its records from the
-							<code class="language-cobol">INPUT PROCEDURE</code> . The
-							<code class="language-cobol">INPUT PROCEDURE</code> uses the
-							<code class="language-cobol">RELEASE</code> verb to supply the records to the
+							<code class="language-cobol">USING</code>
+							file, sorting them, and then writing them to the
+							<code class="language-cobol">GIVING</code>
+							file. When an
+							<code class="language-cobol">INPUT PROCEDURE</code>
+							is used, there is no
+							<code class="language-cobol">USING</code>
+							file, so the
+							<code class="language-cobol">SORT</code>
+							process has to get its records from the
+							<code class="language-cobol">INPUT PROCEDURE</code>
+							. The
+							<code class="language-cobol">INPUT PROCEDURE</code>
+							uses the
+							<code class="language-cobol">RELEASE</code>
+							verb to supply the records to the
 							<code class="language-cobol">SORT</code>, one at a time.
 						</p>
 						<p>
 							Although an <code class="language-cobol">INPUT PROCEDURE</code> usually gets the records it
 							supplies to the sort process from an input file, the records can actually originate from
 							anywhere. For instance, if we wanted to sort the elements of a table, we could use an
-							<code class="language-cobol">INPUT PROCEDURE</code> to send the elements, one at a time, to
-							the sort process. Or if we wanted to sort the records as they were entered by the user, we
-							could use an <code class="language-cobol">INPUT PROCEDURE</code> to get the records from the
-							user and supply them to the sort process.
+							<code class="language-cobol">INPUT PROCEDURE</code>
+							to send the elements, one at a time, to the sort process. Or if we wanted to sort the
+							records as they were entered by the user, we could use an
+							<code class="language-cobol">INPUT PROCEDURE</code>
+							to get the records from the user and supply them to the sort process.
 						</p>
 						<p>
 							When an <code class="language-cobol">INPUT PROCEDURE</code> gets its records from an input
@@ -783,7 +819,7 @@ SORT WorkFile ON ASCENDING CountryNameWF, CustomerNameWF
 								src="Resources/pics/Sort5.gif"
 								width="435"
 								alt="Diagram showing INPUT PROCEDURE filtering records between input file and sort process"
-							/>
+							>
 						</p>
 						<pre
 							class="language-cobol"
@@ -791,7 +827,7 @@ SORT WorkFile ON ASCENDING CountryNameWF, CustomerNameWF
               INPUT PROCEDURE IS SelectForeignGuests
               GIVING SortedGuestsFile.
 </code></pre>
-						<hr class="thin-rule" />
+						<hr class="thin-rule">
 					</div>
 					<div class="section-sidebar">
 						<h3>Creating an INPUT PROCEDURE</h3>
@@ -800,9 +836,12 @@ SORT WorkFile ON ASCENDING CountryNameWF, CustomerNameWF
 						<p>
 							An <code class="language-cobol">INPUT PROCEDURE</code> supplies records to the sort process
 							by writing them to the work file declared in the <code class="language-cobol">SORT</code>'s
-							<code class="language-cobol">SD</code> entry. But to write the records to the work file a
-							special verb - the <code class="language-cobol">RELEASE</code> verb is used. The syntax of
-							the <code class="language-cobol">RELEASE</code> verb is;
+							<code class="language-cobol">SD</code>
+							entry. But to write the records to the work file a special verb - the
+							<code class="language-cobol">RELEASE</code>
+							verb is used. The syntax of the
+							<code class="language-cobol">RELEASE</code>
+							verb is;
 						</p>
 						<blockquote>
 							<p>
@@ -815,7 +854,8 @@ SORT WorkFile ON ASCENDING CountryNameWF, CustomerNameWF
 						</blockquote>
 						<p>
 							where SDRecordName is the name of the record declared in the work file's
-							<code class="language-cobol">SD</code> entry.
+							<code class="language-cobol">SD</code>
+							entry.
 						</p>
 						<p>
 							An operational template for an <code class="language-cobol">INPUT PROCEDURE</code>, which
@@ -832,13 +872,13 @@ PERFORM UNTIL TerminatingCondition
 END-PERFORM
 CLOSE InFileName</code></pre>
 						</div>
-						<hr class="thin-rule" />
+						<hr class="thin-rule">
 					</div>
 					<div class="section-sidebar">
 						<h3>The Foreign Guests Report - example program</h3>
 						<aside>
 							<p class="center-block">
-								<span class="i-detail" aria-hidden="true">🔍</span><br />
+								<span class="i-detail" aria-hidden="true">🔍</span><br>
 								In this instance, since the number of countries in the world is fairly static, a
 								table-based solution might also be viable.
 							</p>
@@ -864,10 +904,10 @@ CLOSE InFileName</code></pre>
 							When we examine the fields of a GuestBook record, we notice that, for the purposes of this
 							report, the GuestName and GuestComment are irrelevant. The only field we actually need for
 							the report, is the CountryName field. So as well as selecting only foreign guests, the
-							<code class="language-cobol">INPUT PROCEDURE</code> alters the structure of the GuestBook
-							records supplied to the sort process. Since the new records are only 20 characters in size,
-							rather than 80 characters, the amount of data that has to be sorted is substantially
-							reduced.
+							<code class="language-cobol">INPUT PROCEDURE</code>
+							alters the structure of the GuestBook records supplied to the sort process. Since the new
+							records are only 20 characters in size, rather than 80 characters, the amount of data that
+							has to be sorted is substantially reduced.
 						</p>
 						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
@@ -987,7 +1027,7 @@ PrintReportBody.
    WRITE PrintLine FROM CountryLine
          AFTER ADVANCING 1 LINE.
 </code></pre>
-						<hr class="thin-rule" />
+						<hr class="thin-rule">
 					</div>
 					<div class="section-sidebar">
 						<h3>Feeding the SORT from the keyboard - example program</h3>
@@ -1002,7 +1042,8 @@ PrintReportBody.
 							As the illustration below shows, this example program gets records from the user, sorts them
 							on ascending StudentId, and then outputs them to the StudentFile. Notice that the sort
 							process only sorts the file, when the
-							<code class="language-cobol">INPUT PROCEDURE</code> has finished.
+							<code class="language-cobol">INPUT PROCEDURE</code>
+							has finished.
 						</p>
 						<p class="center-block">
 							<img
@@ -1010,7 +1051,7 @@ PrintReportBody.
 								src="Resources/pics/Sort6.gif"
 								width="515"
 								alt="Diagram showing records being accepted from the user, sorted, and written to the student file"
-							/>
+							>
 						</p>
 						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
@@ -1075,7 +1116,7 @@ GetStudentDetails.
     END-PERFORM.</code></pre>
 					</div>
 					<div class="section-full">
-						<hr />
+						<hr>
 					</div>
 				</div>
 				<!-- Sorting with an OUTPUT PROCEDURE -->
@@ -1094,8 +1135,8 @@ GetStudentDetails.
 						</p>
 						<p>
 							An <code class="language-cobol">OUTPUT PROCEDURE</code> has no such advantage. An
-							<code class="language-cobol">OUTPUT PROCEDURE</code> only executes when the sort process has
-							already sorted the file.
+							<code class="language-cobol">OUTPUT PROCEDURE</code>
+							only executes when the sort process has already sorted the file.
 						</p>
 						<p>
 							Nevertheless, an <code class="language-cobol">OUTPUT PROCEDURE</code> is useful when we
@@ -1104,7 +1145,8 @@ GetStudentDetails.
 							create the report directly, without first having to create a file containing the sorted
 							records. This is what we do in the revised ForeignGuestsRpt program below. Instead of
 							creating a sorted guest file and then reading it to create the report; we use an
-							<code class="language-cobol">OUTPUT PROCEDURE</code> to create the report directly.
+							<code class="language-cobol">OUTPUT PROCEDURE</code>
+							to create the report directly.
 						</p>
 						<p>
 							An <code class="language-cobol">OUTPUT PROCEDURE</code> is also useful when we want to alter
@@ -1113,7 +1155,7 @@ GetStudentDetails.
 							the sorted records. The resulting sorted file contains summary records, rather than the
 							detail records, contained in the unsorted file.
 						</p>
-						<hr class="thin-rule" />
+						<hr class="thin-rule">
 					</div>
 					<div class="section-sidebar">
 						<h3>SORT syntax with OUTPUT PROCEDURE</h3>
@@ -1121,7 +1163,8 @@ GetStudentDetails.
 					<div class="section-content">
 						<p>
 							The syntax diagram below is the complete syntax for the
-							<code class="language-cobol">SORT</code> verb.
+							<code class="language-cobol">SORT</code>
+							verb.
 						</p>
 						<p>
 							<img
@@ -1129,7 +1172,7 @@ GetStudentDetails.
 								src="Resources/pics/Sort4.gif"
 								width="502"
 								alt="Complete SORT verb syntax diagram showing both INPUT PROCEDURE and OUTPUT PROCEDURE options"
-							/>
+							>
 						</p>
 						<p>e.g.</p>
 						<pre class="language-cobol"><code class="language-cobol">SORT WorkFile ON ASCENDING CustNameWF
@@ -1154,15 +1197,16 @@ SORT WorkFile ON ASCENDING KEY SalespersonNumWF
 						<ol>
 							<li>
 								An <code class="language-cobol">OUTPUT PROCEDURE</code> must contain at least one
-								<code class="language-cobol">RETURN</code> statement to get the records from the
-								SortFile.
+								<code class="language-cobol">RETURN</code>
+								statement to get the records from the SortFile.
 							</li>
 							<li>
 								The <code class="language-cobol">SORT ..GIVING</code> phrase cannot be used if an
-								<code class="language-cobol">OUTPUT PROCEDURE</code> is used.
+								<code class="language-cobol">OUTPUT PROCEDURE</code>
+								is used.
 							</li>
 						</ol>
-						<hr class="thin-rule" />
+						<hr class="thin-rule">
 					</div>
 					<div class="section-sidebar">
 						<h3>How the OUTPUT PROCEDURE works</h3>
@@ -1170,10 +1214,11 @@ SORT WorkFile ON ASCENDING KEY SalespersonNumWF
 					<div class="section-content">
 						<p>
 							An <code class="language-cobol">OUTPUT PROCEDURE</code> uses the
-							<code class="language-cobol">RETURN</code> verb to retrieve sorted records from the work
-							file. An <code class="language-cobol">OUTPUT PROCEDURE</code> can do what it likes with the
-							records it gets from work file. It could put them into an array, display them on the screen,
-							or send them to an output file.
+							<code class="language-cobol">RETURN</code>
+							verb to retrieve sorted records from the work file. An
+							<code class="language-cobol">OUTPUT PROCEDURE</code>
+							can do what it likes with the records it gets from work file. It could put them into an
+							array, display them on the screen, or send them to an output file.
 						</p>
 						<p>
 							When the <code class="language-cobol">OUTPUT PROCEDURE</code> sends records to an output
@@ -1196,7 +1241,7 @@ SORT WorkFile ON ASCENDING KEY SalespersonNumWF
 								src="Resources/pics/Sort7.gif"
 								width="435"
 								alt="Diagram showing OUTPUT PROCEDURE summarising sorted sales records into a sales summary file"
-							/>
+							>
 						</p>
 						<pre
 							class="language-cobol"
@@ -1204,7 +1249,7 @@ SORT WorkFile ON ASCENDING KEY SalespersonNumWF
      USING SalesFile
      OUTPUT PROCEDURE IS SummariseSales.
 </code></pre>
-						<hr class="thin-rule" />
+						<hr class="thin-rule">
 					</div>
 					<div class="section-sidebar">
 						<h3>Creating an OUTPUT PROCEDURE</h3>
@@ -1213,8 +1258,10 @@ SORT WorkFile ON ASCENDING KEY SalespersonNumWF
 						<p>
 							An <code class="language-cobol">OUTPUT PROCEDURE</code> uses the RETURN verb to read sorted
 							records from the work file declared in the Sort's
-							<code class="language-cobol">SD</code> entry. The syntax of the
-							<code class="language-cobol">RETURN</code> verb is;
+							<code class="language-cobol">SD</code>
+							entry. The syntax of the
+							<code class="language-cobol">RETURN</code>
+							verb is;
 						</p>
 						<blockquote>
 							<p>
@@ -1222,15 +1269,16 @@ SORT WorkFile ON ASCENDING KEY SalespersonNumWF
 									class="language-cobol"
 									>INTO</code
 								>
-								<i>Identifier</i>]<br />
+								<i>Identifier</i>]<br>
 								<span style="padding-inline-start: 4.5em; display: inline-block">AT END</span>
-								<i>StatementBlock</i><br />
+								<i>StatementBlock</i><br>
 								END-RETURN
 							</p>
 						</blockquote>
 						<p>
 							where SDFileName is the name of the file declared in the
-							<code class="language-cobol">SD</code> entry.
+							<code class="language-cobol">SD</code>
+							entry.
 						</p>
 						<p>
 							An operational template for an <code class="language-cobol">OUTPUT PROCEDURE</code>, which
@@ -1250,7 +1298,7 @@ END-PERFORM
 CLOSE OutFile
 </code></pre>
 						</div>
-						<hr class="thin-rule" />
+						<hr class="thin-rule">
 					</div>
 					<div class="section-sidebar">
 						<h3>Sales summary file - example program</h3>
@@ -1260,8 +1308,9 @@ CLOSE OutFile
 							The example below creates a sorted SalesSummaryFile from an unsorted SalesFile. The
 							SalesSummaryFile is a sequential file, sorted on ascending salesperson-number. Each record
 							in the summary file is the sum of all the items sold by a particular salesperson. An
-							<code class="language-cobol">OUTPUT PROCEDURE</code> is used, because until the records have
-							been sorted into salesperson number order, the salesperson records cannot be summarized.
+							<code class="language-cobol">OUTPUT PROCEDURE</code>
+							is used, because until the records have been sorted into salesperson number order, the
+							salesperson records cannot be summarized.
 						</p>
 						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
@@ -1321,7 +1370,7 @@ SummariseSales.
     END-PERFORM
     CLOSE SalesSummaryFile.
 </code></pre>
-						<hr class="thin-rule" />
+						<hr class="thin-rule">
 					</div>
 					<div class="section-sidebar">
 						<h3>Revised Foreign Guests Report - example program</h3>
@@ -1446,7 +1495,7 @@ PrintReportBody.
 </code></pre>
 					</div>
 					<div class="section-full">
-						<hr />
+						<hr>
 					</div>
 				</div>
 				<!-- MERGEing files -->
@@ -1468,11 +1517,12 @@ PrintReportBody.
 						<p>
 							In COBOL, instead of having to write special code every time we want to merge files, we can
 							use the <code class="language-cobol">MERGE</code> verb. The
-							<code class="language-cobol">MERGE</code> verb takes two or more identically sequenced files
-							and combines them, according to the key values specified. The combined file is then sent to
-							an output file or an <code class="language-cobol">OUTPUT PROCEDURE</code>.
+							<code class="language-cobol">MERGE</code>
+							verb takes two or more identically sequenced files and combines them, according to the key
+							values specified. The combined file is then sent to an output file or an
+							<code class="language-cobol">OUTPUT PROCEDURE</code>.
 						</p>
-						<hr class="thin-rule" />
+						<hr class="thin-rule">
 					</div>
 					<div class="section-sidebar">
 						<h3>MERGE syntax</h3>
@@ -1484,7 +1534,7 @@ PrintReportBody.
 								src="Resources/pics/Sort8.gif"
 								width="494"
 								alt="MERGE verb syntax diagram"
-							/>
+							>
 						</p>
 						<p>e.g.</p>
 						<pre class="language-cobol"><code class="language-cobol">MERGE MergeWorkFile
@@ -1495,18 +1545,25 @@ PrintReportBody.
 						<p>
 							The results of the <code class="language-cobol">MERGE</code> verb are predictable only when
 							the records in the input files are ordered as described in the
-							<code class="language-cobol">KEY</code> clause associated with the
-							<code class="language-cobol">MERGE</code> statement. For instance, if the
-							<code class="language-cobol">MERGE</code> statement has an
-							<code class="language-cobol">ON DESCENDING KEY</code> StudentId clause, then all the
-							<code class="language-cobol">USING</code> files must be ordered on descending StudentId.
+							<code class="language-cobol">KEY</code>
+							clause associated with the
+							<code class="language-cobol">MERGE</code>
+							statement. For instance, if the
+							<code class="language-cobol">MERGE</code>
+							statement has an
+							<code class="language-cobol">ON DESCENDING KEY</code>
+							StudentId clause, then all the
+							<code class="language-cobol">USING</code>
+							files must be ordered on descending StudentId.
 						</p>
 						<p>
 							As with the <code class="language-cobol">SORT</code>, the <i>SDWorkFileName</i> is the name
 							of a temporary file, with an <code class="language-cobol">SD</code> entry in the
 							<code class="language-cobol">FILE SECTION</code>, a
-							<code class="language-cobol">SELECT</code> and
-							<code class="language-cobol">ASSIGN</code> entry in the
+							<code class="language-cobol">SELECT</code>
+							and
+							<code class="language-cobol">ASSIGN</code>
+							entry in the
 							<code class="language-cobol">INPUT-OUTPUT SECTION</code>, and an organization of RECORD
 							SEQUENTIAL.
 						</p>
@@ -1519,15 +1576,18 @@ PrintReportBody.
 							from left to right (leftmost key is most significant, rightmost is least significant).
 						</p>
 						<p>
-							<i>InFileName</i> and <i>OutFileName</i>, are the names of the input and output files
-							respectively. These files are automatically opened by the
+							<i>InFileName</i>
+							and <i>OutFileName</i>, are the names of the input and output files respectively. These
+							files are automatically opened by the
 							<code class="language-cobol">MERGE</code>. When the
-							<code class="language-cobol">MERGE</code> executes they must <strong>not</strong> be already
-							open.
+							<code class="language-cobol">MERGE</code>
+							executes they must <strong>not</strong> be already open.
 						</p>
 						<p>
-							<i>AlphabetName</i> is an alphabet-name defined in the
-							<code class="language-cobol">SPECIAL-NAMES</code> paragraph of the
+							<i>AlphabetName</i>
+							is an alphabet-name defined in the
+							<code class="language-cobol">SPECIAL-NAMES</code>
+							paragraph of the
 							<code class="language-cobol">ENVIRONMENT DIVISION</code>. This clause is used to select the
 							character set the <code class="language-cobol">SORT</code> verb uses for collating the
 							records in the file. The character set may be <code class="language-cobol">ASCII</code> (8
@@ -1535,16 +1595,19 @@ PrintReportBody.
 						</p>
 						<p>
 							The <code class="language-cobol">MERGE</code> can use an
-							<code class="language-cobol">OUTPUT PROCEDURE</code> and the
-							<code class="language-cobol">RETURN</code> verb to get merged records from the
+							<code class="language-cobol">OUTPUT PROCEDURE</code>
+							and the
+							<code class="language-cobol">RETURN</code>
+							verb to get merged records from the
 							<i>SDWorkFileName.</i>
 						</p>
 						<p>
 							The <code class="language-cobol">OUTPUT PROCEDURE</code> only executes after the files have
 							been merged and must contain at least one
-							<code class="language-cobol">RETURN</code> statement to get the records from the SortFile.
+							<code class="language-cobol">RETURN</code>
+							statement to get the records from the SortFile.
 						</p>
-						<hr class="thin-rule" />
+						<hr class="thin-rule">
 					</div>
 					<div class="section-sidebar">
 						<h3>MERGE example</h3>
@@ -1553,7 +1616,8 @@ PrintReportBody.
 						<p>
 							In this example program, instead of writing code to insert records from a transaction file
 							into an ordered master file, we have used the
-							<code class="language-cobol">MERGE</code> verb to merge the files.
+							<code class="language-cobol">MERGE</code>
+							verb to merge the files.
 						</p>
 						<pre class="language-cobol"><code class="language-cobol">       &gt;&gt;SOURCE FORMAT IS FREE
 IDENTIFICATION DIVISION.
@@ -1609,7 +1673,7 @@ Begin.
 						examples="../examples/Sort/InputSort.html|SORT with Input Procedure, ../examples/Sort/MaleSort.html|SORT with Output Procedure, ../examples/Merge/Merge.html|Merging Files Example"
 						exercises="../exercises/SortIP.html|Sorting a Sequential File"
 					></related-content>
-					<hr />
+					<hr>
 					<lesson-checkbox lesson="SortMerge"></lesson-checkbox>
 					<lesson-nav></lesson-nav>
 					<copyright-notice></copyright-notice>

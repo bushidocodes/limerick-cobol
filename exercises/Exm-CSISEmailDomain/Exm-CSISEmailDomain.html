@@ -1,27 +1,27 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+		<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
 		<script>
-			(function () {
-				var t = localStorage.getItem("lc-theme");
-				if (t === "dark" || t === "light") {
-					document.documentElement.setAttribute("data-theme", t);
-					var color = t === "dark" ? "#1a1a1a" : "#ffffff";
-					var meta = document.querySelector('meta[name="theme-color"]:not([media])');
-					if (!meta) {
-						meta = document.createElement("meta");
-						meta.name = "theme-color";
-						document.head.appendChild(meta);
-					}
-					meta.content = color;
+		(function () {
+			var t = localStorage.getItem("lc-theme");
+			if (t === "dark" || t === "light") {
+				document.documentElement.setAttribute("data-theme", t);
+				var color = t === "dark" ? "#1a1a1a" : "#ffffff";
+				var meta = document.querySelector('meta[name="theme-color"]:not([media])');
+				if (!meta) {
+					meta = document.createElement("meta");
+					meta.name = "theme-color";
+					document.head.appendChild(meta);
 				}
-			})();
+				meta.content = color;
+			}
+		})();
 		</script>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
 		<script type="application/ld+json">
 			{
 				"@context": "https://schema.org",
@@ -52,40 +52,37 @@
 		<meta
 			name="description"
 			content="One purpose of the CSIS web site is to collect, and display, the current email addresses of all CSIS graduates. Graduates who visit the site are asked to"
-		/>
+		>
 		<link
 			rel="canonical"
 			href="https://bushidocodes.github.io/limerick-cobol/exercises/Exm-CSISEmailDomain/Exm-CSISEmailDomain.html"
-		/>
-		<link
-			rel="prev"
-			href="https://bushidocodes.github.io/limerick-cobol/exercises/Exm-SFbyMail/Exm-SFbyMail.html"
-		/>
+		>
+		<link rel="prev" href="https://bushidocodes.github.io/limerick-cobol/exercises/Exm-SFbyMail/Exm-SFbyMail.html">
 		<link
 			rel="next"
 			href="https://bushidocodes.github.io/limerick-cobol/exercises/Exm-RoyaltyPaymentsRpt/Exm-LibRoyaltyRpt.html"
-		/>
+		>
 		<!-- Open Graph -->
-		<meta property="og:type" content="website" />
+		<meta property="og:type" content="website">
 		<meta
 			property="og:url"
 			content="https://bushidocodes.github.io/limerick-cobol/exercises/Exm-CSISEmailDomain/Exm-CSISEmailDomain.html"
-		/>
-		<meta property="og:title" content="CSIS Web Site - Email Domain File (Exam Paper)" />
+		>
+		<meta property="og:title" content="CSIS Web Site - Email Domain File (Exam Paper)">
 		<meta
 			property="og:description"
 			content="One purpose of the CSIS web site is to collect, and display, the current email addresses of all CSIS graduates. Graduates who visit the site are asked to"
-		/>
-		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/exercises.png" />
+		>
+		<meta property="og:image" content="https://bushidocodes.github.io/limerick-cobol/pics/og/exercises.png">
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="CSIS Web Site - Email Domain File (Exam Paper)" />
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="CSIS Web Site - Email Domain File (Exam Paper)">
 		<meta
 			name="twitter:description"
 			content="One purpose of the CSIS web site is to collect, and display, the current email addresses of all CSIS graduates. Graduates who visit the site are asked to"
-		/>
-		<link href="../../course/Resources/css/course.css" rel="stylesheet" />
-		<link href="../../course/Resources/css/course-components.css" rel="stylesheet" />
+		>
+		<link href="../../course/Resources/css/course.css" rel="stylesheet">
+		<link href="../../course/Resources/css/course-components.css" rel="stylesheet">
 		<script src="../../components/theme-toggle.js" defer></script>
 		<script src="../../components/page-hero.js" defer></script>
 		<script src="../../components/site-search.js" defer></script>
@@ -104,32 +101,34 @@
 			<div class="page-wrapper">
 				<div class="page-content">
 					<page-hero title="CSIS Web Site Email Domain File"></page-hero>
-					<hr />
+					<hr>
 
 					<dl class="exam-meta">
 						<dt>Time to complete</dt>
 						<dd>Allow 4 hours continuous.</dd>
 						<dt>Program Download</dt>
 						<dd>
-							<a href="CSISEmailDomain.cbl">CSISEmailDomain.cbl</a> is a model answer. Don't look at this
-							until you have made your own attempt at the program.
+							<a href="CSISEmailDomain.cbl">CSISEmailDomain.cbl</a>
+							is a model answer. Don't look at this until you have made your own attempt at the program.
 						</dd>
 						<dt>Example Output</dt>
 						<dd>
 							<p>
-								<a href="SORTEDDOMAIN.dat">SortedDomain.dat</a> is the file, sorted on ascending email
-								domain, that is produced from the GraduateInfo file.
+								<a href="SORTEDDOMAIN.dat">SortedDomain.dat</a>
+								is the file, sorted on ascending email domain, that is produced from the GraduateInfo
+								file.
 							</p>
 						</dd>
 						<dt>Example Input</dt>
 						<dd>
 							<p>
-								<a href="GRADINFO.dat">GRADINFO.dat</a> is the file that contains information about CSIS
-								graduates that has been collected from the form on the CSIS web site.
+								<a href="GRADINFO.dat">GRADINFO.dat</a>
+								is the file that contains information about CSIS graduates that has been collected from
+								the form on the CSIS web site.
 							</p>
 							<p>
-								<a href="COUNTRYCODES.dat">COUNTRYCODES.dat</a> is the file that contains the Country
-								Codes and their corresponding Country Names.
+								<a href="COUNTRYCODES.dat">COUNTRYCODES.dat</a>
+								is the file that contains the Country Codes and their corresponding Country Names.
 							</p>
 						</dd>
 						<dt>Exam Practice</dt>
@@ -137,9 +136,10 @@
 							<p>
 								If you want to try out the exam under the same conditions as our students you can write
 								the program in a printed version of
-								<a href="EmailDomainExm.doc">EmailDomainExm.Doc</a> which is an MS-Word file containing
-								the program outline. The example data files containing input data files and the output
-								file that is produced from them is in theMS-Word file
+								<a href="EmailDomainExm.doc">EmailDomainExm.Doc</a>
+								which is an MS-Word file containing the program outline. The example data files
+								containing input data files and the output file that is produced from them is in
+								theMS-Word file
 								<a href="DataFiles.doc">DataFiles.Doc</a>.
 							</p>
 							<p>
@@ -154,7 +154,7 @@
 							time filled tables, SEARCH
 						</dd>
 					</dl>
-					<hr />
+					<hr>
 
 					<section>
 						<h2>Introduction</h2>
@@ -403,7 +403,7 @@
 							examples="Prg-CSISEmailDomain.html|CSIS Email Domain – Sample Solution, ../../examples/Sort/InputSort.html|SORT with Input Procedure, ../../examples/Sort/MaleSort.html|SORT with Output Procedure, ../../examples/Merge/Merge.html|Merging Files"
 							exercises="../SortIP.html|Sorting a Sequential File, ../MonthTable.html|Using Tables Exercise"
 						></related-content>
-						<hr />
+						<hr>
 						<exercises-nav></exercises-nav>
 						<copyright-notice type="exercises"></copyright-notice>
 						<last-updated></last-updated>

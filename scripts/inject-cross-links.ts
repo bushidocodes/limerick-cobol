@@ -17,7 +17,7 @@
  *   tsx scripts/inject-cross-links.ts
  *
  * Idempotent: re-running over already-injected files replaces the block in
- * place. Pretty-format with `prettier --write` afterwards.
+ * place. Pretty-format with `biome format --write` afterwards.
  */
 
 import fs from "fs";
