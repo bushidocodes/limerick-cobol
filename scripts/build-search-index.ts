@@ -17,7 +17,9 @@ import path from "path";
 
 import { collectHtmlFiles } from "./lib/html-files.js";
 import { collapseWhitespace, decodeEntities } from "./lib/html-text.js";
+import { fileURLToPath } from "node:url";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, "..");
 const OUTPUT_PATH = path.join(REPO_ROOT, "search-index.json");
 

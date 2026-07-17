@@ -22,7 +22,9 @@ import path from "path";
 
 import { loadExerciseSequence } from "./lib/exercises.js";
 import { injectPrevNextLinks } from "./lib/prev-next.js";
+import { fileURLToPath } from "node:url";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, "..");
 const EXERCISES_DIR = path.join(REPO_ROOT, "exercises");
 const PROGRESS_PATH = path.join(REPO_ROOT, "components", "exercise-progress.js");

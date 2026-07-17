@@ -1,12 +1,13 @@
 /**
- * Shared filesystem walk used by build-sitemap.js and .pa11yci.js
+ * Shared filesystem walk used by build-sitemap.ts and .pa11yci.cjs
  * so both stay in sync as pages are added or removed.
  */
 
-const fs = require("fs");
-const path = require("path");
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-const REPO_ROOT = path.resolve(__dirname, "..");
+const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SKIP_DIRS = new Set([".playwright-mcp", "node_modules", ".claude", "scripts"]);
 const SKIP_FILES = new Set(["404.html"]);
 // Parameterized shells and meta-refresh stubs that must not be indexed or a11y-scanned directly.
@@ -39,4 +40,4 @@ function collectHtmlFiles(dir = REPO_ROOT) {
 	return results;
 }
 
-module.exports = { collectHtmlFiles, REPO_ROOT };
+export { collectHtmlFiles, REPO_ROOT };

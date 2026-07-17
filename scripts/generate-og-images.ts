@@ -14,7 +14,9 @@ import fs from "fs";
 import path from "path";
 
 import { escapeHtml } from "./lib/html-text.js";
+import { fileURLToPath } from "node:url";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT_DIR = path.resolve(__dirname, "../pics/og");
 const WIDTH = 1200;
 const HEIGHT = 630;

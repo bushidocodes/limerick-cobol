@@ -5,6 +5,15 @@ name: auto-format
 # the PR branch. Skips PRs from forks because GITHUB_TOKEN can't push to forked
 # repos — fork contributors will see `format:check` fail and need to run
 # `pnpm run format:write` locally before pushing.
+#
+# Token choice (important):
+#   Prefer secrets.AUTO_FORMAT_TOKEN (a classic or fine-grained PAT from a
+#   maintainer with contents:write). Pushes authenticated as github-actions[bot]
+#   via GITHUB_TOKEN cause subsequent workflow runs on the PR to sit in
+#   "awaiting approval" under GitHub's mid-2026 policy for bot-updated PRs
+#   (even same-repo branches). A human PAT re-triggers CI without approval.
+#   Fallback to github.token keeps the job working if the secret is missing,
+#   but you will need to Approve the follow-up checks manually.
 
 on:
     pull_request:
@@ -25,7 +34,8 @@ jobs:
             - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
               with:
                   ref: ${{ github.head_ref }}
-                  token: ${{ secrets.GITHUB_TOKEN }}
+                  # Prefer maintainer PAT so the push is not github-actions[bot].
+                  token: ${{ secrets.AUTO_FORMAT_TOKEN || github.token }}
             - uses: pnpm/action-setup@v6
               with:
                   run_install: false
