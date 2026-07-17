@@ -4,11 +4,10 @@
 //
 // Idempotent: a second run does nothing if the tag is already present.
 
+import { fileURLToPath } from "node:url";
 import fs from "fs";
 import path from "path";
-
 import { collectHtmlFiles } from "./lib/html-files.js";
-import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 /**
  * add-exercise-prev-next-links.ts
  *
@@ -17,12 +18,11 @@
  * Biome format afterwards (the build:* script does) to normalise wrapping.
  */
 
+import { fileURLToPath } from "node:url";
 import fs from "fs";
 import path from "path";
-
 import { loadExerciseSequence } from "./lib/exercises.js";
 import { injectPrevNextLinks } from "./lib/prev-next.js";
-import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, "..");

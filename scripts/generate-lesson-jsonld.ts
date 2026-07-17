@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 /**
  * generate-lesson-jsonld.ts
  *
@@ -12,13 +13,12 @@
  * Idempotent — re-running replaces the existing LearningResource block.
  */
 
+import { fileURLToPath } from "node:url";
 import fs from "fs";
 import path from "path";
-
 import { readJson } from "./lib/json.js";
 import { buildLearningResourceBlock, extractCanonical, extractDescription, injectJsonLd } from "./lib/jsonld.js";
 import { type LessonManifest, tutorialSequence } from "./lib/lessons.js";
-import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, "..");

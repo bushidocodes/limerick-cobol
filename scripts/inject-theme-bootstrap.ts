@@ -5,11 +5,10 @@
 // Inserts after the last <meta name="theme-color"> tag (or after the viewport
 // meta if no theme-color exists). Idempotent.
 
+import { fileURLToPath } from "node:url";
 import fs from "fs";
 import path from "path";
-
 import { collectHtmlFiles } from "./lib/html-files.js";
-import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");

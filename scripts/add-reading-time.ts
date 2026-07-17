@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 /**
  * add-reading-time.ts
  *
@@ -10,12 +11,11 @@
  * Minimum displayed: 1 min.
  */
 
+import { fileURLToPath } from "node:url";
 import fs from "fs";
 import path from "path";
-
 import { readJson } from "./lib/json.js";
 import { type LessonManifest, tutorialSequence } from "./lib/lessons.js";
-import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, "..");

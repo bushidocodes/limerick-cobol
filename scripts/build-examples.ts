@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 /**
  * build-examples.ts
  *
@@ -15,12 +16,11 @@
  * Usage:  npm run build:examples
  */
 
+import { fileURLToPath, pathToFileURL } from "node:url";
 import fs from "fs";
 import path from "path";
-
 import { escapeAttr, escapeHtml } from "./lib/html-text.js";
 import { readJson } from "./lib/json.js";
-import { fileURLToPath, pathToFileURL } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
