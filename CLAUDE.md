@@ -79,7 +79,7 @@ These paths are **build output** — do not edit them directly. CI regenerates t
 | Output (do not edit)                                        | Source of truth                                                          |
 | ----------------------------------------------------------- | ------------------------------------------------------------------------ |
 | `examples/**/*.html`                                        | `scripts/build-examples.ts` (template + manifest) + sibling `*.cbl` file |
-| `sitemap.xml`                                               | `scripts/build-sitemap.ts` (driven by `git log`)                         |
+| `sitemap.xml`                                               | `scripts/build-sitemap.ts` (HTML page list; no lastmod)                  |
 | `search-index.json`                                         | `scripts/build-search-index.ts` (driven by page `<title>` + meta)        |
 | `pics/og/*.png`                                             | `scripts/generate-og-images.ts`                                          |
 | `favicon.*`, `apple-touch-icon.png`, `android-chrome-*.png` | `scripts/generate-icons.ts` (driven by the logo SVG)                     |
@@ -144,7 +144,6 @@ Two stylesheets are loaded on every page:
 
 - `page-hero.js` — `<page-hero title="…">` element; source of truth for the page title (keep `<title>`, `og:title`, `twitter:title` in sync)
 - `copyright-notice.js` — copyright footer; use `type="exercises"` on exercise pages, `type="examples"` on example pages, no attribute on course pages
-- `last-updated.js` — renders the last-commit date for the page
 - `edit-on-github.js` — "Edit this page on GitHub" link
 - `related-content.js` — cross-links panel; supports `exercises`, `lectures`, and `examples` attributes (no `course` attribute)
 

@@ -43,13 +43,11 @@ class CopyrightNotice extends HTMLElement {
 			<hr>
 			${this._getContent()}
 		`;
-		// Insert after <last-updated> sibling when present so the footer order is:
-		// copyright → last updated → help improve this page. Skip if the page
-		// already includes its own <edit-on-github> — otherwise example pages
-		// (which hand-include both) get the banner rendered twice.
+		// Append edit link after this notice. Skip if the page already includes
+		// its own <edit-on-github> — otherwise example pages (which hand-include
+		// both) get the banner rendered twice.
 		if (document.querySelector("edit-on-github")) return;
-		const anchor = this.nextElementSibling?.tagName === "LAST-UPDATED" ? this.nextElementSibling : this;
-		anchor.insertAdjacentElement("afterend", document.createElement("edit-on-github"));
+		this.insertAdjacentElement("afterend", document.createElement("edit-on-github"));
 	}
 
 	disconnectedCallback() {}
