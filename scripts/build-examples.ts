@@ -637,7 +637,6 @@ function buildPage(entry: ManifestEntry): string {
 \t\t<script src="${pfx}components/site-header.js" type="module"></script>
 \t\t<script src="${pfx}components/examples-sidebar.js" type="module"></script>
 \t\t<script src="${pfx}components/copyright-notice.js" defer></script>
-\t\t<script src="${pfx}components/last-updated.js" defer></script>
 \t\t<script src="${pfx}components/edit-on-github.js" defer></script>
 ${runInCeScript}\t</head>
 \t<body>
@@ -654,7 +653,6 @@ ${runInCeToolbarEl}\t\t\t\t\t\t</div>
 \t\t\t\t\t\t<pre class="language-cobol"><code class="language-cobol">${escapedSource}
 </code></pre>
 ${sampleOutputEl}${relatedEl}\t\t\t\t\t\t<copyright-notice type="examples"></copyright-notice>
-\t\t\t\t\t\t<last-updated></last-updated>
 \t\t\t\t\t\t<edit-on-github></edit-on-github>
 \t\t\t\t\t</div>
 \t\t\t\t</div>
