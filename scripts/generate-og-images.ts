@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 /**
  * generate-og-images.ts
  *
@@ -9,12 +10,11 @@
  * Run: npm run build:og-images
  */
 
+import { fileURLToPath } from "node:url";
 import { Resvg } from "@resvg/resvg-js";
 import fs from "fs";
 import path from "path";
-
 import { escapeHtml } from "./lib/html-text.js";
-import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT_DIR = path.resolve(__dirname, "../pics/og");

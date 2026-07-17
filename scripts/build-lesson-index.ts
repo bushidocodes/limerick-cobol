@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 /**
  * build-lesson-index.ts
  *
@@ -9,12 +10,11 @@
  * Idempotent — safe to run multiple times.
  */
 
+import { fileURLToPath } from "node:url";
 import fs from "fs";
 import path from "path";
-
 import { escapeHtml } from "./lib/html-text.js";
 import { readJson } from "./lib/json.js";
-import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, "..");

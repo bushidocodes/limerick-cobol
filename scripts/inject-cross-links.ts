@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 /**
  * inject-cross-links.ts
  *
@@ -20,11 +21,10 @@
  * place. Pretty-format with `biome format --write` afterwards.
  */
 
+import { fileURLToPath } from "node:url";
 import fs from "fs";
 import path from "path";
-
 import { readJson } from "./lib/json.js";
-import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, "..");

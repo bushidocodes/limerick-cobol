@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 /**
  * generate-exercise-jsonld.ts
  *
@@ -18,12 +19,11 @@
  * Biome format afterwards (the build:* script does) to normalise formatting.
  */
 
+import { fileURLToPath } from "node:url";
 import fs from "fs";
 import path from "path";
-
 import { loadExerciseSequence } from "./lib/exercises.js";
 import { buildLearningResourceBlock, extractCanonical, extractDescription, injectJsonLd } from "./lib/jsonld.js";
-import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, "..");

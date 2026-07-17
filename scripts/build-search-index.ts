@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 /**
  * build-search-index.ts
  * Walks course/, exercises/, examples/, lectures/ and emits search-index.json
@@ -12,12 +13,11 @@
  * aren't user-facing destinations. Pages without a <title> are also skipped.
  */
 
+import { fileURLToPath } from "node:url";
 import fs from "fs";
 import path from "path";
-
 import { collectHtmlFiles } from "./lib/html-files.js";
 import { collapseWhitespace, decodeEntities } from "./lib/html-text.js";
-import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, "..");

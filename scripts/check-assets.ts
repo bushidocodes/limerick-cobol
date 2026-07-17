@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 /**
  * check-assets.ts
  *
@@ -12,9 +13,9 @@
  * Exit code 1  – one or more broken references found.
  */
 
+import { fileURLToPath } from "node:url";
 import fs from "fs";
 import path from "path";
-import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // ---------------------------------------------------------------------------
