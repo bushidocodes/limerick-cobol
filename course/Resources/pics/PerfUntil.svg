@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 414" role="img"
+     aria-label="Comparison of PERFORM..UNTIL with TEST BEFORE vs TEST AFTER, showing the iteration flow for each variant">
+  <style>
+    .box { fill: #ffffff; stroke: #000000; stroke-width: 2; }
+    .label { font-family: Arial, Helvetica, sans-serif; font-size: 13px; fill: #000000; }
+    .label-bold { font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; fill: #000000; }
+    .arrow { fill: none; stroke: #000000; stroke-width: 2; }
+    .arrowhead { fill: #000000; }
+    @media (prefers-color-scheme: dark) {
+      .box { fill: #1a1a1a; stroke: #e6e6e6; }
+      .label, .label-bold { fill: #e6e6e6; }
+      .arrow { stroke: #e6e6e6; }
+      .arrowhead { fill: #e6e6e6; }
+    }
+  </style>
+  <defs>
+    <marker id="puArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 Z" class="arrowhead"/>
+    </marker>
+  </defs>
+
+  <!-- ===== LEFT: TEST BEFORE (while) ===== -->
+  <g>
+    <rect class="box" x="30" y="14" width="170" height="56" rx="2"/>
+    <text class="label-bold" x="115" y="34" text-anchor="middle">PERFORM WITH</text>
+    <text class="label-bold" x="115" y="50" text-anchor="middle">TEST BEFORE =</text>
+    <text class="label-bold" x="115" y="64" text-anchor="middle">while(cond)</text>
+
+    <path class="arrow" d="M115 70 V 100" marker-end="url(#puArrow)"/>
+
+    <polygon class="box" points="115,100 175,150 115,200 55,150"/>
+    <text class="label-bold" x="115" y="154" text-anchor="middle">test</text>
+    <text class="label" x="178" y="170">False</text>
+    <text class="label" x="100" y="220">True</text>
+
+    <rect class="box" x="170" y="135" width="100" height="30"/>
+    <text class="label-bold" x="220" y="155" text-anchor="middle">Loop Body</text>
+    <path class="arrow" d="M175 150 H 170" marker-end="url(#puArrow)"/>
+    <path class="arrow" d="M220 135 V 90 H 115 V 100" marker-end="url(#puArrow)"/>
+
+    <path class="arrow" d="M115 200 V 250" marker-end="url(#puArrow)"/>
+    <rect class="box" x="55" y="250" width="120" height="30"/>
+    <text class="label-bold" x="115" y="270" text-anchor="middle">Next Statement</text>
+
+    <path class="arrow" d="M115 280 V 320" marker-end="url(#puArrow)"/>
+  </g>
+
+  <!-- ===== RIGHT: TEST AFTER (do/while) ===== -->
+  <g>
+    <rect class="box" x="300" y="14" width="170" height="56" rx="2"/>
+    <text class="label-bold" x="385" y="34" text-anchor="middle">PERFORM WITH</text>
+    <text class="label-bold" x="385" y="50" text-anchor="middle">TEST AFTER =</text>
+    <text class="label-bold" x="385" y="64" text-anchor="middle">do { } while(cond)</text>
+
+    <path class="arrow" d="M385 70 V 100" marker-end="url(#puArrow)"/>
+
+    <rect class="box" x="335" y="100" width="100" height="30"/>
+    <text class="label-bold" x="385" y="120" text-anchor="middle">Loop Body</text>
+
+    <path class="arrow" d="M385 130 V 160" marker-end="url(#puArrow)"/>
+
+    <polygon class="box" points="385,160 445,210 385,260 325,210"/>
+    <text class="label-bold" x="385" y="214" text-anchor="middle">test</text>
+    <text class="label" x="448" y="230">False</text>
+    <text class="label" x="370" y="280">True</text>
+
+    <path class="arrow" d="M445 210 H 460 V 115 H 435" marker-end="url(#puArrow)"/>
+
+    <path class="arrow" d="M385 260 V 300" marker-end="url(#puArrow)"/>
+    <rect class="box" x="325" y="300" width="120" height="30"/>
+    <text class="label-bold" x="385" y="320" text-anchor="middle">Next Statement</text>
+
+    <path class="arrow" d="M385 330 V 370" marker-end="url(#puArrow)"/>
+  </g>
+</svg>
